@@ -2,7 +2,8 @@ import { Auth, API, graphqlOperation } from "aws-amplify";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import userConf from "./userConf";
-const mutations = require("../graphql/mutations.js");
+import placesJSON from "../assets/data/placesJSON";
+import * as mutations from "../graphql/mutations";
 import * as queries from "../graphql/queries";
 
 /*
