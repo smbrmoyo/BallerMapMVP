@@ -69,6 +69,7 @@ const MapStack = ({ navigation }) => {
           ),*/
         })}
       />
+
       <Stack.Screen
         name="Find"
         component={FindScreen}

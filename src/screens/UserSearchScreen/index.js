@@ -153,7 +153,7 @@ const UserSearchScreen = ({ navigation }) => {
   const { colors, dark } = useTheme();
   const [text, setText] = useState("");
   const [isFollowing, setIsFollowing] = useState(isFollowing);
-  const { followers, following } = useProfile();
+  const followers = [];
   const [data, setData] = useState(followers);
 
   const empty = [{ id: "0" }];
