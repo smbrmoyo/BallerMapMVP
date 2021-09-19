@@ -206,7 +206,7 @@ const UserSearchScreen = ({ navigation }) => {
       headerTitle: () => (
         <View style={styles.headerTitle}>
           <TouchableOpacity activeOpacity={0.7} style={styles.iconHeaderTitle}>
-            <Text style={styles.textHeader}>Invite a friend</Text>
+            <Text style={styles.textHeader}>Invite A Friend</Text>
           </TouchableOpacity>
         </View>
       ),

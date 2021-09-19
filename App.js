@@ -15,6 +15,8 @@ import AddScreen from "./src/screens/AddScreen";
 import { useAuth } from "./src/components/navigation/Providers/AuthProvider";
 import * as Font from "expo-font";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 export default function App() {
   const [loaded] = Font.useFonts({
     Comfortaa: require("./src/assets/fonts/Comfortaa-VariableFont_wght.ttf"),

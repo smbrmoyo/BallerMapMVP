@@ -2,7 +2,7 @@ import React from "react";
 import { Image, View, ImageBackground } from "react-native";
 import styles from "./styles";
 
-const ProfilePicture = ({ uri, size = 60, onEdit = false }) => {
+const ProfilePicture = ({ uri, size = 60, onEdit = false, opacity = 1 }) => {
   return (
     <View
       style={[
@@ -15,11 +15,11 @@ const ProfilePicture = ({ uri, size = 60, onEdit = false }) => {
         resizeMode="cover"
         imageStyle={[
           styles.image,
-          { width: size, height: size, borderRadius: size / 2 },
+          { width: size, height: size, borderRadius: size / 2, opacity },
         ]}
         style={[
           styles.image,
-          { width: size, height: size, borderRadius: size / 2 },
+          { width: size, height: size, borderRadius: size / 2, opacity },
         ]}
       />
     </View>

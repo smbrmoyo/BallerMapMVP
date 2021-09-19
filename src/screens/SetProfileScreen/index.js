@@ -26,11 +26,10 @@ import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplet
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { useHeaderHeight } from "@react-navigation/stack";
 import * as Haptics from "expo-haptics";
-import { useTheme } from "@react-navigation/native";
+
 import BottomSheet from "reanimated-bottom-sheet";
 
 import Animated from "react-native-reanimated";
-import PlaceRow from "./PlaceRow";
 import ProfilePicture from "../../components/ProfilePicture";
 import Bitmoji from "../../components/Bitmoji";
 import styles from "./styles";
@@ -50,11 +49,10 @@ import { ProfileProvider } from "../../components/navigation/Providers/ProfilePr
 
 //navigator.geolocation = require("@react-native-community/geolocation");
 
-const EditProfileScreen = ({ props, navigation, route }) => {
+const SetProfileScreen = ({ props, navigation, route }) => {
   const username = "";
   const [color, setColor] = useState("#CDCDCD");
   const headerHeight = useHeaderHeight();
-  const { colors, dark } = useTheme();
   const [userProfile, setUserProfile] = useState({
     username: "",
     bio: "",
@@ -75,32 +73,23 @@ const EditProfileScreen = ({ props, navigation, route }) => {
         //elevation: 5,
       },
       //headerTitleAlign: 'left',
-      headerBackTitleVisible: true,
+      headerBackTitleVisible: false,
       headerTitle: () => (
         <View style={styles.headerTitle}>
           <TouchableOpacity activeOpacity={0.7} style={styles.iconHeaderTitle}>
-            <Text style={styles.textHeader}>Edit Profile</Text>
+            <Text style={styles.textHeader}>Create Profile</Text>
           </TouchableOpacity>
         </View>
       ),
-      headerLeft: () => (
-        <View style={{ flexDirection: "row", margin: hsize(5) }}>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => navigation.goBack()}
-            style={{ justifyContent: "center" }}
-          >
-            <Entypo name="chevron-thin-left" size={24} color="#743cff" />
-          </TouchableOpacity>
-        </View>
-      ),
+      headerLeft: () => null,
+
       headerRight: () => (
         <View style={{ flexDirection: "row", marginHorizontal: wsize(10) }}>
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() =>
               Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
-                navigation.goBack()
+                navigation.navigate("Map")
               )
             } // Should edit profile on onpress
             style={{ justifyContent: "center" }}
@@ -208,9 +197,8 @@ const EditProfileScreen = ({ props, navigation, route }) => {
                     onPress={() => bsEditProf.current.snapTo(0)}
                   >
                     <ProfilePicture
-                      uri={require("../../assets/avatars/derek.russel.png")}
+                      uri={require("../../assets/images/default_profile_picture.png")}
                       size={80}
-                      opacity={0.8}
                     />
                   </TouchableOpacity>
                 </View>
@@ -235,7 +223,7 @@ const EditProfileScreen = ({ props, navigation, route }) => {
                       shadowRadius: 1.41,
                       elevation: 2,
                     }}
-                    placeholder="Old Username"
+                    placeholder=""
                     placeholderTextColor="#CDCDCD"
                     onEndEditing={(event) =>
                       setUserProfile({
@@ -266,7 +254,7 @@ const EditProfileScreen = ({ props, navigation, route }) => {
                       shadowRadius: 1.41,
                       elevation: 2,
                     }}
-                    placeholder="Old bio"
+                    placeholder="0/50"
                     multiline
                     placeholderTextColor="#CDCDCD"
                     onEndEditing={(event) =>
@@ -285,7 +273,7 @@ const EditProfileScreen = ({ props, navigation, route }) => {
 
                   <TextInput
                     style={styles.textInput}
-                    placeholder="www.idiot.com"
+                    placeholder=""
                     placeholderTextColor="#1d599d"
                     onEndEditing={(event) =>
                       setUserProfile({
@@ -304,4 +292,4 @@ const EditProfileScreen = ({ props, navigation, route }) => {
   );
 };
 
-export default EditProfileScreen;
+export default SetProfileScreen;

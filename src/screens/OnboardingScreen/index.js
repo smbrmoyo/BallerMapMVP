@@ -10,8 +10,8 @@ import {
 } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
 import Bitmoji from "../../components/Bitmoji";
-import { windowHeight, windowWidth } from "../../utils/Dimensions";
 import styles from "./styles";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const OnboardingScreen = ({ navigation }) => {
   const Skip = ({ ...props }) => (
@@ -30,6 +30,11 @@ const OnboardingScreen = ({ navigation }) => {
     </TouchableOpacity>
   );
 
+  if (AsyncStorage.getItem("alreadyLaunched")) {
+    console.log("going to SetProfi");
+  } else {
+    console.log("going to Home");
+  }
   return (
     <Onboarding
       DoneButtonComponent={Done}

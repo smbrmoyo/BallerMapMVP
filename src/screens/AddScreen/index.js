@@ -130,7 +130,7 @@ const AddScreen = ({ props, navigation, route }) => {
       headerTitle: () => (
         <View style={styles.headerTitle}>
           <TouchableOpacity activeOpacity={0.7} style={styles.iconHeaderTitle}>
-            <Text style={styles.textHeader}>Create a run</Text>
+            <Text style={styles.textHeader}>Create A Run</Text>
           </TouchableOpacity>
         </View>
       ),
@@ -268,7 +268,7 @@ const AddScreen = ({ props, navigation, route }) => {
               >
                 <View style={styles.descriptionContainer}>
                   <View style={styles.title}>
-                    <Text style={styles.titleText}>{username}</Text>
+                    <Text style={styles.titleText}>Name</Text>
                   </View>
 
                   <TextInput
@@ -288,10 +288,10 @@ const AddScreen = ({ props, navigation, route }) => {
                     }}
                     placeholder="Give your run a name"
                     placeholderTextColor="#CDCDCD"
-                    onChangeText={(text) =>
+                    onEndEditing={(event) =>
                       setEvent({
                         ...event,
-                        name: text,
+                        name: event.nativeEvent.text,
                       })
                     }
                   />
@@ -364,12 +364,10 @@ const AddScreen = ({ props, navigation, route }) => {
                     placeholder="In a few words"
                     multiline
                     placeholderTextColor="#CDCDCD"
-                    //OnSubmitEditing={(text) => setDescription(text)}
-                    //onEndEditing={(text) => setDescription(text)}
-                    onChangeText={(text) =>
+                    onEndEditing={(event) =>
                       setEvent({
                         ...event,
-                        description: text,
+                        description: event.nativeEvent.text,
                       })
                     }
                   />
@@ -384,8 +382,6 @@ const AddScreen = ({ props, navigation, route }) => {
                     style={styles.textInput}
                     placeholder="#"
                     placeholderTextColor="#CDCDCD"
-                    //OnSubmitEditing={(textTag) => setTags(textTag)}
-                    //onEndEditing={(textTag) => setTags(textTag)}
                     onChangeText={(textTag) =>
                       setEvent({
                         ...event,
