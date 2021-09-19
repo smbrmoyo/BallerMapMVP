@@ -11,17 +11,15 @@ import "react-native-gesture-handler";
 import React, { useState, useEffect } from "react";
 import { StatusBar, View } from "react-native";
 import Providers from "./src/components/navigation";
-import AddScreen from "./src/screens/AddScreen";
-import { useAuth } from "./src/components/navigation/Providers/AuthProvider";
+import { withAuthenticator } from "aws-amplify-react-native";
 import Amplify from "aws-amplify";
-import config from "./src/aws-exports"
+import config from "./src/aws-exports";
 import * as Font from "expo-font";
+import { createUserDoc } from "./src/aws-functions/userFunctions";
 
+Amplify.configure({ ...config, Analytics: { disabled: true } });
 
-Amplify.config(config);
-
-
-export default function App() {
+const App = () => {
   const [loaded] = Font.useFonts({
     Comfortaa: require("./src/assets/fonts/Comfortaa-VariableFont_wght.ttf"),
     ComfortaaBold: require("./src/assets/fonts/Comfortaa/static/Comfortaa-Bold.ttf"),
@@ -39,4 +37,6 @@ export default function App() {
       <Providers />
     </>
   );
-}
+};
+
+export default withAuthenticator(App);
