@@ -20,34 +20,16 @@ import {
   KeyboardAvoidingView,
   Keyboard,
 } from "react-native";
-import { Button, Overlay } from "react-native-elements";
-import * as Animatable from "react-native-animatable";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import { useRoute, useNavigation } from "@react-navigation/native";
 import { useHeaderHeight } from "@react-navigation/stack";
 import * as Haptics from "expo-haptics";
-
 import BottomSheet from "reanimated-bottom-sheet";
-
 import Animated from "react-native-reanimated";
-import ProfilePicture from "../../components/ProfilePicture";
-import Bitmoji from "../../components/Bitmoji";
-import styles from "./styles";
-import {
-  useAuth,
-  getUprofile,
-} from "../../components/navigation/Providers/AuthProvider";
-import { useMap } from "../../components/navigation/Providers/MapProvider";
-import { wsize, hsize } from "../../utils/Dimensions";
-import places from "../../assets/data/places";
-import Entypo from "react-native-vector-icons/Entypo";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import Fontisto from "react-native-vector-icons/Fontisto";
-import Feather from "react-native-vector-icons/Feather";
-import { ProfileProvider } from "../../components/navigation/Providers/ProfileProvider";
 
-//navigator.geolocation = require("@react-native-community/geolocation");
+import ProfilePicture from "../../components/ProfilePicture";
+import { createUserDoc } from "../../aws-functions/userFunctions";
+import styles from "./styles";
+import { wsize, hsize } from "../../utils/Dimensions";
+import Feather from "react-native-vector-icons/Feather";
 
 const SetProfileScreen = ({ props, navigation, route }) => {
   const username = "";
@@ -87,11 +69,15 @@ const SetProfileScreen = ({ props, navigation, route }) => {
         <View style={{ flexDirection: "row", marginHorizontal: wsize(10) }}>
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() =>
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
-                navigation.navigate("Map")
-              )
-            } // Should edit profile on onpress
+            onPress={() => {
+              createUserDoc(userProfile)
+                .then(() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+                    navigation.navigate("Map")
+                  );
+                })
+                .catch((error) => Alert.alert(error));
+            }} // Should edit profile on onpress
             style={{ justifyContent: "center" }}
           >
             <View style={styles.iconContainer}>
