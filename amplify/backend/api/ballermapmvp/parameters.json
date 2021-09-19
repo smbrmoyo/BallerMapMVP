@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "ballermapmvp",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authballermapmvp51584b17",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

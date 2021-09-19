@@ -13,9 +13,13 @@ import { StatusBar, View } from "react-native";
 import Providers from "./src/components/navigation";
 import AddScreen from "./src/screens/AddScreen";
 import { useAuth } from "./src/components/navigation/Providers/AuthProvider";
+import Amplify from "aws-amplify";
+import config from "./src/aws-exports"
 import * as Font from "expo-font";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";
+
+Amplify.config(config);
+
 
 export default function App() {
   const [loaded] = Font.useFonts({
