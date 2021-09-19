@@ -54,6 +54,6 @@ const createUserConnection = (userConnectionData) => {
     }))
 }
 
-export const followUser = () => {
-    
+export const followUser = (userConnection) => {
+    return createUserConnection(userConnection);
 }
