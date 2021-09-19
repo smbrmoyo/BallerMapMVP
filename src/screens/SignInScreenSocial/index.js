@@ -26,7 +26,7 @@ import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 
 const SignInScreenSocial = ({ navigation, props }) => {
   const headerHeight = useHeaderHeight();
-  const { login, user, setUser } = useAuth();
+  const login = "";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

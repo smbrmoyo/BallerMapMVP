@@ -7,6 +7,7 @@ import AuthStack from "./AuthStack";
 
 const Routes = () => {
   // const { user, setUser } = useAuth();
+  const user = true;
   const [initializing, setInitializing] = useState(true);
 
   const onAuthStateChanged = (user) => {
@@ -21,7 +22,11 @@ const Routes = () => {
 
   //if (initializing) return null;
 
-  return <NavigationContainer>{<AppStack />}</NavigationContainer>;
+  return (
+    <NavigationContainer>
+      {user ? <AppStack /> : <AuthStack />}
+    </NavigationContainer>
+  );
 };
 
 export default Routes;

@@ -62,6 +62,10 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingHorizontal: wsize(10),
   },
+  textHeader: {
+    fontSize: 20,
+    fontFamily: "ComfortaaBold",
+  },
 });
 
 export default styles;

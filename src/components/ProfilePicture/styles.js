@@ -2,14 +2,14 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 40,
-    borderWidth: 3,
+    borderWidth: 1,
     borderColor: "#743cff",
+    alignItems: "center",
+    justifyContent: "center",
     //margin: 5,
   },
   image: {
-    borderRadius: 40,
-    borderWidth: 3,
+    //borderWidth: 1,
     borderColor: "white",
   },
 });

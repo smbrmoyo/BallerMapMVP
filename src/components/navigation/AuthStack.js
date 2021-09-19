@@ -6,7 +6,7 @@ import SignInScreenSocial from "../../screens/SignInScreenSocial";
 import SignUpScreenEmail from "../../screens/SignUpScreenEmail";
 import SignUpScreenSocial from "../../screens/SignUpScreenSocial";
 import OnboardingScreen from "../../screens/OnboardingScreen";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
+import SetProfileScreen from "../../screens/SetProfileScreen";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -20,11 +20,12 @@ const AuthStack = () => {
   let routeName;
 
   useEffect(() => {
-    AsyncStorage.getItem("alreadyLaunched").then((value) => {
+    AsyncStorage.getItem("firstLaunch").then((value) => {
       if (value == null) {
-        AsyncStorage.setItem("alreadyLaunched", "true"); // Add  error handling
+        AsyncStorage.setItem("firstLaunch", "true"); // Add  error handling
         setIsFirstLaunch(true);
       } else {
+        AsyncStorage.setItem("firstLaunch", "false");
         setIsFirstLaunch(false);
       }
     }); // Add  error handling
@@ -44,6 +45,19 @@ const AuthStack = () => {
         name="Onboarding"
         component={OnboardingScreen}
         options={{ header: () => null }}
+      />
+      <Stack.Screen
+        name="SetProfile"
+        component={SetProfileScreen}
+        options={({ navigation }) => ({
+          title: "",
+          headerStyle: {
+            backgroundColor: "white",
+            shadowColor: "#f9fafd",
+            elevation: 0,
+            height: 80,
+          },
+        })}
       />
       <Stack.Screen
         name="SignInSocial"

@@ -19,14 +19,15 @@ import { useHeaderHeight } from "@react-navigation/stack";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import styles from "./styles";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTheme } from "react-native-paper";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 
 const SignInScreenEmail = ({ navigation, props }) => {
   const headerHeight = useHeaderHeight();
-  const { signIn, user } = useAuth();
+  const signIn = "";
+  const [nextScreen, setNextScreen] = useState("Map");
 
   /*useEffect(() => {
     if (error) {
@@ -44,6 +45,14 @@ const SignInScreenEmail = ({ navigation, props }) => {
       //console.log(data.signIn.token);
     });
   }*/
+
+  useEffect(() => {
+    AsyncStorage.getItem("firstLaunch").then((value) => {
+      if (value == "true") {
+        setNextScreen("SetProfile");
+      }
+    }); // Add  error handling
+  }, []);
 
   const [dataLogin, setDataLogin] = useState({
     username: "",
@@ -231,7 +240,9 @@ const SignInScreenEmail = ({ navigation, props }) => {
               activeOpacity={0.7}
               style={styles.signIn}
               onPress={() => {
-                signIn(dataLogin.email, dataLogin.password);
+                nextScreen == "SetProfile"
+                  ? navigation.navigate(nextScreen)
+                  : navigation.navigate("SetProfile");
               }}
             >
               <LinearGradient
@@ -252,7 +263,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.7}
-              onPress={() => navigation.navigate("SignUpSocial")}
+              onPress={() => {}}
               style={[styles.signIn]}
             >
               <View style={styles.textPrivate}>

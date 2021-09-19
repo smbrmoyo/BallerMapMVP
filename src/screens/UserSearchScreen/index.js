@@ -153,7 +153,7 @@ const UserSearchScreen = ({ navigation }) => {
   const { colors, dark } = useTheme();
   const [text, setText] = useState("");
   const [isFollowing, setIsFollowing] = useState(isFollowing);
-  const { followers, following } = useProfile();
+  const followers = [];
   const [data, setData] = useState(followers);
 
   const empty = [{ id: "0" }];
@@ -206,7 +206,7 @@ const UserSearchScreen = ({ navigation }) => {
       headerTitle: () => (
         <View style={styles.headerTitle}>
           <TouchableOpacity activeOpacity={0.7} style={styles.iconHeaderTitle}>
-            <Text style={styles.textHeader}>Invite a friend</Text>
+            <Text style={styles.textHeader}>Invite A Friend</Text>
           </TouchableOpacity>
         </View>
       ),

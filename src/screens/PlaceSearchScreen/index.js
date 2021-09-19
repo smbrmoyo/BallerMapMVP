@@ -20,7 +20,7 @@ import people from "../../assets/data/people";
 import places from "../../assets/data/placesJSON";
 import PlaceRow from "./PlaceRow";
 import { hsize, wsize } from "../../utils/Dimensions";
-import {useMap} from "../../components/navigation/Providers/MapProvider"
+import { useMap } from "../../components/navigation/Providers/MapProvider";
 
 const PlaceSearchScreen = ({ navigation, route }) => {
   const [data, setData] = useState([]);
@@ -43,7 +43,7 @@ const PlaceSearchScreen = ({ navigation, route }) => {
       headerTitle: () => (
         <View style={styles.headerTitle}>
           <TouchableOpacity activeOpacity={0.7} style={styles.iconHeaderTitle}>
-            <Text style={styles.textHeader}>Find a location</Text>
+            <Text style={styles.textHeader}>Find A Location</Text>
           </TouchableOpacity>
         </View>
       ),

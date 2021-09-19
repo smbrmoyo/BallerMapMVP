@@ -17,7 +17,9 @@ import Amplify from "aws-amplify";
 import config from "./src/aws-exports"
 import * as Font from "expo-font";
 
+
 Amplify.config(config);
+
 
 export default function App() {
   const [loaded] = Font.useFonts({
