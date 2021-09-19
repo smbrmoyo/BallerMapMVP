@@ -2,17 +2,11 @@
 
 - Delay rendering until profile partition found
 
-- PostDescription
-
-- Modify createPost with version in SnapClone
-
 -Splashscreen
 
 - Code QR!!!!!!!!!!!!!
 
 - Notifications!!!!!!
-
-- Fonts (TimeBurner, Comfortaa, vaguely fatal)
 
 * ChatScreen
 
