@@ -55,7 +55,7 @@ const AuthStack = () => {
             backgroundColor: "white",
             shadowColor: "#f9fafd",
             elevation: 0,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />

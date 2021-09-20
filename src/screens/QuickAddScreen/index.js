@@ -78,7 +78,7 @@ const ProfileScreen = ({ navigation, route }) => {
     return (
       <View style={styles.tabContainer}>
         <TouchableOpacity>
-          <Feather name="list" size={24} color="black" />
+          <Feather name="list" size={23} color="black" />
         </TouchableOpacity>
       </View>
     );
@@ -93,7 +93,7 @@ const ProfileScreen = ({ navigation, route }) => {
           onPress={() => navigation.navigate("UserSearch")}
         >
           <View style={styles.iconContainer}>
-            <Ionicons name="people-outline" size={24} color="black" />
+            <Ionicons name="people-outline" size={23} color="black" />
           </View>
         </TouchableOpacity>
       ),
@@ -112,7 +112,7 @@ const ProfileScreen = ({ navigation, route }) => {
           }}
         >
           <View style={styles.iconContainer}>
-            <Ionicons name="settings-outline" size={24} color="black" />
+            <Ionicons name="settings-outline" size={23} color="black" />
           </View>
         </TouchableOpacity>
       ),
@@ -161,7 +161,7 @@ const ProfileScreen = ({ navigation, route }) => {
           <Text style={styles.panelButtonTitle}>Edit Profile</Text>
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.7} style={styles.panelButton}>
-          <Ionicons name="settings-outline" size={24} color="black" />
+          <Ionicons name="settings-outline" size={23} color="black" />
           <Text style={styles.panelButtonTitle}>Settings</Text>
         </TouchableOpacity>
         <TouchableOpacity

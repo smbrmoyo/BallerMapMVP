@@ -111,7 +111,7 @@ const CategoryScreen = ({ props, navigation, size }) => {
             >
               Popular
             </Text>
-            {/*<Entypo name="chevron-with-circle-right" size={24} color="black" />*/}
+            {/*<Entypo name="chevron-with-circle-right" size={23} color="black" />*/}
           </View>
           <View style={styles.list}>
             <PopularCard />
@@ -138,7 +138,7 @@ const CategoryScreen = ({ props, navigation, size }) => {
             >
               Quick adds
             </Text>
-            {/*<Entypo name="chevron-with-circle-right" size={24} color="black" />*/}
+            {/*<Entypo name="chevron-with-circle-right" size={23} color="black" />*/}
           </View>
           <View style={styles.list}>
             <QuickCard />

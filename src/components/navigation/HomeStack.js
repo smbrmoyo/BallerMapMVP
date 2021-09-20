@@ -44,7 +44,7 @@ const HomeStack = () => {
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />

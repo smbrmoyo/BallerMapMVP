@@ -30,7 +30,7 @@ const Stack = createStackNavigator();
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />
@@ -49,7 +49,7 @@ const Stack = createStackNavigator();
             backgroundColor: "#f9fafd",
             //shadowColor: "black",
             elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />
@@ -83,7 +83,7 @@ const MessageStack = ({ navigation, route }) => {
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />
@@ -98,7 +98,7 @@ const MessageStack = ({ navigation, route }) => {
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },*/
         })}
       />
@@ -113,7 +113,7 @@ const MessageStack = ({ navigation, route }) => {
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },*/
         })}
       />
@@ -126,7 +126,7 @@ const MessageStack = ({ navigation, route }) => {
             backgroundColor: "#f9fafd",
             //shadowColor: "black",
             elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />
@@ -153,7 +153,7 @@ const MessageStack = ({ navigation, route }) => {
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />

@@ -13,17 +13,11 @@ import {
   Animated,
   Alert,
 } from "react-native";
-//import Animated from "react-native-reanimated";
+import * as TaskManager from "expo-task-manager";
 import MapView, { PROVIDER_GOOGLE, Marker, Circle } from "react-native-maps";
-import {
-  MaterialCommunityIcons,
-  Ionicons,
-  Fontisto,
-  Feather,
-} from "@expo/vector-icons";
-import { LinearGradient } from "expo-linear-gradient";
+import { Feather } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
-//import Geolocation from "@react-native-community/geolocation";
+import * as Location from "expo-location";
 import haversine from "haversine";
 
 import { mapBlueGreyStyle } from "../../styles/MapStyles";
@@ -80,29 +74,40 @@ const HomeMap = ({ props }) => {
     _onMapReady();
   }, []);
 
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+    })();
+  }, []);
+
   const _onMapReady = async () => {
-    /*Geolocation.getCurrentPosition((info) => {
-      setCamera({
-        ...camera,
-        latitude: info.coords.latitude,
-        longitude: info.coords.longitude,
-      }),
-        setUserLocation({
-          ...userLocation,
-          currentCoords: {
-            latitude: info.coords.latitude,
-            longitude: info.coords.longitude,
-          },
-        });
-    });*/
+    let location = await Location.getLastKnownPositionAsync();
+
+    setCamera({
+      ...camera,
+      latitude: location.coords.latitude,
+      longitude: location.coords.longitude,
+    }),
+      setUserLocation({
+        ...userLocation,
+        currentCoords: {
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+        },
+      });
   };
 
-  /*useEffect(() => {
+  useEffect(() => {
     //  Compare a user's currentCoords and a place with prevCoords and the same place
     //  If distance < 10 m, user can send notification
 
     const positionUpdate = setInterval(() => {
-      let watchID = Geolocation.watchPosition(
+      Location.watchPositionAsync(
+        { enableHighAccuracy: true, distanceFilter: 5 },
         (position) => {
           setUserLocation({
             ...userLocation,
@@ -115,9 +120,20 @@ const HomeMap = ({ props }) => {
               longitude: position.coords.longitude,
             },
           });
-          /*if (
+
+          setCamera({
+            ...camera,
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+          });
+
+          if (
             !haversine(userLocation.currentCoords, userLocation.prevCoords, {
               threshold: 0.02,
+              unit: "mile",
+            }) &&
+            haversine(userLocation.currentCoords, userLocation.prevCoords, {
+              threshold: 2,
               unit: "mile",
             })
           ) {
@@ -134,18 +150,16 @@ const HomeMap = ({ props }) => {
               haversine(userLocation.currentCoords, userLocation.prevCoords, {
                 unit: "meter",
               }) +
-              "m"
+              " m"
           );
-          Geolocation.clearWatch(watchID);
-        },
-        { enableHighAccuracy: true, distanceFilter: 5, maximumAge: 1000 }
+        }
       );
-    }, 60000); // Should adjust maybe to 2 or 3 mins
+    }, 10000); // Should adjust maybe to 2 or 3 mins
 
     return () => {
       clearInterval(positionUpdate);
     };
-  });*/
+  });
 
   const [state, setState] = useState(initialMapState);
   const [addPressed, setAddPressed] = useState(false);
@@ -294,6 +308,7 @@ const HomeMap = ({ props }) => {
             customMapStyle={mapBlueGreyStyle}
             loadingEnabled={true}
             onMapReady={_onMapReady}
+            followUserLocation={true}
             onLayout={() => {
               route.params
                 ? addEvent()
@@ -353,7 +368,7 @@ const HomeMap = ({ props }) => {
             scrollEventThrottle={1}
             showsHorizontalScrollIndicator={false}
             snapToInterval={CARD_WIDTH + 20}
-            snapToAlignment="center"
+            snapToAlignment="start"
             decelerationRate={"fast"}
             style={styles.scrollView}
             contentInset={{
@@ -364,8 +379,8 @@ const HomeMap = ({ props }) => {
               right: SPACING_FOR_CARD_INSET,
             }}
             contentContainerStyle={{
-              paddingHorizontal:
-                Platform.OS === "android" ? SPACING_FOR_CARD_INSET : 0,
+              alignItems: "center",
+              paddingRight: SPACING_FOR_CARD_INSET,
             }}
             onScroll={Animated.event(
               [

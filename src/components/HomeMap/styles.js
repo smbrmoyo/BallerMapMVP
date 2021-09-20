@@ -61,9 +61,8 @@ const styles = StyleSheet.create({
   scrollView: {
     position: "absolute",
     bottom: 0,
-    left: 0,
-    right: 0,
-    paddingVertical: 10,
+    flex: 1,
+    paddingHorizontal: SPACING_FOR_CARD_INSET,
   },
   cardScrollView: {
     position: "absolute",

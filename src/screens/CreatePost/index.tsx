@@ -79,7 +79,7 @@ const Review = ({ video }) => {
           //right: wsize(10),
         }}
       >
-        <MaterialIcons name="save-alt" size={24} color="white" />
+        <MaterialIcons name="save-alt" size={23} color="white" />
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -99,7 +99,7 @@ const Review = ({ video }) => {
           right: wsize(25),
         }}
       >
-        <Ionicons name="close" size={24} color="white" />
+        <Ionicons name="close" size={23} color="white" />
       </TouchableOpacity>
 
       <TouchableOpacity
@@ -214,7 +214,7 @@ const VideoRecord = () => {
                 right: wsize(25),
               }}
             >
-              <Ionicons name="close" size={24} color="white" />
+              <Ionicons name="close" size={23} color="white" />
             </TouchableOpacity>
 
             <View

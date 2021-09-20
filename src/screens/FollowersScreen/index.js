@@ -166,7 +166,7 @@ const FollowersScreen = ({ navigation }) => {
           onPress={() => navigation.goBack()}
         >
           <View style={styles.iconContainer}>
-            <Entypo name="chevron-thin-left" size={24} color="black" />
+            <Entypo name="chevron-thin-left" size={23} color="black" />
           </View>
         </TouchableOpacity>
       ),

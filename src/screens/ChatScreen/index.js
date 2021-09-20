@@ -45,7 +45,7 @@ const ChatScreen = ({ data, size, navigation, route }) => {
         backgroundColor: "white",
         //shadowColor: "black",
         //elevation: 5,
-        height: 80,
+        height: hsize(80),
       },
       //headerTitleAlign: 'left',
       //headerBackTitleVisible: false,
@@ -58,7 +58,7 @@ const ChatScreen = ({ data, size, navigation, route }) => {
             style={{ justifyContent: "center" }}
           >
             <View style={styles.iconContainer}>
-              <Entypo name="chevron-thin-left" size={24} color="black" />
+              <Entypo name="chevron-thin-left" size={23} color="black" />
             </View>
           </TouchableOpacity>
           <ProfilePicture size={40} />
@@ -75,7 +75,7 @@ const ChatScreen = ({ data, size, navigation, route }) => {
             <View style={styles.iconContainer}>
               <MaterialCommunityIcons
                 name="dots-horizontal"
-                size={24}
+                size={23}
                 color="black"
               />
             </View>
@@ -200,7 +200,7 @@ const ChatScreen = ({ data, size, navigation, route }) => {
                   activeOpacity={0.7}
                   onPress={() => Alert.alert("BottomSheet Sharing Options")}
                 >
-                  <AntDesign name="plus" size={24} color="#743cff" />
+                  <AntDesign name="plus" size={23} color="#743cff" />
                 </TouchableOpacity>
                 <TextInput
                   value={input}
@@ -212,7 +212,7 @@ const ChatScreen = ({ data, size, navigation, route }) => {
                   placeholder="Message..."
                 />
                 <TouchableOpacity activeOpacity={0.7} onPress={sendMessage}>
-                  <Ionicons name="send" size={24} color="#743cff" />
+                  <Ionicons name="send" size={23} color="#743cff" />
                 </TouchableOpacity>
               </View>
             </>

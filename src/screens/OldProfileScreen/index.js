@@ -113,7 +113,7 @@ const OldProfileScreen = ({ data, size, navigation, route }) => {
           <Text style={styles.panelButtonTitle}>Edit Profile</Text>
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.7} style={styles.panelButton}>
-          <Ionicons name="settings-outline" size={24} color="black" />
+          <Ionicons name="settings-outline" size={23} color="black" />
           <Text style={styles.panelButtonTitle}>Settings</Text>
         </TouchableOpacity>
         <TouchableOpacity

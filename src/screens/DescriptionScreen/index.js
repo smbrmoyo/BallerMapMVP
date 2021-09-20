@@ -52,7 +52,7 @@ const DescriptionScreen = ({ props, navigation, route }) => {
           }}
         >
           <View style={styles.iconContainer}>
-            <Ionicons name="settings-outline" size={24} color="black" />
+            <Ionicons name="settings-outline" size={23} color="black" />
           </View>
         </TouchableOpacity>
       ),

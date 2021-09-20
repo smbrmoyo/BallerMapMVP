@@ -5,6 +5,7 @@ import { PermissionsAndroid, StatusBar, View } from "react-native";
 import MapScreen from "../../screens/MapScreen";
 import FindScreen from "../../screens/FindScreen";
 import StoryScreen from "../../screens/StoryScreen";
+import LoadingScreen from "../../screens/LoadingScreen";
 import PlaceSearchScreen from "../../screens/PlaceSearchScreen";
 import StoryScreen4 from "../../screens/StoryScreen4/App";
 import AddScreen from "../../screens/AddScreen";
@@ -15,7 +16,7 @@ import OtherProfileScreen from "../../screens/OtherProfileScreen";
 import { MapProvider } from "./Providers/MapProvider";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Entypo from "react-native-vector-icons/Entypo";
-
+import { hsize, wsize } from "../../utils/Dimensions";
 import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 //import Geolocation from '@react-native-community/geolocation';
@@ -52,12 +53,12 @@ const MapStack = ({ navigation }) => {
             backgroundColor: "white",
             shadowColor: "#f9fafd",
             elevation: 0,
-            height: 80,
+            height: hsize(80),
           },
 
           /*headerRight: () => (
             <View style={{ marginLeft: 10 }}>
-              <Entypo name="cross" size={24} color="black" />
+              <Entypo name="cross" size={23} color="black" />
               <Ionicons.Button
                 name="chevron-back"
                 size={25}
@@ -79,11 +80,11 @@ const MapStack = ({ navigation }) => {
             backgroundColor: "white",
             shadowColor: "#f9fafd",
             elevation: 0,
-            height: 80,
+            height: hsize(80),
           },
           /*headerRight: () => (
             <View style={{ marginLeft: 10 }}>
-              <Entypo name="cross" size={24} color="black" />
+              <Entypo name="cross" size={23} color="black" />
               <Ionicons.Button
                 name="chevron-back"
                 size={25}
@@ -104,7 +105,7 @@ const MapStack = ({ navigation }) => {
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />
@@ -117,7 +118,7 @@ const MapStack = ({ navigation }) => {
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />
@@ -130,7 +131,7 @@ const MapStack = ({ navigation }) => {
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />
@@ -146,7 +147,7 @@ const MapStack = ({ navigation }) => {
           },
           /*headerRight: () => (
             <View style={{ marginLeft: 10 }}>
-              <Entypo name="cross" size={24} color="black" />
+              <Entypo name="cross" size={23} color="black" />
               <Ionicons.Button
                 name="chevron-back"
                 size={25}
@@ -167,7 +168,7 @@ const MapStack = ({ navigation }) => {
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />

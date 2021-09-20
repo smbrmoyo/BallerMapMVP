@@ -189,7 +189,7 @@ const MessageScreen = ({ props, navigation }) => {
             }
           >
             <View style={styles.iconContainer}>
-              <Ionicons name="search" size={24} color="#743cff" />
+              <Ionicons name="search" size={23} color="#743cff" />
             </View>
           </TouchableOpacity>
 
@@ -200,7 +200,7 @@ const MessageScreen = ({ props, navigation }) => {
                 navigation.navigate("MessageStack", { screen: "AddChat" })
               }
             >
-              <Ionicons name="pencil-outline" size={24} color="#743cff" />
+              <Ionicons name="pencil-outline" size={23} color="#743cff" />
             </TouchableOpacity>
           </View>
         </View>
