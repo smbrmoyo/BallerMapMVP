@@ -5,7 +5,7 @@ import { PermissionsAndroid, StatusBar, View } from "react-native";
 import MapScreen from "../../screens/MapScreen";
 import FindScreen from "../../screens/FindScreen";
 import StoryScreen from "../../screens/StoryScreen";
-import LoadingScreen from "../../screens/LoadingScreen";
+import SetProfileScreen from "../../screens/SetProfileScreen";
 import PlaceSearchScreen from "../../screens/PlaceSearchScreen";
 import StoryScreen4 from "../../screens/StoryScreen4/App";
 import AddScreen from "../../screens/AddScreen";
@@ -31,7 +31,7 @@ const MapStack = ({ navigation }) => {
     <Stack.Navigator initialRouteName={"Map"}>
       <Stack.Screen
         name="Map"
-        component={MapScreen}
+        component={SetProfileScreen}
         options={{ header: () => null }}
       />
 
