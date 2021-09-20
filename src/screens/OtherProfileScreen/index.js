@@ -66,6 +66,7 @@ const OtherProfileScreen = ({ navigation }) => {
   //const authContext = useContext(AuthContext);
   const [isFollowing, setIsFollowing] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
+  const [loadingUser, setLoadingUser] = useState(true); // Should be coming from provider
   // const { user, logout } = useContext(AuthContext);
   //const { bookmarks, items, looks } = tabs;
   const [userExtraInfo, setUserExstraInfo] = useState(null);
