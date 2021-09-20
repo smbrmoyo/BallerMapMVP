@@ -30,12 +30,14 @@ import { createUserDoc } from "../../aws-functions/userFunctions";
 import styles from "./styles";
 import { wsize, hsize } from "../../utils/Dimensions";
 import Feather from "react-native-vector-icons/Feather";
+const { Auth } = require("aws-amplify");
 
 const SetProfileScreen = ({ props, navigation, route }) => {
   const username = "";
   const [color, setColor] = useState("#CDCDCD");
   const headerHeight = useHeaderHeight();
   const [userProfile, setUserProfile] = useState({
+    email: "",
     username: "",
     bio: "",
     website: "",
@@ -44,6 +46,17 @@ const SetProfileScreen = ({ props, navigation, route }) => {
 
   var bsEditProf = useRef(null);
   var fallEditProf = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    async function getUser() {
+      let user = await Auth.currentAuthenticatedUser();
+      setUserProfile({
+        ...userProfile,
+        email: user.attributes.email,
+      });
+    }
+    getUser();
+  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
