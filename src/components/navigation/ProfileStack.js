@@ -16,6 +16,7 @@ import StoryScreen4 from "../../screens/StoryScreen4/App";
 import { createStackNavigator } from "@react-navigation/stack";
 import UserSearchScreen from "../../screens/UserSearchScreen";
 import { ProfileProvider } from "./Providers/ProfileProvider";
+import { hsize, wsize } from "../../utils/Dimensions";
 
 const Stack = createStackNavigator();
 
@@ -33,7 +34,7 @@ const ProfileStack = ({ navigation }) => {
             backgroundColor: "white",
             //shadowColor: 'black',
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
         //options={{ header: () => null }}
@@ -47,7 +48,7 @@ const ProfileStack = ({ navigation }) => {
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />
@@ -75,7 +76,7 @@ const ProfileStack = ({ navigation }) => {
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />
@@ -88,7 +89,7 @@ const ProfileStack = ({ navigation }) => {
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />
@@ -101,7 +102,7 @@ const ProfileStack = ({ navigation }) => {
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />
@@ -114,7 +115,7 @@ const ProfileStack = ({ navigation }) => {
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            //height: hsize(80)
           },
         })}
       />

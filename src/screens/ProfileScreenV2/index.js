@@ -241,7 +241,7 @@ function TabContainer(props) {
       >
         <MaterialCommunityIcons
           name="grid"
-          size={24}
+          size={23}
           color={props.currentTab === props.posts ? "black" : "grey"}
         />
       </TouchableOpacity>
@@ -251,7 +251,7 @@ function TabContainer(props) {
       >
         <Feather
           name="user"
-          size={24}
+          size={23}
           color={props.currentTab === props.tags ? "black" : "grey"}
         />
       </TouchableOpacity>
@@ -308,7 +308,7 @@ const ProfileScreen = ({ navigation, route }) => {
           }}
         >
           <View style={styles.iconContainer}>
-            <Ionicons name="settings-outline" size={24} color="black" />
+            <Ionicons name="settings-outline" size={23} color="black" />
           </View>
         </TouchableOpacity>
       ),
@@ -357,7 +357,7 @@ const ProfileScreen = ({ navigation, route }) => {
           <Text style={styles.panelButtonTitle}>Edit Profile</Text>
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.7} style={styles.panelButton}>
-          <Ionicons name="settings-outline" size={24} color="black" />
+          <Ionicons name="settings-outline" size={23} color="black" />
           <Text style={styles.panelButtonTitle}>Settings</Text>
         </TouchableOpacity>
         <TouchableOpacity

@@ -13,7 +13,7 @@ import { StatusBar, View } from "react-native";
 import Providers from "./src/components/navigation";
 import { withAuthenticator } from "aws-amplify-react-native";
 import Amplify, { Auth } from "aws-amplify";
-import config from "./src/aws-exports";
+import config from "./aws-exports";
 import * as Font from "expo-font";
 import { createUserDoc } from "./src/aws-functions/userFunctions";
 

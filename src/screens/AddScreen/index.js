@@ -121,7 +121,7 @@ const AddScreen = ({ props, navigation, route }) => {
       title: "",
       headerStyle: {
         backgroundColor: "white",
-        height: 80,
+        height: hsize(80),
         //shadowColor: "black",
         //elevation: 5,
       },
@@ -141,7 +141,7 @@ const AddScreen = ({ props, navigation, route }) => {
             onPress={() => navigation.goBack()}
             style={{ justifyContent: "center" }}
           >
-            <Entypo name="chevron-thin-left" size={24} color="#743cff" />
+            <Entypo name="chevron-thin-left" size={23} color="#743cff" />
           </TouchableOpacity>
         </View>
       ),
@@ -153,7 +153,7 @@ const AddScreen = ({ props, navigation, route }) => {
             style={{ justifyContent: "center" }}
           >
             <View style={styles.iconContainer}>
-              <Ionicons name="people-outline" size={24} color="#743cff" />
+              <Ionicons name="people-outline" size={23} color="#743cff" />
             </View>
           </TouchableOpacity>
         </View>

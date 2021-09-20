@@ -70,7 +70,7 @@ const Story = ({ source, user, avatar }) => {
               />
 
               <View style={styles.messageButton}>
-                <Ionicons name="send" size={24} color="white" />
+                <Ionicons name="send" size={23} color="white" />
               </View>
             </View>
           </ImageBackground>

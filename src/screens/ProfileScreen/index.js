@@ -19,14 +19,7 @@ import {
   Alert,
   //Animated,
 } from "react-native";
-import Animated, {
-  useCode,
-  Value,
-  set,
-  eq,
-  cond,
-  not,
-} from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import BottomSheet from "reanimated-bottom-sheet";
 import ProfilePicture from "../../components/ProfilePicture";
@@ -79,7 +72,7 @@ const ProfileScreen = ({ navigation, route }) => {
     return (
       <View style={styles.tabContainer}>
         <TouchableOpacity>
-          <Feather name="list" size={24} color="black" />
+          <Feather name="list" size={23} color="black" />
         </TouchableOpacity>
       </View>
     );
@@ -88,13 +81,14 @@ const ProfileScreen = ({ navigation, route }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       //title: "",
+      height: hsize(80),
       headerLeft: () => (
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => navigation.navigate("UserSearch")}
         >
           <View style={styles.iconContainer}>
-            <Ionicons name="people-outline" size={24} color="black" />
+            <Ionicons name="people-outline" size={23} color="black" />
           </View>
         </TouchableOpacity>
       ),
@@ -113,7 +107,7 @@ const ProfileScreen = ({ navigation, route }) => {
           }}
         >
           <View style={styles.iconContainer}>
-            <Ionicons name="settings-outline" size={24} color="black" />
+            <Ionicons name="settings-outline" size={23} color="black" />
           </View>
         </TouchableOpacity>
       ),
@@ -130,28 +124,6 @@ const ProfileScreen = ({ navigation, route }) => {
 
   renderInner = () => (
     <View style={styles.panel}>
-      {/*<View style={styles.row}>
-        <AntDesign name="adduser" size={30} color="black" />
-        <Text style={styles.panelTitle}>Settings</Text>
-      </View>
-      <TouchableOpacity activeOpacity={0.7} onPress={() => navigation.navigate('EditProfile')}>
-        <View style={styles.row}>
-          <AntDesign name="adduser" size={30} color="black" />
-          <Text style={styles.panelTitle}>EditProfile</Text>
-        </View>
-      </TouchableOpacity>
-      <View style={styles.row}>
-        <AntDesign name="adduser" size={30} color="black" />
-        <Text style={styles.panelTitle}>Abcde</Text>
-      </View>
-      <View style={styles.row}>
-        <AntDesign name="adduser" size={30} color="black" />
-        <Text style={styles.panelTitle}>Abcde</Text>
-      </View>
-      <View style={styles.row}>
-        <AntDesign name="adduser" size={30} color="black" />
-        <Text style={styles.panelTitle}>Abcde</Text>
-      </View>*/}
       <View style={{ backgroundColor: "white", height: "100%", width: "100%" }}>
         <TouchableOpacity
           activeOpacity={0.7}
@@ -162,7 +134,7 @@ const ProfileScreen = ({ navigation, route }) => {
           <Text style={styles.panelButtonTitle}>Edit Profile</Text>
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.7} style={styles.panelButton}>
-          <Ionicons name="settings-outline" size={24} color="black" />
+          <Ionicons name="settings-outline" size={23} color="black" />
           <Text style={styles.panelButtonTitle}>Settings</Text>
         </TouchableOpacity>
         <TouchableOpacity
@@ -233,7 +205,7 @@ const ProfileScreen = ({ navigation, route }) => {
             flex: 2,
             height: "100%",
             width: "100%",
-            //opacity: Animated.add(0.05, Animated.multiply(fall, 1.0)),
+            opacity: Animated.add(0.05, Animated.multiply(fall, 1.0)),
           }}
         >
           <View style={styles.container}>
@@ -313,7 +285,6 @@ const ProfileScreen = ({ navigation, route }) => {
             </View>
             <TabContainer />
           </View>
-
           <FlatList
             data={people}
             keyExtractor={(item) => item.id}

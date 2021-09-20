@@ -120,7 +120,7 @@ const AppStack = (route) => {
           tabBarLabel: "Profile",
           tabBarVisible: getTabBarVisibility(route),
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-circle-outline" size={30} color={color} />
+            <Ionicons name="person-circle-outline" size={32} color={color} />
           ),
         })}
       />
@@ -169,7 +169,7 @@ export default AppStack;
           tabBarLabel: "Places",
           tabBarVisible: getTabBarVisibility(route),
           tabBarIcon: ({ color, size }) => (
-            <AntDesign name="appstore-o" size={24} color={color} />
+            <AntDesign name="appstore-o" size={23} color={color} />
           ),
         })}
       />

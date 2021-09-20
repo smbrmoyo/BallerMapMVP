@@ -75,10 +75,10 @@ export default function NewProfileScreen() {
           }
           <View style={styles.separator}>
             <View style={styles.iconPost}>
-              <MaterialCommunityIcons name="grid" size={24} color="black" />
+              <MaterialCommunityIcons name="grid" size={23} color="black" />
             </View>
             <View style={styles.iconTags}>
-              <Feather name="user" size={24} color="black" />
+              <Feather name="user" size={23} color="black" />
             </View>
           </View>
         </ScrollView>

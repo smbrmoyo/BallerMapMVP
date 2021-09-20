@@ -25,7 +25,7 @@ const CategoryStack = ({ navigation }) => {
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />
@@ -38,7 +38,7 @@ const CategoryStack = ({ navigation }) => {
             backgroundColor: "white",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />

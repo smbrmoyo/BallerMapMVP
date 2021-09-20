@@ -50,7 +50,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
       title: "",
       headerStyle: {
         backgroundColor: "white",
-        height: 80,
+        height: hsize(80),
         //shadowColor: "black",
         //elevation: 5,
       },
@@ -81,7 +81,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
             style={{ justifyContent: "center" }}
           >
             <View style={styles.iconContainer}>
-              <Feather name="check" size={24} color="#743cff" />
+              <Feather name="check" size={23} color="#743cff" />
             </View>
           </TouchableOpacity>
         </View>

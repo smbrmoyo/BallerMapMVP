@@ -24,7 +24,7 @@ const ModalStack = ({ navigation }) => {
             backgroundColor: "#f9fafd",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />
@@ -38,7 +38,7 @@ const ModalStack = ({ navigation }) => {
             backgroundColor: "#f9fafd",
             //shadowColor: "black",
             //elevation: 5,
-            height: 80,
+            height: hsize(80),
           },
         })}
       />

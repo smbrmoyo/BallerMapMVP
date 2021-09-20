@@ -57,7 +57,7 @@ const BottomSheetMap = (props) => {
             </Text>
           </View>
           <TouchableOpacity activeOpacity={0.7} style={styles.profileInfo}>
-            <EvilIcons name="calendar" size={24} color="#743cff" />
+            <EvilIcons name="calendar" size={23} color="#743cff" />
             <Text style={styles.dateTimeInfo}>15.05.2021 14:00</Text>
           </TouchableOpacity>
         </View>
@@ -75,7 +75,7 @@ const BottomSheetMap = (props) => {
               justifyContent: "center",
             }}
           >
-            <Entypo name="share" size={24} color="black" />
+            <Entypo name="share" size={23} color="black" />
             <Text style={{ fontSize: 20, marginLeft: 10 }}>Share</Text>
           </View>
           <TouchableOpacity
@@ -94,7 +94,7 @@ const BottomSheetMap = (props) => {
                 justifyContent: "center",
               }}
             >
-              <FontAwesome name="bookmark-o" size={24} color="white" />
+              <FontAwesome name="bookmark-o" size={23} color="white" />
               <Text
                 style={{
                   fontSize: 20,
