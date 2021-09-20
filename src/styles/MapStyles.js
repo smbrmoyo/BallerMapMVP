@@ -557,10 +557,13 @@ export const mapBlueGreyStyle = [
   },
   {
     featureType: "poi.park",
-    elementType: "geometry",
+    //elementType: "geometry",
     stylers: [
       {
         color: "#e3eed3",
+      },
+      {
+        visibility: "off",
       },
     ],
   },
@@ -568,7 +571,7 @@ export const mapBlueGreyStyle = [
     featureType: "administrative",
     stylers: [
       {
-        visibility: "on",
+        visibility: "off",
       },
       {
         lightness: 33,
@@ -604,6 +607,22 @@ export const mapBlueGreyStyle = [
     stylers: [
       {
         visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "poi",
+    stylers: [
+      {
+        visibility: "off",
+      },
+    ],
+  },
+  {
+    featureType: "transit",
+    stylers: [
+      {
+        visibility: "on",
       },
     ],
   },

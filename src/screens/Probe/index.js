@@ -1,578 +1,462 @@
-import React, {
-  useContext,
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect,
-} from "react";
+import React, { useEffect } from "react";
 import {
-  View,
+  StyleSheet,
   Text,
   TextInput,
-  SafeAreaView,
-  StatusBar,
-  Alert,
-  Image,
+  View,
   ScrollView,
-  Dimensions,
+  Animated,
+  Image,
   TouchableOpacity,
-  TouchableWithoutFeedback,
-  KeyboardAvoidingView,
-  Keyboard,
+  Dimensions,
+  Platform,
 } from "react-native";
-import { Button, Overlay } from "react-native-elements";
-import * as Animatable from "react-native-animatable";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import { useRoute, useNavigation } from "@react-navigation/native";
-import { useHeaderHeight } from "@react-navigation/stack";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import DatePicker from "react-native-date-picker";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import * as Haptics from "expo-haptics";
+import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
 
-import PlaceRow from "./PlaceRow";
-import ProfilePicture from "../../components/ProfilePicture";
-import Bitmoji from "../../components/Bitmoji";
-import styles from "./styles";
-import {
-  useAuth,
-  getUprofile,
-} from "../../components/navigation/Providers/AuthProvider";
-import { useMap } from "../../components/navigation/Providers/MapProvider";
-import { wsize, hsize } from "../../utils/Dimensions";
-import places from "../../assets/data/places";
-import Entypo from "react-native-vector-icons/Entypo";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Fontisto from "react-native-vector-icons/Fontisto";
-import Feather from "react-native-vector-icons/Feather";
 
-//navigator.geolocation = require("@react-native-community/geolocation");
+import { useTheme } from "@react-navigation/native";
 
-const AddScreen = ({ props, navigation, route }) => {
-  //const { username } = useMap();
-  const { username } = getUprofile(profilePartition);
-  const { user, profilePartition } = useAuth();
-  /*import username from useProfile() */
-  let placeNameParams = "";
-  placeNameParams = route.params?.item.name;
-  const [event, setEvent] = useState({
-    name: "",
-    placeName: "",
-    creator: "",
-    tags: [],
-    description: "",
-    attendants: [],
-    date: {
-      day: new Date().getDay(),
-      month: new Date().getMonth(),
-      year: new Date().getFullYear(),
-    },
-    time: {
-      hour: new Date().getHours(),
-      min: new Date().getMinutes(),
-    },
-    endingTime: {
-      hour: new Date().getHours(),
-      min: new Date().getMinutes(),
-    },
-  });
+const { width, height } = Dimensions.get("window");
+const CARD_HEIGHT = 220;
+const CARD_WIDTH = width * 0.8;
+const SPACING_FOR_CARD_INSET = width * 0.1 - 10;
 
-  //console.log(event);
+const ExploreScreen = () => {
+  const theme = useTheme();
+
+  const Images = [
+    { image: require("../../assets/images/bitmoji-image.png") },
+    { image: require("../../assets/images/bitmoji-image.png") },
+    { image: require("../../assets/images/bitmoji-image.png") },
+    { image: require("../../assets/images/bitmoji-image.png") },
+  ];
+
+  const markers = [
+    {
+      coordinate: {
+        latitude: 22.6293867,
+        longitude: 88.4354486,
+      },
+      title: "Amazing Food Place",
+      description: "This is the best food place",
+      image: Images[0].image,
+      rating: 4,
+      reviews: 99,
+    },
+    {
+      coordinate: {
+        latitude: 22.6345648,
+        longitude: 88.4377279,
+      },
+      title: "Second Amazing Food Place",
+      description: "This is the second best food place",
+      image: Images[1].image,
+      rating: 5,
+      reviews: 102,
+    },
+    {
+      coordinate: {
+        latitude: 22.6281662,
+        longitude: 88.4410113,
+      },
+      title: "Third Amazing Food Place",
+      description: "This is the third best food place",
+      image: Images[2].image,
+      rating: 3,
+      reviews: 220,
+    },
+    {
+      coordinate: {
+        latitude: 22.6341137,
+        longitude: 88.4497463,
+      },
+      title: "Fourth Amazing Food Place",
+      description: "This is the fourth best food place",
+      image: Images[3].image,
+      rating: 4,
+      reviews: 48,
+    },
+    {
+      coordinate: {
+        latitude: 22.6292757,
+        longitude: 88.444781,
+      },
+      title: "Fifth Amazing Food Place",
+      description: "This is the fifth best food place",
+      image: Images[3].image,
+      rating: 4,
+      reviews: 178,
+    },
+  ];
+
+  const initialMapState = {
+    markers,
+    categories: [
+      {
+        name: "Fastfood Center",
+        icon: (
+          <MaterialCommunityIcons
+            style={styles.chipsIcon}
+            name="food-fork-drink"
+            size={18}
+          />
+        ),
+      },
+      {
+        name: "Restaurant",
+        icon: (
+          <Ionicons name="ios-restaurant" style={styles.chipsIcon} size={18} />
+        ),
+      },
+      {
+        name: "Dineouts",
+        icon: (
+          <Ionicons name="md-restaurant" style={styles.chipsIcon} size={18} />
+        ),
+      },
+      {
+        name: "Snacks Corner",
+        icon: (
+          <MaterialCommunityIcons
+            name="food"
+            style={styles.chipsIcon}
+            size={18}
+          />
+        ),
+      },
+      {
+        name: "Hotel",
+        icon: <Fontisto name="hotel" style={styles.chipsIcon} size={15} />,
+      },
+    ],
+    region: {
+      latitude: 22.62938671242907,
+      longitude: 88.4354486029795,
+      latitudeDelta: 0.04864195044303443,
+      longitudeDelta: 0.040142817690068,
+    },
+  };
+
+  const [state, setState] = React.useState(initialMapState);
+
+  let mapIndex = 0;
+  let mapAnimation = new Animated.Value(0);
 
   useEffect(() => {
-    if (route.params !== undefined) {
-      setEvent({
-        ...event,
-        placeName: placeNameParams,
-      });
-    }
-  }, [route]);
+    mapAnimation.addListener(({ value }) => {
+      let index = Math.floor(value / CARD_WIDTH + 0.3); // animate 30% away from landing on the next item
+      if (index >= state.markers.length) {
+        index = state.markers.length - 1;
+      }
+      if (index <= 0) {
+        index = 0;
+      }
 
-  const createEvent = async () => {
-    /*setEvent({
-      ...event,
-      creator: username,
-    });*/
-    const creation = user.functions
-      .Create_Event(event)
-      .then((result) => console.log("evénement bien créé"))
-      .catch((err) => console.log(err));
-  };
+      clearTimeout(regionTimeout);
 
-  const [visibleStart, setVisibleStart] = useState(false);
-  const [visibleEnd, setVisibleEnd] = useState(false);
-  const [color, setColor] = useState("#CDCDCD");
-
-  const headerHeight = useHeaderHeight();
-
-  const checkNavigation = () => {
-    /*if (address && description && tags) {
-      navigation.navigate("Map", {
-        address,
-        description,
-        tags,
-      });
-    }*/
-  };
-
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      title: "",
-      headerStyle: {
-        backgroundColor: "white",
-        height: 80,
-        //shadowColor: "black",
-        //elevation: 5,
-      },
-      //headerTitleAlign: 'left',
-      headerBackTitleVisible: true,
-      headerTitle: () => (
-        <View style={styles.headerTitle}>
-          <TouchableOpacity activeOpacity={0.7} style={styles.iconHeaderTitle}>
-            <Text style={styles.textHeader}>Create a run</Text>
-          </TouchableOpacity>
-        </View>
-      ),
-      headerLeft: () => (
-        <View style={{ flexDirection: "row", margin: hsize(5) }}>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => navigation.goBack()}
-            style={{ justifyContent: "center" }}
-          >
-            <Entypo name="chevron-thin-left" size={24} color="#743cff" />
-          </TouchableOpacity>
-        </View>
-      ),
-      headerRight: () => (
-        <View style={{ flexDirection: "row", marginHorizontal: wsize(10) }}>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => navigation.navigate("UserSearch")} // Should have a userSearchAddScreen
-            style={{ justifyContent: "center" }}
-          >
-            <View style={styles.iconContainer}>
-              <Ionicons name="people-outline" size={24} color="#743cff" />
-            </View>
-          </TouchableOpacity>
-        </View>
-      ),
+      const regionTimeout = setTimeout(() => {
+        if (mapIndex !== index) {
+          mapIndex = index;
+          const { coordinate } = state.markers[index];
+          _map.current.animateToRegion(
+            {
+              ...coordinate,
+              latitudeDelta: state.region.latitudeDelta,
+              longitudeDelta: state.region.longitudeDelta,
+            },
+            350
+          );
+        }
+      }, 10);
     });
-  }, [navigation]);
+  });
 
-  function pad2(string) {
-    return `0${string}`.slice(-2);
-  }
+  const interpolations = state.markers.map((marker, index) => {
+    const inputRange = [
+      (index - 1) * CARD_WIDTH,
+      index * CARD_WIDTH,
+      (index + 1) * CARD_WIDTH,
+    ];
 
-  const readableDate = (d) => {
-    if (!d) return undefined;
-    return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(
-      d.getDate()
-    )} ${pad2(d.getHours())}:${pad2(d.getMinutes())}:${pad2(d.getSeconds())}`;
+    const scale = mapAnimation.interpolate({
+      inputRange,
+      outputRange: [1, 1.5, 1],
+      extrapolate: "clamp",
+    });
+
+    return { scale };
+  });
+
+  const onMarkerPress = (mapEventData) => {
+    const markerID = mapEventData._targetInst.return.key;
+
+    let x = markerID * CARD_WIDTH + markerID * 20;
+    if (Platform.OS === "ios") {
+      x = x - SPACING_FOR_CARD_INSET;
+    }
+
+    _scrollView.current.scrollTo({ x: x, y: 0, animated: true });
   };
 
-  function impactAsync(style) {
-    switch (style) {
-      case "light":
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        break;
-      case "medium":
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-        break;
-      default:
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
-        break;
-    }
-  }
+  const _map = React.useRef(null);
+  const _scrollView = React.useRef(null);
 
   return (
-    <>
-      <StatusBar
-        translucent
-        backgroundColor="rgba(0,0,0,0.0)" /*transparent*/
-        barStyle="dark-content"
-      />
-
-      <DateTimePickerModal
-        isVisible={visibleStart} /*Should have second component for end date */
-        mode="datetime"
-        display="spinner"
-        onConfirm={(datum) => (
-          setEvent({
-            ...event,
-            date: {
-              day: datum.getDay(),
-              month: datum.getMonth(),
-              year: datum.getFullYear(),
-            },
-            time: {
-              hour: datum.getHours(),
-              min: datum.getMinutes(),
-            },
-          }),
-          setVisibleStart(false),
-          setColor("#743cff")
-        )}
-        onCancel={() => setVisibleStart(false)}
-      />
-
-      <DateTimePickerModal
-        isVisible={visibleEnd} /*Should have second component for end date */
-        mode="datetime"
-        display="spinner"
-        onConfirm={(datum) => (
-          setEvent({
-            ...event,
-            endingTime: {
-              hour: datum.getHours(),
-              min: datum.getMinutes(),
-            },
-          }),
-          setVisibleEnd(false),
-          setColor("#743cff")
-        )}
-        onCancel={() => setVisibleEnd(false)}
-      />
-
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : null}
+    <View style={styles.container}>
+      <MapView
+        ref={_map}
+        initialRegion={state.region}
+        style={styles.container}
+        provider={PROVIDER_GOOGLE}
+        // customMapStyle={theme.dark ? mapDarkStyle : mapStandardStyle}
+      >
+        {state.markers.map((marker, index) => {
+          const scaleStyle = {
+            transform: [
+              {
+                scale: interpolations[index].scale,
+              },
+            ],
+          };
+          return (
+            <MapView.Marker
+              key={index}
+              coordinate={marker.coordinate}
+              onPress={(e) => onMarkerPress(e)}
+            >
+              <Animated.View style={[styles.markerWrap]}>
+                <Animated.Image
+                  source={require("../../assets/images/bitmoji-image.png")}
+                  style={[styles.marker, scaleStyle]}
+                  resizeMode="cover"
+                />
+              </Animated.View>
+            </MapView.Marker>
+          );
+        })}
+      </MapView>
+      <View style={styles.searchBox}>
+        <TextInput
+          placeholder="Search here"
+          placeholderTextColor="#000"
+          autoCapitalize="none"
+          style={{ flex: 1, padding: 0 }}
+        />
+        <Ionicons name="ios-search" size={20} />
+      </View>
+      <ScrollView
+        horizontal
+        scrollEventThrottle={1}
+        showsHorizontalScrollIndicator={false}
+        height={50}
+        style={styles.chipsScrollView}
+        contentInset={{
+          // iOS only
+          alignItems: "center",
+        }}
+        /*contentContainerStyle={{
+          alignItems: "center",
+        }}*/
+      >
+        {state.categories.map((category, index) => (
+          <TouchableOpacity key={index} style={styles.chipsItem}>
+            {category.icon}
+            <Text>{category.name}</Text>
+          </TouchableOpacity>
+        ))}
+      </ScrollView>
+      <Animated.ScrollView
+        ref={_scrollView}
+        horizontal
+        //pagingEnabled
+        scrollEventThrottle={16}
+        showsHorizontalScrollIndicator={false}
+        snapToInterval={CARD_WIDTH + 20}
+        snapToAlignment="start"
+        //style={styles.scrollView}
+        contentContainerStyle={{
+          //flexGrow: 1,
+          alignItems: "center",
+          paddingRight: SPACING_FOR_CARD_INSET,
+        }}
         style={{
           flex: 1,
-          backgroundColor: "white",
+          paddingHorizontal: SPACING_FOR_CARD_INSET,
         }}
-        keyboardVerticalOffset={80}
+        /*contentContainerStyle={{
+          paddingHorizontal: Platform.OS === "ios" ? 0 : SPACING_FOR_CARD_INSET,
+        }}*/
+        onScroll={Animated.event(
+          [
+            {
+              nativeEvent: {
+                contentOffset: {
+                  x: mapAnimation,
+                },
+              },
+            },
+          ],
+          { useNativeDriver: true }
+        )}
       >
-        <SafeAreaView
-          style={{
-            flex: 1,
-          }}
-        >
-          <ScrollView
-          //animation="fadeInUpBig"
-          /*contentContainerStyle={{
-              padding: 10,
-              flex: 1,
-              justifyContent: "center",
-            }}*/
-          // style={{ flex: 1, padding: 10 }}
-          >
-            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-              <View
-                style={{
-                  padding: 24,
-                  flex: 1,
-                  justifyContent: "flex-end",
-                  paddingBottom: 100,
-                }}
-              >
-                <View style={styles.descriptionContainer}>
-                  <View style={styles.title}>
-                    <Text style={styles.titleText}>{username}</Text>
-                  </View>
-
-                  <TextInput
-                    style={{
-                      padding: hsize(10),
-                      backgroundColor: "#eee",
-                      marginVertical: hsize(5),
-                      borderRadius: hsize(5),
-                      shadowColor: "#000",
-                      shadowOffset: {
-                        width: 0,
-                        height: 1,
-                      },
-                      shadowOpacity: 0.2,
-                      shadowRadius: 1.41,
-                      elevation: 2,
-                    }}
-                    placeholder="Give your run a name"
-                    placeholderTextColor="#CDCDCD"
-                    onChangeText={(text) =>
-                      setEvent({
-                        ...event,
-                        name: text,
-                      })
-                    }
-                  />
-                </View>
-
-                <View style={styles.locationContainer}>
-                  <View style={styles.title}>
-                    <Text style={styles.titleText}>Address</Text>
-                  </View>
-                  <View style={styles.adressContainer}>
-                    <TouchableOpacity
-                      onPress={() => navigation.navigate("PlaceSearch")}
-                      /*if (route.params) {
-    setEvent({
-      ...event,
-      placeName: route.params.placeName,
-    })
-  }*/
-                    >
-                      <View
-                        style={{
-                          padding: hsize(10),
-                          backgroundColor: "#eee",
-                          marginVertical: hsize(5),
-                          borderRadius: hsize(5),
-                          shadowColor: "#000",
-                          shadowOffset: {
-                            width: 0,
-                            height: 1,
-                          },
-                          shadowOpacity: 0.2,
-                          shadowRadius: 1.41,
-                          elevation: 2,
-                        }}
-                      >
-                        {event.placeName === "" ? (
-                          <Text style={{ color: "#CDCDCD" }}>
-                            Find an Address
-                          </Text>
-                        ) : (
-                          <Text style={{ color: "black" }}>
-                            {event.placeName}
-                          </Text>
-                        )}
-                      </View>
-                    </TouchableOpacity>
-                  </View>
-                </View>
-
-                <View style={styles.descriptionContainer}>
-                  <View style={styles.title}>
-                    <Text style={styles.titleText}>Description</Text>
-                  </View>
-
-                  <TextInput
-                    style={{
-                      padding: hsize(10),
-                      backgroundColor: "#eee",
-                      marginVertical: hsize(5),
-                      borderRadius: hsize(5),
-                      shadowColor: "#000",
-                      shadowOffset: {
-                        width: 0,
-                        height: 1,
-                      },
-                      shadowOpacity: 0.2,
-                      shadowRadius: 1.41,
-                      elevation: 2,
-                    }}
-                    placeholder="In a few words"
-                    multiline
-                    placeholderTextColor="#CDCDCD"
-                    //OnSubmitEditing={(text) => setDescription(text)}
-                    //onEndEditing={(text) => setDescription(text)}
-                    onChangeText={(text) =>
-                      setEvent({
-                        ...event,
-                        description: text,
-                      })
-                    }
-                  />
-                </View>
-
-                <View style={styles.TagsContainer}>
-                  <View style={styles.title}>
-                    <Text style={styles.titleText}>Hashtags</Text>
-                  </View>
-
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder="#"
-                    placeholderTextColor="#CDCDCD"
-                    //OnSubmitEditing={(textTag) => setTags(textTag)}
-                    //onEndEditing={(textTag) => setTags(textTag)}
-                    onChangeText={(textTag) =>
-                      setEvent({
-                        ...event,
-                        //name: text,
-                      })
-                    }
-                  />
-                </View>
-                <View style={styles.TagsContainer}>
-                  <View style={styles.title}>
-                    <Text style={styles.titleText}>Hashtags</Text>
-                  </View>
-
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder="#"
-                    placeholderTextColor="#CDCDCD"
-                    //OnSubmitEditing={(textTag) => setTags(textTag)}
-                    //onEndEditing={(textTag) => setTags(textTag)}
-                    onChangeText={(textTag) =>
-                      setEvent({
-                        ...event,
-                        //name: text,
-                      })
-                    }
-                  />
-                </View>
-                <View style={styles.TagsContainer}>
-                  <View style={styles.title}>
-                    <Text style={styles.titleText}>Hashtags</Text>
-                  </View>
-
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder="#"
-                    placeholderTextColor="#CDCDCD"
-                    //OnSubmitEditing={(textTag) => setTags(textTag)}
-                    //onEndEditing={(textTag) => setTags(textTag)}
-                    onChangeText={(textTag) =>
-                      setEvent({
-                        ...event,
-                        //name: text,
-                      })
-                    }
-                  />
-                </View>
-                <View style={styles.TagsContainer}>
-                  <View style={styles.title}>
-                    <Text style={styles.titleText}>Hashtags</Text>
-                  </View>
-
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder="#"
-                    placeholderTextColor="#CDCDCD"
-                    //OnSubmitEditing={(textTag) => setTags(textTag)}
-                    //onEndEditing={(textTag) => setTags(textTag)}
-                    onChangeText={(textTag) =>
-                      setEvent({
-                        ...event,
-                        //name: text,
-                      })
-                    }
-                  />
-                </View>
-
-                <View style={styles.dateContainer}>
-                  <View style={styles.title}>
-                    <Text style={styles.titleText}>Start</Text>
-                  </View>
-
-                  <TouchableOpacity
-                    activeOpacity={0.7}
-                    onPress={() => setVisibleStart(true)}
-                  >
-                    <View style={styles.textInput}>
-                      <Text style={{ color: color, fontSize: 16 }}>
-                        {readableDate(event.startDateTime)}
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.dateContainer}>
-                  <View style={styles.title}>
-                    <Text style={styles.titleText}>End</Text>
-                  </View>
-
-                  <TouchableOpacity
-                    activeOpacity={0.7}
-                    onPress={() => setVisibleEnd(true)}
-                  >
-                    <View style={styles.textInput}>
-                      <Text style={{ color: color, fontSize: 16 }}>
-                        {readableDate(event.endDateTime)}
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    justifyContent: "space-around",
-                    //width: "100%",
-                    marginVertical: hsize(40),
-                  }}
+        {state.markers.map((marker, index) => (
+          <View style={styles.card} key={index}>
+            <Image
+              source={marker.image}
+              style={styles.cardImage}
+              resizeMode="cover"
+            />
+            <View style={styles.textContent}>
+              <Text numberOfLines={1} style={styles.cardtitle}>
+                {marker.title}
+              </Text>
+              <Text numberOfLines={1} style={styles.cardDescription}>
+                {marker.description}
+              </Text>
+              <View style={styles.button}>
+                <TouchableOpacity
+                  onPress={() => {}}
+                  style={[
+                    styles.signIn,
+                    {
+                      borderColor: "#FF6347",
+                      borderWidth: 1,
+                    },
+                  ]}
                 >
-                  <TouchableOpacity
-                    activeOpacity={0.7}
-                    onPress={() => navigation.goBack()}
+                  <Text
+                    style={[
+                      styles.textSign,
+                      {
+                        color: "#FF6347",
+                      },
+                    ]}
                   >
-                    <View
-                      style={{
-                        backgroundColor: "white",
-                        borderWidth: 1,
-                        borderColor: "#E9E8E8",
-                        borderRadius: 5,
-                        height: hsize(40),
-                        width: wsize(100),
-                        alignItems: "center",
-                        justifyContent: "center",
-                        shadowColor: "#000",
-                        shadowOffset: {
-                          width: 0,
-                          height: 1,
-                        },
-                        shadowOpacity: 0.2,
-                        shadowRadius: 1.41,
-                        elevation: 2,
-                      }}
-                    >
-                      <Text
-                        style={{
-                          fontSize: 20,
-                          color: "red", // On cancel alert
-                        }}
-                      >
-                        Cancel
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    activeOpacity={0.7}
-                    onPress={() => {
-                      createEvent(); /*.then(
-                    Haptics.notificationAsync(
-                      Haptics.NotificationFeedbackType.Success
-                    ) */
-                    }}
-                  >
-                    <View
-                      style={{
-                        backgroundColor: "white",
-                        borderWidth: 1,
-                        borderColor: "#E9E8E8",
-                        borderRadius: 5,
-                        height: hsize(40),
-                        width: wsize(100),
-                        alignItems: "center",
-                        justifyContent: "center",
-                        shadowColor: "#000",
-                        shadowOffset: {
-                          width: 0,
-                          height: 1,
-                        },
-                        shadowOpacity: 0.2,
-                        shadowRadius: 1.41,
-                        elevation: 2,
-                      }}
-                    >
-                      <Text
-                        style={{
-                          fontSize: 20,
-                          color: "#743cff",
-                        }}
-                      >
-                        Confirm
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
+                    Order Now
+                  </Text>
+                </TouchableOpacity>
               </View>
-            </TouchableWithoutFeedback>
-          </ScrollView>
-        </SafeAreaView>
-      </KeyboardAvoidingView>
-    </>
+            </View>
+          </View>
+        ))}
+      </Animated.ScrollView>
+    </View>
   );
 };
 
-export default AddScreen;
+export default ExploreScreen;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  searchBox: {
+    position: "absolute",
+    marginTop: Platform.OS === "ios" ? 40 : 20,
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    width: "90%",
+    alignSelf: "center",
+    borderRadius: 5,
+    padding: 10,
+    shadowColor: "#ccc",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+    elevation: 10,
+  },
+  chipsScrollView: {
+    position: "absolute",
+    top: Platform.OS === "ios" ? 90 : 80,
+    paddingHorizontal: 10,
+  },
+  chipsIcon: {
+    marginRight: 5,
+  },
+  chipsItem: {
+    flexDirection: "row",
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    padding: 8,
+    paddingHorizontal: 20,
+    marginHorizontal: 10,
+    height: 35,
+    shadowColor: "#ccc",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.5,
+    shadowRadius: 5,
+    elevation: 10,
+  },
+  scrollView: {
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    right: 0,
+    paddingVertical: 10,
+  },
+  endPadding: {
+    paddingRight: width - CARD_WIDTH,
+  },
+  card: {
+    // padding: 10,
+    elevation: 2,
+    backgroundColor: "#FFF",
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+    marginHorizontal: 10,
+    shadowColor: "#000",
+    shadowRadius: 5,
+    shadowOpacity: 0.3,
+    shadowOffset: { x: 2, y: -2 },
+    height: CARD_HEIGHT,
+    width: CARD_WIDTH,
+    overflow: "hidden",
+  },
+  cardImage: {
+    flex: 3,
+    width: "100%",
+    height: "100%",
+    alignSelf: "center",
+  },
+  textContent: {
+    flex: 2,
+    padding: 10,
+  },
+  cardtitle: {
+    fontSize: 12,
+    // marginTop: 5,
+    fontWeight: "bold",
+  },
+  cardDescription: {
+    fontSize: 12,
+    color: "#444",
+  },
+  markerWrap: {
+    alignItems: "center",
+    justifyContent: "center",
+    width: 50,
+    height: 50,
+  },
+  marker: {
+    width: 30,
+    height: 30,
+  },
+  button: {
+    alignItems: "center",
+    marginTop: 5,
+  },
+  signIn: {
+    width: "100%",
+    padding: 5,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 3,
+  },
+  textSign: {
+    fontSize: 14,
+    fontWeight: "bold",
+  },
+});

@@ -353,7 +353,7 @@ const HomeMap = ({ props }) => {
             scrollEventThrottle={1}
             showsHorizontalScrollIndicator={false}
             snapToInterval={CARD_WIDTH + 20}
-            snapToAlignment="center"
+            snapToAlignment="start"
             decelerationRate={"fast"}
             style={styles.scrollView}
             contentInset={{
@@ -364,8 +364,8 @@ const HomeMap = ({ props }) => {
               right: SPACING_FOR_CARD_INSET,
             }}
             contentContainerStyle={{
-              paddingHorizontal:
-                Platform.OS === "android" ? SPACING_FOR_CARD_INSET : 0,
+              alignItems: "center",
+              paddingRight: SPACING_FOR_CARD_INSET,
             }}
             onScroll={Animated.event(
               [

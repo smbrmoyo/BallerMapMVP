@@ -5,6 +5,7 @@ import { PermissionsAndroid, StatusBar, View } from "react-native";
 import MapScreen from "../../screens/MapScreen";
 import FindScreen from "../../screens/FindScreen";
 import StoryScreen from "../../screens/StoryScreen";
+import Probe from "../../screens/Probe";
 import PlaceSearchScreen from "../../screens/PlaceSearchScreen";
 import StoryScreen4 from "../../screens/StoryScreen4/App";
 import AddScreen from "../../screens/AddScreen";
