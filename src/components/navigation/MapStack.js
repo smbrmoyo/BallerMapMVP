@@ -47,8 +47,29 @@ const MapStack = ({ navigation }) => {
       />
       <Stack.Screen
         name="Add"
-        component={Probe}
-        options={{ header: () => null }}
+        component={SetProfileScreen}
+        options={({ navigation }) => ({
+          title: "",
+          headerStyle: {
+            backgroundColor: "white",
+            shadowColor: "#f9fafd",
+            elevation: 0,
+            height: hsize(80),
+          },
+
+          /*headerRight: () => (
+            <View style={{ marginLeft: 10 }}>
+              <Entypo name="cross" size={23} color="black" />
+              <Ionicons.Button
+                name="chevron-back"
+                size={25}
+                backgroundColor="white"
+                color="#333"
+                onPress={() => navigation.goBack()}
+              />
+            </View>
+          ),*/
+        })}
       />
 
       <Stack.Screen
