@@ -24,6 +24,7 @@ import { useHeaderHeight } from "@react-navigation/stack";
 import * as Haptics from "expo-haptics";
 import BottomSheet from "reanimated-bottom-sheet";
 import Animated from "react-native-reanimated";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import ProfilePicture from "../../components/ProfilePicture";
 import { createUserDoc } from "../../aws-functions/userFunctions";
@@ -83,13 +84,10 @@ const SetProfileScreen = ({ props, navigation, route }) => {
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => {
-              createUserDoc(userProfile)
-                .then(() => {
-                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
-                    navigation.navigate("Map")
-                  );
-                })
-                .catch((error) => Alert.alert(error));
+              createUserDoc(userProfile);
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+                navigation.navigate("Map")
+              );
             }} // Should edit profile on onpress
             style={{ justifyContent: "center" }}
           >
@@ -155,14 +153,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
         enabledGestureInteraction={true}
       />
 
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : null}
-        style={{
-          flex: 1,
-          backgroundColor: "white",
-        }}
-        keyboardVerticalOffset={headerHeight}
-      >
+      <KeyboardAwareScrollView>
         <SafeAreaView
           style={{
             flex: 1,
@@ -286,7 +277,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
             </TouchableWithoutFeedback>
           </ScrollView>
         </SafeAreaView>
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
     </>
   );
 };

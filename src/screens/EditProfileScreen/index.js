@@ -28,6 +28,7 @@ import { useHeaderHeight } from "@react-navigation/stack";
 import * as Haptics from "expo-haptics";
 import { useTheme } from "@react-navigation/native";
 import BottomSheet from "reanimated-bottom-sheet";
+import KeyboardAwareScrollView from "react-native-keyboard-aware-scroll-view";
 
 import Animated from "react-native-reanimated";
 import PlaceRow from "./PlaceRow";
@@ -167,14 +168,7 @@ const EditProfileScreen = ({ props, navigation, route }) => {
         enabledGestureInteraction={true}
       />
 
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : null}
-        style={{
-          flex: 1,
-          backgroundColor: "white",
-        }}
-        keyboardVerticalOffset={headerHeight}
-      >
+      <KeyboardAwareScrollView>
         <SafeAreaView
           style={{
             flex: 1,
@@ -299,7 +293,7 @@ const EditProfileScreen = ({ props, navigation, route }) => {
             </TouchableWithoutFeedback>
           </ScrollView>
         </SafeAreaView>
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
     </>
   );
 };

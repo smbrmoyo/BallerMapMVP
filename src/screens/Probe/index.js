@@ -1,462 +1,313 @@
-import React, { useEffect } from "react";
+import React, {
+  useContext,
+  useState,
+  useRef,
+  useEffect,
+  useLayoutEffect,
+} from "react";
 import {
-  StyleSheet,
+  View,
   Text,
   TextInput,
-  View,
-  ScrollView,
-  Animated,
+  SafeAreaView,
+  StatusBar,
+  Alert,
   Image,
-  TouchableOpacity,
+  ScrollView,
   Dimensions,
-  Platform,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  KeyboardAvoidingView,
+  Keyboard,
 } from "react-native";
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import { useHeaderHeight } from "@react-navigation/stack";
+import * as Haptics from "expo-haptics";
+import BottomSheet from "reanimated-bottom-sheet";
+import Animated from "react-native-reanimated";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import Ionicons from "react-native-vector-icons/Ionicons";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import Fontisto from "react-native-vector-icons/Fontisto";
+import ProfilePicture from "../../components/ProfilePicture";
+import { createUserDoc } from "../../aws-functions/userFunctions";
+import styles from "./styles";
+import { wsize, hsize } from "../../utils/Dimensions";
+import Feather from "react-native-vector-icons/Feather";
+const { Auth } = require("aws-amplify");
 
-import { useTheme } from "@react-navigation/native";
+const SetProfileScreen = ({ props, navigation, route }) => {
+  const username = "";
+  const [color, setColor] = useState("#CDCDCD");
+  const headerHeight = useHeaderHeight();
+  const [userProfile, setUserProfile] = useState({
+    email: "",
+    username: "",
+    bio: "",
+    website: "",
+    profilePicture: null,
+  });
 
-const { width, height } = Dimensions.get("window");
-const CARD_HEIGHT = 220;
-const CARD_WIDTH = width * 0.8;
-const SPACING_FOR_CARD_INSET = width * 0.1 - 10;
-
-const ExploreScreen = () => {
-  const theme = useTheme();
-
-  const Images = [
-    { image: require("../../assets/images/bitmoji-image.png") },
-    { image: require("../../assets/images/bitmoji-image.png") },
-    { image: require("../../assets/images/bitmoji-image.png") },
-    { image: require("../../assets/images/bitmoji-image.png") },
-  ];
-
-  const markers = [
-    {
-      coordinate: {
-        latitude: 22.6293867,
-        longitude: 88.4354486,
-      },
-      title: "Amazing Food Place",
-      description: "This is the best food place",
-      image: Images[0].image,
-      rating: 4,
-      reviews: 99,
-    },
-    {
-      coordinate: {
-        latitude: 22.6345648,
-        longitude: 88.4377279,
-      },
-      title: "Second Amazing Food Place",
-      description: "This is the second best food place",
-      image: Images[1].image,
-      rating: 5,
-      reviews: 102,
-    },
-    {
-      coordinate: {
-        latitude: 22.6281662,
-        longitude: 88.4410113,
-      },
-      title: "Third Amazing Food Place",
-      description: "This is the third best food place",
-      image: Images[2].image,
-      rating: 3,
-      reviews: 220,
-    },
-    {
-      coordinate: {
-        latitude: 22.6341137,
-        longitude: 88.4497463,
-      },
-      title: "Fourth Amazing Food Place",
-      description: "This is the fourth best food place",
-      image: Images[3].image,
-      rating: 4,
-      reviews: 48,
-    },
-    {
-      coordinate: {
-        latitude: 22.6292757,
-        longitude: 88.444781,
-      },
-      title: "Fifth Amazing Food Place",
-      description: "This is the fifth best food place",
-      image: Images[3].image,
-      rating: 4,
-      reviews: 178,
-    },
-  ];
-
-  const initialMapState = {
-    markers,
-    categories: [
-      {
-        name: "Fastfood Center",
-        icon: (
-          <MaterialCommunityIcons
-            style={styles.chipsIcon}
-            name="food-fork-drink"
-            size={18}
-          />
-        ),
-      },
-      {
-        name: "Restaurant",
-        icon: (
-          <Ionicons name="ios-restaurant" style={styles.chipsIcon} size={18} />
-        ),
-      },
-      {
-        name: "Dineouts",
-        icon: (
-          <Ionicons name="md-restaurant" style={styles.chipsIcon} size={18} />
-        ),
-      },
-      {
-        name: "Snacks Corner",
-        icon: (
-          <MaterialCommunityIcons
-            name="food"
-            style={styles.chipsIcon}
-            size={18}
-          />
-        ),
-      },
-      {
-        name: "Hotel",
-        icon: <Fontisto name="hotel" style={styles.chipsIcon} size={15} />,
-      },
-    ],
-    region: {
-      latitude: 22.62938671242907,
-      longitude: 88.4354486029795,
-      latitudeDelta: 0.04864195044303443,
-      longitudeDelta: 0.040142817690068,
-    },
-  };
-
-  const [state, setState] = React.useState(initialMapState);
-
-  let mapIndex = 0;
-  let mapAnimation = new Animated.Value(0);
+  var bsEditProf = useRef(null);
+  var fallEditProf = useRef(new Animated.Value(1)).current;
 
   useEffect(() => {
-    mapAnimation.addListener(({ value }) => {
-      let index = Math.floor(value / CARD_WIDTH + 0.3); // animate 30% away from landing on the next item
-      if (index >= state.markers.length) {
-        index = state.markers.length - 1;
-      }
-      if (index <= 0) {
-        index = 0;
-      }
-
-      clearTimeout(regionTimeout);
-
-      const regionTimeout = setTimeout(() => {
-        if (mapIndex !== index) {
-          mapIndex = index;
-          const { coordinate } = state.markers[index];
-          _map.current.animateToRegion(
-            {
-              ...coordinate,
-              latitudeDelta: state.region.latitudeDelta,
-              longitudeDelta: state.region.longitudeDelta,
-            },
-            350
-          );
-        }
-      }, 10);
-    });
-  });
-
-  const interpolations = state.markers.map((marker, index) => {
-    const inputRange = [
-      (index - 1) * CARD_WIDTH,
-      index * CARD_WIDTH,
-      (index + 1) * CARD_WIDTH,
-    ];
-
-    const scale = mapAnimation.interpolate({
-      inputRange,
-      outputRange: [1, 1.5, 1],
-      extrapolate: "clamp",
-    });
-
-    return { scale };
-  });
-
-  const onMarkerPress = (mapEventData) => {
-    const markerID = mapEventData._targetInst.return.key;
-
-    let x = markerID * CARD_WIDTH + markerID * 20;
-    if (Platform.OS === "ios") {
-      x = x - SPACING_FOR_CARD_INSET;
+    /*async function getUser() {
+      let user = await Auth.currentAuthenticatedUser();
+      setUserProfile({
+        ...userProfile,
+        email: user.attributes.email,
+      });
     }
+    getUser();*/
+  }, []);
 
-    _scrollView.current.scrollTo({ x: x, y: 0, animated: true });
-  };
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: "",
+      headerStyle: {
+        backgroundColor: "white",
+        height: hsize(80),
+        //shadowColor: "black",
+        //elevation: 5,
+      },
+      //headerTitleAlign: 'left',
+      headerBackTitleVisible: false,
+      headerTitle: () => (
+        <View style={styles.headerTitle}>
+          <TouchableOpacity activeOpacity={0.7} style={styles.iconHeaderTitle}>
+            <Text style={styles.textHeader}>Create Profile</Text>
+          </TouchableOpacity>
+        </View>
+      ),
+      headerLeft: () => null,
 
-  const _map = React.useRef(null);
-  const _scrollView = React.useRef(null);
+      headerRight: () => (
+        <View style={{ flexDirection: "row", marginHorizontal: wsize(10) }}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => {
+              createUserDoc(userProfile);
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+                navigation.navigate("Map")
+              );
+            }} // Should edit profile on onpress
+            style={{ justifyContent: "center" }}
+          >
+            <View style={styles.iconContainer}>
+              <Feather name="check" size={23} color="#743cff" />
+            </View>
+          </TouchableOpacity>
+        </View>
+      ),
+    });
+  }, [navigation]);
+
+  renderInner = () => (
+    <View style={styles.panel}>
+      <View style={{ alignItems: "center" }}>
+        <Text style={styles.panelTitle}>Upload Photo</Text>
+        <Text style={styles.panelSubtitle}>Choose Your Profile Picture</Text>
+      </View>
+      <TouchableOpacity
+        style={styles.panelButton}
+        onPress={() => console.log("takePhotoFromCamera")}
+      >
+        <Text style={styles.panelButtonTitle}>Take Photo</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.panelButton}
+        onPress={() => console.log("choosePhotoFromLibrary")}
+      >
+        <Text style={styles.panelButtonTitle}>Choose From Library</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.panelButton}
+        onPress={() => bsEditProf.current.snapTo(1)}
+      >
+        <Text style={styles.panelButtonTitle}>Cancel</Text>
+      </TouchableOpacity>
+    </View>
+  );
+
+  renderHeader = () => (
+    <View style={styles.header}>
+      <View style={styles.panelHeader}>
+        <View style={styles.panelHandle} />
+      </View>
+    </View>
+  );
 
   return (
-    <View style={styles.container}>
-      <MapView
-        ref={_map}
-        initialRegion={state.region}
-        style={styles.container}
-        provider={PROVIDER_GOOGLE}
-        // customMapStyle={theme.dark ? mapDarkStyle : mapStandardStyle}
-      >
-        {state.markers.map((marker, index) => {
-          const scaleStyle = {
-            transform: [
-              {
-                scale: interpolations[index].scale,
-              },
-            ],
-          };
-          return (
-            <MapView.Marker
-              key={index}
-              coordinate={marker.coordinate}
-              onPress={(e) => onMarkerPress(e)}
+    <>
+      <StatusBar
+        translucent
+        backgroundColor="rgba(0,0,0,0.0)" /*transparent*/
+        barStyle="dark-content"
+      />
+
+      <BottomSheet
+        ref={bsEditProf}
+        snapPoints={["50%", -5]}
+        renderContent={renderInner}
+        renderHeader={renderHeader}
+        initialSnap={1}
+        callbackNode={fallEditProf}
+        enabledGestureInteraction={true}
+      />
+
+      <KeyboardAwareScrollView extraHeight={headerHeight}>
+        <ScrollView style={{ flex: 1, padding: 10 }}>
+          <TouchableWithoutFeedback
+            onPress={() => {
+              bsEditProf.current.snapTo(1);
+              Keyboard.dismiss;
+            }}
+          >
+            <Animated.View
+              style={{
+                flex: 1,
+                justifyContent: "center",
+                opacity: Animated.add(
+                  0.1,
+                  Animated.multiply(fallEditProf, 1.0)
+                ),
+              }}
             >
-              <Animated.View style={[styles.markerWrap]}>
-                <Animated.Image
-                  source={require("../../assets/images/bitmoji-image.png")}
-                  style={[styles.marker, scaleStyle]}
-                  resizeMode="cover"
-                />
-              </Animated.View>
-            </MapView.Marker>
-          );
-        })}
-      </MapView>
-      <View style={styles.searchBox}>
-        <TextInput
-          placeholder="Search here"
-          placeholderTextColor="#000"
-          autoCapitalize="none"
-          style={{ flex: 1, padding: 0 }}
-        />
-        <Ionicons name="ios-search" size={20} />
-      </View>
-      <ScrollView
-        horizontal
-        scrollEventThrottle={1}
-        showsHorizontalScrollIndicator={false}
-        height={50}
-        style={styles.chipsScrollView}
-        contentInset={{
-          // iOS only
-          alignItems: "center",
-        }}
-        /*contentContainerStyle={{
-          alignItems: "center",
-        }}*/
-      >
-        {state.categories.map((category, index) => (
-          <TouchableOpacity key={index} style={styles.chipsItem}>
-            {category.icon}
-            <Text>{category.name}</Text>
-          </TouchableOpacity>
-        ))}
-      </ScrollView>
-      <Animated.ScrollView
-        ref={_scrollView}
-        horizontal
-        //pagingEnabled
-        scrollEventThrottle={16}
-        showsHorizontalScrollIndicator={false}
-        snapToInterval={CARD_WIDTH + 20}
-        snapToAlignment="start"
-        //style={styles.scrollView}
-        contentContainerStyle={{
-          //flexGrow: 1,
-          alignItems: "center",
-          paddingRight: SPACING_FOR_CARD_INSET,
-        }}
-        style={{
-          flex: 1,
-          paddingHorizontal: SPACING_FOR_CARD_INSET,
-        }}
-        /*contentContainerStyle={{
-          paddingHorizontal: Platform.OS === "ios" ? 0 : SPACING_FOR_CARD_INSET,
-        }}*/
-        onScroll={Animated.event(
-          [
-            {
-              nativeEvent: {
-                contentOffset: {
-                  x: mapAnimation,
-                },
-              },
-            },
-          ],
-          { useNativeDriver: true }
-        )}
-      >
-        {state.markers.map((marker, index) => (
-          <View style={styles.card} key={index}>
-            <Image
-              source={marker.image}
-              style={styles.cardImage}
-              resizeMode="cover"
-            />
-            <View style={styles.textContent}>
-              <Text numberOfLines={1} style={styles.cardtitle}>
-                {marker.title}
-              </Text>
-              <Text numberOfLines={1} style={styles.cardDescription}>
-                {marker.description}
-              </Text>
-              <View style={styles.button}>
+              <View
+                style={{
+                  alignItems: "center",
+                  padding: 10,
+                }}
+              >
                 <TouchableOpacity
-                  onPress={() => {}}
-                  style={[
-                    styles.signIn,
-                    {
-                      borderColor: "#FF6347",
-                      borderWidth: 1,
-                    },
-                  ]}
+                  activeOpacity={0.7}
+                  onPress={() => bsEditProf.current.snapTo(0)}
                 >
-                  <Text
-                    style={[
-                      styles.textSign,
-                      {
-                        color: "#FF6347",
-                      },
-                    ]}
-                  >
-                    Order Now
-                  </Text>
+                  <ProfilePicture
+                    uri={require("../../assets/images/default_profile_picture.png")}
+                    size={80}
+                  />
                 </TouchableOpacity>
               </View>
-            </View>
-          </View>
-        ))}
-      </Animated.ScrollView>
-    </View>
+
+              <View style={styles.descriptionContainer}>
+                <View style={styles.title}>
+                  <Text style={styles.titleText}>Username</Text>
+                </View>
+
+                <TextInput
+                  style={{
+                    padding: hsize(10),
+                    backgroundColor: "#eee",
+                    marginVertical: hsize(5),
+                    borderRadius: hsize(5),
+                    shadowColor: "#000",
+                    shadowOffset: {
+                      width: 0,
+                      height: 1,
+                    },
+                    shadowOpacity: 0.2,
+                    shadowRadius: 1.41,
+                    elevation: 2,
+                  }}
+                  placeholder=""
+                  placeholderTextColor="#CDCDCD"
+                  onEndEditing={(event) =>
+                    setUserProfile({
+                      ...userProfile,
+                      username: event.nativeEvent.text,
+                    })
+                  }
+                />
+              </View>
+
+              <View style={styles.descriptionContainer}>
+                <View style={styles.title}>
+                  <Text style={styles.titleText}>Bio</Text>
+                </View>
+
+                <TextInput
+                  style={{
+                    padding: hsize(10),
+                    backgroundColor: "#eee",
+                    marginVertical: hsize(5),
+                    borderRadius: hsize(5),
+                    shadowColor: "#000",
+                    shadowOffset: {
+                      width: 0,
+                      height: 1,
+                    },
+                    shadowOpacity: 0.2,
+                    shadowRadius: 1.41,
+                    elevation: 2,
+                  }}
+                  placeholder="0/50"
+                  multiline
+                  placeholderTextColor="#CDCDCD"
+                  onEndEditing={(event) =>
+                    setUserProfile({
+                      ...userProfile,
+                      bio: event.nativeEvent.text,
+                    })
+                  }
+                />
+              </View>
+
+              <View style={styles.TagsContainer}>
+                <View style={styles.title}>
+                  <Text style={styles.titleText}>Website</Text>
+                </View>
+
+                <TextInput
+                  style={styles.textInput}
+                  placeholder=""
+                  placeholderTextColor="#1d599d"
+                  onEndEditing={(event) =>
+                    setUserProfile({
+                      ...userProfile,
+                      website: event.nativeEvent.text,
+                    })
+                  }
+                />
+              </View>
+              <View style={styles.TagsContainer}>
+                <View style={styles.title}>
+                  <Text style={styles.titleText}>Website</Text>
+                </View>
+
+                <TextInput
+                  style={styles.textInput}
+                  placeholder=""
+                  placeholderTextColor="#1d599d"
+                  onEndEditing={(event) =>
+                    setUserProfile({
+                      ...userProfile,
+                      website: event.nativeEvent.text,
+                    })
+                  }
+                />
+              </View>
+              <View style={styles.TagsContainer}>
+                <View style={styles.title}>
+                  <Text style={styles.titleText}>Website</Text>
+                </View>
+
+                <TextInput
+                  style={styles.textInput}
+                  placeholder=""
+                  placeholderTextColor="#1d599d"
+                  onEndEditing={(event) =>
+                    setUserProfile({
+                      ...userProfile,
+                      website: event.nativeEvent.text,
+                    })
+                  }
+                />
+              </View>
+            </Animated.View>
+          </TouchableWithoutFeedback>
+        </ScrollView>
+      </KeyboardAwareScrollView>
+    </>
   );
 };
 
-export default ExploreScreen;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  searchBox: {
-    position: "absolute",
-    marginTop: Platform.OS === "ios" ? 40 : 20,
-    flexDirection: "row",
-    backgroundColor: "#fff",
-    width: "90%",
-    alignSelf: "center",
-    borderRadius: 5,
-    padding: 10,
-    shadowColor: "#ccc",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.5,
-    shadowRadius: 5,
-    elevation: 10,
-  },
-  chipsScrollView: {
-    position: "absolute",
-    top: Platform.OS === "ios" ? 90 : 80,
-    paddingHorizontal: 10,
-  },
-  chipsIcon: {
-    marginRight: 5,
-  },
-  chipsItem: {
-    flexDirection: "row",
-    backgroundColor: "#fff",
-    borderRadius: 20,
-    padding: 8,
-    paddingHorizontal: 20,
-    marginHorizontal: 10,
-    height: 35,
-    shadowColor: "#ccc",
-    shadowOffset: { width: 0, height: 3 },
-    shadowOpacity: 0.5,
-    shadowRadius: 5,
-    elevation: 10,
-  },
-  scrollView: {
-    position: "absolute",
-    bottom: 0,
-    left: 0,
-    right: 0,
-    paddingVertical: 10,
-  },
-  endPadding: {
-    paddingRight: width - CARD_WIDTH,
-  },
-  card: {
-    // padding: 10,
-    elevation: 2,
-    backgroundColor: "#FFF",
-    borderTopLeftRadius: 5,
-    borderTopRightRadius: 5,
-    marginHorizontal: 10,
-    shadowColor: "#000",
-    shadowRadius: 5,
-    shadowOpacity: 0.3,
-    shadowOffset: { x: 2, y: -2 },
-    height: CARD_HEIGHT,
-    width: CARD_WIDTH,
-    overflow: "hidden",
-  },
-  cardImage: {
-    flex: 3,
-    width: "100%",
-    height: "100%",
-    alignSelf: "center",
-  },
-  textContent: {
-    flex: 2,
-    padding: 10,
-  },
-  cardtitle: {
-    fontSize: 12,
-    // marginTop: 5,
-    fontWeight: "bold",
-  },
-  cardDescription: {
-    fontSize: 12,
-    color: "#444",
-  },
-  markerWrap: {
-    alignItems: "center",
-    justifyContent: "center",
-    width: 50,
-    height: 50,
-  },
-  marker: {
-    width: 30,
-    height: 30,
-  },
-  button: {
-    alignItems: "center",
-    marginTop: 5,
-  },
-  signIn: {
-    width: "100%",
-    padding: 5,
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: 3,
-  },
-  textSign: {
-    fontSize: 14,
-    fontWeight: "bold",
-  },
-});
+export default SetProfileScreen;
