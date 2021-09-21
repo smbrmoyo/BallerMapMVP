@@ -35,6 +35,12 @@ const styles = StyleSheet.create({
     fontWeight: "400",
     fontFamily: "ComfortaaBold",
   },
+  titleTextProfilePic: {
+    fontSize: hsize(20),
+    fontWeight: "400",
+    fontFamily: "ComfortaaBold",
+    color: "#743cff",
+  },
   addressContainer: {
     padding: hsize(10),
     height: "100%",
@@ -106,6 +112,54 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginVertical: hsize(10),
+  },
+  panel: {
+    padding: 20,
+    backgroundColor: "#FFFFFF",
+    paddingTop: 20,
+    width: "100%",
+  },
+  header: {
+    backgroundColor: "#FFFFFF",
+    shadowColor: "#333333",
+    shadowOffset: { width: -1, height: -3 },
+    shadowRadius: 2,
+    shadowOpacity: 0.4,
+    paddingTop: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+  },
+  panelHeader: {
+    alignItems: "center",
+  },
+  panelHandle: {
+    width: 40,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: "#00000040",
+    marginBottom: 10,
+  },
+  panelTitle: {
+    fontSize: 27,
+    height: 35,
+  },
+  panelSubtitle: {
+    fontSize: 14,
+    color: "gray",
+    height: 30,
+    marginBottom: 10,
+  },
+  panelButton: {
+    padding: 13,
+    borderRadius: 10,
+    backgroundColor: "#743cff",
+    alignItems: "center",
+    marginVertical: 7,
+  },
+  panelButtonTitle: {
+    fontSize: 17,
+    fontWeight: "bold",
+    color: "white",
   },
 });
 

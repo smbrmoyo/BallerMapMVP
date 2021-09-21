@@ -154,7 +154,7 @@ const HomeMap = ({ props }) => {
           );
         }
       );
-    }, 10000); // Should adjust maybe to 2 or 3 mins
+    }, 600000); // Should adjust maybe to 2 or 3 mins
 
     return () => {
       clearInterval(positionUpdate);

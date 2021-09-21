@@ -13,6 +13,7 @@ import AttendanceScreen from "../../screens/AttendanceScreen";
 import UserSearchScreen from "../../screens/UserSearchScreen";
 import DescriptionScreen from "../../screens/DescriptionScreen";
 import OtherProfileScreen from "../../screens/OtherProfileScreen";
+import Probe from "../../screens/Probe";
 import { MapProvider } from "./Providers/MapProvider";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Entypo from "react-native-vector-icons/Entypo";
@@ -31,7 +32,7 @@ const MapStack = ({ navigation }) => {
     <Stack.Navigator initialRouteName={"Map"}>
       <Stack.Screen
         name="Map"
-        component={SetProfileScreen}
+        component={MapScreen}
         options={{ header: () => null }}
       />
 
@@ -46,29 +47,8 @@ const MapStack = ({ navigation }) => {
       />
       <Stack.Screen
         name="Add"
-        component={AddScreen}
-        options={({ navigation }) => ({
-          title: "",
-          headerStyle: {
-            backgroundColor: "white",
-            shadowColor: "#f9fafd",
-            elevation: 0,
-            height: hsize(80),
-          },
-
-          /*headerRight: () => (
-            <View style={{ marginLeft: 10 }}>
-              <Entypo name="cross" size={23} color="black" />
-              <Ionicons.Button
-                name="chevron-back"
-                size={25}
-                backgroundColor="white"
-                color="#333"
-                onPress={() => navigation.goBack()}
-              />
-            </View>
-          ),*/
-        })}
+        component={Probe}
+        options={{ header: () => null }}
       />
 
       <Stack.Screen
