@@ -27,7 +27,10 @@ import Animated from "react-native-reanimated";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import ProfilePicture from "../../components/ProfilePicture";
-import { createUserDoc } from "../../aws-functions/userFunctions";
+import {
+  createUserDoc,
+  createUserProfile,
+} from "../../aws-functions/userFunctions";
 import styles from "./styles";
 import { wsize, hsize } from "../../utils/Dimensions";
 import Feather from "react-native-vector-icons/Feather";
@@ -37,7 +40,11 @@ const SetProfileScreen = ({ props, navigation, route }) => {
   const username = "";
   const [color, setColor] = useState("#CDCDCD");
   const headerHeight = useHeaderHeight();
+  const [userDoc, setUserDoc] = useState({
+    email: "",
+  });
   const [userProfile, setUserProfile] = useState({
+    userDocId: "",
     email: "",
     username: "",
     bio: "",
@@ -48,16 +55,34 @@ const SetProfileScreen = ({ props, navigation, route }) => {
   var bsEditProf = useRef(null);
   var fallEditProf = useRef(new Animated.Value(1)).current;
 
+  let userEmail = "";
+
   useEffect(() => {
     async function getUser() {
-      let user = await Auth.currentAuthenticatedUser();
-      setUserProfile({
-        ...userProfile,
-        email: user.attributes.email,
+      let user = await Auth.currentAuthenticatedUser().then((result) => {
+        userEmail = result.attributes.email;
       });
+
+      return userDoc;
     }
     getUser();
   }, []);
+
+  console.log(userEmail);
+
+  const handlerFunc = async () => {
+    return await createUserDoc({
+      email: userEmail,
+    });
+  };
+
+  /*.then((result) => {
+      console.log(result);
+
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+        navigation.navigate("Map")
+      );
+    }); */
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -84,10 +109,18 @@ const SetProfileScreen = ({ props, navigation, route }) => {
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => {
-              createUserDoc(userProfile);
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
-                navigation.navigate("Map")
-              );
+              handlerFunc().then((result) => {
+                console.log(userProfile.username);
+                createUserProfile({
+                  username: userProfile.username,
+                  userDocId: result.data.createUserDoc.id,
+                })
+                  .then((res) => console.log(res))
+                  .catch((err) => console.log(err));
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+                  navigation.navigate("Map")
+                );
+              });
             }} // Should edit profile on onpress
             style={{ justifyContent: "center" }}
           >
@@ -157,6 +190,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
         <SafeAreaView
           style={{
             flex: 1,
+            backgroundColor: "white",
           }}
         >
           <ScrollView style={{ flex: 1, padding: 10 }}>

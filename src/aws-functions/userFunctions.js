@@ -12,7 +12,7 @@ const mutations = require("../graphql/mutations.js");
  * @param {JSON} userData object with userDoc fields (email, deviceToken, phoneNumber)
  */
 export const createUserDoc = (userData) => {
-  API.graphql(
+  return API.graphql(
     graphqlOperation(mutations.createUserDoc, {
       input: {
         email: userData.email,
@@ -25,8 +25,8 @@ export const createUserDoc = (userData) => {
  * @description create user profile
  * @param {JSON} userProfile
  */
-export const createUserProfile = (userProfile) => {
-  API.graphql(
+export const createUserProfile = async (userProfile) => {
+  return await API.graphql(
     graphqlOperation(mutations.createUprofile, {
       input: {
         username: userProfile.username,
@@ -40,8 +40,8 @@ export const createUserProfile = (userProfile) => {
  * @description create user profile
  * @param {JSON} updatedUprofile
  */
-export const updateUserProfile = (updatedUprofile) => {
-  API.graphql(
+export const updateUserProfile = async (updatedUprofile) => {
+  return await API.graphql(
     graphqlOperation(mutations.updateUprofile, {
       input: {
         username: updatedUprofile.username,
@@ -57,8 +57,8 @@ export const updateUserProfile = (updatedUprofile) => {
  * @description create user connection
  * @param {JSON} userConnectionData
  */
-const createUserConnection = (userConnectionData) => {
-  API.graphql(
+const createUserConnection = async (userConnectionData) => {
+  return await API.graphql(
     graphqlOperation(mutations.createUserConnection, {
       input: {
         followerID: userConnectionData.follower,
@@ -76,8 +76,8 @@ export const followUser = (userConnection) => {
  * @description create user event connection
  * @param {JSON} eventConnection
  */
-const createUserEventConnection = (eventConnection) => {
-  API.graphql(
+const createUserEventConnection = async (eventConnection) => {
+  return await API.graphql(
     graphqlOperation(mutations.createUserEventConnection, {
       input: {
         eventID: eventConnection.eventID,
