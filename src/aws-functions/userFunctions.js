@@ -19,8 +19,10 @@ export const getAuthenticatedUser = () => {
  * @description create user doc
  * @param {JSON} userData object with userDoc fields (email, deviceToken, phoneNumber)
  */
+
 export const createUserDoc = async (userData) => {
   let userDoc = await API.graphql(
+
     graphqlOperation(mutations.createUserDoc, {
       input: {
         email: userData.email,
@@ -33,14 +35,17 @@ export const createUserDoc = async (userData) => {
 
 /**
  * @description create user profile
+ * @param {JSON} userDataInfo
  * @param {JSON} userProfile
  */
+
 export const createUserProfile = async (userProfile) => {
   return await API.graphql(
+
     graphqlOperation(mutations.createUprofile, {
       input: {
-        username: userProfile.username,
-        userDocId: userProfile.userDocId,
+        username: userDataInfo.username,
+        userDocId: userProfile.data.createUserDoc.id,
       },
     })
   );
@@ -53,6 +58,7 @@ export const createUserProfile = async (userProfile) => {
 export const updateUserProfile = async (updatedUprofile) => {
   //const uProfile = await API.graphql({ query: queries.getUprofile, variables: { id: userConf.uProfileId }});
   console.log(updatedUprofile);
+
   return await API.graphql(
     graphqlOperation(mutations.updateUprofile, {
       input: {
@@ -87,7 +93,9 @@ export const followUser = (userConnection) => {
  * @description create user event connection
  * @param {JSON} eventConnection
  */
+
 const createUserEventConnection = async(eventConnection) => {
+
   return await API.graphql(
     graphqlOperation(mutations.createUserEventConnection, {
       input: {

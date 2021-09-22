@@ -27,7 +27,9 @@ import Animated from "react-native-reanimated";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import ProfilePicture from "../../components/ProfilePicture";
+
 import { createUserDoc, createUserProfile, getAuthenticatedUser } from "../../aws-functions/userFunctions";
+
 import styles from "./styles";
 import { wsize, hsize } from "../../utils/Dimensions";
 import Feather from "react-native-vector-icons/Feather";
@@ -36,11 +38,12 @@ import userConf from "../../aws-functions/userConf";
 getAuthenticatedUser();
 
 const SetProfileScreen = ({ props, navigation, route }) => {
-  const username = "";
   const [color, setColor] = useState("#CDCDCD");
   const headerHeight = useHeaderHeight();
+
   const [userProfile, setUserProfile] = useState({
     email: userConf.email,
+
     username: "",
     bio: "",
     website: "",
@@ -51,15 +54,30 @@ const SetProfileScreen = ({ props, navigation, route }) => {
   var fallEditProf = useRef(new Animated.Value(1)).current;
 
   /*useEffect(() => {
+
     async function getUser() {
-      let user = await Auth.currentAuthenticatedUser();
-      setUserProfile({
-        ...userProfile,
-        email: user.attributes.email,
+      let user = await Auth.currentAuthenticatedUser().then((result) => {
+        userEmail = result.attributes.email;
       });
+
+      return userDoc;
     }
     getUser();
   }, []);*/
+
+  const handlerUserDoc = async () => {
+    return await createUserDoc({
+      email: userEmail,
+    });
+  };
+
+  const handlerUserProfile = async (userDataInfo, resUserDoc) => {
+    console.log(resUserDoc);
+    return await createUserProfile({
+      username: userEmail,
+      userDocId: resUserDoc.data.createUserDoc.id,
+    });
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -86,6 +104,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => {
+
               createUserDoc(userProfile).then(userDoc => {
                 console.log(userDoc);
                 createUserProfile(userConf).then(uProfile => {
@@ -95,6 +114,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                   );
                 });
               }).catch(error => console.error(error));
+
             }} // Should edit profile on onpress
             style={{ justifyContent: "center" }}
           >
@@ -164,6 +184,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
         <SafeAreaView
           style={{
             flex: 1,
+            backgroundColor: "white",
           }}
         >
           <ScrollView style={{ flex: 1, padding: 10 }}>
@@ -228,8 +249,8 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                       setUserProfile({
                         ...userProfile,
                         username: event.nativeEvent.text,
-                      })
-                    }
+                      });
+                    }}
                   />
                 </View>
 
@@ -257,8 +278,8 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                     multiline
                     placeholderTextColor="#CDCDCD"
                     onEndEditing={(event) =>
-                      setUserProfile({
-                        ...userProfile,
+                      setUserProf({
+                        ...userProf,
                         bio: event.nativeEvent.text,
                       })
                     }
@@ -275,8 +296,8 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                     placeholder=""
                     placeholderTextColor="#1d599d"
                     onEndEditing={(event) =>
-                      setUserProfile({
-                        ...userProfile,
+                      setUserProf({
+                        ...userProf,
                         website: event.nativeEvent.text,
                       })
                     }

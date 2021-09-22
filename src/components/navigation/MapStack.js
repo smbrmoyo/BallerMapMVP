@@ -51,8 +51,10 @@ const MapStack = ({ navigation }) => {
       />
       <Stack.Screen
         name="Add"
+
         component={AddScreen}
         options={{ header: () => null }}
+
       />
 
       <Stack.Screen
