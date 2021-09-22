@@ -37,14 +37,13 @@ import Feather from "react-native-vector-icons/Feather";
 const { Auth } = require("aws-amplify");
 
 const SetProfileScreen = ({ props, navigation, route }) => {
-  const username = "";
   const [color, setColor] = useState("#CDCDCD");
   const headerHeight = useHeaderHeight();
+  const [username, setUsername] = useState("");
   const [userDoc, setUserDoc] = useState({
     email: "",
   });
-  const [userProfile, setUserProfile] = useState({
-    userDocId: "",
+  const [userProf, setUserProf] = useState({
     email: "",
     username: "",
     bio: "",
@@ -68,21 +67,19 @@ const SetProfileScreen = ({ props, navigation, route }) => {
     getUser();
   }, []);
 
-  console.log(userEmail);
-
-  const handlerFunc = async () => {
+  const handlerUserDoc = async () => {
     return await createUserDoc({
       email: userEmail,
     });
   };
 
-  /*.then((result) => {
-      console.log(result);
-
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
-        navigation.navigate("Map")
-      );
-    }); */
+  const handlerUserProfile = async (userDataInfo, resUserDoc) => {
+    console.log(resUserDoc);
+    return await createUserProfile({
+      username: userEmail,
+      userDocId: resUserDoc.data.createUserDoc.id,
+    });
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -109,18 +106,17 @@ const SetProfileScreen = ({ props, navigation, route }) => {
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => {
-              handlerFunc().then((result) => {
-                console.log(userProfile.username);
-                createUserProfile({
-                  username: userProfile.username,
-                  userDocId: result.data.createUserDoc.id,
+              handlerUserDoc()
+                .then((result) => {
+                  console.log(result);
+                  handlerUserProfile(userProf, result).then((res) =>
+                    console.log(res)
+                  );
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+                    navigation.navigate("Map")
+                  );
                 })
-                  .then((res) => console.log(res))
-                  .catch((err) => console.log(err));
-                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
-                  navigation.navigate("Map")
-                );
-              });
+                .catch((err) => console.log(err));
             }} // Should edit profile on onpress
             style={{ justifyContent: "center" }}
           >
@@ -249,12 +245,12 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                     }}
                     placeholder=""
                     placeholderTextColor="#CDCDCD"
-                    onEndEditing={(event) =>
-                      setUserProfile({
-                        ...userProfile,
+                    onEndEditing={(event) => {
+                      setUserProf({
+                        ...userProf,
                         username: event.nativeEvent.text,
-                      })
-                    }
+                      });
+                    }}
                   />
                 </View>
 
@@ -282,8 +278,8 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                     multiline
                     placeholderTextColor="#CDCDCD"
                     onEndEditing={(event) =>
-                      setUserProfile({
-                        ...userProfile,
+                      setUserProf({
+                        ...userProf,
                         bio: event.nativeEvent.text,
                       })
                     }
@@ -300,8 +296,8 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                     placeholder=""
                     placeholderTextColor="#1d599d"
                     onEndEditing={(event) =>
-                      setUserProfile({
-                        ...userProfile,
+                      setUserProf({
+                        ...userProf,
                         website: event.nativeEvent.text,
                       })
                     }

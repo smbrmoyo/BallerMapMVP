@@ -23,14 +23,15 @@ export const createUserDoc = (userData) => {
 
 /**
  * @description create user profile
+ * @param {JSON} userDataInfo
  * @param {JSON} userProfile
  */
-export const createUserProfile = async (userProfile) => {
-  return await API.graphql(
+export const createUserProfile = (userDataInfo, userProfile) => {
+  return API.graphql(
     graphqlOperation(mutations.createUprofile, {
       input: {
-        username: userProfile.username,
-        userDocId: userProfile.userDocId,
+        username: userDataInfo.username,
+        userDocId: userProfile.data.createUserDoc.id,
       },
     })
   );
