@@ -28,7 +28,7 @@ import { useHeaderHeight } from "@react-navigation/stack";
 import * as Haptics from "expo-haptics";
 import { useTheme } from "@react-navigation/native";
 import BottomSheet from "reanimated-bottom-sheet";
-import KeyboardAwareScrollView from "react-native-keyboard-aware-scroll-view";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import Animated from "react-native-reanimated";
 import PlaceRow from "./PlaceRow";
@@ -48,6 +48,8 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import Feather from "react-native-vector-icons/Feather";
 import { ProfileProvider } from "../../components/navigation/Providers/ProfileProvider";
+import { updateUserProfile } from "../../aws-functions/userFunctions";
+import userConf from "../../aws-functions/userConf";
 
 //navigator.geolocation = require("@react-native-community/geolocation");
 
@@ -100,9 +102,12 @@ const EditProfileScreen = ({ props, navigation, route }) => {
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() =>
-              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+              updateUserProfile(userConf).then((uProfile) => {
+                console.log(uProfile);
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
                 navigation.goBack()
               )
+              })
             } // Should edit profile on onpress
             style={{ justifyContent: "center" }}
           >
@@ -231,6 +236,7 @@ const EditProfileScreen = ({ props, navigation, route }) => {
                     }}
                     placeholder="Old Username"
                     placeholderTextColor="#CDCDCD"
+                    onChange={event => userConf.username = event.nativeEvent.text}
                     onEndEditing={(event) =>
                       setUserProfile({
                         ...userProfile,
