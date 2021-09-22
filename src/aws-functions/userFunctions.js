@@ -1,5 +1,13 @@
-const { API, graphqlOperation } = require("aws-amplify");
+import userConf from "./userConf";
+import { Auth, API, graphqlOperation } from "aws-amplify";
 const mutations = require("../graphql/mutations.js");
+import * as queries from '../graphql/queries';
+
+export const getAuthenticatedUser = () => {
+  Auth.currentAuthenticatedUser().then(authUser => {
+    userConf.email = authUser.attributes.email;
+  }).catch(err => {console.error(err)})
+}
 
 /*
  * =============================================================================
@@ -11,14 +19,18 @@ const mutations = require("../graphql/mutations.js");
  * @description create user doc
  * @param {JSON} userData object with userDoc fields (email, deviceToken, phoneNumber)
  */
-export const createUserDoc = (userData) => {
-  return API.graphql(
+
+export const createUserDoc = async (userData) => {
+  let userDoc = await API.graphql(
+
     graphqlOperation(mutations.createUserDoc, {
       input: {
         email: userData.email,
       },
     })
   );
+  userConf.userDocId = userDoc.data.createUserDoc.id;
+  return userDoc;
 };
 
 /**
@@ -26,8 +38,10 @@ export const createUserDoc = (userData) => {
  * @param {JSON} userDataInfo
  * @param {JSON} userProfile
  */
-export const createUserProfile = (userDataInfo, userProfile) => {
-  return API.graphql(
+
+export const createUserProfile = async (userProfile) => {
+  return await API.graphql(
+
     graphqlOperation(mutations.createUprofile, {
       input: {
         username: userDataInfo.username,
@@ -42,13 +56,15 @@ export const createUserProfile = (userDataInfo, userProfile) => {
  * @param {JSON} updatedUprofile
  */
 export const updateUserProfile = async (updatedUprofile) => {
+  //const uProfile = await API.graphql({ query: queries.getUprofile, variables: { id: userConf.uProfileId }});
+  console.log(updatedUprofile);
+
   return await API.graphql(
     graphqlOperation(mutations.updateUprofile, {
       input: {
+        id: userConf.uProfileId,
         username: updatedUprofile.username,
-        name: updatedUprofile.name,
-        userDocId: updatedUprofile.userDocId,
-        currentPlaceID: updatedUprofile.currentPlaceID,
+        name: updatedUprofile.name
       },
     })
   );
@@ -77,7 +93,9 @@ export const followUser = (userConnection) => {
  * @description create user event connection
  * @param {JSON} eventConnection
  */
-const createUserEventConnection = async (eventConnection) => {
+
+const createUserEventConnection = async(eventConnection) => {
+
   return await API.graphql(
     graphqlOperation(mutations.createUserEventConnection, {
       input: {
