@@ -1,5 +1,45 @@
-const { API, graphqlOperation } = require("aws-amplify");
+import { Auth, API, graphqlOperation } from "aws-amplify";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import userConf from "./userConf";
 const mutations = require("../graphql/mutations.js");
+import * as queries from "../graphql/queries";
+
+/*
+ * =============================================================================
+ *                                  QUERIES
+ * =============================================================================
+ */
+
+export const getAuthenticatedUser = () => {
+  Auth.currentAuthenticatedUser()
+    .then((authUser) => {
+      userConf.email = authUser.attributes.email;
+    })
+    .catch((err) => {
+      console.error(err);
+    });
+};
+
+/**
+ * @description user's doc Id
+ */
+
+export const getUserDoc = async (userDocId) => {
+  let userDoc = await API.graphql(
+    graphqlOperation(queries.getUserDoc, { id: userDocId })
+  );
+
+  return userDoc;
+};
+
+export const getUprofileDoc = async (uProfileDocId) => {
+  let uProfileDoc = await API.graphql(
+    graphqlOperation(queries.getUprofile, { id: uProfileDocId })
+  );
+
+  return uProfileDoc;
+};
 
 /*
  * =============================================================================
@@ -11,22 +51,30 @@ const mutations = require("../graphql/mutations.js");
  * @description create user doc
  * @param {JSON} userData object with userDoc fields (email, deviceToken, phoneNumber)
  */
-export const createUserDoc = (userData) => {
-  return API.graphql(
+
+export const createUserDoc = async (userData) => {
+  let userDoc = await API.graphql(
     graphqlOperation(mutations.createUserDoc, {
       input: {
         email: userData.email,
       },
     })
   );
+  userConf.userDocId = userDoc.data.createUserDoc.id;
+
+  AsyncStorage.setItem("userDocId", userDoc.data.createUserDoc.id);
+
+  return userDoc;
 };
 
 /**
  * @description create user profile
+ * @param {JSON} userDataInfo
  * @param {JSON} userProfile
  */
+
 export const createUserProfile = async (userProfile) => {
-  return await API.graphql(
+  let uProfile = await API.graphql(
     graphqlOperation(mutations.createUprofile, {
       input: {
         username: userProfile.username,
@@ -34,6 +82,10 @@ export const createUserProfile = async (userProfile) => {
       },
     })
   );
+
+  AsyncStorage.setItem("userProfileId", uProfile.data.createUprofile.id);
+
+  return uProfile;
 };
 
 /**
@@ -41,13 +93,15 @@ export const createUserProfile = async (userProfile) => {
  * @param {JSON} updatedUprofile
  */
 export const updateUserProfile = async (updatedUprofile) => {
+  //const uProfile = await API.graphql({ query: queries.getUprofile, variables: { id: userConf.uProfileId }});
+  console.log(updatedUprofile);
+
   return await API.graphql(
     graphqlOperation(mutations.updateUprofile, {
       input: {
+        id: userConf.uProfileId,
         username: updatedUprofile.username,
         name: updatedUprofile.name,
-        userDocId: updatedUprofile.userDocId,
-        currentPlaceID: updatedUprofile.currentPlaceID,
       },
     })
   );
@@ -76,6 +130,7 @@ export const followUser = (userConnection) => {
  * @description create user event connection
  * @param {JSON} eventConnection
  */
+
 const createUserEventConnection = async (eventConnection) => {
   return await API.graphql(
     graphqlOperation(mutations.createUserEventConnection, {

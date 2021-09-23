@@ -33,7 +33,11 @@ const MapStack = ({ navigation }) => {
       <Stack.Screen
         name="Map"
         component={MapScreen}
-        options={{ header: () => null }}
+        options={({ navigation }) => ({
+          title: "",
+
+          header: () => null,
+        })}
       />
 
       <Stack.Screen
@@ -56,7 +60,6 @@ const MapStack = ({ navigation }) => {
             elevation: 0,
             height: hsize(80),
           },
-
           /*headerRight: () => (
             <View style={{ marginLeft: 10 }}>
               <Entypo name="cross" size={23} color="black" />
