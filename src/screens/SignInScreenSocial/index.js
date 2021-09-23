@@ -25,6 +25,7 @@ import { useTheme } from "react-native-paper";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 
 const SignInScreenSocial = ({ navigation, props }) => {
+  const {signIn} = useAuth();
   const headerHeight = useHeaderHeight();
   const login = "";
   const [email, setEmail] = useState("");

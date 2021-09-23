@@ -28,7 +28,7 @@ import { useTheme } from "react-native-paper";
 import styles from "./styles";
 
 const SignUpScreenEmail = ({ navigation }) => {
-  const { user, setUser, signUp, signUpTrigger } = useAuth();
+  const { user, signUp, signUpTrigger } = useAuth();
 
   const headerHeight = useHeaderHeight();
   const [email, setEmail] = useState("");
@@ -45,6 +45,7 @@ const SignUpScreenEmail = ({ navigation }) => {
 
   useEffect(() => {
     isUserSignedUp();
+    console.log("entrée dans le email signup screen")
   }, [signUpTrigger]);
 
   /*if (error) {
@@ -63,6 +64,7 @@ const SignUpScreenEmail = ({ navigation }) => {
 
   const [dataSignUp, setdataSignUp] = useState({
     email: "",
+    username:"",
     password: "",
     confirm_password: "",
     check_textInputChange: false,
@@ -87,6 +89,22 @@ const SignUpScreenEmail = ({ navigation }) => {
       });
     }
   };
+
+  const usernameInputChange = (val) => {
+    if (val.length !== 0) {
+      setdataSignUp({
+        ...dataSignUp,
+        username: val,
+        check_textInputChange: true,
+      });
+    } else {
+      setdataSignUp({
+        ...dataSignUp,
+        username: val,
+        check_textInputChange: false,
+      });
+    }
+  }
 
   const handlePasswordChange = (val) => {
     if (val.trim().length >= 8) {
@@ -151,8 +169,40 @@ const SignUpScreenEmail = ({ navigation }) => {
           </View>
         </TouchableWithoutFeedback>
 
+        {/* username input */}
         <Animatable.View animation="fadeInUpBig" style={styles.footer}>
           <ScrollView showsVerticalScrollIndicator={false}>
+            <Text
+              style={[
+                styles.text_footer,
+                {
+                  marginTop: hsize(15),
+                },
+              ]}
+            >
+              Username
+            </Text>
+            <View style={styles.action}>
+              <FontAwesome name="user-o" color="#05375a" size={20} />
+              <TextInput
+                placeholder="Your Username"
+                placeholderTextColor="#666666"
+                style={[
+                  styles.textInput,
+                  {
+                    color: colors.text,
+                  },
+                ]}
+                autoCapitalize="none"
+                onChangeText={(username) => usernameInputChange(username)}
+              />
+              {dataSignUp.check_textInputChange ? (
+                <Animatable.View animation="bounceIn">
+                  <Feather name="check-circle" color="green" size={20} />
+                </Animatable.View>
+              ) : null}
+            </View>
+
             <Text
               style={[
                 styles.text_footer,
@@ -183,6 +233,8 @@ const SignUpScreenEmail = ({ navigation }) => {
                 </Animatable.View>
               ) : null}
             </View>
+
+
             {/* Add verification */}
 
             <Text
@@ -285,11 +337,20 @@ const SignUpScreenEmail = ({ navigation }) => {
                 activeOpacity={0.7}
                 style={styles.signIn}
                 onPress={() => {
+                  console.log("bouton appuyé");
                   if (
                     dataSignUp.password &&
-                    dataSignUp.isValidConfirmPassword
+                    dataSignUp.isValidConfirmPassword &&
+                    dataSignUp.username
                   ) {
-                    signUp(dataSignUp.email, dataSignUp.password);
+                    console.log(dataSignUp.username)
+                    signUp(dataSignUp.username, dataSignUp.email, dataSignUp.password).then((res) => {
+                      console.log("Réponse de la fonction signup " + res);
+                      if(res === dataSignUp.username){
+                        navigation.navigate("SignInEmail")
+                    }}).catch(error => {
+                      console.log(error)
+                    });
                   }
                 }}
               >
