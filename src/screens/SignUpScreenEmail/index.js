@@ -63,6 +63,7 @@ const SignUpScreenEmail = ({ navigation }) => {
 
   const [dataSignUp, setdataSignUp] = useState({
     email: "",
+    ussername:"",
     password: "",
     confirm_password: "",
     check_textInputChange: false,
@@ -87,6 +88,22 @@ const SignUpScreenEmail = ({ navigation }) => {
       });
     }
   };
+
+  const usernameInputChange = (val) => {
+    if (val.length !== 0) {
+      setdataSignUp({
+        ...dataSignUp,
+        username: val,
+        check_textInputChange: true,
+      });
+    } else {
+      setdataSignUp({
+        ...dataSignUp,
+        username: val,
+        check_textInputChange: false,
+      });
+    }
+  }
 
   const handlePasswordChange = (val) => {
     if (val.trim().length >= 8) {
@@ -151,8 +168,40 @@ const SignUpScreenEmail = ({ navigation }) => {
           </View>
         </TouchableWithoutFeedback>
 
+        {/* username input */}
         <Animatable.View animation="fadeInUpBig" style={styles.footer}>
           <ScrollView showsVerticalScrollIndicator={false}>
+            <Text
+              style={[
+                styles.text_footer,
+                {
+                  marginTop: hsize(15),
+                },
+              ]}
+            >
+              Username
+            </Text>
+            <View style={styles.action}>
+              <FontAwesome name="user-o" color="#05375a" size={20} />
+              <TextInput
+                placeholder="Your Email"
+                placeholderTextColor="#666666"
+                style={[
+                  styles.textInput,
+                  {
+                    color: colors.text,
+                  },
+                ]}
+                autoCapitalize="none"
+                onChangeText={(userEmail) => textInputChange(userEmail)}
+              />
+              {dataSignUp.check_textInputChange ? (
+                <Animatable.View animation="bounceIn">
+                  <Feather name="check-circle" color="green" size={20} />
+                </Animatable.View>
+              ) : null}
+            </View>
+
             <Text
               style={[
                 styles.text_footer,
@@ -183,6 +232,8 @@ const SignUpScreenEmail = ({ navigation }) => {
                 </Animatable.View>
               ) : null}
             </View>
+
+
             {/* Add verification */}
 
             <Text
@@ -287,9 +338,13 @@ const SignUpScreenEmail = ({ navigation }) => {
                 onPress={() => {
                   if (
                     dataSignUp.password &&
-                    dataSignUp.isValidConfirmPassword
+                    dataSignUp.isValidConfirmPassword &&
+                    dataSignUp.username
                   ) {
-                    signUp(dataSignUp.email, dataSignUp.password);
+                    signUp(dataSignUp.username, dataSignUp.email, dataSignUp.password).then((res) => {
+                      if(res === dataSignUp.username){
+                        navigation.navigate("SignInEmail")
+                    }});
                   }
                 }}
               >

@@ -1,7 +1,11 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
+import {Auth} from 'aws-amplify';
+import {createUserDoc, createUserProfile} from '../../../aws-functions/userFunctions'
 //const Realm = require("realm");
 //import { getRealmApp } from "../../../../realmServer";
 import { useNavigation } from "@react-navigation/native";
+import awsmobile from "../../../aws-exports";
+import {async} from "../../../../../BallerMapReal/realm-js/integration-tests/environments/react-native/harness/react-native-cli";
 
 // Access the Realm App.
 //const app = getRealmApp();
@@ -9,7 +13,7 @@ import { useNavigation } from "@react-navigation/native";
 export const AuthContext = React.createContext(null);
 
 const AuthProvider = ({ children, navigation }) => {
-  const [user, setUser] = useState(app.currentUser);
+  const [user, setUser] = useState();
   const [profileDoc, setProfileDoc] = useState();
   const realmRef = useRef();
   const userRealmRef = useRef();
@@ -28,99 +32,61 @@ const AuthProvider = ({ children, navigation }) => {
     /*const myProject = {name: 'My Project', partition: `project=${user.id}`};
     setProjectData([myProject]);*/
 
-    const config = {
-      sync: {
-        user,
-        partitionValue: user.id,
-      },
-    };
+
 
     // Open a realm with the logged in user's partition value in order
     // to get the custom user data
-    Realm.open(config)
-      .then(async (userRealm) => {
-        realmRef.current = userRealm;
-        const userDoc = userRealm.objects("UserData");
-        if (userDoc.length != 0) {
-          console.log(userDoc[0].uProfilePartition);
-          const uProfilePartition = userDoc[0].uProfilePartition;
-          let pDoc = getUprofile(userDoc[0].uProfilePartition).then(
-            (result) => {
-              console.log("here");
-              setProfileDoc(result);
-              console.log(JSON.stringify(result));
-            }
-          );
-        } else {
-          console.log("Max est le nom de mon premier chien");
-        }
 
-        userDoc.addListener(() => {
-          // The user custom data object may not have been loaded on
-          // the server side yet when a user is first registered.
-          if (userDoc.length === 0) {
-            setProfilePartition([null]);
-            alert("pas de user doc");
-          } else {
-            const uProfilePartition = userDoc[0].uProfilePartition;
-            setProfilePartition(uProfilePartition);
-            if (profilePartition !== undefined) {
-              setLoadingUser(false);
-              let temp = getUprofile(uProfilePartition).then((res) => {
-                setProfileDoc(res);
-              });
-              console.log(" AUTHPROVIDER!!!: profile partition trouvée");
-            }
-          }
-        });
-      })
-      .catch((error) => console.log(`cette erreur ${JSON.stringify(error)}`));
 
     return () => {
       // cleanup function
-      const userRealm = realmRef.current;
-      if (userRealm) {
-        userRealm.removeAllListeners();
-        userRealm.close();
-        realmRef.current = null;
-        setProfilePartition([]); // set project data to an empty array (this prevents the array from staying in state on logout)
-      }
+
     };
   }, []);
 
   // The signIn function takes an email and password and uses the
   // emailPassword authentication provider to log in.
-  const signIn = async (email, password) => {
-    // TODO: Pass the email and password to Realm's email password provider to log in.
-    // Use the setUser() function to set the logged-in user.
-    const creds = Realm.Credentials.emailPassword(email, password);
-    const newUser = await app.logIn(creds);
-    setUser(newUser);
+  const signIn = async (username, password) => {
+    try{
+        const user = await Auth.signIn(username, password);
+    } catch(error) {
+        console.log('error signing in', error);
+    }
   };
 
   // The signUp function takes an email and password and uses the
   // emailPassword authentication provider to register the user.
-  const signUp = async (email, password) => {
-    // TODO: Pass the email and password to Realm's email password provider to register the user.
-    // Registering only registers and does not log in.
-    await app.emailPasswordAuth.registerUser(email, password).then((result) => {
-      console.log(result);
-      setSignUpTrigger(true);
-    });
+  const signUp = async (username, email, password) => {
+    try {
+        const user = await Auth.signUp({
+            username,
+            password,
+            attributes: {
+                email: email
+            }
+        }).then(async() => {
+            await createUserDoc({email:email}).then(async(result) => {
+                let uProfileInput = {
+                    userDocId: result.id,
+                    username: username
+                }
+                await createUserProfile(uProfileInput)
+            });
+        })
+        return username
+    } catch(error) {
+        console.log('error signing up', error);
+    }
   };
 
   // The signOut function calls the logOut function on the currently
   // logged in user
-  const signOut = () => {
-    if (user == null) {
-      console.warn("Not logged in, can't log out!");
-      return;
+  const signOut = async() => {
+    try{
+        await Auth.signOut();
+    } catch(error) {
+        console.log('error signing out', error)
     }
-    // TODO: Log out the current user and use the setUser() function to set the current user to null.
-    user
-      .logOut()
-      .then(() => setUser(null))
-      .catch((error) => console.log(error));
   };
 
   return (

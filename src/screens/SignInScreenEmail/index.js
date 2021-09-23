@@ -48,9 +48,9 @@ const SignInScreenEmail = ({ navigation, props }) => {
 
   useEffect(() => {
     AsyncStorage.getItem("firstLaunch").then((value) => {
-      if (value == "true") {
+      /*if (value == "true") {
         setNextScreen("SetProfile");
-      }
+      }*/
     }); // Add  error handling
   }, []);
 
@@ -70,7 +70,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
     if (val.trim().length >= 4) {
       setDataLogin({
         ...dataLogin,
-        email: val,
+        username: val,
         check_textInputChange: true,
         isValidUser: true,
       });
@@ -157,7 +157,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
               },
             ]}
           >
-            Email
+            username
           </Text>
           <View style={styles.action}>
             <FontAwesome name="user-o" color={colors.text} size={20} />
@@ -171,7 +171,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
                 },
               ]}
               autoCapitalize="none"
-              onChangeText={(userEmail) => textInputChange(userEmail)}
+              onChangeText={(username) => textInputChange(username)}
             />
             {dataLogin.check_textInputChange ? (
               <Animatable.View animation="bounceIn">
