@@ -26,31 +26,15 @@ import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 
 const SignInScreenEmail = ({ navigation, props }) => {
   const headerHeight = useHeaderHeight();
-  const signIn = "";
+  const {signIn} = useAuth();
   const [nextScreen, setNextScreen] = useState("Map");
 
-  /*useEffect(() => {
-    if (error) {
-      Alert.alert('Invalid credentials, try again');
-      console.log(error);
-    }
-  }, [error]);
-
-  if (data) {
-    // save token
-    AsyncStorage.setItem('token', data.signIn.token).then(() => {
-      // redirect home
-      //navigation.navigate("Home");
-      setUser(data.signIn.user);
-      //console.log(data.signIn.token);
-    });
-  }*/
 
   useEffect(() => {
     AsyncStorage.getItem("firstLaunch").then((value) => {
-      if (value == "true") {
+      /*if (value == "true") {
         setNextScreen("SetProfile");
-      }
+      }*/
     }); // Add  error handling
   }, []);
 
@@ -70,7 +54,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
     if (val.trim().length >= 4) {
       setDataLogin({
         ...dataLogin,
-        email: val,
+        username: val,
         check_textInputChange: true,
         isValidUser: true,
       });
@@ -157,7 +141,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
               },
             ]}
           >
-            Email
+            username
           </Text>
           <View style={styles.action}>
             <FontAwesome name="user-o" color={colors.text} size={20} />
@@ -171,7 +155,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
                 },
               ]}
               autoCapitalize="none"
-              onChangeText={(userEmail) => textInputChange(userEmail)}
+              onChangeText={(username) => textInputChange(username)}
             />
             {dataLogin.check_textInputChange ? (
               <Animatable.View animation="bounceIn">
@@ -240,9 +224,12 @@ const SignInScreenEmail = ({ navigation, props }) => {
               activeOpacity={0.7}
               style={styles.signIn}
               onPress={() => {
-                nextScreen == "SetProfile"
-                  ? navigation.navigate(nextScreen)
-                  : navigation.navigate("SetProfile");
+                if(nextScreen == "SetProfile"){
+                  navigation.navigate(nextScreen)
+                }
+                else{
+                  signIn(dataLogin.username, dataLogin.password).then(() => setUser)
+                }
               }}
             >
               <LinearGradient
