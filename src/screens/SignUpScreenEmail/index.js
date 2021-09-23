@@ -45,6 +45,7 @@ const SignUpScreenEmail = ({ navigation }) => {
 
   useEffect(() => {
     isUserSignedUp();
+    console.log("entrée dans le email signup screen")
   }, [signUpTrigger]);
 
   /*if (error) {
@@ -63,7 +64,7 @@ const SignUpScreenEmail = ({ navigation }) => {
 
   const [dataSignUp, setdataSignUp] = useState({
     email: "",
-    ussername:"",
+    username:"",
     password: "",
     confirm_password: "",
     check_textInputChange: false,
@@ -184,7 +185,7 @@ const SignUpScreenEmail = ({ navigation }) => {
             <View style={styles.action}>
               <FontAwesome name="user-o" color="#05375a" size={20} />
               <TextInput
-                placeholder="Your Email"
+                placeholder="Your Username"
                 placeholderTextColor="#666666"
                 style={[
                   styles.textInput,
@@ -193,7 +194,7 @@ const SignUpScreenEmail = ({ navigation }) => {
                   },
                 ]}
                 autoCapitalize="none"
-                onChangeText={(userEmail) => textInputChange(userEmail)}
+                onChangeText={(username) => usernameInputChange(username)}
               />
               {dataSignUp.check_textInputChange ? (
                 <Animatable.View animation="bounceIn">
@@ -336,15 +337,20 @@ const SignUpScreenEmail = ({ navigation }) => {
                 activeOpacity={0.7}
                 style={styles.signIn}
                 onPress={() => {
+                  console.log("bouton appuyé");
                   if (
                     dataSignUp.password &&
                     dataSignUp.isValidConfirmPassword &&
                     dataSignUp.username
                   ) {
+                    console.log(dataSignUp.username)
                     signUp(dataSignUp.username, dataSignUp.email, dataSignUp.password).then((res) => {
+                      console.log("Réponse de la fonction signup " + res);
                       if(res === dataSignUp.username){
                         navigation.navigate("SignInEmail")
-                    }});
+                    }}).catch(error => {
+                      console.log(error)
+                    });
                   }
                 }}
               >

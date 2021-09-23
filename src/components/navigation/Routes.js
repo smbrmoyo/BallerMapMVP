@@ -6,8 +6,7 @@ import AppStack from "./AppStack";
 import AuthStack from "./AuthStack";
 
 const Routes = () => {
-  // const { user, setUser } = useAuth();
-  const user = true;
+  const {user} = useAuth();
   const [initializing, setInitializing] = useState(true);
 
   const onAuthStateChanged = (user) => {

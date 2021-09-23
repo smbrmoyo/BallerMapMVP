@@ -1,10 +1,12 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import {Auth} from 'aws-amplify';
+import Alert from 'react-native';
 import {createUserDoc, createUserProfile} from '../../../aws-functions/userFunctions'
 //const Realm = require("realm");
 //import { getRealmApp } from "../../../../realmServer";
 import { useNavigation } from "@react-navigation/native";
 import awsmobile from "../../../aws-exports";
+import {react} from "@babel/types";
 
 // Access the Realm App.
 //const app = getRealmApp();
@@ -25,17 +27,6 @@ const AuthProvider = ({children}) => {
     if (!user) {
       return;
     }
-
-    // The current user always has their own project, so we don't need
-    // to wait for the user object to load before displaying that project.
-    /*const myProject = {name: 'My Project', partition: `project=${user.id}`};
-    setProjectData([myProject]);*/
-
-
-
-    // Open a realm with the logged in user's partition value in order
-    // to get the custom user data
-
 
     return () => {
       // cleanup function
@@ -61,22 +52,26 @@ const AuthProvider = ({children}) => {
   const signUp = async (username, email, password) => {
     try {
         const user = await Auth.signUp({
-            username,
-            password,
+            username: username,
+            password: password,
             attributes: {
                 email: email
             }
-        }).then(async() => {
+        }).then(async(res) => {
+            console.log(JSON.stringify(res))
             await createUserDoc({email:email}).then(async(result) => {
                 let uProfileInput = {
                     userDocId: result.id,
                     username: username
                 }
-                await createUserProfile(uProfileInput)
+                await createUserProfile(uProfileInput);
             });
-        })
+        });
         return username
     } catch(error) {
+        if(error.name == "UsernameExistsException"){
+            Alert.alert("Il y a déjà in user avec ce nom. Change ca ")
+        }
         console.log('error signing up', error);
     }
   };

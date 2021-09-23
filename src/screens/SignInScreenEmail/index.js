@@ -29,22 +29,6 @@ const SignInScreenEmail = ({ navigation, props }) => {
   const {signIn} = useAuth();
   const [nextScreen, setNextScreen] = useState("Map");
 
-  /*useEffect(() => {
-    if (error) {
-      Alert.alert('Invalid credentials, try again');
-      console.log(error);
-    }
-  }, [error]);
-
-  if (data) {
-    // save token
-    AsyncStorage.setItem('token', data.signIn.token).then(() => {
-      // redirect home
-      //navigation.navigate("Home");
-      setUser(data.signIn.user);
-      //console.log(data.signIn.token);
-    });
-  }*/
 
   useEffect(() => {
     AsyncStorage.getItem("firstLaunch").then((value) => {

@@ -9,7 +9,5 @@ const Providers = () => {
 export default Providers;
 
 {
-  /*<AuthProvider>
       <Routes />
-    </AuthProvider>*/
 }
