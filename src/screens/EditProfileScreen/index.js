@@ -75,14 +75,14 @@ const EditProfileScreen = ({ props, navigation, route }) => {
   */
 
   useEffect(() => {
-    const subscription = API.graphql(
+    /*const subscription = API.graphql(
       graphqlOperation(subscriptions.onUpdateUprofile)
     ).subscribe({
       next: ({ value }) => console.log(value),
       error: (error) => console.warn(error),
     });
 
-    return () => subscription.unsubscribe();
+    return () => subscription.unsubscribe();*/
   }, []);
 
   useLayoutEffect(() => {
@@ -118,14 +118,14 @@ const EditProfileScreen = ({ props, navigation, route }) => {
         <View style={{ flexDirection: "row", marginHorizontal: wsize(10) }}>
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() =>
+            onPress={() => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
               updateUserProfile(userConf).then((uProfile) => {
                 console.log(uProfile);
-                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
-                  navigation.goBack()
-                );
-              })
-            } // Should edit profile on onpress
+
+                navigation.goBack();
+              });
+            }} // Should edit profile on onpress
             style={{ justifyContent: "center" }}
           >
             <View style={styles.iconContainer}>
