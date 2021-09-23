@@ -5,7 +5,6 @@ import {createUserDoc, createUserProfile} from '../../../aws-functions/userFunct
 //import { getRealmApp } from "../../../../realmServer";
 import { useNavigation } from "@react-navigation/native";
 import awsmobile from "../../../aws-exports";
-import {async} from "../../../../../BallerMapReal/realm-js/integration-tests/environments/react-native/harness/react-native-cli";
 
 // Access the Realm App.
 //const app = getRealmApp();
@@ -48,7 +47,10 @@ const AuthProvider = ({ children, navigation }) => {
   // emailPassword authentication provider to log in.
   const signIn = async (username, password) => {
     try{
-        const user = await Auth.signIn(username, password);
+        await Auth.signIn(username, password).then(() =>{
+            setUser({
+                username: username})
+        });
     } catch(error) {
         console.log('error signing in', error);
     }
@@ -126,4 +128,7 @@ const getUprofile = async (profilePartition) => {
   return uProfileDoc;
 };
 
-export { AuthProvider, useAuth, getUprofile };
+export {useAuth, getUprofile };
+
+export default AuthProvider
+

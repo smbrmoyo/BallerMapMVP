@@ -9,10 +9,11 @@
 import "react-native-gesture-handler";
 
 import React from "react";
-import Providers from "./src/components/navigation";
+import Providers from "./src/components/navigation/index";
+import AuthProvider from "./src/components/navigation/Providers/AuthProvider"
 import { withAuthenticator } from "aws-amplify-react-native";
 import Amplify, { Auth } from "aws-amplify";
-import config from "./aws-exports";
+import config from "./src/aws-exports";
 import * as Font from "expo-font";
 
 Amplify.configure({ ...config, Analytics: { disabled: true } });
@@ -31,10 +32,10 @@ const App = () => {
   }
 
   return (
-    <>
+    <AuthProvider>
       <Providers />
-    </>
+    </AuthProvider>
   );
 };
 
-export default withAuthenticator(App);
+//export default withAuthenticator(App);

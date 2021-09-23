@@ -27,6 +27,7 @@ import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 const SignInScreenEmail = ({ navigation, props }) => {
   const headerHeight = useHeaderHeight();
   const signIn = "";
+  const user = useAuth()
   const [nextScreen, setNextScreen] = useState("Map");
 
   /*useEffect(() => {
@@ -240,9 +241,12 @@ const SignInScreenEmail = ({ navigation, props }) => {
               activeOpacity={0.7}
               style={styles.signIn}
               onPress={() => {
-                nextScreen == "SetProfile"
-                  ? navigation.navigate(nextScreen)
-                  : navigation.navigate("SetProfile");
+                if(nextScreen == "SetProfile"){
+                  navigation.navigate(nextScreen)
+                }
+                else{
+                  signIn(dataLogin.username, dataLogin.password).then(() => setUser)
+                }
               }}
             >
               <LinearGradient
