@@ -28,7 +28,7 @@ import { useTheme } from "react-native-paper";
 import styles from "./styles";
 
 const SignUpScreenEmail = ({ navigation }) => {
-  const { user, setUser, signUp, signUpTrigger } = useAuth();
+  const { user, signUp, signUpTrigger } = useAuth();
 
   const headerHeight = useHeaderHeight();
   const [email, setEmail] = useState("");

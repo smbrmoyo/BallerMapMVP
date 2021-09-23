@@ -11,7 +11,7 @@ import awsmobile from "../../../aws-exports";
 
 export const AuthContext = React.createContext(null);
 
-const AuthProvider = ({ children, navigation }) => {
+const AuthProvider = ({children}) => {
   const [user, setUser] = useState();
   const [profileDoc, setProfileDoc] = useState();
   const realmRef = useRef();
@@ -130,5 +130,5 @@ const getUprofile = async (profilePartition) => {
 
 export {useAuth, getUprofile };
 
-export default AuthProvider
+export {AuthProvider}
 

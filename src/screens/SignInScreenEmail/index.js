@@ -26,8 +26,7 @@ import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 
 const SignInScreenEmail = ({ navigation, props }) => {
   const headerHeight = useHeaderHeight();
-  const signIn = "";
-  const user = useAuth()
+  const {signIn} = useAuth();
   const [nextScreen, setNextScreen] = useState("Map");
 
   /*useEffect(() => {
