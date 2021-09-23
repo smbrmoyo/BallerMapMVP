@@ -29,6 +29,7 @@ import * as Haptics from "expo-haptics";
 import { useTheme } from "@react-navigation/native";
 import BottomSheet from "reanimated-bottom-sheet";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { Auth, API, graphqlOperation } from "aws-amplify";
 
 import Animated from "react-native-reanimated";
 import PlaceRow from "./PlaceRow";
@@ -50,6 +51,7 @@ import Feather from "react-native-vector-icons/Feather";
 import { ProfileProvider } from "../../components/navigation/Providers/ProfileProvider";
 import { updateUserProfile } from "../../aws-functions/userFunctions";
 import userConf from "../../aws-functions/userConf";
+import * as subscriptions from "../../graphql/subscriptions";
 
 //navigator.geolocation = require("@react-native-community/geolocation");
 
@@ -67,6 +69,21 @@ const EditProfileScreen = ({ props, navigation, route }) => {
 
   var bsEditProf = useRef(null);
   var fallEditProf = useRef(new Animated.Value(1)).current;
+
+  /*
+  Watch closely all the arguments necessary to update profile
+  */
+
+  useEffect(() => {
+    const subscription = API.graphql(
+      graphqlOperation(subscriptions.onUpdateUprofile)
+    ).subscribe({
+      next: ({ value }) => console.log(value),
+      error: (error) => console.warn(error),
+    });
+
+    return () => subscription.unsubscribe();
+  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -105,8 +122,8 @@ const EditProfileScreen = ({ props, navigation, route }) => {
               updateUserProfile(userConf).then((uProfile) => {
                 console.log(uProfile);
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
-                navigation.goBack()
-              )
+                  navigation.goBack()
+                );
               })
             } // Should edit profile on onpress
             style={{ justifyContent: "center" }}
@@ -173,7 +190,7 @@ const EditProfileScreen = ({ props, navigation, route }) => {
         enabledGestureInteraction={true}
       />
 
-      <KeyboardAwareScrollView>
+      <KeyboardAwareScrollView style={{ backgroundColor: "white" }}>
         <SafeAreaView
           style={{
             flex: 1,
@@ -236,7 +253,9 @@ const EditProfileScreen = ({ props, navigation, route }) => {
                     }}
                     placeholder="Old Username"
                     placeholderTextColor="#CDCDCD"
-                    onChange={event => userConf.username = event.nativeEvent.text}
+                    onChange={(event) =>
+                      (userConf.username = event.nativeEvent.text)
+                    }
                     onEndEditing={(event) =>
                       setUserProfile({
                         ...userProfile,

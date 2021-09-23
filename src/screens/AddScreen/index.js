@@ -29,7 +29,7 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import DatePicker from "react-native-date-picker";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import * as Haptics from "expo-haptics";
-import KeyboardAwareScrollView from "react-native-keyboard-aware-scroll-view";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import PlaceRow from "./PlaceRow";
 import ProfilePicture from "../../components/ProfilePicture";
@@ -236,7 +236,7 @@ const AddScreen = ({ props, navigation, route }) => {
         onCancel={() => setVisibleEnd(false)}
       />
 
-      <KeyboardAwareScrollView>
+      <KeyboardAwareScrollView style={{ backgroundColor: "white" }}>
         <SafeAreaView
           style={{
             flex: 1,

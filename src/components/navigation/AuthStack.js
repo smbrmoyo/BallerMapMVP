@@ -7,6 +7,7 @@ import SignUpScreenEmail from "../../screens/SignUpScreenEmail";
 import SignUpScreenSocial from "../../screens/SignUpScreenSocial";
 import OnboardingScreen from "../../screens/OnboardingScreen";
 import SetProfileScreen from "../../screens/SetProfileScreen";
+import { hsize, wsize } from "../../utils/Dimensions";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -25,8 +26,8 @@ const AuthStack = () => {
         AsyncStorage.setItem("firstLaunch", "true"); // Add  error handling
         setIsFirstLaunch(true);
       } else {
-        AsyncStorage.setItem("firstLaunch", "false");
-        setIsFirstLaunch(false);
+        AsyncStorage.setItem("firstLaunch", "true");
+        setIsFirstLaunch(true);
       }
     }); // Add  error handling
   }, []);

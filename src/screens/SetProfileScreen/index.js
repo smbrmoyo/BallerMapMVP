@@ -25,11 +25,14 @@ import * as Haptics from "expo-haptics";
 import BottomSheet from "reanimated-bottom-sheet";
 import Animated from "react-native-reanimated";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import ProfilePicture from "../../components/ProfilePicture";
-
-import { createUserDoc, createUserProfile, getAuthenticatedUser } from "../../aws-functions/userFunctions";
-
+import {
+  createUserDoc,
+  createUserProfile,
+  getAuthenticatedUser,
+} from "../../aws-functions/userFunctions";
 import styles from "./styles";
 import { wsize, hsize } from "../../utils/Dimensions";
 import Feather from "react-native-vector-icons/Feather";
@@ -40,10 +43,10 @@ getAuthenticatedUser();
 const SetProfileScreen = ({ props, navigation, route }) => {
   const [color, setColor] = useState("#CDCDCD");
   const headerHeight = useHeaderHeight();
-
+  let udId = "";
   const [userProfile, setUserProfile] = useState({
     email: userConf.email,
-
+    fullName: "",
     username: "",
     bio: "",
     website: "",
@@ -54,16 +57,32 @@ const SetProfileScreen = ({ props, navigation, route }) => {
   var fallEditProf = useRef(new Animated.Value(1)).current;
 
   /*useEffect(() => {
-
     async function getUser() {
       let user = await Auth.currentAuthenticatedUser().then((result) => {
         userEmail = result.attributes.email;
       });
-
       return userDoc;
     }
     getUser();
   }, []);*/
+
+  /*
+  Logic used to get userDocId is good. Should be done on signin/signUp.
+  Will give some time to AsyncStorage to store value of userDocId and make it available for other operations
+  userProfile should be created well after creation of userDoc
+  on userProfile creation, should insert uProfileId into userDoc to make connection
+  */
+
+  useEffect(() => {
+    async function getItem() {
+      try {
+        AsyncStorage.getItem("userDocId").then((value) => {
+          console.log(value);
+        });
+      } catch (e) {}
+    }
+    getItem();
+  }, []);
 
   const handlerUserDoc = async () => {
     return await createUserDoc({
@@ -104,17 +123,21 @@ const SetProfileScreen = ({ props, navigation, route }) => {
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => {
-
-              createUserDoc(userProfile).then(userDoc => {
-                console.log(userDoc);
-                createUserProfile(userConf).then(uProfile => {
-                  console.log(uProfile);
-                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
-                    navigation.navigate("Map")
-                  );
-                });
-              }).catch(error => console.error(error));
-
+              createUserDoc(userProfile)
+                .then((userDoc) => {
+                  console.log("heeere" + userDoc.data.createUserDoc.id);
+                  createUserProfile({
+                    username: userConf.username,
+                    userDocId: userDoc.data.createUserDoc.id,
+                  }).then((uProfile) => {
+                    console.log(uProfile);
+                    userConf.uProfileId = uProfile.data.createUprofile.id;
+                    Haptics.impactAsync(
+                      Haptics.ImpactFeedbackStyle.Medium
+                    ).then(navigation.navigate("Map"));
+                  });
+                })
+                .catch((error) => console.error(error));
             }} // Should edit profile on onpress
             style={{ justifyContent: "center" }}
           >
@@ -180,11 +203,10 @@ const SetProfileScreen = ({ props, navigation, route }) => {
         enabledGestureInteraction={true}
       />
 
-      <KeyboardAwareScrollView>
+      <KeyboardAwareScrollView style={{ backgroundColor: "white" }}>
         <SafeAreaView
           style={{
             flex: 1,
-            backgroundColor: "white",
           }}
         >
           <ScrollView style={{ flex: 1, padding: 10 }}>
@@ -223,6 +245,40 @@ const SetProfileScreen = ({ props, navigation, route }) => {
 
                 <View style={styles.descriptionContainer}>
                   <View style={styles.title}>
+                    <Text style={styles.titleText}>Full Name</Text>
+                  </View>
+
+                  <TextInput
+                    style={{
+                      padding: hsize(10),
+                      backgroundColor: "#eee",
+                      marginVertical: hsize(5),
+                      borderRadius: hsize(5),
+                      shadowColor: "#000",
+                      shadowOffset: {
+                        width: 0,
+                        height: 1,
+                      },
+                      shadowOpacity: 0.2,
+                      shadowRadius: 1.41,
+                      elevation: 2,
+                    }}
+                    placeholder=""
+                    placeholderTextColor="#CDCDCD"
+                    onChange={(event) =>
+                      (userConf.username = event.nativeEvent.text)
+                    }
+                    onEndEditing={(event) =>
+                      setUserProfile({
+                        ...userProfile,
+                        username: event.nativeEvent.text,
+                      })
+                    }
+                  />
+                </View>
+
+                <View style={styles.descriptionContainer}>
+                  <View style={styles.title}>
                     <Text style={styles.titleText}>Username</Text>
                   </View>
 
@@ -243,14 +299,15 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                     }}
                     placeholder=""
                     placeholderTextColor="#CDCDCD"
-                    onChange={event => userConf.username = event.nativeEvent.text}
-                    onEndEditing={(event) => 
-                      
+                    onChange={(event) =>
+                      (userConf.username = event.nativeEvent.text)
+                    }
+                    onEndEditing={(event) =>
                       setUserProfile({
                         ...userProfile,
                         username: event.nativeEvent.text,
-                      });
-                    }}
+                      })
+                    }
                   />
                 </View>
 

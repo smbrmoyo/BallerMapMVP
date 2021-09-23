@@ -37,9 +37,28 @@ import AntDesign from "react-native-vector-icons/AntDesign";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
+// import { onUpdateUprofile } from "../../graphql/subscriptions";
+import * as subscriptions from "../../graphql/subscriptions";
+import {
+  getAuthenticatedUser,
+  getUserDoc,
+  getUprofileDoc,
+} from "../../aws-functions/userFunctions";
 import UserModal from "./UserModal";
 import people from "../../assets/data/people";
+
+// TabContainer function
+function TabContainer(props) {
+  return (
+    <View style={styles.tabContainer}>
+      <TouchableOpacity>
+        <Feather name="list" size={23} color="black" />
+      </TouchableOpacity>
+    </View>
+  );
+}
 
 //render function
 
@@ -65,18 +84,18 @@ const ProfileScreen = ({ navigation, route }) => {
   const [modalVisible, setModalVisible] = useState(false);
   //const { user, signOut } = useAuth();
   const [userExtraInfo, setUserExstraInfo] = useState(null);
-  const username = "";
+  const [username, setUsername] = useState("");
   const isFocused = useIsFocused();
 
-  function TabContainer(props) {
-    return (
-      <View style={styles.tabContainer}>
-        <TouchableOpacity>
-          <Feather name="list" size={23} color="black" />
-        </TouchableOpacity>
-      </View>
-    );
-  }
+  useEffect(() => {
+    AsyncStorage.getItem("userProfileId").then((result) => {
+      getUprofileDoc(result).then((res) => {
+        console.log(res);
+        setUsername(res.data.getUprofile.username);
+        console.log("username");
+      });
+    });
+  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -112,7 +131,7 @@ const ProfileScreen = ({ navigation, route }) => {
         </TouchableOpacity>
       ),
     });
-  }, [username]);
+  }, [navigation]);
 
   renderHeader = () => (
     <View style={styles.header}>
