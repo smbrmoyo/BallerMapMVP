@@ -47,7 +47,7 @@ export const getFilteredPlaces = async (filter, limit) => {
  * @description create place
  * @param {JSON} place object with place fields (address, name, coordinate)
  */
-export const createPlace = (place) => {
+export const createPlace = async (place) => {
   let placeDoc = await API.graphql(
     graphqlOperation(mutations.createPlace, {
       input: {
