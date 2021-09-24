@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/BallerMapMVP.iml" filepath="$PROJECT_DIR$/.idea/BallerMapMVP.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../BallerMapReal/.idea/BallerMapReal.iml" filepath="$PROJECT_DIR$/../BallerMapReal/.idea/BallerMapReal.iml" />
     </modules>
   </component>
 </project>

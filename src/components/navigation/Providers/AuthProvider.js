@@ -17,18 +17,23 @@ import { react } from "@babel/types";
 export const AuthContext = React.createContext(null);
 
 const AuthProvider = ({ children }) => {
+  const [auth, setAuth] = useState();
   const [user, setUser] = useState(); // set this to true on confirmSignUp
   const [signUpTrigger, setSignUpTrigger] = useState(false);
   const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(() => {
-    /* if (!user) {
-      return;
+    const effect = async () => {
+      await Auth.currentAuthenticatedUser().then((user) => {setUser(user);}).catch(
+          (error) => {
+            console.log("User session error " + error )
+          }
+      )
     }
 
     return () => {
       // cleanup function
-    };*/
+    };
   }, []);
 
   // The signIn function takes an email and password and uses the
@@ -131,6 +136,8 @@ const AuthProvider = ({ children }) => {
         loadingUser,
         confirmSignUp,
         resendConfirmationCode,
+        auth,
+        setAuth,
       }}
     >
       {children}
