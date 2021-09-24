@@ -65,6 +65,15 @@ function TabContainer(props) {
 const ProfileScreen = ({ navigation, route }) => {
   // Alert for logout
 
+  bsProf = useRef(null);
+  fall = useRef(new Animated.Value(1)).current;
+  const [isFollowing, setIsFollowing] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
+  const { signOut } = useAuth();
+  const [userExtraInfo, setUserExstraInfo] = useState(null);
+  const [username, setUsername] = useState("");
+  const isFocused = useIsFocused();
+
   const LogoutAlert = () =>
     Alert.alert(
       `${username}`,
@@ -77,15 +86,6 @@ const ProfileScreen = ({ navigation, route }) => {
         { text: "Logout", onPress: () => signOut(), style: "destructive" },
       ]
     );
-
-  bsProf = useRef(null);
-  fall = useRef(new Animated.Value(1)).current;
-  const [isFollowing, setIsFollowing] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
-  //const { user, signOut } = useAuth();
-  const [userExtraInfo, setUserExstraInfo] = useState(null);
-  const [username, setUsername] = useState("");
-  const isFocused = useIsFocused();
 
   useEffect(() => {
     AsyncStorage.getItem("userProfileId").then((result) => {

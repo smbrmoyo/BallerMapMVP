@@ -16,11 +16,14 @@ import {
   StatusBar,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
+import * as Haptics from "expo-haptics";
 import { useHeaderHeight } from "@react-navigation/stack";
+import { useRoute } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { hsize, wsize } from "../../utils/Dimensions";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
@@ -34,7 +37,7 @@ const SignUpScreenEmail = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
+  const route = useRoute();
   const { colors } = useTheme();
 
   const isUserSignedUp = () => {
@@ -45,7 +48,7 @@ const SignUpScreenEmail = ({ navigation }) => {
 
   useEffect(() => {
     isUserSignedUp();
-    console.log("entrée dans le email signup screen")
+    console.log("entrée dans le email signup screen");
   }, [signUpTrigger]);
 
   /*if (error) {
@@ -64,28 +67,29 @@ const SignUpScreenEmail = ({ navigation }) => {
 
   const [dataSignUp, setdataSignUp] = useState({
     email: "",
-    username:"",
+    username: "",
     password: "",
     confirm_password: "",
-    check_textInputChange: false,
+    check_usernameInputChange: false,
+    check_emailInputChange: false,
     secureTextEntry: true,
     confirm_secureTextEntry: true,
     isValidPassword: true,
     isValidConfirmPassword: true,
   });
 
-  const textInputChange = (val) => {
+  const emailInputChange = (val) => {
     if (val.length !== 0) {
       setdataSignUp({
         ...dataSignUp,
         email: val,
-        check_textInputChange: true,
+        check_emailInputChange: true,
       });
     } else {
       setdataSignUp({
         ...dataSignUp,
         email: val,
-        check_textInputChange: false,
+        check_emailInputChange: false,
       });
     }
   };
@@ -95,16 +99,16 @@ const SignUpScreenEmail = ({ navigation }) => {
       setdataSignUp({
         ...dataSignUp,
         username: val,
-        check_textInputChange: true,
+        check_usernameInputChange: true,
       });
     } else {
       setdataSignUp({
         ...dataSignUp,
         username: val,
-        check_textInputChange: false,
+        check_usernameInputChange: false,
       });
     }
-  }
+  };
 
   const handlePasswordChange = (val) => {
     if (val.trim().length >= 8) {
@@ -123,7 +127,6 @@ const SignUpScreenEmail = ({ navigation }) => {
   };
 
   const handleConfirmPasswordChange = (val) => {
-    console.log(dataSignUp.password.length + dataSignUp.password);
     if (
       val.length === dataSignUp.password.length &&
       val === dataSignUp.password
@@ -158,10 +161,8 @@ const SignUpScreenEmail = ({ navigation }) => {
   return (
     <LinearGradient colors={["#743cff", "#bb006e"]} style={styles.container}>
       <StatusBar backgroundColor="#FF6347" barStyle="light-content" />
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.container}
-        keyboardVerticalOffset={headerHeight}
+      <KeyboardAwareScrollView
+        contentContainerStyle={{ position: "absolute", bottom: 0, flex: 1 }}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.header}>
@@ -196,7 +197,7 @@ const SignUpScreenEmail = ({ navigation }) => {
                 autoCapitalize="none"
                 onChangeText={(username) => usernameInputChange(username)}
               />
-              {dataSignUp.check_textInputChange ? (
+              {dataSignUp.check_usernameInputChange ? (
                 <Animatable.View animation="bounceIn">
                   <Feather name="check-circle" color="green" size={20} />
                 </Animatable.View>
@@ -225,15 +226,14 @@ const SignUpScreenEmail = ({ navigation }) => {
                   },
                 ]}
                 autoCapitalize="none"
-                onChangeText={(userEmail) => textInputChange(userEmail)}
+                onChangeText={(userEmail) => emailInputChange(userEmail)}
               />
-              {dataSignUp.check_textInputChange ? (
+              {dataSignUp.check_emailInputChange ? (
                 <Animatable.View animation="bounceIn">
                   <Feather name="check-circle" color="green" size={20} />
                 </Animatable.View>
               ) : null}
             </View>
-
 
             {/* Add verification */}
 
@@ -306,7 +306,7 @@ const SignUpScreenEmail = ({ navigation }) => {
                 activeOpacity={0.7}
                 onPress={updateConfirmSecureTextEntry}
               >
-                {dataSignUp.secureTextEntry ? (
+                {dataSignUp.confirm_secureTextEntry ? (
                   <Feather name="eye-off" color="grey" size={20} />
                 ) : (
                   <Feather name="eye" color="grey" size={20} />
@@ -337,21 +337,34 @@ const SignUpScreenEmail = ({ navigation }) => {
                 activeOpacity={0.7}
                 style={styles.signIn}
                 onPress={() => {
-                  console.log("bouton appuyé");
-                  if (
-                    dataSignUp.password &&
-                    dataSignUp.isValidConfirmPassword &&
-                    dataSignUp.username
-                  ) {
-                    console.log(dataSignUp.username)
-                    signUp(dataSignUp.username, dataSignUp.email, dataSignUp.password).then((res) => {
-                      console.log("Réponse de la fonction signup " + res);
-                      if(res === dataSignUp.username){
-                        navigation.navigate("SignInEmail")
-                    }}).catch(error => {
-                      console.log(error)
-                    });
-                  }
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+                    () => {
+                      if (
+                        dataSignUp.password &&
+                        dataSignUp.isValidConfirmPassword &&
+                        dataSignUp.username
+                      ) {
+                        console.log(dataSignUp.username);
+                        signUp(
+                          dataSignUp.username,
+                          dataSignUp.email,
+                          dataSignUp.password
+                        )
+                          .then((res) => {
+                            console.log("Réponse de la fonction signup " + res);
+                            if (res === dataSignUp.username) {
+                              navigation.navigate("ConfirmSignUp", {
+                                username: res,
+                                email: dataSignUp.email,
+                              });
+                            }
+                          })
+                          .catch((error) => {
+                            console.log(error);
+                          });
+                      }
+                    }
+                  );
                 }}
               >
                 <LinearGradient
@@ -391,7 +404,7 @@ const SignUpScreenEmail = ({ navigation }) => {
             </View>
           </ScrollView>
         </Animatable.View>
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
     </LinearGradient>
   );
 };

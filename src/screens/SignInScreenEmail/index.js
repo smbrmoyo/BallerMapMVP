@@ -13,7 +13,7 @@ import {
   Alert,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-//import LinearGradient from "react-native-linear-gradient";
+import * as Haptics from "expo-haptics";
 import { LinearGradient } from "expo-linear-gradient";
 import { useHeaderHeight } from "@react-navigation/stack";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -21,14 +21,14 @@ import Feather from "react-native-vector-icons/Feather";
 import styles from "./styles";
 import { useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 
 const SignInScreenEmail = ({ navigation, props }) => {
   const headerHeight = useHeaderHeight();
-  const {signIn} = useAuth();
+  const { signIn } = useAuth();
   const [nextScreen, setNextScreen] = useState("Map");
-
 
   useEffect(() => {
     AsyncStorage.getItem("firstLaunch").then((value) => {
@@ -113,10 +113,13 @@ const SignInScreenEmail = ({ navigation, props }) => {
         backgroundColor="rgba(0,0,0,0.0)" /*transparent*/
         barStyle="dark-content"
       />
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={styles.container}
-        keyboardVerticalOffset={headerHeight}
+      <KeyboardAwareScrollView
+        contentContainerStyle={{
+          //position: "absolute",
+          //bottom: 0,
+          //flex: 1,
+          flexGrow: 1,
+        }}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.header}>
@@ -224,12 +227,15 @@ const SignInScreenEmail = ({ navigation, props }) => {
               activeOpacity={0.7}
               style={styles.signIn}
               onPress={() => {
-                if(nextScreen == "SetProfile"){
-                  navigation.navigate(nextScreen)
-                }
-                else{
-                  signIn(dataLogin.username, dataLogin.password).then(() => setUser)
-                }
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+                  () => {
+                    if (nextScreen == "SetProfile") {
+                      navigation.navigate(nextScreen);
+                    } else {
+                      signIn(dataLogin.username, dataLogin.password);
+                    }
+                  }
+                );
               }}
             >
               <LinearGradient
@@ -250,7 +256,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.7}
-              onPress={() => {}}
+              onPress={() => navigation.navigate("SignUpSocial")}
               style={[styles.signIn]}
             >
               <View style={styles.textPrivate}>
@@ -290,7 +296,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
           </LinearGradient>*/}
           </View>
         </Animatable.View>
-      </KeyboardAvoidingView>
+      </KeyboardAwareScrollView>
     </View>
   );
 };
