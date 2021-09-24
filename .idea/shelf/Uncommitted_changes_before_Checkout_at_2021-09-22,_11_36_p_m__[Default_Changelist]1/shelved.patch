@@ -1,0 +1,121 @@
+Index: src/components/navigation/Providers/AuthProvider.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { useContext, useState, useEffect, useRef } from \"react\";\n//const Realm = require(\"realm\");\n//import { getRealmApp } from \"../../../../realmServer\";\nimport { useNavigation } from \"@react-navigation/native\";\n\n// Access the Realm App.\n//const app = getRealmApp();\n\nexport const AuthContext = React.createContext(null);\n\nconst AuthProvider = ({ children, navigation }) => {\n  const [user, setUser] = useState(app.currentUser);\n  const [profileDoc, setProfileDoc] = useState();\n  const realmRef = useRef();\n  const userRealmRef = useRef();\n  const [userRealm, setUserRealm] = useState(null);\n  const [profilePartition, setProfilePartition] = useState(null);\n  const [signUpTrigger, setSignUpTrigger] = useState(false);\n  const [loadingUser, setLoadingUser] = useState(true);\n\n  useEffect(() => {\n    if (!user) {\n      return;\n    }\n\n    // The current user always has their own project, so we don't need\n    // to wait for the user object to load before displaying that project.\n    /*const myProject = {name: 'My Project', partition: `project=${user.id}`};\n    setProjectData([myProject]);*/\n\n    const config = {\n      sync: {\n        user,\n        partitionValue: user.id,\n      },\n    };\n\n    // Open a realm with the logged in user's partition value in order\n    // to get the custom user data\n    Realm.open(config)\n      .then(async (userRealm) => {\n        realmRef.current = userRealm;\n        const userDoc = userRealm.objects(\"UserData\");\n        if (userDoc.length != 0) {\n          console.log(userDoc[0].uProfilePartition);\n          const uProfilePartition = userDoc[0].uProfilePartition;\n          let pDoc = getUprofile(userDoc[0].uProfilePartition).then(\n            (result) => {\n              console.log(\"here\");\n              setProfileDoc(result);\n              console.log(JSON.stringify(result));\n            }\n          );\n        } else {\n          console.log(\"Max est le nom de mon premier chien\");\n        }\n\n        userDoc.addListener(() => {\n          // The user custom data object may not have been loaded on\n          // the server side yet when a user is first registered.\n          if (userDoc.length === 0) {\n            setProfilePartition([null]);\n            alert(\"pas de user doc\");\n          } else {\n            const uProfilePartition = userDoc[0].uProfilePartition;\n            setProfilePartition(uProfilePartition);\n            if (profilePartition !== undefined) {\n              setLoadingUser(false);\n              let temp = getUprofile(uProfilePartition).then((res) => {\n                setProfileDoc(res);\n              });\n              console.log(\" AUTHPROVIDER!!!: profile partition trouvée\");\n            }\n          }\n        });\n      })\n      .catch((error) => console.log(`cette erreur ${JSON.stringify(error)}`));\n\n    return () => {\n      // cleanup function\n      const userRealm = realmRef.current;\n      if (userRealm) {\n        userRealm.removeAllListeners();\n        userRealm.close();\n        realmRef.current = null;\n        setProfilePartition([]); // set project data to an empty array (this prevents the array from staying in state on logout)\n      }\n    };\n  }, []);\n\n  // The signIn function takes an email and password and uses the\n  // emailPassword authentication provider to log in.\n  const signIn = async (email, password) => {\n    // TODO: Pass the email and password to Realm's email password provider to log in.\n    // Use the setUser() function to set the logged-in user.\n    const creds = Realm.Credentials.emailPassword(email, password);\n    const newUser = await app.logIn(creds);\n    setUser(newUser);\n  };\n\n  // The signUp function takes an email and password and uses the\n  // emailPassword authentication provider to register the user.\n  const signUp = async (email, password) => {\n    // TODO: Pass the email and password to Realm's email password provider to register the user.\n    // Registering only registers and does not log in.\n    await app.emailPasswordAuth.registerUser(email, password).then((result) => {\n      console.log(result);\n      setSignUpTrigger(true);\n    });\n  };\n\n  // The signOut function calls the logOut function on the currently\n  // logged in user\n  const signOut = () => {\n    if (user == null) {\n      console.warn(\"Not logged in, can't log out!\");\n      return;\n    }\n    // TODO: Log out the current user and use the setUser() function to set the current user to null.\n    user\n      .logOut()\n      .then(() => setUser(null))\n      .catch((error) => console.log(error));\n  };\n\n  return (\n    <AuthContext.Provider\n      value={{\n        signUp,\n        signIn,\n        signOut,\n        signUpTrigger,\n        user,\n        profilePartition,\n        profileDoc,\n        setProfileDoc,\n        loadingUser, // profle partition\n      }}\n    >\n      {children}\n    </AuthContext.Provider>\n  );\n};\n\n// The useAuth hook can be used by components under an AuthProvider to\n// access the auth context value.\nconst useAuth = () => {\n  //Valeurs du AuthProvider\n  const auth = useContext(AuthContext);\n\n  return auth;\n};\n\nconst getUprofile = async (profilePartition) => {\n  // get le profile Doc\n\n  const mongodb = app.currentUser.mongoClient(\"mongodb-atlas\");\n  const userData = mongodb.db(\"AYTO_Dev\").collection(\"uProfile\");\n  const uProfileDoc = await userData.findOne({ partition: profilePartition });\n  return uProfileDoc;\n};\n\nexport { AuthProvider, useAuth, getUprofile };\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/components/navigation/Providers/AuthProvider.js b/src/components/navigation/Providers/AuthProvider.js
+--- a/src/components/navigation/Providers/AuthProvider.js	
++++ b/src/components/navigation/Providers/AuthProvider.js	
+@@ -23,68 +23,9 @@
+       return;
+     }
+ 
+-    // The current user always has their own project, so we don't need
+-    // to wait for the user object to load before displaying that project.
+-    /*const myProject = {name: 'My Project', partition: `project=${user.id}`};
+-    setProjectData([myProject]);*/
+-
+-    const config = {
+-      sync: {
+-        user,
+-        partitionValue: user.id,
+-      },
+-    };
+-
+-    // Open a realm with the logged in user's partition value in order
+-    // to get the custom user data
+-    Realm.open(config)
+-      .then(async (userRealm) => {
+-        realmRef.current = userRealm;
+-        const userDoc = userRealm.objects("UserData");
+-        if (userDoc.length != 0) {
+-          console.log(userDoc[0].uProfilePartition);
+-          const uProfilePartition = userDoc[0].uProfilePartition;
+-          let pDoc = getUprofile(userDoc[0].uProfilePartition).then(
+-            (result) => {
+-              console.log("here");
+-              setProfileDoc(result);
+-              console.log(JSON.stringify(result));
+-            }
+-          );
+-        } else {
+-          console.log("Max est le nom de mon premier chien");
+-        }
+-
+-        userDoc.addListener(() => {
+-          // The user custom data object may not have been loaded on
+-          // the server side yet when a user is first registered.
+-          if (userDoc.length === 0) {
+-            setProfilePartition([null]);
+-            alert("pas de user doc");
+-          } else {
+-            const uProfilePartition = userDoc[0].uProfilePartition;
+-            setProfilePartition(uProfilePartition);
+-            if (profilePartition !== undefined) {
+-              setLoadingUser(false);
+-              let temp = getUprofile(uProfilePartition).then((res) => {
+-                setProfileDoc(res);
+-              });
+-              console.log(" AUTHPROVIDER!!!: profile partition trouvée");
+-            }
+-          }
+-        });
+-      })
+-      .catch((error) => console.log(`cette erreur ${JSON.stringify(error)}`));
+-
+     return () => {
+       // cleanup function
+-      const userRealm = realmRef.current;
+-      if (userRealm) {
+-        userRealm.removeAllListeners();
+-        userRealm.close();
+-        realmRef.current = null;
+-        setProfilePartition([]); // set project data to an empty array (this prevents the array from staying in state on logout)
+-      }
++
+     };
+   }, []);
+ 
+Index: src/aws-functions/eventFunctions.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { Auth, API, graphqlOperation } from 'aws-amplify';\nimport * as mutations from 'src/graphql/mutations.js';\n\n/**\n * @description create event\n * @param {JSON} eventData object with userDoc fields (email, deviceToken, phoneNumber)\n */\nexport const createEvent = (eventData) => {\n    API.graphql(graphqlOperation(mutations.createUserDoc, {\n        input: {\n            name: eventData.name,\n            placeID: eventData.placeID,\n            //Get current auth user\n            creatorID: Auth.currentAuthenticatedUser(),\n            beginningTime: new Date(eventData.beginningTime).toISOString(),\n            endingTime: new Date(eventData.endingTime).toISOString(),\n            tags: eventData.tags,\n            description: eventData.description,\n            privacy: eventData.privacy\n        }\n    }))\n}\n\n/**\n * @description update event\n * @param {JSON} updatedEvent object \n */\nexport const updateEvent = (updatedEvent) => {\n    API.graphql(graphqlOperation(mutations.createUserProfile, {\n        input: {\n            name: updatedEvent.name,\n            placeID: updatedEvent.placeID,\n            beginningTime: new Date(updatedEvent.beginningTime).toISOString(),\n            endingTime: new Date(updatedEvent.endingTime).toISOString(),\n            tags: updatedEvent.tags,\n            description: updatedEvent.description,\n            privacy: updatedEvent.privacy\n        }\n    }))\n}
+===================================================================
+diff --git a/src/aws-functions/eventFunctions.js b/src/aws-functions/eventFunctions.js
+--- a/src/aws-functions/eventFunctions.js	
++++ b/src/aws-functions/eventFunctions.js	
+@@ -21,6 +21,12 @@
+     }))
+ }
+ 
++/**
++ * @description create Private note with CognitoPoolAuthentication => doc owner must be set to username
++ * @param {JSON} eventData object with userDoc fields (email, deviceToken, phoneNumber)
++ */
++
++
+ /**
+  * @description update event
+  * @param {JSON} updatedEvent object 
+Index: amplify/.config/project-config.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\n  \"providers\": [\n    \"awscloudformation\"\n  ],\n  \"projectName\": \"BallerMapMVP\",\n  \"version\": \"3.1\",\n  \"frontend\": \"javascript\",\n  \"javascript\": {\n    \"framework\": \"react-native\",\n    \"config\": {\n      \"SourceDir\": \"src\",\n      \"DistributionDir\": \"/\",\n      \"BuildCommand\": \"npm.cmd run-script build\",\n      \"StartCommand\": \"npm.cmd run-script start\"\n    }\n  }\n}
+===================================================================
+diff --git a/amplify/.config/project-config.json b/amplify/.config/project-config.json
+--- a/amplify/.config/project-config.json	
++++ b/amplify/.config/project-config.json	
+@@ -10,8 +10,8 @@
+     "config": {
+       "SourceDir": "src",
+       "DistributionDir": "/",
+-      "BuildCommand": "npm.cmd run-script build",
+-      "StartCommand": "npm.cmd run-script start"
++      "BuildCommand": "npm run-script build",
++      "StartCommand": "npm run-script start"
+     }
+   }
+ }
+\ No newline at end of file

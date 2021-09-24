@@ -1,0 +1,52 @@
+Index: src/components/navigation/Providers/AuthProvider.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { useContext, useState, useEffect, useRef } from \"react\";\nimport { Auth } from \"aws-amplify\";\nimport Alert from \"react-native\";\nimport {\n  createUserDoc,\n  createUserProfile,\n} from \"../../../aws-functions/userFunctions\";\n//const Realm = require(\"realm\");\n//import { getRealmApp } from \"../../../../realmServer\";\nimport { useNavigation } from \"@react-navigation/native\";\nimport awsmobile from \"../../../aws-exports\";\nimport { react } from \"@babel/types\";\n\n// Access the Realm App.\n//const app = getRealmApp();\n\nexport const AuthContext = React.createContext(null);\n\nconst AuthProvider = ({ children }) => {\n  const [user, setUser] = useState(); // set this to true on confirmSignUp\n  const [signUpTrigger, setSignUpTrigger] = useState(false);\n  const [loadingUser, setLoadingUser] = useState(true);\n\n  useEffect(() => {\n    /* if (!user) {\n      return;\n    }\n\n    return () => {\n      // cleanup function\n    };*/\n  }, []);\n\n  // The signIn function takes an email and password and uses the\n  // emailPassword authentication provider to log in.\n  const signIn = async (username, password) => {\n    try {\n      await Auth.signIn(username, password).then(() => {\n        setUser({\n          username: username,\n        });\n      });\n    } catch (error) {\n      console.log(\"error signing in\", error);\n    }\n  };\n\n  // The signUp function takes an email and password and uses the\n  // emailPassword authentication provider to register the user.\n  const signUp = async (username, email, password) => {\n    try {\n      const user = await Auth.signUp({\n        username: username,\n        password: password,\n        attributes: {\n          email: email,\n        },\n      }).then(async (res) => {\n        console.log(JSON.stringify(res));\n      });\n      return username;\n    } catch (error) {\n      if (error.name == \"UsernameExistsException\") {\n        Alert.alert(error);\n      }\n      console.log(\"error signing up\", error);\n    }\n  };\n\n  // Confirm signUp through verification per email\n\n  /**Has an error No current user when creating because user not authenticated yet\n   * Should be called after first signIn***\n   * Could easily use AsyncStorage to check if it is first login\n   * or if userDoc was already created\n   * then call createUserDoc and createUserProfile\n   */\n\n  const confirmSignUp = async (username, code, email) => {\n    try {\n      const confirmedUser = await Auth.confirmSignUp(username, code).then(\n        async (res) => {\n          console.log(JSON.stringify(res));\n          console.log(\"email used for docCreation\");\n          await createUserDoc({ email: email }).then(async (result) => {\n            let uProfileInput = {\n              userDocId: result.id,\n              username: username,\n            };\n            await createUserProfile(uProfileInput);\n          });\n        }\n      );\n      return username;\n    } catch (error) {\n      if (error.name == \"UsernameExistsException\") {\n        Alert.alert(error);\n      }\n      console.log(\"error confirming user\", error);\n    }\n  };\n\n  // Resend the confirmation code in case the user didn't receive it\n  const resendConfirmationCode = async (username) => {\n    try {\n      const newCode = await Auth.resendSignUp(username);\n      console.log(\"code resent successfully\");\n    } catch (err) {\n      console.log(\"error resending code: \", err);\n    }\n  };\n\n  // The signOut function calls the logOut function on the currently\n  // logged in user\n  const signOut = async () => {\n    try {\n      await Auth.signOut();\n    } catch (error) {\n      console.log(\"error signing out\", error);\n    }\n  };\n\n  return (\n    <AuthContext.Provider\n      value={{\n        signUp,\n        signIn,\n        signOut,\n        user,\n        setUser,\n        loadingUser,\n        confirmSignUp,\n        resendConfirmationCode,\n      }}\n    >\n      {children}\n    </AuthContext.Provider>\n  );\n};\n\n// The useAuth hook can be used by components under an AuthProvider to\n// access the auth context value.\nconst useAuth = () => {\n  //Valeurs du AuthProvider\n  const auth = useContext(AuthContext);\n\n  return auth;\n};\n\nconst getUprofile = async (profilePartition) => {\n  // get le profile Doc\n\n  const mongodb = app.currentUser.mongoClient(\"mongodb-atlas\");\n  const userData = mongodb.db(\"AYTO_Dev\").collection(\"uProfile\");\n  const uProfileDoc = await userData.findOne({ partition: profilePartition });\n  return uProfileDoc;\n};\n\nexport { useAuth, getUprofile };\n\nexport { AuthProvider };\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/components/navigation/Providers/AuthProvider.js b/src/components/navigation/Providers/AuthProvider.js
+--- a/src/components/navigation/Providers/AuthProvider.js	(revision 8565bbd45fe9d4de9987b63f21b74a6879823c41)
++++ b/src/components/navigation/Providers/AuthProvider.js	(date 1632463056424)
+@@ -17,18 +17,27 @@
+ export const AuthContext = React.createContext(null);
+ 
+ const AuthProvider = ({ children }) => {
+-  const [user, setUser] = useState(); // set this to true on confirmSignUp
++  const [user, setUser] = useState() // set this to true on confirmSignUp
+   const [signUpTrigger, setSignUpTrigger] = useState(false);
+   const [loadingUser, setLoadingUser] = useState(true);
+ 
+   useEffect(() => {
+-    /* if (!user) {
+-      return;
++    try{
++      Auth.currentAuthenticatedUser().then(res => setUser(res)).catch(e => {
++        console.log(e)
++        if(e == "The user is not authenticated"){
++          return;
++        }
++      })
++    } catch (e) {
++       console.log(e)
+     }
++
++
+ 
+     return () => {
+       // cleanup function
+-    };*/
++    };
+   }, []);
+ 
+   // The signIn function takes an email and password and uses the
+@@ -39,6 +48,9 @@
+         setUser({
+           username: username,
+         });
++        // initialize the appsync client
++        // query profile doc with that username as filter
++        // If response data is empty: create
+       });
+     } catch (error) {
+       console.log("error signing in", error);
