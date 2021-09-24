@@ -1,14 +1,21 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 //import Realm from "realm";
 import { useAuth, getUprofile } from "./AuthProvider";
-import haversine from "haversine";
+import placesJSON from "../../../assets/data/placesJSON";
+import Geocoder from "react-native-geocoding";
 
 export const MapContext = React.createContext();
 
 const MapProvider = ({ children }) => {
-  //const { user } = useAuth();
-  const user = null;
+  const { user } = useAuth();
   const [places, setPlaces] = useState([]);
+  Geocoder.init("AIzaSyCAWRoRAT1jDaCuwACpmYsseOgW1-_XrNg");
+  Geocoder.from(41.89, 12.49)
+    .then((json) => {
+      var addressComponent = json.results[0].address_components[0];
+      console.log(addressComponent);
+    })
+    .catch((error) => console.warn(error));
   const getPlaces = async () => {
     //const placesRealm = await user.callFunction("getPlaces");
     const placesRealm = [];
@@ -38,7 +45,7 @@ const MapProvider = ({ children }) => {
   }*/
 
   // Charge les données sur les places
-  useEffect(() => {
+  /*useEffect(() => {
     getPlaces().then((result) => setPlaces(result));
 
     const placesUpdate = setInterval(() => {
@@ -48,7 +55,9 @@ const MapProvider = ({ children }) => {
       clearInterval(placesUpdate);
       setPlaces(null);
     };
-  }, []);
+  }, []);*/
+
+  useEffect(() => {});
 
   return (
     <MapContext.Provider

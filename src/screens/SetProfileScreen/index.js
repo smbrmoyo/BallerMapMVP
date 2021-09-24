@@ -38,8 +38,6 @@ import { wsize, hsize } from "../../utils/Dimensions";
 import Feather from "react-native-vector-icons/Feather";
 import userConf from "../../aws-functions/userConf";
 
-getAuthenticatedUser();
-
 const SetProfileScreen = ({ props, navigation, route }) => {
   const [color, setColor] = useState("#CDCDCD");
   const headerHeight = useHeaderHeight();

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { PermissionsAndroid, StatusBar, View } from "react-native";
-import HomeScreen from "../../screens/HomeScreen";
+import ConfirmSignUpScreen from "../../screens/ConfirmSignUpScreen";
 import SignInScreenEmail from "../../screens/SignInScreenEmail";
 import SignInScreenSocial from "../../screens/SignInScreenSocial";
 import SignUpScreenEmail from "../../screens/SignUpScreenEmail";
@@ -16,7 +15,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createStackNavigator();
 
-const AuthStack = () => {
+const AuthStack = ({ navigation, route }) => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(null);
   let routeName;
 
@@ -26,8 +25,8 @@ const AuthStack = () => {
         AsyncStorage.setItem("firstLaunch", "true"); // Add  error handling
         setIsFirstLaunch(true);
       } else {
-        AsyncStorage.setItem("firstLaunch", "true");
-        setIsFirstLaunch(true);
+        AsyncStorage.setItem("firstLaunch", "false");
+        setIsFirstLaunch(false);
       }
     }); // Add  error handling
   }, []);
@@ -45,12 +44,12 @@ const AuthStack = () => {
       <Stack.Screen
         name="Onboarding"
         component={OnboardingScreen}
-        options={{ header: () => null }}
+        options={({ navigation, route }) => ({ header: () => null })}
       />
       <Stack.Screen
         name="SetProfile"
         component={SetProfileScreen}
-        options={({ navigation }) => ({
+        options={({ navigation, route }) => ({
           title: "",
           headerStyle: {
             backgroundColor: "white",
@@ -63,23 +62,27 @@ const AuthStack = () => {
       <Stack.Screen
         name="SignInSocial"
         component={SignInScreenSocial}
-        options={{ header: () => null }}
+        options={({ navigation, route }) => ({ header: () => null })}
       />
       <Stack.Screen
         name="SignInEmail"
-        //component={NewSignInScreen}
         component={SignInScreenEmail}
-        options={{ header: () => null }}
+        options={({ navigation, route }) => ({ header: () => null })}
       />
       <Stack.Screen
         name="SignUpSocial"
         component={SignUpScreenSocial}
-        options={{ header: () => null }}
+        options={({ navigation, route }) => ({ header: () => null })}
       />
       <Stack.Screen
         name="SignUpEmail"
         component={SignUpScreenEmail}
-        options={{ header: () => null }}
+        options={({ navigation, route }) => ({ header: () => null })}
+      />
+      <Stack.Screen
+        name="ConfirmSignUp"
+        component={ConfirmSignUpScreen}
+        options={({ navigation, route }) => ({ header: () => null })}
       />
     </Stack.Navigator>
   );

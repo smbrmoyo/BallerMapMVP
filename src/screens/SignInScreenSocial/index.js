@@ -15,6 +15,7 @@ import {
 import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
 import { useHeaderHeight } from "@react-navigation/stack";
+import { useRoute } from "@react-navigation/native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import styles from "./styles";
@@ -25,11 +26,11 @@ import { useTheme } from "react-native-paper";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 
 const SignInScreenSocial = ({ navigation, props }) => {
-  const {signIn} = useAuth();
+  const { signIn } = useAuth();
   const headerHeight = useHeaderHeight();
-  const login = "";
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const route = useRoute();
 
   /* useEffect(() => {
     if (error) {
