@@ -84,7 +84,7 @@ export const updateEvent = async (updatedEvent) => {
  * @description delete event
  * @param {JSON} eventId object
  */
-export const deleteEvent = (eventId) => {
+export const deleteEvent = async(eventId) => {
     let result = await API.graphql(graphqlOperation(mutations.deleteEvent, {
         input: {
             id: eventId
