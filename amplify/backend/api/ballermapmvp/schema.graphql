@@ -82,7 +82,7 @@ type Event @model
   name: String!
   placeID: ID!
   creatorID: ID!
-  place: Place @connection(fields: ["placeID"])
+  place: Place
   beginningTime: AWSDateTime!
   endingTime: AWSDateTime!
   tags: [String]
@@ -136,7 +136,7 @@ type Notification @model
   uProfile: Uprofile @connection(fields: ["profileID"])
 }
 
-type Coords @model{
+type Coords{
   long: Float!
   lat: Float!
 }

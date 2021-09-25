@@ -28,7 +28,6 @@ import Stories from "../Stories";
 import styles from "./styles";
 import BottomSheetMap from "./BottomSheet";
 import { wsize, hsize } from "../../utils/Dimensions";
-import places from "../../assets/data/places";
 import { useMap } from "../navigation/Providers/MapProvider";
 
 const { width, height } = Dimensions.get("window");
@@ -39,7 +38,7 @@ const SPACING_FOR_CARD_INSET = width * 0.1 - 10;
 const HomeMap = ({ props }) => {
   bsMap = useRef(null);
   fallMap = useRef(new Animated.Value(1)).current;
-  //const { places } = useMap();
+  const { places, status } = useMap();
   const route = useRoute();
   const navigation = useNavigation();
   const RADIUS = 20;
@@ -72,7 +71,7 @@ const HomeMap = ({ props }) => {
 
   useEffect(() => {
     _onMapReady();
-  }, []);
+  }, [places]);
 
   useEffect(() => {
     (async () => {
@@ -84,7 +83,15 @@ const HomeMap = ({ props }) => {
     })();
   }, []);
 
+  useEffect(() => {
+    setState({
+      ...state,
+      places: places,
+    });
+  }, [places]);
+
   const _onMapReady = async () => {
+    // console.log("places in the map : " + JSON.stringify(places[0]));
     let location = await Location.getLastKnownPositionAsync();
 
     setCamera({
@@ -162,7 +169,6 @@ const HomeMap = ({ props }) => {
   });
 
   const [state, setState] = useState(initialMapState);
-  const [addPressed, setAddPressed] = useState(false);
 
   let mapIndex = 0;
   const _mapAnimation = useRef(new Animated.Value(0)).current;
@@ -191,10 +197,10 @@ const HomeMap = ({ props }) => {
       const regionTimeout = setTimeout(() => {
         if (mapIndex !== index) {
           mapIndex = index;
-          const { coordinate } = state.places[mapIndex]; //  Try people and see if the map is initialized on a marker
+          const { coords } = state.places[mapIndex]; //  Try people and see if the map is initialized on a marker
 
           _map.current.animateCamera({
-            center: { ...coordinate },
+            center: { latitude: coords.lat, longitude: coords.long },
             heading: 90,
             pitch: 90,
             zoom: 18,
@@ -205,13 +211,6 @@ const HomeMap = ({ props }) => {
       }, 10);
     });
   });
-
-  useEffect(() => {
-    setState({
-      ...state,
-      places: places,
-    });
-  }, [places]);
 
   const interpolations = state.places.map((person, index) => {
     const inputRange = [
@@ -334,10 +333,17 @@ const HomeMap = ({ props }) => {
                 ],
               };
 
+              let coords = {
+                coordinate: {
+                  latitude: place.coords.lat,
+                  longitude: place.coords.long,
+                },
+              };
+
               return (
                 <Marker
-                  key={place._id}
-                  coordinate={place.coordinate}
+                  key={place.id}
+                  coordinate={coords.coordinate}
                   onPress={(e) => onMarkerPress(e)}
                 >
                   <Animated.View style={[styles.markerWrap]}>
@@ -360,9 +366,10 @@ const HomeMap = ({ props }) => {
             ))}
           </MapView>
 
-          <Animated.ScrollView
+          <Animated.FlatList
             ref={_scrollView}
-            //keyExtractor={(item) => JSON.stringify(item._id)}
+            data={state.places}
+            keyExtractor={(item) => item.id}
             horizontal
             pagingEnabled
             scrollEventThrottle={1}
@@ -394,40 +401,53 @@ const HomeMap = ({ props }) => {
               ],
               { useNativeDriver: true }
             )}
-          >
-            {state.places.map((item, index) => (
-              <TouchableOpacity
-                key={index}
-                activeOpacity={0.7}
-                onPress={() => {
-                  bsMap.current.snapTo(0);
-                }}
-              >
-                <Animated.View style={[styles.card]} /*opacity: opacity */>
-                  <TouchableOpacity activeOpacity={0.7} onPress={goToStory}>
-                    <ProfilePicture />
-                  </TouchableOpacity>
-                  <View style={styles.textContent}>
-                    <Text numberOfLines={1} style={styles.cardDescription}>
-                      {item.name}
-                    </Text>
-                    <View style={styles.button}>
-                      <Text
-                        style={[
-                          styles.textSign,
-                          {
-                            color: "#743cff",
-                          },
-                        ]}
-                      >
-                        Info
+            renderItem={({ item, index }) => {
+              const inputRange = [
+                (index - 1) * CARD_WIDTH,
+                index * CARD_WIDTH,
+                (index + 1) * CARD_WIDTH,
+              ];
+
+              const translateY = _mapAnimation.interpolate({
+                inputRange,
+                outputRange: [50, 0, 50],
+                extrapolate: "clamp",
+              });
+
+              return (
+                <TouchableOpacity
+                  key={index}
+                  activeOpacity={0.7}
+                  onPress={() => {
+                    bsMap.current.snapTo(0);
+                  }}
+                >
+                  <Animated.View style={[styles.card]}>
+                    <TouchableOpacity activeOpacity={0.7} onPress={goToStory}>
+                      <ProfilePicture />
+                    </TouchableOpacity>
+                    <View style={styles.textContent}>
+                      <Text numberOfLines={1} style={styles.cardDescription}>
+                        {item.name}
                       </Text>
+                      <View style={styles.button}>
+                        <Text
+                          style={[
+                            styles.textSign,
+                            {
+                              color: "#743cff",
+                            },
+                          ]}
+                        >
+                          Info
+                        </Text>
+                      </View>
                     </View>
-                  </View>
-                </Animated.View>
-              </TouchableOpacity>
-            ))}
-          </Animated.ScrollView>
+                  </Animated.View>
+                </TouchableOpacity>
+              );
+            }}
+          />
 
           <View style={[styles.buttonContainer, { right: 10, bottom: 140 }]}>
             <TouchableOpacity activeOpacity={0.7} onPress={goToAdd}>

@@ -24,12 +24,14 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const effect = async () => {
-      await Auth.currentAuthenticatedUser().then((user) => {setUser(user);}).catch(
-          (error) => {
-            console.log("User session error " + error )
-          }
-      )
-    }
+      await Auth.currentAuthenticatedUser()
+        .then((user) => {
+          setUser(user);
+        })
+        .catch((error) => {
+          console.log("User session error " + error);
+        });
+    };
 
     return () => {
       // cleanup function

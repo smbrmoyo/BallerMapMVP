@@ -2114,11 +2114,8 @@ export const createPlace = /* GraphQL */ `
       name
       address
       coords {
-        id
         long
         lat
-        createdAt
-        updatedAt
       }
       events {
         items {

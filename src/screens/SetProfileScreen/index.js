@@ -75,7 +75,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
     async function getItem() {
       try {
         AsyncStorage.getItem("userDocId").then((value) => {
-          console.log(value);
+          //console.log(value);
         });
       } catch (e) {}
     }

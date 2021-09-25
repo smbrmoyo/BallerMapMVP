@@ -9,6 +9,13 @@
 import "react-native-gesture-handler";
 
 import React from "react";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  QueryClient,
+  QueryClientProvider,
+} from "react-query";
 import Providers from "./src/components/navigation/index";
 import { AuthProvider } from "./src/components/navigation/Providers/AuthProvider";
 import { withAuthenticator } from "aws-amplify-react-native";
@@ -27,11 +34,31 @@ const App = () => {
     VaguelyFatal: require("./src/assets/fonts/Vaguely_Fatal.ttf"),
   });
 
+  const defaultQueryFn = async ({ queryKey }) => {
+    const data = await Auth.currentAuthenticatedUser();
+
+    return data;
+  };
+
+  // provide the default query function to your app with defaultOptions
+
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        queryFn: defaultQueryFn,
+      },
+    },
+  });
+
   if (!loaded) {
     return null;
   }
 
-  return <Providers />;
+  return (
+    <QueryClientProvider client={queryClient}>
+      <Providers />
+    </QueryClientProvider>
+  );
 };
 
 export default App;

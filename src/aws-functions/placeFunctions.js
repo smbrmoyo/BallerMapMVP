@@ -16,12 +16,12 @@ import * as queries from "../graphql/queries";
  * @description user's doc Id
  */
 
-export const getUserDoc = async (userDocId) => {
-  let userDoc = await API.graphql(
-    graphqlOperation(queries.getUserDoc, { id: userDocId })
+export const getPlacesList = async (filterInput, limit, nextToken) => {
+  let placesList = await API.graphql(
+    graphqlOperation(queries.listPlaces, { filterInput, limit, nextToken })
   );
 
-  return userDoc;
+  return placesList.data.listPlaces.items;
 };
 
 /*
@@ -35,21 +35,21 @@ export const getUserDoc = async (userDocId) => {
  * @param {JSON} place object with userDoc fields (address, name, coordinate)
  */
 
-export const createPlace = (place) => {
-  let place = await API.graphql(
+export const createPlace = async (place) => {
+  let placeDoc = await API.graphql(
     graphqlOperation(mutations.createPlace, {
       input: {
         address: place.address,
         name: place.name,
-        coordinate: {
-          latitude: place.coordinates.lat,
-          longitude: place.coordinates.long,
+        coords: {
+          lat: place.coords.lat,
+          long: place.coords.long,
         },
       },
     })
   );
 
-  return place;
+  return placeDoc;
 };
 
 export const createUserDoc = async (userData) => {
