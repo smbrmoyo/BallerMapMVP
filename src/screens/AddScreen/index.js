@@ -47,6 +47,7 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import Feather from "react-native-vector-icons/Feather";
+import { createEvent } from "../../aws-functions/eventFunctions";
 
 //navigator.geolocation = require("@react-native-community/geolocation");
 
@@ -63,20 +64,9 @@ const AddScreen = ({ props, navigation, route }) => {
     creator: "",
     tags: [],
     description: "",
-    attendants: [],
-    date: {
-      day: new Date().getDay(),
-      month: new Date().getMonth(),
-      year: new Date().getFullYear(),
-    },
-    time: {
-      hour: new Date().getHours(),
-      min: new Date().getMinutes(),
-    },
-    endingTime: {
-      hour: new Date().getHours(),
-      min: new Date().getMinutes(),
-    },
+    creator: "", //should be current authenticated user
+    beginningTime: new Date(),
+    endingTime: new Date(),
   });
 
   //console.log(event);
@@ -90,15 +80,17 @@ const AddScreen = ({ props, navigation, route }) => {
     }
   }, [route]);
 
-  const createEvent = async () => {
-    /*setEvent({
-      ...event,
-      creator: username,
-    });*/
-    const creation = user.functions
+  const insertEvent = async () => {
+    try {
+      let eventDoc = await createEvent(event);
+      console.log(eventDoc);
+    } catch (error) {
+      console.error(error);
+    }
+    /*const creation = user.functions
       .Create_Event(event)
       .then((result) => console.log("evénement bien créé"))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err));*/
   };
 
   const [visibleStart, setVisibleStart] = useState(false);
@@ -202,15 +194,7 @@ const AddScreen = ({ props, navigation, route }) => {
         onConfirm={(datum) => (
           setEvent({
             ...event,
-            date: {
-              day: datum.getDay(),
-              month: datum.getMonth(),
-              year: datum.getFullYear(),
-            },
-            time: {
-              hour: datum.getHours(),
-              min: datum.getMinutes(),
-            },
+            beginningTime: datum
           }),
           setVisibleStart(false),
           setColor("#743cff")
@@ -225,10 +209,7 @@ const AddScreen = ({ props, navigation, route }) => {
         onConfirm={(datum) => (
           setEvent({
             ...event,
-            endingTime: {
-              hour: datum.getHours(),
-              min: datum.getMinutes(),
-            },
+            endingDateTime: datum
           }),
           setVisibleEnd(false),
           setColor("#743cff")
@@ -462,7 +443,7 @@ const AddScreen = ({ props, navigation, route }) => {
                   <TouchableOpacity
                     activeOpacity={0.7}
                     onPress={() => {
-                      createEvent(); /*.then(
+                      insertEvent(); /*.then(
                     Haptics.notificationAsync(
                       Haptics.NotificationFeedbackType.Success
                     ) */
