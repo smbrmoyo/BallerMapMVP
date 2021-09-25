@@ -24,6 +24,22 @@ export const getPlacesList = async (filterInput, limit, nextToken) => {
   return placesList.data.listPlaces.items;
 };
 
+/**
+ * @description get all events documents
+ * @param {JSON} filter ({ field1: value1, ... })
+ * @param {Integer} limit maximum number of docs to fetch
+ * @returns array of event docs
+ */
+export const getFilteredPlaces = async (filter, limit) => {
+  let events = await API.graphql(
+    graphqlOperation(queries.listPlaces, {
+      filter,
+      limit,
+    })
+  );
+  return events;
+};
+
 /*
  * =============================================================================
  *                                  MUTATIONS
@@ -31,10 +47,9 @@ export const getPlacesList = async (filterInput, limit, nextToken) => {
  */
 
 /**
- * @description create user doc
- * @param {JSON} place object with userDoc fields (address, name, coordinate)
+ * @description create place
+ * @param {JSON} place object with place fields (address, name, coordinate)
  */
-
 export const createPlace = async (place) => {
   let placeDoc = await API.graphql(
     graphqlOperation(mutations.createPlace, {
@@ -48,23 +63,28 @@ export const createPlace = async (place) => {
       },
     })
   );
-
   return placeDoc;
 };
 
-export const createUserDoc = async (userData) => {
-  let userDoc = await API.graphql(
-    graphqlOperation(mutations.createUserDoc, {
+/**
+ * @description update place
+ * @param {JSON} place object with place fields (address, name, coordinate)
+ */
+export const updatePlace = async (place) => {
+  let placeDoc = await API.graphql(
+    graphqlOperation(mutations.updateEvent, {
       input: {
-        email: userData.email,
+        id: place.id,
+        address: place.address,
+        name: place.name,
+        coordinate: {
+          latitude: place.coordinates.lat,
+          longitude: place.coordinates.long,
+        },
       },
     })
   );
-  userConf.userDocId = userDoc.data.createUserDoc.id;
-
-  AsyncStorage.setItem("userDocId", userDoc.data.createUserDoc.id);
-
-  return userDoc;
+  return placeDoc;
 };
 
 /*
