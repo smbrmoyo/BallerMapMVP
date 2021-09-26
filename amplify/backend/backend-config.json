@@ -1,9 +1,26 @@
 {
+  "function": {
+    "ballermapmvp60e3b21c60e3b21cPostConfirmation": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
   "auth": {
-    "ballermapmvp51584b17": {
+    "ballermapmvp60e3b21c60e3b21c": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
-      "dependsOn": [],
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "ballermapmvp60e3b21c60e3b21cPostConfirmation",
+          "triggerProvider": "Cognito",
+          "attributes": [
+            "Arn",
+            "Name"
+          ]
+        }
+      ],
       "customAuth": false,
       "frontendAuthConfig": {
         "loginMechanisms": [],
@@ -33,7 +50,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authballermapmvp51584b17"
+              "userPoolId": "authballermapmvp60e3b21c60e3b21c"
             }
           },
           "additionalAuthenticationProviders": []
