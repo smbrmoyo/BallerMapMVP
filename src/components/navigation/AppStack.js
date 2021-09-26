@@ -12,12 +12,13 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Feather from "react-native-vector-icons/Feather";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { getFocusedRouteNameFromRoute, useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Constants from "expo-constants";
 import {AWSAppSyncClient} from "aws-appsync";
 import awsconfig from "../../aws-exports"
 import {Auth} from "aws-amplify"
+
 
 const Tab = createBottomTabNavigator();
 
@@ -55,7 +56,7 @@ const Tab = createBottomTabNavigator();
 }, [])*/
 const AppStack = (route) => {
   const [notifPermission, setNotifPermission] = useState();
-  const {auth, setAuth, client, setClient} = useAuth();
+  const {auth, setAuth, client, setClient, createdDocs, setCreatedDocs} = useAuth();
 
   const getTabBarVisibility = (route) => {
     const routeName = getFocusedRouteNameFromRoute(route);
@@ -104,9 +105,8 @@ const AppStack = (route) => {
           })
           setClient(temp);
 
-
-
       }
+
   })
 
   return (

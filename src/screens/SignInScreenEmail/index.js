@@ -27,7 +27,7 @@ import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 
 const SignInScreenEmail = ({ navigation, props }) => {
   const headerHeight = useHeaderHeight();
-  const { signIn } = useAuth();
+  const { signIn, setUser } = useAuth();
   const [nextScreen, setNextScreen] = useState("Map");
 
   useEffect(() => {
@@ -226,14 +226,16 @@ const SignInScreenEmail = ({ navigation, props }) => {
             <TouchableOpacity
               activeOpacity={0.7}
               style={styles.signIn}
-              onPress={() => {
+              onPress={async() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
-                  () => {
-                    if (nextScreen == "SetProfile") {
+                  async() => {
+                    /*if (nextScreen == "SetProfile") {
                       navigation.navigate(nextScreen);
-                    } else {
-                      signIn(dataLogin.username, dataLogin.password);
-                    }
+                    }*/
+                      console.log("HEreeeee")
+                      signIn(dataLogin.username, dataLogin.password).then(res => {
+                        setUser(dataLogin.username).catch(error => console.log(error));
+                      })
                   }
                 );
               }}

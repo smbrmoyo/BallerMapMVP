@@ -24,16 +24,29 @@ const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState();
   const [client, setClient] = useState();
   const [user, setUser] = useState(); // set this to true on confirmSignUp
+  const [createdDocs, setCreatedDocs] = useState(false);
   const [signUpTrigger, setSignUpTrigger] = useState(false);
   const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(() => {
     console.log("Async storage log" + JSON.stringify(AsyncStorage.getItem("currentUserCreds")))
-    if(!AsyncStorage.getItem("currentUserCreds")){
-      const userCreds = AsyncStorage.getItem("currentUserCreds")
+    const currentUserCreds = async() => {
+      let res = await AsyncStorage.getItem("currentUserCreds")
+
+      return res;
+    }
+    if(currentUserCreds !== null){
+      // SignIn the stored user
+      const userCreds = async() => {AsyncStorage.getItem("currentUserCreds")}
       const effect = async () => {
-        await signIn(userCreds.username, userCreds.password)
+        await signIn(userCreds.email, userCreds.password).then(res => {
+        }).catch(err => {Alert.alert("error in " +
+            "sigin In stored user: " + JSON.stringify(err))
+        })
       }
+      return ;
+    } else{
+      return;
     }
 
     return () => {
@@ -50,22 +63,27 @@ const AuthProvider = ({ children }) => {
   // The signIn function takes an email and password and uses the
   // emailPassword authentication provider to log in.
   const signIn = async (email, password) => {
-    try {
-      await Auth.signIn(email, password).then(() => {
-
-        setUser({
-          email: email,
-          password: password
-        });
+      let res = false;
+      res = await Auth.signIn(email, password).then(async() => {
         AsyncStorage.setItem("currentUserCreds", {email: email, password: password})
+        await IsProfileDoc(email).then(res => {
+          if(res == true){
+            setCreatedDocs(true);
+            console.log("ici")
+          } else{
+            console.log("IsProfileDoc false")
+          }
+        })
+        return true;
       });
-    } catch (error) {
-      console.log("error signing in", error);
-    }
+      return res;
   };
 
-  // The signUp function takes an email and password and uses the
-  // emailPassword authentication provider to register the user.
+
+  /**The signUp function takes an email and password and uses the
+   * emailPassword authentication provider to register the user.
+   * return l'email
+  **/
   const signUp = async (email, password) => {
     try {
       const user = await Auth.signUp({
@@ -77,7 +95,7 @@ const AuthProvider = ({ children }) => {
       }).then(async (res) => {
         console.log(JSON.stringify(res));
       });
-      return username;
+      return email;
     } catch (error) {
       if (error.name == "UsernameExistsException") {
         Alert.alert(error);
@@ -95,46 +113,72 @@ const AuthProvider = ({ children }) => {
    * then call createUserDoc and createUserProfile
    */
 
-  const confirmSignUp = async (username, code, email) => {
+  const confirmSignUp = async (email, code) => {
     try {
-      const confirmedUser = await Auth.confirmSignUp(username, code).then(
+      const confirmedUser = await Auth.confirmSignUp(email, code).then(
         async (res) => {
-          console.log(JSON.stringify(res));
-          console.log("email used for docCreation");
-          await createUserDoc({ email: email }).then(async (result) => {
-            let uProfileInput = {
-              userDocId: result.id,
-              username: username,
-            };
-            await createUserProfile(uProfileInput);
-          });
-        }
-      );
-      return username;
+          console.log("reponse du confirmSignup" + JSON.stringify(res));
+
+          let userDocInput = {
+            email: email,
+            id: email
+          }
+
+          /*await createUserDoc(userDocInput).then((res) => {
+            console.log("Userdoc créé apres confirm signup" + JSON.stringify(res));
+          }).catch(e => console.log("erreur dans la créaction su  userDoc a confirm Signup" + e));*/
+        });
+      return email;
     } catch (error) {
       if (error.name == "UsernameExistsException") {
+        Alert.alert(error);
+      }
+      else{
         Alert.alert(error);
       }
       console.log("error confirming user", error);
     }
   };
 
+
+  /**Fonction pour vérifier l'existence d'un userDoc et d'un profileDoc
+   * Retourne un boleen
+   */
   const IsProfileDoc = async (email) => {
     let newDocs = {}
     let isUserDoc = await getUserDoc(email)
     if ((isUserDoc)  !== null){
       // userDoc créé
+      console.log("UserDoc créé")
       let isProfileDoc = await getUprofileDoc(email)
       if(isProfileDoc !== null){
         return true;
       }
     }
     else{
-       let userDocInput = {email: email};
-       let userDoc = await createUserDoc(email)
+      console.log("pas de profile DOc")
+       //création du userDoc
+      const userDocInput = {
+        email: email
+      }
+       let userDoc = await createUserDoc(userDocInput).then(asyncRes => {
+       console.log("profile DOc créé: " + JSON.stringify(asyncRes))}).catch(error => console.log("error creating userDoc on signIN " + error))
        return false
     }
     return false;
+  }
+
+  const createProfileDoc = async(username) => {
+    if(user){
+      const uProfileInput = {
+        id: user,
+        userDocId: user,
+        username: username
+      }
+      await createUserProfile(uProfileDocInput).then((res) => {
+        console.log("ProfileDoc créé: " + JSON.stringify(res));
+      })
+    }
   }
 
 
@@ -172,7 +216,9 @@ const AuthProvider = ({ children }) => {
         auth,
         setAuth,
         client,
-        setClient
+        setClient,
+        createdDocs,
+        setCreatedDocs
       }}
     >
       {children}

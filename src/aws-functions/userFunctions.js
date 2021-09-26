@@ -26,7 +26,7 @@ export const getAuthenticatedUser = async () => {
 
 export const getUserDoc = async (email) => {
   let userDoc = await API.graphql(
-    graphqlOperation(queries.getUserDoc, { email: email })
+    graphqlOperation(queries.getUserDoc, { id: email, email:email })
   );
 
   return userDoc.data.getUserDoc;
@@ -60,6 +60,8 @@ export const createUserDoc = async (userData) => {
     graphqlOperation(mutations.createUserDoc, {
       input: {
         email: userData.email,
+        id: userData.email,
+        profileDocId: userData.email
       },
     })
   );
@@ -79,6 +81,7 @@ export const createUserProfile = async (userProfile) => {
   let uProfile = await API.graphql(
     graphqlOperation(mutations.createUprofile, {
       input: {
+        id: userProfile.id,
         username: userProfile.username,
         userDocId: userProfile.userDocId,
       },

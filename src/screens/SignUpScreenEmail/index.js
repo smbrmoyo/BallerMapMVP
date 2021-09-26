@@ -83,12 +83,14 @@ const SignUpScreenEmail = ({ navigation }) => {
       setdataSignUp({
         ...dataSignUp,
         email: val,
+        username:val,
         check_emailInputChange: true,
       });
     } else {
       setdataSignUp({
         ...dataSignUp,
         email: val,
+        username: val,
         check_emailInputChange: false,
       });
     }
@@ -170,9 +172,10 @@ const SignUpScreenEmail = ({ navigation }) => {
           </View>
         </TouchableWithoutFeedback>
 
-        {/* username input */}
+
         <Animatable.View animation="fadeInUpBig" style={styles.footer}>
           <ScrollView showsVerticalScrollIndicator={false}>
+            {/* username input
             <Text
               style={[
                 styles.text_footer,
@@ -203,6 +206,7 @@ const SignUpScreenEmail = ({ navigation }) => {
                 </Animatable.View>
               ) : null}
             </View>
+            */}
 
             <Text
               style={[
@@ -342,19 +346,16 @@ const SignUpScreenEmail = ({ navigation }) => {
                       if (
                         dataSignUp.password &&
                         dataSignUp.isValidConfirmPassword &&
-                        dataSignUp.username
+                        dataSignUp.username &&
+                        dataSignUp.email
                       ) {
-                        console.log(dataSignUp.username);
                         signUp(
-                          dataSignUp.username,
-                          dataSignUp.email,
-                          dataSignUp.password
-                        )
-                          .then((res) => {
-                            console.log("Réponse de la fonction signup " + res);
+                          dataSignUp.email, dataSignUp.password
+                        ).then((res) => {
+                            console.log("SIGNUP Success: " + res);
                             if (res === dataSignUp.username) {
                               navigation.navigate("ConfirmSignUp", {
-                                username: res,
+                                username: dataSignUp.username,
                                 email: dataSignUp.email,
                               });
                             }
