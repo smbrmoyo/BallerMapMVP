@@ -312,11 +312,8 @@ export const onCreateUprofile = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -439,11 +436,8 @@ export const onUpdateUprofile = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -566,11 +560,8 @@ export const onDeleteUprofile = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -966,11 +957,8 @@ export const onCreateUserPlaceConnection = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -1045,11 +1033,8 @@ export const onUpdateUserPlaceConnection = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -1124,11 +1109,8 @@ export const onDeleteUserPlaceConnection = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -1435,11 +1417,8 @@ export const onCreateEvent = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -1542,11 +1521,8 @@ export const onUpdateEvent = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -1649,11 +1625,8 @@ export const onDeleteEvent = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -2030,11 +2003,8 @@ export const onCreatePlace = /* GraphQL */ `
       name
       address
       coords {
-        id
         long
         lat
-        createdAt
-        updatedAt
       }
       events {
         items {
@@ -2091,11 +2061,8 @@ export const onUpdatePlace = /* GraphQL */ `
       name
       address
       coords {
-        id
         long
         lat
-        createdAt
-        updatedAt
       }
       events {
         items {
@@ -2152,11 +2119,8 @@ export const onDeletePlace = /* GraphQL */ `
       name
       address
       coords {
-        id
         long
         lat
-        createdAt
-        updatedAt
       }
       events {
         items {
@@ -2370,39 +2334,6 @@ export const onDeleteNotification = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      updatedAt
-    }
-  }
-`;
-export const onCreateCoords = /* GraphQL */ `
-  subscription OnCreateCoords {
-    onCreateCoords {
-      id
-      long
-      lat
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateCoords = /* GraphQL */ `
-  subscription OnUpdateCoords {
-    onUpdateCoords {
-      id
-      long
-      lat
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteCoords = /* GraphQL */ `
-  subscription OnDeleteCoords {
-    onDeleteCoords {
-      id
-      long
-      lat
-      createdAt
       updatedAt
     }
   }

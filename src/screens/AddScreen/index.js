@@ -39,6 +39,7 @@ import {
   useAuth,
   getUprofile,
 } from "../../components/navigation/Providers/AuthProvider";
+import { getPlacesList } from "../../aws-functions/placeFunctions";
 import { useMap } from "../../components/navigation/Providers/MapProvider";
 import { wsize, hsize } from "../../utils/Dimensions";
 import places from "../../assets/data/places";
@@ -54,13 +55,15 @@ import { createEvent } from "../../aws-functions/eventFunctions";
 const AddScreen = ({ props, navigation, route }) => {
   //const { username } = useMap();
   const username = "";
-  // const { user, profilePartition } = useAuth();
-  /*import username from useProfile() */
+  const { user } = useAuth();
   let placeNameParams = "";
   placeNameParams = route.params?.item.name;
   const [eventData, setEventData] = useState({
     name: "", //name of the place
     placeName: "",
+
+    creator: user.username,
+
     tags: [],
     description: "",
     profileId: "", //should be current authenticated user profile Id
@@ -69,7 +72,7 @@ const AddScreen = ({ props, navigation, route }) => {
     privacy: "private"
   });
 
-  //console.log(event);
+  console.log(event);
 
   useEffect(() => {
     if (route.params !== undefined) {
@@ -193,9 +196,11 @@ const AddScreen = ({ props, navigation, route }) => {
         mode="datetime"
         display="spinner"
         onConfirm={(datum) => (
+
           setEventData({
             ...eventData,
             beginningTime: datum
+
           }),
           setVisibleStart(false),
           setColor("#743cff")
@@ -206,11 +211,15 @@ const AddScreen = ({ props, navigation, route }) => {
       <DateTimePickerModal
         isVisible={visibleEnd} /*Should have second component for end date */
         mode="datetime"
-        display="spinner"
+        display="inline"
+        isDarkModeEnabled={false}
+        //modalStyleIOS={{ coler: "black" }}
         onConfirm={(datum) => (
+
           setEventData({
             ...eventData,
             endingDateTime: datum
+
           }),
           setVisibleEnd(false),
           setColor("#743cff")

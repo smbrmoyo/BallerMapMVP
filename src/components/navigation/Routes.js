@@ -16,3 +16,5 @@ const Routes = () => {
 };
 
 export default Routes;
+
+/*{user ? <AppStack /> : <AuthStack />} */

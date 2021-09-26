@@ -336,11 +336,8 @@ export const getEvent = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -628,11 +625,8 @@ export const getPlace = /* GraphQL */ `
       name
       address
       coords {
-        id
         long
         lat
-        createdAt
-        updatedAt
       }
       events {
         items {
@@ -792,35 +786,6 @@ export const listNotifications = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getCoords = /* GraphQL */ `
-  query GetCoords($id: ID!) {
-    getCoords(id: $id) {
-      id
-      long
-      lat
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listCoords = /* GraphQL */ `
-  query ListCoords(
-    $filter: ModelCoordsFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listCoords(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        long
-        lat
-        createdAt
         updatedAt
       }
       nextToken

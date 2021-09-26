@@ -27,11 +27,14 @@ export const getPlacesList = async (filterInput, limit, nextToken) => {
  * @returns array of places docs
  */
 export const getFilteredPlaces = async (filter, limit) => {
-  let places = await API.graphql(graphqlOperation(queries.listPlaces, {
-    filter,
-    limit
-  }));
-  return places.data.listPlaces.items;
+
+  let placesList = await API.graphql(
+    graphqlOperation(queries.listPlaces, {
+      filter,
+      limit,
+    })
+  );
+  return placesList.data.listPlaces.items;
 };
 
 /*
