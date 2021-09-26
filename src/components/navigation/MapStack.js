@@ -58,7 +58,7 @@ const MapStack = ({ navigation }) => {
         />
         <Stack.Screen
           name="Add"
-          component={SetProfileScreen}
+          component={AddScreen}
           options={({ navigation }) => ({
             title: "",
             headerStyle: {

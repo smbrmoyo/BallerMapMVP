@@ -8,6 +8,7 @@ import { Auth, API, graphqlOperation } from "aws-amplify";
 import {
   createPlace,
   getPlacesList,
+  getFilteredPlaces,
 } from "../../../aws-functions/placeFunctions";
 import { useQuery } from "react-query";
 

@@ -39,6 +39,7 @@ import {
   useAuth,
   getUprofile,
 } from "../../components/navigation/Providers/AuthProvider";
+import { getPlacesList } from "../../aws-functions/placeFunctions";
 import { useMap } from "../../components/navigation/Providers/MapProvider";
 import { wsize, hsize } from "../../utils/Dimensions";
 import places from "../../assets/data/places";
@@ -54,14 +55,13 @@ import { createEvent } from "../../aws-functions/eventFunctions";
 const AddScreen = ({ props, navigation, route }) => {
   //const { username } = useMap();
   const username = "";
-  // const { user, profilePartition } = useAuth();
-  /*import username from useProfile() */
+  const { user } = useAuth();
   let placeNameParams = "";
   placeNameParams = route.params?.item.name;
   const [event, setEvent] = useState({
     name: "",
     placeName: "",
-    creator: "",
+    creator: user.username,
     tags: [],
     description: "",
     creator: "", //should be current authenticated user
@@ -69,7 +69,7 @@ const AddScreen = ({ props, navigation, route }) => {
     endingTime: new Date(),
   });
 
-  //console.log(event);
+  console.log(event);
 
   useEffect(() => {
     if (route.params !== undefined) {
@@ -194,7 +194,7 @@ const AddScreen = ({ props, navigation, route }) => {
         onConfirm={(datum) => (
           setEvent({
             ...event,
-            beginningTime: datum
+            beginningTime: datum,
           }),
           setVisibleStart(false),
           setColor("#743cff")
@@ -205,11 +205,13 @@ const AddScreen = ({ props, navigation, route }) => {
       <DateTimePickerModal
         isVisible={visibleEnd} /*Should have second component for end date */
         mode="datetime"
-        display="spinner"
+        display="inline"
+        isDarkModeEnabled={false}
+        //modalStyleIOS={{ coler: "black" }}
         onConfirm={(datum) => (
           setEvent({
             ...event,
-            endingDateTime: datum
+            endingDateTime: datum,
           }),
           setVisibleEnd(false),
           setColor("#743cff")

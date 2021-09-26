@@ -342,11 +342,8 @@ export const createUprofile = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -472,11 +469,8 @@ export const updateUprofile = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -602,11 +596,8 @@ export const deleteUprofile = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -1014,11 +1005,8 @@ export const createUserPlaceConnection = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -1096,11 +1084,8 @@ export const updateUserPlaceConnection = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -1178,11 +1163,8 @@ export const deleteUserPlaceConnection = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -1501,11 +1483,8 @@ export const createEvent = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -1611,11 +1590,8 @@ export const updateEvent = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -1721,11 +1697,8 @@ export const deleteEvent = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -2175,11 +2148,8 @@ export const updatePlace = /* GraphQL */ `
       name
       address
       coords {
-        id
         long
         lat
-        createdAt
-        updatedAt
       }
       events {
         items {
@@ -2239,11 +2209,8 @@ export const deletePlace = /* GraphQL */ `
       name
       address
       coords {
-        id
         long
         lat
-        createdAt
-        updatedAt
       }
       events {
         items {
@@ -2466,48 +2433,6 @@ export const deleteNotification = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      updatedAt
-    }
-  }
-`;
-export const createCoords = /* GraphQL */ `
-  mutation CreateCoords(
-    $input: CreateCoordsInput!
-    $condition: ModelCoordsConditionInput
-  ) {
-    createCoords(input: $input, condition: $condition) {
-      id
-      long
-      lat
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateCoords = /* GraphQL */ `
-  mutation UpdateCoords(
-    $input: UpdateCoordsInput!
-    $condition: ModelCoordsConditionInput
-  ) {
-    updateCoords(input: $input, condition: $condition) {
-      id
-      long
-      lat
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteCoords = /* GraphQL */ `
-  mutation DeleteCoords(
-    $input: DeleteCoordsInput!
-    $condition: ModelCoordsConditionInput
-  ) {
-    deleteCoords(input: $input, condition: $condition) {
-      id
-      long
-      lat
-      createdAt
       updatedAt
     }
   }
