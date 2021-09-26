@@ -15,7 +15,6 @@ import DescriptionScreen from "../../screens/DescriptionScreen";
 import OtherProfileScreen from "../../screens/OtherProfileScreen";
 import Probe from "../../screens/Probe";
 import { MapProvider } from "./Providers/MapProvider";
-import { useAuth } from ".//Providers/AuthProvider";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Entypo from "react-native-vector-icons/Entypo";
 import { hsize, wsize } from "../../utils/Dimensions";
@@ -28,11 +27,6 @@ const Stack = createStackNavigator();
 
 const MapStack = ({ navigation }) => {
   let routeName;
-  const { user } = useAuth();
-
-  useEffect(() => {
-    console.log("user value in MapStack :" + JSON.stringify(user));
-  });
 
   return (
     <MapProvider>

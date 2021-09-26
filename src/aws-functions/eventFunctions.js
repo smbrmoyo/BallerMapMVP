@@ -1,7 +1,7 @@
 import { Auth, API, graphqlOperation } from 'aws-amplify';
 import * as mutations from '../graphql/mutations.js';
 import * as queries from '../graphql/queries.js';
-import { addUserToEvent } from './userFunctions.js';
+import { addUserToEvent, createUserDoc, createUserProfile } from './userFunctions.js';
 import { getFilteredPlaces } from './placeFunctions.js';
 
 /*
@@ -45,11 +45,15 @@ export const getEvent = async (eventId) => {
  * @param {JSON} eventData object with event fields (name, placeId, beginingTime)
  */
 export const createEvent = async (eventData) => {
+    let uProfileId = "8d33bf79-f4b2-416d-80d9-68e09b7be6ea";
+    const filter = { name: {contains: eventData.placeName}};
+    let places = eventData.placeName!= ""? await getFilteredPlaces(filter, 1): await getFilteredPlaces();
+    console.log(eventData);
     let event = await API.graphql(graphqlOperation(mutations.createEvent, {
         input: {
             name: eventData.name,
-            placeID:  getFilteredPlaces({ name: eventData.placeName }, 1),
-            creatorID: eventData.creator,
+            placeID:  places[0].id,
+            creatorID: eventData.profileId == ""? uProfileId: eventData.profileId,
             beginningTime: new Date(eventData.beginningTime).toISOString(),
             endingTime: new Date(eventData.endingTime).toISOString(),
             tags: eventData.tags,
@@ -65,11 +69,12 @@ export const createEvent = async (eventData) => {
  * @param {JSON} updatedEvent object 
  */
 export const updateEvent = async (updatedEvent) => {
+    let places = await getFilteredPlaces({ name: eventData.placeName }, 1);
     let event = await API.graphql(graphqlOperation(mutations.updateEvent, {
         input: {
             id: eventData.id,
             name: updatedEvent.name,
-            placeID: updatedEvent.placeID,
+            placeID: places[0].Id !== undefined ? places[0].Id : null,
             beginningTime: new Date(updatedEvent.beginningTime).toISOString(),
             endingTime: new Date(updatedEvent.endingTime).toISOString(),
             tags: updatedEvent.tags,
