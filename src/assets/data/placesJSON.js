@@ -1,9 +1,5 @@
 export default [
   {
-    name: "BYFAR Centre sportif",
-    address: "1330 Bd Père-Lelièvre, Québec, QC G1M 3P1, Canada",
-  },
-  {
     name: "CEGEP de Limoilou (campus Charlesbourg)",
     address: "7600, 3e Avenue Est, Charlesbourg",
   },

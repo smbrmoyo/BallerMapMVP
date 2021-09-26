@@ -21,13 +21,15 @@ import places from "../../assets/data/placesJSON";
 import PlaceRow from "./PlaceRow";
 import { hsize, wsize } from "../../utils/Dimensions";
 import { useMap } from "../../components/navigation/Providers/MapProvider";
+import { getPlacesList } from "../../aws-functions/placeFunctions";
 
 const PlaceSearchScreen = ({ navigation, route }) => {
-  const [data, setData] = useState([]);
+  const [text, setText] = useState("");
+  const { places } = useMap();
+  const [data, setData] = useState(places);
   const [query, setQuery] = useState("");
   const [hits, setHits] = useState([]);
   const [loading, setLoading] = useState(false);
-  const places = useMap().places;
   const { colors, dark } = useTheme();
 
   useLayoutEffect(() => {
@@ -74,28 +76,31 @@ const PlaceSearchScreen = ({ navigation, route }) => {
     });
   }, [navigation]);
 
-  useEffect(() => {
-    //fetchData();
-  }, []);
+  useEffect(() => {}, []);
+
+  /**
+   * useQuery
+   * check response status
+   * then setData
+   */
 
   const fetchData = async () => {
-    const res = places;
-    setData(res);
-    setHits(res.slice());
+    setData(places);
+    //setHits(places.slice());
   };
 
   const searchFilter = async (text) => {
     if (text) {
-      var newData = followers.filter((item) => {
-        var name = item.username.toLowerCase();
+      var newData = places.filter((item) => {
+        var name = item.name.toLowerCase();
         const filter = text.toLowerCase();
         return name.search(filter) !== -1;
       });
       setData(newData);
-      console.log(newData);
+      //console.log(newData);
       setText(text);
     } else {
-      setData(followers);
+      setData(places);
       setText("");
     }
   };
@@ -124,13 +129,13 @@ const PlaceSearchScreen = ({ navigation, route }) => {
     setQuery(input);
   };
 
-  function SearchBarFollowers(props) {
+  function SearchBarPlaces(props) {
     return (
       <View style={styles.headerContainer}>
         <TextInput //autoFocus
           autoFocus
-          onChangeText={updateQuery}
-          value={query}
+          onChangeText={props.onChangeTextDebounced}
+          value={props.text}
           placeholder="Search"
           placeholderTextColor="#CDCDCD"
           style={[
@@ -162,15 +167,15 @@ const PlaceSearchScreen = ({ navigation, route }) => {
   return (
     <View style={styles.container}>
       <FlatList
-        data={hits}
-        keyExtractor={(i) => i.name.toString()}
+        data={data}
+        keyExtractor={(i) => i.id}
         refreshing={loading}
         ListHeaderComponent={
-          <SearchBarFollowers
+          <SearchBarPlaces
             colors={colors}
             dark={dark}
-            text={query}
-            onChangeTextDebounced={onChangeTextDebounced}
+            text={text}
+            onChangeTextDebounced={(text) => searchFilter(text)}
           />
         }
         extraData={query}
@@ -183,7 +188,10 @@ const PlaceSearchScreen = ({ navigation, route }) => {
               <View style={styles.iconContainer}>
                 <Entypo name="location-pin" size={25} color={"#743cff"} />
               </View>
-              <Text style={styles.locationText}>{item.name}</Text>
+              <View>
+                <Text style={styles.locationText}>{item.name}</Text>
+                <Text style={{ color: "grey" }}>{item.address}</Text>
+              </View>
             </View>
           </TouchableOpacity>
         )}

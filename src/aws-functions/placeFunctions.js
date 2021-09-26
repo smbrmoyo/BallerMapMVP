@@ -31,13 +31,13 @@ export const getPlacesList = async (filterInput, limit, nextToken) => {
  * @returns array of event docs
  */
 export const getFilteredPlaces = async (filter, limit) => {
-  let events = await API.graphql(
+  let placesList = await API.graphql(
     graphqlOperation(queries.listPlaces, {
       filter,
       limit,
     })
   );
-  return events;
+  return placesList.data.listPlaces.items;
 };
 
 /*
