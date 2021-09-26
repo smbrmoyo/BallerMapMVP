@@ -58,31 +58,32 @@ const AddScreen = ({ props, navigation, route }) => {
   /*import username from useProfile() */
   let placeNameParams = "";
   placeNameParams = route.params?.item.name;
-  const [event, setEvent] = useState({
-    name: "",
+  const [eventData, setEventData] = useState({
+    name: "", //name of the place
     placeName: "",
-    creator: "",
     tags: [],
     description: "",
-    creator: "", //should be current authenticated user
+    uProfileId: "", //should be current authenticated user profile Id
     beginningTime: new Date(),
     endingTime: new Date(),
+    privacy: "private"
   });
 
   //console.log(event);
 
   useEffect(() => {
     if (route.params !== undefined) {
-      setEvent({
-        ...event,
+      setEventData({
+        ...eventData,
         placeName: placeNameParams,
       });
     }
   }, [route]);
 
-  const insertEvent = async () => {
+  let insertEvent = async () => {
     try {
-      let eventDoc = await createEvent(event);
+      console.log(eventData);
+      let eventDoc = await createEvent(eventData);
       console.log(eventDoc);
     } catch (error) {
       console.error(error);
@@ -192,8 +193,8 @@ const AddScreen = ({ props, navigation, route }) => {
         mode="datetime"
         display="spinner"
         onConfirm={(datum) => (
-          setEvent({
-            ...event,
+          setEventData({
+            ...eventData,
             beginningTime: datum
           }),
           setVisibleStart(false),
@@ -207,8 +208,8 @@ const AddScreen = ({ props, navigation, route }) => {
         mode="datetime"
         display="spinner"
         onConfirm={(datum) => (
-          setEvent({
-            ...event,
+          setEventData({
+            ...eventData,
             endingDateTime: datum
           }),
           setVisibleEnd(false),
@@ -264,8 +265,8 @@ const AddScreen = ({ props, navigation, route }) => {
                     placeholder="Give your run a name"
                     placeholderTextColor="#CDCDCD"
                     onEndEditing={(event) =>
-                      setEvent({
-                        ...event,
+                      setEventData({
+                        ...eventData,
                         name: event.nativeEvent.text,
                       })
                     }
@@ -302,13 +303,13 @@ const AddScreen = ({ props, navigation, route }) => {
                           elevation: 2,
                         }}
                       >
-                        {event.placeName === "" ? (
+                        {eventData.placeName === "" ? (
                           <Text style={{ color: "#CDCDCD" }}>
                             Find an Address
                           </Text>
                         ) : (
                           <Text style={{ color: "black" }}>
-                            {event.placeName}
+                            {eventData.placeName}
                           </Text>
                         )}
                       </View>
@@ -340,8 +341,8 @@ const AddScreen = ({ props, navigation, route }) => {
                     multiline
                     placeholderTextColor="#CDCDCD"
                     onEndEditing={(event) =>
-                      setEvent({
-                        ...event,
+                      setEventData({
+                        ...eventData,
                         description: event.nativeEvent.text,
                       })
                     }
@@ -357,12 +358,13 @@ const AddScreen = ({ props, navigation, route }) => {
                     style={styles.textInput}
                     placeholder="#"
                     placeholderTextColor="#CDCDCD"
-                    onChangeText={(textTag) =>
-                      setEvent({
-                        ...event,
-                        //name: text,
+                    onChangeText={(textTag) => {
+                      let tags = textTag.split(' ');
+                      setEventData({
+                        ...eventData,
+                        tags
                       })
-                    }
+                    }}
                   />
                 </View>
 
@@ -377,7 +379,7 @@ const AddScreen = ({ props, navigation, route }) => {
                   >
                     <View style={styles.textInput}>
                       <Text style={{ color: color, fontSize: 16 }}>
-                        {readableDate(event.startDateTime)}
+                        {readableDate(eventData.beginningTime)}
                       </Text>
                     </View>
                   </TouchableOpacity>
@@ -393,7 +395,7 @@ const AddScreen = ({ props, navigation, route }) => {
                   >
                     <View style={styles.textInput}>
                       <Text style={{ color: color, fontSize: 16 }}>
-                        {readableDate(event.endDateTime)}
+                        {readableDate(eventData.endingTime)}
                       </Text>
                     </View>
                   </TouchableOpacity>
@@ -442,12 +444,11 @@ const AddScreen = ({ props, navigation, route }) => {
                   </TouchableOpacity>
                   <TouchableOpacity
                     activeOpacity={0.7}
-                    onPress={() => {
-                      insertEvent(); /*.then(
+                    onPress={
+                      insertEvent /*.then(
                     Haptics.notificationAsync(
                       Haptics.NotificationFeedbackType.Success
-                    ) */
-                    }}
+                    ) */}
                   >
                     <View
                       style={{

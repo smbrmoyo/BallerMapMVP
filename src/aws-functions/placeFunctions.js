@@ -12,10 +12,6 @@ import * as queries from "../graphql/queries";
  * =============================================================================
  */
 
-/**
- * @description user's doc Id
- */
-
 export const getPlacesList = async (filterInput, limit, nextToken) => {
   let placesList = await API.graphql(
     graphqlOperation(queries.listPlaces, { filterInput, limit, nextToken })
@@ -25,19 +21,17 @@ export const getPlacesList = async (filterInput, limit, nextToken) => {
 };
 
 /**
- * @description get all events documents
+ * @description get all places documents
  * @param {JSON} filter ({ field1: value1, ... })
  * @param {Integer} limit maximum number of docs to fetch
- * @returns array of event docs
+ * @returns array of places docs
  */
 export const getFilteredPlaces = async (filter, limit) => {
-  let events = await API.graphql(
-    graphqlOperation(queries.listPlaces, {
-      filter,
-      limit,
-    })
-  );
-  return events;
+  let places = await API.graphql(graphqlOperation(queries.listPlaces, {
+    filter,
+    limit
+  }));
+  return places.data.listPlaces.items;
 };
 
 /*
@@ -56,9 +50,9 @@ export const createPlace = async (place) => {
       input: {
         address: place.address,
         name: place.name,
-        coords: {
-          lat: place.coords.lat,
-          long: place.coords.long,
+        coordinate: {
+          latitude: place.coordinates.lat,
+          longitude: place.coordinates.long,
         },
       },
     })

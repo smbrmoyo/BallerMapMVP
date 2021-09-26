@@ -342,11 +342,8 @@ export const createUprofile = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -472,11 +469,8 @@ export const updateUprofile = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
@@ -1501,11 +1495,8 @@ export const createEvent = /* GraphQL */ `
         name
         address
         coords {
-          id
           long
           lat
-          createdAt
-          updatedAt
         }
         events {
           nextToken
