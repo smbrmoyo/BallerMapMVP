@@ -4,7 +4,11 @@ import Alert from "react-native";
 import {
   createUserDoc,
   createUserProfile,
+  getUprofileDoc,
+  getUserDoc,
 } from "../../../aws-functions/userFunctions";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 //const Realm = require("realm");
 //import { getRealmApp } from "../../../../realmServer";
 import { useNavigation } from "@react-navigation/native";
@@ -18,21 +22,28 @@ export const AuthContext = React.createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState();
+  const [client, setClient] = useState();
   const [user, setUser] = useState(); // set this to true on confirmSignUp
   const [signUpTrigger, setSignUpTrigger] = useState(false);
   const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(() => {
-    const effect = async () => {
-      await Auth.currentAuthenticatedUser().then((user) => {setUser(user);}).catch(
-          (error) => {
-            console.log("User session error " + error )
-          }
-      )
+    console.log("Async storage log" + JSON.stringify(AsyncStorage.getItem("currentUserCreds")))
+    if(!AsyncStorage.getItem("currentUserCreds")){
+      const userCreds = AsyncStorage.getItem("currentUserCreds")
+      const effect = async () => {
+        await signIn(userCreds.username, userCreds.password)
+      }
     }
 
     return () => {
-      // cleanup function
+      // cleanup function, end connection to ressources
+      if(!client){
+        return;
+      }
+      else{
+        client.destroy();
+      }
     };
   }, []);
 
@@ -41,10 +52,13 @@ const AuthProvider = ({ children }) => {
   const signIn = async (username, password) => {
     try {
       await Auth.signIn(username, password).then(() => {
+
         setUser({
           username: username,
         });
+        AsyncStorage.setItem("currentUserCreds", {username, password})
       });
+
     } catch (error) {
       console.log("error signing in", error);
     }
@@ -105,6 +119,23 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  const IsProfileDoc = async (email) => {
+    let newDocs = {}
+    let isUserDoc = await getUprofileDoc(email)
+    if (isProfileDoc) {
+      let isProfileDoc = await getUserDoc(email)
+    }
+    else{
+       let userDocInput = {email: email};
+       let userDoc = await createUserDoc(email).then(async(res) => {
+         newDocs.userDoc = res;
+         let userProfileInput = {email: email, userDocId: res.id}
+         let profileDoc = await createUserProfile(email).then(async(res) => {})
+       })
+    }
+  }
+
+
   // Resend the confirmation code in case the user didn't receive it
   const resendConfirmationCode = async (username) => {
     try {
@@ -138,6 +169,8 @@ const AuthProvider = ({ children }) => {
         resendConfirmationCode,
         auth,
         setAuth,
+        client,
+        setClient
       }}
     >
       {children}

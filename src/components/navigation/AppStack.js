@@ -5,6 +5,7 @@ import MapStack from "./MapStack";
 import ProfileStack from "./ProfileStack";
 import CategoryStack from "./CategoryStack";
 import ModalStack from "./ModalStack";
+import {useAuth} from "./Providers/AuthProvider"
 //import SnapchatStack from "../../../Snapchat";
 import { useState, useEffect } from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -14,6 +15,9 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Constants from "expo-constants";
+import {AWSAppSyncClient} from "aws-appsync";
+import awsconfig from "../../aws-exports"
+import {Auth} from "aws-amplify"
 
 const Tab = createBottomTabNavigator();
 
@@ -51,6 +55,7 @@ const Tab = createBottomTabNavigator();
 }, [])*/
 const AppStack = (route) => {
   const [notifPermission, setNotifPermission] = useState();
+  const {auth, setAuth, client, setClient} = useAuth();
 
   const getTabBarVisibility = (route) => {
     const routeName = getFocusedRouteNameFromRoute(route);
@@ -84,6 +89,25 @@ const AppStack = (route) => {
     }
     return true;
   };
+
+  useEffect(() => {
+      const get_client = async() => {
+          const temp =  new AWSAppSyncClient({
+              url: awsconfig.aws_appsync_graphqlEndpoint,
+              region: awsconfig.aws_appsync_region,
+              auth:{
+                  type: awsconfig.aws_appsync_authenticationType,
+                  jwtToken: async() => {
+                      (await Auth.currentSession()).getIdToken().getJwtToken()
+                  }
+              }
+          })
+          setClient(temp);
+
+
+
+      }
+  })
 
   return (
     <Tab.Navigator

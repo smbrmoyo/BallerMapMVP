@@ -12,31 +12,33 @@ import * as queries from "../graphql/queries";
  * =============================================================================
  */
 
-export const getAuthenticatedUser = () => {
-  Auth.currentAuthenticatedUser()
-    .then((authUser) => {
-      userConf.email = authUser.attributes.email;
-    })
+export const getAuthenticatedUser = async () => {
+  let user = await Auth.currentAuthenticatedUser()
     .catch((err) => {
       console.error(err);
     });
+  return user;
 };
 
 /**
- * @description user's doc Id
+ * @description user's username
  */
 
-export const getUserDoc = async (userDocId) => {
+export const getUserDoc = async (email) => {
   let userDoc = await API.graphql(
-    graphqlOperation(queries.getUserDoc, { id: userDocId })
+    graphqlOperation(queries.getUserDoc, { email: email })
   );
 
   return userDoc;
 };
 
-export const getUprofileDoc = async (uProfileDocId) => {
+export const getUprofileDoc = async (username) => {
   let uProfileDoc = await API.graphql(
-    graphqlOperation(queries.getUprofile, { id: uProfileDocId })
+    graphqlOperation(queries.getUprofile, {
+      input:{
+        username: username
+      }
+    })
   );
 
   return uProfileDoc;
@@ -61,11 +63,10 @@ export const createUserDoc = async (userData) => {
       },
     })
   );
-  userConf.userDocId = userDoc.data.createUserDoc.id;
 
-  AsyncStorage.setItem("userDocId", userDoc.data.createUserDoc.id);
+  //AsyncStorage.setItem("userDocId", userDoc.data.createUserDoc.id);
 
-  return userDoc;
+  return userDoc.data.createUserDoc.id;
 };
 
 /**
@@ -84,9 +85,9 @@ export const createUserProfile = async (userProfile) => {
     })
   );
 
-  AsyncStorage.setItem("userProfileId", uProfile.data.createUprofile.id);
+  //AsyncStorage.setItem("userProfileId", uProfile.data.createUprofile.id);
 
-  return uProfile;
+  return uProfile.data.createUprofile.id;
 };
 
 /**
@@ -195,3 +196,6 @@ export const subscribeOnUserConnection = (
     error: (error) => console.error(error),
   });
 };
+
+
+
