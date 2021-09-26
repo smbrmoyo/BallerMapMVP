@@ -57,7 +57,7 @@ const AuthProvider = ({ children }) => {
           email: email,
           password: password
         });
-        AsyncStorage.setItem("currentUserCreds", {email, password})
+        AsyncStorage.setItem("currentUserCreds", {email: email, password: password})
       });
     } catch (error) {
       console.log("error signing in", error);
@@ -123,6 +123,7 @@ const AuthProvider = ({ children }) => {
     let newDocs = {}
     let isUserDoc = await getUserDoc(email)
     if ((isUserDoc)  !== null){
+      // userDoc créé
       let isProfileDoc = await getUprofileDoc(email)
       if(isProfileDoc !== null){
         return true;

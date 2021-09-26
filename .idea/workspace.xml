@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/navigation/Providers/AuthProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/Providers/AuthProvider.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,6 +24,7 @@
     <option name="BRANCH" value="master" />
   </component>
   <component name="Git.Settings">
+    <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$" value="master" />
@@ -32,7 +32,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="ProjectId" id="1yTBIwjAMaNbwXw0VnTNMYiwfvg" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -64,7 +63,7 @@
       <updated>1632265622781</updated>
       <workItem from="1632265624533" duration="1526000" />
       <workItem from="1632267655185" duration="27371000" />
-      <workItem from="1632578611328" duration="10313000" />
+      <workItem from="1632578611328" duration="12257000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -108,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632619092128</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Cleanup des aws functions pour l'auth a terminer&#10;FOnction pour verifier l'existence des user et profile docs implémentées&#10;&#10;Reste a modifier les bons champs au signup screen">
+      <created>1632620587471</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1632620587471</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -119,6 +125,7 @@
     <MESSAGE value="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen&#10;&#10;&#10;&#10;Signup implemented!!!&#10;&#10;Confirme signuP to be implemented" />
     <MESSAGE value="false commit" />
     <MESSAGE value="Cleanup des aws functions pour l'auth a terminer&#10;FOnction pour verifier l'existence des user et profile docs implémentées (a vérifier une derniere fois)&#10;&#10;Reste a&#10; modiufier les bons champs au" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup des aws functions pour l'auth a terminer&#10;FOnction pour verifier l'existence des user et profile docs implémentées (a vérifier une derniere fois)&#10;&#10;Reste a&#10; modiufier les bons champs au" />
+    <MESSAGE value="Cleanup des aws functions pour l'auth a terminer&#10;FOnction pour verifier l'existence des user et profile docs implémentées&#10;&#10;Reste a modifier les bons champs au signup screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Cleanup des aws functions pour l'auth a terminer&#10;FOnction pour verifier l'existence des user et profile docs implémentées&#10;&#10;Reste a modifier les bons champs au signup screen" />
   </component>
 </project>
