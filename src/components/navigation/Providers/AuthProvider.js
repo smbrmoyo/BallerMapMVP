@@ -49,16 +49,16 @@ const AuthProvider = ({ children }) => {
 
   // The signIn function takes an email and password and uses the
   // emailPassword authentication provider to log in.
-  const signIn = async (username, password) => {
+  const signIn = async (email, password) => {
     try {
-      await Auth.signIn(username, password).then(() => {
+      await Auth.signIn(email, password).then(() => {
 
         setUser({
-          username: username,
+          email: email,
+          password: password
         });
-        AsyncStorage.setItem("currentUserCreds", {username, password})
+        AsyncStorage.setItem("currentUserCreds", {email, password})
       });
-
     } catch (error) {
       console.log("error signing in", error);
     }
@@ -66,10 +66,10 @@ const AuthProvider = ({ children }) => {
 
   // The signUp function takes an email and password and uses the
   // emailPassword authentication provider to register the user.
-  const signUp = async (username, email, password) => {
+  const signUp = async (email, password) => {
     try {
       const user = await Auth.signUp({
-        username: username,
+        username: email,
         password: password,
         attributes: {
           email: email,
@@ -121,18 +121,19 @@ const AuthProvider = ({ children }) => {
 
   const IsProfileDoc = async (email) => {
     let newDocs = {}
-    let isUserDoc = await getUprofileDoc(email)
-    if (isProfileDoc) {
-      let isProfileDoc = await getUserDoc(email)
+    let isUserDoc = await getUserDoc(email)
+    if ((isUserDoc)  !== null){
+      let isProfileDoc = await getUprofileDoc(email)
+      if(isProfileDoc !== null){
+        return true;
+      }
     }
     else{
        let userDocInput = {email: email};
-       let userDoc = await createUserDoc(email).then(async(res) => {
-         newDocs.userDoc = res;
-         let userProfileInput = {email: email, userDocId: res.id}
-         let profileDoc = await createUserProfile(email).then(async(res) => {})
-       })
+       let userDoc = await createUserDoc(email)
+       return false
     }
+    return false;
   }
 
 

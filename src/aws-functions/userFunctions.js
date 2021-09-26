@@ -29,7 +29,7 @@ export const getUserDoc = async (email) => {
     graphqlOperation(queries.getUserDoc, { email: email })
   );
 
-  return userDoc;
+  return userDoc.data.getUserDoc;
 };
 
 export const getUprofileDoc = async (username) => {
