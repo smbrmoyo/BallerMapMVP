@@ -63,7 +63,7 @@ const AddScreen = ({ props, navigation, route }) => {
     placeName: "",
     tags: [],
     description: "",
-    uProfileId: "", //should be current authenticated user profile Id
+    profileId: "", //should be current authenticated user profile Id
     beginningTime: new Date(),
     endingTime: new Date(),
     privacy: "private"
