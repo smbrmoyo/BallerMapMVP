@@ -33,7 +33,7 @@ import styles from "./styles";
 
 const ConfirmSignUpScreen = ({ navigation }) => {
   const { confirmSignUp, resendConfirmationCode } = useAuth();
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState();
   const route = useRoute();
   const { colors } = useTheme();
   let username = route.params.username;
@@ -105,17 +105,18 @@ const ConfirmSignUpScreen = ({ navigation }) => {
             <TouchableOpacity
               activeOpacity={0.7}
               style={styles.signIn}
-              onPress={() => {
-                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
-                  confirmSignUp(username, code, email)
+              onPress={async() => {
+
+                  await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(async() => {
+                  await confirmSignUp(email, code)
                     .then((res) => {
-                      console.log("Réponse de la fonction confirmUser " + res);
+                      console.log("Réponse de la fonction confirmSIgnUp " + res);
                       navigation.navigate("SignInEmail");
                     })
                     .catch((error) => {
-                      console.log(error);
+                      console.log("Erreur dans la fonction confirmSIgnUp au niveau du screen" + JSON.stringify(error));
                     })
-                );
+                  })
               }}
             >
               <LinearGradient

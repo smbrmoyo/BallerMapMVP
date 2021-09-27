@@ -15,6 +15,7 @@ import DescriptionScreen from "../../screens/DescriptionScreen";
 import OtherProfileScreen from "../../screens/OtherProfileScreen";
 import Probe from "../../screens/Probe";
 import { MapProvider } from "./Providers/MapProvider";
+import {useAuth} from "./Providers/AuthProvider";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Entypo from "react-native-vector-icons/Entypo";
 import { hsize, wsize } from "../../utils/Dimensions";
@@ -26,11 +27,22 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const Stack = createStackNavigator();
 
 const MapStack = ({ navigation }) => {
-  let routeName;
+  const {createdDocs, setCreatedDocs, IsProfileDoc} = useAuth();
+
+  let routeName = "Map";
+
+  useEffect(() => {
+      return () => {
+      }
+  }, [createdDocs])
+
+  if(!createdDocs){
+      routeName = "SetProfile"
+  }
 
   return (
     <MapProvider>
-      <Stack.Navigator initialRouteName={"Map"}>
+      <Stack.Navigator initialRouteName={routeName}>
         <Stack.Screen
           name="Map"
           component={MapScreen}
@@ -155,6 +167,19 @@ const MapStack = ({ navigation }) => {
         <Stack.Screen
           name="OtherProfile"
           component={OtherProfileScreen}
+          options={({ navigation }) => ({
+            title: "",
+            headerStyle: {
+              backgroundColor: "white",
+              //shadowColor: "black",
+              //elevation: 5,
+              height: hsize(80),
+            },
+          })}
+        />
+        <Stack.Screen
+          name="SetProfile"
+          component={SetProfileScreen}
           options={({ navigation }) => ({
             title: "",
             headerStyle: {

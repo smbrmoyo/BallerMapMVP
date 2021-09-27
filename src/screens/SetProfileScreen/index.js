@@ -26,7 +26,7 @@ import BottomSheet from "reanimated-bottom-sheet";
 import Animated from "react-native-reanimated";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import {useAuth} from "../../components/navigation/Providers/AuthProvider"
 import ProfilePicture from "../../components/ProfilePicture";
 import {
   createUserDoc,
@@ -39,30 +39,34 @@ import Feather from "react-native-vector-icons/Feather";
 import userConf from "../../aws-functions/userConf";
 
 const SetProfileScreen = ({ props, navigation, route }) => {
+  const {user, createProfileDoc, setCreatedDocs} = useAuth();
   const [color, setColor] = useState("#CDCDCD");
   const headerHeight = useHeaderHeight();
   let udId = "";
   const [userProfile, setUserProfile] = useState({
-    email: userConf.email,
-    fullName: "",
+    //email: user,
+    name:"",
     username: "",
     bio: "",
-    website: "",
     profilePicture: null,
+    userDocId: user,
+    id: user
   });
 
   var bsEditProf = useRef(null);
   var fallEditProf = useRef(new Animated.Value(1)).current;
 
-  /*useEffect(() => {
-    async function getUser() {
+  useEffect(() => {
+    /*async function getUser() {
       let user = await Auth.currentAuthenticatedUser().then((result) => {
         userEmail = result.attributes.email;
       });
       return userDoc;
     }
-    getUser();
-  }, []);*/
+    getUser();*/
+
+      console.log("!!!!SetProfileScreen")
+  }, []);
 
   /*
   Logic used to get userDocId is good. Should be done on signin/signUp.
@@ -71,7 +75,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
   on userProfile creation, should insert uProfileId into userDoc to make connection
   */
 
-  useEffect(() => {
+ /* useEffect(() => {
     async function getItem() {
       try {
         AsyncStorage.getItem("userDocId").then((value) => {
@@ -80,21 +84,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
       } catch (e) {}
     }
     getItem();
-  }, []);
-
-  const handlerUserDoc = async () => {
-    return await createUserDoc({
-      email: userEmail,
-    });
-  };
-
-  const handlerUserProfile = async (userDataInfo, resUserDoc) => {
-    console.log(resUserDoc);
-    return await createUserProfile({
-      username: userEmail,
-      userDocId: resUserDoc.data.createUserDoc.id,
-    });
-  };
+  }, []);*/
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -120,22 +110,14 @@ const SetProfileScreen = ({ props, navigation, route }) => {
         <View style={{ flexDirection: "row", marginHorizontal: wsize(10) }}>
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() => {
-              createUserDoc(userProfile)
-                .then((userDoc) => {
-                  console.log("heeere" + userDoc.data.createUserDoc.id);
-                  createUserProfile({
-                    username: userConf.username,
-                    userDocId: userDoc.data.createUserDoc.id,
-                  }).then((uProfile) => {
-                    console.log(uProfile);
-                    userConf.uProfileId = uProfile.data.createUprofile.id;
-                    Haptics.impactAsync(
-                      Haptics.ImpactFeedbackStyle.Medium
-                    ).then(navigation.navigate("Map"));
-                  });
-                })
-                .catch((error) => console.error(error));
+            onPress={async() => {
+              let input = userProfile;
+              console.log("aaaaa" + input.name)
+              await createProfileDoc(input.username, input.name).then(res => {
+                  navigation.navigate("Map");
+                  setCreatedDocs(true);
+              })
+                  .catch(error => console.log("error creating userProfile: " + JSON.stringify(error)))
             }} // Should edit profile on onpress
             style={{ justifyContent: "center" }}
           >
@@ -144,8 +126,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
             </View>
           </TouchableOpacity>
         </View>
-      ),
-    });
+      )});
   }, [navigation]);
 
   renderInner = () => (
@@ -263,13 +244,10 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                     }}
                     placeholder=""
                     placeholderTextColor="#CDCDCD"
-                    onChange={(event) =>
-                      (userConf.username = event.nativeEvent.text)
-                    }
                     onEndEditing={(event) =>
                       setUserProfile({
                         ...userProfile,
-                        username: event.nativeEvent.text,
+                        name: event.nativeEvent.text,
                       })
                     }
                   />
@@ -295,17 +273,15 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                       shadowRadius: 1.41,
                       elevation: 2,
                     }}
-                    placeholder=""
+                    placeholder="username"
                     placeholderTextColor="#CDCDCD"
-                    onChange={(event) =>
-                      (userConf.username = event.nativeEvent.text)
-                    }
-                    onEndEditing={(event) =>
+                    onChangeText={(text) => {
                       setUserProfile({
                         ...userProfile,
-                        username: event.nativeEvent.text,
+                        username: text,
                       })
-                    }
+                      console.log(text)
+                    }}
                   />
                 </View>
 
@@ -333,15 +309,14 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                     multiline
                     placeholderTextColor="#CDCDCD"
                     onEndEditing={(event) =>
-                      setUserProf({
-                        ...userProf,
+                      setUserProfile({
+                        ...userProfile,
                         bio: event.nativeEvent.text,
                       })
                     }
                   />
                 </View>
-
-                <View style={styles.TagsContainer}>
+                  {/*<View style={styles.TagsContainer}>
                   <View style={styles.title}>
                     <Text style={styles.titleText}>Website</Text>
                   </View>
@@ -357,7 +332,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                       })
                     }
                   />
-                </View>
+                </View>*/}
               </Animated.View>
             </TouchableWithoutFeedback>
           </ScrollView>

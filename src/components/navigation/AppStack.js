@@ -5,15 +5,21 @@ import MapStack from "./MapStack";
 import ProfileStack from "./ProfileStack";
 import CategoryStack from "./CategoryStack";
 import ModalStack from "./ModalStack";
+import {useAuth} from "./Providers/AuthProvider"
 //import SnapchatStack from "../../../Snapchat";
 import { useState, useEffect } from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Feather from "react-native-vector-icons/Feather";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
+import { getFocusedRouteNameFromRoute, useNavigation } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Constants from "expo-constants";
+import {AWSAppSyncClient} from "aws-appsync";
+import awsconfig from "../../aws-exports"
+import {Auth} from "aws-amplify"
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 
 const Tab = createBottomTabNavigator();
 
@@ -48,9 +54,12 @@ const Tab = createBottomTabNavigator();
   }
   };
 
+
+
 }, [])*/
 const AppStack = (route) => {
   const [notifPermission, setNotifPermission] = useState();
+  const {auth, setAuth, client, setClient, createdDocs, setCreatedDocs, IsProfileDoc, user} = useAuth();
 
   const getTabBarVisibility = (route) => {
     const routeName = getFocusedRouteNameFromRoute(route);
@@ -85,9 +94,52 @@ const AppStack = (route) => {
     return true;
   };
 
+  let routename;
+  useEffect(() => {
+      console.log("appStack")
+      const get_client = async() => {
+          const temp = await new AWSAppSyncClient({
+              url: awsconfig.aws_appsync_graphqlEndpoint,
+              region: awsconfig.aws_appsync_region,
+              auth:{
+                  type: awsconfig.aws_appsync_authenticationType,
+                  jwtToken: async() => {
+                      return (await Auth.currentSession()).getIdToken().getJwtToken()
+                  }
+              },
+              disableOffline: true,
+          })
+
+          let bool = await IsProfileDoc(user)
+          if(!bool){
+              console.log("Pas de ProfileDoc")
+          }
+          else{
+              console.log("Profile doc trouvé")
+              setCreatedDocs(true);
+          }
+
+          console.log("App")
+          return true;
+      }
+
+      get_client().then(res => {
+          routename ="Map"
+          console.log("Client Set")
+          setClient(res)
+      });
+
+      let temp
+      return () => {
+        if(client){client.destroy()}
+      }
+
+
+  }, [])
+
   return (
     <Tab.Navigator
-      initialRouteName="Map"
+      initialRouteName={"Map"}
       shifting={false}
       tabBarOptions={{
         activeTintColor: "black",
@@ -127,6 +179,8 @@ const AppStack = (route) => {
     </Tab.Navigator>
   );
 };
+
+
 
 export default AppStack;
 
