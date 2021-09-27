@@ -25,7 +25,7 @@ import BottomSheet from "reanimated-bottom-sheet";
 import ProfilePicture from "../../components/ProfilePicture";
 import LoadingScreen from "../../screens/LoadingScreen";
 import FollowButton from "../../components/FollowButton";
-import { useIsFocused } from "@react-navigation/native";
+import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
 import { wsize, hsize } from "../../utils/Dimensions";
@@ -39,15 +39,9 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-// import { onUpdateUprofile } from "../../graphql/subscriptions";
-import * as subscriptions from "../../graphql/subscriptions";
-import {
-  getAuthenticatedUser,
-  getUserDoc,
-  getUprofileDoc,
-} from "../../aws-functions/userFunctions";
 import UserModal from "./UserModal";
 import people from "../../assets/data/people";
+import navigation from "../src/navigation";
 
 // TabContainer function
 function TabContainer(props) {
@@ -60,6 +54,100 @@ function TabContainer(props) {
   );
 }
 
+// An Event row in the FlatList
+function EventRow({ event }) {
+  const navigation = useNavigation();
+  function pad2(string) {
+    return `0${string}`.slice(-2);
+  }
+
+  const readableDate = (d) => {
+    if (!d) return undefined;
+    return `${pad2(d.getDate())}/${pad2(d.getMonth() + 1)}/${d.getFullYear()}`;
+  };
+
+  const readableTime = (d) => {
+    return `${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
+  };
+
+  let date = new Date(event.beginningTime);
+
+  return (
+    <TouchableOpacity
+      activeOpacity={0.7}
+      style={styles.postHeaderFirst}
+      onPress={() => navigation.navigate("Description", { event: event })}
+    >
+      <View style={styles.postHeaderContainer}>
+        <View
+          style={{
+            flexDirection: "row",
+            //flex: 1,
+            //paddingHorizontal: wsize(5),
+            paddingVertical: hsize(10),
+            justifyContent: "space-around",
+            alignItems: "center",
+          }}
+        >
+          <ProfilePicture size={styles.postHeaderFirst.height - hsize(20)} />
+          <View
+            style={{
+              flexDirection: "column",
+              marginLeft: wsize(15),
+            }}
+          >
+            <Text
+              style={{
+                fontSize: 18,
+              }}
+            >
+              {event.name}
+            </Text>
+            <Text
+              style={{
+                fontSize: 12,
+                color: "grey",
+              }}
+            >
+              {event.description}
+            </Text>
+          </View>
+        </View>
+        <View
+          style={{
+            backgroundColor: "#eee",
+            borderWidth: 1,
+            borderColor: "#E9E8E8",
+            borderRadius: 5,
+            height: "100%",
+            width: "25%",
+            alignSelf: "center",
+            alignItems: "center",
+            //justifyContent: "center",
+          }}
+        >
+          <Text
+            style={{
+              fontSize: 12,
+              color: "black",
+            }}
+          >
+            {readableTime(date)}
+          </Text>
+          <Text
+            style={{
+              fontSize: 12,
+              color: "black",
+            }}
+          >
+            {readableDate(date)}
+          </Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+  );
+}
+
 //render function
 
 const ProfileScreen = ({ navigation, route }) => {
@@ -69,7 +157,7 @@ const ProfileScreen = ({ navigation, route }) => {
   fall = useRef(new Animated.Value(1)).current;
   const [isFollowing, setIsFollowing] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
-  const { signOut } = useAuth();
+  const { signOut, user, yourEvents } = useAuth();
   const [userExtraInfo, setUserExstraInfo] = useState(null);
   const [username, setUsername] = useState("");
   const isFocused = useIsFocused();
@@ -88,13 +176,13 @@ const ProfileScreen = ({ navigation, route }) => {
     );
 
   useEffect(() => {
-    AsyncStorage.getItem("userProfileId").then((result) => {
+    /*AsyncStorage.getItem("userProfileId").then((result) => {
       getUprofileDoc(result).then((res) => {
         console.log(res);
         setUsername(res.data.getUprofile.username);
         console.log("username");
       });
-    });
+    });*/
   }, []);
 
   useLayoutEffect(() => {
@@ -114,7 +202,7 @@ const ProfileScreen = ({ navigation, route }) => {
       headerTitle: () => (
         <View style={styles.headerTitle}>
           <TouchableOpacity activeOpacity={0.7} style={styles.iconHeaderTitle}>
-            <Text style={styles.textHeader}>{username}</Text>
+            <Text style={styles.textHeader}>Profile</Text>
           </TouchableOpacity>
         </View>
       ),
@@ -229,14 +317,11 @@ const ProfileScreen = ({ navigation, route }) => {
         >
           <View style={styles.container}>
             <View style={styles.profileInitialContainer}>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={() => navigation.navigate("TryStory")}
-              >
+              <TouchableOpacity activeOpacity={0.7} onPress={() => {}}>
                 <ProfilePicture size={70} />
               </TouchableOpacity>
               <View style={styles.profileNameContainer}>
-                <Text style={styles.profileName}>{username}</Text>
+                <Text style={styles.profileName}>{user.username}</Text>
                 <Text style={styles.profileType}>userExtraInfo.status</Text>
               </View>
             </View>
@@ -305,36 +390,13 @@ const ProfileScreen = ({ navigation, route }) => {
             <TabContainer />
           </View>
           <FlatList
-            data={people}
+            data={yourEvents}
             keyExtractor={(item) => item.id}
             style={{
               flex: 1,
               backgroundColor: "white",
             }}
-            renderItem={({ item }) => (
-              <TouchableOpacity
-                style={{
-                  flexDirection: "column",
-                  backgroundColor: "white",
-                  shadowColor: "#000000",
-                  shadowOffset: { width: 0, height: 0 },
-                  shadowRadius: 5,
-                  shadowOpacity: 0.3,
-                  elevation: 2.5,
-                  borderRadius: 10,
-                  height: hsize(80),
-                  width: "95%",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  margin: hsize(10),
-                }}
-                onPress={() => navigation.navigate("Attendance")}
-              >
-                <View>
-                  <Text></Text>
-                </View>
-              </TouchableOpacity>
-            )}
+            renderItem={(item) => <EventRow event={item.item} />}
           />
         </Animated.View>
       </TouchableWithoutFeedback>
@@ -348,6 +410,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     justifyContent: "center",
     //paddingTop: hsize(44),
+  },
+  textHeader: {
+    fontSize: 20,
+    fontFamily: "ComfortaaBold",
   },
   iconContainer: {
     height: 40,
@@ -553,6 +619,31 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "black",
     marginHorizontal: 10,
+  },
+  postHeaderContainer: {
+    flex: 1,
+    flexDirection: "row",
+    paddingHorizontal: wsize(20),
+    paddingVertical: hsize(10),
+    justifyContent: "space-between",
+    width: "100%",
+    marginBottom: hsize(3),
+    //backgroundColor: "grey",
+  },
+  postHeaderFirst: {
+    flexDirection: "row",
+    backgroundColor: "white",
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 5,
+    shadowOpacity: 0.3,
+    elevation: 2.5,
+    borderRadius: 10,
+    height: hsize(80),
+    width: "95%",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: hsize(10),
   },
 });
 

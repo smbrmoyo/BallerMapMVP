@@ -9,7 +9,9 @@
       "UnauthRoleName": "amplify-ballermapmvp-dev-190022-unauthRole",
       "StackName": "amplify-ballermapmvp-dev-190022",
       "StackId": "arn:aws:cloudformation:us-east-2:675018912417:stack/amplify-ballermapmvp-dev-190022/5e8e8f50-1e54-11ec-b199-02285e82d03c",
+
       "AmplifyAppId": "d3suoz60gixkgp"
+
     },
     "categories": {
       "function": {

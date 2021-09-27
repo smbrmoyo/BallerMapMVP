@@ -39,6 +39,7 @@ import {
   useAuth,
   getUprofile,
 } from "../../components/navigation/Providers/AuthProvider";
+import { getPlacesList } from "../../aws-functions/placeFunctions";
 import { useMap } from "../../components/navigation/Providers/MapProvider";
 import { wsize, hsize } from "../../utils/Dimensions";
 import places from "../../assets/data/places";
@@ -47,75 +48,41 @@ import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import Feather from "react-native-vector-icons/Feather";
+import { createEvent } from "../../aws-functions/eventFunctions";
 
 //navigator.geolocation = require("@react-native-community/geolocation");
 
 const AddScreen = ({ props, navigation, route }) => {
-  //const { username } = useMap();
-  const username = "";
-  // const { user, profilePartition } = useAuth();
-  /*import username from useProfile() */
-  let placeNameParams = "";
-  placeNameParams = route.params?.item.name;
-  const [event, setEvent] = useState({
-    name: "",
-    placeName: "",
-    creator: "",
+  const { user } = useAuth();
+  const headerHeight = useHeaderHeight();
+
+  const [visibleStart, setVisibleStart] = useState(false); // Put visible and color in one state object
+  const [visibleEnd, setVisibleEnd] = useState(false);
+  const [colorBegin, setColorBegin] = useState("#CDCDCD");
+  const [colorEnd, setColorEnd] = useState("#CDCDCD");
+
+  const [eventData, setEventData] = useState({
+    name: "", //name of the place
+    placeID: route.params?.item.id,
+    placeName: route.params?.item.name,
+    creatorID: user.username,
     tags: [],
     description: "",
-    attendants: [],
-    date: {
-      day: new Date().getDay(),
-      month: new Date().getMonth(),
-      year: new Date().getFullYear(),
-    },
-    time: {
-      hour: new Date().getHours(),
-      min: new Date().getMinutes(),
-    },
-    endingTime: {
-      hour: new Date().getHours(),
-      min: new Date().getMinutes(),
-    },
+    profileId: "12345", //should be current authenticated user profile Id
+    beginningTime: new Date(),
+    endingTime: new Date(),
+    privacy: "private",
   });
-
-  //console.log(event);
 
   useEffect(() => {
     if (route.params !== undefined) {
-      setEvent({
-        ...event,
-        placeName: placeNameParams,
+      setEventData({
+        ...eventData,
+        placeID: route.params?.item.id,
+        placeName: route.params?.item.name,
       });
     }
   }, [route]);
-
-  const createEvent = async () => {
-    /*setEvent({
-      ...event,
-      creator: username,
-    });*/
-    const creation = user.functions
-      .Create_Event(event)
-      .then((result) => console.log("evénement bien créé"))
-      .catch((err) => console.log(err));
-  };
-
-  const [visibleStart, setVisibleStart] = useState(false);
-  const [visibleEnd, setVisibleEnd] = useState(false);
-  const [color, setColor] = useState("#CDCDCD");
-
-  const headerHeight = useHeaderHeight();
-
-  const checkNavigation = () => {
-    /*if (address && description && tags) {
-      navigation.navigate("Map", {
-        address,
-        description,
-        tags,
-      });
-    }*/
-  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -168,24 +135,12 @@ const AddScreen = ({ props, navigation, route }) => {
 
   const readableDate = (d) => {
     if (!d) return undefined;
-    return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(
-      d.getDate()
-    )} ${pad2(d.getHours())}:${pad2(d.getMinutes())}:${pad2(d.getSeconds())}`;
+    return `${pad2(d.getDate())}/${pad2(
+      d.getMonth() + 1
+    )}/${d.getFullYear()}  at  ${pad2(d.getHours())}:${pad2(
+      d.getMinutes()
+    )}:${pad2(d.getSeconds())}`;
   };
-
-  function impactAsync(style) {
-    switch (style) {
-      case "light":
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        break;
-      case "medium":
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-        break;
-      default:
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
-        break;
-    }
-  }
 
   return (
     <>
@@ -199,21 +154,14 @@ const AddScreen = ({ props, navigation, route }) => {
         isVisible={visibleStart} /*Should have second component for end date */
         mode="datetime"
         display="spinner"
+        isDarkModeEnabled={false}
         onConfirm={(datum) => (
-          setEvent({
-            ...event,
-            date: {
-              day: datum.getDay(),
-              month: datum.getMonth(),
-              year: datum.getFullYear(),
-            },
-            time: {
-              hour: datum.getHours(),
-              min: datum.getMinutes(),
-            },
+          setEventData({
+            ...eventData,
+            beginningTime: datum,
           }),
           setVisibleStart(false),
-          setColor("#743cff")
+          setColorBegin("#743cff")
         )}
         onCancel={() => setVisibleStart(false)}
       />
@@ -222,16 +170,14 @@ const AddScreen = ({ props, navigation, route }) => {
         isVisible={visibleEnd} /*Should have second component for end date */
         mode="datetime"
         display="spinner"
+        isDarkModeEnabled={false}
         onConfirm={(datum) => (
-          setEvent({
-            ...event,
-            endingTime: {
-              hour: datum.getHours(),
-              min: datum.getMinutes(),
-            },
+          setEventData({
+            ...eventData,
+            endingTime: datum,
           }),
           setVisibleEnd(false),
-          setColor("#743cff")
+          setColorEnd("#743cff")
         )}
         onCancel={() => setVisibleEnd(false)}
       />
@@ -283,8 +229,8 @@ const AddScreen = ({ props, navigation, route }) => {
                     placeholder="Give your run a name"
                     placeholderTextColor="#CDCDCD"
                     onEndEditing={(event) =>
-                      setEvent({
-                        ...event,
+                      setEventData({
+                        ...eventData,
                         name: event.nativeEvent.text,
                       })
                     }
@@ -321,13 +267,13 @@ const AddScreen = ({ props, navigation, route }) => {
                           elevation: 2,
                         }}
                       >
-                        {event.placeName === "" ? (
+                        {eventData.placeName == undefined ? (
                           <Text style={{ color: "#CDCDCD" }}>
                             Find an Address
                           </Text>
                         ) : (
                           <Text style={{ color: "black" }}>
-                            {event.placeName}
+                            {eventData.placeName}
                           </Text>
                         )}
                       </View>
@@ -359,8 +305,8 @@ const AddScreen = ({ props, navigation, route }) => {
                     multiline
                     placeholderTextColor="#CDCDCD"
                     onEndEditing={(event) =>
-                      setEvent({
-                        ...event,
+                      setEventData({
+                        ...eventData,
                         description: event.nativeEvent.text,
                       })
                     }
@@ -376,12 +322,13 @@ const AddScreen = ({ props, navigation, route }) => {
                     style={styles.textInput}
                     placeholder="#"
                     placeholderTextColor="#CDCDCD"
-                    onChangeText={(textTag) =>
-                      setEvent({
-                        ...event,
-                        //name: text,
-                      })
-                    }
+                    onChangeText={(textTag) => {
+                      let tags = textTag.split(" ");
+                      setEventData({
+                        ...eventData,
+                        tags,
+                      });
+                    }}
                   />
                 </View>
 
@@ -395,8 +342,8 @@ const AddScreen = ({ props, navigation, route }) => {
                     onPress={() => setVisibleStart(true)}
                   >
                     <View style={styles.textInput}>
-                      <Text style={{ color: color, fontSize: 16 }}>
-                        {readableDate(event.startDateTime)}
+                      <Text style={{ color: colorBegin, fontSize: 16 }}>
+                        {readableDate(eventData.beginningTime)}
                       </Text>
                     </View>
                   </TouchableOpacity>
@@ -411,8 +358,8 @@ const AddScreen = ({ props, navigation, route }) => {
                     onPress={() => setVisibleEnd(true)}
                   >
                     <View style={styles.textInput}>
-                      <Text style={{ color: color, fontSize: 16 }}>
-                        {readableDate(event.endDateTime)}
+                      <Text style={{ color: colorEnd, fontSize: 16 }}>
+                        {readableDate(eventData.endingTime)}
                       </Text>
                     </View>
                   </TouchableOpacity>
@@ -462,10 +409,13 @@ const AddScreen = ({ props, navigation, route }) => {
                   <TouchableOpacity
                     activeOpacity={0.7}
                     onPress={() => {
-                      createEvent(); /*.then(
-                    Haptics.notificationAsync(
-                      Haptics.NotificationFeedbackType.Success
-                    ) */
+                      Haptics.impactAsync(
+                        Haptics.ImpactFeedbackStyle.Medium
+                      ).then(() => {
+                        createEvent(eventData).then((response) => {
+                          navigation.navigate("Map");
+                        });
+                      });
                     }}
                   >
                     <View

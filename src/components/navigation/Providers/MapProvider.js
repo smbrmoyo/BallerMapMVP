@@ -1,69 +1,44 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-//import Realm from "realm";
-import { useAuth, getUprofile } from "./AuthProvider";
-import placesJSON from "../../../assets/data/placesJSON";
 import Geocoder from "react-native-geocoding";
+import { Auth, API, graphqlOperation } from "aws-amplify";
+import { useQuery } from "react-query";
+
+import {
+  createPlace,
+  getPlacesList,
+  getFilteredPlaces,
+} from "../../../aws-functions/placeFunctions";
+import { useAuth, getUprofile } from "./AuthProvider";
 
 export const MapContext = React.createContext();
 
 const MapProvider = ({ children }) => {
   const { user } = useAuth();
+  //const [colorScheme, SetColorScheme] = useState(Appearance.getColorScheme());
   const [places, setPlaces] = useState([]);
-  Geocoder.init("AIzaSyCAWRoRAT1jDaCuwACpmYsseOgW1-_XrNg");
-  Geocoder.from(41.89, 12.49)
-    .then((json) => {
-      var addressComponent = json.results[0].address_components[0];
-      console.log(addressComponent);
-    })
-    .catch((error) => console.warn(error));
-  const getPlaces = async () => {
-    //const placesRealm = await user.callFunction("getPlaces");
-    const placesRealm = [];
-    let temp = [];
-    placesRealm.map((place) => {
-      temp.push({
-        _id: place._id,
-        name: place.name,
-        address: place.address,
-        partition: place.partition,
-        coordinate: {
-          latitude: place.coordinates.lat,
-          longitude: place.coordinates.long,
-        },
-      });
-    });
-    return temp;
-  };
+  const [status, setStatus] = useState("loading");
+  const [render, setRender] = useState(0);
+  // Geocoder.init("AIzaSyCAWRoRAT1jDaCuwACpmYsseOgW1-_XrNg");
 
-  /*for (let i = 0; i < places.length; i++) {
-    let coords = {
-      latitude: places[i].coordinate.latitude,
-      longitude: places[i].coordinate.longitude,
-    };
-    console.log(haversine(MaxCoords, coords, { threshold: 7, unit: "mile" }));
-    console.log(i);
-  }*/
+  const queryClient = useQuery();
 
-  // Charge les données sur les places
-  /*useEffect(() => {
-    getPlaces().then((result) => setPlaces(result));
+  const result = useQuery("getPlaces", getPlacesList);
 
-    const placesUpdate = setInterval(() => {
-      getPlaces().then((result) => setPlaces(result));
-    }, 1800000);
-    return () => {
-      clearInterval(placesUpdate);
-      setPlaces(null);
-    };
-  }, []);*/
-
-  useEffect(() => {});
+  useEffect(() => {
+    if (result.status != status) {
+      setPlaces(result.data);
+      console.log(places.length);
+      setStatus(result.status);
+    } else {
+      setStatus(result.status);
+    }
+  }, [result.status]);
 
   return (
     <MapContext.Provider
       value={{
-        user,
         places,
+        status,
       }}
     >
       {children}
@@ -80,3 +55,55 @@ const useMap = () => {
 };
 
 export { MapProvider, useMap };
+
+/*
+
+Function to check location
+
+for (let i = 0; i < places.length; i++) {
+    let coords = {
+      latitude: places[i].coordinate.latitude,
+      longitude: places[i].coordinate.longitude,
+    };
+    console.log(haversine(MaxCoords, coords, { threshold: 7, unit: "mile" }));
+    console.log(i);
+  }*/
+
+/*
+  Function to create a place and add it to the db
+  
+  */
+
+/*placesJSON.map((place, i) => {
+      if (i == 39) {
+        Geocoder.from(place.name)
+          .then((json) => {
+            var location = json.results[0].geometry.location;
+            console.log(location);
+            console.log(place.name);
+            let input = {
+              name: place.name,
+              address: place.address,
+              coords: {
+                lat: json.results[0].geometry.location.lat,
+                long: json.results[0].geometry.location.lng,
+              },
+            };
+            // createPlace(input).then((res) => console.log(res));
+          })
+          .catch((error) => console.warn(error));
+      }
+    }); */
+
+// Charge les données sur les places
+/*useEffect(() => {
+    getPlaces().then((result) => setPlaces(result));
+
+    const placesUpdate = setInterval(() => {
+      getPlaces().then((result) => setPlaces(result));
+    }, 1800000);
+    return () => {
+      clearInterval(placesUpdate);
+      setPlaces(null);
+    };
+  }, []);*/

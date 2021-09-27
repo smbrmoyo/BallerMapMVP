@@ -93,22 +93,6 @@ function FollowRow(props) {
           </View>
         </View>
         <View
-          /*onPress={() => {
-    navigation.navigate("EditProfile", {
-    userExtraInfo: {
-    fullName: userExtraInfo.fullName,
-    photoURL: userExtraInfo.photoURL,
-    userName: userExtraInfo.userName,
-    status: userExtraInfo.status,
-    city: userExtraInfo.city,
-    link: userExtraInfo.link,
-    description: userExtraInfo.description,
-    email: userExtraInfo.email,
-    phone: userExtraInfo.phone,
-    gender: userExtraInfo.gender,
-    },
-    });
-    }}*/
           style={{
             backgroundColor: props.isFollowing ? "#D8D8D8" : "#743cff",
             marginBottom: 10,

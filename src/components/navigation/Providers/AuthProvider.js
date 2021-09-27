@@ -8,7 +8,11 @@ import {
   getUserDoc,
 } from "../../../aws-functions/userFunctions";
 
+
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import { getFilteredEvents } from "../../../aws-functions/eventFunctions";
+
 //const Realm = require("realm");
 //import { getRealmApp } from "../../../../realmServer";
 import { useNavigation } from "@react-navigation/native";
@@ -22,7 +26,11 @@ export const AuthContext = React.createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState();
+
   const [client, setClient] = useState();
+
+  const [yourEvents, setYourEvents] = useState([]);
+
   const [user, setUser] = useState(); // set this to true on confirmSignUp
   const [createdDocs, setCreatedDocs] = useState(true);
   const [signUpTrigger, setSignUpTrigger] = useState(false);
@@ -61,6 +69,12 @@ const AuthProvider = ({ children }) => {
         client.destroy();
       }
     };
+  }, []);
+
+  useEffect(() => {
+    getFilteredEvents({ creatorID: { contains: "" } }, 2).then((events) => {
+      setYourEvents(events.data.listEvents.items);
+    });
   }, []);
 
   // The signIn function takes an email and password and uses the
@@ -222,6 +236,7 @@ const AuthProvider = ({ children }) => {
         createdDocs,
         setCreatedDocs,
         IsProfileDoc
+        yourEvents,
       }}
     >
       {children}

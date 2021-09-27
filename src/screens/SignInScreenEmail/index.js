@@ -144,12 +144,12 @@ const SignInScreenEmail = ({ navigation, props }) => {
               },
             ]}
           >
-            username
+            Username
           </Text>
           <View style={styles.action}>
             <FontAwesome name="user-o" color={colors.text} size={20} />
             <TextInput
-              placeholder="Your Email"
+              placeholder="Your Username"
               placeholderTextColor="#666666"
               style={[
                 styles.textInput,

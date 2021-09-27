@@ -135,7 +135,7 @@ export const followUser = (userConnection) => {
  */
 
 const createUserEventConnection = async (eventConnection) => {
-  return await API.graphql(
+  let userEventConnection = await API.graphql(
     graphqlOperation(mutations.createUserEventConnection, {
       input: {
         eventID: eventConnection.eventID,
@@ -143,6 +143,7 @@ const createUserEventConnection = async (eventConnection) => {
       },
     })
   );
+  return userEventConnection.data.createUserEventConnection;
 };
 
 export const addUserToEvent = (userToEventData) => {

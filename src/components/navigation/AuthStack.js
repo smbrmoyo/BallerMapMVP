@@ -7,6 +7,7 @@ import SignUpScreenSocial from "../../screens/SignUpScreenSocial";
 import OnboardingScreen from "../../screens/OnboardingScreen";
 import SetProfileScreen from "../../screens/SetProfileScreen";
 import { hsize, wsize } from "../../utils/Dimensions";
+import { useAuth } from "./Providers/AuthProvider";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -17,9 +18,11 @@ const Stack = createStackNavigator();
 
 const AuthStack = ({ navigation, route }) => {
   const [isFirstLaunch, setIsFirstLaunch] = useState(null);
+  const { user } = useAuth();
   let routeName;
 
   useEffect(() => {
+    console.log("user value in AuthStack :" + JSON.stringify(user));
     AsyncStorage.getItem("firstLaunch").then((value) => {
       if (value == null) {
         AsyncStorage.setItem("firstLaunch", "true"); // Add  error handling
