@@ -18,6 +18,7 @@ import Constants from "expo-constants";
 import {AWSAppSyncClient} from "aws-appsync";
 import awsconfig from "../../aws-exports"
 import {Auth} from "aws-amplify"
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const Tab = createBottomTabNavigator();
@@ -93,15 +94,17 @@ const AppStack = (route) => {
     return true;
   };
 
+  let routename;
   useEffect(() => {
+      console.log("appStack")
       const get_client = async() => {
-          const temp =  new AWSAppSyncClient({
+          const temp = await new AWSAppSyncClient({
               url: awsconfig.aws_appsync_graphqlEndpoint,
               region: awsconfig.aws_appsync_region,
               auth:{
                   type: awsconfig.aws_appsync_authenticationType,
                   jwtToken: async() => {
-                      (await Auth.currentSession()).getIdToken().getJwtToken()
+                      return (await Auth.currentSession()).getIdToken().getJwtToken()
                   }
               },
               disableOffline: true,
@@ -112,24 +115,31 @@ const AppStack = (route) => {
               console.log("Pas de ProfileDoc")
           }
           else{
-              console.log("Profile doc présent")
+              console.log("Profile doc trouvé")
               setCreatedDocs(true);
           }
-          return temp;
+
+          console.log("App")
+          return true;
       }
 
-      get_client().then(res => setClient(res));
+      get_client().then(res => {
+          routename ="Map"
+          console.log("Client Set")
+          setClient(res)
+      });
 
+      let temp
       return () => {
         if(client){client.destroy()}
       }
 
 
-  })
+  }, [])
 
   return (
     <Tab.Navigator
-      initialRouteName="Map"
+      initialRouteName={"Map"}
       shifting={false}
       tabBarOptions={{
         activeTintColor: "black",
@@ -169,6 +179,8 @@ const AppStack = (route) => {
     </Tab.Navigator>
   );
 };
+
+
 
 export default AppStack;
 

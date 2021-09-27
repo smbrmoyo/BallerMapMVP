@@ -27,24 +27,18 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const Stack = createStackNavigator();
 
 const MapStack = ({ navigation }) => {
-  const {createdDocs, setCreatedDocs} = useAuth();
+  const {createdDocs, setCreatedDocs, IsProfileDoc} = useAuth();
 
+  let routeName = "Map";
 
-  let routeName
   useEffect(() => {
-      console.log("MapStack")
-      if(!createdDocs){
-           routeName = "SetProfile"
-           console.log("!!!MapStack createdDocs")
-      } else{
-           console.log("MapStack createdDocs")
-           routeName = "Map"
-      }
-
       return () => {
-
       }
-  }, [])
+  }, [createdDocs])
+
+  if(!createdDocs){
+      routeName = "SetProfile"
+  }
 
   return (
     <MapProvider>

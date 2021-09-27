@@ -27,7 +27,6 @@ import Animated from "react-native-reanimated";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import {useAuth} from "../../components/navigation/Providers/AuthProvider"
-
 import ProfilePicture from "../../components/ProfilePicture";
 import {
   createUserDoc,
@@ -40,7 +39,7 @@ import Feather from "react-native-vector-icons/Feather";
 import userConf from "../../aws-functions/userConf";
 
 const SetProfileScreen = ({ props, navigation, route }) => {
-  const {user} = useAuth();
+  const {user, createProfileDoc, setCreatedDocs} = useAuth();
   const [color, setColor] = useState("#CDCDCD");
   const headerHeight = useHeaderHeight();
   let udId = "";
@@ -57,15 +56,17 @@ const SetProfileScreen = ({ props, navigation, route }) => {
   var bsEditProf = useRef(null);
   var fallEditProf = useRef(new Animated.Value(1)).current;
 
-  /*useEffect(() => {
-    async function getUser() {
+  useEffect(() => {
+    /*async function getUser() {
       let user = await Auth.currentAuthenticatedUser().then((result) => {
         userEmail = result.attributes.email;
       });
       return userDoc;
     }
-    getUser();
-  }, []);*/
+    getUser();*/
+
+      console.log("!!!!SetProfileScreen")
+  }, []);
 
   /*
   Logic used to get userDocId is good. Should be done on signin/signUp.
@@ -74,16 +75,16 @@ const SetProfileScreen = ({ props, navigation, route }) => {
   on userProfile creation, should insert uProfileId into userDoc to make connection
   */
 
-  useEffect(() => {
-    /*async function getItem() {
+ /* useEffect(() => {
+    async function getItem() {
       try {
         AsyncStorage.getItem("userDocId").then((value) => {
           console.log(value);
         });
       } catch (e) {}
     }
-    getItem();*/
-  }, []);
+    getItem();
+  }, []);*/
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -110,11 +111,13 @@ const SetProfileScreen = ({ props, navigation, route }) => {
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={async() => {
-              await createUserProfile(userProfile.username, userProfile.name).then(res => {
+              let input = userProfile;
+              console.log("aaaaa" + input.name)
+              await createProfileDoc(input.username, input.name).then(res => {
                   navigation.navigate("Map");
                   setCreatedDocs(true);
               })
-                  .catch(error => console.log("error creating userProfile: " + error))
+                  .catch(error => console.log("error creating userProfile: " + JSON.stringify(error)))
             }} // Should edit profile on onpress
             style={{ justifyContent: "center" }}
           >
@@ -241,12 +244,6 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                     }}
                     placeholder=""
                     placeholderTextColor="#CDCDCD"
-                    onChange={(event) =>
-                      setUserProfile({
-                        ...userProfile,
-                        name: event.nativeEvent.text,
-                      })
-                    }
                     onEndEditing={(event) =>
                       setUserProfile({
                         ...userProfile,
@@ -276,20 +273,15 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                       shadowRadius: 1.41,
                       elevation: 2,
                     }}
-                    placeholder=""
+                    placeholder="username"
                     placeholderTextColor="#CDCDCD"
-                    onChange={(event) =>
-                          (setUserProfile({
-                              ...userProfile,
-                              username: event.nativeEvent.text
-                          }))
-                    }
-                    onEndEditing={(event) =>
+                    onChangeText={(text) => {
                       setUserProfile({
                         ...userProfile,
-                        username: event.nativeEvent.text,
+                        username: text,
                       })
-                    }
+                      console.log(text)
+                    }}
                   />
                 </View>
 

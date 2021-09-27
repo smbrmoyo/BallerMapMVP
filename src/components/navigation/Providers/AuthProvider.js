@@ -24,7 +24,7 @@ const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState();
   const [client, setClient] = useState();
   const [user, setUser] = useState(); // set this to true on confirmSignUp
-  const [createdDocs, setCreatedDocs] = useState(false);
+  const [createdDocs, setCreatedDocs] = useState(true);
   const [signUpTrigger, setSignUpTrigger] = useState(false);
   const [loadingUser, setLoadingUser] = useState(true);
 
@@ -35,25 +35,22 @@ const AuthProvider = ({ children }) => {
         return JSON.parse(res);
           }
       )
-      return res;
-    }
-    if(currentUserCreds !== null){
-      // SignIn the stored user
-      console.log("stored User")
-      const userCreds = async() => {await AsyncStorage.getItem("currentUserCreds")}
-      const effect = async () => {
-        await signIn(userCreds.email, userCreds.password).then(res => {
-          console.log("Stored user signed in")
-          setUser(userCreds.email)
-        }).catch(err => {Alert.alert("error " +
-            "signing In stored user: " + JSON.stringify(err))
-        })
+      if(res != null){
+        console.log("stored User: " + JSON.stringify(res));
+        let signed = await signIn(res.email, res.password).then(
+            async(result) => {
+              console.log("setting User")
+              await setUser(res.email)
+              return res.email
+            }
+        )
+        return signed;
+      }else{
+        return false;
       }
-      effect()
-      //return ;
-    } else{
-      return;
     }
+
+     currentUserCreds()
 
     return () => {
       // cleanup function, end connection to ressources
@@ -72,6 +69,7 @@ const AuthProvider = ({ children }) => {
       let res = await Auth.signIn(email, password).then(
           (res) => {
             AsyncStorage.setItem("currentUserCreds", JSON.stringify({email: email, password:password}))
+            console.log("signIn Succrss")
             return true;
     }
       ).catch(error => {
@@ -80,7 +78,6 @@ const AuthProvider = ({ children }) => {
         }
         return false;
       })
-      console.log("good job!")
       return res;
   };
 
@@ -150,12 +147,11 @@ const AuthProvider = ({ children }) => {
    * Retourne un boleen
    */
   const IsProfileDoc = async (email) => {
-    let newDocs = {}
     let isUserDoc = await getUserDoc(email)
     if ((isUserDoc)  !== null){
       // userDoc créé
-      console.log("UserDoc créé")
-      let isProfileDoc = await getUprofileDoc(email)
+      console.log("is profileDoc " + email)
+      let isProfileDoc = await getUprofileDoc(email).catch(err => console.log("console " + JSON.stringify(err)));
       if(isProfileDoc !== null){
         return true;
       }
@@ -218,6 +214,7 @@ const AuthProvider = ({ children }) => {
         loadingUser,
         confirmSignUp,
         resendConfirmationCode,
+        createProfileDoc,
         auth,
         setAuth,
         client,
@@ -241,15 +238,8 @@ const useAuth = () => {
   return auth;
 };
 
-const getUprofile = async (profilePartition) => {
-  // get le profile Doc
 
-  const mongodb = app.currentUser.mongoClient("mongodb-atlas");
-  const userData = mongodb.db("AYTO_Dev").collection("uProfile");
-  const uProfileDoc = await userData.findOne({ partition: profilePartition });
-  return uProfileDoc;
-};
 
-export { useAuth, getUprofile };
+export { useAuth};
 
 export { AuthProvider };

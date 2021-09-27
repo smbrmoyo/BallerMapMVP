@@ -61,7 +61,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
     } else {
       setDataLogin({
         ...dataLogin,
-        email: val,
+        username: val,
         check_textInputChange: false,
         isValidUser: false,
       });

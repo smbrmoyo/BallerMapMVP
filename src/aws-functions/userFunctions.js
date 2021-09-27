@@ -27,21 +27,18 @@ export const getAuthenticatedUser = async () => {
 export const getUserDoc = async (email) => {
   let userDoc = await API.graphql(
     graphqlOperation(queries.getUserDoc, { id: email, email:email })
-  );
+  )
 
   return userDoc.data.getUserDoc;
 };
 
-export const getUprofileDoc = async (username) => {
+export const getUprofileDoc = async (email) => {
   let uProfileDoc = await API.graphql(
     graphqlOperation(queries.getUprofile, {
-      input:{
-        username: username
-      }
-    })
-  );
+        id: email}
+    ))
 
-  return uProfileDoc;
+  return uProfileDoc.data.getUprofile;
 };
 
 /*

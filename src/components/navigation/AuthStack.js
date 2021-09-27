@@ -47,19 +47,6 @@ const AuthStack = ({ navigation, route }) => {
         options={({ navigation, route }) => ({ header: () => null })}
       />
       <Stack.Screen
-        name="SetProfile"
-        component={SetProfileScreen}
-        options={({ navigation, route }) => ({
-          title: "",
-          headerStyle: {
-            backgroundColor: "white",
-            shadowColor: "#f9fafd",
-            elevation: 0,
-            height: hsize(80),
-          },
-        })}
-      />
-      <Stack.Screen
         name="SignInSocial"
         component={SignInScreenSocial}
         options={({ navigation, route }) => ({ header: () => null })}
