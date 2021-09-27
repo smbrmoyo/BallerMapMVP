@@ -234,8 +234,13 @@ const SignInScreenEmail = ({ navigation, props }) => {
                     }*/
                       console.log("HEreeeee")
                       signIn(dataLogin.username, dataLogin.password).then(res => {
-                        setUser(dataLogin.username).catch(error => console.log(error));
-                      })
+                        if(res){
+                          setUser(dataLogin.username)
+                        } else {
+                          Alert.alert("creds error: " + JSON.stringify(error))
+                        }
+                      }).catch(error =>
+                            console.log("error signing in: " + error));
                   }
                 );
               }}

@@ -76,13 +76,13 @@ type UserEventConnection @model(queries: null)
 
 
 type Event @model
-  @key (name: "byPlace", fields:["placeID", "beginningTime"])
+  @key(name: "byPlace", fields:["placeID", "beginningTime"])
   @key(name:"byCreator", fields:["creatorID", "beginningTime"]){
   id: ID!
   name: String!
   placeID: ID!
   creatorID: ID!
-  place: Place
+  place: Place @connection(fields: ["placeID"])
   beginningTime: AWSDateTime!
   endingTime: AWSDateTime!
   tags: [String]

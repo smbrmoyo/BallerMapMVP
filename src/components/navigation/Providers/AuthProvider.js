@@ -29,22 +29,28 @@ const AuthProvider = ({ children }) => {
   const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(() => {
-    console.log("Async storage log" + JSON.stringify(AsyncStorage.getItem("currentUserCreds")))
+    //console.log("Async storage log" + JSON.stringify(AsyncStorage.getItem("currentUserCreds")))
     const currentUserCreds = async() => {
-      let res = await AsyncStorage.getItem("currentUserCreds")
-
+      let res = await AsyncStorage.getItem("currentUserCreds").then(res => {
+        return JSON.parse(res);
+          }
+      )
       return res;
     }
     if(currentUserCreds !== null){
       // SignIn the stored user
-      const userCreds = async() => {AsyncStorage.getItem("currentUserCreds")}
+      console.log("stored User")
+      const userCreds = async() => {await AsyncStorage.getItem("currentUserCreds")}
       const effect = async () => {
         await signIn(userCreds.email, userCreds.password).then(res => {
-        }).catch(err => {Alert.alert("error in " +
-            "sigin In stored user: " + JSON.stringify(err))
+          console.log("Stored user signed in")
+          setUser(userCreds.email)
+        }).catch(err => {Alert.alert("error " +
+            "signing In stored user: " + JSON.stringify(err))
         })
       }
-      return ;
+      effect()
+      //return ;
     } else{
       return;
     }
@@ -63,19 +69,18 @@ const AuthProvider = ({ children }) => {
   // The signIn function takes an email and password and uses the
   // emailPassword authentication provider to log in.
   const signIn = async (email, password) => {
-      let res = false;
-      res = await Auth.signIn(email, password).then(async() => {
-        AsyncStorage.setItem("currentUserCreds", {email: email, password: password})
-        await IsProfileDoc(email).then(res => {
-          if(res == true){
-            setCreatedDocs(true);
-            console.log("ici")
-          } else{
-            console.log("IsProfileDoc false")
-          }
-        })
-        return true;
-      });
+      let res = await Auth.signIn(email, password).then(
+          (res) => {
+            AsyncStorage.setItem("currentUserCreds", JSON.stringify({email: email, password:password}))
+            return true;
+    }
+      ).catch(error => {
+        if(error.name == "InvalidParameterException"){
+          console.log("signIn Error: " + JSON.stringify(error))
+        }
+        return false;
+      })
+      console.log("good job!")
       return res;
   };
 
@@ -156,29 +161,29 @@ const AuthProvider = ({ children }) => {
       }
     }
     else{
-      console.log("pas de profile DOc")
+      console.log("pas de user DOc")
        //création du userDoc
       const userDocInput = {
-        email: email
+        email: email,
       }
        let userDoc = await createUserDoc(userDocInput).then(asyncRes => {
-       console.log("profile DOc créé: " + JSON.stringify(asyncRes))}).catch(error => console.log("error creating userDoc on signIN " + error))
+       console.log("userDOc créé: " + JSON.stringify(asyncRes))}).catch(error => console.log("error creating userDoc on signIN "
+           + JSON.stringify(error)))
        return false
     }
     return false;
   }
 
-  const createProfileDoc = async(username) => {
-    if(user){
+  const createProfileDoc = async(username, name) => {
       const uProfileInput = {
         id: user,
         userDocId: user,
-        username: username
+        username: username,
+        name: name
       }
-      await createUserProfile(uProfileDocInput).then((res) => {
+      await createUserProfile(uProfileInput).then((res) => {
         console.log("ProfileDoc créé: " + JSON.stringify(res));
       })
-    }
   }
 
 
@@ -218,7 +223,8 @@ const AuthProvider = ({ children }) => {
         client,
         setClient,
         createdDocs,
-        setCreatedDocs
+        setCreatedDocs,
+        IsProfileDoc
       }}
     >
       {children}

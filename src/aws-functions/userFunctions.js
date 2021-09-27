@@ -61,7 +61,7 @@ export const createUserDoc = async (userData) => {
       input: {
         email: userData.email,
         id: userData.email,
-        profileDocId: userData.email
+        profileID: userData.email
       },
     })
   );
@@ -84,6 +84,7 @@ export const createUserProfile = async (userProfile) => {
         id: userProfile.id,
         username: userProfile.username,
         userDocId: userProfile.userDocId,
+        name: userProfile.name
       },
     })
   );

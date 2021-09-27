@@ -32,9 +32,12 @@ const MapStack = ({ navigation }) => {
 
   let routeName
   useEffect(() => {
+      console.log("MapStack")
       if(!createdDocs){
            routeName = "SetProfile"
+           console.log("!!!MapStack createdDocs")
       } else{
+           console.log("MapStack createdDocs")
            routeName = "Map"
       }
 
@@ -45,7 +48,7 @@ const MapStack = ({ navigation }) => {
 
   return (
     <MapProvider>
-      <Stack.Navigator initialRouteName="Map">
+      <Stack.Navigator initialRouteName={routeName}>
         <Stack.Screen
           name="Map"
           component={MapScreen}

@@ -6,23 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/amplify.state" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/ballermapmvp60e3b21c60e3b21cPostConfirmation-cloudformation-template.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/function-parameters.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/parameters.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/add-to-group.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/event.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/package.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/yarn.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/schema.graphql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/navigation/AppStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/AppStack.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/navigation/MapStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/MapStack.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/navigation/Providers/AuthProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/Providers/AuthProvider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/schema.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/schema.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/SetProfileScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SetProfileScreen/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/SignInScreenEmail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignInScreenEmail/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,7 +70,7 @@
       <updated>1632265622781</updated>
       <workItem from="1632265624533" duration="1526000" />
       <workItem from="1632267655185" duration="27371000" />
-      <workItem from="1632578611328" duration="32127000" />
+      <workItem from="1632578611328" duration="42118000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -137,7 +128,14 @@
       <option name="project" value="LOCAL" />
       <updated>1632672548480</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="false">
+      <created>1632695335378</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1632695335378</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -149,6 +147,7 @@
     <MESSAGE value="false commit" />
     <MESSAGE value="Cleanup des aws functions pour l'auth a terminer&#10;FOnction pour verifier l'existence des user et profile docs implémentées (a vérifier une derniere fois)&#10;&#10;Reste a&#10; modiufier les bons champs au" />
     <MESSAGE value="Cleanup des aws functions pour l'auth a terminer&#10;FOnction pour verifier l'existence des user et profile docs implémentées&#10;&#10;Reste a modifier les bons champs au signup screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Cleanup des aws functions pour l'auth a terminer&#10;FOnction pour verifier l'existence des user et profile docs implémentées&#10;&#10;Reste a modifier les bons champs au signup screen" />
+    <MESSAGE value="false" />
+    <option name="LAST_COMMIT_MESSAGE" value="false" />
   </component>
 </project>

@@ -53,10 +53,12 @@ const Tab = createBottomTabNavigator();
   }
   };
 
+
+
 }, [])*/
 const AppStack = (route) => {
   const [notifPermission, setNotifPermission] = useState();
-  const {auth, setAuth, client, setClient, createdDocs, setCreatedDocs} = useAuth();
+  const {auth, setAuth, client, setClient, createdDocs, setCreatedDocs, IsProfileDoc, user} = useAuth();
 
   const getTabBarVisibility = (route) => {
     const routeName = getFocusedRouteNameFromRoute(route);
@@ -101,11 +103,27 @@ const AppStack = (route) => {
                   jwtToken: async() => {
                       (await Auth.currentSession()).getIdToken().getJwtToken()
                   }
-              }
+              },
+              disableOffline: true,
           })
-          setClient(temp);
 
+          let bool = await IsProfileDoc(user)
+          if(!bool){
+              console.log("Pas de ProfileDoc")
+          }
+          else{
+              console.log("Profile doc présent")
+              setCreatedDocs(true);
+          }
+          return temp;
       }
+
+      get_client().then(res => setClient(res));
+
+      return () => {
+        if(client){client.destroy()}
+      }
+
 
   })
 

@@ -110,7 +110,11 @@ const SetProfileScreen = ({ props, navigation, route }) => {
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={async() => {
-              await createUserProfile(userProfile).then(res => {navigation.navigate("Map")})
+              await createUserProfile(userProfile.username, userProfile.name).then(res => {
+                  navigation.navigate("Map");
+                  setCreatedDocs(true);
+              })
+                  .catch(error => console.log("error creating userProfile: " + error))
             }} // Should edit profile on onpress
             style={{ justifyContent: "center" }}
           >
