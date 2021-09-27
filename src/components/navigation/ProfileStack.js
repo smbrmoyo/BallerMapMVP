@@ -6,6 +6,7 @@ import ProfileScreen from "../../screens/ProfileScreen";
 import FollowingScreen from "../../screens/FollowingScreen";
 import FollowersScreen from "../../screens/FollowersScreen";
 import EditProfileScreen from "../../screens/EditProfileScreen";
+import DescriptionScreen from "../../screens/DescriptionScreen";
 import TryStory from "../../screens/TryStory";
 import OtherProfileScreen from "../../screens/OtherProfileScreen";
 import MediaEditor from "../../screens/src/views/SelectContact";
@@ -77,6 +78,19 @@ const ProfileStack = ({ navigation }) => {
             //shadowColor: "black",
             //elevation: 5,
             height: hsize(80),
+          },
+        })}
+      />
+      <Stack.Screen
+        name="Description"
+        component={DescriptionScreen}
+        options={({ navigation }) => ({
+          title: "",
+          headerStyle: {
+            backgroundColor: "white",
+            height: hsize(80),
+            //shadowColor: "#f9fafd",
+            //elevation: 0,
           },
         })}
       />

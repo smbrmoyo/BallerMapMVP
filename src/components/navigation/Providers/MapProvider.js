@@ -1,23 +1,20 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-//import Realm from "realm";
-import { useAuth, getUprofile } from "./AuthProvider";
-import placesForty from "../../../assets/data/placesForty";
-import placesJSON from "../../../assets/data/placesJSON";
 import Geocoder from "react-native-geocoding";
 import { Auth, API, graphqlOperation } from "aws-amplify";
+import { useQuery } from "react-query";
+
 import {
   createPlace,
   getPlacesList,
   getFilteredPlaces,
 } from "../../../aws-functions/placeFunctions";
-import { useQuery } from "react-query";
-
-import * as queries from "../../../graphql/queries";
+import { useAuth, getUprofile } from "./AuthProvider";
 
 export const MapContext = React.createContext();
 
 const MapProvider = ({ children }) => {
   const { user } = useAuth();
+  //const [colorScheme, SetColorScheme] = useState(Appearance.getColorScheme());
   const [places, setPlaces] = useState([]);
   const [status, setStatus] = useState("loading");
   const [render, setRender] = useState(0);

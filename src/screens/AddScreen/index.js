@@ -53,65 +53,36 @@ import { createEvent } from "../../aws-functions/eventFunctions";
 //navigator.geolocation = require("@react-native-community/geolocation");
 
 const AddScreen = ({ props, navigation, route }) => {
-  //const { username } = useMap();
-  const username = "";
   const { user } = useAuth();
-  let placeNameParams = "";
-  placeNameParams = route.params?.item.name;
+  const headerHeight = useHeaderHeight();
+
+  const [visibleStart, setVisibleStart] = useState(false); // Put visible and color in one state object
+  const [visibleEnd, setVisibleEnd] = useState(false);
+  const [colorBegin, setColorBegin] = useState("#CDCDCD");
+  const [colorEnd, setColorEnd] = useState("#CDCDCD");
+
   const [eventData, setEventData] = useState({
     name: "", //name of the place
-    placeName: "",
-
-    creator: user.username,
-
+    placeID: route.params?.item.id,
+    placeName: route.params?.item.name,
+    creatorID: user.username,
     tags: [],
     description: "",
-    profileId: "", //should be current authenticated user profile Id
+    profileId: "12345", //should be current authenticated user profile Id
     beginningTime: new Date(),
     endingTime: new Date(),
-    privacy: "private"
+    privacy: "private",
   });
-
-  console.log(event);
 
   useEffect(() => {
     if (route.params !== undefined) {
       setEventData({
         ...eventData,
-        placeName: placeNameParams,
+        placeID: route.params?.item.id,
+        placeName: route.params?.item.name,
       });
     }
   }, [route]);
-
-  let insertEvent = async () => {
-    try {
-      console.log(eventData);
-      let eventDoc = await createEvent(eventData);
-      console.log(eventDoc);
-    } catch (error) {
-      console.error(error);
-    }
-    /*const creation = user.functions
-      .Create_Event(event)
-      .then((result) => console.log("evénement bien créé"))
-      .catch((err) => console.log(err));*/
-  };
-
-  const [visibleStart, setVisibleStart] = useState(false);
-  const [visibleEnd, setVisibleEnd] = useState(false);
-  const [color, setColor] = useState("#CDCDCD");
-
-  const headerHeight = useHeaderHeight();
-
-  const checkNavigation = () => {
-    /*if (address && description && tags) {
-      navigation.navigate("Map", {
-        address,
-        description,
-        tags,
-      });
-    }*/
-  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -164,24 +135,12 @@ const AddScreen = ({ props, navigation, route }) => {
 
   const readableDate = (d) => {
     if (!d) return undefined;
-    return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(
-      d.getDate()
-    )} ${pad2(d.getHours())}:${pad2(d.getMinutes())}:${pad2(d.getSeconds())}`;
+    return `${pad2(d.getDate())}/${pad2(
+      d.getMonth() + 1
+    )}/${d.getFullYear()}  at  ${pad2(d.getHours())}:${pad2(
+      d.getMinutes()
+    )}:${pad2(d.getSeconds())}`;
   };
-
-  function impactAsync(style) {
-    switch (style) {
-      case "light":
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-        break;
-      case "medium":
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-        break;
-      default:
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
-        break;
-    }
-  }
 
   return (
     <>
@@ -195,15 +154,14 @@ const AddScreen = ({ props, navigation, route }) => {
         isVisible={visibleStart} /*Should have second component for end date */
         mode="datetime"
         display="spinner"
+        isDarkModeEnabled={false}
         onConfirm={(datum) => (
-
           setEventData({
             ...eventData,
-            beginningTime: datum
-
+            beginningTime: datum,
           }),
           setVisibleStart(false),
-          setColor("#743cff")
+          setColorBegin("#743cff")
         )}
         onCancel={() => setVisibleStart(false)}
       />
@@ -211,18 +169,15 @@ const AddScreen = ({ props, navigation, route }) => {
       <DateTimePickerModal
         isVisible={visibleEnd} /*Should have second component for end date */
         mode="datetime"
-        display="inline"
+        display="spinner"
         isDarkModeEnabled={false}
-        //modalStyleIOS={{ coler: "black" }}
         onConfirm={(datum) => (
-
           setEventData({
             ...eventData,
-            endingDateTime: datum
-
+            endingTime: datum,
           }),
           setVisibleEnd(false),
-          setColor("#743cff")
+          setColorEnd("#743cff")
         )}
         onCancel={() => setVisibleEnd(false)}
       />
@@ -312,7 +267,7 @@ const AddScreen = ({ props, navigation, route }) => {
                           elevation: 2,
                         }}
                       >
-                        {eventData.placeName === "" ? (
+                        {eventData.placeName == undefined ? (
                           <Text style={{ color: "#CDCDCD" }}>
                             Find an Address
                           </Text>
@@ -368,11 +323,11 @@ const AddScreen = ({ props, navigation, route }) => {
                     placeholder="#"
                     placeholderTextColor="#CDCDCD"
                     onChangeText={(textTag) => {
-                      let tags = textTag.split(' ');
+                      let tags = textTag.split(" ");
                       setEventData({
                         ...eventData,
-                        tags
-                      })
+                        tags,
+                      });
                     }}
                   />
                 </View>
@@ -387,7 +342,7 @@ const AddScreen = ({ props, navigation, route }) => {
                     onPress={() => setVisibleStart(true)}
                   >
                     <View style={styles.textInput}>
-                      <Text style={{ color: color, fontSize: 16 }}>
+                      <Text style={{ color: colorBegin, fontSize: 16 }}>
                         {readableDate(eventData.beginningTime)}
                       </Text>
                     </View>
@@ -403,7 +358,7 @@ const AddScreen = ({ props, navigation, route }) => {
                     onPress={() => setVisibleEnd(true)}
                   >
                     <View style={styles.textInput}>
-                      <Text style={{ color: color, fontSize: 16 }}>
+                      <Text style={{ color: colorEnd, fontSize: 16 }}>
                         {readableDate(eventData.endingTime)}
                       </Text>
                     </View>
@@ -453,11 +408,15 @@ const AddScreen = ({ props, navigation, route }) => {
                   </TouchableOpacity>
                   <TouchableOpacity
                     activeOpacity={0.7}
-                    onPress={
-                      insertEvent /*.then(
-                    Haptics.notificationAsync(
-                      Haptics.NotificationFeedbackType.Success
-                    ) */}
+                    onPress={() => {
+                      Haptics.impactAsync(
+                        Haptics.ImpactFeedbackStyle.Medium
+                      ).then(() => {
+                        createEvent(eventData).then((response) => {
+                          navigation.navigate("Map");
+                        });
+                      });
+                    }}
                   >
                     <View
                       style={{
