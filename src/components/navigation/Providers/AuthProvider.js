@@ -5,6 +5,7 @@ import {
   createUserDoc,
   createUserProfile,
 } from "../../../aws-functions/userFunctions";
+import { getFilteredEvents } from "../../../aws-functions/eventFunctions";
 //const Realm = require("realm");
 //import { getRealmApp } from "../../../../realmServer";
 import { useNavigation } from "@react-navigation/native";
@@ -18,6 +19,7 @@ export const AuthContext = React.createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState();
+  const [yourEvents, setYourEvents] = useState([]);
   const [user, setUser] = useState(); // set this to true on confirmSignUp
   const [signUpTrigger, setSignUpTrigger] = useState(false);
   const [loadingUser, setLoadingUser] = useState(true);
@@ -36,6 +38,16 @@ const AuthProvider = ({ children }) => {
     return () => {
       // cleanup function
     };
+  }, []);
+
+  useEffect(() => {
+    getFilteredEvents(
+      { creatorID: { contains: "8d33bf79-f4b2-416d-80d9-68e09b7be6ea" } },
+      2
+    ).then((events) => {
+      //console.log(events.data.listEvents.items.id);
+      setYourEvents(events.data.listEvents.items);
+    });
   }, []);
 
   // The signIn function takes an email and password and uses the
@@ -140,6 +152,7 @@ const AuthProvider = ({ children }) => {
         resendConfirmationCode,
         auth,
         setAuth,
+        yourEvents,
       }}
     >
       {children}

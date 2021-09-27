@@ -5,6 +5,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
+    justifyContent: "center",
     //paddingTop: hsize(44),
   },
   iconContainer: {
@@ -13,14 +14,14 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
-    //backgroundColor: 'rgba(0,0,0,0.05)',
+    backgroundColor: "rgba(0,0,0,0.05)",
     //marginBottom: 15,
     marginHorizontal: 10,
   },
   profileInitialContainer: {
     flexDirection: "row",
     paddingHorizontal: wsize(10),
-    paddingVertical: hsize(10),
+    paddingVertical: hsize(5),
   },
   profilePhoto: {
     width: wsize(80),
@@ -50,22 +51,24 @@ const styles = StyleSheet.create({
   profileInfo: {
     flexDirection: "row",
     alignItems: "center",
-    marginHorizontal: 5,
+    marginHorizontal: wsize(5),
+    paddingBottom: wsize(5),
   },
   textInfo: {
-    fontSize: wsize(12),
+    fontSize: wsize(14),
+    marginHorizontal: wsize(2),
   },
   linkInfo: {
-    fontSize: wsize(12),
+    fontSize: wsize(14),
     color: "#003569",
   },
   followersContainer: {
-    marginTop: hsize(14),
+    marginTop: hsize(7),
     flexDirection: "row",
     justifyContent: "space-between",
   },
   followersContainerLeft: {
-    marginTop: hsize(14),
+    marginTop: hsize(7),
     flexDirection: "row",
   },
   followersContainerRight: {
@@ -89,7 +92,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     //width: "100%",
-    marginVertical: 10,
+    //marginVertical: 10,
   },
   userInfoItem: {
     justifyContent: "center",
@@ -122,6 +125,7 @@ const styles = StyleSheet.create({
   tabContainer: {
     borderWidth: 1,
     height: hsize(50),
+    width: "100%",
     alignItems: "center",
     borderColor: "#DADBDA",
     flexDirection: "row",
@@ -180,14 +184,14 @@ const styles = StyleSheet.create({
   panelSubtitle: {
     fontSize: 14,
     color: "gray",
-    height: 30,
-    marginBottom: 10,
+    height: hsize(30),
+    marginBottom: hsize(10),
   },
   row: {
     alignItems: "center",
     flexDirection: "row",
-    marginVertical: 20,
-    marginHorizontal: 10,
+    marginVertical: hsize(20),
+    marginHorizontal: wsize(10),
     borderBottomColor: "grey",
     borderBottomWidth: 0.5,
   },

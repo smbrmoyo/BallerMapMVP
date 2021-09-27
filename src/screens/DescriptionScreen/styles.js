@@ -7,6 +7,10 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     //paddingTop: hsize(44),
   },
+  textHeader: {
+    fontSize: 20,
+    fontFamily: "ComfortaaBold",
+  },
   iconContainer: {
     height: 40,
     width: 40,
@@ -50,7 +54,7 @@ const styles = StyleSheet.create({
   profileInfo: {
     flexDirection: "row",
     alignItems: "center",
-    marginHorizontal: 5,
+    margin: wsize(2),
   },
   textInfo: {
     fontSize: wsize(12),
