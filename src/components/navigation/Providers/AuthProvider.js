@@ -41,11 +41,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    getFilteredEvents(
-      { creatorID: { contains: "8d33bf79-f4b2-416d-80d9-68e09b7be6ea" } },
-      2
-    ).then((events) => {
-      //console.log(events.data.listEvents.items.id);
+    getFilteredEvents({ creatorID: { contains: "" } }, 2).then((events) => {
       setYourEvents(events.data.listEvents.items);
     });
   }, []);
