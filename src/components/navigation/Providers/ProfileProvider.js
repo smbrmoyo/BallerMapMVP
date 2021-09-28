@@ -1,76 +1,40 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 //import Realm from "realm";
-import { useAuth, getUprofile } from "./AuthProvider";
+import { useAuth } from "./AuthProvider";
+import {
+  createUserDoc,
+  createUserProfile,
+  getUprofileDoc,
+  getUserDoc,
+} from "../../../aws-functions/userFunctions";
+import { useQuery } from "react-query";
 
 export const ProfileContext = React.createContext();
 
 const ProfileProvider = ({ children }) => {
-  const { user, profilePartition, profileDoc } = useAuth();
-  /*const profileDocRef = getUprofile(profilePartition).then((res) => {
-    console.log(`profileDoc est: ${res}`);
-    return res;
-  });*/
-
-  //const [profileDoc, setProfileDoc] = useState(profileDocRef);
+  const { user } = useAuth();
   const [username, setUsername] = useState("");
   const [followers, setFollowers] = useState([]);
   const [following, setFollowing] = useState([]);
-  const profileRealmRef = useRef();
+  const [profileDoc, setProfileDoc] = useState(null);
+  const [status, setStatus] = useState("loading");
 
-  // User profile realm config
+  const queryClient = useQuery();
 
+  const result = useQuery("getProfile", getUprofileDoc(user));
+
+  /*useEffect(() => {
+    if (result.status != status) {
+      setProfileDoc(result.data);
+      setStatus(result.status);
+    } else {
+      setStatus(result.status);
+    }
+  }, [result.status]);*/
   useEffect(() => {
-    const config = {
-      sync: {
-        user: user,
-        partitionValue: profilePartition,
-      },
-    };
-
-    // Open the profile realm
-    Realm.open(config)
-      .then((profileRealm) => {
-        profileRealmRef.current = profileRealm;
-        const syncProfile = profileRealm.objects("uProfile")[0];
-        const syncUsername = syncProfile.username;
-        var syncFollowers = syncProfile.followers;
-        syncFollowers = JSON.parse(JSON.stringify(syncFollowers));
-        const syncFollowing = syncProfile.following;
-        if (syncUsername !== undefined && syncFollowers !== undefined) {
-          setUsername(syncUsername);
-          syncFollowers = JSON.parse(JSON.stringify(syncFollowers));
-          setFollowing(syncFollowing);
-          var followersData = [];
-          syncFollowers.forEach((follower) => {
-            var dataObject = {};
-            dataObject.username = follower;
-            followersData.push(dataObject);
-          });
-          setFollowers(followersData);
-          console.log(`PROFILEPROVIDER!!!! : 
-         username: ${syncUsername}, followers: ${JSON.stringify(
-            syncFollowers
-          )}`);
-
-          profileRealm.addListener("change", () => {
-            console.log("listener triggered");
-            var newProfileDoc = profileRealm.objects("uProfile")[0];
-            setUsername(newProfileDoc.username);
-          });
-        } else {
-          console.log("PROFILEPROVIDER!!!! : No profile found");
-        }
-      })
-      .catch((error) => console.log(error));
-
-    return () => {
-      const profileRealm = profileRealmRef.current;
-      if (profileRealm) {
-        profileRealm.removeAllListeners();
-        profileRealm.close();
-        profileRealmRef.current = null;
-      }
-    };
+    getUprofileDoc(user).then((response) => {
+      setProfileDoc(response);
+    });
   }, []);
 
   return (
@@ -79,6 +43,8 @@ const ProfileProvider = ({ children }) => {
         username,
         followers,
         setUsername,
+        profileDoc,
+        status,
       }}
     >
       {children}

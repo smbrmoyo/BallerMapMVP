@@ -8,7 +8,6 @@ import {
   getUserDoc,
 } from "../../../aws-functions/userFunctions";
 
-
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { getFilteredEvents } from "../../../aws-functions/eventFunctions";
@@ -26,11 +25,8 @@ export const AuthContext = React.createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState();
-
   const [client, setClient] = useState();
-
   const [yourEvents, setYourEvents] = useState([]);
-
   const [user, setUser] = useState(); // set this to true on confirmSignUp
   const [createdDocs, setCreatedDocs] = useState(true);
   const [signUpTrigger, setSignUpTrigger] = useState(false);
@@ -38,68 +34,68 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     //console.log("Async storage log" + JSON.stringify(AsyncStorage.getItem("currentUserCreds")))
-    const currentUserCreds = async() => {
-      let res = await AsyncStorage.getItem("currentUserCreds").then(res => {
+    const currentUserCreds = async () => {
+      let res = await AsyncStorage.getItem("currentUserCreds").then((res) => {
         return JSON.parse(res);
-          }
-      )
-      if(res != null){
+      });
+      if (res != null) {
         console.log("stored User: " + JSON.stringify(res));
         let signed = await signIn(res.email, res.password).then(
-            async(result) => {
-              console.log("setting User")
-              await setUser(res.email)
-              return res.email
-            }
-        )
+          async (result) => {
+            console.log("setting User");
+            await setUser(res.email);
+            return res.email;
+          }
+        );
         return signed;
-      }else{
+      } else {
         return false;
       }
-    }
+    };
 
-     currentUserCreds()
+    currentUserCreds();
 
     return () => {
       // cleanup function, end connection to ressources
-      if(!client){
+      if (!client) {
         return;
-      }
-      else{
+      } else {
         client.destroy();
       }
     };
   }, []);
 
   useEffect(() => {
-    getFilteredEvents({ creatorID: { contains: "" } }, 2).then((events) => {
+    /*getFilteredEvents({ creatorID: { contains: "" } }, 2).then((events) => {
       setYourEvents(events.data.listEvents.items);
-    });
+    });*/
   }, []);
 
   // The signIn function takes an email and password and uses the
   // emailPassword authentication provider to log in.
   const signIn = async (email, password) => {
-      let res = await Auth.signIn(email, password).then(
-          (res) => {
-            AsyncStorage.setItem("currentUserCreds", JSON.stringify({email: email, password:password}))
-            console.log("signIn Succrss")
-            return true;
-    }
-      ).catch(error => {
-        if(error.name == "InvalidParameterException"){
-          console.log("signIn Error: " + JSON.stringify(error))
+    let res = await Auth.signIn(email, password)
+      .then((res) => {
+        AsyncStorage.setItem(
+          "currentUserCreds",
+          JSON.stringify({ email: email, password: password })
+        );
+        console.log("signIn Succrss");
+        return true;
+      })
+      .catch((error) => {
+        if (error.name == "InvalidParameterException") {
+          console.log("signIn Error: " + JSON.stringify(error));
         }
         return false;
-      })
-      return res;
+      });
+    return res;
   };
-
 
   /**The signUp function takes an email and password and uses the
    * emailPassword authentication provider to register the user.
    * return l'email
-  **/
+   **/
   const signUp = async (email, password) => {
     try {
       const user = await Auth.signUp({
@@ -137,65 +133,70 @@ const AuthProvider = ({ children }) => {
 
           let userDocInput = {
             email: email,
-            id: email
-          }
+            id: email,
+          };
 
           /*await createUserDoc(userDocInput).then((res) => {
             console.log("Userdoc créé apres confirm signup" + JSON.stringify(res));
           }).catch(e => console.log("erreur dans la créaction su  userDoc a confirm Signup" + e));*/
-        });
+        }
+      );
       return email;
     } catch (error) {
       if (error.name == "UsernameExistsException") {
         Alert.alert(error);
-      }
-      else{
+      } else {
         Alert.alert(error);
       }
       console.log("error confirming user", error);
     }
   };
 
-
   /**Fonction pour vérifier l'existence d'un userDoc et d'un profileDoc
    * Retourne un boleen
    */
   const IsProfileDoc = async (email) => {
-    let isUserDoc = await getUserDoc(email)
-    if ((isUserDoc)  !== null){
+    let isUserDoc = await getUserDoc(email);
+    if (isUserDoc !== null) {
       // userDoc créé
-      console.log("is profileDoc " + email)
-      let isProfileDoc = await getUprofileDoc(email).catch(err => console.log("console " + JSON.stringify(err)));
-      if(isProfileDoc !== null){
+      console.log("is userDoc " + email);
+      let isProfileDoc = await getUprofileDoc(email).catch((err) =>
+        console.log("console " + JSON.stringify(err))
+      );
+      if (isProfileDoc != null) {
         return true;
       }
-    }
-    else{
-      console.log("pas de user DOc")
-       //création du userDoc
+    } else {
+      console.log("pas de user Doc");
+      //création du userDoc
       const userDocInput = {
         email: email,
-      }
-       let userDoc = await createUserDoc(userDocInput).then(asyncRes => {
-       console.log("userDOc créé: " + JSON.stringify(asyncRes))}).catch(error => console.log("error creating userDoc on signIN "
-           + JSON.stringify(error)))
-       return false
+      };
+      let userDoc = await createUserDoc(userDocInput)
+        .then((asyncRes) => {
+          console.log("userDoc créé: " + JSON.stringify(asyncRes));
+        })
+        .catch((error) =>
+          console.log(
+            "error creating userDoc on signIn " + JSON.stringify(error)
+          )
+        );
+      return false;
     }
     return false;
-  }
+  };
 
-  const createProfileDoc = async(username, name) => {
-      const uProfileInput = {
-        id: user,
-        userDocId: user,
-        username: username,
-        name: name
-      }
-      await createUserProfile(uProfileInput).then((res) => {
-        console.log("ProfileDoc créé: " + JSON.stringify(res));
-      })
-  }
-
+  const createProfileDoc = async (username, name) => {
+    const uProfileInput = {
+      id: user,
+      userDocId: user,
+      username: username,
+      name: name,
+    };
+    await createUserProfile(uProfileInput).then((res) => {
+      console.log("ProfileDoc créé: " + JSON.stringify(res));
+    });
+  };
 
   // Resend the confirmation code in case the user didn't receive it
   const resendConfirmationCode = async (username) => {
@@ -212,6 +213,7 @@ const AuthProvider = ({ children }) => {
   const signOut = async () => {
     try {
       await Auth.signOut();
+      setUser(null);
     } catch (error) {
       console.log("error signing out", error);
     }
@@ -235,7 +237,7 @@ const AuthProvider = ({ children }) => {
         setClient,
         createdDocs,
         setCreatedDocs,
-        IsProfileDoc
+        IsProfileDoc,
         yourEvents,
       }}
     >
@@ -253,8 +255,6 @@ const useAuth = () => {
   return auth;
 };
 
-
-
-export { useAuth};
+export { useAuth };
 
 export { AuthProvider };

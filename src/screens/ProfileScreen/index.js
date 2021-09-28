@@ -38,6 +38,7 @@ import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
 import UserModal from "./UserModal";
 import people from "../../assets/data/people";
@@ -152,12 +153,17 @@ function EventRow({ event }) {
 
 const ProfileScreen = ({ navigation, route }) => {
   // Alert for logout
+  const { width, height } = Dimensions.get("window");
+  const CARD_HEIGHT = 100;
+  const CARD_WIDTH = width * 0.8;
+  const SPACING_FOR_CARD_INSET = width * 0.1 - 10;
 
   bsProf = useRef(null);
   fall = useRef(new Animated.Value(1)).current;
   const [isFollowing, setIsFollowing] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [loading, setLoading] = useState(true);
   const { signOut, user, yourEvents } = useAuth();
+  const { profileDoc, status } = useProfile();
   const [userExtraInfo, setUserExstraInfo] = useState(null);
   const [username, setUsername] = useState("");
   const isFocused = useIsFocused();
@@ -183,7 +189,9 @@ const ProfileScreen = ({ navigation, route }) => {
         console.log("username");
       });
     });*/
-  }, []);
+    console.log(profileDoc);
+    setLoading(false);
+  }, [profileDoc]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -306,99 +314,155 @@ const ProfileScreen = ({ navigation, route }) => {
         overdragResistanceFactor={100}
       />
       <TouchableWithoutFeedback onPress={() => bsProf.current.snapTo(1)}>
-        <Animated.View
-          // eslint-disable-next-line react-native/no-inline-styles
-          style={{
-            flex: 2,
-            height: "100%",
-            width: "100%",
-            opacity: Animated.add(0.05, Animated.multiply(fall, 1.0)),
-          }}
-        >
-          <View style={styles.container}>
-            <View style={styles.profileInitialContainer}>
-              <TouchableOpacity activeOpacity={0.7} onPress={() => {}}>
-                <ProfilePicture size={70} />
-              </TouchableOpacity>
-              <View style={styles.profileNameContainer}>
-                <Text style={styles.profileName}>{user.username}</Text>
-                <Text style={styles.profileType}>userExtraInfo.status</Text>
-              </View>
-            </View>
-            <View style={styles.profileInfoContainer}>
-              <View style={styles.profileInfo}>
-                <SimpleLineIcons
-                  name="location-pin"
-                  size={20}
-                  color="#743cff"
-                />
-                <Text style={styles.textInfo}>
-                  {/*userExtraInfo.city*/}
-                  Paris, Rue du con
-                </Text>
-              </View>
-
-              <TouchableOpacity activeOpacity={0.7} style={styles.profileInfo}>
-                <EvilIcons name="link" size={20} color="black" />
-                <Text style={styles.linkInfo}>userExtraInfo.link</Text>
-              </TouchableOpacity>
-
-              <View style={styles.userInfoWrapper}>
-                <TouchableOpacity activeOpacity={0.7} onPress={goToFollowers}>
-                  <View style={styles.userInfoItem}>
-                    <Text style={styles.userInfoTitle}>1000</Text>
-                    <Text style={styles.userInfoSubTitle}>Followers</Text>
-                  </View>
-                </TouchableOpacity>
-
-                <TouchableOpacity activeOpacity={0.7} onPress={goToFollowing}>
-                  <View style={styles.userInfoItem}>
-                    <Text style={styles.userInfoTitle}>100</Text>
-                    <Text style={styles.userInfoSubTitle}>Following</Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-              <TouchableOpacity
-                activeOpacity={0.7}
-                onPress={() => {
-                  navigation.navigate("EditProfile");
-                }}
-              >
+        {loading ? (
+          <View style={styles.screenLoading}>
+            <View
+              style={{
+                justifyContent: "center",
+                alignSelf: "center",
+                alignItems: "center",
+                marginBottom: 20,
+                borderColor: "#E1E9EE",
+                borderWidth: 1,
+                paddingVertical: hsize(10),
+                paddingHorizontal: wsize(20),
+                borderRadius: 10,
+                height: CARD_HEIGHT,
+                width: CARD_WIDTH,
+              }}
+            >
+              <SkeletonPlaceholder>
                 <View
                   style={{
-                    //backgroundColor: "#D8D8D8",
-                    marginVertical: hsize(5),
-                    borderWidth: 2,
-                    borderColor: "#E9E8E8",
-                    borderRadius: 5,
-                    height: 30,
-                    width: "50%",
-                    alignSelf: "center",
+                    flexDirection: "row",
                     alignItems: "center",
                     justifyContent: "center",
-                    /*shadowColor: "grey",
+                    //borderRadius: 10,
+                    //position: "relative",
+                    //bottom: 50,
+                    //marginBottom: 0,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: 60,
+                      height: 60,
+                      borderRadius: 50,
+                    }}
+                  />
+                  <View style={{ marginLeft: 20 }}>
+                    <View style={{ width: 120, height: 20, borderRadius: 4 }} />
+                    <View
+                      style={{
+                        marginTop: 6,
+                        width: 80,
+                        height: 20,
+                        borderRadius: 4,
+                      }}
+                    />
+                  </View>
+                </View>
+              </SkeletonPlaceholder>
+            </View>
+          </View>
+        ) : (
+          <Animated.View
+            // eslint-disable-next-line react-native/no-inline-styles
+            style={{
+              flex: 2,
+              height: "100%",
+              width: "100%",
+              opacity: Animated.add(0.05, Animated.multiply(fall, 1.0)),
+            }}
+          >
+            <View style={styles.container}>
+              <View style={styles.profileInitialContainer}>
+                <TouchableOpacity activeOpacity={0.7} onPress={() => {}}>
+                  <ProfilePicture size={70} />
+                </TouchableOpacity>
+                <View style={styles.profileNameContainer}>
+                  <Text style={styles.profileName}>{profileDoc?.username}</Text>
+                  <Text style={styles.profileType}>userExtraInfo.status</Text>
+                </View>
+              </View>
+              <View style={styles.profileInfoContainer}>
+                <View style={styles.profileInfo}>
+                  <SimpleLineIcons
+                    name="location-pin"
+                    size={20}
+                    color="#743cff"
+                  />
+                  <Text style={styles.textInfo}>
+                    {/*userExtraInfo.city*/}
+                    Paris, Rue du con
+                  </Text>
+                </View>
+
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  style={styles.profileInfo}
+                >
+                  <EvilIcons name="link" size={20} color="black" />
+                  <Text style={styles.linkInfo}>userExtraInfo.link</Text>
+                </TouchableOpacity>
+
+                <View style={styles.userInfoWrapper}>
+                  <TouchableOpacity activeOpacity={0.7} onPress={goToFollowers}>
+                    <View style={styles.userInfoItem}>
+                      <Text style={styles.userInfoTitle}>1000</Text>
+                      <Text style={styles.userInfoSubTitle}>Followers</Text>
+                    </View>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity activeOpacity={0.7} onPress={goToFollowing}>
+                    <View style={styles.userInfoItem}>
+                      <Text style={styles.userInfoTitle}>100</Text>
+                      <Text style={styles.userInfoSubTitle}>Following</Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={() => {
+                    navigation.navigate("EditProfile");
+                  }}
+                >
+                  <View
+                    style={{
+                      //backgroundColor: "#D8D8D8",
+                      marginVertical: hsize(5),
+                      borderWidth: 2,
+                      borderColor: "#E9E8E8",
+                      borderRadius: 5,
+                      height: 30,
+                      width: "50%",
+                      alignSelf: "center",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      /*shadowColor: "grey",
                     shadowOffset: { width: 0, height: 3 },
                     shadowOpacity: 0.5,
                     shadowRadius: 5,
                     elevation: 10,*/
-                  }}
-                >
-                  <Text style={{ fontSize: 16 }}> Edit Info </Text>
-                </View>
-              </TouchableOpacity>
+                    }}
+                  >
+                    <Text style={{ fontSize: 16 }}> Edit Info </Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+              <TabContainer />
             </View>
-            <TabContainer />
-          </View>
-          <FlatList
-            data={yourEvents}
-            keyExtractor={(item) => item.id}
-            style={{
-              flex: 1,
-              backgroundColor: "white",
-            }}
-            renderItem={(item) => <EventRow event={item.item} />}
-          />
-        </Animated.View>
+            <FlatList
+              data={yourEvents}
+              keyExtractor={(item) => item.id}
+              style={{
+                flex: 1,
+                backgroundColor: "white",
+              }}
+              renderItem={(item) => <EventRow event={item.item} />}
+            />
+          </Animated.View>
+        )}
       </TouchableWithoutFeedback>
     </>
   );

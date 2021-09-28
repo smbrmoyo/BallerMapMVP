@@ -15,7 +15,7 @@ import DescriptionScreen from "../../screens/DescriptionScreen";
 import OtherProfileScreen from "../../screens/OtherProfileScreen";
 import Probe from "../../screens/Probe";
 import { MapProvider } from "./Providers/MapProvider";
-import {useAuth} from "./Providers/AuthProvider";
+import { useAuth } from "./Providers/AuthProvider";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Entypo from "react-native-vector-icons/Entypo";
 import { hsize, wsize } from "../../utils/Dimensions";
@@ -27,17 +27,26 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const Stack = createStackNavigator();
 
 const MapStack = ({ navigation }) => {
-  const {createdDocs, setCreatedDocs, IsProfileDoc} = useAuth();
-
-  let routeName = "Map";
-
+  const [profileCreated, setProfileCreated] = useState(null);
+  let routeName;
   useEffect(() => {
-      return () => {
+    AsyncStorage.getItem("profileCreated").then((value) => {
+      if (value == null) {
+        AsyncStorage.setItem("profileCreated", "false"); // Add  error handling
+        setProfileCreated(false);
+      } else {
+        AsyncStorage.setItem("profileCreated", "true");
+        setProfileCreated(true);
       }
-  }, [createdDocs])
+    }); // Add  error handling
+  }, []);
 
-  if(!createdDocs){
-      routeName = "SetProfile"
+  if (profileCreated == null) {
+    return null; // Use loader
+  } else if (profileCreated == false) {
+    routeName = "SetProfile";
+  } else {
+    routeName = "Map";
   }
 
   return (

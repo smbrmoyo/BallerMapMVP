@@ -13,10 +13,9 @@ import * as queries from "../graphql/queries";
  */
 
 export const getAuthenticatedUser = async () => {
-  let user = await Auth.currentAuthenticatedUser()
-    .catch((err) => {
-      console.error(err);
-    });
+  let user = await Auth.currentAuthenticatedUser().catch((err) => {
+    console.error(err);
+  });
   return user;
 };
 
@@ -26,8 +25,8 @@ export const getAuthenticatedUser = async () => {
 
 export const getUserDoc = async (email) => {
   let userDoc = await API.graphql(
-    graphqlOperation(queries.getUserDoc, { id: email, email:email })
-  )
+    graphqlOperation(queries.getUserDoc, { id: email, email: email })
+  );
 
   return userDoc.data.getUserDoc;
 };
@@ -35,8 +34,9 @@ export const getUserDoc = async (email) => {
 export const getUprofileDoc = async (email) => {
   let uProfileDoc = await API.graphql(
     graphqlOperation(queries.getUprofile, {
-        id: email}
-    ))
+      id: email,
+    })
+  );
 
   return uProfileDoc.data.getUprofile;
 };
@@ -58,14 +58,14 @@ export const createUserDoc = async (userData) => {
       input: {
         email: userData.email,
         id: userData.email,
-        profileID: userData.email
+        profileID: userData.email,
       },
     })
   );
 
   //AsyncStorage.setItem("userDocId", userDoc.data.createUserDoc.id);
 
-  return userDoc.data.createUserDoc.id;
+  return userDoc.data.createUserDoc;
 };
 
 /**
@@ -81,14 +81,14 @@ export const createUserProfile = async (userProfile) => {
         id: userProfile.id,
         username: userProfile.username,
         userDocId: userProfile.userDocId,
-        name: userProfile.name
+        name: userProfile.name,
       },
     })
   );
 
   //AsyncStorage.setItem("userProfileId", uProfile.data.createUprofile.id);
 
-  return uProfile.data.createUprofile.id;
+  return uProfile.data.createUprofile;
 };
 
 /**
@@ -150,6 +150,10 @@ export const addUserToEvent = (userToEventData) => {
   return createUserEventConnection(userToEventData);
 };
 
+/**Next mutation should be deleteAccount
+ * We would delete userDoc, profileDoc and removeItem AsyncStorage("profileCreated to false")
+ */
+
 /*
  * =============================================================================
  *                                  SUBSCRIPTIONS
@@ -198,6 +202,3 @@ export const subscribeOnUserConnection = (
     error: (error) => console.error(error),
   });
 };
-
-
-

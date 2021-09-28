@@ -53,14 +53,12 @@ export const getFilteredEvents = async (filter, limit) => {
  * @param {JSON} eventData object with event fields (name, placeId, beginingTime)
  */
 export const createEvent = async (eventData) => {
-  let uProfileId =
-    "8d33bf79-f4b2-416d-80d9-68e09b7be6ea"; /**should use AuthUser */
   let event = await API.graphql(
     graphqlOperation(mutations.createEvent, {
       input: {
         name: eventData.name,
         placeID: eventData.placeID,
-        creatorID: uProfileId,
+        creatorID: eventData.creatorID,
         beginningTime: eventData.beginningTime,
         endingTime: eventData.endingTime,
         tags: eventData.tags,

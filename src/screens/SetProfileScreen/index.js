@@ -26,7 +26,7 @@ import BottomSheet from "reanimated-bottom-sheet";
 import Animated from "react-native-reanimated";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {useAuth} from "../../components/navigation/Providers/AuthProvider"
+import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import ProfilePicture from "../../components/ProfilePicture";
 import {
   createUserDoc,
@@ -37,36 +37,25 @@ import styles from "./styles";
 import { wsize, hsize } from "../../utils/Dimensions";
 import Feather from "react-native-vector-icons/Feather";
 import userConf from "../../aws-functions/userConf";
+import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
 
 const SetProfileScreen = ({ props, navigation, route }) => {
-  const {user, createProfileDoc, setCreatedDocs} = useAuth();
+  const { user, createProfileDoc, setCreatedDocs } = useAuth();
   const [color, setColor] = useState("#CDCDCD");
   const headerHeight = useHeaderHeight();
   let udId = "";
   const [userProfile, setUserProfile] = useState({
     //email: user,
-    name:"",
+    name: "",
     username: "",
     bio: "",
     profilePicture: null,
     userDocId: user,
-    id: user
+    id: user,
   });
 
   var bsEditProf = useRef(null);
   var fallEditProf = useRef(new Animated.Value(1)).current;
-
-  useEffect(() => {
-    /*async function getUser() {
-      let user = await Auth.currentAuthenticatedUser().then((result) => {
-        userEmail = result.attributes.email;
-      });
-      return userDoc;
-    }
-    getUser();*/
-
-      console.log("!!!!SetProfileScreen")
-  }, []);
 
   /*
   Logic used to get userDocId is good. Should be done on signin/signUp.
@@ -75,7 +64,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
   on userProfile creation, should insert uProfileId into userDoc to make connection
   */
 
- /* useEffect(() => {
+  /* useEffect(() => {
     async function getItem() {
       try {
         AsyncStorage.getItem("userDocId").then((value) => {
@@ -105,29 +94,8 @@ const SetProfileScreen = ({ props, navigation, route }) => {
         </View>
       ),
       headerLeft: () => null,
-
-      headerRight: () => (
-        <View style={{ flexDirection: "row", marginHorizontal: wsize(10) }}>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={async() => {
-              let input = userProfile;
-              console.log("aaaaa" + input.name)
-              await createProfileDoc(input.username, input.name).then(res => {
-                  navigation.navigate("Map");
-                  setCreatedDocs(true);
-              })
-                  .catch(error => console.log("error creating userProfile: " + JSON.stringify(error)))
-            }} // Should edit profile on onpress
-            style={{ justifyContent: "center" }}
-          >
-            <View style={styles.iconContainer}>
-              <Feather name="check" size={23} color="#743cff" />
-            </View>
-          </TouchableOpacity>
-        </View>
-      )});
-  }, [navigation]);
+    });
+  }, []);
 
   renderInner = () => (
     <View style={styles.panel}>
@@ -244,12 +212,12 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                     }}
                     placeholder=""
                     placeholderTextColor="#CDCDCD"
-                    onEndEditing={(event) =>
+                    onEndEditing={(event) => {
                       setUserProfile({
                         ...userProfile,
                         name: event.nativeEvent.text,
-                      })
-                    }
+                      });
+                    }}
                   />
                 </View>
 
@@ -275,13 +243,12 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                     }}
                     placeholder="username"
                     placeholderTextColor="#CDCDCD"
-                    onChangeText={(text) => {
+                    onEndEditing={(event) =>
                       setUserProfile({
                         ...userProfile,
-                        username: text,
+                        username: event.nativeEvent.text,
                       })
-                      console.log(text)
-                    }}
+                    }
                   />
                 </View>
 
@@ -316,7 +283,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                     }
                   />
                 </View>
-                  {/*<View style={styles.TagsContainer}>
+                {/*<View style={styles.TagsContainer}>
                   <View style={styles.title}>
                     <Text style={styles.titleText}>Website</Text>
                   </View>
@@ -333,6 +300,106 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                     }
                   />
                 </View>*/}
+                <View
+                  style={{
+                    flexDirection: "row",
+                    justifyContent: "space-around",
+                    //width: "100%",
+                    marginVertical: hsize(40),
+                  }}
+                >
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    onPress={() => navigation.goBack()}
+                  >
+                    <View
+                      style={{
+                        backgroundColor: "white",
+                        borderWidth: 1,
+                        borderColor: "#E9E8E8",
+                        borderRadius: 5,
+                        height: hsize(40),
+                        width: wsize(100),
+                        alignItems: "center",
+                        justifyContent: "center",
+                        shadowColor: "#000",
+                        shadowOffset: {
+                          width: 0,
+                          height: 1,
+                        },
+                        shadowOpacity: 0.2,
+                        shadowRadius: 1.41,
+                        elevation: 2,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: 20,
+                          color: "red", // On cancel alert
+                        }}
+                      >
+                        Cancel
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                  <TouchableOpacity
+                    activeOpacity={0.7}
+                    onPress={() => {
+                      let input = {
+                        username: userProfile.username,
+                        name: userProfile.name,
+                        id: user,
+                        userDocId: user,
+                      };
+
+                      Haptics.impactAsync(
+                        Haptics.ImpactFeedbackStyle.Medium
+                      ).then(() => {
+                        createUserProfile(input)
+                          .then((res) => {
+                            navigation.navigate("Map");
+                            setCreatedDocs(true);
+                          })
+                          .catch((error) =>
+                            console.log(
+                              "error creating userProfile: " +
+                                JSON.stringify(error)
+                            )
+                          );
+                      });
+                    }}
+                  >
+                    <View
+                      style={{
+                        backgroundColor: "white",
+                        borderWidth: 1,
+                        borderColor: "#E9E8E8",
+                        borderRadius: 5,
+                        height: hsize(40),
+                        width: wsize(100),
+                        alignItems: "center",
+                        justifyContent: "center",
+                        shadowColor: "#000",
+                        shadowOffset: {
+                          width: 0,
+                          height: 1,
+                        },
+                        shadowOpacity: 0.2,
+                        shadowRadius: 1.41,
+                        elevation: 2,
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: 20,
+                          color: "#743cff",
+                        }}
+                      >
+                        Confirm
+                      </Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
               </Animated.View>
             </TouchableWithoutFeedback>
           </ScrollView>
