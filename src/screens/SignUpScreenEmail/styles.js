@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   footer: {
-    flex: Platform.OS === "ios" ? 4 : 5,
+    flex: 1,
     backgroundColor: "#fff",
     borderTopLeftRadius: wsize(30),
     borderTopRightRadius: wsize(30),

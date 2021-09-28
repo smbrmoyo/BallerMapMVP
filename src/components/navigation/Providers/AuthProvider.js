@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { Auth } from "aws-amplify";
-import Alert from "react-native";
+import { Alert } from "react-native";
 import {
   createUserDoc,
   createUserProfile,
@@ -39,14 +39,13 @@ const AuthProvider = ({ children }) => {
         return JSON.parse(res);
       });
       if (res != null) {
+        setUser(res.email);
         console.log("stored User: " + JSON.stringify(res));
-        let signed = await signIn(res.email, res.password).then(
-          async (result) => {
-            console.log("setting User");
-            await setUser(res.email);
-            return res.email;
-          }
-        );
+        let signed = signIn(res.email, res.password).then((result) => {
+          console.log("setting User");
+
+          return res.email;
+        });
         return signed;
       } else {
         return false;
@@ -55,14 +54,14 @@ const AuthProvider = ({ children }) => {
 
     currentUserCreds();
 
-    return () => {
+    /*return () => {
       // cleanup function, end connection to ressources
       if (!client) {
         return;
       } else {
         client.destroy();
       }
-    };
+    };*/
   }, []);
 
   useEffect(() => {
@@ -127,26 +126,18 @@ const AuthProvider = ({ children }) => {
 
   const confirmSignUp = async (email, code) => {
     try {
+      AsyncStorage.removeItem("profileCreated");
       const confirmedUser = await Auth.confirmSignUp(email, code).then(
-        async (res) => {
+        (res) => {
           console.log("reponse du confirmSignup" + JSON.stringify(res));
-
-          let userDocInput = {
-            email: email,
-            id: email,
-          };
-
-          /*await createUserDoc(userDocInput).then((res) => {
-            console.log("Userdoc créé apres confirm signup" + JSON.stringify(res));
-          }).catch(e => console.log("erreur dans la créaction su  userDoc a confirm Signup" + e));*/
         }
       );
       return email;
     } catch (error) {
       if (error.name == "UsernameExistsException") {
-        Alert.alert(error);
+        console.log(error);
       } else {
-        Alert.alert(error);
+        console.log(error);
       }
       console.log("error confirming user", error);
     }
@@ -168,6 +159,7 @@ const AuthProvider = ({ children }) => {
       }
     } else {
       console.log("pas de user Doc");
+      AsyncStorage.removeItem("profileCreated");
       //création du userDoc
       const userDocInput = {
         email: email,
@@ -212,8 +204,9 @@ const AuthProvider = ({ children }) => {
   // logged in user
   const signOut = async () => {
     try {
-      await Auth.signOut();
+      AsyncStorage.removeItem("currentUserCreds");
       setUser(null);
+      await Auth.signOut();
     } catch (error) {
       console.log("error signing out", error);
     }

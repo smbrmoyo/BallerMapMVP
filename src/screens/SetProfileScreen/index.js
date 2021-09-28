@@ -210,7 +210,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                       shadowRadius: 1.41,
                       elevation: 2,
                     }}
-                    placeholder=""
+                    placeholder="Name and Surname"
                     placeholderTextColor="#CDCDCD"
                     onEndEditing={(event) => {
                       setUserProfile({
@@ -241,7 +241,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                       shadowRadius: 1.41,
                       elevation: 2,
                     }}
-                    placeholder="username"
+                    placeholder="Username"
                     placeholderTextColor="#CDCDCD"
                     onEndEditing={(event) =>
                       setUserProfile({

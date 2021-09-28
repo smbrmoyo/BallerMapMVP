@@ -105,18 +105,24 @@ const ConfirmSignUpScreen = ({ navigation }) => {
             <TouchableOpacity
               activeOpacity={0.7}
               style={styles.signIn}
-              onPress={async() => {
-
-                  await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(async() => {
-                  await confirmSignUp(email, code)
-                    .then((res) => {
-                      console.log("Réponse de la fonction confirmSIgnUp " + res);
-                      navigation.navigate("SignInEmail");
-                    })
-                    .catch((error) => {
-                      console.log("Erreur dans la fonction confirmSIgnUp au niveau du screen" + JSON.stringify(error));
-                    })
-                  })
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+                  () => {
+                    confirmSignUp(email, code)
+                      .then((res) => {
+                        console.log(
+                          "Réponse de la fonction confirmSIgnUp " + res
+                        );
+                        navigation.navigate("SignInEmail");
+                      })
+                      .catch((error) => {
+                        console.log(
+                          "Erreur dans la fonction confirmSIgnUp au niveau du screen" +
+                            error
+                        );
+                      });
+                  }
+                );
               }}
             >
               <LinearGradient

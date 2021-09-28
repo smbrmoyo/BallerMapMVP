@@ -102,7 +102,7 @@ export const updateUserProfile = async (updatedUprofile) => {
   return await API.graphql(
     graphqlOperation(mutations.updateUprofile, {
       input: {
-        id: userConf.uProfileId,
+        id: updatedUprofile.id,
         username: updatedUprofile.username,
         name: updatedUprofile.name,
       },

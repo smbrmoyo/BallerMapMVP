@@ -47,7 +47,7 @@ const MapScreen = ({ navigation }) => {
               borderWidth: 1,
               paddingVertical: hsize(10),
               paddingHorizontal: wsize(20),
-              borderRadius: 10,
+              borderRadius: 20,
               height: CARD_HEIGHT,
               width: CARD_WIDTH,
             }}

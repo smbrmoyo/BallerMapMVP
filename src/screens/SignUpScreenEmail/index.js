@@ -51,20 +51,6 @@ const SignUpScreenEmail = ({ navigation }) => {
     console.log("entrée dans le email signup screen");
   }, [signUpTrigger]);
 
-  /*if (error) {
-    Alert.alert("Error signing up. Try again");
-  }
-
-  if (data) {
-    // save token
-    AsyncStorage.setItem("token", data.signUp.token).then(() => {
-      // redirect home
-      //navigation.navigate("Home");
-      setUser(data.signUp.user);
-      console.log(data);
-    });
-  }*/
-
   const [dataSignUp, setdataSignUp] = useState({
     email: "",
     username: "",
@@ -83,7 +69,7 @@ const SignUpScreenEmail = ({ navigation }) => {
       setdataSignUp({
         ...dataSignUp,
         email: val,
-        username:val,
+        username: val,
         check_emailInputChange: true,
       });
     } else {
@@ -164,14 +150,18 @@ const SignUpScreenEmail = ({ navigation }) => {
     <LinearGradient colors={["#743cff", "#bb006e"]} style={styles.container}>
       <StatusBar backgroundColor="#FF6347" barStyle="light-content" />
       <KeyboardAwareScrollView
-        contentContainerStyle={{ position: "absolute", bottom: 0, flex: 1 }}
+        contentContainerStyle={{
+          //position: "absolute",
+          //bottom: 0,
+          //flex: 1,
+          flexGrow: 1,
+        }}
       >
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
           <View style={styles.header}>
             <Text style={styles.text_header}>Sign up Email</Text>
           </View>
         </TouchableWithoutFeedback>
-
 
         <Animatable.View animation="fadeInUpBig" style={styles.footer}>
           <ScrollView showsVerticalScrollIndicator={false}>
@@ -349,9 +339,8 @@ const SignUpScreenEmail = ({ navigation }) => {
                         dataSignUp.username &&
                         dataSignUp.email
                       ) {
-                        signUp(
-                          dataSignUp.email, dataSignUp.password
-                        ).then((res) => {
+                        signUp(dataSignUp.email, dataSignUp.password)
+                          .then((res) => {
                             console.log("SIGNUP Success: " + res);
                             if (res === dataSignUp.username) {
                               navigation.navigate("ConfirmSignUp", {

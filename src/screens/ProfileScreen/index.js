@@ -86,7 +86,7 @@ function EventRow({ event }) {
             //flex: 1,
             //paddingHorizontal: wsize(5),
             paddingVertical: hsize(10),
-            justifyContent: "space-around",
+            //justifyContent: "space-between",
             alignItems: "center",
           }}
         >
@@ -95,12 +95,15 @@ function EventRow({ event }) {
             style={{
               flexDirection: "column",
               marginLeft: wsize(15),
+              width: "60%",
+              //flex: 1,
             }}
           >
             <Text
               style={{
                 fontSize: 18,
               }}
+              ellipsizeMode="tail"
             >
               {event.name}
             </Text>
@@ -108,7 +111,10 @@ function EventRow({ event }) {
               style={{
                 fontSize: 12,
                 color: "grey",
+                width: "90%",
               }}
+              numberOfLines={1}
+              ellipsizeMode="tail"
             >
               {event.description}
             </Text>
@@ -164,6 +170,7 @@ const ProfileScreen = ({ navigation, route }) => {
   const [loading, setLoading] = useState(true);
   const { signOut, user, yourEvents } = useAuth();
   const { profileDoc, status } = useProfile();
+  const [myEvents, setMyEvents] = useState([]);
   const [userExtraInfo, setUserExstraInfo] = useState(null);
   const [username, setUsername] = useState("");
   const isFocused = useIsFocused();
@@ -182,14 +189,7 @@ const ProfileScreen = ({ navigation, route }) => {
     );
 
   useEffect(() => {
-    /*AsyncStorage.getItem("userProfileId").then((result) => {
-      getUprofileDoc(result).then((res) => {
-        console.log(res);
-        setUsername(res.data.getUprofile.username);
-        console.log("username");
-      });
-    });*/
-    console.log(profileDoc);
+    setMyEvents(profileDoc?.eventsCreated.items);
     setLoading(false);
   }, [profileDoc]);
 
@@ -453,7 +453,7 @@ const ProfileScreen = ({ navigation, route }) => {
               <TabContainer />
             </View>
             <FlatList
-              data={yourEvents}
+              data={myEvents}
               keyExtractor={(item) => item.id}
               style={{
                 flex: 1,
