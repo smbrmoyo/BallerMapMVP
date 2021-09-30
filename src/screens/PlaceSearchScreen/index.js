@@ -60,19 +60,6 @@ const PlaceSearchScreen = ({ navigation, route }) => {
           </TouchableOpacity>
         </View>
       ),
-      headerRight: () => (
-        <View style={{ flexDirection: "row", marginHorizontal: wsize(10) }}>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => navigation.navigate("UserSearch")} // Should have a userSearchAddScreen
-            style={{ justifyContent: "center" }}
-          >
-            <View style={styles.iconContainer}>
-              <Ionicons name="people-outline" size={23} color="#743cff" />
-            </View>
-          </TouchableOpacity>
-        </View>
-      ),
     });
   }, [navigation]);
 
@@ -97,7 +84,6 @@ const PlaceSearchScreen = ({ navigation, route }) => {
         return name.search(filter) !== -1;
       });
       setData(newData);
-      //console.log(newData);
       setText(text);
     } else {
       setData(places);

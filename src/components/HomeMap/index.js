@@ -15,8 +15,9 @@ import {
 } from "react-native";
 import * as TaskManager from "expo-task-manager";
 import MapView, { PROVIDER_GOOGLE, Marker, Circle } from "react-native-maps";
-import { Feather } from "@expo/vector-icons";
+import { Feather, Ionicons } from "@expo/vector-icons";
 import { useRoute, useNavigation } from "@react-navigation/native";
+import { useHeaderHeight } from "@react-navigation/stack";
 import * as Location from "expo-location";
 import haversine from "haversine";
 
@@ -42,7 +43,7 @@ const HomeMap = ({ props }) => {
   const route = useRoute();
   const navigation = useNavigation();
   const RADIUS = 20;
-  const [counter, setCounter] = useState(0);
+  const [search, setSearch] = useState(true);
   const [userLocation, setUserLocation] = useState({
     prevCoords: { latitude: 0, longitude: 0 },
     currentCoords: { latitude: 0, longitude: 0 },
@@ -173,20 +174,11 @@ const HomeMap = ({ props }) => {
   let mapIndex = 0;
   const _mapAnimation = useRef(new Animated.Value(0)).current;
 
-  /*for (let i = 0; i < places.length; i++) {
-    let coords = {
-      latitude: places[i].coordinate.latitude,
-      longitude: places[i].coordinate.longitude,
-    };
-    console.log(haversine(MaxCoords, coords, { unit: "mile" }));
-    console.log(i);
-  }*/
-
   useEffect(() => {
     _mapAnimation.addListener(({ value }) => {
       let index = Math.floor(value / CARD_WIDTH + 0.3);
-      if (index >= state.places.length) {
-        index = state.places.length - 1;
+      if (index >= places.length) {
+        index = places.length - 1;
       }
       if (index <= 0) {
         index = 0;
@@ -197,8 +189,7 @@ const HomeMap = ({ props }) => {
       const regionTimeout = setTimeout(() => {
         if (mapIndex !== index) {
           mapIndex = index;
-          const { coords } = state.places[mapIndex]; //  Try people and see if the map is initialized on a marker
-
+          const { coords } = places[mapIndex]; //  Try people and see if the map is initialized on a marker
           _map.current.animateCamera({
             center: { latitude: coords.lat, longitude: coords.long },
             heading: 90,
@@ -212,7 +203,7 @@ const HomeMap = ({ props }) => {
     });
   });
 
-  const interpolations = state.places.map((person, index) => {
+  const interpolations = places.map((person, index) => {
     const inputRange = [
       (index - 1) * CARD_WIDTH,
       index * CARD_WIDTH,
@@ -311,10 +302,10 @@ const HomeMap = ({ props }) => {
             onLayout={() => {
               route.params
                 ? addEvent()
-                : _map.current.animateCamera({
+                : _map.current.setCamera({
                     center: {
-                      latitude: camera.latitude,
-                      longitude: camera.longitude,
+                      latitude: camera?.latitude,
+                      longitude: camera?.longitude,
                     },
                     heading: 90,
                     pitch: 90,
@@ -324,7 +315,7 @@ const HomeMap = ({ props }) => {
             }}
             initialCamera={camera}
           >
-            {state.places.map((place, index) => {
+            {places.map((place, index) => {
               const scaleStyle = {
                 transform: [
                   {
@@ -356,102 +347,112 @@ const HomeMap = ({ props }) => {
                 </Marker>
               );
             })}
-            {/*state.events.map((person, index) => {
-            console;
-          })*/}
-            {state.people.map((location, index) => (
+            {people.map((location, index) => (
               <Marker key={index} coordinate={location.coordinate}>
                 <Bitmoji avatarId={"99397600010_1-s5"} />
               </Marker>
             ))}
           </MapView>
-
-          <Animated.FlatList
-            ref={_scrollView}
-            data={state.places}
-            keyExtractor={(item) => item.id}
-            horizontal
-            pagingEnabled
-            scrollEventThrottle={1}
-            showsHorizontalScrollIndicator={false}
-            snapToInterval={CARD_WIDTH + 20}
-            snapToAlignment="start"
-            decelerationRate={"fast"}
-            style={styles.scrollView}
-            contentInset={{
-              // IOS Only
-              top: 0,
-              left: SPACING_FOR_CARD_INSET,
-              bottom: 0,
-              right: SPACING_FOR_CARD_INSET,
-            }}
-            contentContainerStyle={{
-              alignItems: "center",
-              paddingRight: SPACING_FOR_CARD_INSET,
-            }}
-            onScroll={Animated.event(
-              [
-                {
-                  nativeEvent: {
-                    contentOffset: {
-                      x: _mapAnimation,
+          {false ? (
+            <View style={[styles.buttonContainer, { right: 15, top: "8%" }]}>
+              <TouchableOpacity activeOpacity={0.7} onPress={goToAdd}>
+                <View style={[styles.buttonAdd, { height: 40, width: 40 }]}>
+                  <Ionicons name="search" size={25} color="#743cff" />
+                </View>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <Animated.FlatList
+              ref={_scrollView}
+              data={places}
+              keyExtractor={(item) => item.id}
+              horizontal
+              pagingEnabled
+              scrollEventThrottle={1}
+              showsHorizontalScrollIndicator={false}
+              snapToInterval={CARD_WIDTH + 20}
+              snapToAlignment="start"
+              decelerationRate={"fast"}
+              style={styles.scrollView}
+              contentInset={{
+                // IOS Only
+                top: 0,
+                left: SPACING_FOR_CARD_INSET,
+                bottom: 0,
+                right: SPACING_FOR_CARD_INSET,
+              }}
+              contentContainerStyle={{
+                alignItems: "center",
+                paddingRight: SPACING_FOR_CARD_INSET,
+              }}
+              onScroll={Animated.event(
+                [
+                  {
+                    nativeEvent: {
+                      contentOffset: {
+                        x: _mapAnimation,
+                      },
                     },
                   },
-                },
-              ],
-              { useNativeDriver: true }
-            )}
-            renderItem={({ item, index }) => {
-              const inputRange = [
-                (index - 1) * CARD_WIDTH,
-                index * CARD_WIDTH,
-                (index + 1) * CARD_WIDTH,
-              ];
+                ],
+                { useNativeDriver: true }
+              )}
+              renderItem={({ item, index }) => {
+                const inputRange = [
+                  (index - 1) * CARD_WIDTH,
+                  index * CARD_WIDTH,
+                  (index + 1) * CARD_WIDTH,
+                ];
 
-              const translateY = _mapAnimation.interpolate({
-                inputRange,
-                outputRange: [50, 0, 50],
-                extrapolate: "clamp",
-              });
+                const translateY = _mapAnimation.interpolate({
+                  inputRange,
+                  outputRange: [50, 0, 50],
+                  extrapolate: "clamp",
+                });
 
-              return (
-                <TouchableOpacity
-                  key={index}
-                  activeOpacity={0.7}
-                  onPress={() => {
-                    bsMap.current.snapTo(0);
-                  }}
-                >
-                  <Animated.View style={[styles.card]}>
-                    <TouchableOpacity activeOpacity={0.7} onPress={goToStory}>
-                      <ProfilePicture />
-                    </TouchableOpacity>
-                    <View style={styles.textContent}>
-                      <Text numberOfLines={1} style={styles.cardDescription}>
-                        {item.name}
-                      </Text>
-                      <View style={styles.button}>
-                        <Text
-                          style={[
-                            styles.textSign,
-                            {
-                              color: "#743cff",
-                            },
-                          ]}
-                        >
-                          Info
+                return (
+                  <TouchableOpacity
+                    key={index}
+                    activeOpacity={0.7}
+                    onPress={() => {
+                      bsMap.current.snapTo(0);
+                    }}
+                  >
+                    <Animated.View style={[styles.card]}>
+                      <TouchableOpacity activeOpacity={0.7} onPress={goToStory}>
+                        <ProfilePicture />
+                      </TouchableOpacity>
+                      <View style={styles.textContent}>
+                        <Text numberOfLines={1} style={styles.cardDescription}>
+                          {item.name}
                         </Text>
+                        <View style={styles.button}>
+                          <Text
+                            style={[
+                              styles.textSign,
+                              {
+                                color: "#743cff",
+                              },
+                            ]}
+                          >
+                            Info
+                          </Text>
+                        </View>
                       </View>
-                    </View>
-                  </Animated.View>
-                </TouchableOpacity>
-              );
-            }}
-          />
-
-          <View style={[styles.buttonContainer, { right: 10, bottom: 140 }]}>
+                    </Animated.View>
+                  </TouchableOpacity>
+                );
+              }}
+            />
+          )}
+          <View
+            style={[
+              styles.buttonContainer,
+              { right: 10, bottom: 140 }, // search ? 70 :
+            ]}
+          >
             <TouchableOpacity activeOpacity={0.7} onPress={goToAdd}>
-              <View style={styles.buttonAdd}>
+              <View style={[styles.buttonAdd, { height: 70, width: 70 }]}>
                 <Feather name="plus" size={40} color="#743cff" />
               </View>
             </TouchableOpacity>
