@@ -110,19 +110,6 @@ const EditProfileScreen = ({ props, navigation, route }) => {
           </TouchableOpacity>
         </View>
       ),
-      headerRight: () => (
-        <View style={{ flexDirection: "row", marginHorizontal: wsize(10) }}>
-          <TouchableOpacity
-            activeOpacity={0.7}
-            // Should edit profile on onpress
-            style={{ justifyContent: "center" }}
-          >
-            <View style={styles.iconContainer}>
-              <Feather name="check" size={23} color="#743cff" />
-            </View>
-          </TouchableOpacity>
-        </View>
-      ),
     });
   }, []);
 

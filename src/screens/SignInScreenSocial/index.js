@@ -22,8 +22,10 @@ import styles from "./styles";
 import SocialButton from "../../components/SocialButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTheme } from "react-native-paper";
+import * as AppleAuthentication from "expo-apple-authentication";
 
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { windowHeight, windowWidth } from "../../utils/Dimensions";
 
 const SignInScreenSocial = ({ navigation, props }) => {
   const { signIn } = useAuth();
@@ -177,12 +179,32 @@ const SignInScreenSocial = ({ navigation, props }) => {
             backgroundColor="white"
             onPress={() => console.log("google pressed")}
           />
-          <SocialButton
-            buttonTitle="Sign in with Apple"
-            btnType="apple"
-            color="black"
-            backgroundColor="white"
-            onPress={() => console.log("Apple pressed")}
+          <AppleAuthentication.AppleAuthenticationButton
+            buttonType={
+              AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN
+            }
+            buttonStyle={
+              AppleAuthentication.AppleAuthenticationButtonStyle.BLACK
+            }
+            cornerRadius={5}
+            style={{ width: "100%", height: windowHeight / 15, marginTop: 10 }}
+            onPress={async () => {
+              try {
+                const credential = await AppleAuthentication.signOutAsync({
+                  requestedScopes: [
+                    AppleAuthentication.AppleAuthenticationScope.FULL_NAME,
+                    AppleAuthentication.AppleAuthenticationScope.EMAIL,
+                  ],
+                });
+                console.log(credential);
+              } catch (e) {
+                if (e.code === "ERR_CANCELED") {
+                  // handle that the user canceled the sign-in flow
+                } else {
+                  // handle other errors
+                }
+              }
+            }}
           />
           <SocialButton
             buttonTitle="Sign in with Facebook"

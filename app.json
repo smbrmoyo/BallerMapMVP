@@ -16,8 +16,9 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "userInterfaceStyle": "light",
+      "usesAppleSignIn": true,
       "infoPlist": {
         "UIBackgroundModes": ["location", "fetch"],
         "NSLocationAlwaysAndWhenInUseUsageDescription": "App requires geolocation to improve the quality of the service"

@@ -143,6 +143,9 @@ const AppStack = (route) => {
     if (routeName === "CreatePost") {
       return false;
     }
+    if (routeName === "UserSearch") {
+      return false;
+    }
     return true;
   };
 

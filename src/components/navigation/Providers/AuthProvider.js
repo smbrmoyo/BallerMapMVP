@@ -117,13 +117,6 @@ const AuthProvider = ({ children }) => {
 
   // Confirm signUp through verification per email
 
-  /**Has an error No current user when creating because user not authenticated yet
-   * Should be called after first signIn***
-   * Could easily use AsyncStorage to check if it is first login
-   * or if userDoc was already created
-   * then call createUserDoc and createUserProfile
-   */
-
   const confirmSignUp = async (email, code) => {
     try {
       AsyncStorage.removeItem("profileCreated");

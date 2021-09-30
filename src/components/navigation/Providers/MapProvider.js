@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import Geocoder from "react-native-geocoding";
 import { Auth, API, graphqlOperation } from "aws-amplify";
 import { useQuery } from "react-query";
+import * as Location from "expo-location";
 
 import {
   createPlace,
@@ -17,28 +18,36 @@ const MapProvider = ({ children }) => {
   //const [colorScheme, SetColorScheme] = useState(Appearance.getColorScheme());
   const [places, setPlaces] = useState([]);
   const [status, setStatus] = useState("loading");
-  const [render, setRender] = useState(0);
+  const [camera, setCamera] = useState(null);
   // Geocoder.init("AIzaSyCAWRoRAT1jDaCuwACpmYsseOgW1-_XrNg");
 
-  const queryClient = useQuery();
+  const getCamera = async () => {
+    let location = await Location.getLastKnownPositionAsync().catch((err) =>
+      console.log(err)
+    );
+  };
 
-  const result = useQuery("getPlaces", getPlacesList);
+  const resultPlaces = useQuery("getPlaces", getPlacesList);
+  const resultCamera = useQuery("getCamera", getCamera);
 
   useEffect(() => {
-    if (result.status != status) {
-      setPlaces(result.data);
-      console.log(places.length);
-      setStatus(result.status);
+    if (resultPlaces.status != status && resultCamera.status != status) {
+      setPlaces(resultPlaces.data);
+      setCamera(resultCamera.data);
+      setStatus(resultCamera.status);
     } else {
-      setStatus(result.status);
+      setStatus(resultCamera.status);
     }
-  }, [result.status]);
+  }, [resultPlaces.status]);
 
   return (
     <MapContext.Provider
       value={{
         places,
+        setPlaces,
         status,
+        camera,
+        setCamera,
       }}
     >
       {children}
@@ -78,15 +87,15 @@ for (let i = 0; i < places.length; i++) {
       if (i == 39) {
         Geocoder.from(place.name)
           .then((json) => {
-            var location = json.results[0].geometry.location;
+            var location = json.resultPlacess[0].geometry.location;
             console.log(location);
             console.log(place.name);
             let input = {
               name: place.name,
               address: place.address,
               coords: {
-                lat: json.results[0].geometry.location.lat,
-                long: json.results[0].geometry.location.lng,
+                lat: json.resultPlacess[0].geometry.location.lat,
+                long: json.resultPlacess[0].geometry.location.lng,
               },
             };
             // createPlace(input).then((res) => console.log(res));
@@ -97,10 +106,10 @@ for (let i = 0; i < places.length; i++) {
 
 // Charge les données sur les places
 /*useEffect(() => {
-    getPlaces().then((result) => setPlaces(result));
+    getPlaces().then((resultPlaces) => setPlaces(resultPlaces));
 
     const placesUpdate = setInterval(() => {
-      getPlaces().then((result) => setPlaces(result));
+      getPlaces().then((resultPlaces) => setPlaces(resultPlaces));
     }, 1800000);
     return () => {
       clearInterval(placesUpdate);

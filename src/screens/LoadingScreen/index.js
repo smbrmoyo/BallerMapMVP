@@ -4,7 +4,7 @@ import * as Location from "expo-location";
 import * as TaskManager from "expo-task-manager";
 
 const LoadingScreen = ({ style, fullscreen, ...props }) => {
-  const TASK_FETCH_LOCATION = "TASK_FETCH_LOCATION";
+  /*const TASK_FETCH_LOCATION = "TASK_FETCH_LOCATION";
 
   // 1 define the task passing its name and a callback that will be called whenever the location changes
   TaskManager.defineTask(
@@ -41,7 +41,7 @@ const LoadingScreen = ({ style, fullscreen, ...props }) => {
     if (value) {
       Location.stopLocationUpdatesAsync(TASK_FETCH_LOCATION);
     }
-  });
+  });*/
 
   return (
     <View style={[styles.container, { flex: fullscreen ? 1 : 0 }, style]}>
