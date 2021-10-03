@@ -28,6 +28,7 @@ import {
   Ionicons,
 } from "@expo/vector-icons";
 import styles from "./styles";
+import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
 
 function SearchBarFollowers(props) {
   return (
@@ -123,11 +124,14 @@ function FollowRow(props) {
 }
 
 const FollowingScreen = ({ navigation }) => {
+  const { profileDoc } = useProfile();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { colors, dark } = useTheme();
   const [text, setText] = useState("");
   const [isFollowing, setIsFollowing] = useState(isFollowing);
+
+  console.log(profileDoc?.following.items[0].followedID);
 
   {
     /* Should receive isFollowing as route.params from previous screen
@@ -200,7 +204,6 @@ const FollowingScreen = ({ navigation }) => {
       setData(allData);
       setLoading(false);
     });*/
-    setData(users);
     setLoading(false);
   }, []);
   if (loading) {

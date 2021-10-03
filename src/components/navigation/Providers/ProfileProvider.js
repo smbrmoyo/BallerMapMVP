@@ -58,7 +58,7 @@ const useProfile = () => {
   //Valeurs du AuthProvider
   const profile = useContext(ProfileContext);
   if (profile == null) {
-    throw new Error("useAuth() called outside of a AuthProvider?");
+    throw new Error("useProfile() called outside of a ProfileProvider?");
   }
   return profile;
 };

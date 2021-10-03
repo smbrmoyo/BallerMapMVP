@@ -7,6 +7,8 @@ import {
   FlatList,
   SafeAreaView,
   Dimensions,
+  TextInput,
+  Keyboard,
   TouchableOpacity,
   TouchableWithoutFeedback,
   StatusBar,
@@ -16,7 +18,7 @@ import {
 import * as TaskManager from "expo-task-manager";
 import MapView, { PROVIDER_GOOGLE, Marker, Circle } from "react-native-maps";
 import { Feather, Ionicons } from "@expo/vector-icons";
-import { useRoute, useNavigation } from "@react-navigation/native";
+import { useRoute, useNavigation, useTheme } from "@react-navigation/native";
 import { useHeaderHeight } from "@react-navigation/stack";
 import * as Location from "expo-location";
 import haversine from "haversine";
@@ -43,7 +45,8 @@ const HomeMap = ({ props }) => {
   const route = useRoute();
   const navigation = useNavigation();
   const RADIUS = 20;
-  const [search, setSearch] = useState(true);
+  const { colors, dark } = useTheme();
+  const [searchState, setSearchState] = useState(false);
   const [userLocation, setUserLocation] = useState({
     prevCoords: { latitude: 0, longitude: 0 },
     currentCoords: { latitude: 0, longitude: 0 },
@@ -53,22 +56,9 @@ const HomeMap = ({ props }) => {
     longitude: 2.3120161,
     pitch: 90,
     heading: 90,
-    zoom: 18,
+    zoom: 19,
     altitude: 18,
   });
-
-  const initialMapState = {
-    people,
-    events: [],
-    places,
-    region: {
-      latitude: 48.872008,
-      longitude: 2.3120161,
-      latitudeDelta: 0.003,
-      longitudeDelta: 0.0021,
-    },
-    camera,
-  };
 
   useEffect(() => {
     _onMapReady();
@@ -84,13 +74,6 @@ const HomeMap = ({ props }) => {
     })();
   }, []);
 
-  useEffect(() => {
-    setState({
-      ...state,
-      places: places,
-    });
-  }, [places]);
-
   const _onMapReady = async () => {
     // console.log("places in the map : " + JSON.stringify(places[0]));
     let location = await Location.getLastKnownPositionAsync();
@@ -99,6 +82,7 @@ const HomeMap = ({ props }) => {
       ...camera,
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
+      heading: location.coords.heading,
     }),
       setUserLocation({
         ...userLocation,
@@ -169,8 +153,6 @@ const HomeMap = ({ props }) => {
     };
   });
 
-  const [state, setState] = useState(initialMapState);
-
   let mapIndex = 0;
   const _mapAnimation = useRef(new Animated.Value(0)).current;
 
@@ -219,23 +201,27 @@ const HomeMap = ({ props }) => {
     return { scale };
   });
 
-  const addEvent = () => {
-    if (route.params.tags) {
-      //Alert.alert("exists");
-      console.log(route.params.tags);
-
-      initialMapState.places.push({
-        id: route.params.description,
-        name: route.params.description,
-        coordinate: {
+  const createdEvent = () => {
+    if (route.params.createdEvent) {
+      _map.current.animateCamera({
+        center: {
           latitude: route.params.address.lat,
           longitude: route.params.address.lng,
         },
-        heading: 0,
+        heading: 90,
+        pitch: 90,
+        zoom: 18,
+        altitude: 18,
       });
 
-      setState(initialMapState);
+      //console.log(JSON.stringify(route.params.tags));
+    } else {
+      return null;
+    }
+  };
 
+  const searchedPlace = () => {
+    if (route.params.searchedPlace) {
       _map.current.animateCamera({
         center: {
           latitude: route.params.address.lat,
@@ -266,6 +252,67 @@ const HomeMap = ({ props }) => {
 
   const _map = useRef(null);
   const _scrollView = useRef(null);
+
+  const heightAnim = useRef(new Animated.Value(0)).current;
+  const lowAnim = useRef(new Animated.Value(1)).current;
+
+  function animate() {
+    setSearchState(!searchState);
+
+    let coords = {
+      coordinate: {
+        latitude: places[0].coords.lat,
+        longitude: places[0].coords.long,
+      },
+    };
+
+    _map.current.setCamera({
+      center: coords.coordinate,
+      heading: 90,
+      pitch: 90,
+      zoom: 18,
+      altitude: 18,
+    });
+
+    Animated.timing(heightAnim, {
+      toValue: 200,
+      duration: 250,
+      useNativeDriver: true,
+    }).start();
+
+    Animated.timing(lowAnim, {
+      toValue: -200,
+      duration: 250,
+      useNativeDriver: true,
+    }).start();
+  }
+
+  function undoAnimate() {
+    Keyboard.dismiss();
+    setSearchState(!searchState);
+
+    _map.current.setCamera({
+      center: {
+        latitude: camera.latitude,
+        longitude: camera.longitude,
+      },
+      heading: 90,
+      pitch: 90,
+      zoom: 18,
+      altitude: 18,
+    });
+
+    Animated.timing(lowAnim, {
+      toValue: 0,
+      duration: 250,
+      useNativeDriver: true,
+    }).start();
+    Animated.timing(heightAnim, {
+      toValue: 0,
+      duration: 250,
+      useNativeDriver: true,
+    }).start();
+  }
 
   const goToAdd = () => {
     //setAddPressed(true);
@@ -299,9 +346,23 @@ const HomeMap = ({ props }) => {
             loadingEnabled={true}
             onMapReady={_onMapReady}
             followUserLocation={true}
+            onUserLocationChange={(event) => {
+              if (!searchState) {
+                _map.current.animateCamera({
+                  center: {
+                    latitude: event.nativeEvent.coordinate.latitude,
+                    longitude: event.nativeEvent.coordinate.longitude,
+                  },
+                  heading: event.nativeEvent.coordinate.heading,
+                  pitch: 90,
+                  zoom: 18,
+                  altitude: 18,
+                });
+              }
+            }}
             onLayout={() => {
               route.params
-                ? addEvent()
+                ? (createdEvent(), searchedPlace())
                 : _map.current.setCamera({
                     center: {
                       latitude: camera?.latitude,
@@ -353,110 +414,201 @@ const HomeMap = ({ props }) => {
               </Marker>
             ))}
           </MapView>
-          {false ? (
-            <View style={[styles.buttonContainer, { right: 15, top: "8%" }]}>
-              <TouchableOpacity activeOpacity={0.7} onPress={goToAdd}>
-                <View style={[styles.buttonAdd, { height: 40, width: 40 }]}>
-                  <Ionicons name="search" size={25} color="#743cff" />
-                </View>
-              </TouchableOpacity>
-            </View>
-          ) : (
-            <Animated.FlatList
-              ref={_scrollView}
-              data={places}
-              keyExtractor={(item) => item.id}
-              horizontal
-              pagingEnabled
-              scrollEventThrottle={1}
-              showsHorizontalScrollIndicator={false}
-              snapToInterval={CARD_WIDTH + 20}
-              snapToAlignment="start"
-              decelerationRate={"fast"}
-              style={styles.scrollView}
-              contentInset={{
-                // IOS Only
-                top: 0,
-                left: SPACING_FOR_CARD_INSET,
-                bottom: 0,
-                right: SPACING_FOR_CARD_INSET,
-              }}
-              contentContainerStyle={{
-                alignItems: "center",
-                paddingRight: SPACING_FOR_CARD_INSET,
-              }}
-              onScroll={Animated.event(
-                [
-                  {
-                    nativeEvent: {
-                      contentOffset: {
-                        x: _mapAnimation,
-                      },
-                    },
-                  },
-                ],
-                { useNativeDriver: true }
-              )}
-              renderItem={({ item, index }) => {
-                const inputRange = [
-                  (index - 1) * CARD_WIDTH,
-                  index * CARD_WIDTH,
-                  (index + 1) * CARD_WIDTH,
-                ];
-
-                const translateY = _mapAnimation.interpolate({
-                  inputRange,
-                  outputRange: [50, 0, 50],
-                  extrapolate: "clamp",
-                });
-
-                return (
-                  <TouchableOpacity
-                    key={index}
-                    activeOpacity={0.7}
-                    onPress={() => {
-                      bsMap.current.snapTo(0);
-                    }}
-                  >
-                    <Animated.View style={[styles.card]}>
-                      <TouchableOpacity activeOpacity={0.7} onPress={goToStory}>
-                        <ProfilePicture />
-                      </TouchableOpacity>
-                      <View style={styles.textContent}>
-                        <Text numberOfLines={1} style={styles.cardDescription}>
-                          {item.name}
-                        </Text>
-                        <View style={styles.button}>
-                          <Text
-                            style={[
-                              styles.textSign,
-                              {
-                                color: "#743cff",
-                              },
-                            ]}
-                          >
-                            Info
-                          </Text>
-                        </View>
-                      </View>
-                    </Animated.View>
-                  </TouchableOpacity>
-                );
+          <Animated.View
+            style={{
+              position: "absolute",
+              paddingLeft: wsize(10),
+              flexDirection: "row",
+              height: "6%",
+              width: "90%",
+              top: "-25%",
+              borderRadius: hsize(10),
+              alignSelf: "center",
+              transform: [
+                {
+                  translateY: heightAnim,
+                },
+              ],
+              shadowColor: "#000",
+              shadowOffset: {
+                width: 0,
+                height: 1,
+              },
+              shadowOpacity: 0.2,
+              shadowRadius: 1.41,
+              elevation: 2,
+              color: colors.text,
+              backgroundColor: "white",
+              borderColor: colors.border,
+              borderWidth: dark ? 1 : 0.5,
+            }}
+          >
+            <TextInput //autoFocus
+              //autoFocus
+              //onChangeText={props.onChangeTextDebounced}
+              //value={props.text}
+              placeholder="Search"
+              placeholderTextColor="#CDCDCD"
+              style={{
+                //padding: hsize(10),
+                //backgroundColor: "#eee",
+                //marginVertical: hsize(5),
+                //marginRight: wsize(5),
+                flex: 1,
               }}
             />
-          )}
-          <View
+            <TouchableOpacity
+              style={{
+                justifyContent: "center",
+                marginRight: wsize(5),
+              }}
+              activeOpacity={0.7}
+              onPress={undoAnimate}
+            >
+              <Feather name="x" size={20} color="grey" />
+            </TouchableOpacity>
+          </Animated.View>
+          <Animated.View
             style={[
               styles.buttonContainer,
-              { right: 10, bottom: 140 }, // search ? 70 :
+              {
+                right: 15,
+                top: "6.5%",
+                transform: [
+                  {
+                    translateY: lowAnim,
+                  },
+                ],
+              },
+            ]}
+          >
+            <TouchableOpacity activeOpacity={0.7} onPress={animate}>
+              <View
+                style={[
+                  styles.buttonAdd,
+                  {
+                    height: 40,
+                    width: 40,
+                    backgroundColor: "#eee",
+                    borderWidth: 0,
+                  },
+                ]}
+              >
+                <Ionicons name="search" size={25} color="#743cff" />
+              </View>
+            </TouchableOpacity>
+          </Animated.View>
+          <Animated.FlatList
+            ref={_scrollView}
+            data={places}
+            keyExtractor={(item) => item.id}
+            horizontal
+            pagingEnabled
+            scrollEventThrottle={1}
+            showsHorizontalScrollIndicator={false}
+            snapToInterval={CARD_WIDTH + 20}
+            snapToAlignment="start"
+            decelerationRate={"fast"}
+            style={[
+              styles.scrollView,
+              {
+                transform: [
+                  {
+                    translateY: lowAnim,
+                  },
+                ],
+              },
+            ]}
+            contentInset={{
+              // IOS Only
+              top: 0,
+              left: SPACING_FOR_CARD_INSET,
+              bottom: 0,
+              right: SPACING_FOR_CARD_INSET,
+            }}
+            contentContainerStyle={{
+              alignItems: "center",
+              paddingRight: SPACING_FOR_CARD_INSET,
+            }}
+            onScroll={Animated.event(
+              [
+                {
+                  nativeEvent: {
+                    contentOffset: {
+                      x: _mapAnimation,
+                    },
+                  },
+                },
+              ],
+              { useNativeDriver: true }
+            )}
+            renderItem={({ item, index }) => {
+              const inputRange = [
+                (index - 1) * CARD_WIDTH,
+                index * CARD_WIDTH,
+                (index + 1) * CARD_WIDTH,
+              ];
+
+              const translateY = _mapAnimation.interpolate({
+                inputRange,
+                outputRange: [50, 0, 50],
+                extrapolate: "clamp",
+              });
+
+              return (
+                <TouchableOpacity
+                  key={index}
+                  activeOpacity={0.7}
+                  onPress={() => {
+                    bsMap.current.snapTo(0);
+                  }}
+                >
+                  <Animated.View style={[styles.card]}>
+                    <TouchableOpacity activeOpacity={0.7} onPress={goToStory}>
+                      <ProfilePicture />
+                    </TouchableOpacity>
+                    <View style={styles.textContent}>
+                      <Text numberOfLines={1} style={styles.cardDescription}>
+                        {item.name}
+                      </Text>
+
+                      <Text
+                        style={[
+                          styles.textSign,
+                          {
+                            color: "grey",
+                          },
+                        ]}
+                      >
+                        {item.address}
+                      </Text>
+                    </View>
+                  </Animated.View>
+                </TouchableOpacity>
+              );
+            }}
+          />
+
+          <Animated.View
+            style={[
+              styles.buttonContainer,
+              {
+                right: 10,
+                bottom: 60,
+                transform: [
+                  {
+                    translateY: heightAnim,
+                  },
+                ],
+              },
             ]}
           >
             <TouchableOpacity activeOpacity={0.7} onPress={goToAdd}>
-              <View style={[styles.buttonAdd, { height: 70, width: 70 }]}>
+              <View style={styles.buttonAdd}>
                 <Feather name="plus" size={40} color="#743cff" />
               </View>
             </TouchableOpacity>
-          </View>
+          </Animated.View>
         </Animated.View>
       </TouchableWithoutFeedback>
     </>

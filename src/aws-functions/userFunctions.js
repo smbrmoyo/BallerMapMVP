@@ -41,6 +41,15 @@ export const getUprofileDoc = async (email) => {
   return uProfileDoc.data.getUprofile;
 };
 
+/**
+ * @description get all user profiles
+ * @returns list of user profiles
+ */
+export const getAllUserProfiles = async () => {
+  let usersList = await API.graphql(graphqlOperation(queries.listUprofiles));
+  return usersList.data.listUprofiles.items;
+};
+
 /*
  * =============================================================================
  *                                  MUTATIONS

@@ -19,6 +19,8 @@ const styles = StyleSheet.create({
   buttonAdd: {
     justifyContent: "center",
     alignItems: "center",
+    height: 70,
+    width: 70,
     borderRadius: 35,
     borderWidth: 0.5,
     borderColor: "white",
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     position: "absolute",
-    bottom: 0,
+    bottom: "-31%",
     flex: 1,
     paddingHorizontal: SPACING_FOR_CARD_INSET,
   },
@@ -112,8 +114,7 @@ const styles = StyleSheet.create({
     //fontFamily: "ComfortaaBold",
   },
   textSign: {
-    fontSize: 14,
-    fontWeight: "bold",
+    fontSize: 12,
     alignSelf: "center",
     marginTop: 5,
   },

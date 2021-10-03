@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-import users from "../../assets/data/people";
+//import users from "../../assets/data/people";
 import ProfilePicture from "../../components/ProfilePicture";
 import { wsize, hsize } from "../../utils/Dimensions";
 import debounce from "lodash/debounce";
@@ -28,6 +28,7 @@ import {
   Ionicons,
 } from "@expo/vector-icons";
 import styles from "./styles";
+import { useMap } from "../../components/navigation/Providers/MapProvider";
 
 function SearchBarFollowers(props) {
   return (
@@ -51,7 +52,7 @@ function SearchBarFollowers(props) {
   );
 }
 
-function FollowRow(item) {
+function FollowRow({ item, navigation }) {
   const [isAdded, setIsAdded] = useState(true);
   const onAddPress = () => {
     setIsAdded(!isAdded);
@@ -60,15 +61,12 @@ function FollowRow(item) {
     <TouchableOpacity
       activeOpacity={0.7}
       style={styles.postHeaderFirst}
-      /*onPress={() => {
-        props.navigate("OtherProfile", {
-          user: {
-            id: item.key,
-            //photo: item.photoURL,
-            userName: item.name,
-          },
+      onPress={() => {
+        navigation.navigate("Profile", {
+          screen: "OtherProfile",
+          params: { user: item },
         });
-      }}*/
+      }}
     >
       <View style={styles.postHeaderContainer}>
         <View
@@ -78,6 +76,7 @@ function FollowRow(item) {
             //paddingHorizontal: wsize(5),
             paddingVertical: hsize(10),
             justifyContent: "space-around",
+            alignItems: "center",
           }}
         >
           <ProfilePicture size={50} />
@@ -98,10 +97,10 @@ function FollowRow(item) {
             <Text
               style={{
                 fontSize: 12,
-                color: "black",
+                color: "grey",
               }}
             >
-              {item.name}
+              {item.username}
             </Text>
           </View>
         </View>
@@ -139,7 +138,7 @@ const UserSearchScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const { colors, dark } = useTheme();
   const [text, setText] = useState("");
-  // const followers = [];
+  const { users } = useMap();
   const [data, setData] = useState(users); // users should come from uProfile
 
   const searchFilter = async (text) => {
@@ -221,7 +220,9 @@ const UserSearchScreen = ({ navigation }) => {
               onChangeTextDebounced={(text) => searchFilter(text)}
             />
           }
-          renderItem={(item) => <FollowRow item isAdded onAddPress />}
+          renderItem={({ item }) => (
+            <FollowRow item={item} isAdded onAddPress navigation={navigation} />
+          )}
         />
       </View>
     </SafeAreaView>
