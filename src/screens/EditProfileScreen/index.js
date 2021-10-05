@@ -53,8 +53,6 @@ import { updateUserProfile } from "../../aws-functions/userFunctions";
 import userConf from "../../aws-functions/userConf";
 import * as subscriptions from "../../graphql/subscriptions";
 
-//navigator.geolocation = require("@react-native-community/geolocation");
-
 const EditProfileScreen = ({ props, navigation, route }) => {
   const username = "";
   const [color, setColor] = useState("#CDCDCD");
@@ -65,21 +63,6 @@ const EditProfileScreen = ({ props, navigation, route }) => {
 
   var bsEditProf = useRef(null);
   var fallEditProf = useRef(new Animated.Value(1)).current;
-
-  /*
-  Watch closely all the arguments necessary to update profile
-  */
-
-  useEffect(() => {
-    /*const subscription = API.graphql(
-      graphqlOperation(subscriptions.onUpdateUprofile)
-    ).subscribe({
-      next: ({ value }) => console.log(value),
-      error: (error) => console.warn(error),
-    });
-
-    return () => subscription.unsubscribe();*/
-  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({

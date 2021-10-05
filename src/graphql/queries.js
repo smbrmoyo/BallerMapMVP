@@ -210,6 +210,10 @@ export const getUprofile = /* GraphQL */ `
           id
           followerID
           followedID
+          followed {
+            id
+            name
+          }
           createdAt
           updatedAt
         }

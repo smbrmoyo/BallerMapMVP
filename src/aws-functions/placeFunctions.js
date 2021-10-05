@@ -12,6 +12,16 @@ import * as queries from "../graphql/queries";
  * =============================================================================
  */
 
+export const getPlaces = async (id) => {
+  let place = await API.graphql(
+    graphqlOperation(queries.getPlace, {
+      input: { id: id },
+    })
+  );
+
+  return place.data.getPlace;
+};
+
 export const getPlacesList = async (filterInput, limit, nextToken) => {
   let placesList = await API.graphql(
     graphqlOperation(queries.listPlaces, { filterInput, limit, nextToken })
@@ -27,7 +37,6 @@ export const getPlacesList = async (filterInput, limit, nextToken) => {
  * @returns array of places docs
  */
 export const getFilteredPlaces = async (filter, limit) => {
-
   let placesList = await API.graphql(
     graphqlOperation(queries.listPlaces, {
       filter,

@@ -1,17 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import {
-  View,
-  Text,
-  Image,
-  ScrollView,
-  FlatList,
-  SafeAreaView,
   Dimensions,
-  TextInput,
   Keyboard,
-  TouchableOpacity,
   TouchableWithoutFeedback,
-  StatusBar,
   Animated,
   Alert,
 } from "react-native";
@@ -36,6 +27,7 @@ import AnimatedSearchButton from "./AnimatedSearchButton";
 import AnimatedAddButton from "./AnimatedAddButton";
 import AnimatedTextInput from "./AnimatedTextInput";
 import AnimatedCard from "./AnimatedCard";
+import { getPlace } from "../../graphql/queries";
 
 const { width, height } = Dimensions.get("window");
 const CARD_HEIGHT = 100;
@@ -207,18 +199,36 @@ const HomeMap = ({ props }) => {
 
   const createdEvent = () => {
     if (route.params.createdEvent) {
-      _map.current.animateCamera({
+      let createdEvent = route.params.createdEvent;
+      let index = route.params.index;
+      setSearchState(true);
+
+      let x = index * CARD_WIDTH + index * 20;
+
+      _scrollView.current.scrollTo({ x: x, animated: true });
+
+      Animated.timing(heightAnim, {
+        toValue: 200,
+        duration: 250,
+        useNativeDriver: true,
+      }).start();
+
+      Animated.timing(lowAnim, {
+        toValue: -200,
+        duration: 250,
+        useNativeDriver: true,
+      }).start();
+
+      _map.current.setCamera({
         center: {
-          latitude: route.params.address.lat,
-          longitude: route.params.address.lng,
+          latitude: createdEvent.coords.lat,
+          longitude: createdEvent.coords.long,
         },
         heading: 90,
         pitch: 90,
         zoom: 18,
         altitude: 18,
       });
-
-      //console.log(JSON.stringify(route.params.tags));
     } else {
       return null;
     }
@@ -226,32 +236,46 @@ const HomeMap = ({ props }) => {
 
   const searchedPlace = () => {
     if (route.params.searchedPlace) {
-      _map.current.animateCamera({
+      let searchedPlace = route.params.searchedPlace;
+      let index = route.params.index;
+
+      let x = index * CARD_WIDTH + index * 20;
+
+      _scrollView.current.scrollTo({ x: x, animated: true });
+
+      _map.current.setCamera({
         center: {
-          latitude: route.params.address.lat,
-          longitude: route.params.address.lng,
+          latitude: searchedPlace.coords.lat,
+          longitude: searchedPlace.coords.long,
         },
         heading: 90,
         pitch: 90,
         zoom: 18,
         altitude: 18,
       });
-
-      //console.log(JSON.stringify(route.params.tags));
     } else {
       return null;
     }
   };
 
   const onMarkerPress = (mapEventData) => {
+    Animated.timing(heightAnim, {
+      toValue: 200,
+      duration: 250,
+      useNativeDriver: true,
+    }).start();
+
+    Animated.timing(lowAnim, {
+      toValue: -200,
+      duration: 250,
+      useNativeDriver: true,
+    }).start();
+
     const markerID = mapEventData._targetInst.return.key;
 
     let x = markerID * CARD_WIDTH + markerID * 20;
-    if (Platform.OS === "ios") {
-      x = x - SPACING_FOR_CARD_INSET;
-    }
 
-    _scrollView.current.scrollToOffset({ x: x, animated: true });
+    _scrollView.current.scrollTo({ x: x, animated: true });
   };
 
   const _map = useRef(null);
@@ -260,13 +284,13 @@ const HomeMap = ({ props }) => {
   const heightAnim = useRef(new Animated.Value(0)).current;
   const lowAnim = useRef(new Animated.Value(1)).current;
 
-  function animate() {
+  function animate(place = null) {
     setSearchState(!searchState);
 
     let coords = {
       coordinate: {
-        latitude: places[0].coords.lat,
-        longitude: places[0].coords.long,
+        latitude: place == null ? place.coords.lat : places[0].coords.lat,
+        longitude: place == null ? place.coords.long : places[0].coords.long,
       },
     };
 
@@ -319,13 +343,11 @@ const HomeMap = ({ props }) => {
   }
 
   const goToAdd = () => {
-    //setAddPressed(true);
     navigation.navigate("Add");
   };
 
   const goToStory = () => {
-    navigation.navigate("Story");
-    //userId
+    //navigation.navigate("Story");
   };
 
   return (
@@ -365,7 +387,23 @@ const HomeMap = ({ props }) => {
               }
             }}
             onLayout={() => {
-              route.params
+              if (route.params?.createdEvent) {
+                createdEvent();
+              } else if (route.params?.searchedPlace) {
+                searchedPlace();
+              } else {
+                _map.current.setCamera({
+                  center: {
+                    latitude: camera?.latitude,
+                    longitude: camera?.longitude,
+                  },
+                  heading: 90,
+                  pitch: 90,
+                  zoom: 18,
+                  altitude: 18,
+                });
+              }
+              /*route.params
                 ? (createdEvent(), searchedPlace())
                 : _map.current.setCamera({
                     center: {
@@ -376,7 +414,7 @@ const HomeMap = ({ props }) => {
                     pitch: 90,
                     zoom: 18,
                     altitude: 18,
-                  });
+                  });*/
             }}
             initialCamera={camera}
           >
@@ -398,7 +436,7 @@ const HomeMap = ({ props }) => {
 
               return (
                 <Marker
-                  key={place.id}
+                  key={index}
                   coordinate={coords.coordinate}
                   onPress={(e) => onMarkerPress(e)}
                 >
@@ -425,10 +463,8 @@ const HomeMap = ({ props }) => {
             undoAnimate={undoAnimate}
           />
           <AnimatedSearchButton lowAnim={lowAnim} animate={animate} />
-          <Animated.FlatList
+          <Animated.ScrollView
             ref={_scrollView}
-            data={places}
-            keyExtractor={(item) => item.id}
             horizontal
             pagingEnabled
             scrollEventThrottle={1}
@@ -469,8 +505,21 @@ const HomeMap = ({ props }) => {
               ],
               { useNativeDriver: true }
             )}
-            renderItem={({ item, index }) => {
-              const inputRange = [
+          >
+            {places.map((item, index) => (
+              <AnimatedCard key={index} goToStory={goToStory} item={item} />
+            ))}
+          </Animated.ScrollView>
+          <AnimatedAddButton heightAnim={heightAnim} goToAdd={goToAdd} />
+        </Animated.View>
+      </TouchableWithoutFeedback>
+    </>
+  );
+};
+
+export default HomeMap;
+
+/**const inputRange = [
                 (index - 1) * CARD_WIDTH,
                 index * CARD_WIDTH,
                 (index + 1) * CARD_WIDTH,
@@ -480,18 +529,4 @@ const HomeMap = ({ props }) => {
                 inputRange,
                 outputRange: [50, 0, 50],
                 extrapolate: "clamp",
-              });
-
-              return (
-                <AnimatedCard key={index} goToStory={goToStory} item={item} />
-              );
-            }}
-          />
-          <AnimatedAddButton heightAnim={heightAnim} goToAdd={goToAdd} />
-        </Animated.View>
-      </TouchableWithoutFeedback>
-    </>
-  );
-};
-
-export default HomeMap;
+              }); */

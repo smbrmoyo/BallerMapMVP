@@ -63,8 +63,8 @@ const AddScreen = ({ props, navigation, route }) => {
 
   const [eventData, setEventData] = useState({
     name: "", //name of the place
-    placeID: route.params?.item.id,
-    placeName: route.params?.item.name,
+    placeID: route.params?.searchedPlace.id,
+    placeName: route.params?.searchedPlace.name,
     creatorID: user,
     tags: [],
     description: "",
@@ -78,8 +78,8 @@ const AddScreen = ({ props, navigation, route }) => {
     if (route.params !== undefined) {
       setEventData({
         ...eventData,
-        placeID: route.params?.item.id,
-        placeName: route.params?.item.name,
+        placeID: route.params?.searchedPlace.id,
+        placeName: route.params?.searchedPlace.name,
       });
     }
   }, [route]);
@@ -413,7 +413,13 @@ const AddScreen = ({ props, navigation, route }) => {
                         Haptics.ImpactFeedbackStyle.Medium
                       ).then(() => {
                         createEvent(eventData).then((response) => {
-                          navigation.navigate("Map");
+                          navigation.navigate({
+                            name: "Map",
+                            params: {
+                              createdEvent: route.params.searchedPlace,
+                              index: route.params.index,
+                            },
+                          });
                         });
                       });
                     }}
