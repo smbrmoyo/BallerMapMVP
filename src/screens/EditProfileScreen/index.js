@@ -333,11 +333,8 @@ const EditProfileScreen = ({ props, navigation, route }) => {
                     activeOpacity={0.7}
                     onPress={() => {
                       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-                      console.log(userProfile);
-                      updateUserProfile(userProfile).then((uProfile) => {
-                        console.log("result editProfile is : " + uProfile);
-                        navigation.goBack();
-                      });
+
+                      updateUserProfile(userProfile).then(navigation.goBack());
                     }}
                   >
                     <View

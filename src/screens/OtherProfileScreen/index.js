@@ -21,7 +21,7 @@ import Animated from "react-native-reanimated";
 import BottomSheet from "reanimated-bottom-sheet";
 import ProfilePicture from "../../components/ProfilePicture";
 import FollowButton from "../../components/FollowButton";
-import { useIsFocused } from "@react-navigation/native";
+import { useIsFocused, useRoute } from "@react-navigation/native";
 import { wsize, hsize } from "../../utils/Dimensions";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Entypo from "react-native-vector-icons/Entypo";
@@ -34,6 +34,11 @@ import EvilIcons from "react-native-vector-icons/EvilIcons";
 
 import people from "../../assets/data/people";
 import UserModal from "../ProfileScreen/UserModal";
+import {
+  createUserConnection,
+  followUser,
+} from "../../aws-functions/userFunctions";
+import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
 
 //create a array of images
 const imgData = [
@@ -64,6 +69,7 @@ const OtherProfileScreen = ({ navigation }) => {
   bsOtherProf = useRef(null);
   fallOtherProf = useRef(new Animated.Value(1)).current;
   //const authContext = useContext(AuthContext);
+  const { profileDoc, status } = useProfile();
   const [isFollowing, setIsFollowing] = useState(false);
   const [modalVisible, setModalVisible] = useState(false);
   const [loadingUser, setLoadingUser] = useState(true); // Should be coming from provider
@@ -72,9 +78,12 @@ const OtherProfileScreen = ({ navigation }) => {
   const [userExtraInfo, setUserExstraInfo] = useState(null);
   //const [currentTab, setCurrentTab] = useState(looks);
   const isFocused = useIsFocused();
+  const route = useRoute();
   useEffect(() => {
     //userAPI.getUserInfo(user.uid).then((doc) => setUserExstraInfo(doc.data()));
   }, [isFocused]);
+
+  const otherUser = route.params.user;
 
   function TabContainer(props) {
     return (
@@ -105,9 +114,7 @@ const OtherProfileScreen = ({ navigation }) => {
       headerTitle: () => (
         <View style={styles.headerTitle}>
           <TouchableOpacity activeOpacity={0.7} style={styles.iconHeaderTitle}>
-            <Text style={styles.textHeader}>
-              {/*firebase.auth().currentUser.email*/}
-            </Text>
+            <Text style={styles.textHeader}>{otherUser?.name}</Text>
           </TouchableOpacity>
         </View>
       ),
@@ -128,7 +135,7 @@ const OtherProfileScreen = ({ navigation }) => {
         </TouchableOpacity>
       ),
     });
-  }, [navigation]);
+  }, []);
 
   renderHeader = () => (
     <View style={styles.header}>
@@ -170,8 +177,17 @@ const OtherProfileScreen = ({ navigation }) => {
     </View>
   );
 
+  console.log(profileDoc?.following.items.followed);
+
   const onFollowPress = () => {
     setIsFollowing(!isFollowing);
+    let input = {
+      follower: profileDoc.id,
+      followed: otherUser.id,
+    };
+    followUser(input)
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
   };
 
   const goToFollowing = (user) => {
@@ -211,14 +227,14 @@ const OtherProfileScreen = ({ navigation }) => {
         enabledContentTapInteraction={false}
         overdragResistanceFactor={100}
       />
-      <TouchableWithoutFeedback onPress={() => bsProf.current.snapTo(1)}>
+      <TouchableWithoutFeedback onPress={() => bsOtherProf.current.snapTo(1)}>
         <Animated.View
           // eslint-disable-next-line react-native/no-inline-styles
           style={{
             flex: 2,
             height: "100%",
             width: "100%",
-            opacity: Animated.add(0.05, Animated.multiply(fall, 1.0)),
+            opacity: Animated.add(0.05, Animated.multiply(fallOtherProf, 1.0)),
           }}
         >
           <View style={styles.container}>
@@ -230,7 +246,7 @@ const OtherProfileScreen = ({ navigation }) => {
                 <ProfilePicture size={70} />
               </TouchableOpacity>
               <View style={styles.profileNameContainer}>
-                <Text style={styles.profileName}>user.email</Text>
+                <Text style={styles.profileName}>{otherUser?.username}</Text>
                 <Text style={styles.profileType}>userExtraInfo.status</Text>
               </View>
             </View>
@@ -289,7 +305,7 @@ const OtherProfileScreen = ({ navigation }) => {
                 <TouchableOpacity activeOpacity={0.7} onPress={onFollowPress}>
                   <View
                     style={{
-                      backgroundColor: isFollowing ? "#743cff" : "white",
+                      backgroundColor: isFollowing ? "white" : "#743cff",
                       borderWidth: 1,
                       borderColor: "#E9E8E8",
                       borderRadius: 5,
@@ -302,10 +318,10 @@ const OtherProfileScreen = ({ navigation }) => {
                     <Text
                       style={{
                         fontSize: 20,
-                        color: isFollowing ? "white" : "black",
+                        color: isFollowing ? "black" : "white",
                       }}
                     >
-                      {isFollowing ? "Follow" : "Following"}
+                      {isFollowing ? "Following" : "Follow"}
                     </Text>
                   </View>
                 </TouchableOpacity>

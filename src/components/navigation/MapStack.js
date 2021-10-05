@@ -173,19 +173,7 @@ const MapStack = ({ navigation }) => {
             },
           })}
         />
-        <Stack.Screen
-          name="OtherProfile"
-          component={OtherProfileScreen}
-          options={({ navigation }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
+
         <Stack.Screen
           name="SetProfile"
           component={SetProfileScreen}

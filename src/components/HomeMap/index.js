@@ -7,6 +7,8 @@ import {
   FlatList,
   SafeAreaView,
   Dimensions,
+  TextInput,
+  Keyboard,
   TouchableOpacity,
   TouchableWithoutFeedback,
   StatusBar,
@@ -16,7 +18,7 @@ import {
 import * as TaskManager from "expo-task-manager";
 import MapView, { PROVIDER_GOOGLE, Marker, Circle } from "react-native-maps";
 import { Feather, Ionicons } from "@expo/vector-icons";
-import { useRoute, useNavigation } from "@react-navigation/native";
+import { useRoute, useNavigation, useTheme } from "@react-navigation/native";
 import { useHeaderHeight } from "@react-navigation/stack";
 import * as Location from "expo-location";
 import haversine from "haversine";
@@ -30,6 +32,10 @@ import styles from "./styles";
 import BottomSheetMap from "./BottomSheet";
 import { wsize, hsize } from "../../utils/Dimensions";
 import { useMap } from "../navigation/Providers/MapProvider";
+import AnimatedSearchButton from "./AnimatedSearchButton";
+import AnimatedAddButton from "./AnimatedAddButton";
+import AnimatedTextInput from "./AnimatedTextInput";
+import AnimatedCard from "./AnimatedCard";
 
 const { width, height } = Dimensions.get("window");
 const CARD_HEIGHT = 100;
@@ -43,7 +49,8 @@ const HomeMap = ({ props }) => {
   const route = useRoute();
   const navigation = useNavigation();
   const RADIUS = 20;
-  const [search, setSearch] = useState(true);
+  const { colors, dark } = useTheme();
+  const [searchState, setSearchState] = useState(false);
   const [userLocation, setUserLocation] = useState({
     prevCoords: { latitude: 0, longitude: 0 },
     currentCoords: { latitude: 0, longitude: 0 },
@@ -53,22 +60,9 @@ const HomeMap = ({ props }) => {
     longitude: 2.3120161,
     pitch: 90,
     heading: 90,
-    zoom: 18,
+    zoom: 19,
     altitude: 18,
   });
-
-  const initialMapState = {
-    people,
-    events: [],
-    places,
-    region: {
-      latitude: 48.872008,
-      longitude: 2.3120161,
-      latitudeDelta: 0.003,
-      longitudeDelta: 0.0021,
-    },
-    camera,
-  };
 
   useEffect(() => {
     _onMapReady();
@@ -84,13 +78,6 @@ const HomeMap = ({ props }) => {
     })();
   }, []);
 
-  useEffect(() => {
-    setState({
-      ...state,
-      places: places,
-    });
-  }, [places]);
-
   const _onMapReady = async () => {
     // console.log("places in the map : " + JSON.stringify(places[0]));
     let location = await Location.getLastKnownPositionAsync();
@@ -99,6 +86,7 @@ const HomeMap = ({ props }) => {
       ...camera,
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
+      heading: location.coords.heading,
     }),
       setUserLocation({
         ...userLocation,
@@ -169,8 +157,6 @@ const HomeMap = ({ props }) => {
     };
   });
 
-  const [state, setState] = useState(initialMapState);
-
   let mapIndex = 0;
   const _mapAnimation = useRef(new Animated.Value(0)).current;
 
@@ -203,7 +189,7 @@ const HomeMap = ({ props }) => {
     });
   });
 
-  const interpolations = places.map((person, index) => {
+  const interpolations = places.map((olace, index) => {
     const inputRange = [
       (index - 1) * CARD_WIDTH,
       index * CARD_WIDTH,
@@ -219,23 +205,27 @@ const HomeMap = ({ props }) => {
     return { scale };
   });
 
-  const addEvent = () => {
-    if (route.params.tags) {
-      //Alert.alert("exists");
-      console.log(route.params.tags);
-
-      initialMapState.places.push({
-        id: route.params.description,
-        name: route.params.description,
-        coordinate: {
+  const createdEvent = () => {
+    if (route.params.createdEvent) {
+      _map.current.animateCamera({
+        center: {
           latitude: route.params.address.lat,
           longitude: route.params.address.lng,
         },
-        heading: 0,
+        heading: 90,
+        pitch: 90,
+        zoom: 18,
+        altitude: 18,
       });
 
-      setState(initialMapState);
+      //console.log(JSON.stringify(route.params.tags));
+    } else {
+      return null;
+    }
+  };
 
+  const searchedPlace = () => {
+    if (route.params.searchedPlace) {
       _map.current.animateCamera({
         center: {
           latitude: route.params.address.lat,
@@ -261,11 +251,72 @@ const HomeMap = ({ props }) => {
       x = x - SPACING_FOR_CARD_INSET;
     }
 
-    _scrollView.current.scrollToOffset({ x: x, y: 0, animated: true });
+    _scrollView.current.scrollToOffset({ x: x, animated: true });
   };
 
   const _map = useRef(null);
   const _scrollView = useRef(null);
+
+  const heightAnim = useRef(new Animated.Value(0)).current;
+  const lowAnim = useRef(new Animated.Value(1)).current;
+
+  function animate() {
+    setSearchState(!searchState);
+
+    let coords = {
+      coordinate: {
+        latitude: places[0].coords.lat,
+        longitude: places[0].coords.long,
+      },
+    };
+
+    _map.current.setCamera({
+      center: coords.coordinate,
+      heading: 90,
+      pitch: 90,
+      zoom: 18,
+      altitude: 18,
+    });
+
+    Animated.timing(heightAnim, {
+      toValue: 200,
+      duration: 250,
+      useNativeDriver: true,
+    }).start();
+
+    Animated.timing(lowAnim, {
+      toValue: -200,
+      duration: 250,
+      useNativeDriver: true,
+    }).start();
+  }
+
+  function undoAnimate() {
+    Keyboard.dismiss();
+    setSearchState(!searchState);
+
+    _map.current.setCamera({
+      center: {
+        latitude: camera.latitude,
+        longitude: camera.longitude,
+      },
+      heading: 90,
+      pitch: 90,
+      zoom: 18,
+      altitude: 18,
+    });
+
+    Animated.timing(lowAnim, {
+      toValue: 0,
+      duration: 250,
+      useNativeDriver: true,
+    }).start();
+    Animated.timing(heightAnim, {
+      toValue: 0,
+      duration: 250,
+      useNativeDriver: true,
+    }).start();
+  }
 
   const goToAdd = () => {
     //setAddPressed(true);
@@ -299,9 +350,23 @@ const HomeMap = ({ props }) => {
             loadingEnabled={true}
             onMapReady={_onMapReady}
             followUserLocation={true}
+            onUserLocationChange={(event) => {
+              if (!searchState) {
+                _map.current.animateCamera({
+                  center: {
+                    latitude: event.nativeEvent.coordinate.latitude,
+                    longitude: event.nativeEvent.coordinate.longitude,
+                  },
+                  heading: 90, // could pass event.nativeEvent.coordinate.heading. Will test it
+                  pitch: 90,
+                  zoom: 18,
+                  altitude: 18,
+                });
+              }
+            }}
             onLayout={() => {
               route.params
-                ? addEvent()
+                ? (createdEvent(), searchedPlace())
                 : _map.current.setCamera({
                     center: {
                       latitude: camera?.latitude,
@@ -353,110 +418,76 @@ const HomeMap = ({ props }) => {
               </Marker>
             ))}
           </MapView>
-          {false ? (
-            <View style={[styles.buttonContainer, { right: 15, top: "8%" }]}>
-              <TouchableOpacity activeOpacity={0.7} onPress={goToAdd}>
-                <View style={[styles.buttonAdd, { height: 40, width: 40 }]}>
-                  <Ionicons name="search" size={25} color="#743cff" />
-                </View>
-              </TouchableOpacity>
-            </View>
-          ) : (
-            <Animated.FlatList
-              ref={_scrollView}
-              data={places}
-              keyExtractor={(item) => item.id}
-              horizontal
-              pagingEnabled
-              scrollEventThrottle={1}
-              showsHorizontalScrollIndicator={false}
-              snapToInterval={CARD_WIDTH + 20}
-              snapToAlignment="start"
-              decelerationRate={"fast"}
-              style={styles.scrollView}
-              contentInset={{
-                // IOS Only
-                top: 0,
-                left: SPACING_FOR_CARD_INSET,
-                bottom: 0,
-                right: SPACING_FOR_CARD_INSET,
-              }}
-              contentContainerStyle={{
-                alignItems: "center",
-                paddingRight: SPACING_FOR_CARD_INSET,
-              }}
-              onScroll={Animated.event(
-                [
+          <AnimatedTextInput
+            colors={colors}
+            dark={dark}
+            heightAnim={heightAnim}
+            undoAnimate={undoAnimate}
+          />
+          <AnimatedSearchButton lowAnim={lowAnim} animate={animate} />
+          <Animated.FlatList
+            ref={_scrollView}
+            data={places}
+            keyExtractor={(item) => item.id}
+            horizontal
+            pagingEnabled
+            scrollEventThrottle={1}
+            showsHorizontalScrollIndicator={false}
+            snapToInterval={CARD_WIDTH + 20}
+            snapToAlignment="start"
+            decelerationRate={"fast"}
+            style={[
+              styles.scrollView,
+              {
+                transform: [
                   {
-                    nativeEvent: {
-                      contentOffset: {
-                        x: _mapAnimation,
-                      },
-                    },
+                    translateY: lowAnim,
                   },
                 ],
-                { useNativeDriver: true }
-              )}
-              renderItem={({ item, index }) => {
-                const inputRange = [
-                  (index - 1) * CARD_WIDTH,
-                  index * CARD_WIDTH,
-                  (index + 1) * CARD_WIDTH,
-                ];
-
-                const translateY = _mapAnimation.interpolate({
-                  inputRange,
-                  outputRange: [50, 0, 50],
-                  extrapolate: "clamp",
-                });
-
-                return (
-                  <TouchableOpacity
-                    key={index}
-                    activeOpacity={0.7}
-                    onPress={() => {
-                      bsMap.current.snapTo(0);
-                    }}
-                  >
-                    <Animated.View style={[styles.card]}>
-                      <TouchableOpacity activeOpacity={0.7} onPress={goToStory}>
-                        <ProfilePicture />
-                      </TouchableOpacity>
-                      <View style={styles.textContent}>
-                        <Text numberOfLines={1} style={styles.cardDescription}>
-                          {item.name}
-                        </Text>
-                        <View style={styles.button}>
-                          <Text
-                            style={[
-                              styles.textSign,
-                              {
-                                color: "#743cff",
-                              },
-                            ]}
-                          >
-                            Info
-                          </Text>
-                        </View>
-                      </View>
-                    </Animated.View>
-                  </TouchableOpacity>
-                );
-              }}
-            />
-          )}
-          <View
-            style={[
-              styles.buttonContainer,
-              { right: 10, bottom: 140 }, // search ? 70 :
+              },
             ]}
-          >
-            <TouchableOpacity activeOpacity={0.7} onPress={goToAdd}>
-              <View style={[styles.buttonAdd, { height: 70, width: 70 }]}>
-                <Feather name="plus" size={40} color="#743cff" />
-              </View>
-            </TouchableOpacity>
-          </View>
+            contentInset={{
+              // IOS Only
+              top: 0,
+              left: SPACING_FOR_CARD_INSET,
+              bottom: 0,
+              right: SPACING_FOR_CARD_INSET,
+            }}
+            contentContainerStyle={{
+              alignItems: "center",
+              paddingRight: SPACING_FOR_CARD_INSET,
+            }}
+            onScroll={Animated.event(
+              [
+                {
+                  nativeEvent: {
+                    contentOffset: {
+                      x: _mapAnimation,
+                    },
+                  },
+                },
+              ],
+              { useNativeDriver: true }
+            )}
+            renderItem={({ item, index }) => {
+              const inputRange = [
+                (index - 1) * CARD_WIDTH,
+                index * CARD_WIDTH,
+                (index + 1) * CARD_WIDTH,
+              ];
+
+              const translateY = _mapAnimation.interpolate({
+                inputRange,
+                outputRange: [50, 0, 50],
+                extrapolate: "clamp",
+              });
+
+              return (
+                <AnimatedCard key={index} goToStory={goToStory} item={item} />
+              );
+            }}
+          />
+          <AnimatedAddButton heightAnim={heightAnim} goToAdd={goToAdd} />
         </Animated.View>
       </TouchableWithoutFeedback>
     </>

@@ -4,11 +4,8 @@ import { Auth, API, graphqlOperation } from "aws-amplify";
 import { useQuery } from "react-query";
 import * as Location from "expo-location";
 
-import {
-  createPlace,
-  getPlacesList,
-  getFilteredPlaces,
-} from "../../../aws-functions/placeFunctions";
+import { getPlacesList } from "../../../aws-functions/placeFunctions";
+import { getAllUserProfiles } from "../../../aws-functions/userFunctions";
 import { useAuth, getUprofile } from "./AuthProvider";
 
 export const MapContext = React.createContext();
@@ -19,6 +16,7 @@ const MapProvider = ({ children }) => {
   const [places, setPlaces] = useState([]);
   const [status, setStatus] = useState("loading");
   const [camera, setCamera] = useState(null);
+  const [users, setUsers] = useState([]);
   // Geocoder.init("AIzaSyCAWRoRAT1jDaCuwACpmYsseOgW1-_XrNg");
 
   const getCamera = async () => {
@@ -29,11 +27,13 @@ const MapProvider = ({ children }) => {
 
   const resultPlaces = useQuery("getPlaces", getPlacesList);
   const resultCamera = useQuery("getCamera", getCamera);
+  const resultUsers = useQuery("getUsers", getAllUserProfiles);
 
   useEffect(() => {
     if (resultPlaces.status != status && resultCamera.status != status) {
       setPlaces(resultPlaces.data);
       setCamera(resultCamera.data);
+      setUsers(resultUsers.data);
       setStatus(resultCamera.status);
     } else {
       setStatus(resultCamera.status);
@@ -48,6 +48,7 @@ const MapProvider = ({ children }) => {
         status,
         camera,
         setCamera,
+        users,
       }}
     >
       {children}
