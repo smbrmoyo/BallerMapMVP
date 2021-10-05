@@ -80,6 +80,9 @@ const ProfileScreen = ({ navigation, route }) => {
     });
   }, [navigation]);
 
+  // console.log(JSON.stringify(profileDoc?.following.items));
+  // console.log(JSON.stringify(myEvents[0]));
+
   const onFollowPress = () => {
     setIsFollowing(!isFollowing);
   };

@@ -23,7 +23,7 @@ import { hsize, wsize } from "../../utils/Dimensions";
 import { useMap } from "../../components/navigation/Providers/MapProvider";
 import { getPlacesList } from "../../aws-functions/placeFunctions";
 
-const PlaceSearchScreen = ({ navigation, route }) => {
+const MapSearchScreen = ({ navigation, route }) => {
   const [text, setText] = useState("");
   const { places } = useMap();
   const [data, setData] = useState(places);
@@ -45,7 +45,7 @@ const PlaceSearchScreen = ({ navigation, route }) => {
       headerTitle: () => (
         <View style={styles.headerTitle}>
           <TouchableOpacity activeOpacity={0.7} style={styles.iconHeaderTitle}>
-            <Text style={styles.textHeader}>Find A Location</Text>
+            <Text style={styles.textHeader}>Find A Spot</Text>
           </TouchableOpacity>
         </View>
       ),
@@ -106,14 +106,6 @@ const PlaceSearchScreen = ({ navigation, route }) => {
     );
   }
 
-  /*const onChangeText = async (text) => {
-    updateQuery();
-  };*/
-  const onChangeTextDebounced = debounce(updateQuery, 1000, {
-    leading: true,
-    trailing: true,
-  });
-
   if (loading) {
     return <LoadingScreen />;
   }
@@ -133,12 +125,12 @@ const PlaceSearchScreen = ({ navigation, route }) => {
           />
         }
         extraData={query}
-        renderItem={({ item }) => (
+        renderItem={({ item, index }) => (
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() =>
               navigation.navigate({
-                name: "Add",
+                name: "Map",
                 params: { searchedPlace: item, index: places.indexOf(item) },
               })
             }
@@ -159,4 +151,4 @@ const PlaceSearchScreen = ({ navigation, route }) => {
   );
 };
 
-export default PlaceSearchScreen;
+export default MapSearchScreen;
