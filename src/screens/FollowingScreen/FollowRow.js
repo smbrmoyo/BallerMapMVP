@@ -11,11 +11,7 @@ export default function FollowRow(props) {
       style={styles.postHeaderFirst}
       onPress={() => {
         props.navigate("OtherProfile", {
-          user: {
-            id: props.item.key,
-            //photo: item.photoURL,
-            userName: props.item.name,
-          },
+          id: props.item.followedID,
         });
       }}
     >
@@ -27,6 +23,7 @@ export default function FollowRow(props) {
             //paddingHorizontal: wsize(5),
             paddingVertical: hsize(10),
             justifyContent: "space-around",
+            alignItems: "center",
           }}
         >
           <ProfilePicture size={50} />
@@ -41,7 +38,7 @@ export default function FollowRow(props) {
                 fontSize: 18,
               }}
             >
-              __letch
+              {props.item.followed.username}
             </Text>
             <Text
               style={{
@@ -49,34 +46,9 @@ export default function FollowRow(props) {
                 color: "grey",
               }}
             >
-              Maxime Tchagou
+              {props.item.followed.name}
             </Text>
           </View>
-        </View>
-        <View
-          style={{
-            backgroundColor: props.isFollowing ? "#D8D8D8" : "#743cff",
-            marginBottom: 10,
-            borderWidth: 1,
-            borderColor: "#E9E8E8",
-            borderRadius: 5,
-            height: hsize(30),
-            width: "25%",
-            alignSelf: "center",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <TouchableOpacity activeOpacity={0.7} onPress={props.onFollowPress}>
-            <Text
-              style={{
-                fontSize: 16,
-                color: props.isFollowing ? "black" : "white",
-              }}
-            >
-              {props.isFollowing ? "Remove" : "Follow"}
-            </Text>
-          </TouchableOpacity>
         </View>
       </View>
     </TouchableOpacity>

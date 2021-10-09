@@ -42,8 +42,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#262626",
   },
-  profileType: {
+  profileJoined: {
     fontSize: wsize(14),
+    color: "grey",
   },
   profileInfoContainer: {
     paddingHorizontal: wsize(10),

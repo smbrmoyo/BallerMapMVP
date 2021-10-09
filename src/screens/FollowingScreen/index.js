@@ -10,23 +10,11 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-//import { getUserFriends, getUserSubs } from "../../services/api/user";
-import users from "../../assets/data/people";
-import ProfilePicture from "../../components/ProfilePicture";
 import { wsize, hsize } from "../../utils/Dimensions";
 import debounce from "lodash/debounce";
 import { useTheme } from "@react-navigation/native";
 import LoadingScreen from "../LoadingScreen";
-import {
-  MaterialIcons,
-  Entypo,
-  Feather,
-  AntDesign,
-  MaterialCommunityIcons,
-  SimpleLineIcons,
-  EvilIcons,
-  Ionicons,
-} from "@expo/vector-icons";
+import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import styles from "./styles";
 
 import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
@@ -36,12 +24,10 @@ import FollowRow from "./FollowRow";
 const FollowingScreen = ({ navigation }) => {
   const { profileDoc } = useProfile();
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState();
   const { colors, dark } = useTheme();
   const [text, setText] = useState("");
   const [isFollowing, setIsFollowing] = useState(isFollowing);
-
-  //console.log(profileDoc?.following.items[0].followedID);
 
   const onFollowPress = () => {
     setIsFollowing(!isFollowing);
@@ -99,19 +85,9 @@ const FollowingScreen = ({ navigation }) => {
   }, [navigation]);
 
   useEffect(() => {
-    /*getUserFriends().then((querySnapshot) => {
-      const allData = [];
-      querySnapshot.forEach((doc) => {
-        allData.push({ key: doc.id, ...doc.data() });
-      });
-      setData(allData);
-      setLoading(false);
-    });*/
-    setLoading(false);
+    setData(profileDoc?.following.items);
   }, []);
-  if (loading) {
-    return <LoadingScreen />;
-  }
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>

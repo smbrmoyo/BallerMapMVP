@@ -1,12 +1,5 @@
 import React, { useLayoutEffect } from "react";
-import {
-  View,
-  Text,
-  SafeAreaView,
-  StatusBar,
-  Image,
-  Dimensions,
-} from "react-native";
+import { View, StatusBar, Dimensions } from "react-native";
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
 import HomeMap from "../../components/HomeMap";

@@ -1,22 +1,20 @@
 import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import ProfilePicture from "../../components/ProfilePicture";
 import { hsize } from "../../utils/Dimensions";
 import { EvilIcons, SimpleLineIcons, Feather } from "@expo/vector-icons";
 
 import styles from "./styles";
 
-function TabContainer(props) {
-  return (
-    <View style={styles.tabContainer}>
-      <TouchableOpacity>
-        <Feather name="list" size={23} color="black" />
-      </TouchableOpacity>
-    </View>
-  );
-}
-
 export default function ProfileContainer(props) {
+  const { width } = Dimensions.get("window");
+
+  let followers = props.profileDoc.followers.items;
+  let following = props.profileDoc.following.items;
+
+  let date = new Date(props.profileDoc.createdAt);
+  let month = date.toLocaleString("default", { month: "long" });
+
   return (
     <View style={styles.container}>
       <View style={styles.profileInitialContainer}>
@@ -25,7 +23,9 @@ export default function ProfileContainer(props) {
         </TouchableOpacity>
         <View style={styles.profileNameContainer}>
           <Text style={styles.profileName}>{props.profileDoc?.username}</Text>
-          <Text style={styles.profileType}>userExtraInfo.status</Text>
+          <Text style={styles.profileJoined}>
+            {"Joined " + month + " " + date.getFullYear()}
+          </Text>
         </View>
       </View>
       <View style={styles.profileInfoContainer}>
@@ -45,14 +45,14 @@ export default function ProfileContainer(props) {
         <View style={styles.userInfoWrapper}>
           <TouchableOpacity activeOpacity={0.7} onPress={props.goToFollowers}>
             <View style={styles.userInfoItem}>
-              <Text style={styles.userInfoTitle}>1000</Text>
+              <Text style={styles.userInfoTitle}>{followers.length}</Text>
               <Text style={styles.userInfoSubTitle}>Followers</Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity activeOpacity={0.7} onPress={props.goToFollowing}>
             <View style={styles.userInfoItem}>
-              <Text style={styles.userInfoTitle}>100</Text>
+              <Text style={styles.userInfoTitle}>{following.length}</Text>
               <Text style={styles.userInfoSubTitle}>Following</Text>
             </View>
           </TouchableOpacity>
@@ -93,7 +93,36 @@ export default function ProfileContainer(props) {
           </View>
         </TouchableOpacity>
       </View>
-      <TabContainer />
+      <View style={styles.tabContainer}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => {
+            props.setCurrentTab(props.events);
+            props._scrollView.current.scrollTo({ x: -width });
+          }}
+          style={{ alignItems: "center", flex: 2 }}
+        >
+          <Feather
+            name="list"
+            size={23}
+            color={props.currentTab === props.events ? "black" : "grey"}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={() => {
+            props._scrollView.current.scrollTo({ x: width });
+            props.setCurrentTab(props.attending);
+          }}
+          style={{ alignItems: "center", flex: 2 }}
+        >
+          <Feather
+            name="user"
+            size={24}
+            color={props.currentTab === props.attending ? "black" : "grey"}
+          />
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TouchableWithoutFeedback,
   Dimensions,
+  ScrollView,
 } from "react-native";
 import Animated from "react-native-reanimated";
 import { FlatList } from "react-native-gesture-handler";
@@ -15,33 +16,36 @@ import { useProfile } from "../../components/navigation/Providers/ProfileProvide
 import { hsize } from "../../utils/Dimensions";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-import EventRow from "./EventRow";
 import BottomSheetProfile from "./BottomSheetProfile";
 import Loading from "./Loading";
 import ProfileContainer from "./ProfileContainer";
+import MyEventsTab from "./MyEventsTab";
 import styles from "./styles";
 
 //render function
 
 const ProfileScreen = ({ navigation, route }) => {
-  // Alert for logout
   const { width, height } = Dimensions.get("window");
-  const CARD_HEIGHT = 100;
-  const CARD_WIDTH = width * 0.8;
-  const SPACING_FOR_CARD_INSET = width * 0.1 - 10;
-
+  const tabs = {
+    events: "myEvents",
+    attending: "attending",
+  };
+  const list = [{ id: "1" }, { id: "2" }];
   bsProf = useRef(null);
   fall = useRef(new Animated.Value(1)).current;
   const [isFollowing, setIsFollowing] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); // Should set to true and work on loading screen
+  const _scrollView = useRef(null);
   const { signOut, user, yourEvents } = useAuth();
   const { profileDoc, status } = useProfile();
   const [myEvents, setMyEvents] = useState([]);
+  const { events, attending } = tabs;
+  const [currentTab, setCurrentTab] = useState(events);
   const isFocused = useIsFocused();
 
   useEffect(() => {
+    profileDoc != undefined ? setLoading(false) : null;
     setMyEvents(profileDoc?.eventsCreated.items);
-    setLoading(false);
   }, [profileDoc]);
 
   useLayoutEffect(() => {
@@ -80,7 +84,7 @@ const ProfileScreen = ({ navigation, route }) => {
     });
   }, [navigation]);
 
-  // console.log(JSON.stringify(profileDoc?.following.items));
+  // console.log(JSON.stringify(profileDoc?.following.items.length));
   // console.log(JSON.stringify(myEvents[0]));
 
   const onFollowPress = () => {
@@ -113,7 +117,7 @@ const ProfileScreen = ({ navigation, route }) => {
       <BottomSheetProfile profileDoc={profileDoc} />
       <TouchableWithoutFeedback onPress={() => bsProf.current.snapTo(1)}>
         {loading ? (
-          <Loading CARD_HEIGHT={CARD_HEIGHT} CARD_WIDTH={CARD_WIDTH} />
+          <Loading />
         ) : (
           <Animated.View
             // eslint-disable-next-line react-native/no-inline-styles
@@ -129,16 +133,34 @@ const ProfileScreen = ({ navigation, route }) => {
               goToFollowing={goToFollowing}
               goToFollowers={goToFollowers}
               navigate={navigation.navigate}
+              events={events}
+              attending={attending}
+              currentTab={currentTab}
+              setCurrentTab={setCurrentTab}
+              _scrollView={_scrollView}
             />
-            <FlatList
-              data={myEvents}
-              keyExtractor={(item) => item.id}
+            <ScrollView
+              ref={_scrollView}
+              horizontal
+              pagingEnabled
               style={{
                 flex: 1,
                 backgroundColor: "white",
               }}
-              renderItem={(item) => <EventRow event={item.item} />}
-            />
+              ContentContainerStyle={{
+                flex: 1,
+                backgroundColor: "white",
+                alignItems: "center",
+              }}
+              scrollEventThrottle={1}
+              showsHorizontalScrollIndicator={false}
+              snapToInterval={width}
+              snapToAlignment="center"
+              decelerationRate={"fast"}
+            >
+              <MyEventsTab myEvents={myEvents} />
+              <MyEventsTab myEvents={myEvents} />
+            </ScrollView>
           </Animated.View>
         )}
       </TouchableWithoutFeedback>
@@ -147,3 +169,8 @@ const ProfileScreen = ({ navigation, route }) => {
 };
 
 export default ProfileScreen;
+{
+  /*
+                  <MyEventsTab myEvents={myEvents} />
+                */
+}

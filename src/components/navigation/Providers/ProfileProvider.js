@@ -19,8 +19,6 @@ const ProfileProvider = ({ children }) => {
   const [profileDoc, setProfileDoc] = useState(null);
   const [status, setStatus] = useState("loading");
 
-  const queryClient = useQuery();
-
   const result = useQuery("getProfile", getUprofileDoc(user));
 
   /*useEffect(() => {
