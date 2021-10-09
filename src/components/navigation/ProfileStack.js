@@ -1,7 +1,6 @@
 import "react-native-gesture-handler";
 
-import React, { useState, useEffect } from "react";
-import { StatusBar, View } from "react-native";
+import React from "react";
 import ProfileScreen from "../../screens/ProfileScreen";
 import FollowingScreen from "../../screens/FollowingScreen";
 import FollowersScreen from "../../screens/FollowersScreen";
@@ -9,9 +8,6 @@ import EditProfileScreen from "../../screens/EditProfileScreen";
 import DescriptionScreen from "../../screens/DescriptionScreen";
 import TryStory from "../../screens/TryStory";
 import OtherProfileScreen from "../../screens/OtherProfileScreen";
-import MediaEditor from "../../screens/src/views/SelectContact";
-import MediaDescription from "../../screens/src/views/MediaDescription";
-import CreatePost from "../../screens/src/SnapClone";
 import StoryScreen4 from "../../screens/StoryScreen4/App";
 
 import { createStackNavigator } from "@react-navigation/stack";
@@ -54,21 +50,6 @@ const ProfileStack = ({ navigation }) => {
             },
           })}
         />
-        <Stack.Screen
-          name="CreatePost"
-          component={CreatePost}
-          options={({ navigation, route }) => ({
-            header: () => null,
-          })}
-        />
-        <Stack.Screen
-          name="media_editor"
-          component={MediaEditor}
-          options={({ navigation, route }) => ({
-            header: () => null,
-          })}
-        />
-
         <Stack.Screen
           name="Following"
           component={FollowingScreen}

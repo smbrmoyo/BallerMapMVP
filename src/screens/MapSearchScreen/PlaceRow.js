@@ -1,23 +1,37 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 import Entypo from "react-native-vector-icons/Entypo";
 import styles from "./styles";
 
-const PlaceRow = ({ data }) => {
+export default function PlaceRow(props) {
   return (
-    <View style={styles.row}>
-      <View style={styles.iconContainer}>
-        {data.description === "Home" ? (
-          <Entypo name="home" size={25} color={"white"} />
-        ) : (
+    <TouchableOpacity
+      activeOpacity={0.7}
+      onPress={() =>
+        props.navigate({
+          name: "Map",
+          params: {
+            searchedPlace: props.item,
+            index: props.indexOf(props.item),
+          },
+        })
+      }
+    >
+      <View style={styles.row}>
+        <View style={styles.iconContainer}>
           <Entypo name="location-pin" size={25} color={"#743cff"} />
-        )}
+        </View>
+        <View>
+          <Text style={styles.locationText}>{props.item.name}</Text>
+          <Text
+            style={{
+              color: "grey",
+            }}
+          >
+            {props.item.address}
+          </Text>
+        </View>
       </View>
-      <Text style={styles.locationText}>
-        {data.description || data.vicinity}
-      </Text>
-    </View>
+    </TouchableOpacity>
   );
-};
-
-export default PlaceRow;
+}
