@@ -343,7 +343,7 @@ const HomeMap = ({ props }) => {
   }
 
   const goToAdd = () => {
-    navigation.navigate("SetProfile");
+    navigation.navigate("Add");
   };
 
   const goToStory = () => {
