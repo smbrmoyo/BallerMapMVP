@@ -3,7 +3,7 @@ import HomeStack from "./HomeStack";
 import MessageStack from "./MessageStack";
 import MapStack from "./MapStack";
 import ProfileStack from "./ProfileStack";
-import CategoryStack from "./CategoryStack";
+import EventStack from "./EventStack";
 import ModalStack from "./ModalStack";
 import { useAuth } from "./Providers/AuthProvider";
 //import SnapchatStack from "../../../Snapchat";
@@ -165,6 +165,17 @@ const AppStack = (route) => {
         },
       }}
     >
+      <Tab.Screen
+        name="Event"
+        component={EventStack}
+        options={({ route }) => ({
+          tabBarLabel: "Profile",
+          tabBarVisible: getTabBarVisibility(route),
+          tabBarIcon: ({ color, size }) => (
+            <AntDesign name="calendar" size={26} color={color} />
+          ),
+        })}
+      />
       <Tab.Screen
         name="Map"
         component={MapStack}

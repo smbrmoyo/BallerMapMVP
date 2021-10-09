@@ -27,8 +27,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: "100%",
     marginBottom: hsize(3),
-    borderBottomColor: "#CDCDCD",
-    borderBottomWidth: 0.5,
     //backgroundColor: "grey",
   },
   postHeaderFirst: {
