@@ -30,34 +30,18 @@ import {
 } from "@expo/vector-icons";
 import styles from "./styles";
 
-export default function FollowRow({ item }, isFollowing, onFollowPress) {
+export default function FollowRow(props) {
   return (
     <TouchableOpacity
       activeOpacity={0.7}
       style={styles.postHeaderFirst}
       onPress={() => {
-        props.navigate("OtherProfile"); /*, {
-                  user: {
-                    id: item.key,
-                    //photo: item.photoURL,
-                    userName: item.name,
-                  },*/
-        /*onPress={() => {
-    navigation.navigate("EditProfile", {
-    userExtraInfo: {
-    fullName: userExtraInfo.fullName,
-    photoURL: userExtraInfo.photoURL,
-    userName: userExtraInfo.userName,
-    status: userExtraInfo.status,
-    city: userExtraInfo.city,
-    link: userExtraInfo.link,
-    description: userExtraInfo.description,
-    email: userExtraInfo.email,
-    phone: userExtraInfo.phone,
-    gender: userExtraInfo.gender,
-    },
-    });
-    }}*/
+        props.navigate("Profile", {
+          screen: "OtherProfile",
+          params: {
+            id: props.item.followerID,
+          },
+        });
       }}
     >
       <View style={styles.postHeaderContainer}>
@@ -66,33 +50,32 @@ export default function FollowRow({ item }, isFollowing, onFollowPress) {
             flexDirection: "row",
             //flex: 1,
             //paddingHorizontal: wsize(5),
-            paddingVertical: hsize(5),
+            paddingVertical: hsize(10),
             justifyContent: "space-around",
             alignItems: "center",
           }}
         >
-          <ProfilePicture size={wsize(50)} />
+          <ProfilePicture size={50} />
           <View
             style={{
               flexDirection: "column",
-              marginLeft: wsize(20),
+              marginLeft: wsize(15),
             }}
           >
             <Text
               style={{
-                fontSize: 20,
-                color: "black",
+                fontSize: 18,
               }}
             >
-              {item.username}
+              {props.item.follower.username}
             </Text>
             <Text
               style={{
-                fontSize: 14,
+                fontSize: 12,
                 color: "grey",
               }}
             >
-              {item.username}
+              {props.item.follower.name}
             </Text>
           </View>
         </View>

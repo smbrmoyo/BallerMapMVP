@@ -91,21 +91,18 @@ const ProfileScreen = ({ navigation, route }) => {
     setIsFollowing(!isFollowing);
   };
 
-  const goToFollowing = (user) => {
+  const goToFollowing = () => {
     navigation.navigate("Following", {
-      user: {
-        id: user.uid,
-      },
+      following: profileDoc.following.items,
     });
   };
 
-  const goToFollowers = (user) => {
+  const goToFollowers = () => {
     navigation.navigate("Followers", {
-      user: {
-        id: user.uid,
-      },
+      followers: profileDoc.followers.items,
     });
   };
+
   return (
     <>
       <StatusBar

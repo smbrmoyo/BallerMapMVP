@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { wsize, hsize } from "../../utils/Dimensions";
 import debounce from "lodash/debounce";
-import { useTheme } from "@react-navigation/native";
+import { useTheme, useRoute } from "@react-navigation/native";
 import LoadingScreen from "../LoadingScreen";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import styles from "./styles";
@@ -28,6 +28,8 @@ const FollowingScreen = ({ navigation }) => {
   const { colors, dark } = useTheme();
   const [text, setText] = useState("");
   const [isFollowing, setIsFollowing] = useState(isFollowing);
+  const route = useRoute();
+  const following = route.params?.following;
 
   const onFollowPress = () => {
     setIsFollowing(!isFollowing);
@@ -85,7 +87,7 @@ const FollowingScreen = ({ navigation }) => {
   }, [navigation]);
 
   useEffect(() => {
-    setData(profileDoc?.following.items);
+    setData(following);
   }, []);
 
   return (
@@ -94,6 +96,7 @@ const FollowingScreen = ({ navigation }) => {
         <FlatList
           data={data}
           refreshing={loading}
+          keyExtractor={(item) => item.id}
           ListHeaderComponent={
             <SearchBarFollowers
               colors={colors}

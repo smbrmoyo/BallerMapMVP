@@ -4,11 +4,8 @@ import {
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  KeyboardAvoidingView,
   Keyboard,
   TextInput,
-  Platform,
-  StyleSheet,
   StatusBar,
   Alert,
 } from "react-native";
@@ -115,9 +112,6 @@ const SignInScreenEmail = ({ navigation, props }) => {
       />
       <KeyboardAwareScrollView
         contentContainerStyle={{
-          //position: "absolute",
-          //bottom: 0,
-          //flex: 1,
           flexGrow: 1,
         }}
       >
@@ -226,21 +220,24 @@ const SignInScreenEmail = ({ navigation, props }) => {
             <TouchableOpacity
               activeOpacity={0.7}
               style={styles.signIn}
-              onPress={async() => {
+              onPress={async () => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
-                  async() => {
+                  async () => {
                     /*if (nextScreen == "SetProfile") {
                       navigation.navigate(nextScreen);
                     }*/
-                      console.log("HEreeeee")
-                      signIn(dataLogin.username, dataLogin.password).then(res => {
-                        if(res){
-                          setUser(dataLogin.username)
+                    console.log("HEreeeee");
+                    signIn(dataLogin.username, dataLogin.password)
+                      .then((res) => {
+                        if (res) {
+                          setUser(dataLogin.username);
                         } else {
-                          Alert.alert("creds error: " + JSON.stringify(error))
+                          Alert.alert("creds error: " + JSON.stringify(error));
                         }
-                      }).catch(error =>
-                            console.log("error signing in: " + error));
+                      })
+                      .catch((error) =>
+                        console.log("error signing in: " + error)
+                      );
                   }
                 );
               }}
@@ -276,31 +273,6 @@ const SignInScreenEmail = ({ navigation, props }) => {
                 </Text>
               </View>
             </TouchableOpacity>
-            {/*<LinearGradient
-            colors={["#bb006e", "#743cff"]}
-            style={[
-              styles.signIn,
-              {
-                marginTop: 15,
-              },
-            ]}
-          >
-            <TouchableOpacity activeOpacity={0.7}
-              onPress={() => navigation.navigate("Signup")}
-              style={[styles.signIn]}
-            >
-              <Text
-                style={[
-                  styles.textSign,
-                  {
-                    color: "white",
-                  },
-                ]}
-              >
-                Sign Up
-              </Text>
-            </TouchableOpacity>
-          </LinearGradient>*/}
           </View>
         </Animatable.View>
       </KeyboardAwareScrollView>

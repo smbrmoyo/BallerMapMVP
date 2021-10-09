@@ -6,8 +6,9 @@ import { wsize, hsize } from "../../utils/Dimensions";
 import ProfilePicture from "../../components/ProfilePicture";
 import styles from "./styles";
 
-export default // An Event row in the FlatList
-function EventRow({ event }) {
+// An Event row in the FlatList
+
+export default function EventRow({ event }) {
   const navigation = useNavigation();
   function pad2(string) {
     return `0${string}`.slice(-2);
@@ -28,7 +29,12 @@ function EventRow({ event }) {
     <TouchableOpacity
       activeOpacity={0.7}
       style={styles.postHeaderFirst}
-      onPress={() => navigation.navigate("Description", { event: event })}
+      onPress={() =>
+        navigation.navigate("Profile", {
+          screen: "Description",
+          params: { event: event },
+        })
+      }
     >
       <View style={styles.postHeaderContainer}>
         <View

@@ -1,7 +1,7 @@
 import React from "react";
 import { FlatList, Dimensions, ScrollView, Text } from "react-native";
 
-import EventRow from "./EventRow";
+import EventRow from "../ProfileScreen/EventRow";
 
 export default function AttendingTab(props) {
   const { width, height } = Dimensions.get("window");

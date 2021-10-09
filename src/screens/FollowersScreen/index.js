@@ -10,23 +10,13 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-//import { getUserFriends, getUserSubs } from "../../services/api/user";
-import users from "../../assets/data/people";
-import ProfilePicture from "../../components/ProfilePicture";
-import { wsize, hsize } from "../../utils/Dimensions";
 import debounce from "lodash/debounce";
-import { useTheme } from "@react-navigation/native";
-import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
-import LoadingScreen from "../LoadingScreen";
+import { useTheme, useRoute } from "@react-navigation/native";
 import {
   MaterialIcons,
   Entypo,
-  Feather,
-  AntDesign,
   MaterialCommunityIcons,
   SimpleLineIcons,
-  EvilIcons,
-  Ionicons,
 } from "@expo/vector-icons";
 
 import styles from "./styles";
@@ -38,20 +28,9 @@ const FollowersScreen = ({ navigation }) => {
   const { colors, dark } = useTheme();
   const [text, setText] = useState("");
   const [isFollowing, setIsFollowing] = useState(isFollowing);
-  const followers = [];
-  const [data, setData] = useState(followers);
-
-  const empty = [{ id: "0" }];
-  {
-    /* Should receive isFollowing as route.params from previous screen
-    Would check if user follows the other one and would update the 
-    Button Remove or Follow */
-    /* isFollowing should have a prop user */
-  }
-
-  const onFollowPress = () => {
-    setIsFollowing(!isFollowing);
-  };
+  const route = useRoute();
+  const followers = route.params?.followers;
+  const [data, setData] = useState([]);
 
   const searchFilter = async (text) => {
     if (text) {
@@ -117,20 +96,8 @@ const FollowersScreen = ({ navigation }) => {
   }, [navigation]);
 
   useEffect(() => {
-    /*getUserFriends().then((querySnapshot) => {
-      const allData = [];
-      querySnapshot.forEach((doc) => {
-        allData.push({ key: doc.id, ...doc.data() });
-      });
-      setData(allData);
-      setLoading(false);
-    });*/
     setData(followers);
-    setLoading(false);
   }, []);
-  if (loading) {
-    return <LoadingScreen />;
-  }
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -138,7 +105,7 @@ const FollowersScreen = ({ navigation }) => {
         <FlatList
           data={data}
           refreshing={loading}
-          keyExtractor={(item) => item.username}
+          keyExtractor={(item) => item.id}
           ListHeaderComponent={
             <SearchBarFollowers
               colors={colors}
@@ -148,7 +115,7 @@ const FollowersScreen = ({ navigation }) => {
             />
           }
           renderItem={({ item }) => (
-            <FollowRow item={item} isFollowing onFollowPress />
+            <FollowRow item={item} navigate={navigation.navigate} />
           )}
         />
       </View>
@@ -157,10 +124,3 @@ const FollowersScreen = ({ navigation }) => {
 };
 
 export default FollowersScreen;
-
-/* <FollowRow
-              isFollowing={isFollowing}
-              onFollowPress={onFollowPress}
-              item={item}
-              navigate={navigation.navigate}
-            /> */

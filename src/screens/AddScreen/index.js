@@ -49,10 +49,17 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import Feather from "react-native-vector-icons/Feather";
 import { createEvent } from "../../aws-functions/eventFunctions";
+import ButtonContainer from "./ButtonContainer";
+import DescriptionContainer from "./DescriptionContainer";
+import EndDateContainer from "./EndDateContainer";
+import LocationContainer from "./LocationContainer";
+import NameContainer from "./NameContainer";
+import StartDateContainer from "./StartDateContainer";
+import TagsContainer from "./TagsContainer";
 
 //navigator.geolocation = require("@react-native-community/geolocation");
 
-const AddScreen = ({ props, navigation, route }) => {
+const AddScreen = ({ navigation, route }) => {
   const { user } = useAuth();
   const headerHeight = useHeaderHeight();
 
@@ -188,273 +195,53 @@ const AddScreen = ({ props, navigation, route }) => {
             flex: 1,
           }}
         >
-          <ScrollView
-            //animation="fadeInUpBig"
-            /*contentContainerStyle={{
-              padding: 10,
-              flex: 1,
-              justifyContent: "center",
-            }}*/
-            style={{ flex: 1, padding: 10 }}
-          >
+          <ScrollView style={{ flex: 1, padding: 10 }}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View
                 style={{
-                  //padding: 24,
                   flex: 1,
                   justifyContent: "flex-end",
-                  //paddingBottom: 100,
                 }}
               >
-                <View style={styles.descriptionContainer}>
-                  <View style={styles.title}>
-                    <Text style={styles.titleText}>Name</Text>
-                  </View>
+                <NameContainer
+                  eventData={eventData}
+                  setEventData={setEventData}
+                />
 
-                  <TextInput
-                    style={{
-                      padding: hsize(10),
-                      backgroundColor: "#eee",
-                      marginVertical: hsize(5),
-                      borderRadius: hsize(5),
-                      shadowColor: "#000",
-                      shadowOffset: {
-                        width: 0,
-                        height: 1,
-                      },
-                      shadowOpacity: 0.2,
-                      shadowRadius: 1.41,
-                      elevation: 2,
-                    }}
-                    placeholder="Give your run a name"
-                    placeholderTextColor="#CDCDCD"
-                    onEndEditing={(event) =>
-                      setEventData({
-                        ...eventData,
-                        name: event.nativeEvent.text,
-                      })
-                    }
-                  />
-                </View>
+                <LocationContainer
+                  eventData={eventData}
+                  navigate={navigation.navigate}
+                />
 
-                <View style={styles.locationContainer}>
-                  <View style={styles.title}>
-                    <Text style={styles.titleText}>Address</Text>
-                  </View>
-                  <View style={styles.adressContainer}>
-                    <TouchableOpacity
-                      onPress={() => navigation.navigate("PlaceSearch")}
-                      /*if (route.params) {
-    setEvent({
-      ...event,
-      placeName: route.params.placeName,
-    })
-  }*/
-                    >
-                      <View
-                        style={{
-                          padding: hsize(10),
-                          backgroundColor: "#eee",
-                          marginVertical: hsize(5),
-                          borderRadius: hsize(5),
-                          shadowColor: "#000",
-                          shadowOffset: {
-                            width: 0,
-                            height: 1,
-                          },
-                          shadowOpacity: 0.2,
-                          shadowRadius: 1.41,
-                          elevation: 2,
-                        }}
-                      >
-                        {eventData.placeName == undefined ? (
-                          <Text style={{ color: "#CDCDCD" }}>
-                            Find an Address
-                          </Text>
-                        ) : (
-                          <Text style={{ color: "black" }}>
-                            {eventData.placeName}
-                          </Text>
-                        )}
-                      </View>
-                    </TouchableOpacity>
-                  </View>
-                </View>
+                <DescriptionContainer
+                  eventData={eventData}
+                  setEventData={setEventData}
+                />
 
-                <View style={styles.descriptionContainer}>
-                  <View style={styles.title}>
-                    <Text style={styles.titleText}>Description</Text>
-                  </View>
+                <TagsContainer
+                  eventData={eventData}
+                  setEventData={setEventData}
+                />
 
-                  <TextInput
-                    style={{
-                      padding: hsize(10),
-                      backgroundColor: "#eee",
-                      marginVertical: hsize(5),
-                      borderRadius: hsize(5),
-                      shadowColor: "#000",
-                      shadowOffset: {
-                        width: 0,
-                        height: 1,
-                      },
-                      shadowOpacity: 0.2,
-                      shadowRadius: 1.41,
-                      elevation: 2,
-                    }}
-                    placeholder="In a few words"
-                    multiline
-                    placeholderTextColor="#CDCDCD"
-                    onEndEditing={(event) =>
-                      setEventData({
-                        ...eventData,
-                        description: event.nativeEvent.text,
-                      })
-                    }
-                  />
-                </View>
+                <StartDateContainer
+                  setVisibleStart={setVisibleStart}
+                  colorBegin={colorBegin}
+                  beginningTime={eventData.beginningTime}
+                  readableDate={readableDate}
+                />
 
-                <View style={styles.TagsContainer}>
-                  <View style={styles.title}>
-                    <Text style={styles.titleText}>Hashtags</Text>
-                  </View>
+                <EndDateContainer
+                  setVisibleEnd={setVisibleEnd}
+                  colorEnd={colorEnd}
+                  endingTime={eventData.endingTime}
+                  readableDate={readableDate}
+                />
 
-                  <TextInput
-                    style={styles.textInput}
-                    placeholder="#"
-                    placeholderTextColor="#CDCDCD"
-                    onChangeText={(textTag) => {
-                      let tags = textTag.split(" ");
-                      setEventData({
-                        ...eventData,
-                        tags,
-                      });
-                    }}
-                  />
-                </View>
-
-                <View style={styles.dateContainer}>
-                  <View style={styles.title}>
-                    <Text style={styles.titleText}>Start</Text>
-                  </View>
-
-                  <TouchableOpacity
-                    activeOpacity={0.7}
-                    onPress={() => setVisibleStart(true)}
-                  >
-                    <View style={styles.textInput}>
-                      <Text style={{ color: colorBegin, fontSize: 16 }}>
-                        {readableDate(eventData.beginningTime)}
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-                <View style={styles.dateContainer}>
-                  <View style={styles.title}>
-                    <Text style={styles.titleText}>End</Text>
-                  </View>
-
-                  <TouchableOpacity
-                    activeOpacity={0.7}
-                    onPress={() => setVisibleEnd(true)}
-                  >
-                    <View style={styles.textInput}>
-                      <Text style={{ color: colorEnd, fontSize: 16 }}>
-                        {readableDate(eventData.endingTime)}
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    justifyContent: "space-around",
-                    //width: "100%",
-                    marginVertical: hsize(40),
-                  }}
-                >
-                  <TouchableOpacity
-                    activeOpacity={0.7}
-                    onPress={() => navigation.goBack()}
-                  >
-                    <View
-                      style={{
-                        backgroundColor: "white",
-                        borderWidth: 1,
-                        borderColor: "#E9E8E8",
-                        borderRadius: 5,
-                        height: hsize(40),
-                        width: wsize(100),
-                        alignItems: "center",
-                        justifyContent: "center",
-                        shadowColor: "#000",
-                        shadowOffset: {
-                          width: 0,
-                          height: 1,
-                        },
-                        shadowOpacity: 0.2,
-                        shadowRadius: 1.41,
-                        elevation: 2,
-                      }}
-                    >
-                      <Text
-                        style={{
-                          fontSize: 20,
-                          color: "red", // On cancel alert
-                        }}
-                      >
-                        Cancel
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                  <TouchableOpacity
-                    activeOpacity={0.7}
-                    onPress={() => {
-                      Haptics.impactAsync(
-                        Haptics.ImpactFeedbackStyle.Medium
-                      ).then(() => {
-                        createEvent(eventData).then((response) => {
-                          navigation.navigate({
-                            name: "Map",
-                            params: {
-                              createdEvent: route.params.searchedPlace,
-                              index: route.params.index,
-                            },
-                          });
-                        });
-                      });
-                    }}
-                  >
-                    <View
-                      style={{
-                        backgroundColor: "white",
-                        borderWidth: 1,
-                        borderColor: "#E9E8E8",
-                        borderRadius: 5,
-                        height: hsize(40),
-                        width: wsize(100),
-                        alignItems: "center",
-                        justifyContent: "center",
-                        shadowColor: "#000",
-                        shadowOffset: {
-                          width: 0,
-                          height: 1,
-                        },
-                        shadowOpacity: 0.2,
-                        shadowRadius: 1.41,
-                        elevation: 2,
-                      }}
-                    >
-                      <Text
-                        style={{
-                          fontSize: 20,
-                          color: "#743cff",
-                        }}
-                      >
-                        Confirm
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
+                <ButtonContainer
+                  eventData={eventData}
+                  navigation={navigation}
+                  params={route.params}
+                />
               </View>
             </TouchableWithoutFeedback>
           </ScrollView>

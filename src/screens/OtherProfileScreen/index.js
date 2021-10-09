@@ -45,7 +45,7 @@ const OtherProfileScreen = ({ navigation }) => {
   bsOtherProf = useRef(null);
   fallOtherProf = useRef(new Animated.Value(1)).current;
   const route = useRoute();
-  const otherUserId = route.params?.id;
+  let otherUserId = route.params?.id;
   const { profileDoc } = useProfile();
   const [status, setStatus] = useState("loading");
   const [otherUser, setOtherUser] = useState(null);
@@ -77,6 +77,7 @@ const OtherProfileScreen = ({ navigation }) => {
     return () => {
       setLoading(true);
       setStatus("loading");
+      otherUserId = null;
     };
   }, [otherUser]);
 
@@ -133,19 +134,15 @@ const OtherProfileScreen = ({ navigation }) => {
       .catch((error) => console.log(error));
   };
 
-  const goToFollowing = (user) => {
+  const goToFollowing = () => {
     navigation.navigate("Following", {
-      user: {
-        id: user.uid,
-      },
+      following: otherUser.following.items,
     });
   };
 
-  const goToFollowers = (user) => {
+  const goToFollowers = () => {
     navigation.navigate("Followers", {
-      user: {
-        id: user.uid,
-      },
+      followers: otherUser.followers.items,
     });
   };
 
