@@ -1,4 +1,4 @@
-import StyleSheet from "react-native";
+import { StyleSheet } from "react-native";
 import { wsize, hsize } from "../../utils/Dimensions";
 
 const styles = StyleSheet.create({
@@ -17,10 +17,14 @@ const styles = StyleSheet.create({
     //marginBottom: 15,
     marginHorizontal: 10,
   },
+  textHeader: {
+    fontSize: 20,
+    fontFamily: "ComfortaaBold",
+  },
   profileInitialContainer: {
     flexDirection: "row",
     paddingHorizontal: wsize(10),
-    paddingVertical: hsize(10),
+    paddingVertical: hsize(5),
   },
   profilePhoto: {
     width: wsize(80),
@@ -37,8 +41,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#262626",
   },
-  profileType: {
+  profileJoined: {
     fontSize: wsize(14),
+    color: "grey",
   },
   profileInfoContainer: {
     paddingHorizontal: wsize(10),
@@ -54,6 +59,7 @@ const styles = StyleSheet.create({
   },
   textInfo: {
     fontSize: wsize(12),
+    marginVertical: hsize(5),
   },
   linkInfo: {
     fontSize: wsize(12),
@@ -89,7 +95,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     //width: "100%",
-    marginVertical: 10,
+    marginVertical: hsize(3),
   },
   userInfoItem: {
     justifyContent: "center",
@@ -100,7 +106,7 @@ const styles = StyleSheet.create({
   userInfoTitle: {
     fontSize: 18,
     fontWeight: "bold",
-    marginBottom: 5,
+    marginBottom: hsize(2),
     textAlign: "center",
   },
   userInfoSubTitle: {
@@ -208,6 +214,31 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: "black",
     marginHorizontal: 10,
+  },
+  postHeaderContainer: {
+    flex: 1,
+    flexDirection: "row",
+    paddingHorizontal: wsize(20),
+    paddingVertical: hsize(10),
+    justifyContent: "space-between",
+    width: "100%",
+    marginBottom: hsize(3),
+    //backgroundColor: "grey",
+  },
+  postHeaderFirst: {
+    flexDirection: "row",
+    backgroundColor: "white",
+    shadowColor: "#000000",
+    shadowOffset: { width: 0, height: 0 },
+    shadowRadius: 5,
+    shadowOpacity: 0.3,
+    elevation: 2.5,
+    borderRadius: 10,
+    height: hsize(80),
+    width: "95%",
+    alignItems: "center",
+    justifyContent: "center",
+    margin: hsize(10),
   },
 });
 

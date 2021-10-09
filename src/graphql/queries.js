@@ -200,6 +200,11 @@ export const getUprofile = /* GraphQL */ `
           id
           followerID
           followedID
+          follower {
+            id
+            name
+            username
+          }
           createdAt
           updatedAt
         }
@@ -213,6 +218,7 @@ export const getUprofile = /* GraphQL */ `
           followed {
             id
             name
+            username
           }
           createdAt
           updatedAt

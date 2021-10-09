@@ -42,11 +42,12 @@ const styles = StyleSheet.create({
     marginLeft: wsize(9),
     color: "#262626",
   },
-  inputBox: {
+  textInput: {
     flex: 1,
-    margin: 3,
-    padding: 10,
-    borderWidth: 0.5,
+    padding: hsize(10),
+    backgroundColor: "#eee",
+    marginVertical: hsize(5),
+    borderRadius: hsize(5),
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -55,7 +56,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 1.41,
     elevation: 2,
-    borderRadius: 20,
   },
   headerContainer: {
     flexDirection: "row",
