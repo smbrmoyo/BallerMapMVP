@@ -33,7 +33,6 @@ const AuthProvider = ({ children }) => {
   const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(() => {
-    //console.log("Async storage log" + JSON.stringify(AsyncStorage.getItem("currentUserCreds")))
     const currentUserCreds = async () => {
       let res = await AsyncStorage.getItem("currentUserCreds").then((res) => {
         return JSON.parse(res);
@@ -53,15 +52,6 @@ const AuthProvider = ({ children }) => {
     };
 
     currentUserCreds();
-
-    /*return () => {
-      // cleanup function, end connection to ressources
-      if (!client) {
-        return;
-      } else {
-        client.destroy();
-      }
-    };*/
   }, []);
 
   useEffect(() => {

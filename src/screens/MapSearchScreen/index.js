@@ -19,6 +19,7 @@ import styles from "./styles";
 import people from "../../assets/data/people";
 import places from "../../assets/data/placesJSON";
 import PlaceRow from "./PlaceRow";
+import SearchBarPlaces from "./SearchBarPlaces";
 import { hsize, wsize } from "../../utils/Dimensions";
 import { useMap } from "../../components/navigation/Providers/MapProvider";
 import { getPlacesList } from "../../aws-functions/placeFunctions";
@@ -83,29 +84,6 @@ const MapSearchScreen = ({ navigation, route }) => {
     setQuery(input);
   };
 
-  function SearchBarPlaces(props) {
-    return (
-      <View style={styles.headerContainer}>
-        <TextInput //autoFocus
-          autoFocus
-          onChangeText={props.onChangeTextDebounced}
-          value={props.text}
-          placeholder="Search"
-          placeholderTextColor="#CDCDCD"
-          style={[
-            styles.inputBox,
-            {
-              color: props.colors.text,
-              backgroundColor: props.colors.background,
-              borderColor: props.colors.border,
-              borderWidth: props.dark ? 1 : 0.5,
-            },
-          ]}
-        />
-      </View>
-    );
-  }
-
   if (loading) {
     return <LoadingScreen />;
   }
@@ -126,25 +104,11 @@ const MapSearchScreen = ({ navigation, route }) => {
         }
         extraData={query}
         renderItem={({ item, index }) => (
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() =>
-              navigation.navigate({
-                name: "Map",
-                params: { searchedPlace: item, index: places.indexOf(item) },
-              })
-            }
-          >
-            <View style={styles.row}>
-              <View style={styles.iconContainer}>
-                <Entypo name="location-pin" size={25} color={"#743cff"} />
-              </View>
-              <View>
-                <Text style={styles.locationText}>{item.name}</Text>
-                <Text style={{ color: "grey" }}>{item.address}</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
+          <PlaceRow
+            indexOf={places.indexOf}
+            item={item}
+            navigate={navigation.navigate}
+          />
         )}
       />
     </View>
