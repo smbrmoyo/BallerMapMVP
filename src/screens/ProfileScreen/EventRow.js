@@ -3,7 +3,7 @@ import { Text, View, TouchableOpacity } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import { wsize, hsize } from "../../utils/Dimensions";
-import ProfilePicture from "../../components/ProfilePicture";
+import ProfilePicture from "../../components/ProfilePicturePlace";
 import styles from "./styles";
 
 // An Event row in the FlatList

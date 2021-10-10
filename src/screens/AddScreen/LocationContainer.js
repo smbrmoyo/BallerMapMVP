@@ -32,7 +32,7 @@ import * as Haptics from "expo-haptics";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import PlaceRow from "./PlaceRow";
-import ProfilePicture from "../../components/ProfilePicture";
+import ProfilePicture from "../../components/ProfilePictureUser";
 import Bitmoji from "../../components/Bitmoji";
 import styles from "./styles";
 import {

@@ -11,7 +11,7 @@ import debounce from "lodash/debounce";
 import { useNavigation, useRoute, useTheme } from "@react-navigation/native";
 import { SCText } from "../../components/SCText";
 import Entypo from "react-native-vector-icons/Entypo";
-import ProfilePicture from "../../components/ProfilePicture";
+import ProfilePicture from "../../components/ProfilePictureUser";
 import styles from "./styles";
 //import firebase from "@react-native-firebase/app";
 //import firestore from "@react-native-firebase/firestore";

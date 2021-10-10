@@ -22,7 +22,7 @@ import CategoryCard from "./CategoryCard";
 import PopularCard from "./PopularCard";
 import QuickCard from "./QuickCard";
 import HashTagCard from "./HashTagCard";
-import ProfilePicture from "../../components/ProfilePicture";
+import ProfilePicture from "../../components/ProfilePictureUser";
 
 const CategoryScreen = ({ props, navigation, size }) => {
   const fl = useRef();

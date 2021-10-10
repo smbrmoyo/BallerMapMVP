@@ -5,6 +5,7 @@ import {
   TouchableWithoutFeedback,
   Animated,
   Alert,
+  SafeAreaView,
 } from "react-native";
 import * as TaskManager from "expo-task-manager";
 import MapView, { PROVIDER_GOOGLE, Marker, Circle } from "react-native-maps";
@@ -15,7 +16,7 @@ import * as Location from "expo-location";
 import haversine from "haversine";
 
 import { mapBlueGreyStyle } from "../../styles/MapStyles";
-import ProfilePicture from "../ProfilePicture";
+import ProfilePicture from "../ProfilePictureUser";
 import Bitmoji from "../Bitmoji";
 import people from "../../assets/data/people";
 import Stories from "../Stories";
@@ -181,7 +182,7 @@ const HomeMap = ({ props }) => {
     });
   });
 
-  const interpolations = places.map((olace, index) => {
+  const interpolations = places.map((place, index) => {
     const inputRange = [
       (index - 1) * CARD_WIDTH,
       index * CARD_WIDTH,
@@ -285,7 +286,7 @@ const HomeMap = ({ props }) => {
   const lowAnim = useRef(new Animated.Value(1)).current;
 
   function animate(place = null) {
-    setSearchState(!searchState);
+    setSearchState(true);
 
     let coords = {
       coordinate: {
@@ -317,7 +318,7 @@ const HomeMap = ({ props }) => {
 
   function undoAnimate() {
     Keyboard.dismiss();
-    setSearchState(!searchState);
+    setSearchState(false);
 
     _map.current.setCamera({
       center: {
@@ -353,57 +354,61 @@ const HomeMap = ({ props }) => {
   return (
     <>
       <BottomSheetMap />
-      <TouchableWithoutFeedback onPress={() => bsMap.current.snapTo(2)}>
-        <Animated.View
-          style={{
-            width: "100%",
-            height: "100%",
-            //opacity: Animated.add(0.05, Animated.multiply(this.fall, 1.0)),
-          }}
-        >
-          <MapView
-            ref={_map}
-            style={styles.mapContainer}
-            provider={PROVIDER_GOOGLE}
-            //showsMyLocationButton={true}
-            showsUserLocation={true}
-            isFromMockProvider={false}
-            customMapStyle={mapBlueGreyStyle}
-            loadingEnabled={true}
-            onMapReady={_onMapReady}
-            followUserLocation={true}
-            onUserLocationChange={(event) => {
-              if (!searchState) {
-                _map.current.animateCamera({
-                  center: {
-                    latitude: event.nativeEvent.coordinate.latitude,
-                    longitude: event.nativeEvent.coordinate.longitude,
-                  },
-                  heading: 90, // could pass event.nativeEvent.coordinate.heading. Will test it
-                  pitch: 90,
-                  zoom: 18,
-                  altitude: 18,
-                });
-              }
+      <SafeAreaView>
+        <TouchableWithoutFeedback onPress={() => bsMap.current.snapTo(2)}>
+          <Animated.View
+            style={{
+              width: "100%",
+              height: "100%",
+              //opacity: Animated.add(0.05, Animated.multiply(this.fall, 1.0)),
             }}
-            onLayout={() => {
-              if (route.params?.createdEvent) {
-                createdEvent();
-              } else if (route.params?.searchedPlace) {
-                searchedPlace();
-              } else {
-                _map.current.setCamera({
-                  center: {
-                    latitude: camera?.latitude,
-                    longitude: camera?.longitude,
-                  },
-                  heading: 90,
-                  pitch: 90,
-                  zoom: 18,
-                  altitude: 18,
-                });
+          >
+            <MapView
+              ref={_map}
+              style={styles.mapContainer}
+              provider={PROVIDER_GOOGLE}
+              //showsMyLocationButton={true}
+              showsUserLocation={true}
+              isFromMockProvider={false}
+              customMapStyle={mapBlueGreyStyle}
+              loadingEnabled={true}
+              onMapReady={_onMapReady}
+              //followUserLocation={true}
+              onRegionChange={(isGesture) =>
+                searchState == false ? setSearchState(true) : null
               }
-              /*route.params
+              onUserLocationChange={(event) => {
+                if (!searchState) {
+                  _map.current.animateCamera({
+                    center: {
+                      latitude: event.nativeEvent.coordinate.latitude,
+                      longitude: event.nativeEvent.coordinate.longitude,
+                    },
+                    heading: 90, // could pass event.nativeEvent.coordinate.heading. Will test it
+                    pitch: 90,
+                    zoom: 18,
+                    altitude: 18,
+                  });
+                }
+              }}
+              onLayout={() => {
+                if (route.params?.createdEvent) {
+                  createdEvent();
+                } else if (route.params?.searchedPlace) {
+                  searchedPlace();
+                } else {
+                  _map.current.setCamera({
+                    center: {
+                      latitude: camera?.latitude,
+                      longitude: camera?.longitude,
+                    },
+                    heading: 90,
+                    pitch: 90,
+                    zoom: 18,
+                    altitude: 18,
+                  });
+                }
+                /*route.params
                 ? (createdEvent(), searchedPlace())
                 : _map.current.setCamera({
                     center: {
@@ -415,104 +420,105 @@ const HomeMap = ({ props }) => {
                     zoom: 18,
                     altitude: 18,
                   });*/
-            }}
-            initialCamera={camera}
-          >
-            {places.map((place, index) => {
-              const scaleStyle = {
-                transform: [
-                  {
-                    scale: interpolations[index].scale,
+              }}
+              initialCamera={camera}
+            >
+              {places.map((place, index) => {
+                const scaleStyle = {
+                  transform: [
+                    {
+                      scale: interpolations[index].scale,
+                    },
+                  ],
+                };
+
+                let coords = {
+                  coordinate: {
+                    latitude: place.coords.lat,
+                    longitude: place.coords.long,
                   },
-                ],
-              };
+                };
 
-              let coords = {
-                coordinate: {
-                  latitude: place.coords.lat,
-                  longitude: place.coords.long,
-                },
-              };
-
-              return (
-                <Marker
-                  key={index}
-                  coordinate={coords.coordinate}
-                  onPress={(e) => onMarkerPress(e)}
-                >
-                  <Animated.View style={[styles.markerWrap]}>
-                    <Animated.Image
-                      source={require("../../assets/images/map_marker.png")}
-                      style={[styles.marker, scaleStyle]}
-                      resizeMode="contain"
-                    />
-                  </Animated.View>
+                return (
+                  <Marker
+                    key={index}
+                    coordinate={coords.coordinate}
+                    onPress={(e) => onMarkerPress(e)}
+                  >
+                    <Animated.View style={[styles.markerWrap]}>
+                      <Animated.Image
+                        source={require("../../assets/images/map_marker.png")}
+                        style={[styles.marker, scaleStyle]}
+                        resizeMode="contain"
+                      />
+                    </Animated.View>
+                  </Marker>
+                );
+              })}
+              {people.map((location, index) => (
+                <Marker key={index} coordinate={location.coordinate}>
+                  <Bitmoji avatarId={"99397600010_1-s5"} />
                 </Marker>
-              );
-            })}
-            {people.map((location, index) => (
-              <Marker key={index} coordinate={location.coordinate}>
-                <Bitmoji avatarId={"99397600010_1-s5"} />
-              </Marker>
-            ))}
-          </MapView>
-          <AnimatedTextInput
-            colors={colors}
-            dark={dark}
-            heightAnim={heightAnim}
-            undoAnimate={undoAnimate}
-          />
-          <AnimatedSearchButton lowAnim={lowAnim} animate={animate} />
-          <Animated.ScrollView
-            ref={_scrollView}
-            horizontal
-            pagingEnabled
-            scrollEventThrottle={1}
-            showsHorizontalScrollIndicator={false}
-            snapToInterval={CARD_WIDTH + 20}
-            snapToAlignment="start"
-            decelerationRate={"fast"}
-            style={[
-              styles.scrollView,
-              {
-                transform: [
-                  {
-                    translateY: lowAnim,
-                  },
-                ],
-              },
-            ]}
-            contentInset={{
-              // IOS Only
-              top: 0,
-              left: SPACING_FOR_CARD_INSET,
-              bottom: 0,
-              right: SPACING_FOR_CARD_INSET,
-            }}
-            contentContainerStyle={{
-              alignItems: "center",
-              paddingRight: SPACING_FOR_CARD_INSET,
-            }}
-            onScroll={Animated.event(
-              [
+              ))}
+            </MapView>
+            <AnimatedTextInput
+              colors={colors}
+              dark={dark}
+              heightAnim={heightAnim}
+              undoAnimate={undoAnimate}
+            />
+            <AnimatedSearchButton lowAnim={lowAnim} animate={animate} />
+            <Animated.ScrollView
+              ref={_scrollView}
+              horizontal
+              pagingEnabled
+              scrollEventThrottle={1}
+              showsHorizontalScrollIndicator={false}
+              snapToInterval={CARD_WIDTH + 20}
+              snapToAlignment="start"
+              decelerationRate={"fast"}
+              style={[
+                styles.scrollView,
                 {
-                  nativeEvent: {
-                    contentOffset: {
-                      x: _mapAnimation,
+                  transform: [
+                    {
+                      translateY: lowAnim,
+                    },
+                  ],
+                },
+              ]}
+              contentInset={{
+                // IOS Only
+                top: 0,
+                left: SPACING_FOR_CARD_INSET,
+                bottom: 0,
+                right: SPACING_FOR_CARD_INSET,
+              }}
+              contentContainerStyle={{
+                alignItems: "center",
+                paddingRight: SPACING_FOR_CARD_INSET,
+              }}
+              onScroll={Animated.event(
+                [
+                  {
+                    nativeEvent: {
+                      contentOffset: {
+                        x: _mapAnimation,
+                      },
                     },
                   },
-                },
-              ],
-              { useNativeDriver: true }
-            )}
-          >
-            {places.map((item, index) => (
-              <AnimatedCard key={index} goToStory={goToStory} item={item} />
-            ))}
-          </Animated.ScrollView>
-          <AnimatedAddButton heightAnim={heightAnim} goToAdd={goToAdd} />
-        </Animated.View>
-      </TouchableWithoutFeedback>
+                ],
+                { useNativeDriver: true }
+              )}
+            >
+              {places.map((item, index) => (
+                <AnimatedCard key={index} goToStory={goToStory} item={item} />
+              ))}
+            </Animated.ScrollView>
+            <AnimatedAddButton heightAnim={heightAnim} goToAdd={goToAdd} />
+          </Animated.View>
+        </TouchableWithoutFeedback>
+      </SafeAreaView>
     </>
   );
 };

@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Animated } from "react-native";
-import ProfilePicture from "../ProfilePicture";
+import ProfilePicture from "../ProfilePictureUser";
 import styles from "./styles";
 
 export default function AnimatedCard(props) {

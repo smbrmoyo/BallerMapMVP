@@ -20,7 +20,7 @@ import {
 } from "react-native";
 import Animated from "react-native-reanimated";
 import BottomSheet from "reanimated-bottom-sheet";
-import ProfilePicture from "../../components/ProfilePicture";
+import ProfilePicture from "../../components/ProfilePictureUser";
 import FollowButton from "../../components/FollowButton";
 import { useIsFocused, useRoute } from "@react-navigation/native";
 import { wsize, hsize } from "../../utils/Dimensions";
@@ -69,7 +69,7 @@ export default function ProfileContainer(props) {
       </View>
       <View style={styles.profileInfoContainer}>
         <View style={styles.profileInfo}>
-          <SimpleLineIcons name="location-pin" size={20} color="#743cff" />
+          <Entypo name="location-pin" size={25} color={"#743cff"} />
           <Text style={styles.textInfo}>
             {/*userExtraInfo.city*/}
             Paris, Rue du con

@@ -2,7 +2,12 @@ import React from "react";
 import { Image, View, ImageBackground } from "react-native";
 import styles from "./styles";
 
-const ProfilePicture = ({ uri, size = 60, onEdit = false, opacity = 1 }) => {
+const ProfilePicture = ({
+  uri = require("../../assets/images/default_profile_picture.png"),
+  size = 60,
+  onEdit = false,
+  opacity = 1,
+}) => {
   return (
     <View
       style={[

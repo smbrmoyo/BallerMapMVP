@@ -11,7 +11,7 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import BottomSheet from "reanimated-bottom-sheet";
-import ProfilePicture from "../../components/ProfilePicture";
+import ProfilePicture from "../../components/ProfilePictureUser";
 import Bitmoji from "../../components/Bitmoji";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import AntDesign from "react-native-vector-icons/AntDesign";

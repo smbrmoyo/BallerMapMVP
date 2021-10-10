@@ -39,7 +39,7 @@ const AuthStack = ({ navigation, route }) => {
   } else if (isFirstLaunch == true) {
     routeName = "Onboarding";
   } else {
-    routeName = "SignInSocial";
+    routeName = "SignInEmail";
   }
 
   return (

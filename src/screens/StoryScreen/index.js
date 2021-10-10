@@ -17,7 +17,7 @@ import { useRoute, useNavigation } from "@react-navigation/native";
 //import styles from "./styles";
 import Swipe from "./Swipe";
 //import storiesData from "../../assets/data/stories";
-import ProfilePicture from "../../components/ProfilePicture";
+import ProfilePicture from "../../components/ProfilePictureUser";
 import Feather from "react-native-vector-icons/Feather";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
