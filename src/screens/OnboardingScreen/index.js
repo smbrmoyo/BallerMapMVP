@@ -40,8 +40,8 @@ const OnboardingScreen = ({ navigation }) => {
       DoneButtonComponent={Done}
       SkipButtonComponent={Skip}
       NextButtonComponent={Next}
-      onSkip={() => navigation.replace("SignInSocial")}
-      onDone={() => navigation.navigate("SignInSocial")}
+      onSkip={() => navigation.replace("SignInEmail")}
+      onDone={() => navigation.navigate("SignInEmail")}
       pages={[
         {
           backgroundColor: "#fff",

@@ -27,7 +27,6 @@ import Animated from "react-native-reanimated";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
-import ProfilePicture from "../../components/ProfilePicture";
 import {
   createUserDoc,
   createUserProfile,

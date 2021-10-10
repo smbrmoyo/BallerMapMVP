@@ -12,7 +12,7 @@ import {
 } from "react-native";
 //import { getUserFriends, getUserSubs } from "../../services/api/user";
 import users from "../../assets/data/people";
-import ProfilePicture from "../../components/ProfilePicture";
+import ProfilePicture from "../../components/ProfilePictureUser";
 import { wsize, hsize } from "../../utils/Dimensions";
 import debounce from "lodash/debounce";
 import { useTheme } from "@react-navigation/native";

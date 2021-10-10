@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Pressable } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import ProfilePicture from "../ProfilePicture";
+import ProfilePicture from "../ProfilePictureUser";
 import styles from "./styles";
 
 const Story = ({ imageUri, name }) => {

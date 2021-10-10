@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { wsize, hsize } from "../../utils/Dimensions";
-import ProfilePicture from "../ProfilePicture";
+import ProfilePicture from "../ProfilePictureUser";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Fontisto from "react-native-vector-icons/Fontisto";
 import Ionicons from "react-native-vector-icons/Ionicons";

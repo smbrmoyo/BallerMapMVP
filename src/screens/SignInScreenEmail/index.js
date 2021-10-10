@@ -260,7 +260,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
             </TouchableOpacity>
             <TouchableOpacity
               activeOpacity={0.7}
-              onPress={() => navigation.navigate("SignUpSocial")}
+              onPress={() => navigation.navigate("SignUpEmail")}
               style={[styles.signIn]}
             >
               <View style={styles.textPrivate}>

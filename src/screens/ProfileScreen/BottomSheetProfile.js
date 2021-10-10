@@ -5,11 +5,12 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import { useNavigation } from "@react-navigation/native";
 
-import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
+import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import styles from "./styles";
 
 const BottomSheetProfile = (props) => {
   navigation = useNavigation();
+  const { signOut } = useAuth();
 
   function LogoutAlert() {
     Alert.alert(

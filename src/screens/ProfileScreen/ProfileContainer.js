@@ -1,8 +1,13 @@
 import React from "react";
 import { Text, View, TouchableOpacity, Dimensions } from "react-native";
-import ProfilePicture from "../../components/ProfilePicture";
+import ProfilePicture from "../../components/ProfilePictureUser";
 import { hsize } from "../../utils/Dimensions";
-import { EvilIcons, SimpleLineIcons, Feather } from "@expo/vector-icons";
+import {
+  EvilIcons,
+  SimpleLineIcons,
+  Feather,
+  Entypo,
+} from "@expo/vector-icons";
 
 import styles from "./styles";
 
@@ -30,7 +35,7 @@ export default function ProfileContainer(props) {
       </View>
       <View style={styles.profileInfoContainer}>
         <View style={styles.profileInfo}>
-          <SimpleLineIcons name="location-pin" size={20} color="#743cff" />
+          <Entypo name="location-pin" size={25} color={"#743cff"} />
           <Text style={styles.textInfo}>
             {/*userExtraInfo.city*/}
             Paris, Rue du con

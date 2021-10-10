@@ -6,7 +6,7 @@ import {
   Dimensions,
   ScrollView,
 } from "react-native";
-import ProfilePicture from "../../components/ProfilePicture";
+import ProfilePicture from "../../components/ProfilePictureUser";
 import { wsize, hsize } from "../../utils/Dimensions";
 import { EvilIcons, SimpleLineIcons, Feather } from "@expo/vector-icons";
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";

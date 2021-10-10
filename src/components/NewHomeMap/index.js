@@ -16,7 +16,7 @@ import { AsyncStorage } from "react-native";
 //import Animated from "react-native-reanimated";
 import MapView, { PROVIDER_GOOGLE, Marker, Circle } from "react-native-maps";
 import { mapBlueGreyStyle } from "../../styles/MapStyles";
-import ProfilePicture from "../ProfilePicture";
+import ProfilePicture from "../ProfilePictureUser";
 import Bitmoji from "../Bitmoji";
 import people from "../../assets/data/people";
 import places from "../../assets/data/places";

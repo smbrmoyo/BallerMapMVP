@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, FlatList } from "react-native";
-import ProfilePicture from "../../components/ProfilePicture";
+import ProfilePicture from "../../components/ProfilePictureUser";
 import { hsize, wsize } from "../../utils/Dimensions";
 import people from "../../assets/data/people";
 

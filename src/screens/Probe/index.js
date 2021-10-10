@@ -26,7 +26,7 @@ import BottomSheet from "reanimated-bottom-sheet";
 import Animated from "react-native-reanimated";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import ProfilePicture from "../../components/ProfilePicture";
+import ProfilePicture from "../../components/ProfilePictureUser";
 import { createUserDoc } from "../../aws-functions/userFunctions";
 import styles from "./styles";
 import { wsize, hsize } from "../../utils/Dimensions";

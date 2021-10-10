@@ -29,7 +29,7 @@ import Animated, {
 } from "react-native-reanimated";
 import { FlatList, ScrollView } from "react-native-gesture-handler";
 import BottomSheet from "reanimated-bottom-sheet";
-import ProfilePicture from "../../components/ProfilePicture";
+import ProfilePicture from "../../components/ProfilePictureUser";
 import LoadingScreen from "../../screens/LoadingScreen";
 import FollowButton from "../../components/FollowButton";
 import { useIsFocused } from "@react-navigation/native";

@@ -165,39 +165,6 @@ const SignUpScreenEmail = ({ navigation }) => {
 
         <Animatable.View animation="fadeInUpBig" style={styles.footer}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            {/* username input
-            <Text
-              style={[
-                styles.text_footer,
-                {
-                  marginTop: hsize(15),
-                },
-              ]}
-            >
-              Username
-            </Text>
-            <View style={styles.action}>
-              <FontAwesome name="user-o" color="#05375a" size={20} />
-              <TextInput
-                placeholder="Your Username"
-                placeholderTextColor="#666666"
-                style={[
-                  styles.textInput,
-                  {
-                    color: colors.text,
-                  },
-                ]}
-                autoCapitalize="none"
-                onChangeText={(username) => usernameInputChange(username)}
-              />
-              {dataSignUp.check_usernameInputChange ? (
-                <Animatable.View animation="bounceIn">
-                  <Feather name="check-circle" color="green" size={20} />
-                </Animatable.View>
-              ) : null}
-            </View>
-            */}
-
             <Text
               style={[
                 styles.text_footer,
@@ -376,7 +343,7 @@ const SignUpScreenEmail = ({ navigation }) => {
 
               <TouchableOpacity
                 activeOpacity={0.7}
-                onPress={() => navigation.navigate("SignInSocial")}
+                onPress={() => navigation.navigate("SignInEmail")}
                 style={[styles.signIn]}
               >
                 <View style={styles.textPrivate}>
