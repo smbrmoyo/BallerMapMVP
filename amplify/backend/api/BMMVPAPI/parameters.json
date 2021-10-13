@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "BMMVPAPI",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authballermapmvpdddfdca7",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

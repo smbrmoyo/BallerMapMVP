@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "api": {
+      "BMMVPAPI": [
+        "Query",
+        "Mutation"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}
