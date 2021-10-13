@@ -4,71 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/schema.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2021-09-22,_11_36_p_m__[Default_Changelist]1/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2021-09-22__11_36_p_m___Default_Changelist_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2021-09-23,_2_01_p_m__[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2021-09-23__2_01_p_m___Default_Changelist_.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2021-09-24,_2_25_a_m__[Default_Changelist]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2021-09-24__2_25_a_m___Default_Changelist_.xml" beforeDir="false" />
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="New project INITIALISED with LambdaResolver">
       <change beforePath="$PROJECT_DIR$/amplify/.config/project-config.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/.backend-config 3.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/.backend-config 4.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/.tags 3.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/.tags 4.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/.parameters 2.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/.schema 2.graphql.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/.transform.conf 2.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/parameters.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/resolvers/.README 2.md.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/resolvers/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/schema.graphql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/stacks/.CustomResources 2.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/stacks/CustomResources.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/transform.conf.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/auth/ballermapmvp60e3b21c60e3b21c/auth-trigger-cloudformation-template.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/auth/ballermapmvp60e3b21c60e3b21c/ballermapmvp60e3b21c60e3b21c-cloudformation-template.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/auth/ballermapmvp60e3b21c60e3b21c/parameters.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/backend-config 2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/api/BMMVPAPI/parameters.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/api/BMMVPAPI/resolvers/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/api/BMMVPAPI/schema.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/api/BMMVPAPI/stacks/CustomResources.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/api/BMMVPAPI/transform.conf.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/auth/ballermapmvpdddfdca7/ballermapmvpdddfdca7-cloudformation-template.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/auth/ballermapmvpdddfdca7/parameters.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/amplify/backend/backend-config.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/.amplify 3.state.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/.amplify 4.state.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/.ballermapmvp60e3b21c60e3b21cPostConfirmation-cloudformation-template 3.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/.ballermapmvp60e3b21c60e3b21cPostConfirmation-cloudformation-template 4.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/.function-parameters 3.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/.function-parameters 4.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/.parameters 3.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/.parameters 4.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/amplify 2.state" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/amplify.state" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/ballermapmvp60e3b21c60e3b21cPostConfirmation-cloudformation-template 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/ballermapmvp60e3b21c60e3b21cPostConfirmation-cloudformation-template.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/function-parameters 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/function-parameters.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/parameters 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/parameters.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/.add-to-group 3.js.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/.add-to-group 4.js.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/.event 3.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/.event 4.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/.index 3.js.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/.index 4.js.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/.package 3.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/.package 4.json.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/.yarn 3.lock.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/.yarn 4.lock.icloud" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/add-to-group 2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/add-to-group.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/event 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/event.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/index 2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/package 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/yarn 2.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/ballermapmvp60e3b21c60e3b21cPostConfirmation/src/yarn.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/tags 2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/LambdaRes-cloudformation-template.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/amplify.state" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/function-parameters.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/parameters.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/event.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/mutations.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/resolvers.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/yarn.lock" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/amplify/backend/tags.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/amplify/cli.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/amplify/hooks/README.md" beforeDir="false" />
@@ -77,6 +33,10 @@
       <change beforePath="$PROJECT_DIR$/src/graphql/queries.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphql/schema.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphql/subscriptions.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/index.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/schema.d.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/models/schema.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +99,7 @@
       <workItem from="1632265624533" duration="1526000" />
       <workItem from="1632267655185" duration="27371000" />
       <workItem from="1632578611328" duration="60909000" />
-      <workItem from="1634157120118" duration="1195000" />
+      <workItem from="1634157120118" duration="1501000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -211,7 +171,21 @@
       <option name="project" value="LOCAL" />
       <updated>1632726451957</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="New project INITIALISED with LambdaResolver">
+      <created>1634158366190</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1634158366190</updated>
+    </task>
+    <task id="LOCAL-00012" summary="New project INITIALISED with LambdaResolver">
+      <created>1634158384455</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1634158384455</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,6 +209,7 @@
     <MESSAGE value="Cleanup des aws functions pour l'auth a terminer&#10;FOnction pour verifier l'existence des user et profile docs implémentées (a vérifier une derniere fois)&#10;&#10;Reste a&#10; modiufier les bons champs au" />
     <MESSAGE value="Cleanup des aws functions pour l'auth a terminer&#10;FOnction pour verifier l'existence des user et profile docs implémentées&#10;&#10;Reste a modifier les bons champs au signup screen" />
     <MESSAGE value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="false" />
+    <MESSAGE value="New project INITIALISED with LambdaResolver" />
+    <option name="LAST_COMMIT_MESSAGE" value="New project INITIALISED with LambdaResolver" />
   </component>
 </project>

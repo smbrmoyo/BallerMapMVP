@@ -1,26 +1,25 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-ballermapmvp-dev-190022-authRole",
-      "UnauthRoleArn": "arn:aws:iam::675018912417:role/amplify-ballermapmvp-dev-190022-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::675018912417:role/amplify-ballermapmvp-dev-190022-authRole",
+      "AuthRoleName": "amplify-ballermapmvp-dev-00406-authRole",
+      "UnauthRoleArn": "arn:aws:iam::675018912417:role/amplify-ballermapmvp-dev-00406-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::675018912417:role/amplify-ballermapmvp-dev-00406-authRole",
       "Region": "us-east-2",
-      "DeploymentBucketName": "amplify-ballermapmvp-dev-190022-deployment",
-      "UnauthRoleName": "amplify-ballermapmvp-dev-190022-unauthRole",
-      "StackName": "amplify-ballermapmvp-dev-190022",
-      "StackId": "arn:aws:cloudformation:us-east-2:675018912417:stack/amplify-ballermapmvp-dev-190022/5e8e8f50-1e54-11ec-b199-02285e82d03c",
-      "AmplifyAppId": "d3suoz60gixkgp"
+      "DeploymentBucketName": "amplify-ballermapmvp-dev-00406-deployment",
+      "UnauthRoleName": "amplify-ballermapmvp-dev-00406-unauthRole",
+      "StackName": "amplify-ballermapmvp-dev-00406",
+      "StackId": "arn:aws:cloudformation:us-east-2:675018912417:stack/amplify-ballermapmvp-dev-00406/9d833790-2bda-11ec-9734-02ada5ef0fda",
+      "AmplifyAppId": "d15bhqxn1ih95w"
     },
     "categories": {
-      "function": {
-        "ballermapmvp60e3b21c60e3b21cPostConfirmation": {
-          "GROUP": "NoNameGroup",
-          "deploymentBucketName": "amplify-ballermapmvp-dev-190022-deployment",
-          "s3Key": "amplify-builds/ballermapmvp60e3b21c60e3b21cPostConfirmation-666734767a4f69666f61-build.zip"
-        }
-      },
       "auth": {
-        "ballermapmvp60e3b21c60e3b21c": {}
+        "ballermapmvpdddfdca7": {}
+      },
+      "function": {
+        "LambdaRes": {
+          "deploymentBucketName": "amplify-ballermapmvp-dev-00406-deployment",
+          "s3Key": "amplify-builds/LambdaRes-5056452b726777487975-build.zip"
+        }
       }
     }
   }
