@@ -22,9 +22,12 @@ import ProfileContainer from "./ProfileContainer";
 import MyEventsTab from "./MyEventsTab";
 import styles from "./styles";
 
-import { API } from 'aws-amplify';
+import { API, graphqlOperation} from 'aws-amplify';
 import { onCreateUserConnection, onDeleteUserConnection } from '../../graphql/subscriptions';
+import { getUprofileDoc } from '../../aws-functions/userFunctions';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+let followers = undefined;
 
 //render function
 
@@ -59,35 +62,49 @@ const ProfileScreen = ({ navigation, route }) => {
     subscribeToAddFollower(profileDoc, loggedUser);
   };
 
+  const updateProfileDoc = async (userId) => {
+    getUprofileDoc(userId).then((response) => {
+      followers = response.followers.items;
+    });
+  }
+
   const subscribeToRemoveFollower = async (profileDocument, loggedUser) => {
-    console.log('subscription to remove Follow here');
     // Subscribe to removal of userConnection
-    await API.graphql({
-      query: onDeleteUserConnection,
-      variables: {
-        followedID: profileDocument !== null? profileDocument.id: JSON.parse(loggedUser).email
-      }
-    }).subscribe({
-      next: (subOnDeleteConnection) => {
-        console.log(subOnDeleteConnection.value.data.onDeleteUserConnection);
-        profileDoc = subOnDeleteConnection.value.data.onDeleteUserConnection.followed;
+    await API.graphql(graphqlOperation(onDeleteUserConnection)).subscribe({
+      next: async ({ value }) => {
+        try{
+          const profileId = profileDocument !== null? profileDocument.id: JSON.parse(loggedUser).email;
+          if(value.data.onDeleteUserConnection.followedID == profileId){
+            setLoading(true);
+            await updateProfileDoc(profileId);
+            setLoading(false);
+          } else {
+            console.log('user not related to this follow');
+          }
+        } catch (e){
+          console.warn(e);
+        }
       },
-      error: error => console.log(error ,' here')
+      error: error => console.log(error)
     });
   }
 
   const subscribeToAddFollower = async (profileDocument, loggedUser) => {
-    console.log('subscriptions to Add Follow here');
     // Subscribe to creation of userConnection
-    await API.graphql({
-      query: onCreateUserConnection,
-      variables: {
-        followedID: profileDocument !== null? profileDocument.id: JSON.parse(loggedUser).email
-      }
-    }).subscribe({
-      next: (subOnAddFollower) => {
-        console.log(subOnAddFollower.value.data.onCreateUserConnection);
-        profileDoc = subOnAddFollower.value.data.onCreateUserConnection.followed;
+    await API.graphql(graphqlOperation(onCreateUserConnection)).subscribe({
+      next: async ({ value }) => {
+        try{
+          const profileId = profileDocument !== null? profileDocument.id: JSON.parse(loggedUser).email;
+          if(value.data.onCreateUserConnection.followedID == profileId){
+            setLoading(true);
+            await updateProfileDoc(profileId);
+            setLoading(false);
+          } else {
+            console.log('user not related to this follow');
+          }
+        } catch (e){
+          console.warn(e);
+        }
       },
       error: error => console.log(error ,' here')
     });
@@ -144,7 +161,7 @@ const ProfileScreen = ({ navigation, route }) => {
 
   const goToFollowers = () => {
     navigation.navigate("Followers", {
-      followers: profileDoc.followers.items,
+      followers: followers != undefined ? followers : profileDoc.followers.items,
     });
   };
 
@@ -172,6 +189,7 @@ const ProfileScreen = ({ navigation, route }) => {
           >
             <ProfileContainer
               profileDoc={profileDoc}
+              followers={followers}
               goToFollowing={goToFollowing}
               goToFollowers={goToFollowers}
               navigate={navigation.navigate}

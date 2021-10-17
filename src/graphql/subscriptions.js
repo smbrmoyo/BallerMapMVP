@@ -611,8 +611,8 @@ export const onDeleteUprofile = /* GraphQL */ `
   }
 `;
 export const onCreateUserConnection = /* GraphQL */ `
-  subscription OnCreateUserConnection($followedID: String) {
-    onCreateUserConnection(followedID: $followedID) {
+  subscription OnCreateUserConnection {
+    onCreateUserConnection {
       id
       followerID
       followedID
@@ -805,8 +805,8 @@ export const onUpdateUserConnection = /* GraphQL */ `
   }
 `;
 export const onDeleteUserConnection = /* GraphQL */ `
-  subscription OnDeleteUserConnection($followedID: String) {
-    onDeleteUserConnection(followedID: $followedID) {
+  subscription OnDeleteUserConnection {
+    onDeleteUserConnection {
       id
       followerID
       followedID
