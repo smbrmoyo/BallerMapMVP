@@ -14,6 +14,8 @@ import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { hsize, wsize } from "../../utils/Dimensions";
+
 const Stack = createStackNavigator();
 
 /*const MessageNonModal = ({ navigation, route }) => {
