@@ -22,6 +22,10 @@ import ProfileContainer from "./ProfileContainer";
 import MyEventsTab from "./MyEventsTab";
 import styles from "./styles";
 
+import { API } from 'aws-amplify';
+import { onCreateUserConnection, onDeleteUserConnection } from '../../graphql/subscriptions';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 //render function
 
 const ProfileScreen = ({ navigation, route }) => {
@@ -44,9 +48,50 @@ const ProfileScreen = ({ navigation, route }) => {
   const isFocused = useIsFocused();
 
   useEffect(() => {
-    profileDoc != undefined ? setLoading(false) : null;
-    setMyEvents(profileDoc?.eventsCreated.items);
+    onPageRendered();
   }, [profileDoc]);
+
+  const onPageRendered = async () => {
+    const loggedUser = await AsyncStorage.getItem("currentUserCreds");
+    await profileDoc != undefined ? setLoading(false) : null;
+    setMyEvents(profileDoc?.eventsCreated.items);
+    subscribeToRemoveFollower(profileDoc, loggedUser);
+    subscribeToAddFollower(profileDoc, loggedUser);
+  };
+
+  const subscribeToRemoveFollower = async (profileDocument, loggedUser) => {
+    console.log('subscription to remove Follow here');
+    // Subscribe to removal of userConnection
+    await API.graphql({
+      query: onDeleteUserConnection,
+      variables: {
+        followedID: profileDocument !== null? profileDocument.id: JSON.parse(loggedUser).email
+      }
+    }).subscribe({
+      next: (subOnDeleteConnection) => {
+        console.log(subOnDeleteConnection.value.data.onDeleteUserConnection);
+        profileDoc = subOnDeleteConnection.value.data.onDeleteUserConnection.followed;
+      },
+      error: error => console.log(error ,' here')
+    });
+  }
+
+  const subscribeToAddFollower = async (profileDocument, loggedUser) => {
+    console.log('subscriptions to Add Follow here');
+    // Subscribe to creation of userConnection
+    await API.graphql({
+      query: onCreateUserConnection,
+      variables: {
+        followedID: profileDocument !== null? profileDocument.id: JSON.parse(loggedUser).email
+      }
+    }).subscribe({
+      next: (subOnAddFollower) => {
+        console.log(subOnAddFollower.value.data.onCreateUserConnection);
+        profileDoc = subOnAddFollower.value.data.onCreateUserConnection.followed;
+      },
+      error: error => console.log(error ,' here')
+    });
+  }
 
   useLayoutEffect(() => {
     navigation.setOptions({
