@@ -17,6 +17,14 @@
           "GROUP": "NoNameGroup",
           "deploymentBucketName": "amplify-ballermapmvp-dev-190022-deployment",
           "s3Key": "amplify-builds/ballermapmvp60e3b21c60e3b21cPostConfirmation-666734767a4f69666f61-build.zip"
+        },
+        "ListUProfiles": {
+          "deploymentBucketName": "amplify-ballermapmvp-dev-190022-deployment",
+          "s3Key": "amplify-builds/ListUProfiles-434734626b306a354e71-build.zip"
+        },
+        "ListFunc": {
+          "deploymentBucketName": "amplify-ballermapmvp-dev-190022-deployment",
+          "s3Key": "amplify-builds/ListFunc-49417a76703866743377-build.zip"
         }
       },
       "auth": {

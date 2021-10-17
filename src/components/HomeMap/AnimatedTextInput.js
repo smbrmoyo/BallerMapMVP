@@ -25,26 +25,6 @@ export default function AnimatedTextInput(props) {
   const [loading, setLoading] = useState(false);
   const { colors, dark } = useTheme();
 
-  const searchFilter = async (text) => {
-    if (text) {
-      var newData = places.filter((item) => {
-        var name = item.name.toLowerCase();
-        const filter = text.toLowerCase();
-        return name.search(filter) !== -1;
-      });
-      setData(newData);
-      setText(text);
-    } else {
-      setData(places);
-      setText("");
-    }
-  };
-
-  const updateQuery = (input) => {
-    setHits(data.slice());
-    setQuery(input);
-  };
-
   return (
     <>
       <Animated.View
@@ -54,7 +34,7 @@ export default function AnimatedTextInput(props) {
           flexDirection: "row",
           height: "6%",
           width: "90%",
-          top: "-25%",
+          top: "-18%",
           borderRadius: hsize(10),
           alignSelf: "center",
           transform: [
