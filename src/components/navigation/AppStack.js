@@ -1,5 +1,5 @@
 import React from "react";
-import HomeStack from "./HomeStack";
+import CategoryStack from "./ActivityStack";
 import MessageStack from "./MessageStack";
 import MapStack from "./MapStack";
 import ProfileStack from "./ProfileStack";
@@ -8,7 +8,7 @@ import ModalStack from "./ModalStack";
 import { useAuth } from "./Providers/AuthProvider";
 //import SnapchatStack from "../../../Snapchat";
 import { useState, useEffect } from "react";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Feather from "react-native-vector-icons/Feather";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -166,6 +166,18 @@ const AppStack = (route) => {
       }}
     >
       <Tab.Screen
+        name="MessageStack"
+        component={MessageStack}
+        options={({ route }) => ({
+          tabBarLabel: "Message",
+          tabBarVisible: getTabBarVisibility(route),
+          tabBarIcon: ({ color, size }) => (
+            <Feather name="message-square" size={26} color={color} />
+          ),
+          //tabBarBadge: 3,
+        })}
+      />
+      <Tab.Screen
         name="Event"
         component={EventStack}
         options={({ route }) => ({
@@ -187,7 +199,17 @@ const AppStack = (route) => {
           ),
         })}
       />
-
+      <Tab.Screen
+        name="Category"
+        component={CategoryStack}
+        options={({ route }) => ({
+          tabBarLabel: "Places",
+          tabBarVisible: getTabBarVisibility(route),
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="bell-o" size={24} color={color} />
+          ),
+        })}
+      />
       <Tab.Screen
         name="Profile"
         component={ProfileStack}

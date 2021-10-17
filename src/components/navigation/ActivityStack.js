@@ -9,9 +9,11 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { hsize, wsize } from "../../utils/Dimensions";
+
 const Stack = createStackNavigator();
 
-const CategoryStack = ({ navigation }) => {
+const ActivityStack = ({ navigation }) => {
   let routeName;
 
   return (
@@ -46,7 +48,7 @@ const CategoryStack = ({ navigation }) => {
   );
 };
 
-export default CategoryStack;
+export default ActivityStack;
 
 /*headerLeft: () => (
             <View style={{marginLeft: 10}}>
