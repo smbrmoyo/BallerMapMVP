@@ -19,19 +19,10 @@ import {
   TextInput,
   Platform,
 } from "react-native";
-import { useHeaderHeight } from "@react-navigation/stack";
-//import * as firebase from "firebase";
-//import firestore from "@react-native-firebase/firestore";
-//import firebase from "@react-native-firebase/app";
-//import auth from "@react-native-firebase/auth";
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Entypo from "react-native-vector-icons/Entypo";
 import AntDesign from "react-native-vector-icons/AntDesign";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import ProfilePicture from "../../components/ProfilePictureUser";
-import Bitmoji from "../../components/Bitmoji";
 import styles from "./styles";
 import { hsize, wsize } from "../../utils/Dimensions";
 
