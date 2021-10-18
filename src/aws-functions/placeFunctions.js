@@ -62,9 +62,9 @@ export const createPlace = async (place) => {
       input: {
         address: place.address,
         name: place.name,
-        coordinate: {
-          latitude: place.coordinates.lat,
-          longitude: place.coordinates.long,
+        coords: {
+          lat: place.coords.lat,
+          long: place.coords.long,
         },
       },
     })

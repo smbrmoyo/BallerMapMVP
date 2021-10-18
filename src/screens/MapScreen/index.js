@@ -51,10 +51,6 @@ const MapScreen = ({ navigation }) => {
                   flexDirection: "row",
                   alignItems: "center",
                   justifyContent: "center",
-                  //borderRadius: 10,
-                  //position: "relative",
-                  //bottom: 50,
-                  //marginBottom: 0,
                 }}
               >
                 <View

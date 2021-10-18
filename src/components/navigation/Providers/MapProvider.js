@@ -1,12 +1,17 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
+import { Alert } from "react-native";
 import Geocoder from "react-native-geocoding";
 import { Auth, API, graphqlOperation } from "aws-amplify";
 import { useQuery } from "react-query";
 import * as Location from "expo-location";
 
-import { getPlacesList } from "../../../aws-functions/placeFunctions";
+import {
+  getPlacesList,
+  createPlace,
+} from "../../../aws-functions/placeFunctions";
 import { getAllUserProfiles } from "../../../aws-functions/userFunctions";
 import { useAuth, getUprofile } from "./AuthProvider";
+import placesJSON from "../../../assets/data/placesJSON";
 
 export const MapContext = React.createContext();
 
@@ -17,7 +22,7 @@ const MapProvider = ({ children }) => {
   const [status, setStatus] = useState("loading");
   const [camera, setCamera] = useState(null);
   const [users, setUsers] = useState([]);
-  // Geocoder.init("AIzaSyCAWRoRAT1jDaCuwACpmYsseOgW1-_XrNg");
+  Geocoder.init("AIzaSyCAWRoRAT1jDaCuwACpmYsseOgW1-_XrNg");
 
   const getCamera = async () => {
     let location = await Location.getLastKnownPositionAsync().catch((err) =>
@@ -39,6 +44,35 @@ const MapProvider = ({ children }) => {
       setStatus(resultCamera.status);
     }
   }, [resultPlaces.status]);
+
+  let counter = 1;
+
+  /*useEffect(() => {
+    if (counter == 1) {
+      placesJSON.map((place, i) => {
+        if (i > 16 && i < 22) {
+          Geocoder.from(place.address)
+            .then((json) => {
+              var location = json.results[0].geometry.location;
+              if (location == undefined) {
+                Alert.alert("errer");
+              }
+              let input = {
+                name: place.name,
+                address: place.address,
+                coords: {
+                  lat: json.results[0].geometry.location.lat,
+                  long: json.results[0].geometry.location.lng,
+                },
+              };
+              createPlace(input).then((res) => console.log(res));
+            })
+            .catch((error) => console.warn(error));
+        }
+      });
+    }
+    counter = 2;
+  }, []);*/
 
   return (
     <MapContext.Provider

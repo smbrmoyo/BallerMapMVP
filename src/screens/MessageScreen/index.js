@@ -220,41 +220,6 @@ const MessageScreen = ({ props, navigation }) => {
           style={{ backgroundColor: "white" }}
           data={chats}
           keyExtractor={(item) => item.id}
-          /*ListHeaderComponent={
-            <View style={styles.headerContainer}>
-              <TouchableWithoutFeedback
-                onPress={() =>
-                  navigation.navigate("MessageStack", {
-                    screen: "MessageSearch",
-                  })
-                }
-              >
-                <View
-                  style={[
-                    styles.inputBox,
-                    {
-                      color: colors.text,
-                      backgroundColor: colors.background,
-                      borderColor: colors.border,
-                      borderWidth: dark ? 1 : 0.5,
-                    },
-                  ]}
-                >
-                  <Text>Search</Text>
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
-          }*/
-          /*ListHeaderComponent={
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <TextInput style={styles.searchInput} placeholder="Search" />
-            </View>
-          }*/
           renderItem={({ item }) => (
             <MessageRow
               chatName={item.userName}

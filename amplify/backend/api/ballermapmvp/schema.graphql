@@ -82,7 +82,7 @@ type Event @model
   name: String!
   placeID: ID!
   creatorID: ID!
-  place: Place @connection(fields: ["placeID"])
+  place: Place @connection(fields: ["placeID "])
   beginningTime: AWSDateTime!
   endingTime: AWSDateTime!
   tags: [String]
@@ -145,4 +145,9 @@ enum NotifType{
   newFollower
   eventInvitation
   friendPlaying
+}
+
+type Query{
+  uProfiles: [Uprofile] @function(name:"ListResolver")
+  eventProfiles: [Event] @function(name:"listResolver")
 }
