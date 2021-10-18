@@ -53,13 +53,13 @@ const AddScreen = ({ navigation, route }) => {
   const [colorEnd, setColorEnd] = useState("#CDCDCD");
 
   const [eventData, setEventData] = useState({
-    name: "", //name of the place
+    name: "",
     placeID: route.params?.searchedPlace.id,
     placeName: route.params?.searchedPlace.name,
     creatorID: user,
     tags: [],
     description: "",
-    profileId: "12345", //should be current authenticated user profile Id
+    profileId: "", //should be current authenticated user profile Id
     beginningTime: new Date(),
     endingTime: new Date(),
     privacy: "private",

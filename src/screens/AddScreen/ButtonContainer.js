@@ -6,7 +6,7 @@ import { DataStore } from "aws-amplify";
 
 import { wsize, hsize } from "../../utils/Dimensions";
 import { createEvent } from "../../aws-functions/eventFunctions";
-import { Event } from "../../models";
+// import { Event } from "../../models";
 
 export default function ButtonContainer(props) {
   return (
@@ -57,16 +57,16 @@ export default function ButtonContainer(props) {
         onPress={() => {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
             async () => {
-              /*createEvent(props.eventData).then((response) => {
-              props.navigation.navigate({
-                name: "Map",
-                params: {
-                  createdEvent: props.params.searchedPlace,
-                  index: props.params.index,
-                },
+              createEvent(props.eventData).then((response) => {
+                props.navigation.navigate({
+                  name: "Map",
+                  params: {
+                    createdEvent: props.params.searchedPlace,
+                    index: props.params.index,
+                  },
+                });
               });
-            });*/
-              try {
+              /*try {
                 await DataStore.save(
                   new Event({
                     name: props.eventData.name,
@@ -82,7 +82,7 @@ export default function ButtonContainer(props) {
                 console.log("Event saved successfully!");
               } catch (error) {
                 console.log("Error saving event", error);
-              }
+              }*/
             }
           );
         }}

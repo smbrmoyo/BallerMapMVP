@@ -2,7 +2,7 @@ import "react-native-gesture-handler";
 
 import React, { useState, useEffect } from "react";
 import { StatusBar, View } from "react-native";
-import CategoryScreen from "../../screens/CategoryScreen";
+import ActivityScreen from "../../screens/ActivityScreen";
 import Pressable from "../../screens/Pressable";
 import OtherProfileScreen from "../../screens/OtherProfileScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -19,8 +19,8 @@ const ActivityStack = ({ navigation }) => {
   return (
     <Stack.Navigator initialRouteName={"Category"}>
       <Stack.Screen
-        name="Category"
-        component={CategoryScreen}
+        name="Activity"
+        component={ActivityScreen}
         options={({ navigation }) => ({
           title: "",
           headerStyle: {

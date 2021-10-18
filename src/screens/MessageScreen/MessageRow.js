@@ -25,7 +25,7 @@ const MessageRow = ({
           navigation.navigate("Story");
         }}
       >
-        <ProfilePicture size={50} uri={uri} />
+        <ProfilePicture size={50} />
       </TouchableOpacity>
       <TouchableOpacity
         activeOpacity={0.7}
