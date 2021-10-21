@@ -2437,3 +2437,14 @@ export const deleteNotification = /* GraphQL */ `
     }
   }
 `;
+export const createEvent_c = /* GraphQL */ `
+  mutation CreateEvent_c(
+    $input: CreateEventInput_c!
+    $condition: ModelEventConditionInput
+  ) {
+    createEvent_c(input: $input, condition: $condition) {
+      statusCode
+      body
+    }
+  }
+`;

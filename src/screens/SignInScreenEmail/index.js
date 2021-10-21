@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import * as Haptics from "expo-haptics";
+import * as Location from "expo-location";
 import { LinearGradient } from "expo-linear-gradient";
 import { useHeaderHeight } from "@react-navigation/stack";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -33,6 +34,16 @@ const SignInScreenEmail = ({ navigation, props }) => {
         setNextScreen("SetProfile");
       }*/
     }); // Add  error handling
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+    })();
   }, []);
 
   const [dataLogin, setDataLogin] = useState({

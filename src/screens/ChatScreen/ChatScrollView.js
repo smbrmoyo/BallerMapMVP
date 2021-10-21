@@ -20,13 +20,15 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import ProfilePicture from "../../components/ProfilePictureUser";
 import Bitmoji from "../../components/Bitmoji";
 import styles from "./styles";
+import Footer from "./Footer";
 import { hsize, wsize } from "../../utils/Dimensions";
 
 export default function ChatScrollView(props) {
   const scrollView = useRef();
   return (
-    <ScrollView
+    <FlatList
       ref={scrollView}
+      data={props.messages}
       contentContainerStyle={{
         paddingTop: 10,
       }}
@@ -38,19 +40,19 @@ export default function ChatScrollView(props) {
       style={{
         height: "100%",
         backgroundColor: "red",
+        width: "100%",
       }}
-    >
-      {props.messages.map(({ id, data }) =>
-        data.email === props.user ? (
-          <View key={id} style={styles.sender}>
-            <Text style={styles.senderText}>{data.message}</Text>
+      renderItem={({ item }, index) =>
+        item.data.email === props.user ? (
+          <View key={index} style={styles.sender}>
+            <Text style={styles.senderText}>{item.data.message}</Text>
           </View>
         ) : (
-          <View key={id} style={styles.receiver}>
-            <Text style={styles.senderText}>{data.message}</Text>
+          <View key={index} style={styles.receiver}>
+            <Text style={styles.senderText}>{item.data.message}</Text>
           </View>
         )
-      )}
-    </ScrollView>
+      }
+    />
   );
 }
