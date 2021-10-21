@@ -34,9 +34,6 @@ const SignUpScreenEmail = ({ navigation }) => {
   const { user, signUp, signUpTrigger } = useAuth();
 
   const headerHeight = useHeaderHeight();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const route = useRoute();
   const { colors } = useTheme();
 
