@@ -97,7 +97,7 @@ const EditProfileScreen = ({ props, navigation, route }) => {
                   flex: 1,
                   justifyContent: "flex-end",
                   opacity: Animated.add(
-                    0.1,
+                    0.5,
                     Animated.multiply(fallEditProf, 1.0)
                   ),
                 }}

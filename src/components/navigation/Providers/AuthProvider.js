@@ -28,7 +28,7 @@ const AuthProvider = ({ children }) => {
   const [client, setClient] = useState();
   const [yourEvents, setYourEvents] = useState([]);
   const [user, setUser] = useState(); // set this to true on confirmSignUp
-  const [createdDocs, setCreatedDocs] = useState(true);
+  const [createdDocs, setCreatedDocs] = useState(false);
   const [signUpTrigger, setSignUpTrigger] = useState(false);
   const [loadingUser, setLoadingUser] = useState(true);
 
@@ -137,7 +137,8 @@ const AuthProvider = ({ children }) => {
       let isProfileDoc = await getUprofileDoc(email).catch((err) =>
         console.log("console " + JSON.stringify(err))
       );
-      if (isProfileDoc != null) {
+      if (isProfileDoc != null || isProfileDoc != undefined) {
+        //setCreatedDocs(true);
         return true;
       }
     } else {

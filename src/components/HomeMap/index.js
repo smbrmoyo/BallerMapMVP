@@ -37,8 +37,6 @@ import { getPlace } from "../../graphql/queries";
 const HomeMap = ({ props }) => {
   const { height, width } = useWindowDimensions();
   const screenHeight = Dimensions.get("screen").height;
-  // console.log("windowHeight : " + height);
-  // console.log("screenHeight " + screenHeight);
   const CARD_HEIGHT = 100;
   const CARD_WIDTH = width * 0.8;
   const SPACING_FOR_CARD_INSET = width * 0.1 - 10;
