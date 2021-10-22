@@ -22,6 +22,11 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import ButtonContainer from "./ButtonContainer";
+import ForgotContainer from "./ForgotContainer";
+import PasswordContainer from "./PasswordContainer";
+import Title from "./Title";
+import UsernameContainer from "./UsernameContainer";
 
 const SignInScreenEmail = ({ navigation, props }) => {
   const headerHeight = useHeaderHeight();
@@ -126,11 +131,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
           flexGrow: 1,
         }}
       >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.header}>
-            <Text style={styles.text_header}>Sign in Email</Text>
-          </View>
-        </TouchableWithoutFeedback>
+        <Title />
 
         <Animatable.View
           animation="fadeInUpBig"
@@ -141,150 +142,27 @@ const SignInScreenEmail = ({ navigation, props }) => {
             },
           ]}
         >
-          <Text
-            style={[
-              styles.text_footer,
-              {
-                color: colors.text,
-              },
-            ]}
-          >
-            Username
-          </Text>
-          <View style={styles.action}>
-            <FontAwesome name="user-o" color={colors.text} size={20} />
-            <TextInput
-              placeholder="Your Username"
-              placeholderTextColor="#666666"
-              style={[
-                styles.textInput,
-                {
-                  color: colors.text,
-                },
-              ]}
-              autoCapitalize="none"
-              onChangeText={(username) => textInputChange(username)}
-            />
-            {dataLogin.check_textInputChange ? (
-              <Animatable.View animation="bounceIn">
-                <Feather name="check-circle" color="green" size={20} />
-              </Animatable.View>
-            ) : null}
-          </View>
+          <UsernameContainer
+            check_textInputChange={dataLogin.check_textInputChange}
+            colors={colors}
+            textInputChange={textInputChange}
+          />
 
-          <Text
-            style={[
-              styles.text_footer,
-              {
-                color: colors.text,
-                marginTop: 35,
-              },
-            ]}
-          >
-            Password
-          </Text>
-          <View style={styles.action}>
-            <Feather name="lock" color={colors.text} size={20} />
-            <TextInput
-              placeholder="Your Password"
-              placeholderTextColor="#666666"
-              secureTextEntry={dataLogin.secureTextEntry ? true : false}
-              style={[
-                styles.textInput,
-                {
-                  color: colors.text,
-                },
-              ]}
-              autoCapitalize="none"
-              onChangeText={(userPassword) =>
-                handlePasswordChange(userPassword)
-              }
-            />
-            <TouchableOpacity
-              activeOpacity={0.7}
-              onPress={updateSecureTextEntry}
-            >
-              {dataLogin.secureTextEntry ? (
-                <Feather name="eye-off" color="grey" size={20} />
-              ) : (
-                <Feather name="eye" color="grey" size={20} />
-              )}
-            </TouchableOpacity>
-          </View>
-          {dataLogin.isValidPassword ? null : (
-            <Animatable.View animation="fadeInLeft" duration={500}>
-              <Text style={styles.errorMsg}>
-                Password must be 8 characters long.
-              </Text>
-            </Animatable.View>
-          )}
-          <TouchableOpacity
-            activeOpacity={0.7}
-            onPress={() => console.log("pressed forgot")}
-          >
-            <Text style={{ color: "#743cff", marginTop: 15 }}>
-              Forgot password?
-            </Text>
-          </TouchableOpacity>
+          <PasswordContainer
+            dataLogin={dataLogin}
+            colors={colors}
+            handlePasswordChange={handlePasswordChange}
+            updateSecureTextEntry={updateSecureTextEntry}
+          />
 
-          <View style={styles.button}>
-            <TouchableOpacity
-              activeOpacity={0.7}
-              style={styles.signIn}
-              onPress={async () => {
-                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
-                  async () => {
-                    /*if (nextScreen == "SetProfile") {
-                      navigation.navigate(nextScreen);
-                    }*/
-                    console.log("HEreeeee");
-                    signIn(dataLogin.username, dataLogin.password)
-                      .then((res) => {
-                        if (res) {
-                          setUser(dataLogin.username);
-                        } else {
-                          Alert.alert("creds error: " + JSON.stringify(error));
-                        }
-                      })
-                      .catch((error) =>
-                        console.log("error signing in: " + error)
-                      );
-                  }
-                );
-              }}
-            >
-              <LinearGradient
-                colors={["#743cff", "#bb006e"]}
-                style={styles.signIn}
-              >
-                <Text
-                  style={[
-                    styles.textSign,
-                    {
-                      color: "white",
-                    },
-                  ]}
-                >
-                  Log In
-                </Text>
-              </LinearGradient>
-            </TouchableOpacity>
-            <TouchableOpacity
-              activeOpacity={0.7}
-              onPress={() => navigation.navigate("SignUpEmail")}
-              style={[styles.signIn]}
-            >
-              <View style={styles.textPrivate}>
-                <Text style={styles.color_textPrivate}>New to BallerMap?</Text>
-                <Text
-                  style={[styles.color_textPrivate, { fontWeight: "bold" }]}
-                >
-                  {" "}
-                  Sign Up
-                </Text>
-              </View>
-            </TouchableOpacity>
-          </View>
+          <ForgotContainer />
+
+          <ButtonContainer
+            signIn={signIn}
+            setUser={setUser}
+            dataLogin={dataLogin}
+            navigate={navigation.navigate}
+          />
         </Animatable.View>
       </KeyboardAwareScrollView>
     </View>

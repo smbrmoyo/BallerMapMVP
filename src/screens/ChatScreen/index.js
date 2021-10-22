@@ -162,7 +162,12 @@ const ChatScreen = ({ data, size, navigation, route }) => {
 
   return (
     <>
-      <KeyboardAwareScrollView style={{ backgroundColor: "white" }}>
+      <KeyboardAwareScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+        }}
+        style={{ backgroundColor: "white" }}
+      >
         <SafeAreaView
           style={{
             flex: 1,

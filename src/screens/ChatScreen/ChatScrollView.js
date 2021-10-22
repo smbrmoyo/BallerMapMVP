@@ -39,7 +39,7 @@ export default function ChatScrollView(props) {
       }*/
       style={{
         height: "100%",
-        backgroundColor: "red",
+        backgroundColor: "white",
         width: "100%",
       }}
       renderItem={({ item }, index) =>
