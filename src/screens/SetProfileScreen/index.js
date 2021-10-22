@@ -130,6 +130,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                   setUserProfile={setUserProfile}
                 />
                 <ButtonContainer
+                  setCreatedDocs={setCreatedDocs}
                   userProfile={userProfile}
                   user={user}
                   navigation={navigation}

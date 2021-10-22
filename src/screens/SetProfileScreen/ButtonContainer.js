@@ -93,8 +93,8 @@ export default function ButtonContainer(props) {
           };
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
           createUserProfile(input).then((res) => {
-            navigation.navigate("Map");
-            setCreatedDocs(true);
+            props.navigation.navigate("Map");
+            props.setCreatedDocs(true);
           });
         }}
       >
