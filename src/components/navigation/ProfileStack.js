@@ -2,6 +2,7 @@ import "react-native-gesture-handler";
 
 import React from "react";
 import ProfileScreen from "../../screens/ProfileScreen";
+import SetProfileScreen from "../../screens/SetProfileScreen";
 import FollowingScreen from "../../screens/FollowingScreen";
 import FollowersScreen from "../../screens/FollowersScreen";
 import EditProfileScreen from "../../screens/EditProfileScreen";
@@ -13,16 +14,27 @@ import StoryScreen4 from "../../screens/StoryScreen4/App";
 import { createStackNavigator } from "@react-navigation/stack";
 import UserSearchScreen from "../../screens/UserSearchScreen";
 import { ProfileProvider } from "./Providers/ProfileProvider";
+import { useAuth } from "./Providers/AuthProvider";
 import { hsize, wsize } from "../../utils/Dimensions";
 
 const Stack = createStackNavigator();
 
 const ProfileStack = ({ navigation }) => {
+  const { createdDocs } = useAuth();
+  console.log("created Docs is : " + createdDocs);
   let routeName;
+
+  if (createdDocs == null) {
+    return null;
+  } else if (createdDocs == false) {
+    routeName = "SetProfile";
+  } else {
+    routeName = "Profile";
+  }
 
   return (
     <ProfileProvider>
-      <Stack.Navigator initialRouteName={"Profile"}>
+      <Stack.Navigator initialRouteName={routeName}>
         <Stack.Screen
           name="Profile"
           component={ProfileScreen}
@@ -93,6 +105,19 @@ const ProfileStack = ({ navigation }) => {
           name="UserSearch"
           component={UserSearchScreen}
           options={({ navigation, route }) => ({
+            title: "",
+            headerStyle: {
+              backgroundColor: "white",
+              //shadowColor: "black",
+              //elevation: 5,
+              height: hsize(80),
+            },
+          })}
+        />
+        <Stack.Screen
+          name="SetProfile"
+          component={SetProfileScreen}
+          options={({ navigation }) => ({
             title: "",
             headerStyle: {
               backgroundColor: "white",

@@ -20,7 +20,6 @@ export default function TagsContainer(props) {
         onEndEditing={(event) => {
           let tags = event.nativeEvent.text.split(" ");
           props.setEventData({ ...props.eventData, tags });
-          console.log(props.eventData.tags);
         }}
       />
     </View>

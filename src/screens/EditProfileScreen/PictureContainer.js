@@ -16,9 +16,11 @@ export default function PictureContainer() {
         onPress={() => bsEditProf.current.snapTo(0)}
       >
         <ProfilePicture
-          uri={require("../../assets/avatars/derek.russel.png")}
+          uri={{
+            uri: "https://www.soolide.com/wp-content/uploads/2021/03/dog-puppy-on-garden-royalty-free-image-1586966191.jpg",
+          }}
           size={80}
-          opacity={0.8}
+          // opacity={0.8}
         />
       </TouchableOpacity>
     </View>
