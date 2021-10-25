@@ -61,6 +61,10 @@ const ProfileScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     onPageRendered();
+
+    return () => {
+      console.log("je suis ici");
+    };
   }, [profileDoc]);
 
   const onPageRendered = async () => {
@@ -176,10 +180,10 @@ const ProfileScreen = ({ navigation, route }) => {
               ? profileDocument.id
               : JSON.parse(loggedUser).email;
           if (value.data.onCreateUserEventConnection.profileID == profileId) {
-            console.log("createEvent");
+            console.log("subscription to createEvent");
             await updateEvents(profileId);
           } else {
-            console.log("event not related to this user");
+            console.log("subscription to createEvent failed");
           }
         } catch (e) {
           console.warn(e);
