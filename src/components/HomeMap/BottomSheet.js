@@ -10,13 +10,8 @@ import {
 } from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { wsize, hsize } from "../../utils/Dimensions";
-import ProfilePicture from "../ProfilePictureUser";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import Fontisto from "react-native-vector-icons/Fontisto";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import ProfilePicture from "../ProfilePicturePlace";
 import Entypo from "react-native-vector-icons/Entypo";
-import Feather from "react-native-vector-icons/Feather";
-import AntDesign from "react-native-vector-icons/AntDesign";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -24,6 +19,7 @@ import people from "../../assets/data/people";
 
 const BottomSheetMap = (props) => {
   navigation = useNavigation();
+  // console.log("index is " + props.index);
 
   renderHeader = () => (
     <View style={styles.header}>
@@ -39,7 +35,7 @@ const BottomSheetMap = (props) => {
         <View style={styles.profileInitialContainer}>
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() => navigation.navigate("TryStory")}
+            //onPress={() => navigation.navigate("TryStory")}
           >
             <ProfilePicture size={70} />
           </TouchableOpacity>

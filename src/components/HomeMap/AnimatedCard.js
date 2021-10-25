@@ -1,9 +1,12 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Animated } from "react-native";
-import ProfilePicture from "../ProfilePictureUser";
+import ProfilePicture from "../ProfilePicturePlace";
 import styles from "./styles";
 
 export default function AnimatedCard(props) {
+  //props.placeIndex = props.index;
+  // console.log(props.index);
+
   return (
     <TouchableOpacity
       activeOpacity={0.7}

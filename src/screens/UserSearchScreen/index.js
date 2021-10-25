@@ -25,6 +25,12 @@ const UserSearchScreen = ({ navigation }) => {
   const { users } = useMap();
   const [data, setData] = useState(users); // users should come from uProfile
 
+  console.log("ici" + users?.length);
+
+  useEffect(() => {
+    setData(users);
+  }, []);
+
   const searchFilter = async (text) => {
     if (text) {
       var newData = users.filter((item) => {

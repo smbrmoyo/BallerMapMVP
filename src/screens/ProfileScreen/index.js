@@ -20,11 +20,15 @@ import BottomSheetProfile from "./BottomSheetProfile";
 import Loading from "./Loading";
 import ProfileContainer from "./ProfileContainer";
 import MyEventsTab from "./MyEventsTab";
+import AttendingTab from "./AttendingTab";
 import styles from "./styles";
 
-import { API, graphqlOperation} from 'aws-amplify';
-import { onCreateUserConnection, onDeleteUserConnection } from '../../graphql/subscriptions';
-import { getUprofileDoc } from '../../aws-functions/userFunctions';
+import { API, graphqlOperation } from "aws-amplify";
+import {
+  onCreateUserConnection,
+  onDeleteUserConnection,
+} from "../../graphql/subscriptions";
+import { getUprofileDoc } from "../../aws-functions/userFunctions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 let followers = undefined;
@@ -56,7 +60,7 @@ const ProfileScreen = ({ navigation, route }) => {
 
   const onPageRendered = async () => {
     const loggedUser = await AsyncStorage.getItem("currentUserCreds");
-    await profileDoc != undefined ? setLoading(false) : null;
+    (await profileDoc) != undefined ? setLoading(false) : null;
     setMyEvents(profileDoc?.eventsCreated.items);
     subscribeToRemoveFollower(profileDoc, loggedUser);
     subscribeToAddFollower(profileDoc, loggedUser);
@@ -66,49 +70,55 @@ const ProfileScreen = ({ navigation, route }) => {
     getUprofileDoc(userId).then((response) => {
       followers = response.followers.items;
     });
-  }
+  };
 
   const subscribeToRemoveFollower = async (profileDocument, loggedUser) => {
     // Subscribe to removal of userConnection
     await API.graphql(graphqlOperation(onDeleteUserConnection)).subscribe({
       next: async ({ value }) => {
-        try{
-          const profileId = profileDocument !== null? profileDocument.id: JSON.parse(loggedUser).email;
-          if(value.data.onDeleteUserConnection.followedID == profileId){
+        try {
+          const profileId =
+            profileDocument !== null
+              ? profileDocument.id
+              : JSON.parse(loggedUser).email;
+          if (value.data.onDeleteUserConnection.followedID == profileId) {
             setLoading(true);
             await updateProfileDoc(profileId);
             setLoading(false);
           } else {
-            console.log('user not related to this follow');
+            console.log("user not related to this follow");
           }
-        } catch (e){
+        } catch (e) {
           console.warn(e);
         }
       },
-      error: error => console.log(error)
+      error: (error) => console.log(error),
     });
-  }
+  };
 
   const subscribeToAddFollower = async (profileDocument, loggedUser) => {
     // Subscribe to creation of userConnection
     await API.graphql(graphqlOperation(onCreateUserConnection)).subscribe({
       next: async ({ value }) => {
-        try{
-          const profileId = profileDocument !== null? profileDocument.id: JSON.parse(loggedUser).email;
-          if(value.data.onCreateUserConnection.followedID == profileId){
+        try {
+          const profileId =
+            profileDocument !== null
+              ? profileDocument.id
+              : JSON.parse(loggedUser).email;
+          if (value.data.onCreateUserConnection.followedID == profileId) {
             setLoading(true);
             await updateProfileDoc(profileId);
             setLoading(false);
           } else {
-            console.log('user not related to this follow');
+            console.log("user not related to this follow");
           }
-        } catch (e){
+        } catch (e) {
           console.warn(e);
         }
       },
-      error: error => console.log(error ,' here')
+      error: (error) => console.log(error, " here"),
     });
-  }
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -161,7 +171,8 @@ const ProfileScreen = ({ navigation, route }) => {
 
   const goToFollowers = () => {
     navigation.navigate("Followers", {
-      followers: followers != undefined ? followers : profileDoc.followers.items,
+      followers:
+        followers != undefined ? followers : profileDoc.followers.items,
     });
   };
 
@@ -218,8 +229,8 @@ const ProfileScreen = ({ navigation, route }) => {
               snapToAlignment="center"
               decelerationRate={"fast"}
             >
-              <MyEventsTab myEvents={myEvents} />
-              <MyEventsTab myEvents={myEvents} />
+              <MyEventsTab events={myEvents} />
+              <AttendingTab events={[]} />
             </ScrollView>
           </Animated.View>
         )}

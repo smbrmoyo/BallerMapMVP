@@ -46,7 +46,7 @@ const HomeMap = ({ props }) => {
   const { places, status } = useMap();
   const route = useRoute();
   const navigation = useNavigation();
-  const RADIUS = 20;
+  const placeIndex = useRef();
   const { colors, dark } = useTheme();
   const [searchState, setSearchState] = useState(false);
   const [userLocation, setUserLocation] = useState({
@@ -356,7 +356,7 @@ const HomeMap = ({ props }) => {
 
   return (
     <>
-      <BottomSheetMap />
+      <BottomSheetMap places={places} index={placeIndex} />
       <TouchableWithoutFeedback onPress={() => bsMap.current.snapTo(2)}>
         <Animated.View
           style={{
@@ -516,7 +516,14 @@ const HomeMap = ({ props }) => {
             )}
           >
             {places.map((item, index) => (
-              <AnimatedCard key={index} goToStory={goToStory} item={item} />
+              <AnimatedCard
+                placeIndex={placeIndex.current}
+                navigation={navigation}
+                key={index}
+                index={index}
+                goToStory={goToStory}
+                item={item}
+              />
             ))}
           </Animated.ScrollView>
           <AnimatedAddButton heightAnim={heightAnim} goToAdd={goToAdd} />

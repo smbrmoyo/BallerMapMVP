@@ -188,6 +188,7 @@ const OtherProfileScreen = ({ navigation }) => {
               ref={_scrollView}
               horizontal
               pagingEnabled
+              //scrollEnabled={false}
               style={{
                 flex: 1,
                 backgroundColor: "white",
@@ -205,14 +206,14 @@ const OtherProfileScreen = ({ navigation }) => {
                 events={events}
                 attending={attending}
                 setCurrentTab={setCurrentTab}
-                myEvents={myEvents}
+                myEvents={otherUser?.eventsCreated.items}
               />
 
               <AttendingTab
                 events={events}
                 attending={attending}
                 setCurrentTab={setCurrentTab}
-                myEvents={profileDoc?.eventsCreated.items}
+                myEvents={[]}
               />
             </ScrollView>
           </Animated.View>

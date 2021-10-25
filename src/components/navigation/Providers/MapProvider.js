@@ -22,7 +22,7 @@ const MapProvider = ({ children }) => {
   const [status, setStatus] = useState("loading");
   const [camera, setCamera] = useState(null);
   const [users, setUsers] = useState([]);
-  Geocoder.init("AIzaSyCAWRoRAT1jDaCuwACpmYsseOgW1-_XrNg");
+  // Geocoder.init("AIzaSyCAWRoRAT1jDaCuwACpmYsseOgW1-_XrNg");
 
   const getCamera = async () => {
     let location = await Location.getLastKnownPositionAsync().catch((err) =>
