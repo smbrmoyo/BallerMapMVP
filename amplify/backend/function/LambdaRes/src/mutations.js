@@ -1,5 +1,6 @@
+
+
 const gql = require('graphql-tag');
-const graphql = require('graphql');
 module.exports = {
     createEvent: gql `mutation createEvent(
         $condition: ModelEventConditionInput
@@ -8,7 +9,6 @@ module.exports = {
          createEvent(condition: $condition, input: $input){
            id
            name
-           participants
            creator{
              username
            }
@@ -18,9 +18,9 @@ module.exports = {
          }
       }`,
 
-    createUserEventConnection: gql`mutation createUserEventConection(
+    createUserEventConnection: gql`mutation createUserEventConnection(
        $condition: ModelUserEventConnectionConditionInput
-       $input: CreateUserEventConectionInput!
+       $input: CreateUserEventConnectionInput!
       ){
         createUserEventConnection(input: $input, condition: $condition){
             Event{
@@ -30,5 +30,76 @@ module.exports = {
                 username
             }
         }
-      }`
+      }`,
+
+    createNotification: gql`mutation createNotification(
+        $condition: ModelNotificationConditionInput,
+        $input: CreateNotificationInput!
+      ){
+         createNotification(input: $input, condition: $condition){
+           uProfile{
+               username
+           },
+           type  
+         }
+       }`,
+
+    createUserPlaceConnection: gql`mutation createUserPlaceConnection(
+        $condition: ModelUserPlaceConnectionConditionInput,
+        $input: CreateUserPlaceConnectionInput!
+    ){
+        createUserPlaceConnection(input: $input, condition: $condition){
+            profileID
+            uProfile{
+                username,
+                followers{
+                    items{
+                        followerID
+                    }
+                }
+            },
+            place{
+                name
+            },
+            arrivingTime,
+            departureTime
+        }
+    }`,
+
+    updateUserProfile: gql`mutation updateUprofile(
+        $condition: ModelUprofileConditionInput,
+        $input: UpdateUprofileInput!
+    ){
+        updateUprofile(input: $input, condition: $condition){
+            currentPlace{
+                name,
+                id
+            },
+            username
+            followers{
+                items{
+                   follower{
+                       id
+                       username
+                   } 
+                }
+            }
+        }
+    }`,
+
+    createUserConnection: gql`mutation createUserConnection(
+        $condition: ModelUserConnectionConditionInput,
+        $input: CreateUserConnectionInput!
+    ){
+        createUserConnection(condition: $condition, input: $input){
+            followed{
+                username
+            }
+            follower{
+                username
+            }
+            followerID
+            followedID
+        }
+    }`
 }
