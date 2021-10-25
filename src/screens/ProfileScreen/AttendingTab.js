@@ -8,7 +8,7 @@ export default function AttendingTab(props) {
 
   return (
     <FlatList
-      data={props.myEvents}
+      data={props.events}
       keyExtractor={(item) => item.id}
       ListEmptyComponent={
         <View

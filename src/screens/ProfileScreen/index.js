@@ -128,7 +128,9 @@ const ProfileScreen = ({ navigation, route }) => {
   };
 
   const subscribeToUpdateProfile = async (profileDocument, loggedUser) => {
-    await API.graphql(graphqlOperation(onUpdateUprofile)).subscribe({
+    await API.graphql(
+      graphqlOperation(onUpdateUprofile, { id: user })
+    ).subscribe({
       next: async ({ value }) => {
         try {
           const profileId =
@@ -309,7 +311,7 @@ const ProfileScreen = ({ navigation, route }) => {
               snapToAlignment="center"
               decelerationRate={"fast"}
             >
-              <MyEventsTab events={myEvents} />
+              <MyEventsTab events={profileDoc?.eventsCreated.items} />
               <AttendingTab events={[]} />
             </ScrollView>
           </Animated.View>
