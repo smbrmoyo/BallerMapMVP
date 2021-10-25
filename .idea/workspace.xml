@@ -5,6 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="New project INITIALISED with LambdaResolver">
+      <change afterPath="$PROJECT_DIR$/src/components/navigation/Providers/AppProvider.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/graphql/schema.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.graphqlconfig.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.graphqlconfig.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/amplify/.config/project-config.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/amplify/backend/api/BMMVPAPI/parameters.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/amplify/backend/api/BMMVPAPI/resolvers/README.md" beforeDir="false" />
@@ -22,21 +26,32 @@
       <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/index.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/mutations.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/resolvers.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/yarn.lock" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/amplify/backend/tags.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/amplify/cli.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/amplify/hooks/README.md" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/amplify/team-provider-info.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/AppStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/AppStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/AuthStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/AuthStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/MapStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/MapStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/Providers/AuthProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/Providers/AuthProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/Routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphql/mutations.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphql/queries.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphql/schema.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphql/subscriptions.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/index.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/schema.d.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/schema.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SetProfileScreen/ButtonContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SetProfileScreen/ButtonContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SetProfileScreen/NameContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SetProfileScreen/NameContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SetProfileScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SetProfileScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SignInScreenEmail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignInScreenEmail/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,10 +96,13 @@
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/graphql" />
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -99,7 +117,8 @@
       <workItem from="1632265624533" duration="1526000" />
       <workItem from="1632267655185" duration="27371000" />
       <workItem from="1632578611328" duration="60909000" />
-      <workItem from="1634157120118" duration="1501000" />
+      <workItem from="1634157120118" duration="70235000" />
+      <workItem from="1634948198886" duration="52152000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -185,7 +204,14 @@
       <option name="project" value="LOCAL" />
       <updated>1634158384455</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="New project INITIALISED with LambdaResolver">
+      <created>1634158650794</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1634158650794</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,6 +227,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen" />
@@ -211,5 +238,16 @@
     <MESSAGE value="false" />
     <MESSAGE value="New project INITIALISED with LambdaResolver" />
     <option name="LAST_COMMIT_MESSAGE" value="New project INITIALISED with LambdaResolver" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/index.js</url>
+          <line>26</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

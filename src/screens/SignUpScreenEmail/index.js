@@ -34,22 +34,20 @@ const SignUpScreenEmail = ({ navigation }) => {
   const { user, signUp, signUpTrigger } = useAuth();
 
   const headerHeight = useHeaderHeight();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const route = useRoute();
   const { colors } = useTheme();
 
-  const isUserSignedUp = () => {
+  /*const isUserSignedUp = () => {
     if (signUpTrigger) {
       signUpTrigger ? navigation.navigate("SignInEmail") : null;
     }
-  };
+  };*/
 
   useEffect(() => {
-    isUserSignedUp();
+    //isUserSignedUp();
+    console.log('\n', '\n', "<------------- SignUpScreenEmail ---------------->")
     console.log("entrée dans le email signup screen");
-  }, [signUpTrigger]);
+  }, []);
 
   const [dataSignUp, setdataSignUp] = useState({
     email: "",
@@ -306,18 +304,25 @@ const SignUpScreenEmail = ({ navigation }) => {
                         dataSignUp.username &&
                         dataSignUp.email
                       ) {
+                        console.log("   Signing Up User")
                         signUp(dataSignUp.email, dataSignUp.password)
                           .then((res) => {
-                            console.log("SIGNUP Success: " + res);
-                            if (res === dataSignUp.username) {
+                            console.log("   SUCCESS: NEW USER SIGNED UP: " + res);
+                            if (res === dataSignUp.email) {
+                              console.log("  ----> Heading to ConfirmSignUpSreen")
                               navigation.navigate("ConfirmSignUp", {
                                 username: dataSignUp.username,
                                 email: dataSignUp.email,
                               });
+                            } else {
+                              Alert.alert("!!! ERREUR DE LOGIQUE: L'email du Signup est différent du Text Input")
                             }
                           })
                           .catch((error) => {
-                            console.log(error);
+                            if(error == "UsernameExistsException") {
+                              Alert.alert("Impossible de sign Up", "Un compte " +
+                                  "avec cet email existe déjà");
+                            }
                           });
                       }
                     }

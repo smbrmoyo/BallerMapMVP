@@ -1,6 +1,6 @@
 projects:
   ballermapmvp:
-    schemaPath: src/graphql/schema.json
+    schemaPath: src/graphql/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:
@@ -10,6 +10,8 @@ projects:
         codeGenTarget: javascript
         generatedFileName: ''
         docsFilePath: src/graphql
+        frontend: javascript
+        maxDepth: 4
 extensions:
   amplify:
     version: 3

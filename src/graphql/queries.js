@@ -1,1502 +1,1218 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const uProfiles = /* GraphQL */ `
-  query UProfiles {
-    uProfiles {
-      id
-      username
-      name
-      userDocId
-      currentPlaceID
-      notifications {
-        items {
-          id
-          body
-          profileID
-          photo
-          createdAt
-          type
-          _version
-          _deleted
-          _lastChangedAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      myEvents {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      eventsCreated {
-        items {
-          id
-          name
-          placeID
-          creatorID
-          beginningTime
-          endingTime
-          tags
-          description
-          privacy
-          profilePic
-          eventPictures
-          eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      followers {
-        items {
-          id
-          followerID
-          followedID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      following {
-        items {
-          id
-          followerID
-          followedID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      currentPlace {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userDoc {
-        id
-        profileID
-        email
-        deviceToken
-        phoneNumber
-        uProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      attendings {
-        items {
-          id
-          profileID
-          placeID
-          arrivingTime
-          departureTime
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const eventProfiles = /* GraphQL */ `
-  query EventProfiles {
-    eventProfiles {
-      id
-      name
-      placeID
-      creatorID
-      place {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      beginningTime
-      endingTime
-      tags
-      creator {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      participants {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      chat {
-        items {
-          id
-          body
-          profileID
-          eventID
-          createdAt
-          _version
-          _deleted
-          _lastChangedAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      description
-      privacy
-      profilePic
-      eventPictures
-      eventVideos
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const syncTasks = /* GraphQL */ `
-  query SyncTasks(
-    $filter: ModelTaskFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncTasks(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        title
-        description
-        status
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getTask = /* GraphQL */ `
-  query GetTask($id: ID!) {
-    getTask(id: $id) {
-      id
-      title
-      description
-      status
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listTasks = /* GraphQL */ `
-  query ListTasks(
-    $filter: ModelTaskFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listTasks(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        title
-        description
-        status
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncPrivateNotes = /* GraphQL */ `
-  query SyncPrivateNotes(
-    $filter: ModelPrivateNoteFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncPrivateNotes(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        content
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getPrivateNote = /* GraphQL */ `
-  query GetPrivateNote($id: ID!) {
-    getPrivateNote(id: $id) {
-      id
-      content
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const listPrivateNotes = /* GraphQL */ `
-  query ListPrivateNotes(
-    $filter: ModelPrivateNoteFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPrivateNotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        content
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncUserDocs = /* GraphQL */ `
-  query SyncUserDocs(
-    $filter: ModelUserDocFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncUserDocs(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        profileID
-        email
-        deviceToken
-        phoneNumber
-        uProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getUserDoc = /* GraphQL */ `
-  query GetUserDoc($id: ID!) {
-    getUserDoc(id: $id) {
-      id
-      profileID
-      email
-      deviceToken
-      phoneNumber
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listUserDocs = /* GraphQL */ `
-  query ListUserDocs(
-    $filter: ModelUserDocFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listUserDocs(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        profileID
-        email
-        deviceToken
-        phoneNumber
-        uProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncUprofiles = /* GraphQL */ `
-  query SyncUprofiles(
-    $filter: ModelUprofileFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncUprofiles(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getUprofile = /* GraphQL */ `
-  query GetUprofile($id: ID!) {
-    getUprofile(id: $id) {
-      id
-      username
-      name
-      userDocId
-      currentPlaceID
-      notifications {
-        items {
-          id
-          body
-          profileID
-          photo
-          createdAt
-          type
-          _version
-          _deleted
-          _lastChangedAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      myEvents {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      eventsCreated {
-        items {
-          id
-          name
-          placeID
-          creatorID
-          beginningTime
-          endingTime
-          tags
-          description
-          privacy
-          profilePic
-          eventPictures
-          eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      followers {
-        items {
-          id
-          followerID
-          followedID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      following {
-        items {
-          id
-          followerID
-          followedID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      currentPlace {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userDoc {
-        id
-        profileID
-        email
-        deviceToken
-        phoneNumber
-        uProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      attendings {
-        items {
-          id
-          profileID
-          placeID
-          arrivingTime
-          departureTime
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listUprofiles = /* GraphQL */ `
-  query ListUprofiles(
-    $filter: ModelUprofileFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listUprofiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncUserConnections = /* GraphQL */ `
-  query SyncUserConnections(
-    $filter: ModelUserConnectionFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncUserConnections(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        followerID
-        followedID
-        follower {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        followed {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncUserPlaceConnections = /* GraphQL */ `
-  query SyncUserPlaceConnections(
-    $filter: ModelUserPlaceConnectionFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncUserPlaceConnections(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        profileID
-        placeID
-        arrivingTime
-        departureTime
-        uProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        place {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncUserEventConnections = /* GraphQL */ `
-  query SyncUserEventConnections(
-    $filter: ModelUserEventConnectionFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncUserEventConnections(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        eventID
-        profileID
-        Event {
-          id
-          name
-          placeID
-          creatorID
-          beginningTime
-          endingTime
-          tags
-          description
-          privacy
-          profilePic
-          eventPictures
-          eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncEvents = /* GraphQL */ `
-  query SyncEvents(
-    $filter: ModelEventFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncEvents(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        participants {
-          nextToken
-          startedAt
-        }
-        chat {
-          nextToken
-          startedAt
-        }
-        description
-        privacy
-        profilePic
-        eventPictures
-        eventVideos
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const getEvent = /* GraphQL */ `
   query GetEvent($id: ID!) {
     getEvent(id: $id) {
-      id
-      name
-      placeID
-      creatorID
-      place {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
       beginningTime
-      endingTime
-      tags
-      creator {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      participants {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
       chat {
         items {
-          id
           body
-          profileID
-          eventID
           createdAt
-          _version
-          _deleted
-          _lastChangedAt
+          event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          eventID
+          id
+          profileID
           updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
         }
         nextToken
-        startedAt
       }
+      createdAt
+      creator {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      creatorID
       description
-      privacy
-      profilePic
+      endingTime
       eventPictures
       eventVideos
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listEvents = /* GraphQL */ `
-  query ListEvents(
-    $filter: ModelEventFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
+      id
+      name
+      participants {
+        items {
+          Event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          createdAt
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      place {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
         id
         name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        participants {
-          nextToken
-          startedAt
-        }
-        chat {
-          nextToken
-          startedAt
-        }
-        description
-        privacy
-        profilePic
-        eventPictures
-        eventVideos
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
         updatedAt
       }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncEventChatMessages = /* GraphQL */ `
-  query SyncEventChatMessages(
-    $filter: ModelEventChatMessageFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncEventChatMessages(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        body
-        profileID
-        eventID
-        createdAt
-        event {
-          id
-          name
-          placeID
-          creatorID
-          beginningTime
-          endingTime
-          tags
-          description
-          privacy
-          profilePic
-          eventPictures
-          eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        updatedAt
-      }
-      nextToken
-      startedAt
+      placeID
+      privacy
+      profilePic
+      tags
+      updatedAt
     }
   }
 `;
 export const getEventChatMessage = /* GraphQL */ `
   query GetEventChatMessage($id: ID!) {
     getEventChatMessage(id: $id) {
-      id
       body
-      profileID
-      eventID
       createdAt
       event {
-        id
-        name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
         beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        participants {
-          nextToken
-          startedAt
-        }
         chat {
+          items {
+            body
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
+        createdAt
+        creator {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        creatorID
         description
-        privacy
-        profilePic
+        endingTime
         eventPictures
         eventVideos
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userProfile {
         id
-        username
         name
-        userDocId
-        currentPlaceID
-        notifications {
+        participants {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
+        place {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
           id
           name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
           updatedAt
         }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
+        placeID
+        privacy
+        profilePic
+        tags
         updatedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
+      eventID
+      id
+      profileID
+      updatedAt
+      userProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+    }
+  }
+`;
+export const getNotification = /* GraphQL */ `
+  query GetNotification($id: ID!) {
+    getNotification(id: $id) {
+      body
+      createdAt
+      id
+      photo
+      profileID
+      type
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      updatedAt
+    }
+  }
+`;
+export const getPlace = /* GraphQL */ `
+  query GetPlace($id: ID!) {
+    getPlace(id: $id) {
+      address
+      attendings {
+        items {
+          arrivingTime
+          createdAt
+          departureTime
+          id
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        nextToken
+      }
+      coords {
+        lat
+        long
+      }
+      createdAt
+      currentPlayers {
+        items {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        nextToken
+      }
+      events {
+        items {
+          beginningTime
+          chat {
+            nextToken
+          }
+          createdAt
+          creator {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          creatorID
+          description
+          endingTime
+          eventPictures
+          eventVideos
+          id
+          name
+          participants {
+            nextToken
+          }
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          privacy
+          profilePic
+          tags
+          updatedAt
+        }
+        nextToken
+      }
+      id
+      name
+      updatedAt
+    }
+  }
+`;
+export const getPrivateNote = /* GraphQL */ `
+  query GetPrivateNote($id: ID!) {
+    getPrivateNote(id: $id) {
+      content
+      createdAt
+      id
+      owner
+      updatedAt
+    }
+  }
+`;
+export const getTask = /* GraphQL */ `
+  query GetTask($id: ID!) {
+    getTask(id: $id) {
+      createdAt
+      description
+      id
+      status
+      title
+      updatedAt
+    }
+  }
+`;
+export const getUprofile = /* GraphQL */ `
+  query GetUprofile($id: ID!) {
+    getUprofile(id: $id) {
+      attendings {
+        items {
+          arrivingTime
+          createdAt
+          departureTime
+          id
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      currentPlace {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
+        updatedAt
+      }
+      currentPlaceID
+      eventsCreated {
+        items {
+          beginningTime
+          chat {
+            nextToken
+          }
+          createdAt
+          creator {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          creatorID
+          description
+          endingTime
+          eventPictures
+          eventVideos
+          id
+          name
+          participants {
+            nextToken
+          }
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          privacy
+          profilePic
+          tags
+          updatedAt
+        }
+        nextToken
+      }
+      followers {
+        items {
+          createdAt
+          followed {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followedID
+          follower {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followerID
+          id
+          updatedAt
+        }
+        nextToken
+      }
+      following {
+        items {
+          createdAt
+          followed {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followedID
+          follower {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followerID
+          id
+          updatedAt
+        }
+        nextToken
+      }
+      id
+      myEvents {
+        items {
+          Event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          createdAt
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      name
+      notifications {
+        items {
+          body
+          createdAt
+          id
+          photo
+          profileID
+          type
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        nextToken
+      }
+      updatedAt
+      userDoc {
+        createdAt
+        deviceToken
+        email
+        id
+        phoneNumber
+        profileID
+        uProfile {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        updatedAt
+      }
+      userDocId
+      username
+    }
+  }
+`;
+export const getUserDoc = /* GraphQL */ `
+  query GetUserDoc($id: ID!) {
+    getUserDoc(id: $id) {
+      createdAt
+      deviceToken
+      email
+      id
+      phoneNumber
+      profileID
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
       updatedAt
     }
   }
@@ -1513,320 +1229,206 @@ export const listEventChatMessages = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
-        id
         body
-        profileID
-        eventID
         createdAt
         event {
-          id
-          name
-          placeID
-          creatorID
           beginningTime
-          endingTime
-          tags
+          chat {
+            nextToken
+          }
+          createdAt
+          creator {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          creatorID
           description
-          privacy
-          profilePic
+          endingTime
           eventPictures
           eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncPlaces = /* GraphQL */ `
-  query SyncPlaces(
-    $filter: ModelPlaceFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncPlaces(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const getPlace = /* GraphQL */ `
-  query GetPlace($id: ID!) {
-    getPlace(id: $id) {
-      id
-      name
-      address
-      coords {
-        long
-        lat
-      }
-      events {
-        items {
           id
           name
+          participants {
+            nextToken
+          }
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
           placeID
-          creatorID
-          beginningTime
-          endingTime
-          tags
-          description
           privacy
           profilePic
-          eventPictures
-          eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
+          tags
           updatedAt
         }
-        nextToken
-        startedAt
-      }
-      currentPlayers {
-        items {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      attendings {
-        items {
-          id
-          profileID
-          placeID
-          arrivingTime
-          departureTime
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listPlaces = /* GraphQL */ `
-  query ListPlaces(
-    $filter: ModelPlaceFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPlaces(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
+        eventID
         id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
-export const syncNotifications = /* GraphQL */ `
-  query SyncNotifications(
-    $filter: ModelNotificationFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncNotifications(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        body
         profileID
-        photo
-        createdAt
-        type
-        uProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
         updatedAt
+        userProfile {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
       }
       nextToken
-      startedAt
     }
   }
 `;
-export const getNotification = /* GraphQL */ `
-  query GetNotification($id: ID!) {
-    getNotification(id: $id) {
-      id
-      body
-      profileID
-      photo
-      createdAt
-      type
-      uProfile {
+export const listEvents = /* GraphQL */ `
+  query ListEvents(
+    $filter: ModelEventFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        beginningTime
+        chat {
+          items {
+            body
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        creator {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        creatorID
+        description
+        endingTime
+        eventPictures
+        eventVideos
         id
-        username
         name
-        userDocId
-        currentPlaceID
-        notifications {
+        participants {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
+        place {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
           id
           name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
           updatedAt
         }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
+        placeID
+        privacy
+        profilePic
+        tags
         updatedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
-      updatedAt
+      nextToken
     }
   }
 `;
@@ -1838,31 +1440,354 @@ export const listNotifications = /* GraphQL */ `
   ) {
     listNotifications(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        id
         body
-        profileID
-        photo
         createdAt
+        id
+        photo
+        profileID
         type
         uProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
+          attendings {
+            nextToken
+          }
           createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
           updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
         }
-        _version
-        _deleted
-        _lastChangedAt
         updatedAt
       }
       nextToken
-      startedAt
+    }
+  }
+`;
+export const listPlaces = /* GraphQL */ `
+  query ListPlaces(
+    $filter: ModelPlaceFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPlaces(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const listPrivateNotes = /* GraphQL */ `
+  query ListPrivateNotes(
+    $filter: ModelPrivateNoteFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPrivateNotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        content
+        createdAt
+        id
+        owner
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const listTasks = /* GraphQL */ `
+  query ListTasks(
+    $filter: ModelTaskFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTasks(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        createdAt
+        description
+        id
+        status
+        title
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const listUprofiles = /* GraphQL */ `
+  query ListUprofiles(
+    $filter: ModelUprofileFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUprofiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      nextToken
+    }
+  }
+`;
+export const listUserDocs = /* GraphQL */ `
+  query ListUserDocs(
+    $filter: ModelUserDocFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUserDocs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        createdAt
+        deviceToken
+        email
+        id
+        phoneNumber
+        profileID
+        uProfile {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        updatedAt
+      }
+      nextToken
     }
   }
 `;

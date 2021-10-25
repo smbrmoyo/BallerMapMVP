@@ -37,9 +37,12 @@ const ConfirmSignUpScreen = ({ navigation }) => {
   const route = useRoute();
   const { colors } = useTheme();
   let username = route.params.username;
-  let email = route.params.email;
+  const email = route.params.email;
 
-  console.log("just for fun :" + JSON.stringify(route.params));
+  useEffect(() => {
+      console.log('\n', '\n', "<------------- ConfirmSignUpScreen ---------------->")
+  })
+
 
   /*if (error) {
     Alert.alert("Error signing up. Try again");
@@ -110,16 +113,11 @@ const ConfirmSignUpScreen = ({ navigation }) => {
                   () => {
                     confirmSignUp(email, code)
                       .then((res) => {
-                        console.log(
-                          "Réponse de la fonction confirmSIgnUp " + res
-                        );
                         navigation.navigate("SignInEmail");
                       })
                       .catch((error) => {
-                        console.log(
-                          "Erreur dans la fonction confirmSIgnUp au niveau du screen" +
-                            error
-                        );
+                        console.log("      Erreur dans la confirmation du User" + error);
+                        Alert.alert("Impossible de confirmer l'identité", error);
                       });
                   }
                 );
@@ -144,8 +142,14 @@ const ConfirmSignUpScreen = ({ navigation }) => {
 
             <TouchableOpacity
               activeOpacity={0.7}
-              onPress={() => {
-                resendConfirmationCode(username);
+              onPress={async() => {
+                console.log("   Resending confirmation to user")
+                await resendConfirmationCode(email).then(res => {
+                    Alert.alert("New Confirmation code", `New confirmation sent to ${email}. Check your spams` )
+                }).catch(error => {
+                   Alert.alert("ERROR resending confirmation code", error);
+                   console.log("   ERREUR resending confirmation code")
+                })
               }}
               style={[styles.signIn]}
             >

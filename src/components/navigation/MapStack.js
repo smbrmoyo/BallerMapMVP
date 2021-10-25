@@ -28,27 +28,28 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const Stack = createStackNavigator();
 
 const MapStack = ({ navigation }) => {
-  const [profileCreated, setProfileCreated] = useState(null);
+  //const [profileCreated, setProfileCreated] = useState(null);
   let routeName;
   useEffect(() => {
+    console.log("<------------- MAPSTACK ---------------->")
     AsyncStorage.getItem("profileCreated").then((value) => {
       if (value == null) {
         AsyncStorage.setItem("profileCreated", "false"); // Add  error handling
-        setProfileCreated(false);
+        //setProfileCreated(false);
       } else {
         AsyncStorage.setItem("profileCreated", "true");
-        setProfileCreated(true);
+        //setProfileCreated(true);
       }
     }); // Add  error handling
   }, []);
 
-  if (profileCreated == null) {
+  /*if (profileCreated == null) {
     return null; // Use loader
   } else if (profileCreated == false) {
     routeName = "SetProfile";
   } else {
     routeName = "Map";
-  }
+  }*/
 
   return (
     <MapProvider>

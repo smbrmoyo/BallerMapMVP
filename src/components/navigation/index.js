@@ -14,7 +14,6 @@ import { AuthProvider } from "./Providers/AuthProvider";
 const Providers = () => {
   const defaultQueryFn = async ({ queryKey }) => {
     const data = await Auth.currentAuthenticatedUser();
-
     return data;
   };
 

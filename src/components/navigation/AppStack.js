@@ -1,11 +1,14 @@
-import React from "react";
+import React, {useContext} from "react";
 import HomeStack from "./HomeStack";
 import MessageStack from "./MessageStack";
 import MapStack from "./MapStack";
 import ProfileStack from "./ProfileStack";
 import EventStack from "./EventStack";
+
+import SetProfileScreen from "../../screens/SetProfileScreen";
 import ModalStack from "./ModalStack";
 import { useAuth } from "./Providers/AuthProvider";
+import LoadingScreen from "../../screens/LoadingScreen/index";
 //import SnapchatStack from "../../../Snapchat";
 import { useState, useEffect } from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -22,8 +25,10 @@ import { AWSAppSyncClient } from "aws-appsync";
 import awsconfig from "../../aws-exports";
 import { Auth } from "aws-amplify";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import {useAppContext} from "./Providers/AppProvider";
 
 const Tab = createBottomTabNavigator();
+
 
 /*useEffect(() => {
     const registerForPushNotificationsAsync = async () => {
@@ -59,58 +64,21 @@ const Tab = createBottomTabNavigator();
 
 
 }, [])*/
+
+
 const AppStack = (route) => {
   const [notifPermission, setNotifPermission] = useState();
-  const {
-    auth,
-    setAuth,
-    client,
-    setClient,
-    createdDocs,
-    setCreatedDocs,
-    IsProfileDoc,
-    user,
-  } = useAuth();
+  let initialRouteName = "Map";
+  const {isPDoc, loadingProfileDoc } = useAppContext()
 
   useEffect(() => {
-    console.log("appStack");
-    const get_client = async () => {
-      const temp = await new AWSAppSyncClient({
-        url: awsconfig.aws_appsync_graphqlEndpoint,
-        region: awsconfig.aws_appsync_region,
-        auth: {
-          type: awsconfig.aws_appsync_authenticationType,
-          jwtToken: async () => {
-            return (await Auth.currentSession()).getIdToken().getJwtToken();
-          },
-        },
-        disableOffline: true,
-      });
-
-      let bool = await IsProfileDoc(user);
-      if (!bool) {
-        console.log("Pas de ProfileDoc");
-      } else {
-        console.log("Profile doc trouvé");
-        setCreatedDocs(true);
-      }
-
-      console.log("App");
-      return true;
-    };
-
-    get_client().then((res) => {
-      routename = "Map";
-      console.log("Client Set");
-      setClient(res);
-    });
-
-    let temp;
-    return () => {
-      if (client) {
-        client.destroy();
-      }
-    };
+    console.log("<------------- APPSTACK ---------------->");
+    /*if(isPDoc) {
+        initialRouteName = "Map";
+    }else {
+        initialRouteName = "SetProfile"
+    }*/
+    return () => {};
   }, []);
 
   const getTabBarVisibility = (route) => {
@@ -146,62 +114,72 @@ const AppStack = (route) => {
     if (routeName === "UserSearch") {
       return false;
     }
+    if(routeName === "")
     return true;
   };
 
   return (
-    <Tab.Navigator
-      initialRouteName={"Map"}
-      shifting={false}
-      tabBarOptions={{
-        activeTintColor: "black",
-        inactiveTintColor: "#7B7B7B",
-        showLabel: false,
-        style: {
-          backgroundColor: "white",
-          borderTopWidth: 0.3,
-          borderTopColor: "#C4C4C4",
-          //height: 50,
-        },
-      }}
-    >
-      <Tab.Screen
-        name="Event"
-        component={EventStack}
-        options={({ route }) => ({
-          tabBarLabel: "Profile",
-          tabBarVisible: getTabBarVisibility(route),
-          tabBarIcon: ({ color, size }) => (
-            <AntDesign name="calendar" size={26} color={color} />
-          ),
-        })}
-      />
-      <Tab.Screen
-        name="Map"
-        component={MapStack}
-        options={({ route }) => ({
-          tabBarLabel: "Map",
-          tabBarVisible: getTabBarVisibility(route),
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="map" size={24} color={color} />
-          ),
-        })}
-      />
+      loadingProfileDoc?  <LoadingScreen/>:(
+         isPDoc? ( <Tab.Navigator
+                initialRouteName={initialRouteName}
+                shifting={false}
+              tabBarOptions={{
+                activeTintColor: "black",
+                inactiveTintColor: "#7B7B7B",
+                showLabel: false,
+                style: {
+                 backgroundColor: "white",
+                 borderTopWidth: 0.3,
+                 borderTopColor: "#C4C4C4",
+              //height: 50,
+                },
+              }}><Tab.Screen
+              name="Event"
+              component={EventStack}
+              options={({ route }) => ({
+                tabBarLabel: "Profile",
+                tabBarVisible: getTabBarVisibility(route),
+                tabBarIcon: ({ color, size }) => (
+                  <AntDesign name="calendar" size={26} color={color} />
+                ),
+              })}/>
 
-      <Tab.Screen
-        name="Profile"
-        component={ProfileStack}
-        options={({ route }) => ({
-          tabBarLabel: "Profile",
-          tabBarVisible: getTabBarVisibility(route),
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-circle-outline" size={32} color={color} />
-          ),
-        })}
-      />
-    </Tab.Navigator>
+            <Tab.Screen
+              name="Map"
+              component={MapStack}
+              options={({ route }) => ({
+                tabBarLabel: "Map",
+                tabBarVisible: getTabBarVisibility(route),
+                tabBarIcon: ({ color, size }) => (
+                  <Feather name="map" size={24} color={color} />
+                ),
+              })}/>
+
+            <Tab.Screen
+              name="Profile"
+              component={ProfileStack}
+              options={({ route }) => ({
+                tabBarLabel: "Profile",
+                tabBarVisible: getTabBarVisibility(route),
+                tabBarIcon: ({ color, size }) => (
+                  <Ionicons name="person-circle-outline" size={32} color={color} />
+                ),
+              })}/>
+
+              <Tab.Screen
+                  name="SetProfile"
+              component={SetProfileScreen}
+              options={({ route }) => ({
+                tabBarLabel: "SetProfile",
+                tabBarVisible: false,
+                tabBarIcon: ({ color, size }) => (
+                  <Ionicons name="person-circle-outline" size={32} color={color} />
+                ),
+              })}/>
+              </Tab.Navigator>):<SetProfileScreen/> )
   );
 };
+
 
 export default AppStack;
 

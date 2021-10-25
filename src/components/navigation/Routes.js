@@ -1,19 +1,25 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { useAuth } from "./Providers/AuthProvider";
-
+import LoadingScreen from "../../screens/LoadingScreen/index.js"
 import AppStack from "./AppStack";
 import AuthStack from "./AuthStack";
+import AppProvider from "./Providers/AppProvider"
 
 const Routes = () => {
-  const { user } = useAuth();
+  const {user, loadingUser} = useAuth();
+
+  useEffect(() => {
+    console.log("<------------- Routes ---------------->")
+  })
 
   return (
-    <NavigationContainer>
-      {user ? <AppStack /> : <AuthStack />}
-    </NavigationContainer>
+      <NavigationContainer>
+        {loadingUser? <LoadingScreen/> : (user ?
+            <AppProvider><AppStack/></AppProvider> : <AuthStack/>)}
+      </NavigationContainer>
   );
-};
+}
 
 export default Routes;
 

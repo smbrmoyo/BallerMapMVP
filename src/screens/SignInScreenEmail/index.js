@@ -19,15 +19,15 @@ import styles from "./styles";
 import { useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 
 const SignInScreenEmail = ({ navigation, props }) => {
   const headerHeight = useHeaderHeight();
-  const { signIn, setUser } = useAuth();
+  const { signIn, setUser, resendConfirmationCode } = useAuth();
   const [nextScreen, setNextScreen] = useState("Map");
 
   useEffect(() => {
+    console.log('\n', '\n', "<------------- Sign In Screen Email---------------->")
     AsyncStorage.getItem("firstLaunch").then((value) => {
       /*if (value == "true") {
         setNextScreen("SetProfile");
@@ -47,18 +47,18 @@ const SignInScreenEmail = ({ navigation, props }) => {
 
   const { colors } = useTheme();
 
-  const textInputChange = (val) => {
-    if (val.trim().length >= 4) {
+  const textInputChange = (email) => {
+    if (email.trim().length >= 4) {
       setDataLogin({
         ...dataLogin,
-        username: val,
+        email: email,
         check_textInputChange: true,
         isValidUser: true,
       });
     } else {
       setDataLogin({
         ...dataLogin,
-        username: val,
+        email: email,
         check_textInputChange: false,
         isValidUser: false,
       });
@@ -138,12 +138,12 @@ const SignInScreenEmail = ({ navigation, props }) => {
               },
             ]}
           >
-            Username
+            Email
           </Text>
           <View style={styles.action}>
             <FontAwesome name="user-o" color={colors.text} size={20} />
             <TextInput
-              placeholder="Your Username"
+              placeholder="example@bigballs.com"
               placeholderTextColor="#666666"
               style={[
                 styles.textInput,
@@ -152,7 +152,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
                 },
               ]}
               autoCapitalize="none"
-              onChangeText={(username) => textInputChange(username)}
+              onChangeText={(email) => textInputChange(email)}
             />
             {dataLogin.check_textInputChange ? (
               <Animatable.View animation="bounceIn">
@@ -209,7 +209,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
           )}
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() => console.log("pressed forgot")}
+            onPress={() => console.log("   pressed forgot")}
           >
             <Text style={{ color: "#743cff", marginTop: 15 }}>
               Forgot password?
@@ -226,18 +226,52 @@ const SignInScreenEmail = ({ navigation, props }) => {
                     /*if (nextScreen == "SetProfile") {
                       navigation.navigate(nextScreen);
                     }*/
-                    console.log("HEreeeee");
-                    signIn(dataLogin.username, dataLogin.password)
+                    if(!dataLogin.email){
+                      Alert.alert("Enter your email address");
+                      return false;
+                    } else if(!dataLogin.password){
+                      Alert.alert("Enter your password");
+                      return false;
+                    }
+                    console.log("   Signing In user ");
+                    await signIn(dataLogin.email, dataLogin.password)
                       .then((res) => {
                         if (res) {
-                          setUser(dataLogin.username);
-                        } else {
-                          Alert.alert("creds error: " + JSON.stringify(error));
+                          AsyncStorage.setItem("currentUserCreds",
+                              JSON.stringify({
+                                email: dataLogin.email,
+                                password: dataLogin.password
+                              }))
+                          console.log("   User Logged IN, Credentials stored locally");
+                          setUser(dataLogin.email);
                         }
-                      })
-                      .catch((error) =>
-                        console.log("error signing in: " + error)
-                      );
+                      }).catch((error) => {
+                          console.log(error);
+                          console.log("   Error signing in");
+                          if(error == "UserNotFoundException"){
+                            Alert.alert("Connection impossible", "L'email ne correspond pas " +
+                                "a un utilisateur");
+                          }else if(error == "UserNotConfirmedException"){
+                            Alert.alert("Email non confirmé", "Veuillez confirmer votre email" +
+                                "Vous allez recevoir un " +
+                                "code de confirmation par email. Vérifiez vos spams/pourriels",
+                                [{
+                                text: "OK",
+                                  onPress: () => {
+                                    resendConfirmationCode(dataLogin.email).then(() => {
+                                      navigation.navigate("ConfirmSignUp", {
+                                        username: dataLogin.email,
+                                        email: dataLogin.email
+                                      })
+                                    })
+                                  }
+                                }]);
+                          }else if(error == "Incorrect username or password."){
+                            Alert.alert("Impossible " +
+                                " de se connecter", "Email ou" +
+                                " mot de passe incorrect")
+                          }
+                      });
                   }
                 );
               }}

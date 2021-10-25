@@ -1,2261 +1,267 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTask = /* GraphQL */ `
-  subscription OnCreateTask {
-    onCreateTask {
-      id
-      title
-      description
-      status
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateTask = /* GraphQL */ `
-  subscription OnUpdateTask {
-    onUpdateTask {
-      id
-      title
-      description
-      status
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteTask = /* GraphQL */ `
-  subscription OnDeleteTask {
-    onDeleteTask {
-      id
-      title
-      description
-      status
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreatePrivateNote = /* GraphQL */ `
-  subscription OnCreatePrivateNote($owner: String!) {
-    onCreatePrivateNote(owner: $owner) {
-      id
-      content
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onUpdatePrivateNote = /* GraphQL */ `
-  subscription OnUpdatePrivateNote($owner: String!) {
-    onUpdatePrivateNote(owner: $owner) {
-      id
-      content
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onDeletePrivateNote = /* GraphQL */ `
-  subscription OnDeletePrivateNote($owner: String!) {
-    onDeletePrivateNote(owner: $owner) {
-      id
-      content
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const onCreateUserDoc = /* GraphQL */ `
-  subscription OnCreateUserDoc {
-    onCreateUserDoc {
-      id
-      profileID
-      email
-      deviceToken
-      phoneNumber
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateUserDoc = /* GraphQL */ `
-  subscription OnUpdateUserDoc {
-    onUpdateUserDoc {
-      id
-      profileID
-      email
-      deviceToken
-      phoneNumber
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteUserDoc = /* GraphQL */ `
-  subscription OnDeleteUserDoc {
-    onDeleteUserDoc {
-      id
-      profileID
-      email
-      deviceToken
-      phoneNumber
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateUprofile = /* GraphQL */ `
-  subscription OnCreateUprofile {
-    onCreateUprofile {
-      id
-      username
-      name
-      userDocId
-      currentPlaceID
-      notifications {
-        items {
-          id
-          body
-          profileID
-          photo
-          createdAt
-          type
-          _version
-          _deleted
-          _lastChangedAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      myEvents {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      eventsCreated {
-        items {
-          id
-          name
-          placeID
-          creatorID
-          beginningTime
-          endingTime
-          tags
-          description
-          privacy
-          profilePic
-          eventPictures
-          eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      followers {
-        items {
-          id
-          followerID
-          followedID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      following {
-        items {
-          id
-          followerID
-          followedID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      currentPlace {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userDoc {
-        id
-        profileID
-        email
-        deviceToken
-        phoneNumber
-        uProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      attendings {
-        items {
-          id
-          profileID
-          placeID
-          arrivingTime
-          departureTime
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateUprofile = /* GraphQL */ `
-  subscription OnUpdateUprofile {
-    onUpdateUprofile {
-      id
-      username
-      name
-      userDocId
-      currentPlaceID
-      notifications {
-        items {
-          id
-          body
-          profileID
-          photo
-          createdAt
-          type
-          _version
-          _deleted
-          _lastChangedAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      myEvents {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      eventsCreated {
-        items {
-          id
-          name
-          placeID
-          creatorID
-          beginningTime
-          endingTime
-          tags
-          description
-          privacy
-          profilePic
-          eventPictures
-          eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      followers {
-        items {
-          id
-          followerID
-          followedID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      following {
-        items {
-          id
-          followerID
-          followedID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      currentPlace {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userDoc {
-        id
-        profileID
-        email
-        deviceToken
-        phoneNumber
-        uProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      attendings {
-        items {
-          id
-          profileID
-          placeID
-          arrivingTime
-          departureTime
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteUprofile = /* GraphQL */ `
-  subscription OnDeleteUprofile {
-    onDeleteUprofile {
-      id
-      username
-      name
-      userDocId
-      currentPlaceID
-      notifications {
-        items {
-          id
-          body
-          profileID
-          photo
-          createdAt
-          type
-          _version
-          _deleted
-          _lastChangedAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      myEvents {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      eventsCreated {
-        items {
-          id
-          name
-          placeID
-          creatorID
-          beginningTime
-          endingTime
-          tags
-          description
-          privacy
-          profilePic
-          eventPictures
-          eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      followers {
-        items {
-          id
-          followerID
-          followedID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      following {
-        items {
-          id
-          followerID
-          followedID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      currentPlace {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userDoc {
-        id
-        profileID
-        email
-        deviceToken
-        phoneNumber
-        uProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      attendings {
-        items {
-          id
-          profileID
-          placeID
-          arrivingTime
-          departureTime
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateUserConnection = /* GraphQL */ `
-  subscription OnCreateUserConnection {
-    onCreateUserConnection {
-      id
-      followerID
-      followedID
-      follower {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      followed {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateUserConnection = /* GraphQL */ `
-  subscription OnUpdateUserConnection {
-    onUpdateUserConnection {
-      id
-      followerID
-      followedID
-      follower {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      followed {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteUserConnection = /* GraphQL */ `
-  subscription OnDeleteUserConnection {
-    onDeleteUserConnection {
-      id
-      followerID
-      followedID
-      follower {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      followed {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateUserPlaceConnection = /* GraphQL */ `
-  subscription OnCreateUserPlaceConnection {
-    onCreateUserPlaceConnection {
-      id
-      profileID
-      placeID
-      arrivingTime
-      departureTime
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      place {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateUserPlaceConnection = /* GraphQL */ `
-  subscription OnUpdateUserPlaceConnection {
-    onUpdateUserPlaceConnection {
-      id
-      profileID
-      placeID
-      arrivingTime
-      departureTime
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      place {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteUserPlaceConnection = /* GraphQL */ `
-  subscription OnDeleteUserPlaceConnection {
-    onDeleteUserPlaceConnection {
-      id
-      profileID
-      placeID
-      arrivingTime
-      departureTime
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      place {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateUserEventConnection = /* GraphQL */ `
-  subscription OnCreateUserEventConnection {
-    onCreateUserEventConnection {
-      id
-      eventID
-      profileID
-      Event {
-        id
-        name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        participants {
-          nextToken
-          startedAt
-        }
-        chat {
-          nextToken
-          startedAt
-        }
-        description
-        privacy
-        profilePic
-        eventPictures
-        eventVideos
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateUserEventConnection = /* GraphQL */ `
-  subscription OnUpdateUserEventConnection {
-    onUpdateUserEventConnection {
-      id
-      eventID
-      profileID
-      Event {
-        id
-        name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        participants {
-          nextToken
-          startedAt
-        }
-        chat {
-          nextToken
-          startedAt
-        }
-        description
-        privacy
-        profilePic
-        eventPictures
-        eventVideos
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteUserEventConnection = /* GraphQL */ `
-  subscription OnDeleteUserEventConnection {
-    onDeleteUserEventConnection {
-      id
-      eventID
-      profileID
-      Event {
-        id
-        name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        participants {
-          nextToken
-          startedAt
-        }
-        chat {
-          nextToken
-          startedAt
-        }
-        description
-        privacy
-        profilePic
-        eventPictures
-        eventVideos
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const onCreateEvent = /* GraphQL */ `
   subscription OnCreateEvent {
     onCreateEvent {
-      id
-      name
-      placeID
-      creatorID
-      place {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
       beginningTime
-      endingTime
-      tags
-      creator {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      participants {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
       chat {
         items {
-          id
           body
-          profileID
-          eventID
           createdAt
-          _version
-          _deleted
-          _lastChangedAt
+          event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          eventID
+          id
+          profileID
           updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
         }
         nextToken
-        startedAt
       }
-      description
-      privacy
-      profilePic
-      eventPictures
-      eventVideos
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateEvent = /* GraphQL */ `
-  subscription OnUpdateEvent {
-    onUpdateEvent {
-      id
-      name
-      placeID
-      creatorID
-      place {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      beginningTime
-      endingTime
-      tags
       creator {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
+        createdAt
         currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
           id
           name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
           updatedAt
         }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      participants {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      chat {
-        items {
-          id
-          body
-          profileID
-          eventID
-          createdAt
-          _version
-          _deleted
-          _lastChangedAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      description
-      privacy
-      profilePic
-      eventPictures
-      eventVideos
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteEvent = /* GraphQL */ `
-  subscription OnDeleteEvent {
-    onDeleteEvent {
-      id
-      name
-      placeID
-      creatorID
-      place {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      beginningTime
-      endingTime
-      tags
-      creator {
-        id
-        username
-        name
-        userDocId
         currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
         eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
           nextToken
-          startedAt
         }
         followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
           nextToken
-          startedAt
         }
         following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
         updatedAt
-      }
-      participants {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
+        userDoc {
           createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
           updatedAt
         }
-        nextToken
-        startedAt
+        userDocId
+        username
       }
-      chat {
-        items {
-          id
-          body
-          profileID
-          eventID
-          createdAt
-          _version
-          _deleted
-          _lastChangedAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
+      creatorID
       description
-      privacy
-      profilePic
+      endingTime
       eventPictures
       eventVideos
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
+      id
+      name
+      participants {
+        items {
+          Event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          createdAt
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      place {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
+        updatedAt
+      }
+      placeID
+      privacy
+      profilePic
+      tags
       updatedAt
     }
   }
@@ -2263,365 +269,364 @@ export const onDeleteEvent = /* GraphQL */ `
 export const onCreateEventChatMessage = /* GraphQL */ `
   subscription OnCreateEventChatMessage {
     onCreateEventChatMessage {
-      id
       body
-      profileID
-      eventID
       createdAt
       event {
-        id
-        name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
         beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        participants {
-          nextToken
-          startedAt
-        }
         chat {
+          items {
+            body
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
+        createdAt
+        creator {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        creatorID
         description
-        privacy
-        profilePic
+        endingTime
         eventPictures
         eventVideos
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userProfile {
         id
-        username
         name
-        userDocId
-        currentPlaceID
-        notifications {
+        participants {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
+        place {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
           id
           name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
           updatedAt
         }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
+        placeID
+        privacy
+        profilePic
+        tags
         updatedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
+      eventID
+      id
+      profileID
       updatedAt
+      userProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
     }
   }
 `;
-export const onUpdateEventChatMessage = /* GraphQL */ `
-  subscription OnUpdateEventChatMessage {
-    onUpdateEventChatMessage {
-      id
+export const onCreateNotification = /* GraphQL */ `
+  subscription OnCreateNotification {
+    onCreateNotification {
       body
-      profileID
-      eventID
       createdAt
-      event {
-        id
-        name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        participants {
+      id
+      photo
+      profileID
+      type
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        chat {
-          nextToken
-          startedAt
-        }
-        description
-        privacy
-        profilePic
-        eventPictures
-        eventVideos
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
-        updatedAt
-      }
-      userProfile {
-        id
-        username
-        name
-        userDocId
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
         currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
         eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
           nextToken
-          startedAt
         }
         followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
           nextToken
-          startedAt
         }
         following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteEventChatMessage = /* GraphQL */ `
-  subscription OnDeleteEventChatMessage {
-    onDeleteEventChatMessage {
-      id
-      body
-      profileID
-      eventID
-      createdAt
-      event {
         id
-        name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        participants {
-          nextToken
-          startedAt
-        }
-        chat {
-          nextToken
-          startedAt
-        }
-        description
-        privacy
-        profilePic
-        eventPictures
-        eventVideos
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
         myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        eventsCreated {
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
         updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
       }
-      _version
-      _deleted
-      _lastChangedAt
       updatedAt
     }
   }
@@ -2629,145 +634,1884 @@ export const onDeleteEventChatMessage = /* GraphQL */ `
 export const onCreatePlace = /* GraphQL */ `
   subscription OnCreatePlace {
     onCreatePlace {
-      id
-      name
       address
+      attendings {
+        items {
+          arrivingTime
+          createdAt
+          departureTime
+          id
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        nextToken
+      }
       coords {
-        long
         lat
+        long
+      }
+      createdAt
+      currentPlayers {
+        items {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        nextToken
       }
       events {
         items {
-          id
-          name
-          placeID
-          creatorID
           beginningTime
-          endingTime
-          tags
+          chat {
+            nextToken
+          }
+          createdAt
+          creator {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          creatorID
           description
-          privacy
-          profilePic
+          endingTime
           eventPictures
           eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      currentPlayers {
-        items {
           id
-          username
           name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      attendings {
-        items {
-          id
-          profileID
+          participants {
+            nextToken
+          }
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
           placeID
-          arrivingTime
-          departureTime
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
+          privacy
+          profilePic
+          tags
           updatedAt
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
+      id
+      name
       updatedAt
     }
   }
 `;
-export const onUpdatePlace = /* GraphQL */ `
-  subscription OnUpdatePlace {
-    onUpdatePlace {
+export const onCreatePrivateNote = /* GraphQL */ `
+  subscription OnCreatePrivateNote($owner: String!) {
+    onCreatePrivateNote(owner: $owner) {
+      content
+      createdAt
       id
-      name
-      address
-      coords {
-        long
-        lat
-      }
-      events {
-        items {
-          id
-          name
-          placeID
-          creatorID
-          beginningTime
-          endingTime
-          tags
-          description
-          privacy
-          profilePic
-          eventPictures
-          eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      currentPlayers {
-        items {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
+      owner
+      updatedAt
+    }
+  }
+`;
+export const onCreateTask = /* GraphQL */ `
+  subscription OnCreateTask {
+    onCreateTask {
+      createdAt
+      description
+      id
+      status
+      title
+      updatedAt
+    }
+  }
+`;
+export const onCreateUprofile = /* GraphQL */ `
+  subscription OnCreateUprofile {
+    onCreateUprofile {
       attendings {
         items {
-          id
-          profileID
-          placeID
           arrivingTime
-          departureTime
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
+          departureTime
+          id
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
           updatedAt
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
+      currentPlace {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
+        updatedAt
+      }
+      currentPlaceID
+      eventsCreated {
+        items {
+          beginningTime
+          chat {
+            nextToken
+          }
+          createdAt
+          creator {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          creatorID
+          description
+          endingTime
+          eventPictures
+          eventVideos
+          id
+          name
+          participants {
+            nextToken
+          }
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          privacy
+          profilePic
+          tags
+          updatedAt
+        }
+        nextToken
+      }
+      followers {
+        items {
+          createdAt
+          followed {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followedID
+          follower {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followerID
+          id
+          updatedAt
+        }
+        nextToken
+      }
+      following {
+        items {
+          createdAt
+          followed {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followedID
+          follower {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followerID
+          id
+          updatedAt
+        }
+        nextToken
+      }
+      id
+      myEvents {
+        items {
+          Event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          createdAt
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      name
+      notifications {
+        items {
+          body
+          createdAt
+          id
+          photo
+          profileID
+          type
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        nextToken
+      }
+      updatedAt
+      userDoc {
+        createdAt
+        deviceToken
+        email
+        id
+        phoneNumber
+        profileID
+        uProfile {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        updatedAt
+      }
+      userDocId
+      username
+    }
+  }
+`;
+export const onCreateUserConnection = /* GraphQL */ `
+  subscription OnCreateUserConnection {
+    onCreateUserConnection {
+      createdAt
+      followed {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      followedID
+      follower {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      followerID
+      id
+      updatedAt
+    }
+  }
+`;
+export const onCreateUserDoc = /* GraphQL */ `
+  subscription OnCreateUserDoc {
+    onCreateUserDoc {
+      createdAt
+      deviceToken
+      email
+      id
+      phoneNumber
+      profileID
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      updatedAt
+    }
+  }
+`;
+export const onCreateUserEventConnection = /* GraphQL */ `
+  subscription OnCreateUserEventConnection {
+    onCreateUserEventConnection {
+      Event {
+        beginningTime
+        chat {
+          items {
+            body
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        creator {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        creatorID
+        description
+        endingTime
+        eventPictures
+        eventVideos
+        id
+        name
+        participants {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        place {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        placeID
+        privacy
+        profilePic
+        tags
+        updatedAt
+      }
+      createdAt
+      eventID
+      id
+      profileID
+      updatedAt
+      userProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+    }
+  }
+`;
+export const onCreateUserPlaceConnection = /* GraphQL */ `
+  subscription OnCreateUserPlaceConnection {
+    onCreateUserPlaceConnection {
+      arrivingTime
+      createdAt
+      departureTime
+      id
+      place {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
+        updatedAt
+      }
+      placeID
+      profileID
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      updatedAt
+    }
+  }
+`;
+export const onDeleteEvent = /* GraphQL */ `
+  subscription OnDeleteEvent {
+    onDeleteEvent {
+      beginningTime
+      chat {
+        items {
+          body
+          createdAt
+          event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      createdAt
+      creator {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      creatorID
+      description
+      endingTime
+      eventPictures
+      eventVideos
+      id
+      name
+      participants {
+        items {
+          Event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          createdAt
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      place {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
+        updatedAt
+      }
+      placeID
+      privacy
+      profilePic
+      tags
+      updatedAt
+    }
+  }
+`;
+export const onDeleteEventChatMessage = /* GraphQL */ `
+  subscription OnDeleteEventChatMessage {
+    onDeleteEventChatMessage {
+      body
+      createdAt
+      event {
+        beginningTime
+        chat {
+          items {
+            body
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        creator {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        creatorID
+        description
+        endingTime
+        eventPictures
+        eventVideos
+        id
+        name
+        participants {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        place {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        placeID
+        privacy
+        profilePic
+        tags
+        updatedAt
+      }
+      eventID
+      id
+      profileID
+      updatedAt
+      userProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+    }
+  }
+`;
+export const onDeleteNotification = /* GraphQL */ `
+  subscription OnDeleteNotification {
+    onDeleteNotification {
+      body
+      createdAt
+      id
+      photo
+      profileID
+      type
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
       updatedAt
     }
   }
@@ -2775,294 +2519,3139 @@ export const onUpdatePlace = /* GraphQL */ `
 export const onDeletePlace = /* GraphQL */ `
   subscription OnDeletePlace {
     onDeletePlace {
-      id
-      name
       address
+      attendings {
+        items {
+          arrivingTime
+          createdAt
+          departureTime
+          id
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        nextToken
+      }
       coords {
-        long
         lat
+        long
+      }
+      createdAt
+      currentPlayers {
+        items {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        nextToken
       }
       events {
         items {
-          id
-          name
-          placeID
-          creatorID
           beginningTime
-          endingTime
-          tags
+          chat {
+            nextToken
+          }
+          createdAt
+          creator {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          creatorID
           description
-          privacy
-          profilePic
+          endingTime
           eventPictures
           eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      currentPlayers {
-        items {
           id
-          username
           name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      attendings {
-        items {
-          id
-          profileID
+          participants {
+            nextToken
+          }
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
           placeID
-          arrivingTime
-          departureTime
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
+          privacy
+          profilePic
+          tags
           updatedAt
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
+      id
+      name
       updatedAt
     }
   }
 `;
-export const onCreateNotification = /* GraphQL */ `
-  subscription OnCreateNotification {
-    onCreateNotification {
-      id
-      body
-      profileID
-      photo
+export const onDeletePrivateNote = /* GraphQL */ `
+  subscription OnDeletePrivateNote($owner: String!) {
+    onDeletePrivateNote(owner: $owner) {
+      content
       createdAt
-      type
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
+      id
+      owner
+      updatedAt
+    }
+  }
+`;
+export const onDeleteTask = /* GraphQL */ `
+  subscription OnDeleteTask {
+    onDeleteTask {
+      createdAt
+      description
+      id
+      status
+      title
+      updatedAt
+    }
+  }
+`;
+export const onDeleteUprofile = /* GraphQL */ `
+  subscription OnDeleteUprofile {
+    onDeleteUprofile {
+      attendings {
+        items {
+          arrivingTime
           createdAt
-          updatedAt
-        }
-        userDoc {
+          departureTime
           id
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
           profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
           updatedAt
         }
+        nextToken
+      }
+      createdAt
+      currentPlace {
+        address
         attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
+        coords {
+          lat
+          long
+        }
         createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
         updatedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
+      currentPlaceID
+      eventsCreated {
+        items {
+          beginningTime
+          chat {
+            nextToken
+          }
+          createdAt
+          creator {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          creatorID
+          description
+          endingTime
+          eventPictures
+          eventVideos
+          id
+          name
+          participants {
+            nextToken
+          }
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          privacy
+          profilePic
+          tags
+          updatedAt
+        }
+        nextToken
+      }
+      followers {
+        items {
+          createdAt
+          followed {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followedID
+          follower {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followerID
+          id
+          updatedAt
+        }
+        nextToken
+      }
+      following {
+        items {
+          createdAt
+          followed {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followedID
+          follower {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followerID
+          id
+          updatedAt
+        }
+        nextToken
+      }
+      id
+      myEvents {
+        items {
+          Event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          createdAt
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      name
+      notifications {
+        items {
+          body
+          createdAt
+          id
+          photo
+          profileID
+          type
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        nextToken
+      }
       updatedAt
+      userDoc {
+        createdAt
+        deviceToken
+        email
+        id
+        phoneNumber
+        profileID
+        uProfile {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        updatedAt
+      }
+      userDocId
+      username
+    }
+  }
+`;
+export const onDeleteUserConnection = /* GraphQL */ `
+  subscription OnDeleteUserConnection {
+    onDeleteUserConnection {
+      createdAt
+      followed {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      followedID
+      follower {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      followerID
+      id
+      updatedAt
+    }
+  }
+`;
+export const onDeleteUserDoc = /* GraphQL */ `
+  subscription OnDeleteUserDoc {
+    onDeleteUserDoc {
+      createdAt
+      deviceToken
+      email
+      id
+      phoneNumber
+      profileID
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      updatedAt
+    }
+  }
+`;
+export const onDeleteUserEventConnection = /* GraphQL */ `
+  subscription OnDeleteUserEventConnection {
+    onDeleteUserEventConnection {
+      Event {
+        beginningTime
+        chat {
+          items {
+            body
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        creator {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        creatorID
+        description
+        endingTime
+        eventPictures
+        eventVideos
+        id
+        name
+        participants {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        place {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        placeID
+        privacy
+        profilePic
+        tags
+        updatedAt
+      }
+      createdAt
+      eventID
+      id
+      profileID
+      updatedAt
+      userProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+    }
+  }
+`;
+export const onDeleteUserPlaceConnection = /* GraphQL */ `
+  subscription OnDeleteUserPlaceConnection {
+    onDeleteUserPlaceConnection {
+      arrivingTime
+      createdAt
+      departureTime
+      id
+      place {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
+        updatedAt
+      }
+      placeID
+      profileID
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      updatedAt
+    }
+  }
+`;
+export const onUpdateEvent = /* GraphQL */ `
+  subscription OnUpdateEvent {
+    onUpdateEvent {
+      beginningTime
+      chat {
+        items {
+          body
+          createdAt
+          event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      createdAt
+      creator {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      creatorID
+      description
+      endingTime
+      eventPictures
+      eventVideos
+      id
+      name
+      participants {
+        items {
+          Event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          createdAt
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      place {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
+        updatedAt
+      }
+      placeID
+      privacy
+      profilePic
+      tags
+      updatedAt
+    }
+  }
+`;
+export const onUpdateEventChatMessage = /* GraphQL */ `
+  subscription OnUpdateEventChatMessage {
+    onUpdateEventChatMessage {
+      body
+      createdAt
+      event {
+        beginningTime
+        chat {
+          items {
+            body
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        creator {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        creatorID
+        description
+        endingTime
+        eventPictures
+        eventVideos
+        id
+        name
+        participants {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        place {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        placeID
+        privacy
+        profilePic
+        tags
+        updatedAt
+      }
+      eventID
+      id
+      profileID
+      updatedAt
+      userProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
     }
   }
 `;
 export const onUpdateNotification = /* GraphQL */ `
   subscription OnUpdateNotification {
     onUpdateNotification {
-      id
       body
-      profileID
-      photo
       createdAt
+      id
+      photo
+      profileID
       type
       uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
+        createdAt
         currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
           id
           name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
           updatedAt
         }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
         updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
       }
-      _version
-      _deleted
-      _lastChangedAt
       updatedAt
     }
   }
 `;
-export const onDeleteNotification = /* GraphQL */ `
-  subscription OnDeleteNotification {
-    onDeleteNotification {
-      id
-      body
-      profileID
-      photo
+export const onUpdatePlace = /* GraphQL */ `
+  subscription OnUpdatePlace {
+    onUpdatePlace {
+      address
+      attendings {
+        items {
+          arrivingTime
+          createdAt
+          departureTime
+          id
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        nextToken
+      }
+      coords {
+        lat
+        long
+      }
       createdAt
-      type
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
+      currentPlayers {
+        items {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
         }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
+        nextToken
+      }
+      events {
+        items {
+          beginningTime
+          chat {
+            nextToken
+          }
+          createdAt
+          creator {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          creatorID
+          description
+          endingTime
+          eventPictures
+          eventVideos
           id
           name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
+          participants {
+            nextToken
+          }
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          privacy
+          profilePic
+          tags
           updatedAt
         }
-        userDoc {
+        nextToken
+      }
+      id
+      name
+      updatedAt
+    }
+  }
+`;
+export const onUpdatePrivateNote = /* GraphQL */ `
+  subscription OnUpdatePrivateNote($owner: String!) {
+    onUpdatePrivateNote(owner: $owner) {
+      content
+      createdAt
+      id
+      owner
+      updatedAt
+    }
+  }
+`;
+export const onUpdateTask = /* GraphQL */ `
+  subscription OnUpdateTask {
+    onUpdateTask {
+      createdAt
+      description
+      id
+      status
+      title
+      updatedAt
+    }
+  }
+`;
+export const onUpdateUprofile = /* GraphQL */ `
+  subscription OnUpdateUprofile {
+    onUpdateUprofile {
+      attendings {
+        items {
+          arrivingTime
+          createdAt
+          departureTime
           id
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
           profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
           updatedAt
         }
+        nextToken
+      }
+      createdAt
+      currentPlace {
+        address
         attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
+        coords {
+          lat
+          long
+        }
         createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
         updatedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
+      currentPlaceID
+      eventsCreated {
+        items {
+          beginningTime
+          chat {
+            nextToken
+          }
+          createdAt
+          creator {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          creatorID
+          description
+          endingTime
+          eventPictures
+          eventVideos
+          id
+          name
+          participants {
+            nextToken
+          }
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          privacy
+          profilePic
+          tags
+          updatedAt
+        }
+        nextToken
+      }
+      followers {
+        items {
+          createdAt
+          followed {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followedID
+          follower {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followerID
+          id
+          updatedAt
+        }
+        nextToken
+      }
+      following {
+        items {
+          createdAt
+          followed {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followedID
+          follower {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followerID
+          id
+          updatedAt
+        }
+        nextToken
+      }
+      id
+      myEvents {
+        items {
+          Event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          createdAt
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      name
+      notifications {
+        items {
+          body
+          createdAt
+          id
+          photo
+          profileID
+          type
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        nextToken
+      }
+      updatedAt
+      userDoc {
+        createdAt
+        deviceToken
+        email
+        id
+        phoneNumber
+        profileID
+        uProfile {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        updatedAt
+      }
+      userDocId
+      username
+    }
+  }
+`;
+export const onUpdateUserConnection = /* GraphQL */ `
+  subscription OnUpdateUserConnection {
+    onUpdateUserConnection {
+      createdAt
+      followed {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      followedID
+      follower {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      followerID
+      id
+      updatedAt
+    }
+  }
+`;
+export const onUpdateUserDoc = /* GraphQL */ `
+  subscription OnUpdateUserDoc {
+    onUpdateUserDoc {
+      createdAt
+      deviceToken
+      email
+      id
+      phoneNumber
+      profileID
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      updatedAt
+    }
+  }
+`;
+export const onUpdateUserEventConnection = /* GraphQL */ `
+  subscription OnUpdateUserEventConnection {
+    onUpdateUserEventConnection {
+      Event {
+        beginningTime
+        chat {
+          items {
+            body
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        creator {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        creatorID
+        description
+        endingTime
+        eventPictures
+        eventVideos
+        id
+        name
+        participants {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        place {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        placeID
+        privacy
+        profilePic
+        tags
+        updatedAt
+      }
+      createdAt
+      eventID
+      id
+      profileID
+      updatedAt
+      userProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+    }
+  }
+`;
+export const onUpdateUserPlaceConnection = /* GraphQL */ `
+  subscription OnUpdateUserPlaceConnection {
+    onUpdateUserPlaceConnection {
+      arrivingTime
+      createdAt
+      departureTime
+      id
+      place {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
+        updatedAt
+      }
+      placeID
+      profileID
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
       updatedAt
     }
   }

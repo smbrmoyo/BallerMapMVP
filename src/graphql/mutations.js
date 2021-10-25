@@ -1,3306 +1,5767 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createTask = /* GraphQL */ `
-  mutation CreateTask(
-    $input: CreateTaskInput!
-    $condition: ModelTaskConditionInput
-  ) {
-    createTask(input: $input, condition: $condition) {
-      id
-      title
-      description
-      status
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateTask = /* GraphQL */ `
-  mutation UpdateTask(
-    $input: UpdateTaskInput!
-    $condition: ModelTaskConditionInput
-  ) {
-    updateTask(input: $input, condition: $condition) {
-      id
-      title
-      description
-      status
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteTask = /* GraphQL */ `
-  mutation DeleteTask(
-    $input: DeleteTaskInput!
-    $condition: ModelTaskConditionInput
-  ) {
-    deleteTask(input: $input, condition: $condition) {
-      id
-      title
-      description
-      status
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createPrivateNote = /* GraphQL */ `
-  mutation CreatePrivateNote(
-    $input: CreatePrivateNoteInput!
-    $condition: ModelPrivateNoteConditionInput
-  ) {
-    createPrivateNote(input: $input, condition: $condition) {
-      id
-      content
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const updatePrivateNote = /* GraphQL */ `
-  mutation UpdatePrivateNote(
-    $input: UpdatePrivateNoteInput!
-    $condition: ModelPrivateNoteConditionInput
-  ) {
-    updatePrivateNote(input: $input, condition: $condition) {
-      id
-      content
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const deletePrivateNote = /* GraphQL */ `
-  mutation DeletePrivateNote(
-    $input: DeletePrivateNoteInput!
-    $condition: ModelPrivateNoteConditionInput
-  ) {
-    deletePrivateNote(input: $input, condition: $condition) {
-      id
-      content
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const createUserDoc = /* GraphQL */ `
-  mutation CreateUserDoc(
-    $input: CreateUserDocInput!
-    $condition: ModelUserDocConditionInput
-  ) {
-    createUserDoc(input: $input, condition: $condition) {
-      id
-      profileID
-      email
-      deviceToken
-      phoneNumber
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateUserDoc = /* GraphQL */ `
-  mutation UpdateUserDoc(
-    $input: UpdateUserDocInput!
-    $condition: ModelUserDocConditionInput
-  ) {
-    updateUserDoc(input: $input, condition: $condition) {
-      id
-      profileID
-      email
-      deviceToken
-      phoneNumber
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteUserDoc = /* GraphQL */ `
-  mutation DeleteUserDoc(
-    $input: DeleteUserDocInput!
-    $condition: ModelUserDocConditionInput
-  ) {
-    deleteUserDoc(input: $input, condition: $condition) {
-      id
-      profileID
-      email
-      deviceToken
-      phoneNumber
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createUprofile = /* GraphQL */ `
-  mutation CreateUprofile(
-    $input: CreateUprofileInput!
-    $condition: ModelUprofileConditionInput
-  ) {
-    createUprofile(input: $input, condition: $condition) {
-      id
-      username
-      name
-      userDocId
-      currentPlaceID
-      notifications {
-        items {
-          id
-          body
-          profileID
-          photo
-          createdAt
-          type
-          _version
-          _deleted
-          _lastChangedAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      myEvents {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      eventsCreated {
-        items {
-          id
-          name
-          placeID
-          creatorID
-          beginningTime
-          endingTime
-          tags
-          description
-          privacy
-          profilePic
-          eventPictures
-          eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      followers {
-        items {
-          id
-          followerID
-          followedID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      following {
-        items {
-          id
-          followerID
-          followedID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      currentPlace {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userDoc {
-        id
-        profileID
-        email
-        deviceToken
-        phoneNumber
-        uProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      attendings {
-        items {
-          id
-          profileID
-          placeID
-          arrivingTime
-          departureTime
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateUprofile = /* GraphQL */ `
-  mutation UpdateUprofile(
-    $input: UpdateUprofileInput!
-    $condition: ModelUprofileConditionInput
-  ) {
-    updateUprofile(input: $input, condition: $condition) {
-      id
-      username
-      name
-      userDocId
-      currentPlaceID
-      notifications {
-        items {
-          id
-          body
-          profileID
-          photo
-          createdAt
-          type
-          _version
-          _deleted
-          _lastChangedAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      myEvents {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      eventsCreated {
-        items {
-          id
-          name
-          placeID
-          creatorID
-          beginningTime
-          endingTime
-          tags
-          description
-          privacy
-          profilePic
-          eventPictures
-          eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      followers {
-        items {
-          id
-          followerID
-          followedID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      following {
-        items {
-          id
-          followerID
-          followedID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      currentPlace {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userDoc {
-        id
-        profileID
-        email
-        deviceToken
-        phoneNumber
-        uProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      attendings {
-        items {
-          id
-          profileID
-          placeID
-          arrivingTime
-          departureTime
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteUprofile = /* GraphQL */ `
-  mutation DeleteUprofile(
-    $input: DeleteUprofileInput!
-    $condition: ModelUprofileConditionInput
-  ) {
-    deleteUprofile(input: $input, condition: $condition) {
-      id
-      username
-      name
-      userDocId
-      currentPlaceID
-      notifications {
-        items {
-          id
-          body
-          profileID
-          photo
-          createdAt
-          type
-          _version
-          _deleted
-          _lastChangedAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      myEvents {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      eventsCreated {
-        items {
-          id
-          name
-          placeID
-          creatorID
-          beginningTime
-          endingTime
-          tags
-          description
-          privacy
-          profilePic
-          eventPictures
-          eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      followers {
-        items {
-          id
-          followerID
-          followedID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      following {
-        items {
-          id
-          followerID
-          followedID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      currentPlace {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userDoc {
-        id
-        profileID
-        email
-        deviceToken
-        phoneNumber
-        uProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      attendings {
-        items {
-          id
-          profileID
-          placeID
-          arrivingTime
-          departureTime
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createUserConnection = /* GraphQL */ `
-  mutation CreateUserConnection(
-    $input: CreateUserConnectionInput!
-    $condition: ModelUserConnectionConditionInput
-  ) {
-    createUserConnection(input: $input, condition: $condition) {
-      id
-      followerID
-      followedID
-      follower {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      followed {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateUserConnection = /* GraphQL */ `
-  mutation UpdateUserConnection(
-    $input: UpdateUserConnectionInput!
-    $condition: ModelUserConnectionConditionInput
-  ) {
-    updateUserConnection(input: $input, condition: $condition) {
-      id
-      followerID
-      followedID
-      follower {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      followed {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteUserConnection = /* GraphQL */ `
-  mutation DeleteUserConnection(
-    $input: DeleteUserConnectionInput!
-    $condition: ModelUserConnectionConditionInput
-  ) {
-    deleteUserConnection(input: $input, condition: $condition) {
-      id
-      followerID
-      followedID
-      follower {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      followed {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createUserPlaceConnection = /* GraphQL */ `
-  mutation CreateUserPlaceConnection(
-    $input: CreateUserPlaceConnectionInput!
-    $condition: ModelUserPlaceConnectionConditionInput
-  ) {
-    createUserPlaceConnection(input: $input, condition: $condition) {
-      id
-      profileID
-      placeID
-      arrivingTime
-      departureTime
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      place {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateUserPlaceConnection = /* GraphQL */ `
-  mutation UpdateUserPlaceConnection(
-    $input: UpdateUserPlaceConnectionInput!
-    $condition: ModelUserPlaceConnectionConditionInput
-  ) {
-    updateUserPlaceConnection(input: $input, condition: $condition) {
-      id
-      profileID
-      placeID
-      arrivingTime
-      departureTime
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      place {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteUserPlaceConnection = /* GraphQL */ `
-  mutation DeleteUserPlaceConnection(
-    $input: DeleteUserPlaceConnectionInput!
-    $condition: ModelUserPlaceConnectionConditionInput
-  ) {
-    deleteUserPlaceConnection(input: $input, condition: $condition) {
-      id
-      profileID
-      placeID
-      arrivingTime
-      departureTime
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      place {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createUserEventConnection = /* GraphQL */ `
-  mutation CreateUserEventConnection(
-    $input: CreateUserEventConnectionInput!
-    $condition: ModelUserEventConnectionConditionInput
-  ) {
-    createUserEventConnection(input: $input, condition: $condition) {
-      id
-      eventID
-      profileID
-      Event {
-        id
-        name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        participants {
-          nextToken
-          startedAt
-        }
-        chat {
-          nextToken
-          startedAt
-        }
-        description
-        privacy
-        profilePic
-        eventPictures
-        eventVideos
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateUserEventConnection = /* GraphQL */ `
-  mutation UpdateUserEventConnection(
-    $input: UpdateUserEventConnectionInput!
-    $condition: ModelUserEventConnectionConditionInput
-  ) {
-    updateUserEventConnection(input: $input, condition: $condition) {
-      id
-      eventID
-      profileID
-      Event {
-        id
-        name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        participants {
-          nextToken
-          startedAt
-        }
-        chat {
-          nextToken
-          startedAt
-        }
-        description
-        privacy
-        profilePic
-        eventPictures
-        eventVideos
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteUserEventConnection = /* GraphQL */ `
-  mutation DeleteUserEventConnection(
-    $input: DeleteUserEventConnectionInput!
-    $condition: ModelUserEventConnectionConditionInput
-  ) {
-    deleteUserEventConnection(input: $input, condition: $condition) {
-      id
-      eventID
-      profileID
-      Event {
-        id
-        name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        participants {
-          nextToken
-          startedAt
-        }
-        chat {
-          nextToken
-          startedAt
-        }
-        description
-        privacy
-        profilePic
-        eventPictures
-        eventVideos
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
 export const createEvent = /* GraphQL */ `
   mutation CreateEvent(
+    $condition: ModelEventConditionInput
     $input: CreateEventInput!
-    $condition: ModelEventConditionInput
   ) {
-    createEvent(input: $input, condition: $condition) {
-      id
-      name
-      placeID
-      creatorID
-      place {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
+    createEvent(condition: $condition, input: $input) {
       beginningTime
-      endingTime
-      tags
-      creator {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      participants {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
       chat {
         items {
-          id
           body
-          profileID
-          eventID
           createdAt
-          _version
-          _deleted
-          _lastChangedAt
+          event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          eventID
+          id
+          profileID
           updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
         }
         nextToken
-        startedAt
       }
-      description
-      privacy
-      profilePic
-      eventPictures
-      eventVideos
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateEvent = /* GraphQL */ `
-  mutation UpdateEvent(
-    $input: UpdateEventInput!
-    $condition: ModelEventConditionInput
-  ) {
-    updateEvent(input: $input, condition: $condition) {
-      id
-      name
-      placeID
-      creatorID
-      place {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      beginningTime
-      endingTime
-      tags
       creator {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
+        createdAt
         currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
           id
           name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
           updatedAt
         }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      participants {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      chat {
-        items {
-          id
-          body
-          profileID
-          eventID
-          createdAt
-          _version
-          _deleted
-          _lastChangedAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      description
-      privacy
-      profilePic
-      eventPictures
-      eventVideos
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteEvent = /* GraphQL */ `
-  mutation DeleteEvent(
-    $input: DeleteEventInput!
-    $condition: ModelEventConditionInput
-  ) {
-    deleteEvent(input: $input, condition: $condition) {
-      id
-      name
-      placeID
-      creatorID
-      place {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-          startedAt
-        }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      beginningTime
-      endingTime
-      tags
-      creator {
-        id
-        username
-        name
-        userDocId
         currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
         eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
           nextToken
-          startedAt
         }
         followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
           nextToken
-          startedAt
         }
         following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
         updatedAt
-      }
-      participants {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
+        userDoc {
           createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
           updatedAt
         }
-        nextToken
-        startedAt
+        userDocId
+        username
       }
-      chat {
-        items {
-          id
-          body
-          profileID
-          eventID
-          createdAt
-          _version
-          _deleted
-          _lastChangedAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
+      creatorID
       description
-      privacy
-      profilePic
+      endingTime
       eventPictures
       eventVideos
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
+      id
+      name
+      participants {
+        items {
+          Event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          createdAt
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      place {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
+        updatedAt
+      }
+      placeID
+      privacy
+      profilePic
+      tags
       updatedAt
     }
   }
 `;
 export const createEventChatMessage = /* GraphQL */ `
   mutation CreateEventChatMessage(
+    $condition: ModelEventChatMessageConditionInput
     $input: CreateEventChatMessageInput!
-    $condition: ModelEventChatMessageConditionInput
   ) {
-    createEventChatMessage(input: $input, condition: $condition) {
-      id
+    createEventChatMessage(condition: $condition, input: $input) {
       body
-      profileID
-      eventID
       createdAt
       event {
-        id
-        name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
         beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        participants {
-          nextToken
-          startedAt
-        }
         chat {
+          items {
+            body
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
+        createdAt
+        creator {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        creatorID
         description
-        privacy
-        profilePic
+        endingTime
         eventPictures
         eventVideos
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userProfile {
         id
-        username
         name
-        userDocId
-        currentPlaceID
-        notifications {
+        participants {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
+        place {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
           id
           name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
           updatedAt
         }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
+        placeID
+        privacy
+        profilePic
+        tags
         updatedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
+      eventID
+      id
+      profileID
       updatedAt
+      userProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
     }
   }
 `;
-export const updateEventChatMessage = /* GraphQL */ `
-  mutation UpdateEventChatMessage(
-    $input: UpdateEventChatMessageInput!
-    $condition: ModelEventChatMessageConditionInput
+export const createEvent_c = /* GraphQL */ `
+  mutation CreateEvent_c(
+    $condition: ModelEventConditionInput
+    $input: CreateEventInput_c!
   ) {
-    updateEventChatMessage(input: $input, condition: $condition) {
-      id
+    createEvent_c(condition: $condition, input: $input) {
       body
-      profileID
-      eventID
-      createdAt
-      event {
-        id
-        name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        participants {
-          nextToken
-          startedAt
-        }
-        chat {
-          nextToken
-          startedAt
-        }
-        description
-        privacy
-        profilePic
-        eventPictures
-        eventVideos
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      _version
-      _deleted
-      _lastChangedAt
-      updatedAt
+      statusCode
     }
   }
 `;
-export const deleteEventChatMessage = /* GraphQL */ `
-  mutation DeleteEventChatMessage(
-    $input: DeleteEventChatMessageInput!
-    $condition: ModelEventChatMessageConditionInput
+export const createNotification = /* GraphQL */ `
+  mutation CreateNotification(
+    $condition: ModelNotificationConditionInput
+    $input: CreateNotificationInput!
   ) {
-    deleteEventChatMessage(input: $input, condition: $condition) {
-      id
+    createNotification(condition: $condition, input: $input) {
       body
-      profileID
-      eventID
       createdAt
-      event {
-        id
-        name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        participants {
+      id
+      photo
+      profileID
+      type
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        chat {
-          nextToken
-          startedAt
-        }
-        description
-        privacy
-        profilePic
-        eventPictures
-        eventVideos
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
-        updatedAt
-      }
-      userProfile {
-        id
-        username
-        name
-        userDocId
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
         currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
         eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
           nextToken
-          startedAt
         }
         followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
           nextToken
-          startedAt
         }
         following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
         updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
       }
-      _version
-      _deleted
-      _lastChangedAt
       updatedAt
     }
   }
 `;
 export const createPlace = /* GraphQL */ `
   mutation CreatePlace(
-    $input: CreatePlaceInput!
     $condition: ModelPlaceConditionInput
+    $input: CreatePlaceInput!
   ) {
-    createPlace(input: $input, condition: $condition) {
-      id
-      name
+    createPlace(condition: $condition, input: $input) {
       address
+      attendings {
+        items {
+          arrivingTime
+          createdAt
+          departureTime
+          id
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        nextToken
+      }
       coords {
-        long
         lat
+        long
+      }
+      createdAt
+      currentPlayers {
+        items {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        nextToken
       }
       events {
         items {
-          id
-          name
-          placeID
-          creatorID
           beginningTime
-          endingTime
-          tags
+          chat {
+            nextToken
+          }
+          createdAt
+          creator {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          creatorID
           description
-          privacy
-          profilePic
+          endingTime
           eventPictures
           eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      currentPlayers {
-        items {
           id
-          username
           name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      attendings {
-        items {
-          id
-          profileID
+          participants {
+            nextToken
+          }
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
           placeID
-          arrivingTime
-          departureTime
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
+          privacy
+          profilePic
+          tags
           updatedAt
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
+      id
+      name
       updatedAt
     }
   }
 `;
-export const updatePlace = /* GraphQL */ `
-  mutation UpdatePlace(
-    $input: UpdatePlaceInput!
-    $condition: ModelPlaceConditionInput
+export const createPrivateNote = /* GraphQL */ `
+  mutation CreatePrivateNote(
+    $condition: ModelPrivateNoteConditionInput
+    $input: CreatePrivateNoteInput!
   ) {
-    updatePlace(input: $input, condition: $condition) {
+    createPrivateNote(condition: $condition, input: $input) {
+      content
+      createdAt
       id
-      name
-      address
-      coords {
-        long
-        lat
-      }
-      events {
-        items {
-          id
-          name
-          placeID
-          creatorID
-          beginningTime
-          endingTime
-          tags
-          description
-          privacy
-          profilePic
-          eventPictures
-          eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      currentPlayers {
-        items {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
+      owner
+      updatedAt
+    }
+  }
+`;
+export const createTask = /* GraphQL */ `
+  mutation CreateTask(
+    $condition: ModelTaskConditionInput
+    $input: CreateTaskInput!
+  ) {
+    createTask(condition: $condition, input: $input) {
+      createdAt
+      description
+      id
+      status
+      title
+      updatedAt
+    }
+  }
+`;
+export const createUprofile = /* GraphQL */ `
+  mutation CreateUprofile(
+    $condition: ModelUprofileConditionInput
+    $input: CreateUprofileInput!
+  ) {
+    createUprofile(condition: $condition, input: $input) {
       attendings {
         items {
-          id
-          profileID
-          placeID
           arrivingTime
-          departureTime
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
+          departureTime
+          id
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
           updatedAt
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
+      currentPlace {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
+        updatedAt
+      }
+      currentPlaceID
+      eventsCreated {
+        items {
+          beginningTime
+          chat {
+            nextToken
+          }
+          createdAt
+          creator {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          creatorID
+          description
+          endingTime
+          eventPictures
+          eventVideos
+          id
+          name
+          participants {
+            nextToken
+          }
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          privacy
+          profilePic
+          tags
+          updatedAt
+        }
+        nextToken
+      }
+      followers {
+        items {
+          createdAt
+          followed {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followedID
+          follower {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followerID
+          id
+          updatedAt
+        }
+        nextToken
+      }
+      following {
+        items {
+          createdAt
+          followed {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followedID
+          follower {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followerID
+          id
+          updatedAt
+        }
+        nextToken
+      }
+      id
+      myEvents {
+        items {
+          Event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          createdAt
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      name
+      notifications {
+        items {
+          body
+          createdAt
+          id
+          photo
+          profileID
+          type
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        nextToken
+      }
+      updatedAt
+      userDoc {
+        createdAt
+        deviceToken
+        email
+        id
+        phoneNumber
+        profileID
+        uProfile {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        updatedAt
+      }
+      userDocId
+      username
+    }
+  }
+`;
+export const createUserConnection = /* GraphQL */ `
+  mutation CreateUserConnection(
+    $condition: ModelUserConnectionConditionInput
+    $input: CreateUserConnectionInput!
+  ) {
+    createUserConnection(condition: $condition, input: $input) {
+      createdAt
+      followed {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      followedID
+      follower {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      followerID
+      id
+      updatedAt
+    }
+  }
+`;
+export const createUserDoc = /* GraphQL */ `
+  mutation CreateUserDoc(
+    $condition: ModelUserDocConditionInput
+    $input: CreateUserDocInput!
+  ) {
+    createUserDoc(condition: $condition, input: $input) {
+      createdAt
+      deviceToken
+      email
+      id
+      phoneNumber
+      profileID
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      updatedAt
+    }
+  }
+`;
+export const createUserEventConnection = /* GraphQL */ `
+  mutation CreateUserEventConnection(
+    $condition: ModelUserEventConnectionConditionInput
+    $input: CreateUserEventConnectionInput!
+  ) {
+    createUserEventConnection(condition: $condition, input: $input) {
+      Event {
+        beginningTime
+        chat {
+          items {
+            body
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        creator {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        creatorID
+        description
+        endingTime
+        eventPictures
+        eventVideos
+        id
+        name
+        participants {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        place {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        placeID
+        privacy
+        profilePic
+        tags
+        updatedAt
+      }
+      createdAt
+      eventID
+      id
+      profileID
+      updatedAt
+      userProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+    }
+  }
+`;
+export const createUserPlaceConnection = /* GraphQL */ `
+  mutation CreateUserPlaceConnection(
+    $condition: ModelUserPlaceConnectionConditionInput
+    $input: CreateUserPlaceConnectionInput!
+  ) {
+    createUserPlaceConnection(condition: $condition, input: $input) {
+      arrivingTime
+      createdAt
+      departureTime
+      id
+      place {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
+        updatedAt
+      }
+      placeID
+      profileID
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      updatedAt
+    }
+  }
+`;
+export const deleteEvent = /* GraphQL */ `
+  mutation DeleteEvent(
+    $condition: ModelEventConditionInput
+    $input: DeleteEventInput!
+  ) {
+    deleteEvent(condition: $condition, input: $input) {
+      beginningTime
+      chat {
+        items {
+          body
+          createdAt
+          event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      createdAt
+      creator {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      creatorID
+      description
+      endingTime
+      eventPictures
+      eventVideos
+      id
+      name
+      participants {
+        items {
+          Event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          createdAt
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      place {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
+        updatedAt
+      }
+      placeID
+      privacy
+      profilePic
+      tags
+      updatedAt
+    }
+  }
+`;
+export const deleteEventChatMessage = /* GraphQL */ `
+  mutation DeleteEventChatMessage(
+    $condition: ModelEventChatMessageConditionInput
+    $input: DeleteEventChatMessageInput!
+  ) {
+    deleteEventChatMessage(condition: $condition, input: $input) {
+      body
+      createdAt
+      event {
+        beginningTime
+        chat {
+          items {
+            body
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        creator {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        creatorID
+        description
+        endingTime
+        eventPictures
+        eventVideos
+        id
+        name
+        participants {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        place {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        placeID
+        privacy
+        profilePic
+        tags
+        updatedAt
+      }
+      eventID
+      id
+      profileID
+      updatedAt
+      userProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+    }
+  }
+`;
+export const deleteNotification = /* GraphQL */ `
+  mutation DeleteNotification(
+    $condition: ModelNotificationConditionInput
+    $input: DeleteNotificationInput!
+  ) {
+    deleteNotification(condition: $condition, input: $input) {
+      body
+      createdAt
+      id
+      photo
+      profileID
+      type
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
       updatedAt
     }
   }
 `;
 export const deletePlace = /* GraphQL */ `
   mutation DeletePlace(
-    $input: DeletePlaceInput!
     $condition: ModelPlaceConditionInput
+    $input: DeletePlaceInput!
   ) {
-    deletePlace(input: $input, condition: $condition) {
-      id
-      name
+    deletePlace(condition: $condition, input: $input) {
       address
+      attendings {
+        items {
+          arrivingTime
+          createdAt
+          departureTime
+          id
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        nextToken
+      }
       coords {
-        long
         lat
+        long
+      }
+      createdAt
+      currentPlayers {
+        items {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        nextToken
       }
       events {
         items {
-          id
-          name
-          placeID
-          creatorID
           beginningTime
-          endingTime
-          tags
+          chat {
+            nextToken
+          }
+          createdAt
+          creator {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          creatorID
           description
-          privacy
-          profilePic
+          endingTime
           eventPictures
           eventVideos
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      currentPlayers {
-        items {
           id
-          username
           name
-          userDocId
-          currentPlaceID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      attendings {
-        items {
-          id
-          profileID
+          participants {
+            nextToken
+          }
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
           placeID
-          arrivingTime
-          departureTime
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
+          privacy
+          profilePic
+          tags
           updatedAt
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
-      createdAt
+      id
+      name
       updatedAt
     }
   }
 `;
-export const createNotification = /* GraphQL */ `
-  mutation CreateNotification(
-    $input: CreateNotificationInput!
-    $condition: ModelNotificationConditionInput
+export const deletePrivateNote = /* GraphQL */ `
+  mutation DeletePrivateNote(
+    $condition: ModelPrivateNoteConditionInput
+    $input: DeletePrivateNoteInput!
   ) {
-    createNotification(input: $input, condition: $condition) {
-      id
-      body
-      profileID
-      photo
+    deletePrivateNote(condition: $condition, input: $input) {
+      content
       createdAt
-      type
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
-          id
-          name
-          address
-          _version
-          _deleted
-          _lastChangedAt
+      id
+      owner
+      updatedAt
+    }
+  }
+`;
+export const deleteTask = /* GraphQL */ `
+  mutation DeleteTask(
+    $condition: ModelTaskConditionInput
+    $input: DeleteTaskInput!
+  ) {
+    deleteTask(condition: $condition, input: $input) {
+      createdAt
+      description
+      id
+      status
+      title
+      updatedAt
+    }
+  }
+`;
+export const deleteUprofile = /* GraphQL */ `
+  mutation DeleteUprofile(
+    $condition: ModelUprofileConditionInput
+    $input: DeleteUprofileInput!
+  ) {
+    deleteUprofile(condition: $condition, input: $input) {
+      attendings {
+        items {
+          arrivingTime
           createdAt
-          updatedAt
-        }
-        userDoc {
+          departureTime
           id
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
           profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
           updatedAt
         }
+        nextToken
+      }
+      createdAt
+      currentPlace {
+        address
         attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
+        coords {
+          lat
+          long
+        }
         createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
         updatedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
+      currentPlaceID
+      eventsCreated {
+        items {
+          beginningTime
+          chat {
+            nextToken
+          }
+          createdAt
+          creator {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          creatorID
+          description
+          endingTime
+          eventPictures
+          eventVideos
+          id
+          name
+          participants {
+            nextToken
+          }
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          privacy
+          profilePic
+          tags
+          updatedAt
+        }
+        nextToken
+      }
+      followers {
+        items {
+          createdAt
+          followed {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followedID
+          follower {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followerID
+          id
+          updatedAt
+        }
+        nextToken
+      }
+      following {
+        items {
+          createdAt
+          followed {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followedID
+          follower {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followerID
+          id
+          updatedAt
+        }
+        nextToken
+      }
+      id
+      myEvents {
+        items {
+          Event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          createdAt
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      name
+      notifications {
+        items {
+          body
+          createdAt
+          id
+          photo
+          profileID
+          type
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        nextToken
+      }
       updatedAt
+      userDoc {
+        createdAt
+        deviceToken
+        email
+        id
+        phoneNumber
+        profileID
+        uProfile {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        updatedAt
+      }
+      userDocId
+      username
+    }
+  }
+`;
+export const deleteUserConnection = /* GraphQL */ `
+  mutation DeleteUserConnection(
+    $condition: ModelUserConnectionConditionInput
+    $input: DeleteUserConnectionInput!
+  ) {
+    deleteUserConnection(condition: $condition, input: $input) {
+      createdAt
+      followed {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      followedID
+      follower {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      followerID
+      id
+      updatedAt
+    }
+  }
+`;
+export const deleteUserDoc = /* GraphQL */ `
+  mutation DeleteUserDoc(
+    $condition: ModelUserDocConditionInput
+    $input: DeleteUserDocInput!
+  ) {
+    deleteUserDoc(condition: $condition, input: $input) {
+      createdAt
+      deviceToken
+      email
+      id
+      phoneNumber
+      profileID
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      updatedAt
+    }
+  }
+`;
+export const deleteUserEventConnection = /* GraphQL */ `
+  mutation DeleteUserEventConnection(
+    $condition: ModelUserEventConnectionConditionInput
+    $input: DeleteUserEventConnectionInput!
+  ) {
+    deleteUserEventConnection(condition: $condition, input: $input) {
+      Event {
+        beginningTime
+        chat {
+          items {
+            body
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        creator {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        creatorID
+        description
+        endingTime
+        eventPictures
+        eventVideos
+        id
+        name
+        participants {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        place {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        placeID
+        privacy
+        profilePic
+        tags
+        updatedAt
+      }
+      createdAt
+      eventID
+      id
+      profileID
+      updatedAt
+      userProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+    }
+  }
+`;
+export const deleteUserPlaceConnection = /* GraphQL */ `
+  mutation DeleteUserPlaceConnection(
+    $condition: ModelUserPlaceConnectionConditionInput
+    $input: DeleteUserPlaceConnectionInput!
+  ) {
+    deleteUserPlaceConnection(condition: $condition, input: $input) {
+      arrivingTime
+      createdAt
+      departureTime
+      id
+      place {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
+        updatedAt
+      }
+      placeID
+      profileID
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      updatedAt
+    }
+  }
+`;
+export const updateEvent = /* GraphQL */ `
+  mutation UpdateEvent(
+    $condition: ModelEventConditionInput
+    $input: UpdateEventInput!
+  ) {
+    updateEvent(condition: $condition, input: $input) {
+      beginningTime
+      chat {
+        items {
+          body
+          createdAt
+          event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      createdAt
+      creator {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      creatorID
+      description
+      endingTime
+      eventPictures
+      eventVideos
+      id
+      name
+      participants {
+        items {
+          Event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          createdAt
+          eventID
+          id
+          profileID
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      place {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
+        updatedAt
+      }
+      placeID
+      privacy
+      profilePic
+      tags
+      updatedAt
+    }
+  }
+`;
+export const updateEventChatMessage = /* GraphQL */ `
+  mutation UpdateEventChatMessage(
+    $condition: ModelEventChatMessageConditionInput
+    $input: UpdateEventChatMessageInput!
+  ) {
+    updateEventChatMessage(condition: $condition, input: $input) {
+      body
+      createdAt
+      event {
+        beginningTime
+        chat {
+          items {
+            body
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        creator {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        creatorID
+        description
+        endingTime
+        eventPictures
+        eventVideos
+        id
+        name
+        participants {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        place {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        placeID
+        privacy
+        profilePic
+        tags
+        updatedAt
+      }
+      eventID
+      id
+      profileID
+      updatedAt
+      userProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
     }
   }
 `;
 export const updateNotification = /* GraphQL */ `
   mutation UpdateNotification(
+    $condition: ModelNotificationConditionInput
     $input: UpdateNotificationInput!
-    $condition: ModelNotificationConditionInput
   ) {
-    updateNotification(input: $input, condition: $condition) {
-      id
+    updateNotification(condition: $condition, input: $input) {
       body
-      profileID
-      photo
       createdAt
+      id
+      photo
+      profileID
       type
       uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
+        createdAt
         currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
           id
           name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
           updatedAt
         }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
         updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
       }
-      _version
-      _deleted
-      _lastChangedAt
       updatedAt
     }
   }
 `;
-export const deleteNotification = /* GraphQL */ `
-  mutation DeleteNotification(
-    $input: DeleteNotificationInput!
-    $condition: ModelNotificationConditionInput
+export const updatePlace = /* GraphQL */ `
+  mutation UpdatePlace(
+    $condition: ModelPlaceConditionInput
+    $input: UpdatePlaceInput!
   ) {
-    deleteNotification(input: $input, condition: $condition) {
-      id
-      body
-      profileID
-      photo
+    updatePlace(condition: $condition, input: $input) {
+      address
+      attendings {
+        items {
+          arrivingTime
+          createdAt
+          departureTime
+          id
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        nextToken
+      }
+      coords {
+        lat
+        long
+      }
       createdAt
-      type
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
+      currentPlayers {
+        items {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
         }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
+        nextToken
+      }
+      events {
+        items {
+          beginningTime
+          chat {
+            nextToken
+          }
+          createdAt
+          creator {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          creatorID
+          description
+          endingTime
+          eventPictures
+          eventVideos
           id
           name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
+          participants {
+            nextToken
+          }
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          privacy
+          profilePic
+          tags
           updatedAt
         }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
+        nextToken
       }
-      _version
-      _deleted
-      _lastChangedAt
-      updatedAt
-    }
-  }
-`;
-export const createEvent_c = /* GraphQL */ `
-  mutation CreateEvent_c(
-    $input: CreateEventInput_c!
-    $condition: ModelEventConditionInput
-  ) {
-    createEvent_c(input: $input, condition: $condition) {
       id
       name
-      placeID
-      creatorID
-      place {
-        id
-        name
+      updatedAt
+    }
+  }
+`;
+export const updatePrivateNote = /* GraphQL */ `
+  mutation UpdatePrivateNote(
+    $condition: ModelPrivateNoteConditionInput
+    $input: UpdatePrivateNoteInput!
+  ) {
+    updatePrivateNote(condition: $condition, input: $input) {
+      content
+      createdAt
+      id
+      owner
+      updatedAt
+    }
+  }
+`;
+export const updateTask = /* GraphQL */ `
+  mutation UpdateTask(
+    $condition: ModelTaskConditionInput
+    $input: UpdateTaskInput!
+  ) {
+    updateTask(condition: $condition, input: $input) {
+      createdAt
+      description
+      id
+      status
+      title
+      updatedAt
+    }
+  }
+`;
+export const updateUprofile = /* GraphQL */ `
+  mutation UpdateUprofile(
+    $condition: ModelUprofileConditionInput
+    $input: UpdateUprofileInput!
+  ) {
+    updateUprofile(condition: $condition, input: $input) {
+      attendings {
+        items {
+          arrivingTime
+          createdAt
+          departureTime
+          id
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      currentPlace {
         address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
         coords {
-          long
           lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
         }
         events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
           nextToken
-          startedAt
         }
-        currentPlayers {
-          nextToken
-          startedAt
-        }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
+        id
+        name
         updatedAt
       }
-      beginningTime
-      endingTime
-      tags
-      creator {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-          startedAt
-        }
-        myEvents {
-          nextToken
-          startedAt
-        }
-        eventsCreated {
-          nextToken
-          startedAt
-        }
-        followers {
-          nextToken
-          startedAt
-        }
-        following {
-          nextToken
-          startedAt
-        }
-        currentPlace {
+      currentPlaceID
+      eventsCreated {
+        items {
+          beginningTime
+          chat {
+            nextToken
+          }
+          createdAt
+          creator {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          creatorID
+          description
+          endingTime
+          eventPictures
+          eventVideos
           id
           name
-          address
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
+          participants {
+            nextToken
+          }
+          place {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          placeID
+          privacy
+          profilePic
+          tags
           updatedAt
         }
-        userDoc {
+        nextToken
+      }
+      followers {
+        items {
+          createdAt
+          followed {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followedID
+          follower {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followerID
+          id
+          updatedAt
+        }
+        nextToken
+      }
+      following {
+        items {
+          createdAt
+          followed {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followedID
+          follower {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          followerID
+          id
+          updatedAt
+        }
+        nextToken
+      }
+      id
+      myEvents {
+        items {
+          Event {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          createdAt
+          eventID
           id
           profileID
-          email
-          deviceToken
-          phoneNumber
-          _version
-          _deleted
-          _lastChangedAt
+          updatedAt
+          userProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+        }
+        nextToken
+      }
+      name
+      notifications {
+        items {
+          body
           createdAt
+          id
+          photo
+          profileID
+          type
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
           updatedAt
         }
-        attendings {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
+        nextToken
+      }
+      updatedAt
+      userDoc {
         createdAt
+        deviceToken
+        email
+        id
+        phoneNumber
+        profileID
+        uProfile {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
         updatedAt
       }
-      participants {
-        items {
-          id
-          eventID
-          profileID
-          _version
-          _deleted
-          _lastChangedAt
-          createdAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      chat {
-        items {
-          id
-          body
-          profileID
-          eventID
-          createdAt
-          _version
-          _deleted
-          _lastChangedAt
-          updatedAt
-        }
-        nextToken
-        startedAt
-      }
-      description
-      privacy
-      profilePic
-      eventPictures
-      eventVideos
-      _version
-      _deleted
-      _lastChangedAt
+      userDocId
+      username
+    }
+  }
+`;
+export const updateUserConnection = /* GraphQL */ `
+  mutation UpdateUserConnection(
+    $condition: ModelUserConnectionConditionInput
+    $input: UpdateUserConnectionInput!
+  ) {
+    updateUserConnection(condition: $condition, input: $input) {
       createdAt
+      followed {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      followedID
+      follower {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      followerID
+      id
+      updatedAt
+    }
+  }
+`;
+export const updateUserDoc = /* GraphQL */ `
+  mutation UpdateUserDoc(
+    $condition: ModelUserDocConditionInput
+    $input: UpdateUserDocInput!
+  ) {
+    updateUserDoc(condition: $condition, input: $input) {
+      createdAt
+      deviceToken
+      email
+      id
+      phoneNumber
+      profileID
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+      updatedAt
+    }
+  }
+`;
+export const updateUserEventConnection = /* GraphQL */ `
+  mutation UpdateUserEventConnection(
+    $condition: ModelUserEventConnectionConditionInput
+    $input: UpdateUserEventConnectionInput!
+  ) {
+    updateUserEventConnection(condition: $condition, input: $input) {
+      Event {
+        beginningTime
+        chat {
+          items {
+            body
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        creator {
+          attendings {
+            nextToken
+          }
+          createdAt
+          currentPlace {
+            address
+            createdAt
+            id
+            name
+            updatedAt
+          }
+          currentPlaceID
+          eventsCreated {
+            nextToken
+          }
+          followers {
+            nextToken
+          }
+          following {
+            nextToken
+          }
+          id
+          myEvents {
+            nextToken
+          }
+          name
+          notifications {
+            nextToken
+          }
+          updatedAt
+          userDoc {
+            createdAt
+            deviceToken
+            email
+            id
+            phoneNumber
+            profileID
+            updatedAt
+          }
+          userDocId
+          username
+        }
+        creatorID
+        description
+        endingTime
+        eventPictures
+        eventVideos
+        id
+        name
+        participants {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        place {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        placeID
+        privacy
+        profilePic
+        tags
+        updatedAt
+      }
+      createdAt
+      eventID
+      id
+      profileID
+      updatedAt
+      userProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
+    }
+  }
+`;
+export const updateUserPlaceConnection = /* GraphQL */ `
+  mutation UpdateUserPlaceConnection(
+    $condition: ModelUserPlaceConnectionConditionInput
+    $input: UpdateUserPlaceConnectionInput!
+  ) {
+    updateUserPlaceConnection(condition: $condition, input: $input) {
+      arrivingTime
+      createdAt
+      departureTime
+      id
+      place {
+        address
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        coords {
+          lat
+          long
+        }
+        createdAt
+        currentPlayers {
+          items {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          nextToken
+        }
+        events {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        name
+        updatedAt
+      }
+      placeID
+      profileID
+      uProfile {
+        attendings {
+          items {
+            arrivingTime
+            createdAt
+            departureTime
+            id
+            placeID
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        createdAt
+        currentPlace {
+          address
+          attendings {
+            nextToken
+          }
+          coords {
+            lat
+            long
+          }
+          createdAt
+          currentPlayers {
+            nextToken
+          }
+          events {
+            nextToken
+          }
+          id
+          name
+          updatedAt
+        }
+        currentPlaceID
+        eventsCreated {
+          items {
+            beginningTime
+            createdAt
+            creatorID
+            description
+            endingTime
+            eventPictures
+            eventVideos
+            id
+            name
+            placeID
+            privacy
+            profilePic
+            tags
+            updatedAt
+          }
+          nextToken
+        }
+        followers {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        following {
+          items {
+            createdAt
+            followedID
+            followerID
+            id
+            updatedAt
+          }
+          nextToken
+        }
+        id
+        myEvents {
+          items {
+            createdAt
+            eventID
+            id
+            profileID
+            updatedAt
+          }
+          nextToken
+        }
+        name
+        notifications {
+          items {
+            body
+            createdAt
+            id
+            photo
+            profileID
+            type
+            updatedAt
+          }
+          nextToken
+        }
+        updatedAt
+        userDoc {
+          createdAt
+          deviceToken
+          email
+          id
+          phoneNumber
+          profileID
+          uProfile {
+            createdAt
+            currentPlaceID
+            id
+            name
+            updatedAt
+            userDocId
+            username
+          }
+          updatedAt
+        }
+        userDocId
+        username
+      }
       updatedAt
     }
   }
