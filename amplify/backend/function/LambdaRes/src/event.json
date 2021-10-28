@@ -1,18 +1,10 @@
 {
   "type": "Mutation",
-  "field": "createEvent_c",
+  "field": "createUserConnection",
   "arguments": {
     "input": {
-      "name": "Test Event From LambdaResolver, lambda function LambdaRes-dev",
-      "description": "From LambdaRes-dev function in console",
-      "creatorID": "maximefxtchagou@yahoo.com",
-      "placeID": "acdc4be0-4f6b-4a16-a0c1-331ae02505b4",
-      "participants": [
-        "maximefxtchagou@yahoo.com"
-      ],
-      "beginningTime": "2021-11-07T00:00:00.000Z",
-      "endingTime": "2021-11-07T00:00:00.000Z",
-      "privacy": "public"
+      "followerID": "maximefxtchagou@yahoo.com",
+      "followedID": "brianmoyou@yahoo.com"
     }
   }
 }

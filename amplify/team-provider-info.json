@@ -18,7 +18,7 @@
       "function": {
         "LambdaRes": {
           "deploymentBucketName": "amplify-ballermapmvp-dev-00406-deployment",
-          "s3Key": "amplify-builds/LambdaRes-4b742f57415163355934-build.zip"
+          "s3Key": "amplify-builds/LambdaRes-6b7473716f4838577273-build.zip"
         }
       }
     }

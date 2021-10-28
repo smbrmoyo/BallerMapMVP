@@ -114,15 +114,17 @@ async function createEventRes(ctx){
   }
 
 }
+
+
 async function stringifyTime(hours, minutes){
-  if(hours.length == 1){
+  if(hours < 10){
     hours = `0${hours}`;
   }
-  if(minutes.length == 1){
+  if(minutes < 10){
     minutes = `0${minutes}`;
   }
-
-  return `${hours}:${minutes}`
+  const result = hours + `:` + minutes
+  return result;
 }
 
 async function createAttendanceRes(ctx) {
@@ -130,8 +132,9 @@ async function createAttendanceRes(ctx) {
   let followers;
   let attendant; // USERNAME OF THE CURRENT USER
   let place;
+  let placeID;
   let ctxInput;
-  if (ctx.input.departureTime != "null") {
+  if (ctx.input.departureTime == null) {
     ctxInput = {
       profileID: ctx.input.profileID,
       placeID: ctx.input.placeID,
@@ -151,33 +154,41 @@ async function createAttendanceRes(ctx) {
       input: ctxInput
     }
   }).then(res => {
-    attendant = res.createUserPlaceConnection.uProfile.username;
-    followers = res.createUserPlaceConnection.uProfile.followers.items;
-    place = res.createUserPlaceConnection.place.name;
+    attendant = res.data.createUserPlaceConnection.uProfile.username;
+    followers = res.data.createUserPlaceConnection.uProfile.followers.items;
+    place = res.data.createUserPlaceConnection.place.name;
+    placeID = res.data.createUserPlaceConnection.placeID;
     createdAttendance = {
-      place: res.createUserPlaceConnection.place.name,
-      placeID: res.createUserPlaceConnection.placeID,
-      arrivingTime: res.createUserPlaceConnection.arrivingTime,
-      departureTime: res.createUserPlaceConnection.departureTime
+      place: place,
+      placeID: placeID,
+      arrivingTime: ctxInput.arrivingTime,
+      departureTime: ctxInput.departureTime
     };
-    console.log("   Attendance successfully created by ", res.createUserPlaceConnection.profileID, "to", place);
+    console.log("   Attendance successfully created by ", attendant, "to", place);
   }).catch(error => {
-    console.log("  !!!ERROR creating the userPlaceConnection record", JSON.stringify(error));
+    console.log("  !!!ERROR creating the userPlaceConnection record", error);
     throw JSON.stringify(error);
   })
-  const attendingDate = Date.parse(ctx.input.arrivingTime)
-  const today = new Date();
+  const attendingDate = new Date(ctxInput.arrivingTime);
+  let today = new Date()
+  today.setHours(today.getHours() - 4);
   let advance = true;
-  let jour;
-  const date = "le " + attendingDate.getDate();
+  let jour =  attendingDate.getDay();
+  let date = attendingDate.getDate();
   let mois;
-  let annee = attendingDate.getFullYear()
-  let time = stringifyTime(attendingDate.getHours(), attendingDate.getMinutes())
+  let annee =   attendingDate.getFullYear();
+  let time = await stringifyTime(attendingDate.getHours(), attendingDate.getMinutes()).then(res =>{
+    console.log(attendingDate.toISOString(), jour, annee, res);
+    return res;
+  }).catch(err => {
+    console.log("   !!!Error stringifying time:", JSON.stringify(err));
+    throw err;
+  })
   let notificationBody;
-  switch (attendingDate.getDay()) {
-
+  switch (jour) {
     case today.getDay():
-      if (attendingDate.getMonth() == today.getMonth() && attendingDate.getFullYear() == today.getFullYear()) {
+      console.log("1")
+      if (attendingDate.getMonth() === today.getMonth() && attendingDate.getFullYear() === today.getFullYear()) {
         notificationBody = `${attendant} va jouer à ${place} aujourd'hui à ${time}`;
         advance = false;
         break;
@@ -185,49 +196,70 @@ async function createAttendanceRes(ctx) {
 
     case 0:
       jour = "Dimanche ";
+      break;
     case 1:
       jour = "Lundi ";
+      break;
     case 2:
+      console.log(today.getDay())
       jour = "Mardi ";
+      break;
     case 3:
       jour = "Mercredi ";
+      break;
     case 4:
       jour = "Jeudi ";
+      break;
     case 5:
       jour = "Vendredi ";
+      break;
     case 6:
       jour = "Samedi ";
+      break;
   }
+
 
   if (advance) {
     switch (attendingDate.getMonth()) {
       case 0:
         mois = "Janvier ";
+        break;
       case 1:
         mois = "Février ";
+        break;
       case 2:
         mois = "Mars ";
+        break;
       case 3:
         mois = "Avril ";
+        break;
       case 4:
         mois = "Mai ";
+        break;
       case 5:
         mois = "Juin ";
+        break;
       case 6:
         mois = "Juillet ";
+        break;
       case 7:
         mois = "Août ";
+        break;
       case 8:
         mois = "Septembre ";
+        break;
       case 9:
         mois = "Octobre ";
+        break;
       case 10:
         mois = "Novembre ";
+        break;
       case 11:
-        mois = "Décembre"
+        mois = "Décembre ";
+        break;
     }
-    notificationBody = attendant + " va jouer à " + place + " " + jour + "le " + date + " "
-        + mois + annee + " à "`${time}`;
+    notificationBody = attendant + " va jouer à " + `${place}` + " " + `${jour}` + "le " + `${date}` + " "
+        + `${mois}` + `${annee}` + " à " + time;
   }
 
   for (let follower in followers) {
@@ -236,13 +268,13 @@ async function createAttendanceRes(ctx) {
       mutation: createNotification,
       variables: {
         input: {
-          profileID: follower.followerID,
+          profileID: followers[follower].followerID,
           type: "friendPlaying",
           body: `${notificationBody}`
         }
       }
     }).then(res => {
-      console.log(`   Notification successfully sent to ${follower.followerID}: ${notificationBody}`);
+      console.log(`   Notification successfully sent to ${followers[follower].followerID}: ${notificationBody}`);
     }).catch(error => {
       console.log("   !!!ERROR in createNotification mutation to", follower.followerID, JSON.stringify(error));
       throw(JSON.stringify(error));
@@ -294,7 +326,7 @@ async function createUserCurrentPlaceRes(ctx){
 
   return {
     currentPlaceID: data.updateUprofile.currentPlaceID,
-    currentPlace: data.uProfile.currentPlace
+    currentPlace: data.updateUprofile.uProfile.currentPlace
   };
 }
 
@@ -310,19 +342,21 @@ async function createUserConnectionRes(ctx){
       }
     }
   }).then(res => {
-    console.log(`   ${res.createUserConnection.follower.username} successfully followed ${res.createUserConnection.follower.username}`)
-    userConnection = res.createUserConnection;
+    console.log(`   ${res.data.createUserConnection.follower.username} successfully followed ${res.data.createUserConnection.follower.username}`)
+    userConnection = res.data.createUserConnection;
   }).catch(err => {
-    console.log("   !!!ERROR in follow request. Request arguments:", JSON.stringify(ctx.input), "Error", JSON.stringify(error));
+    console.log("   !!!ERROR in follow request. Request arguments:", JSON.stringify(ctx.input), "Error", err);
     throw JSON.stringify(err);
   })
 
   await graphqlClient.mutate({
     mutation: createNotification,
     variables: {
-      profileID: userConnection.followedID,
-      type: "newFollower",
-      body: `${userConnection.follower.username} vient s'abonner à votre compte`
+      input: {
+        profileID: userConnection.followedID,
+        type: "newFollower",
+        body: `${userConnection.follower.username} vient s'abonner à votre compte`
+      }
     }
   }).then(res => {
     console.log("   Notification envoyée à", userConnection.followedID, ":", `${userConnection.follower.username} vient s'abonner à votre compte`)

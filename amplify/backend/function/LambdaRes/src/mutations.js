@@ -50,6 +50,7 @@ module.exports = {
     ){
         createUserPlaceConnection(input: $input, condition: $condition){
             profileID
+            placeID
             uProfile{
                 username,
                 followers{
