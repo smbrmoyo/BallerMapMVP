@@ -4,13 +4,11 @@ import ProfilePicture from "../ProfilePicturePlace";
 import styles from "./styles";
 
 export default function AnimatedCard(props) {
-  //props.placeIndex = props.index;
-  // console.log(props.index);
-
   return (
     <TouchableOpacity
       activeOpacity={0.7}
       onPress={() => {
+        props.setPlaceIndex(props.index);
         bsMap.current.snapTo(0);
       }}
     >

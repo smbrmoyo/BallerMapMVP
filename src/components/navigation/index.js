@@ -11,7 +11,7 @@ import Amplify, { Auth } from "aws-amplify";
 import Routes from "./Routes";
 import { AuthProvider } from "./Providers/AuthProvider";
 
-const Providers = () => {
+const Providers = (props) => {
   const defaultQueryFn = async ({ queryKey }) => {
     const data = await Auth.currentAuthenticatedUser();
 
@@ -31,7 +31,7 @@ const Providers = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-        <Routes />
+        <Routes themeColor={props.themeColor} />
       </AuthProvider>
     </QueryClientProvider>
   );

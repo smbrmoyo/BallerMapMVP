@@ -34,7 +34,7 @@ const ProfileStack = ({ navigation }) => {
 
   return (
     <ProfileProvider>
-      <Stack.Navigator initialRouteName={routeName}>
+      <Stack.Navigator initialRouteName={"Profile"}>
         <Stack.Screen
           name="Profile"
           component={ProfileScreen}

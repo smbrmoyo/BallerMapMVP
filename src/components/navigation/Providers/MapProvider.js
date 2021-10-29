@@ -32,13 +32,13 @@ const MapProvider = ({ children }) => {
 
   const resultPlaces = useQuery("getPlaces", getPlacesList);
   const resultCamera = useQuery("getCamera", getCamera);
-  const resultUsers = useQuery("getUsers", getAllUserProfiles);
+  // const resultUsers = useQuery("getUsers", getAllUserProfiles);
 
   useEffect(() => {
     if (resultPlaces.status != status && resultCamera.status != status) {
       setPlaces(resultPlaces.data);
       setCamera(resultCamera.data);
-      setUsers(resultUsers.data);
+      //setUsers(resultUsers.data);
       setStatus(resultCamera.status);
     } else {
       setStatus(resultCamera.status);

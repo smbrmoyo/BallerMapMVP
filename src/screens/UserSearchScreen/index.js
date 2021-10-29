@@ -9,6 +9,7 @@ import {
   Image,
   TouchableOpacity,
   SafeAreaView,
+  RefreshControl,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import LoadingScreen from "../LoadingScreen";
@@ -24,8 +25,6 @@ const UserSearchScreen = ({ navigation }) => {
   const [text, setText] = useState("");
   const { users } = useMap();
   const [data, setData] = useState(users); // users should come from uProfile
-
-  console.log("ici" + users?.length);
 
   useEffect(() => {
     setData(users);

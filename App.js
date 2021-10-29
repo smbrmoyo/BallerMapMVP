@@ -8,7 +8,7 @@
 
 import "react-native-gesture-handler";
 
-import React from "react";
+import React, { useState } from "react";
 
 import Providers from "./src/components/navigation/index";
 import Amplify from "aws-amplify";
@@ -23,6 +23,7 @@ import {
 Amplify.configure({ ...config, Analytics: { disabled: true } });
 
 const App = () => {
+  const [themeColor, setThemeColor] = useState(Appearance.getColorScheme());
   const [loaded] = Font.useFonts({
     Comfortaa: require("./src/assets/fonts/Comfortaa-VariableFont_wght.ttf"),
     ComfortaaBold: require("./src/assets/fonts/Comfortaa/static/Comfortaa-Bold.ttf"),
@@ -37,7 +38,7 @@ const App = () => {
 
   return (
     <AppearanceProvider>
-      <Providers />
+      <Providers themeColor={themeColor} />
     </AppearanceProvider>
   );
 };

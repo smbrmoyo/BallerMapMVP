@@ -46,9 +46,9 @@ const HomeMap = ({ props }) => {
   const { places, status } = useMap();
   const route = useRoute();
   const navigation = useNavigation();
-  const placeIndex = useRef();
   const { colors, dark } = useTheme();
   const [searchState, setSearchState] = useState(false);
+  const [placeIndex, setPlaceIndex] = useState(0);
   const [userLocation, setUserLocation] = useState({
     prevCoords: { latitude: 0, longitude: 0 },
     currentCoords: { latitude: 0, longitude: 0 },
@@ -517,7 +517,8 @@ const HomeMap = ({ props }) => {
           >
             {places.map((item, index) => (
               <AnimatedCard
-                placeIndex={placeIndex.current}
+                placeIndex={placeIndex}
+                setPlaceIndex={setPlaceIndex}
                 navigation={navigation}
                 key={index}
                 index={index}

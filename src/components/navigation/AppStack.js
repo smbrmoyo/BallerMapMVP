@@ -1,5 +1,5 @@
 import React from "react";
-import CategoryStack from "./ActivityStack";
+import ActivityStack from "./ActivityStack";
 import MessageStack from "./MessageStack";
 import MapStack from "./MapStack";
 import ProfileStack from "./ProfileStack";
@@ -59,7 +59,7 @@ const Tab = createBottomTabNavigator();
 
 
 }, [])*/
-const AppStack = (route) => {
+const AppStack = (route, props) => {
   const [notifPermission, setNotifPermission] = useState();
   const {
     auth,
@@ -107,7 +107,7 @@ const AppStack = (route) => {
 
     let temp;
     return () => {
-      if (client) {
+      if (client != undefined) {
         client.destroy();
       }
     };
@@ -193,6 +193,7 @@ const AppStack = (route) => {
         component={MapStack}
         options={({ route }) => ({
           tabBarLabel: "Map",
+          // theme: props.themeColor,
           tabBarVisible: getTabBarVisibility(route),
           tabBarIcon: ({ color, size }) => (
             <Feather name="map" size={24} color={color} />
@@ -200,8 +201,8 @@ const AppStack = (route) => {
         })}
       />
       <Tab.Screen
-        name="Category"
-        component={CategoryStack}
+        name="Activity"
+        component={ActivityStack}
         options={({ route }) => ({
           tabBarLabel: "Places",
           tabBarVisible: getTabBarVisibility(route),
