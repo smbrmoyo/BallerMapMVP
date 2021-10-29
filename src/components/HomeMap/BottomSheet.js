@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import BottomSheet from "reanimated-bottom-sheet";
 import {
   View,
@@ -7,23 +7,61 @@ import {
   StyleSheet,
   FlatList,
   Alert,
+  Dimensions,
 } from "react-native";
-import { useRoute, useNavigation } from "@react-navigation/native";
+import {
+  AppearanceProvider,
+  Appearance,
+  useColorScheme,
+} from "react-native-appearance";
+import { useRoute, useNavigation, useTheme } from "@react-navigation/native";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { wsize, hsize } from "../../utils/Dimensions";
-import ProfilePicture from "../ProfilePictureUser";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import Fontisto from "react-native-vector-icons/Fontisto";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import ProfilePicture from "../ProfilePicturePlace";
+import ProfilePictureUser from "../ProfilePictureUser";
 import Entypo from "react-native-vector-icons/Entypo";
-import Feather from "react-native-vector-icons/Feather";
-import AntDesign from "react-native-vector-icons/AntDesign";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import people from "../../assets/data/people";
+import EventRow from "../../screens/ProfileScreen/EventRow";
+
+function pad2(string) {
+  return `0${string}`.slice(-2);
+}
+
+const readableDate = (d) => {
+  if (!d) return undefined;
+  return `${pad2(d.getDate())}/${pad2(
+    d.getMonth() + 1
+  )}/${d.getFullYear()}  at  ${pad2(d.getHours())}:${pad2(
+    d.getMinutes()
+  )}:${pad2(d.getSeconds())}`;
+};
 
 const BottomSheetMap = (props) => {
   navigation = useNavigation();
+  const [visibleStart, setVisibleStart] = useState(false);
+  const [date, setDate] = useState(new Date());
+  const { width, height } = Dimensions.get("window");
+  const { colors } = useTheme();
+
+  function ConfirmAlert() {
+    Alert.alert(
+      `Will you be playing at ${props.places[props.index].name}`,
+      `${readableDate(date)}`,
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Confirm",
+          // onPress: () => signOut(),
+        },
+      ]
+    );
+  }
 
   renderHeader = () => (
     <View style={styles.header}>
@@ -39,26 +77,47 @@ const BottomSheetMap = (props) => {
         <View style={styles.profileInitialContainer}>
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() => navigation.navigate("TryStory")}
+            //onPress={() => navigation.navigate("TryStory")}
           >
             <ProfilePicture size={70} />
           </TouchableOpacity>
-          <View style={styles.profileNameContainer}>
-            <Text style={styles.profileName}>user.email</Text>
-            <Text style={styles.profileType}>userExtraInfo.status</Text>
+          <View style={[styles.profileNameContainer, { width: width * 0.7 }]}>
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={styles.profileName}
+            >
+              {props.places[props.index].name}
+            </Text>
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={{
+                fontSize: 14,
+                color: "grey",
+                width: "90%",
+              }}
+            >
+              {props.places[props.index].address}
+            </Text>
           </View>
         </View>
         <View style={styles.profileInfoContainer}>
           <View style={styles.profileInfo}>
             <SimpleLineIcons name="location-pin" size={20} color="#743cff" />
-            <Text style={styles.textInfo}>
-              {/*userExtraInfo.city*/}
-              Paris, Rue du con
+            <Text
+              ellipsizeMode="tail"
+              numberOfLines={1}
+              style={{ width: "90%" }}
+            >
+              {props.places[props.index].address}
             </Text>
           </View>
           <TouchableOpacity activeOpacity={0.7} style={styles.profileInfo}>
             <EvilIcons name="calendar" size={23} color="#743cff" />
-            <Text style={styles.dateTimeInfo}>15.05.2021 14:00</Text>
+            <Text style={styles.dateTimeInfo}>
+              Brian will be playing on 15.05.2021 at 14:00
+            </Text>
           </TouchableOpacity>
         </View>
         <View style={styles.buttons}>
@@ -79,7 +138,8 @@ const BottomSheetMap = (props) => {
             <Text style={{ fontSize: 20, marginLeft: 10 }}>Share</Text>
           </View>
           <TouchableOpacity
-            activeOpacity={0.7} /*onPress={console.log("follow")}*/
+            activeOpacity={0.7}
+            onPress={() => setVisibleStart(true)}
           >
             <View
               style={{
@@ -118,55 +178,49 @@ const BottomSheetMap = (props) => {
               marginBottom: 5,
             }}
           >
-            Who's coming?
+            Next up
           </Text>
-
-          <View
-            style={{
-              flexDirection: "column",
-              backgroundColor: "white",
-              shadowColor: "#000000",
-              shadowOffset: { width: 0, height: 0 },
-              shadowRadius: 5,
-              shadowOpacity: 0.4,
-              elevation: 2.5,
-              borderRadius: 10,
-              height: "50%",
-              width: "100%",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <TouchableOpacity onPress={() => navigation.navigate("Attendance")}>
-              <FlatList
-                data={people}
-                keyExtractor={(item) => item.id}
-                scrollEnabled={false}
-                numColumns={6}
-                renderItem={(item) => (
-                  <View style={{ margin: 5 }}>
-                    <ProfilePicture size={hsize(40)} />
-                  </View>
-                )}
-              />
-            </TouchableOpacity>
-          </View>
         </View>
+
+        <FlatList
+          data={people}
+          keyExtractor={(item) => item.id}
+          //scrollEnabled={false}
+          // numColumns={6}
+          renderItem={(item) => <EventRow event={item} />}
+        />
       </View>
     </View>
   );
 
+  //console.log("color is " + Appearance.getColorScheme());
+
   return (
-    <BottomSheet
-      ref={bsMap}
-      snapPoints={["38%", "60%", -hsize(5)]}
-      renderContent={renderInner}
-      renderHeader={renderHeader}
-      initialSnap={2}
-      //callbackNode={fallMap}
-      overdragResistanceFactor={0}
-      callbackThreshold={0.5}
-    />
+    <>
+      <DateTimePickerModal
+        isVisible={visibleStart} /*Should have second component for end date */
+        mode="datetime"
+        display="spinner"
+        isDarkModeEnabled={colors.background == "rgb(1, 1, 1)" ? true : false}
+        onConfirm={(datum) => (
+          // setData to create with time
+          setDate(datum), ConfirmAlert()
+          // setVisibleStart(false))
+        )}
+        onCancel={() => setVisibleStart(false)}
+      />
+
+      <BottomSheet
+        ref={bsMap}
+        snapPoints={["37%", "70%", -hsize(5)]}
+        renderContent={renderInner}
+        renderHeader={renderHeader}
+        initialSnap={2}
+        //callbackNode={fallMap}
+        overdragResistanceFactor={0}
+        callbackThreshold={0.5}
+      />
+    </>
   );
 };
 
@@ -279,3 +333,32 @@ const styles = StyleSheet.create({
 });
 
 export default BottomSheetMap;
+
+{
+  /*<View
+            style={{
+              flexDirection: "column",
+              backgroundColor: "white",
+              shadowColor: "#000000",
+              shadowOffset: { width: 0, height: 0 },
+              shadowRadius: 5,
+              shadowOpacity: 0.4,
+              elevation: 2.5,
+              borderRadius: 10,
+              height: "50%",
+              width: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            <TouchableOpacity onPress={() => navigation.navigate("Attendance")}>
+              <FlatList
+                data={people}
+                keyExtractor={(item) => item.id}
+                scrollEnabled={false}
+                numColumns={6}
+                renderItem={(item) => <EventRow event={item} />}
+              />
+            </TouchableOpacity>
+          </View> */
+}

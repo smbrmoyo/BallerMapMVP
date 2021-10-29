@@ -1,5 +1,6 @@
 import React from "react";
 import { FlatList, Dimensions, ScrollView, Text } from "react-native";
+import { View } from "react-native-animatable";
 
 import EventRow from "../ProfileScreen/EventRow";
 
@@ -7,9 +8,13 @@ export default function AttendingTab(props) {
   const { width, height } = Dimensions.get("window");
   //props.setCurrentTab(props.attending);
 
-  return (
+  return props.events.length == 0 ? (
+    <View>
+      <Text>Nothing</Text>
+    </View>
+  ) : (
     <FlatList
-      data={props.myEvents}
+      data={props.events}
       keyExtractor={(item) => item.id}
       ListEmptyComponent={
         <ScrollView

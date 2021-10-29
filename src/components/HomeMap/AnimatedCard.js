@@ -1,6 +1,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Animated } from "react-native";
-import ProfilePicture from "../ProfilePictureUser";
+import ProfilePicture from "../ProfilePicturePlace";
 import styles from "./styles";
 
 export default function AnimatedCard(props) {
@@ -8,6 +8,7 @@ export default function AnimatedCard(props) {
     <TouchableOpacity
       activeOpacity={0.7}
       onPress={() => {
+        props.setPlaceIndex(props.index);
         bsMap.current.snapTo(0);
       }}
     >

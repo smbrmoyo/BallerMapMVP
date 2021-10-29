@@ -21,7 +21,6 @@ import {
   Keyboard,
 } from "react-native";
 import { useHeaderHeight } from "@react-navigation/stack";
-import { useTheme } from "@react-navigation/native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Entypo from "react-native-vector-icons/Entypo";
@@ -29,12 +28,9 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { DataStore } from "aws-amplify";
 
 import ButtonContainer from "./ButtonContainer";
-import DescriptionContainer from "./DescriptionContainer";
 import EndDateContainer from "./EndDateContainer";
-import LocationContainer from "./LocationContainer";
-import NameContainer from "./NameContainer";
 import StartDateContainer from "./StartDateContainer";
-import TagsContainer from "./TagsContainer";
+import TextInputContainer from "./TextInputContainer";
 import {
   useAuth,
   getUprofile,
@@ -52,7 +48,6 @@ const AddScreen = ({ navigation, route }) => {
   const [visibleEnd, setVisibleEnd] = useState(false);
   const [colorBegin, setColorBegin] = useState("#CDCDCD");
   const [colorEnd, setColorEnd] = useState("#CDCDCD");
-  const { colors } = useTheme();
 
   const [eventData, setEventData] = useState({
     name: "",
@@ -151,7 +146,7 @@ const AddScreen = ({ navigation, route }) => {
         isVisible={visibleStart} /*Should have second component for end date */
         mode="datetime"
         display="spinner"
-        isDarkModeEnabled={colors.background == "rgb(1, 1, 1)" ? true : false}
+        isDarkModeEnabled={false}
         onConfirm={(datum) => (
           setEventData({
             ...eventData,
@@ -167,7 +162,7 @@ const AddScreen = ({ navigation, route }) => {
         isVisible={visibleEnd} /*Should have second component for end date */
         mode="datetime"
         display="spinner"
-        isDarkModeEnabled={colors.background == "rgb(1, 1, 1)" ? true : false}
+        isDarkModeEnabled={false}
         onConfirm={(datum) => (
           setEventData({
             ...eventData,
@@ -193,22 +188,7 @@ const AddScreen = ({ navigation, route }) => {
                   justifyContent: "flex-end",
                 }}
               >
-                <NameContainer
-                  eventData={eventData}
-                  setEventData={setEventData}
-                />
-
-                <LocationContainer
-                  eventData={eventData}
-                  navigate={navigation.navigate}
-                />
-
-                <DescriptionContainer
-                  eventData={eventData}
-                  setEventData={setEventData}
-                />
-
-                <TagsContainer
+                <TextInputContainer
                   eventData={eventData}
                   setEventData={setEventData}
                 />

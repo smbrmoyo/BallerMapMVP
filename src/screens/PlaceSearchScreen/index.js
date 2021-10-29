@@ -6,7 +6,7 @@ import {
   View,
   FlatList,
   TouchableOpacity,
-  TextInput,
+  RefreshControl,
 } from "react-native";
 import Entypo from "react-native-vector-icons/Entypo";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -32,6 +32,16 @@ const PlaceSearchScreen = ({ navigation, route }) => {
   const [hits, setHits] = useState([]);
   const [loading, setLoading] = useState(false);
   const { colors, dark } = useTheme();
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    const wait = (timeout) => {
+      return new Promise((resolve) => setTimeout(resolve, timeout));
+    };
+
+    setRefreshing(true);
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -109,6 +119,9 @@ const PlaceSearchScreen = ({ navigation, route }) => {
             text={text}
             onChangeTextDebounced={(text) => searchFilter(text)}
           />
+        }
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }
         extraData={query}
         renderItem={({ item }) => (

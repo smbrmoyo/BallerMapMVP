@@ -50,10 +50,10 @@ export default function AnimatedTextInput(props) {
           shadowOpacity: 0.2,
           shadowRadius: 1.41,
           elevation: 2,
-          color: props.colors.text,
+          //color: props.colors.text,
           backgroundColor: "white",
-          borderColor: props.colors.border,
-          borderWidth: props.dark ? 1 : 0.5,
+          //borderColor: props.colors.border,
+          //borderWidth: props.dark ? 1 : 0.5,
         }}
       >
         <TouchableOpacity

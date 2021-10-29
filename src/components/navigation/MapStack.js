@@ -14,6 +14,7 @@ import AttendanceScreen from "../../screens/AttendanceScreen";
 import UserSearchScreen from "../../screens/UserSearchScreen";
 import DescriptionScreen from "../../screens/DescriptionScreen";
 import OtherProfileScreen from "../../screens/OtherProfileScreen";
+import AddPresenceScreen from "../../screens/AddPresenceScreen";
 import Probe from "../../screens/Probe";
 import { MapProvider } from "./Providers/MapProvider";
 import { useAuth } from "./Providers/AuthProvider";
@@ -27,7 +28,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createStackNavigator();
 
-const MapStack = ({ navigation }) => {
+const MapStack = (props) => {
   const [profileCreated, setProfileCreated] = useState(null);
   let routeName;
   useEffect(() => {
@@ -73,6 +74,19 @@ const MapStack = ({ navigation }) => {
         <Stack.Screen
           name="Add"
           component={AddScreen}
+          options={({ navigation }) => ({
+            title: "",
+            headerStyle: {
+              backgroundColor: "white",
+              shadowColor: "#f9fafd",
+              elevation: 0,
+              height: hsize(80),
+            },
+          })}
+        />
+        <Stack.Screen
+          name="AddPresence"
+          component={AddPresenceScreen}
           options={({ navigation }) => ({
             title: "",
             headerStyle: {

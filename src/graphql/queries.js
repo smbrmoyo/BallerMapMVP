@@ -75,40 +75,6 @@ export const getUserDoc = /* GraphQL */ `
         name
         userDocId
         currentPlaceID
-        notifications {
-          nextToken
-        }
-        myEvents {
-          nextToken
-        }
-        eventsCreated {
-          nextToken
-        }
-        followers {
-          nextToken
-        }
-        following {
-          nextToken
-        }
-        currentPlace {
-          id
-          name
-          address
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-        }
         createdAt
         updatedAt
       }
