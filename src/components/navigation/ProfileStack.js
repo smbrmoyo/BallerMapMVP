@@ -24,13 +24,13 @@ const ProfileStack = ({ navigation }) => {
   console.log("created Docs is : " + createdDocs);
   let routeName;
 
-  if (createdDocs == null) {
+  /*if (createdDocs == null) {
     return null;
   } else if (createdDocs == false) {
     routeName = "SetProfile";
   } else {
     routeName = "Profile";
-  }
+  }*/
 
   return (
     <ProfileProvider>
@@ -41,7 +41,6 @@ const ProfileStack = ({ navigation }) => {
         <Stack.Screen name="Description" component={DescriptionScreen} />
         <Stack.Screen name="Followers" component={FollowersScreen} />
         <Stack.Screen name="UserSearch" component={UserSearchScreen} />
-        <Stack.Screen name="SetProfile" component={SetProfileScreen} />
         <Stack.Screen name="OtherProfile" component={OtherProfileScreen} />
         <Stack.Screen
           name="Story"

@@ -49,7 +49,6 @@ const OtherProfileScreen = ({ navigation }) => {
   const { profileDoc } = useProfile();
   const [status, setStatus] = useState("loading");
   const [otherUser, setOtherUser] = useState(null);
-  const [isFollowing, setIsFollowing] = useState(false);
   const _scrollView = useRef(null);
   const [loading, setLoading] = useState(true); // Should be coming from provider
   const tabs = {
@@ -128,6 +127,16 @@ const OtherProfileScreen = ({ navigation }) => {
       ),
     });
   }, [otherUser]);
+
+  console.log("follower 1 " + JSON.stringify(otherUser?.followers.items));
+
+  const isFollowing = () => {
+    if (otherUser?.followers.items) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   const onFollowPress = () => {
     setIsFollowing(!isFollowing);
