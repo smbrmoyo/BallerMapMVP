@@ -71,110 +71,14 @@ const MapStack = (props) => {
             header: () => null,
           })}
         />
-        <Stack.Screen
-          name="Add"
-          component={AddScreen}
-          options={({ navigation }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              shadowColor: "#f9fafd",
-              elevation: 0,
-              height: hsize(80),
-            },
-          })}
-        />
-        <Stack.Screen
-          name="AddPresence"
-          component={AddPresenceScreen}
-          options={({ navigation }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              shadowColor: "#f9fafd",
-              elevation: 0,
-              height: hsize(80),
-            },
-          })}
-        />
-        <Stack.Screen
-          name="UserSearch"
-          component={UserSearchScreen}
-          options={({ navigation, route }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
-        <Stack.Screen
-          name="PlaceSearch"
-          component={PlaceSearchScreen}
-          options={({ navigation, route }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
-        <Stack.Screen
-          name="MapSearch"
-          component={MapSearchScreen}
-          options={({ navigation, route }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
-        <Stack.Screen
-          name="Attendance"
-          component={AttendanceScreen}
-          options={({ navigation, route }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
-        <Stack.Screen
-          name="Description"
-          component={DescriptionScreen}
-          options={({ navigation }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              shadowColor: "#f9fafd",
-              elevation: 0,
-            },
-          })}
-        />
-
-        <Stack.Screen
-          name="SetProfile"
-          component={SetProfileScreen}
-          options={({ navigation }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
+        <Stack.Screen name="Add" component={AddScreen} />
+        <Stack.Screen name="AddPresence" component={AddPresenceScreen} />
+        <Stack.Screen name="UserSearch" component={UserSearchScreen} />
+        <Stack.Screen name="PlaceSearch" component={PlaceSearchScreen} />
+        <Stack.Screen name="MapSearch" component={MapSearchScreen} />
+        <Stack.Screen name="Attendance" component={AttendanceScreen} />
+        <Stack.Screen name="Description" component={DescriptionScreen} />
+        <Stack.Screen name="SetProfile" component={SetProfileScreen} />
       </Stack.Navigator>
     </MapProvider>
   );

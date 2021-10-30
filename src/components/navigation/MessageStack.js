@@ -76,19 +76,7 @@ const Stack = createStackNavigator();
 const MessageStack = ({ navigation, route }) => {
   return (
     <Stack.Navigator initialRouteName="MessageHome">
-      <Stack.Screen
-        name="MessageHome"
-        component={MessageScreen}
-        options={({ navigation, route }) => ({
-          title: "",
-          headerStyle: {
-            backgroundColor: "white",
-            //shadowColor: "black",
-            //elevation: 5,
-            height: hsize(80),
-          },
-        })}
-      />
+      <Stack.Screen name="MessageHome" component={MessageScreen} />
       <Stack.Screen
         name="MessageSearch"
         component={MessageSearchScreen}

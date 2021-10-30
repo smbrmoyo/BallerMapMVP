@@ -22,6 +22,7 @@ import {
 import styles from "./styles";
 import SearchBarFollowers from "./SearchBarFollowers";
 import FollowRow from "./FollowRow";
+import { hsize, wsize } from "../../utils/Dimensions";
 
 const FollowersScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
@@ -55,6 +56,12 @@ const FollowersScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "",
+      headerStyle: {
+        backgroundColor: "white",
+        shadowColor: "#F4F4F4",
+        //elevation: 5,
+        height: hsize(80),
+      },
       //headerTitleAlign: 'left',
       //headerBackTitleVisible: false,
       headerLeft: () => (
