@@ -434,8 +434,8 @@ const HomeMap = ({ props }) => {
 
                 let coords = {
                   coordinate: {
-                    latitude: place.coords.lat,
-                    longitude: place.coords.long,
+                    latitude: place?.coords.lat,
+                    longitude: place?.coords.long,
                   },
                 };
 

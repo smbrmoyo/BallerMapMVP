@@ -25,6 +25,7 @@ import Animated from "react-native-reanimated";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import styles from "./styles";
+import {useNavigation} from "@react-navigation/native"
 import { wsize, hsize } from "../../utils/Dimensions";
 import BioContainer from "./BioContainer";
 import PictureContainer from "./PictureContainer";
@@ -33,7 +34,7 @@ import ButtonContainer from "./ButtonContainer";
 import UsernameContainer from "./UsernameContainer";
 import {useAppContext} from "../../components/navigation/Providers/AppProvider";
 
-const SetProfileScreen = ({ props, navigation, route }) => {
+const SetProfileScreen = ({ props, route }) => {
   const { user } = useAuth();
   const {isPDoc, setIsPDoc} = useAppContext();
   const [color, setColor] = useState("#CDCDCD");
@@ -65,7 +66,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
   on userProfile creation, should insert uProfileId into userDoc to make connection
   */
 
-  useLayoutEffect(() => {
+  /*useLayoutEffect(() => {
     navigation.setOptions({
       title: "",
       headerStyle: {
@@ -85,7 +86,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
       ),
       headerLeft: () => null,
     });
-  }, []);
+  }, []);*/
 
   return (
     <>
@@ -132,7 +133,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                 <ButtonContainer
                   userProfile={userProfile}
                   user={user}
-                  navigation={navigation}
+                  //navigation={navigation}
                 />
               </Animated.View>
             </TouchableWithoutFeedback>

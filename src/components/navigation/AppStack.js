@@ -68,8 +68,7 @@ const Tab = createBottomTabNavigator();
 
 const AppStack = (route) => {
   const [notifPermission, setNotifPermission] = useState();
-  let initialRouteName = "Map";
-  const {isPDoc, loadingProfileDoc } = useAppContext()
+  const {isPdoc, loadingProfileDoc } = useAppContext()
 
   useEffect(() => {
     console.log("<------------- APPSTACK ---------------->");
@@ -80,6 +79,8 @@ const AppStack = (route) => {
     }*/
     return () => {};
   }, []);
+
+  console.log("      isPDoc est:", isPdoc)
 
   const getTabBarVisibility = (route) => {
     const routeName = getFocusedRouteNameFromRoute(route);
@@ -120,8 +121,8 @@ const AppStack = (route) => {
 
   return (
       loadingProfileDoc?  <LoadingScreen/>:(
-         isPDoc? ( <Tab.Navigator
-                initialRouteName={initialRouteName}
+         isPdoc? ( <Tab.Navigator
+                initialRouteName={"Map"}
                 shifting={false}
               tabBarOptions={{
                 activeTintColor: "black",
@@ -161,17 +162,6 @@ const AppStack = (route) => {
               options={({ route }) => ({
                 tabBarLabel: "Profile",
                 tabBarVisible: getTabBarVisibility(route),
-                tabBarIcon: ({ color, size }) => (
-                  <Ionicons name="person-circle-outline" size={32} color={color} />
-                ),
-              })}/>
-
-              <Tab.Screen
-                  name="SetProfile"
-              component={SetProfileScreen}
-              options={({ route }) => ({
-                tabBarLabel: "SetProfile",
-                tabBarVisible: false,
                 tabBarIcon: ({ color, size }) => (
                   <Ionicons name="person-circle-outline" size={32} color={color} />
                 ),

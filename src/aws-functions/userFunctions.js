@@ -83,7 +83,7 @@ export const createUserDoc = async (userData) => {
  */
 
 export const createUserProfile = async (userProfile) => {
-  console.log("Création du profile utilisateur")
+  console.log("   Création du profile utilisateur:", JSON.stringify(userProfile))
   let uProfile = await API.graphql(
     graphqlOperation(mutations.createUprofile, {
       input: {

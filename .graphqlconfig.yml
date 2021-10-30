@@ -11,7 +11,7 @@ projects:
         generatedFileName: ''
         docsFilePath: src/graphql
         frontend: javascript
-        maxDepth: 4
+        maxDepth: 2
 extensions:
   amplify:
     version: 3

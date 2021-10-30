@@ -142,9 +142,12 @@ const AuthProvider = ({ children }) => {
       if (error.name == "UsernameExistsException") {
         console.log("      ERROR dans la fonction confirmSignup :", JSON.stringify(error));
         throw `ERROR confirming user [UsernameExistsException]: ${JSON.stringify(error)}`
+      } else if(error.name == "UnexpectedLambdaException"){
+        console.log("      ERROR dans la fonction confirmSignup:", JSON.stringify(error));
+        //throw `ERROR confirming user : ${JSON.stringify(error)}`;
       } else {
         console.log("      ERROR dans la fonction confirmSignup:", JSON.stringify(error));
-        throw `ERROR confirming user [UsernameExistsException]: ${JSON.stringify(error)}`;
+        throw `ERROR confirming user : ${JSON.stringify(error)}`
       }
     }
   };
@@ -227,8 +230,10 @@ const AuthProvider = ({ children }) => {
   // logged in user
   const signOut = async () => {
     try {
-      AsyncStorage.removeItem("currentUserCreds");
-      await Auth.signOut().then(res => setUser(null));
+      await Auth.signOut().then(res => {
+        AsyncStorage.removeItem("currentUserCreds");
+        setUser(null);
+      });
     } catch (error) {
       console.log("error signing out", error);
       throw("Error SigningOut")

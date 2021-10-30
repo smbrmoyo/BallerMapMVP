@@ -4,17 +4,22 @@
   subscription: Subscription
 }
 
-type Coords @aws_api_key @aws_cognito_user_pools {
+type Coords @aws_cognito_user_pools @aws_iam {
   lat: Float!
   long: Float!
 }
 
+type CreateAttendanceOutput {
+  data: UserPlaceConnection
+  statusCode: Int!
+}
+
 type CreateEventOutput_c {
-  body: String
+  data: Event
   statusCode: Int
 }
 
-type Event @aws_api_key @aws_cognito_user_pools {
+type Event @aws_cognito_user_pools @aws_iam {
   beginningTime: AWSDateTime!
   chat(createdAt: ModelStringKeyConditionInput, filter: ModelEventChatMessageFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelEventChatMessageConnection
   createdAt: AWSDateTime!
@@ -44,6 +49,11 @@ type EventChatMessage @aws_api_key @aws_cognito_user_pools {
   profileID: ID!
   updatedAt: AWSDateTime!
   userProfile: Uprofile
+}
+
+type FollowUserOutput {
+  data: UserConnection
+  statusCode: Int!
 }
 
 type ModelEventChatMessageConnection {
@@ -81,7 +91,7 @@ type ModelUprofileConnection {
   nextToken: String
 }
 
-type ModelUserConnectionConnection {
+type ModelUserConnectionConnection @aws_cognito_user_pools @aws_iam {
   items: [UserConnection]
   nextToken: String
 }
@@ -91,7 +101,7 @@ type ModelUserDocConnection {
   nextToken: String
 }
 
-type ModelUserEventConnectionConnection {
+type ModelUserEventConnectionConnection @aws_cognito_user_pools @aws_iam {
   items: [UserEventConnection]
   nextToken: String
 }
@@ -101,7 +111,8 @@ type ModelUserPlaceConnectionConnection {
   nextToken: String
 }
 
-type Mutation @aws_api_key @aws_cognito_user_pools {
+type Mutation @aws_cognito_user_pools @aws_iam {
+  createAttendance(condition: ModelUserPlaceConnectionConditionInput, input: CreateUserPlaceConnectionInput!): CreateAttendanceOutput
   createEvent(condition: ModelEventConditionInput, input: CreateEventInput!): Event
   createEventChatMessage(condition: ModelEventChatMessageConditionInput, input: CreateEventChatMessageInput!): EventChatMessage
   createEvent_c(condition: ModelEventConditionInput, input: CreateEventInput_c!): CreateEventOutput_c
@@ -125,6 +136,8 @@ type Mutation @aws_api_key @aws_cognito_user_pools {
   deleteUserDoc(condition: ModelUserDocConditionInput, input: DeleteUserDocInput!): UserDoc
   deleteUserEventConnection(condition: ModelUserEventConnectionConditionInput, input: DeleteUserEventConnectionInput!): UserEventConnection
   deleteUserPlaceConnection(condition: ModelUserPlaceConnectionConditionInput, input: DeleteUserPlaceConnectionInput!): UserPlaceConnection
+  followUser(condition: ModelUserConnectionConditionInput, input: CreateUserConnectionInput!): FollowUserOutput
+  updateCurrentPlace(condition: ModelUprofileConditionInput, input: UpdateUprofileInput!): UpdateCurrentPlaceOutput
   updateEvent(condition: ModelEventConditionInput, input: UpdateEventInput!): Event
   updateEventChatMessage(condition: ModelEventChatMessageConditionInput, input: UpdateEventChatMessageInput!): EventChatMessage
   updateNotification(condition: ModelNotificationConditionInput, input: UpdateNotificationInput!): Notification
@@ -138,7 +151,7 @@ type Mutation @aws_api_key @aws_cognito_user_pools {
   updateUserPlaceConnection(condition: ModelUserPlaceConnectionConditionInput, input: UpdateUserPlaceConnectionInput!): UserPlaceConnection
 }
 
-type Notification @aws_api_key @aws_cognito_user_pools {
+type Notification @aws_cognito_user_pools @aws_iam {
   body: String!
   createdAt: AWSDateTime
   id: ID!
@@ -149,7 +162,7 @@ type Notification @aws_api_key @aws_cognito_user_pools {
   updatedAt: AWSDateTime!
 }
 
-type Place @aws_api_key @aws_cognito_user_pools {
+type Place @aws_cognito_user_pools @aws_iam {
   address: String!
   attendings(arrivingTime: ModelStringKeyConditionInput, filter: ModelUserPlaceConnectionFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserPlaceConnectionConnection
   coords: Coords!
@@ -191,14 +204,14 @@ type Query @aws_api_key @aws_cognito_user_pools {
 type Subscription {
   onCreateEvent: Event @aws_subscribe(mutations : ["createEvent"])
   onCreateEventChatMessage: EventChatMessage @aws_subscribe(mutations : ["createEventChatMessage"])
-  onCreateNotification: Notification @aws_subscribe(mutations : ["createNotification"])
+  onCreateNotification(profileID: ID!): Notification @aws_subscribe(mutations : ["createNotification"])
   onCreatePlace: Place @aws_subscribe(mutations : ["createPlace"])
   onCreatePrivateNote(owner: String!): PrivateNote @aws_subscribe(mutations : ["createPrivateNote"])
   onCreateTask: Task @aws_subscribe(mutations : ["createTask"])
   onCreateUprofile: Uprofile @aws_subscribe(mutations : ["createUprofile"])
   onCreateUserConnection: UserConnection @aws_subscribe(mutations : ["createUserConnection"])
   onCreateUserDoc: UserDoc @aws_subscribe(mutations : ["createUserDoc"])
-  onCreateUserEventConnection: UserEventConnection @aws_subscribe(mutations : ["createUserEventConnection"])
+  onCreateUserEventConnection(profileID: ID!): UserEventConnection @aws_subscribe(mutations : ["createUserEventConnection"])
   onCreateUserPlaceConnection: UserPlaceConnection @aws_subscribe(mutations : ["createUserPlaceConnection"])
   onDeleteEvent: Event @aws_subscribe(mutations : ["deleteEvent"])
   onDeleteEventChatMessage: EventChatMessage @aws_subscribe(mutations : ["deleteEventChatMessage"])
@@ -217,7 +230,7 @@ type Subscription {
   onUpdatePlace: Place @aws_subscribe(mutations : ["updatePlace"])
   onUpdatePrivateNote(owner: String!): PrivateNote @aws_subscribe(mutations : ["updatePrivateNote"])
   onUpdateTask: Task @aws_subscribe(mutations : ["updateTask"])
-  onUpdateUprofile: Uprofile @aws_subscribe(mutations : ["updateUprofile"])
+  onUpdateUprofile(id: ID): Uprofile @aws_subscribe(mutations : ["updateUprofile"])
   onUpdateUserConnection: UserConnection @aws_subscribe(mutations : ["updateUserConnection"])
   onUpdateUserDoc: UserDoc @aws_subscribe(mutations : ["updateUserDoc"])
   onUpdateUserEventConnection: UserEventConnection @aws_subscribe(mutations : ["updateUserEventConnection"])
@@ -233,7 +246,17 @@ type Task {
   updatedAt: AWSDateTime!
 }
 
-type Uprofile @aws_api_key @aws_cognito_user_pools {
+type UpdateCurrentPlace {
+  body: Uprofile
+  statusCode: Int
+}
+
+type UpdateCurrentPlaceOutput {
+  data: Uprofile
+  statusCode: Int
+}
+
+type Uprofile @aws_cognito_user_pools @aws_iam {
   attendings(arrivingTime: ModelStringKeyConditionInput, filter: ModelUserPlaceConnectionFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserPlaceConnectionConnection
   createdAt: AWSDateTime!
   currentPlace: Place
@@ -251,7 +274,7 @@ type Uprofile @aws_api_key @aws_cognito_user_pools {
   username: String!
 }
 
-type UserConnection @aws_api_key @aws_cognito_user_pools {
+type UserConnection @aws_cognito_user_pools @aws_iam {
   createdAt: AWSDateTime!
   followed: Uprofile
   followedID: ID!
@@ -261,7 +284,7 @@ type UserConnection @aws_api_key @aws_cognito_user_pools {
   updatedAt: AWSDateTime!
 }
 
-type UserDoc @aws_api_key @aws_cognito_user_pools {
+type UserDoc @aws_cognito_user_pools @aws_iam {
   createdAt: AWSDateTime!
   deviceToken: String
   email: String!
@@ -272,8 +295,8 @@ type UserDoc @aws_api_key @aws_cognito_user_pools {
   updatedAt: AWSDateTime!
 }
 
-type UserEventConnection @aws_api_key @aws_cognito_user_pools {
-  Event: Event!
+type UserEventConnection @aws_cognito_user_pools @aws_iam {
+  Event: Event
   createdAt: AWSDateTime!
   eventID: ID!
   id: ID!
@@ -282,7 +305,7 @@ type UserEventConnection @aws_api_key @aws_cognito_user_pools {
   userProfile: Uprofile
 }
 
-type UserPlaceConnection @aws_api_key @aws_cognito_user_pools {
+type UserPlaceConnection @aws_cognito_user_pools @aws_iam {
   arrivingTime: AWSDateTime!
   createdAt: AWSDateTime!
   departureTime: AWSDateTime

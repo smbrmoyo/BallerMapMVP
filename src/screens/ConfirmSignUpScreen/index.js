@@ -100,7 +100,7 @@ const ConfirmSignUpScreen = ({ navigation }) => {
               ]}
               autoCapitalize="none"
               keyboardType="numeric"
-              onChangeText={(text) => setCode(text)}
+              onEndEditing={(event) => setCode(event.nativeEvent.text)}
             />
           </View>
 

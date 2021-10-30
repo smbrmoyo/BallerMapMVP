@@ -52,7 +52,7 @@ export default function ButtonContainer(props) {
     >
       <TouchableOpacity
         activeOpacity={0.7}
-        onPress={() => props.navigation.goBack()}
+        //onPress={() => props.navigation.goBack()}
       >
         <View
           style={{
@@ -91,7 +91,7 @@ export default function ButtonContainer(props) {
             username: props.userProfile.username,
             name: props.userProfile.name,
             id: props.user,
-            userDocId: props.user
+            userDocId: props.user,
           };
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
           createUserProfile(input).then((res) => {
@@ -99,7 +99,7 @@ export default function ButtonContainer(props) {
               console.log("--- Successfully created user profile")
               setIsPDoc(true);
           }).catch(error => {
-              console.log("   !!!ERREUR dans la creation du profile utilisateur, ButtonContainer du Set profile screen:", JSON.stringify(error));
+              console.log("   !!!ERREUR dans la creation du profile utilisateur, ButtonContainer du Set profile screen:", error);
               Alert.alert("Erreur dans la création du profile", "Le profile utilisateur n'a pas pu être créé")
           });
         }}
