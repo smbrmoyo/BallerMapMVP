@@ -17,33 +17,9 @@ const ActivityStack = ({ navigation }) => {
   let routeName;
 
   return (
-    <Stack.Navigator initialRouteName={"Category"}>
-      <Stack.Screen
-        name="Activity"
-        component={ActivityScreen}
-        options={({ navigation }) => ({
-          title: "",
-          headerStyle: {
-            backgroundColor: "white",
-            //shadowColor: "black",
-            //elevation: 5,
-            height: hsize(80),
-          },
-        })}
-      />
-      <Stack.Screen
-        name="OtherProfile"
-        component={OtherProfileScreen}
-        options={({ navigation }) => ({
-          title: "",
-          headerStyle: {
-            backgroundColor: "white",
-            //shadowColor: "black",
-            //elevation: 5,
-            height: hsize(80),
-          },
-        })}
-      />
+    <Stack.Navigator initialRouteName={"Activity"}>
+      <Stack.Screen name="Activity" component={ActivityScreen} />
+      <Stack.Screen name="OtherProfile" component={OtherProfileScreen} />
     </Stack.Navigator>
   );
 };

@@ -35,111 +35,14 @@ const ProfileStack = ({ navigation }) => {
   return (
     <ProfileProvider>
       <Stack.Navigator initialRouteName={"Profile"}>
-        <Stack.Screen
-          name="Profile"
-          component={ProfileScreen}
-          options={({ navigation, route }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: 'black',
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-          //options={{ header: () => null }}
-        />
-        <Stack.Screen
-          name="EditProfile"
-          component={EditProfileScreen}
-          options={({ navigation, route }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
-        <Stack.Screen
-          name="Following"
-          component={FollowingScreen}
-          options={({ navigation, route }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
-        <Stack.Screen
-          name="Description"
-          component={DescriptionScreen}
-          options={({ navigation }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              height: hsize(80),
-              //shadowColor: "#f9fafd",
-              //elevation: 0,
-            },
-          })}
-        />
-        <Stack.Screen
-          name="Followers"
-          component={FollowersScreen}
-          options={({ navigation, route }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
-        <Stack.Screen
-          name="UserSearch"
-          component={UserSearchScreen}
-          options={({ navigation, route }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
-        <Stack.Screen
-          name="SetProfile"
-          component={SetProfileScreen}
-          options={({ navigation }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
-        <Stack.Screen
-          name="OtherProfile"
-          component={OtherProfileScreen}
-          options={({ navigation, route }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              //height: hsize(80)
-            },
-          })}
-        />
+        <Stack.Screen name="Profile" component={ProfileScreen} />
+        <Stack.Screen name="EditProfile" component={EditProfileScreen} />
+        <Stack.Screen name="Following" component={FollowingScreen} />
+        <Stack.Screen name="Description" component={DescriptionScreen} />
+        <Stack.Screen name="Followers" component={FollowersScreen} />
+        <Stack.Screen name="UserSearch" component={UserSearchScreen} />
+        <Stack.Screen name="SetProfile" component={SetProfileScreen} />
+        <Stack.Screen name="OtherProfile" component={OtherProfileScreen} />
         <Stack.Screen
           name="Story"
           component={StoryScreen4}

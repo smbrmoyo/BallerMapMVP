@@ -30,6 +30,12 @@ const ActivityScreen = ({ navigation }) => {
       title: "",
       //headerTitleAlign: 'left',
       //headerBackTitleVisible: false,
+      headerStyle: {
+        backgroundColor: "white",
+        shadowColor: "#F4F4F4",
+        //elevation: 5,
+        height: hsize(80),
+      },
       headerTitle: () => (
         <View style={styles.headerTitle}>
           <TouchableOpacity activeOpacity={0.7} style={styles.iconHeaderTitle}>

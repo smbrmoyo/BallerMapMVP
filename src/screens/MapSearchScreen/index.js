@@ -37,8 +37,9 @@ const MapSearchScreen = ({ navigation, route }) => {
       title: "",
       headerStyle: {
         backgroundColor: "white",
-        //shadowColor: "black",
+        shadowColor: "#F4F4F4",
         //elevation: 5,
+        height: hsize(80),
       },
       //headerTitleAlign: 'left',
       headerBackTitleVisible: true,

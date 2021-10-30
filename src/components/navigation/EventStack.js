@@ -16,19 +16,7 @@ const ProfileStack = ({ navigation }) => {
   return (
     <ProfileProvider>
       <Stack.Navigator initialRouteName={"Event"}>
-        <Stack.Screen
-          name="Event"
-          component={EventScreen}
-          options={({ navigation, route }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: 'black',
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
+        <Stack.Screen name="Event" component={EventScreen} />
       </Stack.Navigator>
     </ProfileProvider>
   );

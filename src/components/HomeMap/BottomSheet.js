@@ -48,8 +48,8 @@ const BottomSheetMap = (props) => {
 
   function ConfirmAlert() {
     Alert.alert(
-      `Will you be playing at ${props.places[props.index].name}`,
-      `${readableDate(date)}`,
+      `Will you be playing there the ${readableDate(date)}`,
+      // `${readableDate(date)}`,
       [
         {
           text: "Cancel",
@@ -192,8 +192,6 @@ const BottomSheetMap = (props) => {
       </View>
     </View>
   );
-
-  //console.log("color is " + Appearance.getColorScheme());
 
   return (
     <>

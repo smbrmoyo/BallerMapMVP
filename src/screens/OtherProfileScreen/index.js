@@ -87,6 +87,12 @@ const OtherProfileScreen = ({ navigation }) => {
       height: hsize(80),
       //headerTitleAlign: 'left',
       //headerBackTitleVisible: false,
+      headerStyle: {
+        backgroundColor: "white",
+        shadowColor: "#F4F4F4",
+        //elevation: 5,
+        height: hsize(80),
+      },
       headerLeft: () => (
         <TouchableOpacity
           activeOpacity={0.7}

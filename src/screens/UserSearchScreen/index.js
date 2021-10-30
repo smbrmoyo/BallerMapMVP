@@ -18,6 +18,7 @@ import styles from "./styles";
 import { useMap } from "../../components/navigation/Providers/MapProvider";
 import FollowRow from "./FollowRow";
 import SearchBarFollowers from "./SearchBarFollowers";
+import { hsize, wsize } from "../../utils/Dimensions";
 
 const UserSearchScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
@@ -52,6 +53,12 @@ const UserSearchScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "",
+      headerStyle: {
+        backgroundColor: "white",
+        shadowColor: "#F4F4F4",
+        //elevation: 5,
+        height: hsize(80),
+      },
       //headerTitleAlign: 'left',
       //headerBackTitleVisible: false,
       headerLeft: () => (
