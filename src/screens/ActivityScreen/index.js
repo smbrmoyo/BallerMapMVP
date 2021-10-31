@@ -13,6 +13,7 @@ import Bitmoji from "../../components/Bitmoji";
 import styles from "./styles";
 import Loading from "./Loading";
 import ListContainer from "./ListContainer";
+import NewDataContainer from "./NewDataContainer";
 import PopularTags from "../../assets/data/PopularTags";
 import people from "../../assets/data/people";
 import ProfilePicture from "../../components/ProfilePictureUser";
@@ -21,12 +22,16 @@ import {useActivity} from "../../components/navigation/Providers/ActivityProvide
 import LoadingScreen from "../../screens/LoadingScreen";
 
 const ActivityScreen = ({ navigation }) => {
-  const {loadingNotif} = useActivity();
   const [loading, setLoading] = useState(false);
+  const { loadingNotif, activity } = useActivity();
+  const [newData, setNewData] = useState(false);
+  const [notifExtraData, setNotifExtraData] = useState(false);
 
   useEffect(() => {
-    console.log("<------------- ACTIVITYSCREEN ---------------->")
+    console.log("<------------- ACTIVITYSCREEN ---------------->");
     // Will check if notifs are loaded and set loading to false
+    setNotifExtraData(!notifExtraData);
+    // Will compare updated data with old data and set newData to true
   }, []);
 
   useLayoutEffect(() => {
@@ -43,7 +48,7 @@ const ActivityScreen = ({ navigation }) => {
       headerTitle: () => (
         <View style={styles.headerTitle}>
           <TouchableOpacity activeOpacity={0.7} style={styles.iconHeaderTitle}>
-            <Text style={styles.textHeader}>Notifications</Text>
+            <Text style={styles.textHeader}>Activity</Text>
           </TouchableOpacity>
         </View>
       ),
@@ -60,11 +65,21 @@ const ActivityScreen = ({ navigation }) => {
       <SafeAreaView
         style={{ flex: 1, backgroundColor: "white", justifyContent: "center" }}
       >
-        {loading ? (
+        {loadingNotif ? (
           <Loading />
         ) : (
           <>
-            <ListContainer myNotifs={people} />
+            <NewDataContainer
+              setNotifExtraData={setNotifExtraData}
+              newData={newData}
+              setNewData={setNewData}
+            />
+
+            <ListContainer
+              notifExtraData={notifExtraData}
+              myNotifs={activity}
+              setNewData={setNewData}
+            />
           </>
         )}
       </SafeAreaView>

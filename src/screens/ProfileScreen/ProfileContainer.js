@@ -54,14 +54,14 @@ export default function ProfileContainer(props) {
         <View style={styles.userInfoWrapper}>
           <TouchableOpacity activeOpacity={0.7} onPress={props.goToFollowers}>
             <View style={styles.userInfoItem}>
-              <Text style={styles.userInfoTitle}>{followers.length}</Text>
+              <Text style={styles.userInfoTitle}>{followers?.length}</Text>
               <Text style={styles.userInfoSubTitle}>Followers</Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity activeOpacity={0.7} onPress={props.goToFollowing}>
             <View style={styles.userInfoItem}>
-              <Text style={styles.userInfoTitle}>{following.length}</Text>
+              <Text style={styles.userInfoTitle}>{following?.length}</Text>
               <Text style={styles.userInfoSubTitle}>Following</Text>
             </View>
           </TouchableOpacity>

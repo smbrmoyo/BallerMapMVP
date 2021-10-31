@@ -1,16 +1,5 @@
-import React, {useContext, useEffect, useLayoutEffect, useRef, useState} from "react";
-import {
-  View,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  Image,
-  Dimensions,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  FlatList,
-} from "react-native";
+import React, { useContext, useLayoutEffect, useRef, useState } from "react";
+import { View, Text, Dimensions, FlatList, RefreshControl } from "react-native";
 import BottomSheet from "reanimated-bottom-sheet";
 import ProfilePicture from "../../components/ProfilePictureUser";
 import Bitmoji from "../../components/Bitmoji";
@@ -24,8 +13,23 @@ import { hsize, wsize } from "../../utils/Dimensions";
 import * as subscriptions from "../../graphql/subscriptions";
 import { API, graphqlOperation } from "aws-amplify";
 const ListContainer = (props) => {
+  const [refreshing, setRefreshing] = useState(false);
   const [notifData, setNotifData] = useState(props.myNotifs);
   const { width, height } = Dimensions.get("window");
+  const onRefresh = React.useCallback(() => {
+    const wait = (timeout) => {
+      return new Promise((resolve) => setTimeout(resolve, timeout));
+    };
+
+    setRefreshing(true);
+    wait(1500).then(() => {
+      setRefreshing(false);
+      props.setNewData(true);
+    });
+  }, []);
+
+  console.log("FlatList ActivityScreen has re-rendered");
+
 
 
 
@@ -57,15 +61,18 @@ const ListContainer = (props) => {
           />
         </View>
         <FlatList
-          data={notifData}
+          data={props.myNotifs}
           keyExtractor={(item) => item.id}
+          extraData={props.notifExtraData}
           style={{
             flex: 1,
             backgroundColor: "white",
             width: width,
           }}
-          extraData={notifData}
-          renderItem={(item) => <NotifRow notif={item} />}
+          renderItem={({ item }) => <NotifRow notif={item} />}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
         />
       </View>
     </>

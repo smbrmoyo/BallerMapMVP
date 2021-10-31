@@ -8,8 +8,9 @@ import styles from "./styles";
 
 // An Event row in the FlatList
 
-export default function NotifRow({ notif }) {
+export default function NotifRow(props) {
   const navigation = useNavigation();
+
   function pad2(string) {
     return `0${string}`.slice(-2);
   }
@@ -40,10 +41,7 @@ export default function NotifRow({ notif }) {
         <View
           style={{
             flexDirection: "row",
-            //flex: 1,
-            //paddingHorizontal: wsize(5),
             paddingVertical: hsize(10),
-            //justifyContent: "space-between",
             alignItems: "center",
           }}
         >
@@ -53,24 +51,18 @@ export default function NotifRow({ notif }) {
               flexDirection: "column",
               marginLeft: wsize(15),
               width: "60%",
-              //flex: 1,
             }}
           >
             <Text
               style={{
-                fontSize: 18,
+                fontSize: 14,
+                color: "black",
+                width: "100%",
               }}
               ellipsizeMode="tail"
-            ></Text>
-            <Text
-              style={{
-                fontSize: 12,
-                color: "grey",
-                width: "90%",
-              }}
-              numberOfLines={1}
-              ellipsizeMode="tail"
+              numberOfLines={2}
             >
+              {props.notif.body}
             </Text>
           </View>
         </View>
