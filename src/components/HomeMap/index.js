@@ -428,10 +428,12 @@ const HomeMap = ({ props }) => {
             {places.map((place, index) => {
               // console.log(places.indexOf(place));
 
+
               const scaleStyle = {
                 transform: [
                   {
                     scale: interpolations[index].scale,
+
                   },
                 ],
               };

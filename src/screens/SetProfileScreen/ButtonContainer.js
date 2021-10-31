@@ -20,6 +20,7 @@ import {
   KeyboardAvoidingView,
   Keyboard,
 } from "react-native";
+import {AppContext} from "../../components/navigation/Providers/AppProvider"
 import { useHeaderHeight } from "@react-navigation/stack";
 import * as Haptics from "expo-haptics";
 import BottomSheet from "reanimated-bottom-sheet";
@@ -39,6 +40,7 @@ import userConf from "../../aws-functions/userConf";
 import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
 
 export default function ButtonContainer(props) {
+    const {setIsPDoc} = useContext(AppContext);
   return (
     <View
       style={{
@@ -50,7 +52,7 @@ export default function ButtonContainer(props) {
     >
       <TouchableOpacity
         activeOpacity={0.7}
-        onPress={() => props.navigation.goBack()}
+        //onPress={() => props.navigation.goBack()}
       >
         <View
           style={{
@@ -93,8 +95,12 @@ export default function ButtonContainer(props) {
           };
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
           createUserProfile(input).then((res) => {
-            props.navigation.navigate("Profile");
-            props.setCreatedDocs(true);
+            //navigation.navigate("Map");
+              console.log("--- Successfully created user profile")
+              setIsPDoc(true);
+          }).catch(error => {
+              console.log("   !!!ERREUR dans la creation du profile utilisateur, ButtonContainer du Set profile screen:", error);
+              Alert.alert("Erreur dans la création du profile", "Le profile utilisateur n'a pas pu être créé")
           });
         }}
       >

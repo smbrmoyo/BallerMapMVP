@@ -44,6 +44,13 @@ const SignUpScreenEmail = ({ navigation }) => {
   const route = useRoute();
   const { colors } = useTheme();
 
+  
+  useEffect(() => {
+    //isUserSignedUp();
+    console.log('\n', '\n', "<------------- SignUpScreenEmail ---------------->")
+  }, []);
+
+  
   const [dataSignUp, setdataSignUp] = useState({
     email: "",
     username: "",
@@ -158,7 +165,176 @@ const SignUpScreenEmail = ({ navigation }) => {
             />
 
             {/* Add verification */}
-            <PasswordContainer
+
+            <Text
+              style={[
+                styles.text_footer,
+                {
+                  marginTop: hsize(35),
+                },
+              ]}
+            >
+              Password
+            </Text>
+            <View style={styles.action}>
+              <Feather name="lock" color="#05375a" size={20} />
+              <TextInput
+                placeholder="Your Password"
+                placeholderTextColor="#666666"
+                secureTextEntry={dataSignUp.secureTextEntry ? true : false}
+                style={styles.textInput}
+                autoCapitalize="none"
+                onChangeText={(userPassword) =>
+                  handlePasswordChange(userPassword)
+                }
+              />
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={updateSecureTextEntry}
+              >
+                {dataSignUp.secureTextEntry ? (
+                  <Feather name="eye-off" color="grey" size={20} />
+                ) : (
+                  <Feather name="eye" color="grey" size={20} />
+                )}
+              </TouchableOpacity>
+            </View>
+            {dataSignUp.isValidPassword ? null : (
+              <Animatable.View animation="fadeInLeft" duration={500}>
+                <Text style={styles.errorMsg}>
+                  Password must be 8 characters long.
+                </Text>
+              </Animatable.View>
+            )}
+
+            <Text
+              style={[
+                styles.text_footer,
+                {
+                  marginTop: hsize(35),
+                },
+              ]}
+            >
+              Confirm Password
+            </Text>
+            <View style={styles.action}>
+              <Feather name="lock" color="#05375a" size={20} />
+              <TextInput
+                placeholder="Confirm Your Password"
+                placeholderTextColor="#666666"
+                secureTextEntry={
+                  dataSignUp.confirm_secureTextEntry ? true : false
+                }
+                style={styles.textInput}
+                autoCapitalize="none"
+                onChangeText={(userPassword) =>
+                  handleConfirmPasswordChange(userPassword)
+                }
+              />
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={updateConfirmSecureTextEntry}
+              >
+                {dataSignUp.confirm_secureTextEntry ? (
+                  <Feather name="eye-off" color="grey" size={20} />
+                ) : (
+                  <Feather name="eye" color="grey" size={20} />
+                )}
+              </TouchableOpacity>
+            </View>
+            {dataSignUp.isValidConfirmPassword ? null : (
+              <Animatable.View animation="fadeInLeft" duration={500}>
+                <Text style={styles.errorMsg}>Not matching password.</Text>
+              </Animatable.View>
+            )}
+            <View style={styles.textPrivate}>
+              <Text style={styles.color_textPrivate}>
+                By signing up you agree to our
+              </Text>
+              <Text style={[styles.color_textPrivate, { fontWeight: "bold" }]}>
+                {" "}
+                Terms of service
+              </Text>
+              <Text style={styles.color_textPrivate}> and</Text>
+              <Text style={[styles.color_textPrivate, { fontWeight: "bold" }]}>
+                {" "}
+                Privacy policy
+              </Text>
+            </View>
+            <View style={styles.button}>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.signIn}
+                onPress={() => {
+                  Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+                    () => {
+                      if (
+                        dataSignUp.password &&
+                        dataSignUp.isValidConfirmPassword &&
+                        dataSignUp.username &&
+                        dataSignUp.email
+                      ) {
+                        console.log("   Signing Up User")
+                        signUp(dataSignUp.email, dataSignUp.password)
+                          .then((res) => {
+                            console.log("   SUCCESS: NEW USER SIGNED UP: " + res);
+                            if (res === dataSignUp.email) {
+                              console.log("  ----> Heading to ConfirmSignUpSreen")
+                              navigation.navigate("ConfirmSignUp", {
+                                username: dataSignUp.username,
+                                email: dataSignUp.email,
+                              });
+                            } else {
+                              Alert.alert("!!! ERREUR DE LOGIQUE: L'email du Signup est différent du Text Input")
+                            }
+                          })
+                          .catch((error) => {
+                            if(error == "UsernameExistsException") {
+                              Alert.alert("Impossible de sign Up", "Un compte " +
+                                  "avec cet email existe déjà");
+                            }
+                          });
+                      }
+                    }
+                  );
+                }}
+              >
+                <LinearGradient
+                  colors={["#743cff", "#bb006e"]}
+                  style={styles.signIn}
+                >
+                  <Text
+                    style={[
+                      styles.textSign,
+                      {
+                        color: "white",
+                      },
+                    ]}
+                  >
+                    Sign Up
+                  </Text>
+                </LinearGradient>
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                activeOpacity={0.7}
+                onPress={() => navigation.navigate("SignInEmail")}
+                style={[styles.signIn]}
+              >
+                <View style={styles.textPrivate}>
+                  <Text style={styles.color_textPrivate}>
+                    Already have an account?
+                  </Text>
+                  <Text
+                    style={[styles.color_textPrivate, { fontWeight: "bold" }]}
+                  >
+                    {" "}
+                    Sign In
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+            /*<PasswordContainer
               dataSignUp={dataSignUp}
               handlePasswordChange={handlePasswordChange}
               updateSecureTextEntry={updateSecureTextEntry}
@@ -176,7 +352,7 @@ const SignUpScreenEmail = ({ navigation }) => {
               signUp={signUp}
               dataSignUp={dataSignUp}
               navigation={navigation}
-            />
+            />*/
           </ScrollView>
         </Animatable.View>
       </KeyboardAwareScrollView>
