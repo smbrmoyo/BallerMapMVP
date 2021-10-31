@@ -84,21 +84,6 @@ export const onCreateNotification = /* GraphQL */ `
   subscription OnCreateNotification($profileID: ID!) {
     onCreateNotification(profileID: $profileID) {
       body
-      createdAt
-      id
-      photo
-      profileID
-      type
-      uProfile {
-        createdAt
-        currentPlaceID
-        id
-        name
-        updatedAt
-        userDocId
-        username
-      }
-      updatedAt
     }
   }
 `;

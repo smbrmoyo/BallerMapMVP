@@ -21,7 +21,7 @@ import {useActivity} from "../../components/navigation/Providers/ActivityProvide
 import LoadingScreen from "../../screens/LoadingScreen";
 
 const ActivityScreen = ({ navigation }) => {
-  const {loadingNotif} = useActivity()
+  const {loadingNotif} = useActivity();
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

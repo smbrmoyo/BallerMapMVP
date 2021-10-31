@@ -1,4 +1,4 @@
-import React, { useContext, useLayoutEffect, useRef, useState } from "react";
+import React, {useContext, useEffect, useLayoutEffect, useRef, useState} from "react";
 import {
   View,
   Text,
@@ -21,9 +21,19 @@ import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import styles from "./styles";
 import NotifRow from "./NotifRow";
 import { hsize, wsize } from "../../utils/Dimensions";
-
+import * as subscriptions from "../../graphql/subscriptions";
+import { API, graphqlOperation } from "aws-amplify";
 const ListContainer = (props) => {
+  const [notifData, setNotifData] = useState(props.myNotifs);
   const { width, height } = Dimensions.get("window");
+
+
+
+  useEffect(() => {
+
+  })
+
+
   return (
     <>
       <View style={{ flex: 1, backgroundColor: "white" }}>
@@ -47,18 +57,38 @@ const ListContainer = (props) => {
           />
         </View>
         <FlatList
-          data={props.myNotifs}
+          data={notifData}
           keyExtractor={(item) => item.id}
           style={{
             flex: 1,
             backgroundColor: "white",
             width: width,
           }}
+          extraData={notifData}
           renderItem={(item) => <NotifRow notif={item} />}
         />
       </View>
     </>
   );
 };
+
+const notifSubscription = (user) => {
+    let notifSub = API.graphql(
+        graphqlOperation(
+            subscriptions.onCreateNotification,
+            {
+                profileID: user
+            }
+        )
+    ).subscribe({
+        next: ({provider, value}) => {
+            console.log("onCreateNotification subscription triggered:", {provider, value});
+        },
+        error: error => console.log("   !!! ERROR dans la soubscription onCreateNotification:", error)
+    }).catch(error => {
+        console.log("   !!!ERREUR de la fonction notifSubscription dans le ListeContainer:", error);
+    })
+
+}
 
 export default ListContainer;
