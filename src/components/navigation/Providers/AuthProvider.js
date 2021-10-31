@@ -28,38 +28,41 @@ const AuthProvider = ({ children }) => {
   const [client, setClient] = useState();
   const [yourEvents, setYourEvents] = useState([]);
   const [user, setUser] = useState(); // set this to true on confirmSignUp
-  const [createdDocs, setCreatedDocs] = useState(false);
   const [signUpTrigger, setSignUpTrigger] = useState(false);
   const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(() => {
-    console.log('\n', '\n', "<------------- AUTHPROVIDER ---------------->")
+    console.log("\n", "\n", "<------------- AUTHPROVIDER ---------------->");
     let creds = AsyncStorage.getItem("currentUserCreds").then((res) => {
-        if (res) { // stored user
-          console.log("   Stored User found: " + JSON.stringify(res));
-          console.log("   Signing in stored User");
-          res = JSON.parse(res);
-          let signed = signIn(res.email, res.password).then((result) => {
-            if(result){
-              console.log("   Stored User signed in, heading to AppStack")
+      if (res) {
+        // stored user
+        console.log("   Stored User found: " + JSON.stringify(res));
+        console.log("   Signing in stored User");
+        res = JSON.parse(res);
+        let signed = signIn(res.email, res.password)
+          .then((result) => {
+            if (result) {
+              console.log("   Stored User signed in, heading to AppStack");
               setUser(res.email);
               setLoadingUser(false);
             }
-          }).catch(error => {
+          })
+          .catch((error) => {
             console.log(error);
-            console.log("   Couldn't sign in stored user, cuurentUserCreds cleared from device storage");
+            console.log(
+              "   Couldn't sign in stored user, cuurentUserCreds cleared from device storage"
+            );
             console.log("heading to AuthStack");
             AsyncStorage.removeItem("currentUserCreds");
             setLoadingUser(false);
           });
-        } else { // pas de stored user
-          console.log("   Stored user not found, heading to AuthStack")
-          setLoadingUser(false)
-        }
+      } else {
+        // pas de stored user
+        console.log("   Stored user not found, heading to AuthStack");
+        setLoadingUser(false);
+      }
     });
-
   }, []);
-
 
   /**
    * @param email
@@ -75,15 +78,22 @@ const AuthProvider = ({ children }) => {
       })
       .catch((error) => {
         if (error.name == "InvalidParameterException") {
-          console.log("      !!!ERREUR: Auth.signIn Error, [InvalidParameterException]: " + JSON.stringify(error));
+          console.log(
+            "      !!!ERREUR: Auth.signIn Error, [InvalidParameterException]: " +
+              JSON.stringify(error)
+          );
           throw JSON.stringify(error);
-        }else if(error.code == "UserNotFoundException"){
-          console.log("      !!!ERREUR: Auth.signIn Error: " + JSON.stringify(error));
+        } else if (error.code == "UserNotFoundException") {
+          console.log(
+            "      !!!ERREUR: Auth.signIn Error: " + JSON.stringify(error)
+          );
           throw "UserNotFoundException";
-        }else if(error.code == "UserNotConfirmedException"){
-          console.log("      !!!ERREUR: Auth.signIn Error: " + JSON.stringify(error));
+        } else if (error.code == "UserNotConfirmedException") {
+          console.log(
+            "      !!!ERREUR: Auth.signIn Error: " + JSON.stringify(error)
+          );
           throw "UserNotConfirmedException";
-        }else if(error.message == "Incorrect username or password."){
+        } else if (error.message == "Incorrect username or password.") {
           console.log(" !!!ERREUR: Auth.signIn Error:", JSON.stringify(error));
           throw "Incorrect username or password.";
         }
@@ -109,14 +119,17 @@ const AuthProvider = ({ children }) => {
         console.log("      Réponse du signup ----->", JSON.stringify(res));
         return email;
       });
-      return user
+      return user;
     } catch (error) {
       if (error.name == "UsernameExistsException") {
         //Alert.alert("       ERREUR dans la fonction SignUp, UsernameExistsException", JSON.stringify(error));
         throw "UsernameExistsException";
-      }else{
-        Alert.alert("       ERREUR dans la fonction SignUp", JSON.stringify(error));
-        throw("   ERREUR dans la fonction SignUp: " + JSON.stringify(error));
+      } else {
+        Alert.alert(
+          "       ERREUR dans la fonction SignUp",
+          JSON.stringify(error)
+        );
+        throw "   ERREUR dans la fonction SignUp: " + JSON.stringify(error);
       }
       console.log("error signing up", JSON.stringify(error));
     }
@@ -140,14 +153,25 @@ const AuthProvider = ({ children }) => {
       return confirmedUser;
     } catch (error) {
       if (error.name == "UsernameExistsException") {
-        console.log("      ERROR dans la fonction confirmSignup :", JSON.stringify(error));
-        throw `ERROR confirming user [UsernameExistsException]: ${JSON.stringify(error)}`
-      } else if(error.name == "UnexpectedLambdaException"){
-        console.log("      ERROR dans la fonction confirmSignup:", JSON.stringify(error));
+        console.log(
+          "      ERROR dans la fonction confirmSignup :",
+          JSON.stringify(error)
+        );
+        throw `ERROR confirming user [UsernameExistsException]: ${JSON.stringify(
+          error
+        )}`;
+      } else if (error.name == "UnexpectedLambdaException") {
+        console.log(
+          "      ERROR dans la fonction confirmSignup:",
+          JSON.stringify(error)
+        );
         //throw `ERROR confirming user : ${JSON.stringify(error)}`;
       } else {
-        console.log("      ERROR dans la fonction confirmSignup:", JSON.stringify(error));
-        throw `ERROR confirming user : ${JSON.stringify(error)}`
+        console.log(
+          "      ERROR dans la fonction confirmSignup:",
+          JSON.stringify(error)
+        );
+        throw `ERROR confirming user : ${JSON.stringify(error)}`;
       }
     }
   };
@@ -160,35 +184,49 @@ const AuthProvider = ({ children }) => {
    * Throws an error on failure
    */
   const IsProfileDoc = async (email) => {
-    console.log("   ---Recherche du profile utilisateur")
-    let isUserDoc = await getUserDoc(email).catch(error => {
-      console.log("   --- ERREUR de la requête getUserDoc:", JSON.stringify(error));
-      throw("ERREUR de la requête getUserDoc: " + JSON.stringify(error));
+    console.log("   ---Recherche du profile utilisateur");
+    let isUserDoc = await getUserDoc(email).catch((error) => {
+      console.log(
+        "   --- ERREUR de la requête getUserDoc:",
+        JSON.stringify(error)
+      );
+      throw "ERREUR de la requête getUserDoc: " + JSON.stringify(error);
     });
-    if (isUserDoc !== null) { // userDoc présent
+    if (isUserDoc !== null) {
+      // userDoc présent
       console.log("   ---User doc trouvé");
       let isProfileDoc = await getUprofileDoc(email).catch((err) => {
-        console.log("   ---!!! ERREUR de la requête getUprofileDoc " + JSON.stringify(err));
-        throw ("ERREUR de la requête getUprofileDoc " + JSON.stringify(err))
+        console.log(
+          "   ---!!! ERREUR de la requête getUprofileDoc " + JSON.stringify(err)
+        );
+        throw "ERREUR de la requête getUprofileDoc " + JSON.stringify(err);
       });
       if (isProfileDoc != null) {
-        console.log("   --- Profile utilisateur trouvé")
+        console.log("   --- Profile utilisateur trouvé");
         return true;
       } else {
-        console.log("   --- Le profile Doc est absent. ---> heading to setProfileScreen")
-        return false
+        console.log(
+          "   --- Le profile Doc est absent. ---> heading to setProfileScreen"
+        );
+        return false;
       }
-    } else {// User doc absent --> création du userDoc
+    } else {
+      // User doc absent --> création du userDoc
       console.log("   --- User Doc absent,  Création du userDoc");
       const userDocInput = {
         email: email,
       };
-      let userDoc = await createUserDoc(userDocInput).then((asyncRes) => {
+      let userDoc = await createUserDoc(userDocInput)
+        .then((asyncRes) => {
           console.log("   --- User Doc créé: " + JSON.stringify(asyncRes));
-        }).catch((error) => {
-        console.log("   ---!!!ERREUR de la requête createUserDoc: " + JSON.stringify(error));
-        throw("ERREUR de la requête createUserDoc: " + JSON.stringify(error))
-      });
+        })
+        .catch((error) => {
+          console.log(
+            "   ---!!!ERREUR de la requête createUserDoc: " +
+              JSON.stringify(error)
+          );
+          throw "ERREUR de la requête createUserDoc: " + JSON.stringify(error);
+        });
       return false;
     }
   };
@@ -205,24 +243,31 @@ const AuthProvider = ({ children }) => {
       username: username,
       name: name,
     };
-    await createUserProfile(uProfileInput).then((res) => {
-      console.log("ProfileDoc créé: " + JSON.stringify(res));
-    }).catch(error => {
-      throw `ERREUR de la requête createUserProfile: ${JSON.stringify(error)}`
-    });
+    await createUserProfile(uProfileInput)
+      .then((res) => {
+        console.log("ProfileDoc créé: " + JSON.stringify(res));
+      })
+      .catch((error) => {
+        throw `ERREUR de la requête createUserProfile: ${JSON.stringify(
+          error
+        )}`;
+      });
   };
 
   // Resend the confirmation code in case the user didn't receive it
   const resendConfirmationCode = async (username) => {
     try {
-      const newCode = await Auth.resendSignUp(username).then(res => {
-        console.log("      Successfully resent confirmation code")
+      const newCode = await Auth.resendSignUp(username).then((res) => {
+        console.log("      Successfully resent confirmation code");
         return res;
       });
       return newCode;
     } catch (err) {
-      console.log("      ERREUR de la fonction Auth.resendSignup:", JSON.stringify(err));
-      throw JSON.stringify(err)
+      console.log(
+        "      ERREUR de la fonction Auth.resendSignup:",
+        JSON.stringify(err)
+      );
+      throw JSON.stringify(err);
     }
   };
 
@@ -230,13 +275,13 @@ const AuthProvider = ({ children }) => {
   // logged in user
   const signOut = async () => {
     try {
-      await Auth.signOut().then(res => {
+      await Auth.signOut().then((res) => {
         AsyncStorage.removeItem("currentUserCreds");
         setUser(null);
       });
     } catch (error) {
       console.log("error signing out", error);
-      throw("Error SigningOut")
+      throw "Error SigningOut";
     }
   };
 
@@ -257,10 +302,8 @@ const AuthProvider = ({ children }) => {
         setAuth,
         client,
         setClient,
-        createdDocs,
-        setCreatedDocs,
         IsProfileDoc,
-        yourEvents
+        yourEvents,
       }}
     >
       {children}
