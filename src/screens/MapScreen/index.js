@@ -13,7 +13,7 @@ const MapScreen = ({ navigation }) => {
   const CARD_HEIGHT = 100;
   const CARD_WIDTH = width * 0.8;
   const SPACING_FOR_CARD_INSET = width * 0.1 - 10;
-  const { status } = useMap();
+  const { status, places } = useMap();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -29,7 +29,7 @@ const MapScreen = ({ navigation }) => {
         barStyle="dark-content"
       />
 
-      {status == "loading" ? (
+      {status == "loading" && places != undefined ? (
         <Loading CARD_HEIGHT={CARD_HEIGHT} CARD_WIDTH={CARD_WIDTH} />
       ) : (
         <View style={styles.screen}>

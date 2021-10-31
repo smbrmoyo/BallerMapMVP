@@ -128,15 +128,19 @@ const OtherProfileScreen = ({ navigation }) => {
     });
   }, [otherUser]);
 
-  console.log("follower 1 " + JSON.stringify(otherUser?.followers.items));
-
   const isFollowing = () => {
-    if (otherUser?.followers.items) {
-      return false;
-    } else {
-      return false;
+    console.log("here");
+    for (let i = 0; i < otherUser?.following.items.length; i++) {
+      console.log(otherUser?.following.items[i].followedID == otherUser?.id);
+      if (otherUser?.following.items[i].followedID == otherUser?.id) {
+        return true;
+      } else {
+        return false;
+      }
     }
   };
+
+  isFollowing();
 
   const onFollowPress = () => {
     setIsFollowing(!isFollowing);
@@ -187,7 +191,7 @@ const OtherProfileScreen = ({ navigation }) => {
             }}
           >
             <ProfileContainer
-              isFollowing={false}
+              isFollowing={isFollowing}
               otherUser={otherUser}
               onFollowPress={onFollowPress}
               goToFollowing={goToFollowing}

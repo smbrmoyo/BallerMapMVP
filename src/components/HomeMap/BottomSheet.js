@@ -87,7 +87,7 @@ const BottomSheetMap = (props) => {
               numberOfLines={1}
               style={styles.profileName}
             >
-              {props.places[props.index].name}
+              {props.places[props.index]?.name}
             </Text>
             <Text
               ellipsizeMode="tail"
@@ -98,7 +98,7 @@ const BottomSheetMap = (props) => {
                 width: "90%",
               }}
             >
-              {props.places[props.index].address}
+              {props.places[props.index]?.address}
             </Text>
           </View>
         </View>
@@ -110,7 +110,7 @@ const BottomSheetMap = (props) => {
               numberOfLines={1}
               style={{ width: "90%" }}
             >
-              {props.places[props.index].address}
+              {props.places[props.index]?.address}
             </Text>
           </View>
           <TouchableOpacity activeOpacity={0.7} style={styles.profileInfo}>
