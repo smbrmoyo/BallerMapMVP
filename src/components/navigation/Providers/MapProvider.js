@@ -36,18 +36,18 @@ const MapProvider = ({ children }) => {
 
   useEffect(() => {
     if (
-      resultPlaces.status != status &&
-      resultCamera.status != status &&
-      resultUsers.status != status
+      resultPlaces.status == "success" &&
+      resultCamera.status == "success" &&
+      resultUsers.status == "success"
     ) {
       setPlaces(resultPlaces.data);
       setCamera(resultCamera.data);
       setUsers(resultUsers.data);
-      setStatus(resultCamera.status);
+      setStatus(resultPlaces.status);
     } else {
-      setStatus(resultCamera.status);
+      setStatus(resultPlaces.status);
     }
-  }, [resultPlaces.status]);
+  }, [resultPlaces.status, resultUsers.status]);
 
   let counter = 1;
 
