@@ -14,8 +14,12 @@ import styles from "./styles";
 export default function ProfileContainer(props) {
   const { width } = Dimensions.get("window");
 
-  let followers = props.profileDoc.followers.items;
+  let followers =
+    props.followers != undefined
+      ? props.followers
+      : props.profileDoc.followers.items;
   let following = props.profileDoc.following.items;
+  // console.log(followers)
 
   let date = new Date(props.profileDoc.createdAt);
   let month = date.toLocaleString("default", { month: "long" });

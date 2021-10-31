@@ -25,6 +25,7 @@ import { useHeaderHeight } from "@react-navigation/stack";
 //import firebase from "@react-native-firebase/app";
 //import auth from "@react-native-firebase/auth";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Entypo from "react-native-vector-icons/Entypo";
@@ -33,10 +34,12 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import ProfilePicture from "../../components/ProfilePictureUser";
 import Bitmoji from "../../components/Bitmoji";
 import styles from "./styles";
+import { hsize, wsize } from "../../utils/Dimensions";
+import ChatScrollView from "./ChatScrollView";
+import Footer from "./Footer";
 
 const ChatScreen = ({ data, size, navigation, route }) => {
   const headerHeight = useHeaderHeight();
-  const scrollView = useRef();
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -45,7 +48,6 @@ const ChatScreen = ({ data, size, navigation, route }) => {
         backgroundColor: "white",
         //shadowColor: "black",
         //elevation: 5,
-        height: hsize(80),
       },
       //headerTitleAlign: 'left',
       //headerBackTitleVisible: false,
@@ -61,7 +63,7 @@ const ChatScreen = ({ data, size, navigation, route }) => {
               <Entypo name="chevron-thin-left" size={23} color="black" />
             </View>
           </TouchableOpacity>
-          <ProfilePicture size={40} />
+          <ProfilePicture size={hsize(40)} />
           <Text style={styles.textHeader}>{route.params.chatName}</Text>
         </View>
       ),
@@ -87,13 +89,12 @@ const ChatScreen = ({ data, size, navigation, route }) => {
 
   const [input, setInput] = useState("");
   const { user } = useAuth();
-  console.log(user.email);
   const [messages, setMessages] = useState([
     {
       id: "6",
       data: {
         message: "Pourquoi tu es laid?",
-        email: "brianmoyou",
+        email: "brianmoyou@gmail.com",
       },
     },
     {
@@ -114,14 +115,14 @@ const ChatScreen = ({ data, size, navigation, route }) => {
       id: "9",
       data: {
         message: "Assia vraiment",
-        email: "brianmoyou",
+        email: "brianmoyou@gmail.com",
       },
     },
     {
       id: "10",
       data: {
         message: "Tout va s'arranger",
-        email: "brianmoyou",
+        email: "brianmoyou@gmail.com",
       },
     },
   ]);
@@ -161,64 +162,23 @@ const ChatScreen = ({ data, size, navigation, route }) => {
 
   return (
     <>
-      <SafeAreaView
-        style={{
-          flex: 1,
-          backgroundColor: "white",
+      <KeyboardAwareScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
         }}
+        style={{ backgroundColor: "white" }}
       >
-        <KeyboardAvoidingView
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-          style={styles.container}
-          keyboardVerticalOffset={headerHeight}
+        <SafeAreaView
+          style={{
+            flex: 1,
+            backgroundColor: "white",
+          }}
         >
-          <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-            <>
-              <ScrollView
-                ref={scrollView}
-                contentContainerStyle={{ paddingTop: 10 }}
-                onContentSizeChange={() =>
-                  scrollView.current.scrollToEnd({ animated: true })
-                }
-                style={{ flex: 1 }}
-              >
-                {messages.map(({ id, data }) =>
-                  data.email === user.email ? (
-                    <View key={id} style={styles.sender}>
-                      <Text style={styles.senderText}>{data.message}</Text>
-                    </View>
-                  ) : (
-                    <View key={id} style={styles.receiver}>
-                      <Text style={styles.senderText}>{data.message}</Text>
-                    </View>
-                  )
-                )}
-              </ScrollView>
+          <ChatScrollView user={user} messages={messages} />
 
-              <View style={styles.footer}>
-                <TouchableOpacity
-                  activeOpacity={0.7}
-                  onPress={() => Alert.alert("BottomSheet Sharing Options")}
-                >
-                  <AntDesign name="plus" size={23} color="#743cff" />
-                </TouchableOpacity>
-                <TextInput
-                  value={input}
-                  onChangeText={(text) => setInput(text)}
-                  onSubmitEditing={sendMessage}
-                  multiline
-                  //textAlignVertical="top"
-                  style={styles.textInput}
-                  placeholder="Message..."
-                />
-                <TouchableOpacity activeOpacity={0.7} onPress={sendMessage}>
-                  <Ionicons name="send" size={23} color="#743cff" />
-                </TouchableOpacity>
-              </View>
-            </>
-          </TouchableWithoutFeedback>
-        </KeyboardAvoidingView>
-      </SafeAreaView>
+          <Footer input={input} setInput={setInput} sendMessage={sendMessage} />
+        </SafeAreaView>
+      </KeyboardAwareScrollView>
     </>
   );
 };

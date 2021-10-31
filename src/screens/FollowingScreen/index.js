@@ -10,7 +10,6 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-import { wsize, hsize } from "../../utils/Dimensions";
 import debounce from "lodash/debounce";
 import { useTheme, useRoute } from "@react-navigation/native";
 import LoadingScreen from "../LoadingScreen";
@@ -20,6 +19,7 @@ import styles from "./styles";
 import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
 import SearchBarFollowers from "./SearchBar";
 import FollowRow from "./FollowRow";
+import { hsize, wsize } from "../../utils/Dimensions";
 
 const FollowingScreen = ({ navigation }) => {
   const { profileDoc } = useProfile();
@@ -46,6 +46,12 @@ const FollowingScreen = ({ navigation }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       title: "",
+      headerStyle: {
+        backgroundColor: "white",
+        shadowColor: "#F4F4F4",
+        //elevation: 5,
+        height: hsize(80),
+      },
       //headerTitleAlign: 'left',
       //headerBackTitleVisible: false,
       headerLeft: () => (

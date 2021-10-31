@@ -21,6 +21,7 @@ import Bitmoji from "../../components/Bitmoji";
 import Stories from "../../components/Stories";
 import Header from "./Header";
 import styles from "./styles";
+import { hsize, wsize } from "../../utils/Dimensions";
 
 const Messages = [
   {
@@ -175,6 +176,12 @@ const MessageScreen = ({ props, navigation }) => {
     navigation.setOptions({
       //title: 'Direct Messages',
       //height: 100,
+      headerStyle: {
+        backgroundColor: "white",
+        shadowColor: "#F4F4F4",
+        //elevation: 5,
+        height: hsize(80),
+      },
       headerLeft: () => (
         <View style={{ marginBottom: 0 }}>
           <Text style={styles.textHeader}>Direct Messages</Text>
@@ -205,6 +212,7 @@ const MessageScreen = ({ props, navigation }) => {
           </View>
         </View>
       ),
+      headerTitle: () => null,
     });
   }, []);
 
@@ -220,41 +228,6 @@ const MessageScreen = ({ props, navigation }) => {
           style={{ backgroundColor: "white" }}
           data={chats}
           keyExtractor={(item) => item.id}
-          /*ListHeaderComponent={
-            <View style={styles.headerContainer}>
-              <TouchableWithoutFeedback
-                onPress={() =>
-                  navigation.navigate("MessageStack", {
-                    screen: "MessageSearch",
-                  })
-                }
-              >
-                <View
-                  style={[
-                    styles.inputBox,
-                    {
-                      color: colors.text,
-                      backgroundColor: colors.background,
-                      borderColor: colors.border,
-                      borderWidth: dark ? 1 : 0.5,
-                    },
-                  ]}
-                >
-                  <Text>Search</Text>
-                </View>
-              </TouchableWithoutFeedback>
-            </View>
-          }*/
-          /*ListHeaderComponent={
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <TextInput style={styles.searchInput} placeholder="Search" />
-            </View>
-          }*/
           renderItem={({ item }) => (
             <MessageRow
               chatName={item.userName}

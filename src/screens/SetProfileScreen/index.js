@@ -71,9 +71,9 @@ const SetProfileScreen = ({ props, route }) => {
       title: "",
       headerStyle: {
         backgroundColor: "white",
-        height: hsize(80),
-        //shadowColor: "black",
+        shadowColor: "#F4F4F4",
         //elevation: 5,
+        height: hsize(80),
       },
       //headerTitleAlign: 'left',
       headerBackTitleVisible: false,
@@ -131,6 +131,7 @@ const SetProfileScreen = ({ props, route }) => {
                   setUserProfile={setUserProfile}
                 />
                 <ButtonContainer
+                  setCreatedDocs={setCreatedDocs}
                   userProfile={userProfile}
                   user={user}
                   //navigation={navigation}

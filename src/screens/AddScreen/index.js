@@ -20,35 +20,14 @@ import {
   KeyboardAvoidingView,
   Keyboard,
 } from "react-native";
-import { Button, Overlay } from "react-native-elements";
-import * as Animatable from "react-native-animatable";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import { useRoute, useNavigation } from "@react-navigation/native";
 import { useHeaderHeight } from "@react-navigation/stack";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import DatePicker from "react-native-date-picker";
+import { useTheme } from "@react-navigation/native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import * as Haptics from "expo-haptics";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-
-import PlaceRow from "./PlaceRow";
-import ProfilePicture from "../../components/ProfilePictureUser";
-import Bitmoji from "../../components/Bitmoji";
-import styles from "./styles";
-import {
-  useAuth,
-  getUprofile,
-} from "../../components/navigation/Providers/AuthProvider";
-import { getPlacesList } from "../../aws-functions/placeFunctions";
-import { useMap } from "../../components/navigation/Providers/MapProvider";
-import { wsize, hsize } from "../../utils/Dimensions";
-import places from "../../assets/data/places";
 import Entypo from "react-native-vector-icons/Entypo";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Fontisto from "react-native-vector-icons/Fontisto";
-import Feather from "react-native-vector-icons/Feather";
-import { createEvent } from "../../aws-functions/eventFunctions";
+import { DataStore } from "aws-amplify";
+
 import ButtonContainer from "./ButtonContainer";
 import DescriptionContainer from "./DescriptionContainer";
 import EndDateContainer from "./EndDateContainer";
@@ -56,6 +35,12 @@ import LocationContainer from "./LocationContainer";
 import NameContainer from "./NameContainer";
 import StartDateContainer from "./StartDateContainer";
 import TagsContainer from "./TagsContainer";
+import {
+  useAuth,
+  getUprofile,
+} from "../../components/navigation/Providers/AuthProvider";
+import { wsize, hsize } from "../../utils/Dimensions";
+import styles from "./styles";
 
 //navigator.geolocation = require("@react-native-community/geolocation");
 
@@ -67,18 +52,23 @@ const AddScreen = ({ navigation, route }) => {
   const [visibleEnd, setVisibleEnd] = useState(false);
   const [colorBegin, setColorBegin] = useState("#CDCDCD");
   const [colorEnd, setColorEnd] = useState("#CDCDCD");
+  const { colors } = useTheme();
 
   const [eventData, setEventData] = useState({
-    name: "", //name of the place
+    name: "",
     placeID: route.params?.searchedPlace.id,
     placeName: route.params?.searchedPlace.name,
     creatorID: user,
+    creator: user,
     tags: [],
     description: "",
-    profileId: "12345", //should be current authenticated user profile Id
+    profileId: "", //should be current authenticated user profile Id
     beginningTime: new Date(),
     endingTime: new Date(),
     privacy: "private",
+    _version: 0,
+    _deleted: false,
+    _lastChangedAt: new Date(),
   });
 
   useEffect(() => {
@@ -96,9 +86,9 @@ const AddScreen = ({ navigation, route }) => {
       title: "",
       headerStyle: {
         backgroundColor: "white",
-        height: hsize(80),
-        //shadowColor: "black",
+        shadowColor: "#F4F4F4",
         //elevation: 5,
+        height: hsize(80),
       },
       //headerTitleAlign: 'left',
       headerBackTitleVisible: true,
@@ -161,7 +151,7 @@ const AddScreen = ({ navigation, route }) => {
         isVisible={visibleStart} /*Should have second component for end date */
         mode="datetime"
         display="spinner"
-        isDarkModeEnabled={false}
+        isDarkModeEnabled={colors.background == "rgb(1, 1, 1)" ? true : false}
         onConfirm={(datum) => (
           setEventData({
             ...eventData,
@@ -177,7 +167,7 @@ const AddScreen = ({ navigation, route }) => {
         isVisible={visibleEnd} /*Should have second component for end date */
         mode="datetime"
         display="spinner"
-        isDarkModeEnabled={false}
+        isDarkModeEnabled={colors.background == "rgb(1, 1, 1)" ? true : false}
         onConfirm={(datum) => (
           setEventData({
             ...eventData,

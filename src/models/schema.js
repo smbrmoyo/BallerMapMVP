@@ -366,6 +366,13 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
+                "placeID": {
+                    "name": "placeID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
                 "place": {
                     "name": "place",
                     "isArray": false,
@@ -376,7 +383,7 @@ export const schema = {
                     "attributes": [],
                     "association": {
                         "connectionType": "BELONGS_TO",
-                        "targetName": "placeID"
+                        "targetName": "placeID "
                     }
                 },
                 "beginningTime": {
@@ -571,7 +578,7 @@ export const schema = {
                     "isArrayNullable": true,
                     "association": {
                         "connectionType": "HAS_MANY",
-                        "associatedWith": "place"
+                        "associatedWith": "placeID"
                     }
                 },
                 "currentPlayers": {
@@ -1159,5 +1166,5 @@ export const schema = {
             }
         }
     },
-    "version": "59170ab8d595536b53524fb7e731df99"
+    "version": "c6b1640569adbf08ffb0c9e016de7e89"
 };

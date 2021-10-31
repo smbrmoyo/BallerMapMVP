@@ -37,8 +37,9 @@ const MapSearchScreen = ({ navigation, route }) => {
       title: "",
       headerStyle: {
         backgroundColor: "white",
-        //shadowColor: "black",
+        shadowColor: "#F4F4F4",
         //elevation: 5,
+        height: hsize(80),
       },
       //headerTitleAlign: 'left',
       headerBackTitleVisible: true,
@@ -92,15 +93,7 @@ const MapSearchScreen = ({ navigation, route }) => {
           value={props.text}
           placeholder="Search"
           placeholderTextColor="#CDCDCD"
-          style={[
-            styles.inputBox,
-            {
-              color: props.colors.text,
-              backgroundColor: props.colors.background,
-              borderColor: props.colors.border,
-              borderWidth: props.dark ? 1 : 0.5,
-            },
-          ]}
+          style={[styles.inputBox]}
         />
       </View>
     );

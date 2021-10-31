@@ -94,6 +94,9 @@ export const getNotification = /* GraphQL */ `
         currentPlaceID
         id
         name
+        userDocId
+        currentPlaceID
+        createdAt
         updatedAt
         userDocId
         username

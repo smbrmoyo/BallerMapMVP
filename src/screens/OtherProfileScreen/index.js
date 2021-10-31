@@ -49,7 +49,6 @@ const OtherProfileScreen = ({ navigation }) => {
   const { profileDoc } = useProfile();
   const [status, setStatus] = useState("loading");
   const [otherUser, setOtherUser] = useState(null);
-  const [isFollowing, setIsFollowing] = useState(false);
   const _scrollView = useRef(null);
   const [loading, setLoading] = useState(true); // Should be coming from provider
   const tabs = {
@@ -87,6 +86,12 @@ const OtherProfileScreen = ({ navigation }) => {
       height: hsize(80),
       //headerTitleAlign: 'left',
       //headerBackTitleVisible: false,
+      headerStyle: {
+        backgroundColor: "white",
+        shadowColor: "#F4F4F4",
+        //elevation: 5,
+        height: hsize(80),
+      },
       headerLeft: () => (
         <TouchableOpacity
           activeOpacity={0.7}
@@ -122,6 +127,16 @@ const OtherProfileScreen = ({ navigation }) => {
       ),
     });
   }, [otherUser]);
+
+  console.log("follower 1 " + JSON.stringify(otherUser?.followers.items));
+
+  const isFollowing = () => {
+    if (otherUser?.followers.items) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   const onFollowPress = () => {
     setIsFollowing(!isFollowing);
@@ -188,6 +203,7 @@ const OtherProfileScreen = ({ navigation }) => {
               ref={_scrollView}
               horizontal
               pagingEnabled
+              //scrollEnabled={false}
               style={{
                 flex: 1,
                 backgroundColor: "white",
@@ -205,14 +221,14 @@ const OtherProfileScreen = ({ navigation }) => {
                 events={events}
                 attending={attending}
                 setCurrentTab={setCurrentTab}
-                myEvents={myEvents}
+                myEvents={otherUser?.eventsCreated.items}
               />
 
               <AttendingTab
                 events={events}
                 attending={attending}
                 setCurrentTab={setCurrentTab}
-                myEvents={profileDoc?.eventsCreated.items}
+                myEvents={[]}
               />
             </ScrollView>
           </Animated.View>

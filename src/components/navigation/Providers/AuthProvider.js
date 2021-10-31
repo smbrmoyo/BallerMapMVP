@@ -28,7 +28,7 @@ const AuthProvider = ({ children }) => {
   const [client, setClient] = useState();
   const [yourEvents, setYourEvents] = useState([]);
   const [user, setUser] = useState(); // set this to true on confirmSignUp
-  const [createdDocs, setCreatedDocs] = useState(true);
+  const [createdDocs, setCreatedDocs] = useState(false);
   const [signUpTrigger, setSignUpTrigger] = useState(false);
   const [loadingUser, setLoadingUser] = useState(true);
 

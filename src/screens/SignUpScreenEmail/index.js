@@ -28,7 +28,14 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { hsize, wsize } from "../../utils/Dimensions";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import { useTheme } from "react-native-paper";
+
 import styles from "./styles";
+import AgreementContainer from "./AgreementContainer";
+import ButtonContainer from "./ButtonContainer";
+import ConfirmContainer from "./ConfirmContainer";
+import EmailContainer from "./EmailContainer";
+import PasswordContainer from "./PasswordContainer";
+import Title from "./Title";
 
 const SignUpScreenEmail = ({ navigation }) => {
   const { user, signUp, signUpTrigger } = useAuth();
@@ -37,18 +44,13 @@ const SignUpScreenEmail = ({ navigation }) => {
   const route = useRoute();
   const { colors } = useTheme();
 
-  /*const isUserSignedUp = () => {
-    if (signUpTrigger) {
-      signUpTrigger ? navigation.navigate("SignInEmail") : null;
-    }
-  };*/
-
+  
   useEffect(() => {
     //isUserSignedUp();
     console.log('\n', '\n', "<------------- SignUpScreenEmail ---------------->")
-    console.log("entrée dans le email signup screen");
   }, []);
 
+  
   const [dataSignUp, setdataSignUp] = useState({
     email: "",
     username: "",
@@ -149,50 +151,18 @@ const SignUpScreenEmail = ({ navigation }) => {
       <StatusBar backgroundColor="#FF6347" barStyle="light-content" />
       <KeyboardAwareScrollView
         contentContainerStyle={{
-          //position: "absolute",
-          //bottom: 0,
-          //flex: 1,
           flexGrow: 1,
         }}
       >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.header}>
-            <Text style={styles.text_header}>Sign up Email</Text>
-          </View>
-        </TouchableWithoutFeedback>
+        <Title />
 
         <Animatable.View animation="fadeInUpBig" style={styles.footer}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <Text
-              style={[
-                styles.text_footer,
-                {
-                  marginTop: hsize(15),
-                },
-              ]}
-            >
-              Email
-            </Text>
-            <View style={styles.action}>
-              <FontAwesome name="user-o" color="#05375a" size={20} />
-              <TextInput
-                placeholder="Your Email"
-                placeholderTextColor="#666666"
-                style={[
-                  styles.textInput,
-                  {
-                    color: colors.text,
-                  },
-                ]}
-                autoCapitalize="none"
-                onChangeText={(userEmail) => emailInputChange(userEmail)}
-              />
-              {dataSignUp.check_emailInputChange ? (
-                <Animatable.View animation="bounceIn">
-                  <Feather name="check-circle" color="green" size={20} />
-                </Animatable.View>
-              ) : null}
-            </View>
+            <EmailContainer
+              text={colors.text}
+              check_emailInputChange={dataSignUp.check_emailInputChange}
+              emailInputChange={emailInputChange}
+            />
 
             {/* Add verification */}
 
@@ -364,6 +334,25 @@ const SignUpScreenEmail = ({ navigation }) => {
                 </View>
               </TouchableOpacity>
             </View>
+            /*<PasswordContainer
+              dataSignUp={dataSignUp}
+              handlePasswordChange={handlePasswordChange}
+              updateSecureTextEntry={updateSecureTextEntry}
+            />
+
+            <ConfirmContainer
+              dataSignUp={dataSignUp}
+              handleConfirmPasswordChange={handleConfirmPasswordChange}
+              updateConfirmSecureTextEntry={updateConfirmSecureTextEntry}
+            />
+
+            <AgreementContainer />
+
+            <ButtonContainer
+              signUp={signUp}
+              dataSignUp={dataSignUp}
+              navigation={navigation}
+            />*/
           </ScrollView>
         </Animatable.View>
       </KeyboardAwareScrollView>

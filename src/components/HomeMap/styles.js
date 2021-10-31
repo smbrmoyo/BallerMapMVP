@@ -1,5 +1,7 @@
 import { StyleSheet, StatusBar, Dimensions } from "react-native";
 
+import { hsize, wsize } from "../../utils/Dimensions";
+
 const { width, height } = Dimensions.get("window");
 const CARD_HEIGHT = 100;
 const CARD_WIDTH = width * 0.8;
@@ -13,15 +15,14 @@ const styles = StyleSheet.create({
   buttonContainer: {
     justifyContent: "center",
     alignItems: "center",
-    flexDirection: "row",
     position: "absolute",
   },
   buttonAdd: {
     justifyContent: "center",
     alignItems: "center",
-    height: 70,
-    width: 70,
-    borderRadius: 35,
+    height: wsize(70),
+    width: wsize(70),
+    borderRadius: wsize(35),
     borderWidth: 0.5,
     borderColor: "white",
     backgroundColor: "#F4F4F4", //"rgba(0,0,0,0.2)",
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
   },
   scrollView: {
     position: "absolute",
-    bottom: "-31%",
+    bottom: "-22%",
     flex: 1,
     paddingHorizontal: SPACING_FOR_CARD_INSET,
   },

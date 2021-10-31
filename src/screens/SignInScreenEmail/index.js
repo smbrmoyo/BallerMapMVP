@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import * as Haptics from "expo-haptics";
+import * as Location from "expo-location";
 import { LinearGradient } from "expo-linear-gradient";
 import { useHeaderHeight } from "@react-navigation/stack";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -20,6 +21,11 @@ import { useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import ButtonContainer from "./ButtonContainer";
+import ForgotContainer from "./ForgotContainer";
+import PasswordContainer from "./PasswordContainer";
+import Title from "./Title";
+import UsernameContainer from "./UsernameContainer";
 
 const SignInScreenEmail = ({ navigation, props }) => {
   const headerHeight = useHeaderHeight();
@@ -33,6 +39,16 @@ const SignInScreenEmail = ({ navigation, props }) => {
         setNextScreen("SetProfile");
       }*/
     }); // Add  error handling
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        setErrorMsg("Permission to access location was denied");
+        return;
+      }
+    })();
   }, []);
 
   const [dataLogin, setDataLogin] = useState({
@@ -115,11 +131,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
           flexGrow: 1,
         }}
       >
-        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-          <View style={styles.header}>
-            <Text style={styles.text_header}>Sign in Email</Text>
-          </View>
-        </TouchableWithoutFeedback>
+        <Title />
 
         <Animatable.View
           animation="fadeInUpBig"
@@ -308,6 +320,27 @@ const SignInScreenEmail = ({ navigation, props }) => {
               </View>
             </TouchableOpacity>
           </View>
+          /*<UsernameContainer
+            check_textInputChange={dataLogin.check_textInputChange}
+            colors={colors}
+            textInputChange={textInputChange}
+          />
+
+          <PasswordContainer
+            dataLogin={dataLogin}
+            colors={colors}
+            handlePasswordChange={handlePasswordChange}
+            updateSecureTextEntry={updateSecureTextEntry}
+          />
+
+          <ForgotContainer />
+
+          <ButtonContainer
+            signIn={signIn}
+            setUser={setUser}
+            dataLogin={dataLogin}
+            navigate={navigation.navigate}
+          />*/
         </Animatable.View>
       </KeyboardAwareScrollView>
     </View>

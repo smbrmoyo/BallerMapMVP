@@ -1,10 +1,6 @@
-- Start commenting!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-- Delay rendering until profile partition found
+- Start commenting!!!!!!!!!!!!
 
 -Splashscreen
-
-- Code QR!!!!!!!!!!!!!
 
 - Notifications!!!!!!
 
@@ -24,10 +20,6 @@
   - enable comment and stop timer
   - Wrap Dismiss with a function in which I would call useNavigation.
     Try and call it from inside the code
-
-* Add social auth
-
-* Skeleton
 
 * Onboarding Screen and Hints (explain to users how to use the app)
 

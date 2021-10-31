@@ -38,6 +38,12 @@ const DescriptionScreen = ({ props, navigation, route }) => {
       title: "",
       //headerTitleAlign: 'left',
       //headerBackTitleVisible: false,
+      headerStyle: {
+        backgroundColor: "white",
+        shadowColor: "#F4F4F4",
+        //elevation: 5,
+        height: hsize(80),
+      },
       headerLeft: () => (
         <View style={{ flexDirection: "row", margin: hsize(5) }}>
           <TouchableOpacity

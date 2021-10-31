@@ -42,9 +42,9 @@ const EditProfileScreen = ({ props, navigation, route }) => {
       title: "",
       headerStyle: {
         backgroundColor: "white",
-        height: hsize(80),
-        //shadowColor: "black",
+        shadowColor: "#F4F4F4",
         //elevation: 5,
+        height: hsize(80),
       },
       //headerTitleAlign: 'left',
       headerBackTitleVisible: true,
@@ -97,7 +97,7 @@ const EditProfileScreen = ({ props, navigation, route }) => {
                   flex: 1,
                   justifyContent: "flex-end",
                   opacity: Animated.add(
-                    0.1,
+                    0.5,
                     Animated.multiply(fallEditProf, 1.0)
                   ),
                 }}

@@ -1,41 +1,51 @@
-import React from "react";
+import React, {
+  useLayoutEffect,
+  useState,
+  useEffect,
+  useContext,
+  useRef,
+} from "react";
 import {
+  Alert,
   View,
   Text,
+  Button,
   SafeAreaView,
-  Image,
-  Dimensions,
-  StatusBar,
+  ScrollView,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
+  KeyboardAvoidingView,
+  Keyboard,
+  TextInput,
+  Platform,
 } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import ProfilePicture from "../../components/ProfilePictureUser";
-import Bitmoji from "../../components/Bitmoji";
+import Entypo from "react-native-vector-icons/Entypo";
+import AntDesign from "react-native-vector-icons/AntDesign";
 import styles from "./styles";
+import { hsize, wsize } from "../../utils/Dimensions";
 
-const Footer = (props) => {
+export default function Footer(props) {
   return (
-    <>
-      <View style={styles.footer}>
-        <View style={styles.leftContainer}>
-          <View style={styles.iconContainer}>
-            <Ionicons name="chevron-back" size={40} color="#743cff" />
-          </View>
-          <ProfilePicture size={40} />
-          <Text style={styles.textHeader}>Username</Text>
-        </View>
-        <View style={{ flexDirection: "row" }}>
-          <View style={styles.iconContainer}>
-            <SimpleLineIcons name="location-pin" size={30} color="#743cff" />
-          </View>
-          <View style={styles.iconContainer}>
-            <SimpleLineIcons name="info" size={30} color="#743cff" />
-          </View>
-        </View>
-      </View>
-    </>
+    <View style={styles.footer}>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() => Alert.alert("BottomSheet Sharing Options")}
+      >
+        <AntDesign name="plus" size={23} color="#743cff" />
+      </TouchableOpacity>
+      <TextInput
+        value={props.input}
+        onChangeText={(text) => props.setInput(text)}
+        onSubmitEditing={props.sendMessage}
+        multiline //textAlignVertical="top"
+        style={styles.textInput}
+        placeholder="Message..."
+      />
+      <TouchableOpacity activeOpacity={0.7} onPress={props.sendMessage}>
+        <Ionicons name="send" size={23} color="#743cff" />
+      </TouchableOpacity>
+    </View>
   );
-};
-
-export default Footer;
+}

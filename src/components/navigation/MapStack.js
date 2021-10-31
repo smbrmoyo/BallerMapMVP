@@ -14,6 +14,7 @@ import AttendanceScreen from "../../screens/AttendanceScreen";
 import UserSearchScreen from "../../screens/UserSearchScreen";
 import DescriptionScreen from "../../screens/DescriptionScreen";
 import OtherProfileScreen from "../../screens/OtherProfileScreen";
+import AddPresenceScreen from "../../screens/AddPresenceScreen";
 import Probe from "../../screens/Probe";
 import { MapProvider } from "./Providers/MapProvider";
 import { useAuth } from "./Providers/AuthProvider";
@@ -27,29 +28,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createStackNavigator();
 
-const MapStack = ({ navigation }) => {
-  //const [profileCreated, setProfileCreated] = useState(null);
-  let routeName;
+
+const MapStack = (props) => {
+  const [profileCreated, setProfileCreated] = useState(null);
+  let routeName = "Map";
   useEffect(() => {
     console.log("<------------- MAPSTACK ---------------->")
-    AsyncStorage.getItem("profileCreated").then((value) => {
-      if (value == null) {
-        AsyncStorage.setItem("profileCreated", "false"); // Add  error handling
-        //setProfileCreated(false);
-      } else {
-        AsyncStorage.setItem("profileCreated", "true");
-        //setProfileCreated(true);
-      }
-    }); // Add  error handling
   }, []);
 
-  /*if (profileCreated == null) {
-    return null; // Use loader
-  } else if (profileCreated == false) {
-    routeName = "SetProfile";
-  } else {
-    routeName = "Map";
-  }*/
 
   return (
     <MapProvider>
@@ -71,97 +57,14 @@ const MapStack = ({ navigation }) => {
             header: () => null,
           })}
         />
-        <Stack.Screen
-          name="Add"
-          component={AddScreen}
-          options={({ navigation }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              shadowColor: "#f9fafd",
-              elevation: 0,
-              height: hsize(80),
-            },
-          })}
-        />
-        <Stack.Screen
-          name="UserSearch"
-          component={UserSearchScreen}
-          options={({ navigation, route }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
-        <Stack.Screen
-          name="PlaceSearch"
-          component={PlaceSearchScreen}
-          options={({ navigation, route }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
-        <Stack.Screen
-          name="MapSearch"
-          component={MapSearchScreen}
-          options={({ navigation, route }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
-        <Stack.Screen
-          name="Attendance"
-          component={AttendanceScreen}
-          options={({ navigation, route }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
-        <Stack.Screen
-          name="Description"
-          component={DescriptionScreen}
-          options={({ navigation }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              shadowColor: "#f9fafd",
-              elevation: 0,
-            },
-          })}
-        />
-
-        <Stack.Screen
-          name="SetProfile"
-          component={SetProfileScreen}
-          options={({ navigation }) => ({
-            title: "",
-            headerStyle: {
-              backgroundColor: "white",
-              //shadowColor: "black",
-              //elevation: 5,
-              height: hsize(80),
-            },
-          })}
-        />
+        <Stack.Screen name="Add" component={AddScreen} />
+        <Stack.Screen name="AddPresence" component={AddPresenceScreen} />
+        <Stack.Screen name="UserSearch" component={UserSearchScreen} />
+        <Stack.Screen name="PlaceSearch" component={PlaceSearchScreen} />
+        <Stack.Screen name="MapSearch" component={MapSearchScreen} />
+        <Stack.Screen name="Attendance" component={AttendanceScreen} />
+        <Stack.Screen name="Description" component={DescriptionScreen} />
+        <Stack.Screen name="SetProfile" component={SetProfileScreen} />
       </Stack.Navigator>
     </MapProvider>
   );

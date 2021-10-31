@@ -1,10 +1,16 @@
+
 import React, {useEffect, useState} from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import {
+  NavigationContainer,
+  DefaultTheme,
+  DarkTheme,
+} from "@react-navigation/native";
 import { useAuth } from "./Providers/AuthProvider";
 import LoadingScreen from "../../screens/LoadingScreen/index.js"
 import AppStack from "./AppStack";
 import AuthStack from "./AuthStack";
 import AppProvider from "./Providers/AppProvider"
+
 
 const Routes = () => {
   const {user, loadingUser} = useAuth();
@@ -14,10 +20,14 @@ const Routes = () => {
   })
 
   return (
-      <NavigationContainer>
+      <NavigationContainer 
+        theme={props.themeColor == "dark" ? DarkTheme : DefaultTheme}
+      >
         {loadingUser? <LoadingScreen/> : (user ?
-            <AppProvider><AppStack/></AppProvider> : <AuthStack/>)}
+            <AppProvider><AppStack themeColor={props.themeColor} /></AppProvider> : <AuthStack/>)}
       </NavigationContainer>
+
+
   );
 }
 

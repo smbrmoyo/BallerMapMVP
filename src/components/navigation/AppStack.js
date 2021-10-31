@@ -1,5 +1,6 @@
-import React, {useContext} from "react";
-import HomeStack from "./HomeStack";
+
+import React, {useContext} from "react";;
+import ActivityStack from "./ActivityStack";
 import MessageStack from "./MessageStack";
 import MapStack from "./MapStack";
 import ProfileStack from "./ProfileStack";
@@ -11,7 +12,7 @@ import { useAuth } from "./Providers/AuthProvider";
 import LoadingScreen from "../../screens/LoadingScreen/index";
 //import SnapchatStack from "../../../Snapchat";
 import { useState, useEffect } from "react";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 import AntDesign from "react-native-vector-icons/AntDesign";
 import Feather from "react-native-vector-icons/Feather";
 import Ionicons from "react-native-vector-icons/Ionicons";
@@ -65,8 +66,7 @@ const Tab = createBottomTabNavigator();
 
 }, [])*/
 
-
-const AppStack = (route) => {
+const AppStack = (route, props) => {
   const [notifPermission, setNotifPermission] = useState();
   const {isPdoc, loadingProfileDoc } = useAppContext()
 
@@ -134,16 +134,32 @@ const AppStack = (route) => {
                  borderTopColor: "#C4C4C4",
               //height: 50,
                 },
-              }}><Tab.Screen
-              name="Event"
-              component={EventStack}
+              }}>
+                
+               
+                
+           <Tab.Screen
+              name="MessageStack"
+              component={MessageStack}
               options={({ route }) => ({
-                tabBarLabel: "Profile",
+                tabBarLabel: "Message",
                 tabBarVisible: getTabBarVisibility(route),
                 tabBarIcon: ({ color, size }) => (
-                  <AntDesign name="calendar" size={26} color={color} />
+                  <Feather name="message-square" size={26} color={color} />
                 ),
-              })}/>
+                  //tabBarBadge: 3,
+            })}/>
+                
+            <Tab.Screen
+               name="Event"
+               component={EventStack}
+               options={({ route }) => ({
+                 tabBarLabel: "Profile",
+                 tabBarVisible: getTabBarVisibility(route),
+                 tabBarIcon: ({ color, size }) => (
+                   <AntDesign name="calendar" size={26} color={color} />
+                 ),
+            })}/>
 
             <Tab.Screen
               name="Map"
@@ -155,6 +171,18 @@ const AppStack = (route) => {
                   <Feather name="map" size={24} color={color} />
                 ),
               })}/>
+             
+           <Tab.Screen
+              name="Activity"
+              component={ActivityStack}
+              options={({ route }) => ({
+                tabBarLabel: "Places",
+                tabBarVisible: getTabBarVisibility(route),
+                tabBarIcon: ({ color, size }) => (
+                   <FontAwesome name="bell-o" size={24} color={color} />
+                ),
+              })}
+            />
 
             <Tab.Screen
               name="Profile"

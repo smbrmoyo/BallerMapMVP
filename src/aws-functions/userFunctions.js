@@ -107,7 +107,7 @@ export const createUserProfile = async (userProfile) => {
  */
 export const updateUserProfile = async (updatedUprofile) => {
   //const uProfile = await API.graphql({ query: queries.getUprofile, variables: { id: userConf.uProfileId }});
-  console.log(updatedUprofile);
+  // console.log(updatedUprofile);
 
   return API.graphql(
       graphqlOperation(mutations.updateUprofile, {

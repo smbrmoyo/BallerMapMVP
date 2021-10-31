@@ -30,10 +30,11 @@ export default function EventRow({ event }) {
       activeOpacity={0.7}
       style={styles.postHeaderFirst}
       onPress={() =>
-        navigation.navigate("Profile", {
+        /*navigation.navigate("Profile", {
           screen: "Description",
           params: { event: event },
-        })
+        })*/
+        navigation.navigate("Description", { event: event })
       }
     >
       <View style={styles.postHeaderContainer}>

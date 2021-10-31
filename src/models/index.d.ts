@@ -105,6 +105,7 @@ export declare class UserEventConnection {
 export declare class Event {
   readonly id: string;
   readonly name: string;
+  readonly placeID: string;
   readonly place?: Place;
   readonly beginningTime: string;
   readonly endingTime: string;

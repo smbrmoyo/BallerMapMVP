@@ -20,7 +20,23 @@ import BottomSheetProfile from "./BottomSheetProfile";
 import Loading from "./Loading";
 import ProfileContainer from "./ProfileContainer";
 import MyEventsTab from "./MyEventsTab";
+import AttendingTab from "./AttendingTab";
 import styles from "./styles";
+
+import { API, graphqlOperation } from "aws-amplify";
+import {
+  onCreateUserConnection,
+  onDeleteUserConnection,
+  onUpdateUprofile,
+  onCreateUserEventConnection,
+  onDeleteUserEventConnection,
+} from "../../graphql/subscriptions";
+import { getUprofileDoc } from "../../aws-functions/userFunctions";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+let followers = undefined;
+let updatedProfile = undefined;
+let newEvents = undefined;
 
 //render function
 
@@ -44,14 +60,156 @@ const ProfileScreen = ({ navigation, route }) => {
   const isFocused = useIsFocused();
 
   useEffect(() => {
-    profileDoc != undefined ? setLoading(false) : null;
-    setMyEvents(profileDoc?.eventsCreated.items);
+    onPageRendered();
+
+    return () => {
+      console.log("je suis ici");
+    };
   }, [profileDoc]);
+
+  const onPageRendered = async () => {
+    const loggedUser = await AsyncStorage.getItem("currentUserCreds");
+    (await profileDoc) != undefined ? setLoading(false) : null;
+    setMyEvents(profileDoc?.eventsCreated.items);
+    await subscribeToRemoveFollower(profileDoc, loggedUser);
+    await subscribeToAddFollower(profileDoc, loggedUser);
+    await subscribeToUpdateProfile(profileDoc, loggedUser);
+    await subscribeToDeleteEvent(profileDoc, loggedUser);
+    await subscribeToAddEvent(profileDoc, loggedUser);
+  };
+
+  const subscribeToRemoveFollower = async (profileDocument, loggedUser) => {
+    await API.graphql(graphqlOperation(onDeleteUserConnection)).subscribe({
+      next: async ({ value }) => {
+        try {
+          const profileId =
+            profileDocument !== null
+              ? profileDocument.id
+              : JSON.parse(loggedUser).email;
+          if (value.data.onDeleteUserConnection.followedID == profileId) {
+            console.log("unfollowed");
+            await updateFollowers(profileId);
+          } else {
+            console.log("user not related to this follow");
+          }
+        } catch (e) {
+          console.warn(e);
+        }
+      },
+      error: (error) => console.log(error),
+    });
+  };
+
+  const subscribeToAddFollower = async (profileDocument, loggedUser) => {
+    await API.graphql(graphqlOperation(onCreateUserConnection)).subscribe({
+      next: async ({ value }) => {
+        try {
+          const profileId =
+            profileDocument !== null
+              ? profileDocument.id
+              : JSON.parse(loggedUser).email;
+          if (value.data.onCreateUserConnection.followedID == profileId) {
+            console.log("followed");
+            await updateFollowers(profileId);
+          } else {
+            console.log("user not related to this follow");
+          }
+        } catch (e) {
+          console.warn(e);
+        }
+      },
+      error: (error) => console.log(error, " here"),
+    });
+  };
+
+  const updateFollowers = async (userId) => {
+    let response = await getUprofileDoc(userId);
+    followers = response.followers.items;
+  };
+
+  const subscribeToUpdateProfile = async (profileDocument, loggedUser) => {
+    await API.graphql(
+      graphqlOperation(onUpdateUprofile, { id: user })
+    ).subscribe({
+      next: async ({ value }) => {
+        try {
+          const profileId =
+            profileDocument !== null
+              ? profileDocument.id
+              : JSON.parse(loggedUser).email;
+          if (value.data.onUpdateUprofile.id == profileId) {
+            console.log("updateProfile");
+            updatedProfile = value.data.onUpdateUprofile;
+          } else {
+            console.log("user not related to this update");
+          }
+        } catch (e) {
+          console.warn(e);
+        }
+      },
+      error: (error) => console.log(error, " here"),
+    });
+  };
+
+  const subscribeToDeleteEvent = async (profileDocument, loggedUser) => {
+    await API.graphql(graphqlOperation(onDeleteUserEventConnection)).subscribe({
+      next: async ({ value }) => {
+        try {
+          const profileId =
+            profileDocument !== null
+              ? profileDocument.id
+              : JSON.parse(loggedUser).email;
+          if (value.data.onDeleteUserEventConnection.profileID == profileId) {
+            console.log("removeEvent");
+            await updateEvents(profileId);
+          } else {
+            console.log("event not related to this user");
+          }
+        } catch (e) {
+          console.warn(e);
+        }
+      },
+      error: (error) => console.log(error, " here"),
+    });
+  };
+
+  const subscribeToAddEvent = async (profileDocument, loggedUser) => {
+    await API.graphql(graphqlOperation(onCreateUserEventConnection)).subscribe({
+      next: async ({ value }) => {
+        try {
+          const profileId =
+            profileDocument !== null
+              ? profileDocument.id
+              : JSON.parse(loggedUser).email;
+          if (value.data.onCreateUserEventConnection.profileID == profileId) {
+            console.log("subscription to createEvent");
+            await updateEvents(profileId);
+          } else {
+            console.log("subscription to createEvent failed");
+          }
+        } catch (e) {
+          console.warn(e);
+        }
+      },
+      error: (error) => console.log(error, " here"),
+    });
+  };
+
+  const updateEvents = async (userId) => {
+    let response = await getUprofileDoc(userId);
+    newEvents = response.eventsCreated.items;
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
       //title: "",
-      height: hsize(80),
+      //height: hsize(80),
+      headerStyle: {
+        backgroundColor: "white",
+        shadowColor: "#F4F4F4",
+        //elevation: 5,
+        height: hsize(80),
+      },
       headerLeft: () => (
         <TouchableOpacity
           activeOpacity={0.7}
@@ -99,7 +257,8 @@ const ProfileScreen = ({ navigation, route }) => {
 
   const goToFollowers = () => {
     navigation.navigate("Followers", {
-      followers: profileDoc.followers.items,
+      followers:
+        followers != undefined ? followers : profileDoc.followers.items,
     });
   };
 
@@ -126,11 +285,14 @@ const ProfileScreen = ({ navigation, route }) => {
             }}
           >
             <ProfileContainer
-              profileDoc={profileDoc}
+              profileDoc={
+                updatedProfile != undefined ? updatedProfile : profileDoc
+              }
+              followers={followers}
               goToFollowing={goToFollowing}
               goToFollowers={goToFollowers}
               navigate={navigation.navigate}
-              events={events}
+              events={newEvents != undefined ? newEvents : events}
               attending={attending}
               currentTab={currentTab}
               setCurrentTab={setCurrentTab}
@@ -155,8 +317,8 @@ const ProfileScreen = ({ navigation, route }) => {
               snapToAlignment="center"
               decelerationRate={"fast"}
             >
-              <MyEventsTab myEvents={myEvents} />
-              <MyEventsTab myEvents={myEvents} />
+              <MyEventsTab events={profileDoc?.eventsCreated.items} />
+              <AttendingTab events={[]} />
             </ScrollView>
           </Animated.View>
         )}

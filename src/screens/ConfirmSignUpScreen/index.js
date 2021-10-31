@@ -30,6 +30,9 @@ import { hsize, wsize } from "../../utils/Dimensions";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import { useTheme } from "react-native-paper";
 import styles from "./styles";
+import Title from "./Title";
+import CodeContainer from "./CodeContainer";
+import ButtonContainer from "./ButtonContainer";
 
 const ConfirmSignUpScreen = ({ navigation }) => {
   const { confirmSignUp, resendConfirmationCode } = useAuth();
@@ -43,37 +46,15 @@ const ConfirmSignUpScreen = ({ navigation }) => {
       console.log('\n', '\n', "<------------- ConfirmSignUpScreen ---------------->")
   })
 
-
-  /*if (error) {
-    Alert.alert("Error signing up. Try again");
-  }
-
-  if (data) {
-    // save token
-    AsyncStorage.setItem("token", data.signUp.token).then(() => {
-      // redirect home
-      //navigation.navigate("Home");
-      setUser(data.signUp.user);
-      console.log(data);
-    });
-  }*/
-
   return (
     <LinearGradient colors={["#743cff", "#bb006e"]} style={styles.container}>
       <StatusBar backgroundColor="#FF6347" barStyle="light-content" />
       <KeyboardAwareScrollView
         contentContainerStyle={{
-          //position: "absolute",
-          //bottom: 0,
-          //flex: 1,
           flexGrow: 1,
         }}
       >
-        <TouchableWithoutFeedback>
-          <View style={styles.header}>
-            <Text style={styles.text_header}>Verify your email</Text>
-          </View>
-        </TouchableWithoutFeedback>
+        <Title />
 
         {/* username input */}
         <Animatable.View animation="fadeInUpBig" style={styles.footer}>
@@ -166,6 +147,16 @@ const ConfirmSignUpScreen = ({ navigation }) => {
               </View>
             </TouchableOpacity>
           </View>
+          /*<CodeContainer setCode={setCode} text={colors.text} />
+
+          <ButtonContainer
+            confirmSignUp={confirmSignUp}
+            resendConfirmationCode={resendConfirmationCode}
+            email={email}
+            code={code}
+            username={username}
+            navigate={navigation.navigate}
+          />*/
         </Animatable.View>
       </KeyboardAwareScrollView>
     </LinearGradient>

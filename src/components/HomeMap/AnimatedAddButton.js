@@ -1,7 +1,8 @@
 import React from "react";
 import { View, TouchableOpacity, Animated } from "react-native";
-import { Feather } from "@expo/vector-icons";
+import { Feather, Entypo } from "@expo/vector-icons";
 import styles from "./styles";
+import { hsize, wsize } from "../../utils/Dimensions";
 
 export default function AnimatedAddButton(props) {
   return (
@@ -10,7 +11,7 @@ export default function AnimatedAddButton(props) {
         styles.buttonContainer,
         {
           right: 10,
-          bottom: 60,
+          bottom: hsize(25),
           transform: [
             {
               translateY: props.heightAnim,
@@ -19,6 +20,19 @@ export default function AnimatedAddButton(props) {
         },
       ]}
     >
+      <View
+        style={[
+          styles.buttonAdd,
+          {
+            height: wsize(50),
+            width: wsize(50),
+            borderRadius: wsize(25),
+            marginBottom: hsize(30),
+          },
+        ]}
+      >
+        <Entypo name="direction" size={24} color="grey" />
+      </View>
       <TouchableOpacity activeOpacity={0.7} onPress={props.goToAdd}>
         <View style={styles.buttonAdd}>
           <Feather name="plus" size={40} color="#743cff" />
