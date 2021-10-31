@@ -31,13 +31,16 @@ export const getUserDoc = async (email) => {
 };
 
 export const getUprofileDoc = async (email) => {
-  let uProfileDoc = await API.graphql(
-    graphqlOperation(queries.getUprofile, {
-      id: email,
-    })
-  );
-
-  return uProfileDoc.data.getUprofile;
+  try {
+    let uProfileDoc = await API.graphql(
+      graphqlOperation(queries.getUprofile, {
+        id: email,
+      })
+    );
+    return uProfileDoc.data.getUprofile;
+  } catch (error) {
+    console.log("Error getting on getUprofileDoc" + error);
+  }
 };
 
 /**
@@ -66,7 +69,7 @@ export const createUserDoc = async (userData) => {
       input: {
         email: userData.email,
         id: userData.email,
-        profileID: userData.email
+        profileID: userData.email,
       },
     })
   );
@@ -83,7 +86,10 @@ export const createUserDoc = async (userData) => {
  */
 
 export const createUserProfile = async (userProfile) => {
-  console.log("   Création du profile utilisateur:", JSON.stringify(userProfile))
+  console.log(
+    "   Création du profile utilisateur:",
+    JSON.stringify(userProfile)
+  );
   let uProfile = await API.graphql(
     graphqlOperation(mutations.createUprofile, {
       input: {
@@ -93,9 +99,11 @@ export const createUserProfile = async (userProfile) => {
         name: userProfile.name,
       },
     })
-  ).catch(error => {
-    console.log("ERREUR dans la requête createUserProfile: " + JSON.stringify(error));
-    throw("ERREUR dans la requête createUserProfile: " + JSON.stringify(error))
+  ).catch((error) => {
+    console.log(
+      "ERREUR dans la requête createUserProfile: " + JSON.stringify(error)
+    );
+    throw "ERREUR dans la requête createUserProfile: " + JSON.stringify(error);
   });
   //AsyncStorage.setItem("userProfileId", uProfile.data.createUprofile.id);
   return uProfile.data.createUprofile;
@@ -110,13 +118,13 @@ export const updateUserProfile = async (updatedUprofile) => {
   // console.log(updatedUprofile);
 
   return API.graphql(
-      graphqlOperation(mutations.updateUprofile, {
-        input: {
-          id: updatedUprofile.id,
-          username: updatedUprofile.username,
-          name: updatedUprofile.name,
-        },
-      })
+    graphqlOperation(mutations.updateUprofile, {
+      input: {
+        id: updatedUprofile.id,
+        username: updatedUprofile.username,
+        name: updatedUprofile.name,
+      },
+    })
   );
 };
 
@@ -126,12 +134,12 @@ export const updateUserProfile = async (updatedUprofile) => {
  */
 const createUserConnection = async (userConnectionData) => {
   return API.graphql(
-      graphqlOperation(mutations.createUserConnection, {
-        input: {
-          followerID: userConnectionData.follower,
-          followedID: userConnectionData.followed,
-        },
-      })
+    graphqlOperation(mutations.createUserConnection, {
+      input: {
+        followerID: userConnectionData.follower,
+        followedID: userConnectionData.followed,
+      },
+    })
   );
 };
 
