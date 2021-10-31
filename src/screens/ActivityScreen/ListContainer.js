@@ -1,16 +1,5 @@
 import React, { useContext, useLayoutEffect, useRef, useState } from "react";
-import {
-  View,
-  Text,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  Image,
-  Dimensions,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  FlatList,
-} from "react-native";
+import { View, Text, Dimensions, FlatList, RefreshControl } from "react-native";
 import BottomSheet from "reanimated-bottom-sheet";
 import ProfilePicture from "../../components/ProfilePictureUser";
 import Bitmoji from "../../components/Bitmoji";
@@ -23,7 +12,23 @@ import NotifRow from "./NotifRow";
 import { hsize, wsize } from "../../utils/Dimensions";
 
 const ListContainer = (props) => {
+  const [refreshing, setRefreshing] = useState(false);
+
   const { width, height } = Dimensions.get("window");
+  const onRefresh = React.useCallback(() => {
+    const wait = (timeout) => {
+      return new Promise((resolve) => setTimeout(resolve, timeout));
+    };
+
+    setRefreshing(true);
+    wait(1500).then(() => {
+      setRefreshing(false);
+      props.setNewData(true);
+    });
+  }, []);
+
+  console.log("FlatList ActivityScreen has re-rendered");
+
   return (
     <>
       <View style={{ flex: 1, backgroundColor: "white" }}>
@@ -49,12 +54,16 @@ const ListContainer = (props) => {
         <FlatList
           data={props.myNotifs}
           keyExtractor={(item) => item.id}
+          extraData={props.notifExtraData}
           style={{
             flex: 1,
             backgroundColor: "white",
             width: width,
           }}
-          renderItem={(item) => <NotifRow notif={item} />}
+          renderItem={({ item }) => <NotifRow notif={item} />}
+          refreshControl={
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
         />
       </View>
     </>
