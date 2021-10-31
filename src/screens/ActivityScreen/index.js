@@ -17,11 +17,15 @@ import PopularTags from "../../assets/data/PopularTags";
 import people from "../../assets/data/people";
 import ProfilePicture from "../../components/ProfilePictureUser";
 import { wsize, hsize } from "../../utils/Dimensions";
+import {useActivity} from "../../components/navigation/Providers/ActivityProvider"
+import LoadingScreen from "../../screens/LoadingScreen";
 
 const ActivityScreen = ({ navigation }) => {
+  const {loadingNotif} = useActivity()
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    console.log("<------------- ACTIVITYSCREEN ---------------->")
     // Will check if notifs are loaded and set loading to false
   }, []);
 
@@ -47,7 +51,7 @@ const ActivityScreen = ({ navigation }) => {
   }, [navigation]);
 
   return (
-    <>
+       (<>
       <StatusBar
         //translucent
         backgroundColor="white" /*transparent*/
@@ -64,7 +68,7 @@ const ActivityScreen = ({ navigation }) => {
           </>
         )}
       </SafeAreaView>
-    </>
+    </>)
   );
 };
 

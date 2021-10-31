@@ -22,7 +22,7 @@ import styles from "./styles";
 import NotifRow from "./NotifRow";
 import { hsize, wsize } from "../../utils/Dimensions";
 
-const CurrentContainer = (props) => {
+const ListContainer = (props) => {
   const { width, height } = Dimensions.get("window");
   return (
     <>
@@ -54,11 +54,11 @@ const CurrentContainer = (props) => {
             backgroundColor: "white",
             width: width,
           }}
-          renderItem={(item) => <NotifRow notif={item.item} />}
+          renderItem={(item) => <NotifRow notif={item} />}
         />
       </View>
     </>
   );
 };
 
-export default CurrentContainer;
+export default ListContainer;

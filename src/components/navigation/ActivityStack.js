@@ -10,17 +10,21 @@ import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { hsize, wsize } from "../../utils/Dimensions";
+import {ActivityProvider} from "../navigation/Providers/ActivityProvider"
 
 const Stack = createStackNavigator();
 
-const ActivityStack = ({ navigation }) => {
-  let routeName;
 
+
+const ActivityStack = ({ navigation }) => {
   return (
-    <Stack.Navigator initialRouteName={"Activity"}>
-      <Stack.Screen name="Activity" component={ActivityScreen} />
-      <Stack.Screen name="OtherProfile" component={OtherProfileScreen} />
-    </Stack.Navigator>
+
+    <ActivityProvider>
+        <Stack.Navigator initialRouteName={"Activity"}>
+        <Stack.Screen name="Activity" component={ActivityScreen} />
+        <Stack.Screen name="OtherProfile" component={OtherProfileScreen} />
+        </Stack.Navigator>
+    </ActivityProvider>
   );
 };
 

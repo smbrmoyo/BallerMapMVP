@@ -367,12 +367,9 @@ export const listNotifications = /* GraphQL */ `
     listNotifications(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         body
-        createdAt
         id
-        photo
         profileID
         type
-        updatedAt
       }
       nextToken
     }

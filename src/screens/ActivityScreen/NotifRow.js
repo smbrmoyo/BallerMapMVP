@@ -8,7 +8,7 @@ import styles from "./styles";
 
 // An Event row in the FlatList
 
-export default function EventRow({ notif }) {
+export default function NotifRow({ notif }) {
   const navigation = useNavigation();
   function pad2(string) {
     return `0${string}`.slice(-2);
@@ -70,7 +70,8 @@ export default function EventRow({ notif }) {
               }}
               numberOfLines={1}
               ellipsizeMode="tail"
-            ></Text>
+            >
+            </Text>
           </View>
         </View>
         <View
