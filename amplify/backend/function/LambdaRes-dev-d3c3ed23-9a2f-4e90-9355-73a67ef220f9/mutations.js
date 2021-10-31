@@ -61,6 +61,9 @@ module.exports = {
                 id
                 name
             }
+            eventID
+            createdAt
+            updatedAt
         }
       }`,
 
@@ -95,6 +98,18 @@ module.exports = {
                 followers{
                     items{
                         followerID
+                    }
+                }
+                attendings{
+                    items{
+                        id
+                        arrivingTime
+                        departureTime
+                        place{
+                            id
+                            name
+                            address
+                        }
                     }
                 }
                 userDocId
