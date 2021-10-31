@@ -17,11 +17,13 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const Stack = createStackNavigator();
 
 const AuthStack = ({ navigation, route }) => {
+  const [isLoading, setIsLoading] = useState(true)
   const [isFirstLaunch, setIsFirstLaunch] = useState(null);
   const { user } = useAuth();
   let routeName;
 
   useEffect(() => {
+    console.log('\n', '\n', "<------------- AUTHSTACK ---------------->")
     console.log("user value in AuthStack :" + JSON.stringify(user));
     AsyncStorage.getItem("firstLaunch").then((value) => {
       if (value == null) {

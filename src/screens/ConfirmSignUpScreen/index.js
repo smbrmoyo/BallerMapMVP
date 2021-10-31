@@ -40,7 +40,11 @@ const ConfirmSignUpScreen = ({ navigation }) => {
   const route = useRoute();
   const { colors } = useTheme();
   let username = route.params.username;
-  let email = route.params.email;
+  const email = route.params.email;
+
+  useEffect(() => {
+      console.log('\n', '\n', "<------------- ConfirmSignUpScreen ---------------->")
+  })
 
   return (
     <LinearGradient colors={["#743cff", "#bb006e"]} style={styles.container}>
@@ -54,7 +58,96 @@ const ConfirmSignUpScreen = ({ navigation }) => {
 
         {/* username input */}
         <Animatable.View animation="fadeInUpBig" style={styles.footer}>
-          <CodeContainer setCode={setCode} text={colors.text} />
+          <Text
+            style={[
+              styles.text_footer,
+              {
+                marginTop: hsize(15),
+              },
+            ]}
+          >
+            Code
+          </Text>
+          <View style={styles.action}>
+            <FontAwesome name="user-o" color="#05375a" size={20} />
+            <TextInput
+              placeholder="Verification Code"
+              placeholderTextColor="#666666"
+              style={[
+                styles.textInput,
+                {
+                  color: colors.text,
+                },
+              ]}
+              autoCapitalize="none"
+              keyboardType="numeric"
+              onEndEditing={(event) => setCode(event.nativeEvent.text)}
+            />
+          </View>
+
+          <View style={styles.button}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              style={styles.signIn}
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+                  () => {
+                    confirmSignUp(email, code)
+                      .then((res) => {
+                        navigation.navigate("SignInEmail");
+                      })
+                      .catch((error) => {
+                        console.log("      Erreur dans la confirmation du User" + error);
+                        Alert.alert("Impossible de confirmer l'identité", error);
+                      });
+                  }
+                );
+              }}
+            >
+              <LinearGradient
+                colors={["#743cff", "#bb006e"]}
+                style={styles.signIn}
+              >
+                <Text
+                  style={[
+                    styles.textSign,
+                    {
+                      color: "white",
+                    },
+                  ]}
+                >
+                  Confirm Sign Up
+                </Text>
+              </LinearGradient>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              activeOpacity={0.7}
+              onPress={async() => {
+                console.log("   Resending confirmation to user")
+                await resendConfirmationCode(email).then(res => {
+                    Alert.alert("New Confirmation code", `New confirmation sent to ${email}. Check your spams` )
+                }).catch(error => {
+                   Alert.alert("ERROR resending confirmation code", error);
+                   console.log("   ERREUR resending confirmation code")
+                })
+              }}
+              style={[styles.signIn]}
+            >
+              <View style={styles.textPrivate}>
+                <Text style={styles.color_textPrivate}>
+                  Didn't receive the code?
+                </Text>
+                <Text
+                  style={[styles.color_textPrivate, { fontWeight: "bold" }]}
+                >
+                  {" "}
+                  Resend it
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+          /*<CodeContainer setCode={setCode} text={colors.text} />
 
           <ButtonContainer
             confirmSignUp={confirmSignUp}
@@ -63,7 +156,7 @@ const ConfirmSignUpScreen = ({ navigation }) => {
             code={code}
             username={username}
             navigate={navigation.navigate}
-          />
+          />*/
         </Animatable.View>
       </KeyboardAwareScrollView>
     </LinearGradient>

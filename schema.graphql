@@ -1,0 +1,968 @@
+﻿schema {
+  query: Query
+  mutation: Mutation
+  subscription: Subscription
+}
+
+type Coords {
+  lat: Float!
+  long: Float!
+}
+
+type Event {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  beginningTime: AWSDateTime!
+  chat(createdAt: ModelStringKeyConditionInput, filter: ModelEventChatMessageFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelEventChatMessageConnection
+  createdAt: AWSDateTime!
+  creator: Uprofile!
+  creatorID: ID!
+  description: String!
+  endingTime: AWSDateTime!
+  eventPictures: [AWSURL]
+  eventVideos: [AWSURL]
+  id: ID!
+  name: String!
+  participants(filter: ModelUserEventConnectionFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserEventConnectionConnection
+  place: Place
+  placeID: ID!
+  privacy: EventPrivacy!
+  profilePic: AWSURL
+  tags: [String]
+  updatedAt: AWSDateTime!
+}
+
+type EventChatMessage {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  body: String!
+  createdAt: AWSDateTime
+  event: Event
+  eventID: ID!
+  id: ID!
+  profileID: ID!
+  updatedAt: AWSDateTime!
+  userProfile: Uprofile
+}
+
+type ModelEventChatMessageConnection {
+  items: [EventChatMessage]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelEventConnection {
+  items: [Event]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelNotificationConnection {
+  items: [Notification]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelPlaceConnection {
+  items: [Place]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelPrivateNoteConnection {
+  items: [PrivateNote]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelTaskConnection {
+  items: [Task]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelUprofileConnection {
+  items: [Uprofile]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelUserConnectionConnection {
+  items: [UserConnection]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelUserDocConnection {
+  items: [UserDoc]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelUserEventConnectionConnection {
+  items: [UserEventConnection]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type ModelUserPlaceConnectionConnection {
+  items: [UserPlaceConnection]
+  nextToken: String
+  startedAt: AWSTimestamp
+}
+
+type Mutation {
+  createEvent(condition: ModelEventConditionInput, input: CreateEventInput!): Event
+  createEventChatMessage(condition: ModelEventChatMessageConditionInput, input: CreateEventChatMessageInput!): EventChatMessage
+  createEvent_c(condition: ModelEventConditionInput, input: CreateEventInput_c!): Event
+  createNotification(condition: ModelNotificationConditionInput, input: CreateNotificationInput!): Notification
+  createPlace(condition: ModelPlaceConditionInput, input: CreatePlaceInput!): Place
+  createPrivateNote(condition: ModelPrivateNoteConditionInput, input: CreatePrivateNoteInput!): PrivateNote
+  createTask(condition: ModelTaskConditionInput, input: CreateTaskInput!): Task
+  createUprofile(condition: ModelUprofileConditionInput, input: CreateUprofileInput!): Uprofile
+  createUserConnection(condition: ModelUserConnectionConditionInput, input: CreateUserConnectionInput!): UserConnection
+  createUserDoc(condition: ModelUserDocConditionInput, input: CreateUserDocInput!): UserDoc
+  createUserEventConnection(condition: ModelUserEventConnectionConditionInput, input: CreateUserEventConnectionInput!): UserEventConnection
+  createUserPlaceConnection(condition: ModelUserPlaceConnectionConditionInput, input: CreateUserPlaceConnectionInput!): UserPlaceConnection
+  deleteEvent(condition: ModelEventConditionInput, input: DeleteEventInput!): Event
+  deleteEventChatMessage(condition: ModelEventChatMessageConditionInput, input: DeleteEventChatMessageInput!): EventChatMessage
+  deleteNotification(condition: ModelNotificationConditionInput, input: DeleteNotificationInput!): Notification
+  deletePlace(condition: ModelPlaceConditionInput, input: DeletePlaceInput!): Place
+  deletePrivateNote(condition: ModelPrivateNoteConditionInput, input: DeletePrivateNoteInput!): PrivateNote
+  deleteTask(condition: ModelTaskConditionInput, input: DeleteTaskInput!): Task
+  deleteUprofile(condition: ModelUprofileConditionInput, input: DeleteUprofileInput!): Uprofile
+  deleteUserConnection(condition: ModelUserConnectionConditionInput, input: DeleteUserConnectionInput!): UserConnection
+  deleteUserDoc(condition: ModelUserDocConditionInput, input: DeleteUserDocInput!): UserDoc
+  deleteUserEventConnection(condition: ModelUserEventConnectionConditionInput, input: DeleteUserEventConnectionInput!): UserEventConnection
+  deleteUserPlaceConnection(condition: ModelUserPlaceConnectionConditionInput, input: DeleteUserPlaceConnectionInput!): UserPlaceConnection
+  updateEvent(condition: ModelEventConditionInput, input: UpdateEventInput!): Event
+  updateEventChatMessage(condition: ModelEventChatMessageConditionInput, input: UpdateEventChatMessageInput!): EventChatMessage
+  updateNotification(condition: ModelNotificationConditionInput, input: UpdateNotificationInput!): Notification
+  updatePlace(condition: ModelPlaceConditionInput, input: UpdatePlaceInput!): Place
+  updatePrivateNote(condition: ModelPrivateNoteConditionInput, input: UpdatePrivateNoteInput!): PrivateNote
+  updateTask(condition: ModelTaskConditionInput, input: UpdateTaskInput!): Task
+  updateUprofile(condition: ModelUprofileConditionInput, input: UpdateUprofileInput!): Uprofile
+  updateUserConnection(condition: ModelUserConnectionConditionInput, input: UpdateUserConnectionInput!): UserConnection
+  updateUserDoc(condition: ModelUserDocConditionInput, input: UpdateUserDocInput!): UserDoc
+  updateUserEventConnection(condition: ModelUserEventConnectionConditionInput, input: UpdateUserEventConnectionInput!): UserEventConnection
+  updateUserPlaceConnection(condition: ModelUserPlaceConnectionConditionInput, input: UpdateUserPlaceConnectionInput!): UserPlaceConnection
+}
+
+type Notification {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  body: String!
+  createdAt: AWSDateTime
+  id: ID!
+  photo: AWSURL
+  profileID: ID!
+  type: NotifType!
+  uProfile: Uprofile
+  updatedAt: AWSDateTime!
+}
+
+type Place {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  address: String!
+  attendings(arrivingTime: ModelStringKeyConditionInput, filter: ModelUserPlaceConnectionFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserPlaceConnectionConnection
+  coords: Coords!
+  createdAt: AWSDateTime!
+  currentPlayers(filter: ModelUprofileFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUprofileConnection
+  events(beginningTime: ModelStringKeyConditionInput, filter: ModelEventFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelEventConnection
+  id: ID!
+  name: String!
+  updatedAt: AWSDateTime!
+}
+
+type PrivateNote {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  content: String!
+  createdAt: AWSDateTime!
+  id: ID!
+  owner: String
+  updatedAt: AWSDateTime!
+}
+
+type Query {
+  eventProfiles: [Event]
+  getEvent(id: ID!): Event
+  getEventChatMessage(id: ID!): EventChatMessage
+  getNotification(id: ID!): Notification
+  getPlace(id: ID!): Place
+  getPrivateNote(id: ID!): PrivateNote
+  getTask(id: ID!): Task
+  getUprofile(id: ID!): Uprofile
+  getUserDoc(id: ID!): UserDoc
+  listEventChatMessages(filter: ModelEventChatMessageFilterInput, limit: Int, nextToken: String): ModelEventChatMessageConnection
+  listEvents(filter: ModelEventFilterInput, limit: Int, nextToken: String): ModelEventConnection
+  listNotifications(filter: ModelNotificationFilterInput, limit: Int, nextToken: String): ModelNotificationConnection
+  listPlaces(filter: ModelPlaceFilterInput, limit: Int, nextToken: String): ModelPlaceConnection
+  listPrivateNotes(filter: ModelPrivateNoteFilterInput, limit: Int, nextToken: String): ModelPrivateNoteConnection
+  listTasks(filter: ModelTaskFilterInput, limit: Int, nextToken: String): ModelTaskConnection
+  listUprofiles(filter: ModelUprofileFilterInput, limit: Int, nextToken: String): ModelUprofileConnection
+  listUserDocs(filter: ModelUserDocFilterInput, limit: Int, nextToken: String): ModelUserDocConnection
+  syncEventChatMessages(filter: ModelEventChatMessageFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelEventChatMessageConnection
+  syncEvents(filter: ModelEventFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelEventConnection
+  syncNotifications(filter: ModelNotificationFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelNotificationConnection
+  syncPlaces(filter: ModelPlaceFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelPlaceConnection
+  syncPrivateNotes(filter: ModelPrivateNoteFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelPrivateNoteConnection
+  syncTasks(filter: ModelTaskFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelTaskConnection
+  syncUprofiles(filter: ModelUprofileFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelUprofileConnection
+  syncUserConnections(filter: ModelUserConnectionFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelUserConnectionConnection
+  syncUserDocs(filter: ModelUserDocFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelUserDocConnection
+  syncUserEventConnections(filter: ModelUserEventConnectionFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelUserEventConnectionConnection
+  syncUserPlaceConnections(filter: ModelUserPlaceConnectionFilterInput, lastSync: AWSTimestamp, limit: Int, nextToken: String): ModelUserPlaceConnectionConnection
+  uProfiles: [Uprofile]
+}
+
+type Subscription {
+  onCreateEvent: Event @aws_subscribe(mutations : ["createEvent"])
+  onCreateEventChatMessage: EventChatMessage @aws_subscribe(mutations : ["createEventChatMessage"])
+  onCreateNotification: Notification @aws_subscribe(mutations : ["createNotification"])
+  onCreatePlace: Place @aws_subscribe(mutations : ["createPlace"])
+  onCreatePrivateNote(owner: String!): PrivateNote @aws_subscribe(mutations : ["createPrivateNote"])
+  onCreateTask: Task @aws_subscribe(mutations : ["createTask"])
+  onCreateUprofile: Uprofile @aws_subscribe(mutations : ["createUprofile"])
+  onCreateUserConnection: UserConnection @aws_subscribe(mutations : ["createUserConnection"])
+  onCreateUserDoc: UserDoc @aws_subscribe(mutations : ["createUserDoc"])
+  onCreateUserEventConnection: UserEventConnection @aws_subscribe(mutations : ["createUserEventConnection"])
+  onCreateUserPlaceConnection: UserPlaceConnection @aws_subscribe(mutations : ["createUserPlaceConnection"])
+  onDeleteEvent: Event @aws_subscribe(mutations : ["deleteEvent"])
+  onDeleteEventChatMessage: EventChatMessage @aws_subscribe(mutations : ["deleteEventChatMessage"])
+  onDeleteNotification: Notification @aws_subscribe(mutations : ["deleteNotification"])
+  onDeletePlace: Place @aws_subscribe(mutations : ["deletePlace"])
+  onDeletePrivateNote(owner: String!): PrivateNote @aws_subscribe(mutations : ["deletePrivateNote"])
+  onDeleteTask: Task @aws_subscribe(mutations : ["deleteTask"])
+  onDeleteUprofile: Uprofile @aws_subscribe(mutations : ["deleteUprofile"])
+  onDeleteUserConnection: UserConnection @aws_subscribe(mutations : ["deleteUserConnection"])
+  onDeleteUserDoc: UserDoc @aws_subscribe(mutations : ["deleteUserDoc"])
+  onDeleteUserEventConnection: UserEventConnection @aws_subscribe(mutations : ["deleteUserEventConnection"])
+  onDeleteUserPlaceConnection: UserPlaceConnection @aws_subscribe(mutations : ["deleteUserPlaceConnection"])
+  onUpdateEvent: Event @aws_subscribe(mutations : ["updateEvent"])
+  onUpdateEventChatMessage: EventChatMessage @aws_subscribe(mutations : ["updateEventChatMessage"])
+  onUpdateNotification: Notification @aws_subscribe(mutations : ["updateNotification"])
+  onUpdatePlace: Place @aws_subscribe(mutations : ["updatePlace"])
+  onUpdatePrivateNote(owner: String!): PrivateNote @aws_subscribe(mutations : ["updatePrivateNote"])
+  onUpdateTask: Task @aws_subscribe(mutations : ["updateTask"])
+  onUpdateUprofile: Uprofile @aws_subscribe(mutations : ["updateUprofile"])
+  onUpdateUserConnection: UserConnection @aws_subscribe(mutations : ["updateUserConnection"])
+  onUpdateUserDoc: UserDoc @aws_subscribe(mutations : ["updateUserDoc"])
+  onUpdateUserEventConnection: UserEventConnection @aws_subscribe(mutations : ["updateUserEventConnection"])
+  onUpdateUserPlaceConnection: UserPlaceConnection @aws_subscribe(mutations : ["updateUserPlaceConnection"])
+}
+
+type Task {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  createdAt: AWSDateTime!
+  description: String
+  id: ID!
+  status: String
+  title: String!
+  updatedAt: AWSDateTime!
+}
+
+type Uprofile {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  attendings(arrivingTime: ModelStringKeyConditionInput, filter: ModelUserPlaceConnectionFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserPlaceConnectionConnection
+  createdAt: AWSDateTime!
+  currentPlace: Place
+  currentPlaceID: ID
+  eventsCreated(beginningTime: ModelStringKeyConditionInput, filter: ModelEventFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelEventConnection
+  followers(filter: ModelUserConnectionFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserConnectionConnection
+  following(filter: ModelUserConnectionFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserConnectionConnection
+  id: ID!
+  myEvents(filter: ModelUserEventConnectionFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserEventConnectionConnection
+  name: String
+  notifications(createdAt: ModelStringKeyConditionInput, filter: ModelNotificationFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelNotificationConnection
+  updatedAt: AWSDateTime!
+  userDoc: UserDoc
+  userDocId: ID!
+  username: String!
+}
+
+type UserConnection {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  createdAt: AWSDateTime!
+  followed: Uprofile
+  followedID: ID!
+  follower: Uprofile
+  followerID: ID!
+  id: ID!
+  updatedAt: AWSDateTime!
+}
+
+type UserDoc {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  createdAt: AWSDateTime!
+  deviceToken: String
+  email: String!
+  id: ID!
+  phoneNumber: String
+  profileID: ID
+  uProfile: Uprofile
+  updatedAt: AWSDateTime!
+}
+
+type UserEventConnection {
+  Event: Event!
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  createdAt: AWSDateTime!
+  eventID: ID!
+  id: ID!
+  profileID: ID!
+  updatedAt: AWSDateTime!
+  userProfile: Uprofile
+}
+
+type UserPlaceConnection {
+  _deleted: Boolean
+  _lastChangedAt: AWSTimestamp!
+  _version: Int!
+  arrivingTime: AWSDateTime!
+  createdAt: AWSDateTime!
+  departureTime: AWSDateTime
+  id: ID!
+  place: Place
+  placeID: ID!
+  profileID: ID!
+  uProfile: Uprofile
+  updatedAt: AWSDateTime!
+}
+
+enum EventPrivacy {
+  private
+  public
+}
+
+enum ModelAttributeTypes {
+  _null
+  binary
+  binarySet
+  bool
+  list
+  map
+  number
+  numberSet
+  string
+  stringSet
+}
+
+enum ModelSortDirection {
+  ASC
+  DESC
+}
+
+enum NotifType {
+  eventInvitation
+  friendPlaying
+  newFollower
+}
+
+input CoordsInput {
+  lat: Float!
+  long: Float!
+}
+
+input CreateEventChatMessageInput {
+  _version: Int
+  body: String!
+  createdAt: AWSDateTime
+  eventID: ID!
+  id: ID
+  profileID: ID!
+}
+
+input CreateEventInput {
+  _version: Int
+  beginningTime: AWSDateTime!
+  creatorID: ID!
+  description: String!
+  endingTime: AWSDateTime!
+  eventPictures: [AWSURL]
+  eventVideos: [AWSURL]
+  id: ID
+  name: String!
+  placeID: ID!
+  privacy: EventPrivacy!
+  profilePic: AWSURL
+  tags: [String]
+}
+
+input CreateEventInput_c {
+  beginningTime: AWSDateTime!
+  creatorID: ID!
+  description: String!
+  endingTime: AWSDateTime!
+  eventPictures: [AWSURL]
+  eventVideos: [AWSURL]
+  id: ID
+  name: String!
+  participants: [String]
+  placeID: ID!
+  privacy: EventPrivacy!
+  profilePic: AWSURL
+  tags: [String]
+}
+
+input CreateNotificationInput {
+  _version: Int
+  body: String!
+  createdAt: AWSDateTime
+  id: ID
+  photo: AWSURL
+  profileID: ID!
+  type: NotifType!
+}
+
+input CreatePlaceInput {
+  _version: Int
+  address: String!
+  coords: CoordsInput!
+  id: ID
+  name: String!
+}
+
+input CreatePrivateNoteInput {
+  _version: Int
+  content: String!
+  id: ID
+}
+
+input CreateTaskInput {
+  _version: Int
+  description: String
+  id: ID
+  status: String
+  title: String!
+}
+
+input CreateUprofileInput {
+  _version: Int
+  currentPlaceID: ID
+  id: ID
+  name: String
+  userDocId: ID!
+  username: String!
+}
+
+input CreateUserConnectionInput {
+  _version: Int
+  followedID: ID!
+  followerID: ID!
+  id: ID
+}
+
+input CreateUserDocInput {
+  _version: Int
+  deviceToken: String
+  email: String!
+  id: ID
+  phoneNumber: String
+  profileID: ID
+}
+
+input CreateUserEventConnectionInput {
+  _version: Int
+  eventID: ID!
+  id: ID
+  profileID: ID!
+}
+
+input CreateUserPlaceConnectionInput {
+  _version: Int
+  arrivingTime: AWSDateTime!
+  departureTime: AWSDateTime
+  id: ID
+  placeID: ID!
+  profileID: ID!
+}
+
+input DeleteEventChatMessageInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteEventInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteNotificationInput {
+  _version: Int
+  id: ID!
+}
+
+input DeletePlaceInput {
+  _version: Int
+  id: ID!
+}
+
+input DeletePrivateNoteInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteTaskInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteUprofileInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteUserConnectionInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteUserDocInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteUserEventConnectionInput {
+  _version: Int
+  id: ID!
+}
+
+input DeleteUserPlaceConnectionInput {
+  _version: Int
+  id: ID!
+}
+
+input ModelBooleanInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  eq: Boolean
+  ne: Boolean
+}
+
+input ModelEventChatMessageConditionInput {
+  and: [ModelEventChatMessageConditionInput]
+  body: ModelStringInput
+  createdAt: ModelStringInput
+  eventID: ModelIDInput
+  not: ModelEventChatMessageConditionInput
+  or: [ModelEventChatMessageConditionInput]
+  profileID: ModelIDInput
+}
+
+input ModelEventChatMessageFilterInput {
+  and: [ModelEventChatMessageFilterInput]
+  body: ModelStringInput
+  createdAt: ModelStringInput
+  eventID: ModelIDInput
+  id: ModelIDInput
+  not: ModelEventChatMessageFilterInput
+  or: [ModelEventChatMessageFilterInput]
+  profileID: ModelIDInput
+}
+
+input ModelEventConditionInput {
+  and: [ModelEventConditionInput]
+  beginningTime: ModelStringInput
+  creatorID: ModelIDInput
+  description: ModelStringInput
+  endingTime: ModelStringInput
+  eventPictures: ModelStringInput
+  eventVideos: ModelStringInput
+  name: ModelStringInput
+  not: ModelEventConditionInput
+  or: [ModelEventConditionInput]
+  placeID: ModelIDInput
+  privacy: ModelEventPrivacyInput
+  profilePic: ModelStringInput
+  tags: ModelStringInput
+}
+
+input ModelEventFilterInput {
+  and: [ModelEventFilterInput]
+  beginningTime: ModelStringInput
+  creatorID: ModelIDInput
+  description: ModelStringInput
+  endingTime: ModelStringInput
+  eventPictures: ModelStringInput
+  eventVideos: ModelStringInput
+  id: ModelIDInput
+  name: ModelStringInput
+  not: ModelEventFilterInput
+  or: [ModelEventFilterInput]
+  placeID: ModelIDInput
+  privacy: ModelEventPrivacyInput
+  profilePic: ModelStringInput
+  tags: ModelStringInput
+}
+
+input ModelEventPrivacyInput {
+  eq: EventPrivacy
+  ne: EventPrivacy
+}
+
+input ModelFloatInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Float]
+  eq: Float
+  ge: Float
+  gt: Float
+  le: Float
+  lt: Float
+  ne: Float
+}
+
+input ModelIDInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: ID
+  between: [ID]
+  contains: ID
+  eq: ID
+  ge: ID
+  gt: ID
+  le: ID
+  lt: ID
+  ne: ID
+  notContains: ID
+  size: ModelSizeInput
+}
+
+input ModelIntInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelNotifTypeInput {
+  eq: NotifType
+  ne: NotifType
+}
+
+input ModelNotificationConditionInput {
+  and: [ModelNotificationConditionInput]
+  body: ModelStringInput
+  createdAt: ModelStringInput
+  not: ModelNotificationConditionInput
+  or: [ModelNotificationConditionInput]
+  photo: ModelStringInput
+  profileID: ModelIDInput
+  type: ModelNotifTypeInput
+}
+
+input ModelNotificationFilterInput {
+  and: [ModelNotificationFilterInput]
+  body: ModelStringInput
+  createdAt: ModelStringInput
+  id: ModelIDInput
+  not: ModelNotificationFilterInput
+  or: [ModelNotificationFilterInput]
+  photo: ModelStringInput
+  profileID: ModelIDInput
+  type: ModelNotifTypeInput
+}
+
+input ModelPlaceConditionInput {
+  address: ModelStringInput
+  and: [ModelPlaceConditionInput]
+  name: ModelStringInput
+  not: ModelPlaceConditionInput
+  or: [ModelPlaceConditionInput]
+}
+
+input ModelPlaceFilterInput {
+  address: ModelStringInput
+  and: [ModelPlaceFilterInput]
+  id: ModelIDInput
+  name: ModelStringInput
+  not: ModelPlaceFilterInput
+  or: [ModelPlaceFilterInput]
+}
+
+input ModelPrivateNoteConditionInput {
+  and: [ModelPrivateNoteConditionInput]
+  content: ModelStringInput
+  not: ModelPrivateNoteConditionInput
+  or: [ModelPrivateNoteConditionInput]
+}
+
+input ModelPrivateNoteFilterInput {
+  and: [ModelPrivateNoteFilterInput]
+  content: ModelStringInput
+  id: ModelIDInput
+  not: ModelPrivateNoteFilterInput
+  or: [ModelPrivateNoteFilterInput]
+}
+
+input ModelSizeInput {
+  between: [Int]
+  eq: Int
+  ge: Int
+  gt: Int
+  le: Int
+  lt: Int
+  ne: Int
+}
+
+input ModelStringInput {
+  attributeExists: Boolean
+  attributeType: ModelAttributeTypes
+  beginsWith: String
+  between: [String]
+  contains: String
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+  ne: String
+  notContains: String
+  size: ModelSizeInput
+}
+
+input ModelStringKeyConditionInput {
+  beginsWith: String
+  between: [String]
+  eq: String
+  ge: String
+  gt: String
+  le: String
+  lt: String
+}
+
+input ModelTaskConditionInput {
+  and: [ModelTaskConditionInput]
+  description: ModelStringInput
+  not: ModelTaskConditionInput
+  or: [ModelTaskConditionInput]
+  status: ModelStringInput
+  title: ModelStringInput
+}
+
+input ModelTaskFilterInput {
+  and: [ModelTaskFilterInput]
+  description: ModelStringInput
+  id: ModelIDInput
+  not: ModelTaskFilterInput
+  or: [ModelTaskFilterInput]
+  status: ModelStringInput
+  title: ModelStringInput
+}
+
+input ModelUprofileConditionInput {
+  and: [ModelUprofileConditionInput]
+  currentPlaceID: ModelIDInput
+  name: ModelStringInput
+  not: ModelUprofileConditionInput
+  or: [ModelUprofileConditionInput]
+  userDocId: ModelIDInput
+  username: ModelStringInput
+}
+
+input ModelUprofileFilterInput {
+  and: [ModelUprofileFilterInput]
+  currentPlaceID: ModelIDInput
+  id: ModelIDInput
+  name: ModelStringInput
+  not: ModelUprofileFilterInput
+  or: [ModelUprofileFilterInput]
+  userDocId: ModelIDInput
+  username: ModelStringInput
+}
+
+input ModelUserConnectionConditionInput {
+  and: [ModelUserConnectionConditionInput]
+  followedID: ModelIDInput
+  followerID: ModelIDInput
+  not: ModelUserConnectionConditionInput
+  or: [ModelUserConnectionConditionInput]
+}
+
+input ModelUserConnectionFilterInput {
+  and: [ModelUserConnectionFilterInput]
+  followedID: ModelIDInput
+  followerID: ModelIDInput
+  id: ModelIDInput
+  not: ModelUserConnectionFilterInput
+  or: [ModelUserConnectionFilterInput]
+}
+
+input ModelUserDocConditionInput {
+  and: [ModelUserDocConditionInput]
+  deviceToken: ModelStringInput
+  email: ModelStringInput
+  not: ModelUserDocConditionInput
+  or: [ModelUserDocConditionInput]
+  phoneNumber: ModelStringInput
+  profileID: ModelIDInput
+}
+
+input ModelUserDocFilterInput {
+  and: [ModelUserDocFilterInput]
+  deviceToken: ModelStringInput
+  email: ModelStringInput
+  id: ModelIDInput
+  not: ModelUserDocFilterInput
+  or: [ModelUserDocFilterInput]
+  phoneNumber: ModelStringInput
+  profileID: ModelIDInput
+}
+
+input ModelUserEventConnectionConditionInput {
+  and: [ModelUserEventConnectionConditionInput]
+  eventID: ModelIDInput
+  not: ModelUserEventConnectionConditionInput
+  or: [ModelUserEventConnectionConditionInput]
+  profileID: ModelIDInput
+}
+
+input ModelUserEventConnectionFilterInput {
+  and: [ModelUserEventConnectionFilterInput]
+  eventID: ModelIDInput
+  id: ModelIDInput
+  not: ModelUserEventConnectionFilterInput
+  or: [ModelUserEventConnectionFilterInput]
+  profileID: ModelIDInput
+}
+
+input ModelUserPlaceConnectionConditionInput {
+  and: [ModelUserPlaceConnectionConditionInput]
+  arrivingTime: ModelStringInput
+  departureTime: ModelStringInput
+  not: ModelUserPlaceConnectionConditionInput
+  or: [ModelUserPlaceConnectionConditionInput]
+  placeID: ModelIDInput
+  profileID: ModelIDInput
+}
+
+input ModelUserPlaceConnectionFilterInput {
+  and: [ModelUserPlaceConnectionFilterInput]
+  arrivingTime: ModelStringInput
+  departureTime: ModelStringInput
+  id: ModelIDInput
+  not: ModelUserPlaceConnectionFilterInput
+  or: [ModelUserPlaceConnectionFilterInput]
+  placeID: ModelIDInput
+  profileID: ModelIDInput
+}
+
+input UpdateEventChatMessageInput {
+  _version: Int
+  body: String
+  createdAt: AWSDateTime
+  eventID: ID
+  id: ID!
+  profileID: ID
+}
+
+input UpdateEventInput {
+  _version: Int
+  beginningTime: AWSDateTime
+  creatorID: ID
+  description: String
+  endingTime: AWSDateTime
+  eventPictures: [AWSURL]
+  eventVideos: [AWSURL]
+  id: ID!
+  name: String
+  placeID: ID
+  privacy: EventPrivacy
+  profilePic: AWSURL
+  tags: [String]
+}
+
+input UpdateNotificationInput {
+  _version: Int
+  body: String
+  createdAt: AWSDateTime
+  id: ID!
+  photo: AWSURL
+  profileID: ID
+  type: NotifType
+}
+
+input UpdatePlaceInput {
+  _version: Int
+  address: String
+  coords: CoordsInput
+  id: ID!
+  name: String
+}
+
+input UpdatePrivateNoteInput {
+  _version: Int
+  content: String
+  id: ID!
+}
+
+input UpdateTaskInput {
+  _version: Int
+  description: String
+  id: ID!
+  status: String
+  title: String
+}
+
+input UpdateUprofileInput {
+  _version: Int
+  currentPlaceID: ID
+  id: ID!
+  name: String
+  userDocId: ID
+  username: String
+}
+
+input UpdateUserConnectionInput {
+  _version: Int
+  followedID: ID
+  followerID: ID
+  id: ID!
+}
+
+input UpdateUserDocInput {
+  _version: Int
+  deviceToken: String
+  email: String
+  id: ID!
+  phoneNumber: String
+  profileID: ID
+}
+
+input UpdateUserEventConnectionInput {
+  _version: Int
+  eventID: ID
+  id: ID!
+  profileID: ID
+}
+
+input UpdateUserPlaceConnectionInput {
+  _version: Int
+  arrivingTime: AWSDateTime
+  departureTime: AWSDateTime
+  id: ID!
+  placeID: ID
+  profileID: ID
+}

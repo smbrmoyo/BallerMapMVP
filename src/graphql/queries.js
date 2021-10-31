@@ -1,114 +1,154 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getTask = /* GraphQL */ `
-  query GetTask($id: ID!) {
-    getTask(id: $id) {
-      id
-      title
-      description
-      status
+export const getEvent = /* GraphQL */ `
+  query GetEvent($id: ID!) {
+    getEvent(id: $id) {
+      beginningTime
+      chat {
+        nextToken
+      }
       createdAt
+      creator {
+        createdAt
+        currentPlaceID
+        id
+        name
+        updatedAt
+        userDocId
+        username
+      }
+      creatorID
+      description
+      endingTime
+      eventPictures
+      eventVideos
+      id
+      name
+      participants {
+        nextToken
+      }
+      place {
+        address
+        createdAt
+        id
+        name
+        updatedAt
+      }
+      placeID
+      privacy
+      profilePic
+      tags
       updatedAt
     }
   }
 `;
-export const listTasks = /* GraphQL */ `
-  query ListTasks(
-    $filter: ModelTaskFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listTasks(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        title
-        description
-        status
+export const getEventChatMessage = /* GraphQL */ `
+  query GetEventChatMessage($id: ID!) {
+    getEventChatMessage(id: $id) {
+      body
+      createdAt
+      event {
+        beginningTime
         createdAt
+        creatorID
+        description
+        endingTime
+        eventPictures
+        eventVideos
+        id
+        name
+        placeID
+        privacy
+        profilePic
+        tags
         updatedAt
       }
-      nextToken
+      eventID
+      id
+      profileID
+      updatedAt
+      userProfile {
+        createdAt
+        currentPlaceID
+        id
+        name
+        updatedAt
+        userDocId
+        username
+      }
+    }
+  }
+`;
+export const getNotification = /* GraphQL */ `
+  query GetNotification($id: ID!) {
+    getNotification(id: $id) {
+      body
+      createdAt
+      id
+      photo
+      profileID
+      type
+      uProfile {
+        createdAt
+        currentPlaceID
+        id
+        name
+        userDocId
+        currentPlaceID
+        createdAt
+        updatedAt
+        userDocId
+        username
+      }
+      updatedAt
+    }
+  }
+`;
+export const getPlace = /* GraphQL */ `
+  query GetPlace($id: ID!) {
+    getPlace(id: $id) {
+      address
+      attendings {
+        nextToken
+      }
+      coords {
+        lat
+        long
+      }
+      createdAt
+      currentPlayers {
+        nextToken
+      }
+      events {
+        nextToken
+      }
+      id
+      name
+      updatedAt
     }
   }
 `;
 export const getPrivateNote = /* GraphQL */ `
   query GetPrivateNote($id: ID!) {
     getPrivateNote(id: $id) {
-      id
       content
       createdAt
-      updatedAt
-      owner
-    }
-  }
-`;
-export const listPrivateNotes = /* GraphQL */ `
-  query ListPrivateNotes(
-    $filter: ModelPrivateNoteFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listPrivateNotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        content
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-    }
-  }
-`;
-export const getUserDoc = /* GraphQL */ `
-  query GetUserDoc($id: ID!) {
-    getUserDoc(id: $id) {
       id
-      profileID
-      email
-      deviceToken
-      phoneNumber
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        createdAt
-        updatedAt
-      }
-      createdAt
+      owner
       updatedAt
     }
   }
 `;
-export const listUserDocs = /* GraphQL */ `
-  query ListUserDocs(
-    $filter: ModelUserDocFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listUserDocs(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        profileID
-        email
-        deviceToken
-        phoneNumber
-        uProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          createdAt
-          updatedAt
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
+export const getTask = /* GraphQL */ `
+  query GetTask($id: ID!) {
+    getTask(id: $id) {
+      createdAt
+      description
+      id
+      status
+      title
+      updatedAt
     }
   }
 `;
@@ -246,301 +286,23 @@ export const getUprofile = /* GraphQL */ `
     }
   }
 `;
-export const listUprofiles = /* GraphQL */ `
-  query ListUprofiles(
-    $filter: ModelUprofileFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listUprofiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-        }
-        myEvents {
-          nextToken
-        }
-        eventsCreated {
-          nextToken
-        }
-        followers {
-          nextToken
-        }
-        following {
-          nextToken
-        }
-        currentPlace {
-          id
-          name
-          address
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getEvent = /* GraphQL */ `
-  query GetEvent($id: ID!) {
-    getEvent(id: $id) {
-      id
-      name
-      placeID
-      creatorID
-      place {
-        id
-        name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-        }
-        currentPlayers {
-          nextToken
-        }
-        attendings {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      beginningTime
-      endingTime
-      tags
-      creator {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-        }
-        myEvents {
-          nextToken
-        }
-        eventsCreated {
-          nextToken
-        }
-        followers {
-          nextToken
-        }
-        following {
-          nextToken
-        }
-        currentPlace {
-          id
-          name
-          address
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      participants {
-        items {
-          id
-          eventID
-          profileID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      chat {
-        items {
-          id
-          body
-          profileID
-          eventID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      description
-      privacy
-      profilePic
-      eventPictures
-      eventVideos
+export const getUserDoc = /* GraphQL */ `
+  query GetUserDoc($id: ID!) {
+    getUserDoc(id: $id) {
       createdAt
-      updatedAt
-    }
-  }
-`;
-export const listEvents = /* GraphQL */ `
-  query ListEvents(
-    $filter: ModelEventFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          createdAt
-          updatedAt
-        }
-        beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          createdAt
-          updatedAt
-        }
-        participants {
-          nextToken
-        }
-        chat {
-          nextToken
-        }
-        description
-        privacy
-        profilePic
-        eventPictures
-        eventVideos
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getEventChatMessage = /* GraphQL */ `
-  query GetEventChatMessage($id: ID!) {
-    getEventChatMessage(id: $id) {
+      deviceToken
+      email
       id
-      body
+      phoneNumber
       profileID
-      eventID
-      createdAt
-      event {
-        id
-        name
-        placeID
-        creatorID
-        place {
-          id
-          name
-          address
-          createdAt
-          updatedAt
-        }
-        beginningTime
-        endingTime
-        tags
-        creator {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          createdAt
-          updatedAt
-        }
-        participants {
-          nextToken
-        }
-        chat {
-          nextToken
-        }
-        description
-        privacy
-        profilePic
-        eventPictures
-        eventVideos
+      uProfile {
         createdAt
-        updatedAt
-      }
-      userProfile {
-        id
-        username
-        name
-        userDocId
         currentPlaceID
-        notifications {
-          nextToken
-        }
-        myEvents {
-          nextToken
-        }
-        eventsCreated {
-          nextToken
-        }
-        followers {
-          nextToken
-        }
-        following {
-          nextToken
-        }
-        currentPlace {
-          id
-          name
-          address
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-        }
-        createdAt
+        id
+        name
         updatedAt
+        userDocId
+        username
       }
       updatedAt
     }
@@ -558,184 +320,41 @@ export const listEventChatMessages = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
-        id
         body
-        profileID
-        eventID
         createdAt
-        event {
-          id
-          name
-          placeID
-          creatorID
-          beginningTime
-          endingTime
-          tags
-          description
-          privacy
-          profilePic
-          eventPictures
-          eventVideos
-          createdAt
-          updatedAt
-        }
-        userProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          createdAt
-          updatedAt
-        }
+        eventID
+        id
+        profileID
         updatedAt
       }
       nextToken
     }
   }
 `;
-export const getPlace = /* GraphQL */ `
-  query GetPlace($id: ID!) {
-    getPlace(id: $id) {
-      id
-      name
-      address
-      coords {
-        long
-        lat
-      }
-      events {
-        items {
-          id
-          name
-          placeID
-          creatorID
-          beginningTime
-          endingTime
-          tags
-          description
-          privacy
-          profilePic
-          eventPictures
-          eventVideos
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      currentPlayers {
-        items {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      attendings {
-        items {
-          id
-          profileID
-          placeID
-          arrivingTime
-          departureTime
-          createdAt
-          updatedAt
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listPlaces = /* GraphQL */ `
-  query ListPlaces(
-    $filter: ModelPlaceFilterInput
+export const listEvents = /* GraphQL */ `
+  query ListEvents(
+    $filter: ModelEventFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listPlaces(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
+        beginningTime
+        createdAt
+        creatorID
+        description
+        endingTime
+        eventPictures
+        eventVideos
         id
         name
-        address
-        coords {
-          long
-          lat
-        }
-        events {
-          nextToken
-        }
-        currentPlayers {
-          nextToken
-        }
-        attendings {
-          nextToken
-        }
-        createdAt
+        placeID
+        privacy
+        profilePic
+        tags
         updatedAt
       }
       nextToken
-    }
-  }
-`;
-export const getNotification = /* GraphQL */ `
-  query GetNotification($id: ID!) {
-    getNotification(id: $id) {
-      id
-      body
-      profileID
-      photo
-      createdAt
-      type
-      uProfile {
-        id
-        username
-        name
-        userDocId
-        currentPlaceID
-        notifications {
-          nextToken
-        }
-        myEvents {
-          nextToken
-        }
-        eventsCreated {
-          nextToken
-        }
-        followers {
-          nextToken
-        }
-        following {
-          nextToken
-        }
-        currentPlace {
-          id
-          name
-          address
-          createdAt
-          updatedAt
-        }
-        userDoc {
-          id
-          profileID
-          email
-          deviceToken
-          phoneNumber
-          createdAt
-          updatedAt
-        }
-        attendings {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      updatedAt
     }
   }
 `;
@@ -747,21 +366,111 @@ export const listNotifications = /* GraphQL */ `
   ) {
     listNotifications(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
-        id
         body
-        profileID
-        photo
         createdAt
+        id
+        photo
+        profileID
         type
-        uProfile {
-          id
-          username
-          name
-          userDocId
-          currentPlaceID
-          createdAt
-          updatedAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const listPlaces = /* GraphQL */ `
+  query ListPlaces(
+    $filter: ModelPlaceFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPlaces(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        address
+        createdAt
+        id
+        name
+        updatedAt
+        coords{
+          long
+          lat
         }
+      }
+      nextToken
+    }
+  }
+`;
+export const listPrivateNotes = /* GraphQL */ `
+  query ListPrivateNotes(
+    $filter: ModelPrivateNoteFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPrivateNotes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        content
+        createdAt
+        id
+        owner
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const listTasks = /* GraphQL */ `
+  query ListTasks(
+    $filter: ModelTaskFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listTasks(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        createdAt
+        description
+        id
+        status
+        title
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const listUprofiles = /* GraphQL */ `
+  query ListUprofiles(
+    $filter: ModelUprofileFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUprofiles(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        createdAt
+        currentPlaceID
+        id
+        name
+        updatedAt
+        userDocId
+        username
+      }
+      nextToken
+    }
+  }
+`;
+export const listUserDocs = /* GraphQL */ `
+  query ListUserDocs(
+    $filter: ModelUserDocFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listUserDocs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        createdAt
+        deviceToken
+        email
+        id
+        phoneNumber
+        profileID
         updatedAt
       }
       nextToken

@@ -21,32 +21,23 @@ import {
   Keyboard,
 } from "react-native";
 import { useHeaderHeight } from "@react-navigation/stack";
-import * as Haptics from "expo-haptics";
-import BottomSheet from "reanimated-bottom-sheet";
 import Animated from "react-native-reanimated";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
-import {
-  createUserDoc,
-  createUserProfile,
-  getAuthenticatedUser,
-} from "../../aws-functions/userFunctions";
 import styles from "./styles";
+import {useNavigation} from "@react-navigation/native"
 import { wsize, hsize } from "../../utils/Dimensions";
-import Feather from "react-native-vector-icons/Feather";
-import userConf from "../../aws-functions/userConf";
-import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
 import BioContainer from "./BioContainer";
 import PictureContainer from "./PictureContainer";
 import NameContainer from "./NameContainer";
 import ButtonContainer from "./ButtonContainer";
 import UsernameContainer from "./UsernameContainer";
+import {useAppContext} from "../../components/navigation/Providers/AppProvider";
 
-const SetProfileScreen = ({ props, navigation, route }) => {
-  const { user, createProfileDoc, setCreatedDocs } = useAuth();
+const SetProfileScreen = ({ props, route }) => {
+  const { user } = useAuth();
+  const {isPDoc, setIsPDoc} = useAppContext();
   const [color, setColor] = useState("#CDCDCD");
-  const headerHeight = useHeaderHeight();
   let udId = "";
   const [userProfile, setUserProfile] = useState({
     //email: user,
@@ -58,6 +49,16 @@ const SetProfileScreen = ({ props, navigation, route }) => {
     id: user,
   });
 
+  useEffect(() => {
+    console.log("<------------- SETPROFILESCREEN ---------------->")
+    if(isPDoc) {
+      Alert.alert("ERREUR DE LOGIQUE!!!!",
+          "isPDoc est true dans le SetProfileScreen" );
+      console.log("ERREUR de logique: ----> Le isPDoc est true dans le SetProfileScreen")
+      setIsPDoc(true)
+    }
+
+  })
   /*
   Logic used to get userDocId is good. Should be done on signin/signUp.
   Will give some time to AsyncStorage to store value of userDocId and make it available for other operations
@@ -65,7 +66,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
   on userProfile creation, should insert uProfileId into userDoc to make connection
   */
 
-  useLayoutEffect(() => {
+  /*useLayoutEffect(() => {
     navigation.setOptions({
       title: "",
       headerStyle: {
@@ -85,7 +86,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
       ),
       headerLeft: () => null,
     });
-  }, []);
+  }, []);*/
 
   return (
     <>
@@ -133,7 +134,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                   setCreatedDocs={setCreatedDocs}
                   userProfile={userProfile}
                   user={user}
-                  navigation={navigation}
+                  //navigation={navigation}
                 />
               </Animated.View>
             </TouchableWithoutFeedback>

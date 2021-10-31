@@ -33,58 +33,70 @@ const AuthProvider = ({ children }) => {
   const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(() => {
-    const currentUserCreds = async () => {
-      let res = await AsyncStorage.getItem("currentUserCreds").then((res) => {
-        return JSON.parse(res);
-      });
-      if (res != null) {
-        setUser(res.email);
-        console.log("stored User: " + JSON.stringify(res));
-        let signed = signIn(res.email, res.password).then((result) => {
-          console.log("setting User");
+    console.log('\n', '\n', "<------------- AUTHPROVIDER ---------------->")
+    let creds = AsyncStorage.getItem("currentUserCreds").then((res) => {
+        if (res) { // stored user
+          console.log("   Stored User found: " + JSON.stringify(res));
+          console.log("   Signing in stored User");
+          res = JSON.parse(res);
+          let signed = signIn(res.email, res.password).then((result) => {
+            if(result){
+              console.log("   Stored User signed in, heading to AppStack")
+              setUser(res.email);
+              setLoadingUser(false);
+            }
+          }).catch(error => {
+            console.log(error);
+            console.log("   Couldn't sign in stored user, cuurentUserCreds cleared from device storage");
+            console.log("heading to AuthStack");
+            AsyncStorage.removeItem("currentUserCreds");
+            setLoadingUser(false);
+          });
+        } else { // pas de stored user
+          console.log("   Stored user not found, heading to AuthStack")
+          setLoadingUser(false)
+        }
+    });
 
-          return res.email;
-        });
-        return signed;
-      } else {
-        return false;
-      }
-    };
-
-    currentUserCreds();
   }, []);
 
-  useEffect(() => {
-    /*getFilteredEvents({ creatorID: { contains: "" } }, 2).then((events) => {
-      setYourEvents(events.data.listEvents.items);
-    });*/
-  }, []);
 
-  // The signIn function takes an email and password and uses the
-  // emailPassword authentication provider to log in.
+  /**
+   * @param email
+   * @param password
+   * @returns {Promise<boolean>} true or throw an error
+   *        Sets current user creds in Local storage to signed in user creds on sucess
+   */
   const signIn = async (email, password) => {
     let res = await Auth.signIn(email, password)
       .then((res) => {
-        AsyncStorage.setItem(
-          "currentUserCreds",
-          JSON.stringify({ email: email, password: password })
-        );
-        console.log("signIn Succrss");
+        console.log("      signIn function Success");
         return true;
       })
       .catch((error) => {
         if (error.name == "InvalidParameterException") {
-          console.log("signIn Error: " + JSON.stringify(error));
+          console.log("      !!!ERREUR: Auth.signIn Error, [InvalidParameterException]: " + JSON.stringify(error));
+          throw JSON.stringify(error);
+        }else if(error.code == "UserNotFoundException"){
+          console.log("      !!!ERREUR: Auth.signIn Error: " + JSON.stringify(error));
+          throw "UserNotFoundException";
+        }else if(error.code == "UserNotConfirmedException"){
+          console.log("      !!!ERREUR: Auth.signIn Error: " + JSON.stringify(error));
+          throw "UserNotConfirmedException";
+        }else if(error.message == "Incorrect username or password."){
+          console.log(" !!!ERREUR: Auth.signIn Error:", JSON.stringify(error));
+          throw "Incorrect username or password.";
         }
-        return false;
       });
     return res;
   };
 
-  /**The signUp function takes an email and password and uses the
-   * emailPassword authentication provider to register the user.
-   * return l'email
-   **/
+  /**
+   * @param email
+   * @param password
+   * @returns {Promise<*>} that resolves to the new user email
+   * Throws an error on failure
+   */
   const signUp = async (email, password) => {
     try {
       const user = await Auth.signUp({
@@ -94,74 +106,98 @@ const AuthProvider = ({ children }) => {
           email: email,
         },
       }).then(async (res) => {
-        console.log(JSON.stringify(res));
+        console.log("      Réponse du signup ----->", JSON.stringify(res));
+        return email;
       });
-      return email;
+      return user
     } catch (error) {
       if (error.name == "UsernameExistsException") {
-        Alert.alert(error);
+        //Alert.alert("       ERREUR dans la fonction SignUp, UsernameExistsException", JSON.stringify(error));
+        throw "UsernameExistsException";
+      }else{
+        Alert.alert("       ERREUR dans la fonction SignUp", JSON.stringify(error));
+        throw("   ERREUR dans la fonction SignUp: " + JSON.stringify(error));
       }
-      console.log("error signing up", error);
+      console.log("error signing up", JSON.stringify(error));
     }
   };
 
-  // Confirm signUp through verification per email
-
+  /**
+   * @param email
+   * @param code
+   * Verifie le code de confirmation de l'utilisateur
+   * @returns {Promise<boolean>} true if success
+   * Throw an error on failure
+   */
   const confirmSignUp = async (email, code) => {
     try {
-      AsyncStorage.removeItem("profileCreated");
       const confirmedUser = await Auth.confirmSignUp(email, code).then(
         (res) => {
-          console.log("reponse du confirmSignup" + JSON.stringify(res));
+          console.log("      reponse du confirmSignup" + JSON.stringify(res));
+          return true;
         }
       );
-      return email;
+      return confirmedUser;
     } catch (error) {
       if (error.name == "UsernameExistsException") {
-        console.log(error);
+        console.log("      ERROR dans la fonction confirmSignup :", JSON.stringify(error));
+        throw `ERROR confirming user [UsernameExistsException]: ${JSON.stringify(error)}`
+      } else if(error.name == "UnexpectedLambdaException"){
+        console.log("      ERROR dans la fonction confirmSignup:", JSON.stringify(error));
+        //throw `ERROR confirming user : ${JSON.stringify(error)}`;
       } else {
-        console.log(error);
+        console.log("      ERROR dans la fonction confirmSignup:", JSON.stringify(error));
+        throw `ERROR confirming user : ${JSON.stringify(error)}`
       }
-      console.log("error confirming user", error);
     }
   };
 
-  /**Fonction pour vérifier l'existence d'un userDoc et d'un profileDoc
-   * Retourne un boleen
+  /**
+   * Fonction pour vérifier l'existence d'un profile utilisateur
+   * @param email
+   * @returns {Promise<boolean>} resolves to true if user profile document exists
+   * If userDoc absent, crée un userdoc et return false
+   * Throws an error on failure
    */
   const IsProfileDoc = async (email) => {
-    let isUserDoc = await getUserDoc(email);
-    if (isUserDoc !== null) {
-      // userDoc créé
-      console.log("is userDoc " + email);
-      let isProfileDoc = await getUprofileDoc(email).catch((err) =>
-        console.log("console " + JSON.stringify(err))
-      );
-      if (isProfileDoc != null || isProfileDoc != undefined) {
-        //setCreatedDocs(true);
+    console.log("   ---Recherche du profile utilisateur")
+    let isUserDoc = await getUserDoc(email).catch(error => {
+      console.log("   --- ERREUR de la requête getUserDoc:", JSON.stringify(error));
+      throw("ERREUR de la requête getUserDoc: " + JSON.stringify(error));
+    });
+    if (isUserDoc !== null) { // userDoc présent
+      console.log("   ---User doc trouvé");
+      let isProfileDoc = await getUprofileDoc(email).catch((err) => {
+        console.log("   ---!!! ERREUR de la requête getUprofileDoc " + JSON.stringify(err));
+        throw ("ERREUR de la requête getUprofileDoc " + JSON.stringify(err))
+      });
+      if (isProfileDoc != null) {
+        console.log("   --- Profile utilisateur trouvé")
         return true;
+      } else {
+        console.log("   --- Le profile Doc est absent. ---> heading to setProfileScreen")
+        return false
       }
-    } else {
-      console.log("pas de user Doc");
-      AsyncStorage.removeItem("profileCreated");
-      //création du userDoc
+    } else {// User doc absent --> création du userDoc
+      console.log("   --- User Doc absent,  Création du userDoc");
       const userDocInput = {
         email: email,
       };
-      let userDoc = await createUserDoc(userDocInput)
-        .then((asyncRes) => {
-          console.log("userDoc créé: " + JSON.stringify(asyncRes));
-        })
-        .catch((error) =>
-          console.log(
-            "error creating userDoc on signIn " + JSON.stringify(error)
-          )
-        );
+      let userDoc = await createUserDoc(userDocInput).then((asyncRes) => {
+          console.log("   --- User Doc créé: " + JSON.stringify(asyncRes));
+        }).catch((error) => {
+        console.log("   ---!!!ERREUR de la requête createUserDoc: " + JSON.stringify(error));
+        throw("ERREUR de la requête createUserDoc: " + JSON.stringify(error))
+      });
       return false;
     }
-    return false;
   };
-
+  /**
+   * May be unused
+   * @param username
+   * @param name
+   * @returns {Promise<void>}
+   */
   const createProfileDoc = async (username, name) => {
     const uProfileInput = {
       id: user,
@@ -171,16 +207,22 @@ const AuthProvider = ({ children }) => {
     };
     await createUserProfile(uProfileInput).then((res) => {
       console.log("ProfileDoc créé: " + JSON.stringify(res));
+    }).catch(error => {
+      throw `ERREUR de la requête createUserProfile: ${JSON.stringify(error)}`
     });
   };
 
   // Resend the confirmation code in case the user didn't receive it
   const resendConfirmationCode = async (username) => {
     try {
-      const newCode = await Auth.resendSignUp(username);
-      console.log("code resent successfully");
+      const newCode = await Auth.resendSignUp(username).then(res => {
+        console.log("      Successfully resent confirmation code")
+        return res;
+      });
+      return newCode;
     } catch (err) {
-      console.log("error resending code: ", err);
+      console.log("      ERREUR de la fonction Auth.resendSignup:", JSON.stringify(err));
+      throw JSON.stringify(err)
     }
   };
 
@@ -188,11 +230,13 @@ const AuthProvider = ({ children }) => {
   // logged in user
   const signOut = async () => {
     try {
-      AsyncStorage.removeItem("currentUserCreds");
-      setUser(null);
-      await Auth.signOut();
+      await Auth.signOut().then(res => {
+        AsyncStorage.removeItem("currentUserCreds");
+        setUser(null);
+      });
     } catch (error) {
       console.log("error signing out", error);
+      throw("Error SigningOut")
     }
   };
 
@@ -205,6 +249,7 @@ const AuthProvider = ({ children }) => {
         user,
         setUser,
         loadingUser,
+        setLoadingUser,
         confirmSignUp,
         resendConfirmationCode,
         createProfileDoc,
@@ -215,7 +260,7 @@ const AuthProvider = ({ children }) => {
         createdDocs,
         setCreatedDocs,
         IsProfileDoc,
-        yourEvents,
+        yourEvents
       }}
     >
       {children}

@@ -42,6 +42,7 @@ const ProfileProvider = ({ children }) => {
         followers,
         setUsername,
         profileDoc,
+        setProfileDoc,
         status,
       }}
     >
