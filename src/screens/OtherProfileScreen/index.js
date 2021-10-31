@@ -132,7 +132,7 @@ const OtherProfileScreen = ({ navigation }) => {
 
   const isFollowing = () => {
     if (otherUser?.followers.items) {
-      return true;
+      return false;
     } else {
       return false;
     }
@@ -187,7 +187,7 @@ const OtherProfileScreen = ({ navigation }) => {
             }}
           >
             <ProfileContainer
-              isFollowing={isFollowing}
+              isFollowing={false}
               otherUser={otherUser}
               onFollowPress={onFollowPress}
               goToFollowing={goToFollowing}
@@ -218,17 +218,15 @@ const OtherProfileScreen = ({ navigation }) => {
               decelerationRate={"fast"}
             >
               <MyEventsTab
-                events={events}
+                events={otherUser?.eventsCreated.items}
                 attending={attending}
                 setCurrentTab={setCurrentTab}
-                myEvents={otherUser?.eventsCreated.items}
               />
 
               <AttendingTab
-                events={events}
+                events={[]}
                 attending={attending}
                 setCurrentTab={setCurrentTab}
-                myEvents={[]}
               />
             </ScrollView>
           </Animated.View>

@@ -33,7 +33,11 @@ const SignInScreenEmail = ({ navigation, props }) => {
   const [nextScreen, setNextScreen] = useState("Map");
 
   useEffect(() => {
-    console.log('\n', '\n', "<------------- Sign In Screen Email---------------->")
+    console.log(
+      "\n",
+      "\n",
+      "<------------- Sign In Screen Email---------------->"
+    );
     AsyncStorage.getItem("firstLaunch").then((value) => {
       /*if (value == "true") {
         setNextScreen("SetProfile");
@@ -238,10 +242,10 @@ const SignInScreenEmail = ({ navigation, props }) => {
                     /*if (nextScreen == "SetProfile") {
                       navigation.navigate(nextScreen);
                     }*/
-                    if(!dataLogin.email){
+                    if (!dataLogin.email) {
                       Alert.alert("Enter your email address");
                       return false;
-                    } else if(!dataLogin.password){
+                    } else if (!dataLogin.password) {
                       Alert.alert("Enter your password");
                       return false;
                     }
@@ -249,40 +253,55 @@ const SignInScreenEmail = ({ navigation, props }) => {
                     await signIn(dataLogin.email, dataLogin.password)
                       .then((res) => {
                         if (res) {
-                          AsyncStorage.setItem("currentUserCreds",
-                              JSON.stringify({
-                                email: dataLogin.email,
-                                password: dataLogin.password
-                              }))
-                          console.log("   User Logged IN, Credentials stored locally");
+                          AsyncStorage.setItem(
+                            "currentUserCreds",
+                            JSON.stringify({
+                              email: dataLogin.email,
+                              password: dataLogin.password,
+                            })
+                          );
+                          console.log(
+                            "   User Logged IN, Credentials stored locally"
+                          );
                           setUser(dataLogin.email);
                         }
-                      }).catch((error) => {
-                          console.log(error);
-                          console.log("   Error signing in");
-                          if(error == "UserNotFoundException"){
-                            Alert.alert("Connection impossible", "L'email ne correspond pas " +
-                                "a un utilisateur");
-                          }else if(error == "UserNotConfirmedException"){
-                            Alert.alert("Email non confirmé", "Veuillez confirmer votre email" +
-                                "Vous allez recevoir un " +
-                                "code de confirmation par email. Vérifiez vos spams/pourriels",
-                                [{
+                      })
+                      .catch((error) => {
+                        console.log(error);
+                        console.log("   Error signing in");
+                        if (error == "UserNotFoundException") {
+                          Alert.alert(
+                            "Connection impossible",
+                            "L'email ne correspond pas " + "a un utilisateur"
+                          );
+                        } else if (error == "UserNotConfirmedException") {
+                          Alert.alert(
+                            "Email non confirmé",
+                            "Veuillez confirmer votre email" +
+                              "Vous allez recevoir un " +
+                              "code de confirmation par email. Vérifiez vos spams/pourriels",
+                            [
+                              {
                                 text: "OK",
-                                  onPress: () => {
-                                    resendConfirmationCode(dataLogin.email).then(() => {
+                                onPress: () => {
+                                  resendConfirmationCode(dataLogin.email).then(
+                                    () => {
                                       navigation.navigate("ConfirmSignUp", {
                                         username: dataLogin.email,
-                                        email: dataLogin.email
-                                      })
-                                    })
-                                  }
-                                }]);
-                          }else if(error == "Incorrect username or password."){
-                            Alert.alert("Impossible " +
-                                " de se connecter", "Email ou" +
-                                " mot de passe incorrect")
-                          }
+                                        email: dataLogin.email,
+                                      });
+                                    }
+                                  );
+                                },
+                              },
+                            ]
+                          );
+                        } else if (error == "Incorrect username or password.") {
+                          Alert.alert(
+                            "Impossible " + " de se connecter",
+                            "Email ou" + " mot de passe incorrect"
+                          );
+                        }
                       });
                   }
                 );
@@ -320,7 +339,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
               </View>
             </TouchableOpacity>
           </View>
-          /*<UsernameContainer
+          {/*<UsernameContainer
             check_textInputChange={dataLogin.check_textInputChange}
             colors={colors}
             textInputChange={textInputChange}
@@ -340,7 +359,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
             setUser={setUser}
             dataLogin={dataLogin}
             navigate={navigation.navigate}
-          />*/
+          />*/}
         </Animatable.View>
       </KeyboardAwareScrollView>
     </View>

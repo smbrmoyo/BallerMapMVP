@@ -35,7 +35,11 @@ const MapProvider = ({ children }) => {
   const resultUsers = useQuery("getUsers", getAllUserProfiles);
 
   useEffect(() => {
-    if (resultPlaces.status != status && resultCamera.status != status) {
+    if (
+      resultPlaces.status != status &&
+      resultCamera.status != status &&
+      resultUsers.status != status
+    ) {
       setPlaces(resultPlaces.data);
       setCamera(resultCamera.data);
       setUsers(resultUsers.data);
@@ -43,7 +47,7 @@ const MapProvider = ({ children }) => {
     } else {
       setStatus(resultCamera.status);
     }
-  }, [resultUsers.status]);
+  }, [resultPlaces.status]);
 
   let counter = 1;
 

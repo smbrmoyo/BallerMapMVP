@@ -19,7 +19,7 @@ export default function FollowRow({ item, navigation }) {
       onPress={() => {
         navigation.navigate("Profile", {
           screen: "OtherProfile",
-          params: { user: item },
+          params: { id: item.id },
         });
       }}
     >
