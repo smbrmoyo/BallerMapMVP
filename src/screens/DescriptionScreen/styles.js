@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     //backgroundColor: 'rgba(0,0,0,0.05)',
     //marginBottom: 15,
-    marginHorizontal: 10,
+    marginHorizontal: 5,
   },
   profileInitialContainer: {
     flexDirection: "row",

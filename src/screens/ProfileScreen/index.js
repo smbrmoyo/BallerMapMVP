@@ -62,9 +62,7 @@ const ProfileScreen = ({ navigation, route }) => {
   useEffect(() => {
     onPageRendered();
 
-    return () => {
-      console.log("je suis ici");
-    };
+    return () => {};
   }, [profileDoc]);
 
   const onPageRendered = async () => {
@@ -83,9 +81,7 @@ const ProfileScreen = ({ navigation, route }) => {
       next: async ({ value }) => {
         try {
           const profileId =
-            profileDocument !== null
-              ? profileDocument.id
-              : JSON.parse(loggedUser).email;
+            profileDocument !== null ? profileDocument.id : user;
           if (value.data.onDeleteUserConnection.followedID == profileId) {
             console.log("unfollowed");
             await updateFollowers(profileId);
@@ -105,9 +101,7 @@ const ProfileScreen = ({ navigation, route }) => {
       next: async ({ value }) => {
         try {
           const profileId =
-            profileDocument !== null
-              ? profileDocument.id
-              : JSON.parse(loggedUser).email;
+            profileDocument !== null ? profileDocument.id : user;
           if (value.data.onCreateUserConnection.followedID == profileId) {
             console.log("followed");
             await updateFollowers(profileId);
@@ -134,9 +128,7 @@ const ProfileScreen = ({ navigation, route }) => {
       next: async ({ value }) => {
         try {
           const profileId =
-            profileDocument !== null
-              ? profileDocument.id
-              : JSON.parse(loggedUser).email;
+            profileDocument !== null ? profileDocument.id : user;
           if (value.data.onUpdateUprofile.id == profileId) {
             console.log("updateProfile");
             updatedProfile = value.data.onUpdateUprofile;
@@ -156,9 +148,7 @@ const ProfileScreen = ({ navigation, route }) => {
       next: async ({ value }) => {
         try {
           const profileId =
-            profileDocument !== null
-              ? profileDocument.id
-              : JSON.parse(loggedUser).email;
+            profileDocument !== null ? profileDocument.id : user;
           if (value.data.onDeleteUserEventConnection.profileID == profileId) {
             console.log("removeEvent");
             await updateEvents(profileId);
@@ -178,9 +168,7 @@ const ProfileScreen = ({ navigation, route }) => {
       next: async ({ value }) => {
         try {
           const profileId =
-            profileDocument !== null
-              ? profileDocument.id
-              : JSON.parse(loggedUser).email;
+            profileDocument !== null ? profileDocument.id : user;
           if (value.data.onCreateUserEventConnection.profileID == profileId) {
             console.log("subscription to createEvent");
             await updateEvents(profileId);

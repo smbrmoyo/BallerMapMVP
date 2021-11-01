@@ -21,8 +21,6 @@ const ProfileProvider = ({ children }) => {
 
   const result = useQuery("getProfile", getUprofileDoc(user));
 
-  console.log("user is" + user);
-
   /*useEffect(() => {
     if (result.status != status) {
       setProfileDoc(result.data);
