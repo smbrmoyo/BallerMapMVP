@@ -1,4 +1,10 @@
-import React, {useContext, useEffect, useLayoutEffect, useRef, useState} from "react";
+import React, {
+  useContext,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { View, Text, Dimensions, FlatList, RefreshControl } from "react-native";
 import BottomSheet from "reanimated-bottom-sheet";
 import ProfilePicture from "../../components/ProfilePictureUser";
@@ -12,12 +18,12 @@ import NotifRow from "./NotifRow";
 import { hsize, wsize } from "../../utils/Dimensions";
 import * as subscriptions from "../../graphql/subscriptions";
 import { API, graphqlOperation } from "aws-amplify";
-import {useAuth} from "../../components/navigation/Providers/AuthProvider";
+import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 const ListContainer = (props) => {
   const [refreshing, setRefreshing] = useState(false);
-  const {user} = useAuth();
-  const [testState, setTestState] = useState();
-  const [notifData, setNotifData] = useState(props.myNotifs);
+  const { user } = useAuth();
+  const [notifExtraData, setNotifExtraData] = useState(false);
+  const [data, setData] = useState(props.myNotifs);
   const { width, height } = Dimensions.get("window");
   const onRefresh = React.useCallback(() => {
     const wait = (timeout) => {
@@ -31,44 +37,48 @@ const ListContainer = (props) => {
     });
   }, []);
 
-
-
   console.log("   ListContainer screen has rendered");
 
-
-
-
   useEffect(() => {
-    let Subscription = notifSubscription(user);
-    return () => {
-        Subscription.unsubscribe().then(() => {
-            console.log("   Cleanup de la Notif subscription exécuté")
-        }).catch((error) => {
-            console.log("   !!!ERRROR dans le cleaup de la notif subscription:", error)
-        });
-    }
-  }, [testState])
-
-  const  notifSubscription = async(user) => {
+    console.log("<------------- useEffect ListContainer ---------------->");
     let notifSub = API.graphql(
-        graphqlOperation(
-            subscriptions.onCreateNotification,
-            {
-                profileID: user
-            }
-        )
+      graphqlOperation(subscriptions.onCreateNotification, {
+        profileID: user,
+      })
     ).subscribe({
-        next: ({provider, value}) => {
-            console.log("onCreateNotification subscription triggered:", ({value}));
-            setTestState(true)
-        },
-        error: error => console.log("   !!! ERROR dans la soubscription onCreateNotification:", error)
+      next: ({ provider, value }) => {
+        console.log("onCreateNotification subscription triggered:", { value });
+        setNotifExtraData(!notifExtraData);
+        setData([value.data.onCreateNotification, ...data]);
+      },
+      error: (error) =>
+        console.log(
+          "   !!! ERROR dans la soubscription onCreateNotification:",
+          error
+        ),
+    });
+    return () => notifSub.unsubscribe();
+  }, []);
+
+  const notifSubscription = async (user) => {
+    let notifSub = API.graphql(
+      graphqlOperation(subscriptions.onCreateNotification, {
+        profileID: user,
+      })
+    ).subscribe({
+      next: ({ provider, value }) => {
+        console.log("onCreateNotification subscription triggered:", { value });
+        setTestState(true);
+      },
+      error: (error) =>
+        console.log(
+          "   !!! ERROR dans la soubscription onCreateNotification:",
+          error
+        ),
     });
 
     return notifSub;
-
   };
-
 
   return (
     <>
@@ -93,9 +103,9 @@ const ListContainer = (props) => {
           />
         </View>
         <FlatList
-          data={props.myNotifs}
+          data={data}
           keyExtractor={(item) => item.id}
-          extraData={props.notifExtraData}
+          extraData={notifExtraData}
           style={{
             flex: 1,
             backgroundColor: "white",
@@ -111,7 +121,4 @@ const ListContainer = (props) => {
   );
 };
 
-
-
 export default ListContainer;
-

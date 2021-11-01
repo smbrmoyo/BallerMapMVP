@@ -18,19 +18,17 @@ import PopularTags from "../../assets/data/PopularTags";
 import people from "../../assets/data/people";
 import ProfilePicture from "../../components/ProfilePictureUser";
 import { wsize, hsize } from "../../utils/Dimensions";
-import {useActivity} from "../../components/navigation/Providers/ActivityProvider"
+import { useActivity } from "../../components/navigation/Providers/ActivityProvider";
 import LoadingScreen from "../../screens/LoadingScreen";
 
 const ActivityScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const { loadingNotif, activity } = useActivity();
   const [newData, setNewData] = useState(false);
-  const [notifExtraData, setNotifExtraData] = useState(false);
 
   useEffect(() => {
     console.log("<------------- ACTIVITYSCREEN ---------------->");
     // Will check if notifs are loaded and set loading to false
-    setNotifExtraData(!notifExtraData);
     // Will compare updated data with old data and set newData to true
   }, []);
 
@@ -56,7 +54,7 @@ const ActivityScreen = ({ navigation }) => {
   }, [navigation]);
 
   return (
-       (<>
+    <>
       <StatusBar
         //translucent
         backgroundColor="white" /*transparent*/
@@ -69,21 +67,13 @@ const ActivityScreen = ({ navigation }) => {
           <Loading />
         ) : (
           <>
-            <NewDataContainer
-              setNotifExtraData={setNotifExtraData}
-              newData={newData}
-              setNewData={setNewData}
-            />
+            <NewDataContainer newData={newData} setNewData={setNewData} />
 
-            <ListContainer
-              notifExtraData={notifExtraData}
-              myNotifs={activity}
-              setNewData={setNewData}
-            />
+            <ListContainer myNotifs={activity} setNewData={setNewData} />
           </>
         )}
       </SafeAreaView>
-    </>)
+    </>
   );
 };
 

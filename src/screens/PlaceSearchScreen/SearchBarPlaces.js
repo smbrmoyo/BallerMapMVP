@@ -13,15 +13,7 @@ export default function SearchBarPlaces(props) {
         value={props.text}
         placeholder="Search"
         placeholderTextColor="#CDCDCD"
-        style={[
-          styles.inputBox,
-          {
-            color: props.colors.text,
-            backgroundColor: props.colors.background,
-            borderColor: props.colors.border,
-            borderWidth: props.dark ? 1 : 0.5,
-          },
-        ]}
+        style={[styles.inputBox]}
       />
     </View>
   );

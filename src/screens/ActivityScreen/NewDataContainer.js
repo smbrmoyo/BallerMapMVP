@@ -32,7 +32,6 @@ export default function NewData(props) {
         zIndex: 1,
       }}
       onPress={() => {
-        props.setNotifExtraData(true);
         props.setNewData(false);
       }}
     >

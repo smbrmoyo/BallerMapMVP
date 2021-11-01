@@ -60,20 +60,19 @@ const ProfileScreen = ({ navigation, route }) => {
   const isFocused = useIsFocused();
 
   useEffect(() => {
-    //onPageRendered();
+    onPageRendered();
 
     return () => {};
   }, [profileDoc]);
 
   const onPageRendered = async () => {
-    const loggedUser = await AsyncStorage.getItem("currentUserCreds");
-    (await profileDoc) != undefined ? setLoading(false) : null;
+    profileDoc != undefined ? setLoading(false) : null;
     setMyEvents(profileDoc?.eventsCreated.items);
-    await subscribeToRemoveFollower(profileDoc, loggedUser);
-    await subscribeToAddFollower(profileDoc, loggedUser);
-    await subscribeToUpdateProfile(profileDoc, loggedUser);
-    await subscribeToDeleteEvent(profileDoc, loggedUser);
-    await subscribeToAddEvent(profileDoc, loggedUser);
+    //await subscribeToRemoveFollower(profileDoc, loggedUser);
+    //await subscribeToAddFollower(profileDoc, loggedUser);
+    //await subscribeToUpdateProfile(profileDoc, loggedUser);
+    //await subscribeToDeleteEvent(profileDoc, loggedUser);
+    //await subscribeToAddEvent(profileDoc, loggedUser);
   };
 
   const subscribeToRemoveFollower = async (profileDocument, loggedUser) => {

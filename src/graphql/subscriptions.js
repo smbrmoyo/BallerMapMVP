@@ -85,6 +85,7 @@ export const onCreateNotification = /* GraphQL */ `
     onCreateNotification(profileID: $profileID) {
       body
       profileID
+      id
     }
   }
 `;
@@ -237,12 +238,12 @@ export const onCreateUserEventConnection = /* GraphQL */ `
   subscription OnCreateUserEventConnection($profileID: ID!) {
     onCreateUserEventConnection(profileID: $profileID) {
       userProfile {
-        myEvents{
-          items{
-            Event{
+        myEvents {
+          items {
+            Event {
               id
               name
-              place{
+              place {
                 id
                 name
               }
