@@ -47,7 +47,7 @@ import styles from "./styles";
 const AddScreen = ({ navigation, route }) => {
   const { user } = useAuth();
   const headerHeight = useHeaderHeight();
-
+  const event = route.params?.event;
   const [visibleStart, setVisibleStart] = useState(false); // Put visible and color in one state object
   const [visibleEnd, setVisibleEnd] = useState(false);
   const [colorBegin, setColorBegin] = useState("#CDCDCD");
@@ -55,28 +55,25 @@ const AddScreen = ({ navigation, route }) => {
   const { colors } = useTheme();
 
   const [eventData, setEventData] = useState({
-    name: "",
-    placeID: route.params?.searchedPlace.id,
-    placeName: route.params?.searchedPlace.name,
+    id: event.id,
+    name: event.name,
+    placeID: event.placeID,
+    placeName: event.placeName, // Will come from event
     creatorID: user,
     creator: user,
-    tags: [],
-    description: "",
-    profileId: "", //should be current authenticated user profile Id
-    beginningTime: new Date(),
-    endingTime: new Date(),
-    privacy: "private",
-    _version: 0,
-    _deleted: false,
-    _lastChangedAt: new Date(),
+    tags: event.tags,
+    description: event.description,
+    beginningTime: event.beginningTime,
+    endingTime: event.endingTime,
+    privacy: event.privacy,
   });
 
   useEffect(() => {
     if (route.params !== undefined) {
       setEventData({
         ...eventData,
-        placeID: route.params?.searchedPlace.id,
-        placeName: route.params?.searchedPlace.name,
+        placeID: route.params?.searchedPlace?.id,
+        placeName: route.params?.searchedPlace?.name,
       });
     }
   }, [route]);
@@ -216,14 +213,14 @@ const AddScreen = ({ navigation, route }) => {
                 <StartDateContainer
                   setVisibleStart={setVisibleStart}
                   colorBegin={colorBegin}
-                  beginningTime={eventData.beginningTime}
+                  beginningTime={new Date(eventData.beginningTime)}
                   readableDate={readableDate}
                 />
 
                 <EndDateContainer
                   setVisibleEnd={setVisibleEnd}
                   colorEnd={colorEnd}
-                  endingTime={eventData.endingTime}
+                  endingTime={new Date(eventData.endingTime)}
                   readableDate={readableDate}
                 />
 

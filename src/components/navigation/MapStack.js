@@ -9,6 +9,7 @@ import SetProfileScreen from "../../screens/SetProfileScreen";
 import PlaceSearchScreen from "../../screens/PlaceSearchScreen";
 import MapSearchScreen from "../../screens/MapSearchScreen";
 import StoryScreen4 from "../../screens/StoryScreen4/App";
+import UpdateEventScreen from "../../screens/UpdateEventScreen";
 import AddScreen from "../../screens/AddScreen";
 import AttendanceScreen from "../../screens/AttendanceScreen";
 import UserSearchScreen from "../../screens/UserSearchScreen";
@@ -28,14 +29,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createStackNavigator();
 
-
 const MapStack = (props) => {
   const [profileCreated, setProfileCreated] = useState(null);
   let routeName = "Map";
   useEffect(() => {
-    console.log("<------------- MAPSTACK ---------------->")
+    console.log("<------------- MAPSTACK ---------------->");
   }, []);
-
 
   return (
     <MapProvider>
@@ -58,6 +57,7 @@ const MapStack = (props) => {
           })}
         />
         <Stack.Screen name="Add" component={AddScreen} />
+        <Stack.Screen name="UpdateEvent" component={UpdateEventScreen} />
         <Stack.Screen name="AddPresence" component={AddPresenceScreen} />
         <Stack.Screen name="UserSearch" component={UserSearchScreen} />
         <Stack.Screen name="PlaceSearch" component={PlaceSearchScreen} />

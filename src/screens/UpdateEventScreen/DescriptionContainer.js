@@ -73,6 +73,7 @@ export default function DescriptionContainer(props) {
           elevation: 2,
         }}
         placeholder="In a few words"
+        defaultValue={props.eventData.description}
         multiline
         placeholderTextColor="#CDCDCD"
         onEndEditing={(event) =>

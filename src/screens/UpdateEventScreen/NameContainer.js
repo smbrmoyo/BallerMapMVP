@@ -74,6 +74,7 @@ export default function NameContainer(props) {
         }}
         placeholder="Give your run a name"
         placeholderTextColor="#CDCDCD"
+        defaultValue={props.eventData.name}
         onEndEditing={(event) =>
           props.setEventData({
             ...props.eventData,

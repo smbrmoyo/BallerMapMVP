@@ -16,6 +16,7 @@ export default function TagsContainer(props) {
         placeholder="#"
         multiline
         color="blue"
+        defaultValue={props.eventData.description}
         placeholderTextColor="#CDCDCD"
         onEndEditing={(event) => {
           let tags = event.nativeEvent.text.split(" ");

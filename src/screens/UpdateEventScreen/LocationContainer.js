@@ -57,7 +57,14 @@ export default function LocationContainer(props) {
         <Text style={styles.titleText}>Address</Text>
       </View>
       <View style={styles.adressContainer}>
-        <TouchableOpacity onPress={() => props.navigate("PlaceSearch")}>
+        <TouchableOpacity
+          onPress={() =>
+            props.navigate("PlaceSearch", {
+              from: "Update",
+              event: props.eventData,
+            })
+          }
+        >
           <View
             style={{
               padding: hsize(10),
@@ -80,7 +87,7 @@ export default function LocationContainer(props) {
                   color: "#CDCDCD",
                 }}
               >
-                Find an Address
+                {props.eventData.placeName}
               </Text>
             ) : (
               <Text

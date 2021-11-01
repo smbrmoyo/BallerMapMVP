@@ -5,7 +5,7 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { DataStore } from "aws-amplify";
 
 import { wsize, hsize } from "../../utils/Dimensions";
-import { createEvent } from "../../aws-functions/eventFunctions";
+import { updateEvent } from "../../aws-functions/eventFunctions";
 import { Event } from "../../models";
 
 export default function ButtonContainer(props) {
@@ -20,7 +20,9 @@ export default function ButtonContainer(props) {
     >
       <TouchableOpacity
         activeOpacity={0.7}
-        onPress={() => props.navigation.goBack()}
+        onPress={() =>
+          props.navigation.navigate("Profile", { screen: "Profile" })
+        }
       >
         <View
           style={{
@@ -57,14 +59,8 @@ export default function ButtonContainer(props) {
         onPress={() => {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
             async () => {
-              createEvent(props.eventData).then((response) => {
-                props.navigation.navigate({
-                  name: "Map",
-                  params: {
-                    createdEvent: props.params.searchedPlace,
-                    index: props.params.index,
-                  },
-                });
+              updateEvent(props.eventData).then((response) => {
+                props.navigation.navigate("Profile", { screen: "Profile" });
               });
 
               /*try {

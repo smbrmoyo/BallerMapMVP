@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
   StatusBar,
+  Alert,
 } from "react-native";
 import { MaterialIcons, Ionicons, Entypo } from "@expo/vector-icons";
 import styles from "./styles";
@@ -14,9 +15,13 @@ import ButtonContainer from "./ButtonContainer";
 import ComingContainer from "./ComingContainer";
 import ProfileTopContainer from "./ProfileTopContainer";
 import ProfileBottomContainer from "./ProfileBottomContainer";
+import DeleteAlert from "./DeleteAlert";
 
 const DescriptionScreen = ({ props, navigation, route }) => {
   const { user } = useAuth();
+  let event = route.params?.event;
+  let beginningTime = new Date(event.beginningTime);
+  let endingTime = new Date(event.endingTime);
 
   function pad2(string) {
     return `0${string}`.slice(-2);
@@ -30,10 +35,6 @@ const DescriptionScreen = ({ props, navigation, route }) => {
   const readableTime = (d) => {
     return `${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
   };
-
-  let event = route.params?.event;
-  let beginningTime = new Date(event.beginningTime);
-  let endingTime = new Date(event.endingTime);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -69,9 +70,9 @@ const DescriptionScreen = ({ props, navigation, route }) => {
           <View style={{ flexDirection: "row", marginHorizontal: 5 }}>
             <TouchableOpacity
               activeOpacity={0.7}
-              /*onPress={() =>
-                edit
-              }*/
+              onPress={() =>
+                navigation.navigate("UpdateEvent", { event: event })
+              }
             >
               <View style={styles.iconContainer}>
                 <Ionicons name="pencil-outline" size={23} color="#743cff" />
@@ -81,9 +82,10 @@ const DescriptionScreen = ({ props, navigation, route }) => {
             <View style={styles.iconContainer}>
               <TouchableOpacity
                 activeOpacity={0.7}
-                /*onPress={() =>
-                  delete
-                }*/
+                onPress={() => {
+                  DeleteAlert(event);
+                  navigation.navigate("Profile", { screen: "Profile" });
+                }}
               >
                 <MaterialIcons
                   name="delete-outline"

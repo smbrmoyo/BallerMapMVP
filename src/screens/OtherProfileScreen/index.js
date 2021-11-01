@@ -129,9 +129,7 @@ const OtherProfileScreen = ({ navigation }) => {
   }, [otherUser]);
 
   const isFollowing = () => {
-    console.log("here");
     for (let i = 0; i < otherUser?.following.items.length; i++) {
-      console.log(otherUser?.following.items[i].followedID == otherUser?.id);
       if (otherUser?.following.items[i].followedID == otherUser?.id) {
         return true;
       } else {

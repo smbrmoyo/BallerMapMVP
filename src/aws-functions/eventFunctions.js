@@ -75,15 +75,14 @@ export const createEvent = async (eventData) => {
  * @param {JSON} updatedEvent object
  */
 export const updateEvent = async (updatedEvent) => {
-  let places = await getFilteredPlaces({ name: eventData.placeName }, 1);
   let event = await API.graphql(
     graphqlOperation(mutations.updateEvent, {
       input: {
-        id: eventData.id,
+        id: updatedEvent.id,
         name: updatedEvent.name,
-        placeID: places[0].Id !== undefined ? places[0].Id : null,
-        beginningTime: new Date(updatedEvent.beginningTime).toISOString(),
-        endingTime: new Date(updatedEvent.endingTime).toISOString(),
+        placeID: updatedEvent.placeID,
+        beginningTime: updatedEvent.beginningTime,
+        endingTime: updatedEvent.endingTime,
         tags: updatedEvent.tags,
         description: updatedEvent.description,
         privacy: updatedEvent.privacy,

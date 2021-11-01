@@ -129,13 +129,21 @@ const PlaceSearchScreen = ({ navigation, route }) => {
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() =>
-              navigation.navigate({
-                name: "Add",
-                params: {
-                  searchedPlace: item,
-                  index: places.indexOf(item),
-                },
-              })
+              route.params?.from == "Update"
+                ? navigation.navigate({
+                    name: "UpdateEvent",
+                    params: {
+                      searchedPlace: item,
+                      event: route.params?.event,
+                    },
+                  })
+                : navigation.navigate({
+                    name: "Add",
+                    params: {
+                      searchedPlace: item,
+                      index: places.indexOf(item),
+                    },
+                  })
             }
           >
             <View style={styles.row}>
