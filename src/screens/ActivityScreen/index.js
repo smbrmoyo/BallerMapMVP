@@ -14,10 +14,15 @@ import styles from "./styles";
 import Loading from "./Loading";
 import ListContainer from "./ListContainer";
 import NewDataContainer from "./NewDataContainer";
+import PopularTags from "../../assets/data/PopularTags";
+import people from "../../assets/data/people";
+import ProfilePicture from "../../components/ProfilePictureUser";
 import { wsize, hsize } from "../../utils/Dimensions";
-import { useActivity } from "../../components/navigation/Providers/ActivityProvider";
+import {useActivity} from "../../components/navigation/Providers/ActivityProvider"
+import LoadingScreen from "../../screens/LoadingScreen";
 
 const ActivityScreen = ({ navigation }) => {
+  const [loading, setLoading] = useState(false);
   const { loadingNotif, activity } = useActivity();
   const [newData, setNewData] = useState(false);
   const [notifExtraData, setNotifExtraData] = useState(false);
@@ -51,7 +56,7 @@ const ActivityScreen = ({ navigation }) => {
   }, [navigation]);
 
   return (
-    <>
+       (<>
       <StatusBar
         //translucent
         backgroundColor="white" /*transparent*/
@@ -78,7 +83,7 @@ const ActivityScreen = ({ navigation }) => {
           </>
         )}
       </SafeAreaView>
-    </>
+    </>)
   );
 };
 

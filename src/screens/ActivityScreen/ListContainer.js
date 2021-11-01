@@ -1,4 +1,4 @@
-import React, { useContext, useLayoutEffect, useRef, useState } from "react";
+import React, {useContext, useEffect, useLayoutEffect, useRef, useState} from "react";
 import { View, Text, Dimensions, FlatList, RefreshControl } from "react-native";
 import BottomSheet from "reanimated-bottom-sheet";
 import ProfilePicture from "../../components/ProfilePictureUser";
@@ -10,10 +10,14 @@ import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import styles from "./styles";
 import NotifRow from "./NotifRow";
 import { hsize, wsize } from "../../utils/Dimensions";
-
+import * as subscriptions from "../../graphql/subscriptions";
+import { API, graphqlOperation } from "aws-amplify";
+import {useAuth} from "../../components/navigation/Providers/AuthProvider";
 const ListContainer = (props) => {
   const [refreshing, setRefreshing] = useState(false);
-
+  const {user} = useAuth();
+  const [testState, setTestState] = useState();
+  const [notifData, setNotifData] = useState(props.myNotifs);
   const { width, height } = Dimensions.get("window");
   const onRefresh = React.useCallback(() => {
     const wait = (timeout) => {
@@ -27,7 +31,44 @@ const ListContainer = (props) => {
     });
   }, []);
 
-  console.log("FlatList ActivityScreen has re-rendered");
+
+
+  console.log("   ListContainer screen has rendered");
+
+
+
+
+  useEffect(() => {
+    let Subscription = notifSubscription(user);
+    return () => {
+        Subscription.unsubscribe().then(() => {
+            console.log("   Cleanup de la Notif subscription exécuté")
+        }).catch((error) => {
+            console.log("   !!!ERRROR dans le cleaup de la notif subscription:", error)
+        });
+    }
+  }, [testState])
+
+  const  notifSubscription = async(user) => {
+    let notifSub = API.graphql(
+        graphqlOperation(
+            subscriptions.onCreateNotification,
+            {
+                profileID: user
+            }
+        )
+    ).subscribe({
+        next: ({provider, value}) => {
+            console.log("onCreateNotification subscription triggered:", ({value}));
+            setTestState(true)
+        },
+        error: error => console.log("   !!! ERROR dans la soubscription onCreateNotification:", error)
+    });
+
+    return notifSub;
+
+  };
+
 
   return (
     <>
@@ -70,4 +111,7 @@ const ListContainer = (props) => {
   );
 };
 
+
+
 export default ListContainer;
+

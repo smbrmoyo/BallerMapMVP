@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="fake">
-      <change afterPath="$PROJECT_DIR$/src/components/navigation/Providers/NotifProvider.js" afterDir="false" />
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Get Notification Query implemented">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/navigation/ActivityStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/ActivityStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/navigation/Providers/ActivityProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/navigation/Providers/ActivityProvider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/queries.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/LambdaRes-dev-d3c3ed23-9a2f-4e90-9355-73a67ef220f9/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/function/LambdaRes-dev-d3c3ed23-9a2f-4e90-9355-73a67ef220f9/mutations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/subscriptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/subscriptions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/ActivityScreen/ListContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ActivityScreen/ListContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ActivityScreen/NotifRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ActivityScreen/NotifRow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ActivityScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ActivityScreen/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -196,7 +192,21 @@
       <option name="project" value="LOCAL" />
       <updated>1635650850969</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Get Notification Query implemented">
+      <created>1635657158314</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1635657158316</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Get Notification Query implemented">
+      <created>1635701865388</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1635701865388</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,7 +233,8 @@
     <MESSAGE value="false" />
     <MESSAGE value="New project INITIALISED with LambdaResolver" />
     <MESSAGE value="fake" />
-    <option name="LAST_COMMIT_MESSAGE" value="fake" />
+    <MESSAGE value="Get Notification Query implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Get Notification Query implemented" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
