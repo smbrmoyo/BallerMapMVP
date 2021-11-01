@@ -20,8 +20,6 @@ import { hsize, wsize } from "../../utils/Dimensions";
 const Stack = createStackNavigator();
 
 const ProfileStack = ({ navigation }) => {
-  const { createdDocs } = useAuth();
-  console.log("created Docs is : " + createdDocs);
   let routeName;
 
   /*if (createdDocs == null) {

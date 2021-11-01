@@ -62,34 +62,126 @@ const ProfileScreen = ({ navigation, route }) => {
   useEffect(() => {
     //onPageRendered();
 
-    return () => {
-      console.log("<------------- ACTIVITYSCREEN ---------------->")
-    };
+    return () => {};
   }, [profileDoc]);
 
   const onPageRendered = async () => {
-
     const loggedUser = await AsyncStorage.getItem("currentUserCreds");
     (await profileDoc) != undefined ? setLoading(false) : null;
     setMyEvents(profileDoc?.eventsCreated.items);
-    await subscribeToRemoveFollower(profileDoc, loggedUser).catch(error => {
-      console.log("   !!!ERROR subscribe to remove follower")
-    });
-    await subscribeToAddFollower(profileDoc, loggedUser).catch(error => {
-      console.log("   !!!ERROR subscribe to add follower")
-    });
-    await subscribeToUpdateProfile(profileDoc, loggedUser).catch(error => {
-      console.log("   !!!ERROR subscribe to remove follower")
-    });
-    await subscribeToDeleteEvent(profileDoc, loggedUser).catch(error => {
-      console.log("   !!!ERROR subscribe to remove follower")
-    });
-    await subscribeToAddEvent(profileDoc, loggedUser).catch(error => {
-      console.log("   !!!ERROR subscribe to remove follower")
+    await subscribeToRemoveFollower(profileDoc, loggedUser);
+    await subscribeToAddFollower(profileDoc, loggedUser);
+    await subscribeToUpdateProfile(profileDoc, loggedUser);
+    await subscribeToDeleteEvent(profileDoc, loggedUser);
+    await subscribeToAddEvent(profileDoc, loggedUser);
+  };
+
+  const subscribeToRemoveFollower = async (profileDocument, loggedUser) => {
+    await API.graphql(graphqlOperation(onDeleteUserConnection)).subscribe({
+      next: async ({ value }) => {
+        try {
+          const profileId =
+            profileDocument !== null ? profileDocument.id : user;
+          if (value.data.onDeleteUserConnection.followedID == profileId) {
+            console.log("unfollowed");
+            await updateFollowers(profileId);
+          } else {
+            console.log("user not related to this follow");
+          }
+        } catch (e) {
+          console.warn(e);
+        }
+      },
+      error: (error) => console.log(error),
     });
   };
 
+  const subscribeToAddFollower = async (profileDocument, loggedUser) => {
+    await API.graphql(graphqlOperation(onCreateUserConnection)).subscribe({
+      next: async ({ value }) => {
+        try {
+          const profileId =
+            profileDocument !== null ? profileDocument.id : user;
+          if (value.data.onCreateUserConnection.followedID == profileId) {
+            console.log("followed");
+            await updateFollowers(profileId);
+          } else {
+            console.log("user not related to this follow");
+          }
+        } catch (e) {
+          console.warn(e);
+        }
+      },
+      error: (error) => console.log(error, " here"),
+    });
+  };
 
+  const updateFollowers = async (userId) => {
+    let response = await getUprofileDoc(userId);
+    followers = response.followers.items;
+  };
+
+  const subscribeToUpdateProfile = async (profileDocument, loggedUser) => {
+    await API.graphql(
+      graphqlOperation(onUpdateUprofile, { id: user })
+    ).subscribe({
+      next: async ({ value }) => {
+        try {
+          const profileId =
+            profileDocument !== null ? profileDocument.id : user;
+          if (value.data.onUpdateUprofile.id == profileId) {
+            console.log("updateProfile");
+            updatedProfile = value.data.onUpdateUprofile;
+          } else {
+            console.log("user not related to this update");
+          }
+        } catch (e) {
+          console.warn(e);
+        }
+      },
+      error: (error) => console.log(error, " here"),
+    });
+  };
+
+  const subscribeToDeleteEvent = async (profileDocument, loggedUser) => {
+    await API.graphql(graphqlOperation(onDeleteUserEventConnection)).subscribe({
+      next: async ({ value }) => {
+        try {
+          const profileId =
+            profileDocument !== null ? profileDocument.id : user;
+          if (value.data.onDeleteUserEventConnection.profileID == profileId) {
+            console.log("removeEvent");
+            await updateEvents(profileId);
+          } else {
+            console.log("event not related to this user");
+          }
+        } catch (e) {
+          console.warn(e);
+        }
+      },
+      error: (error) => console.log(error, " here"),
+    });
+  };
+
+  const subscribeToAddEvent = async (profileDocument, loggedUser) => {
+    await API.graphql(graphqlOperation(onCreateUserEventConnection)).subscribe({
+      next: async ({ value }) => {
+        try {
+          const profileId =
+            profileDocument !== null ? profileDocument.id : user;
+          if (value.data.onCreateUserEventConnection.profileID == profileId) {
+            console.log("subscription to createEvent");
+            await updateEvents(profileId);
+          } else {
+            console.log("subscription to createEvent failed");
+          }
+        } catch (e) {
+          console.warn(e);
+        }
+      },
+      error: (error) => console.log(error, " here"),
+    });
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -218,60 +310,58 @@ const ProfileScreen = ({ navigation, route }) => {
   );
 };
 
-
 const subscribeToRemoveFollower = async (profileDocument, loggedUser) => {
-    await API.graphql(graphqlOperation(onDeleteUserConnection)).subscribe({
-      next: async ({ value }) => {
-        try {
-          const profileId =
-            profileDocument !== null
-              ? profileDocument.id
-              : JSON.parse(loggedUser).email;
-          if (value.data.onDeleteUserConnection.followedID == profileId) {
-            console.log("unfollowed");
-            await updateFollowers(profileId);
-          } else {
-            console.log("user not related to this follow");
-          }
-        } catch (e) {
-          console.warn(e);
+  await API.graphql(graphqlOperation(onDeleteUserConnection)).subscribe({
+    next: async ({ value }) => {
+      try {
+        const profileId =
+          profileDocument !== null
+            ? profileDocument.id
+            : JSON.parse(loggedUser).email;
+        if (value.data.onDeleteUserConnection.followedID == profileId) {
+          console.log("unfollowed");
+          await updateFollowers(profileId);
+        } else {
+          console.log("user not related to this follow");
         }
-      },
-      error: (error) => console.log(error),
-    });
-  };
+      } catch (e) {
+        console.warn(e);
+      }
+    },
+    error: (error) => console.log(error),
+  });
+};
 
-  const subscribeToAddFollower = async (profileDocument, loggedUser) => {
-    await API.graphql(graphqlOperation(onCreateUserConnection)).subscribe({
-      next: async ({ value }) => {
-        try {
-          const profileId =
-            profileDocument !== null
-              ? profileDocument.id
-              : JSON.parse(loggedUser).email;
-          if (value.data.onCreateUserConnection.followedID == profileId) {
-            console.log("followed");
-            await updateFollowers(profileId);
-          } else {
-            console.log("user not related to this follow");
-          }
-        } catch (e) {
-          console.warn(e);
+const subscribeToAddFollower = async (profileDocument, loggedUser) => {
+  await API.graphql(graphqlOperation(onCreateUserConnection)).subscribe({
+    next: async ({ value }) => {
+      try {
+        const profileId =
+          profileDocument !== null
+            ? profileDocument.id
+            : JSON.parse(loggedUser).email;
+        if (value.data.onCreateUserConnection.followedID == profileId) {
+          console.log("followed");
+          await updateFollowers(profileId);
+        } else {
+          console.log("user not related to this follow");
         }
-      },
-      error: (error) => console.log(error, " here"),
-    });
-  };
+      } catch (e) {
+        console.warn(e);
+      }
+    },
+    error: (error) => console.log(error, " here"),
+  });
+};
 
-  const updateFollowers = async (userId) => {
-    let response = await getUprofileDoc(userId);
-    followers = response.followers.items;
-  };
+const updateFollowers = async (userId) => {
+  let response = await getUprofileDoc(userId);
+  followers = response.followers.items;
+};
 
-  const subscribeToUpdateProfile = async (profileDocument, loggedUser) => {
-    await API.graphql(
-      graphqlOperation(onUpdateUprofile, { id: user })
-    ).subscribe({
+const subscribeToUpdateProfile = async (profileDocument, loggedUser) => {
+  await API.graphql(graphqlOperation(onUpdateUprofile, { id: user })).subscribe(
+    {
       next: async ({ value }) => {
         try {
           const profileId =
@@ -289,57 +379,57 @@ const subscribeToRemoveFollower = async (profileDocument, loggedUser) => {
         }
       },
       error: (error) => console.log(error, " here"),
-    });
-  };
+    }
+  );
+};
 
-  const subscribeToDeleteEvent = async (profileDocument, loggedUser) => {
-    await API.graphql(graphqlOperation(onDeleteUserEventConnection)).subscribe({
-      next: async ({ value }) => {
-        try {
-          const profileId =
-            profileDocument !== null
-              ? profileDocument.id
-              : JSON.parse(loggedUser).email;
-          if (value.data.onDeleteUserEventConnection.profileID == profileId) {
-            console.log("removeEvent");
-            await updateEvents(profileId);
-          } else {
-            console.log("event not related to this user");
-          }
-        } catch (e) {
-          console.warn(e);
+const subscribeToDeleteEvent = async (profileDocument, loggedUser) => {
+  await API.graphql(graphqlOperation(onDeleteUserEventConnection)).subscribe({
+    next: async ({ value }) => {
+      try {
+        const profileId =
+          profileDocument !== null
+            ? profileDocument.id
+            : JSON.parse(loggedUser).email;
+        if (value.data.onDeleteUserEventConnection.profileID == profileId) {
+          console.log("removeEvent");
+          await updateEvents(profileId);
+        } else {
+          console.log("event not related to this user");
         }
-      },
-      error: (error) => console.log(error, " here"),
-    });
-  };
+      } catch (e) {
+        console.warn(e);
+      }
+    },
+    error: (error) => console.log(error, " here"),
+  });
+};
 
-  const subscribeToAddEvent = async (profileDocument, loggedUser) => {
-    await API.graphql(graphqlOperation(onCreateUserEventConnection)).subscribe({
-      next: async ({ value }) => {
-        try {
-          const profileId =
-            profileDocument !== null
-              ? profileDocument.id
-              : JSON.parse(loggedUser).email;
-          if (value.data.onCreateUserEventConnection.profileID == profileId) {
-            console.log("subscription to createEvent");
-            await updateEvents(profileId);
-          } else {
-            console.log("subscription to createEvent failed");
-          }
-        } catch (e) {
-          console.warn(e);
+const subscribeToAddEvent = async (profileDocument, loggedUser) => {
+  await API.graphql(graphqlOperation(onCreateUserEventConnection)).subscribe({
+    next: async ({ value }) => {
+      try {
+        const profileId =
+          profileDocument !== null
+            ? profileDocument.id
+            : JSON.parse(loggedUser).email;
+        if (value.data.onCreateUserEventConnection.profileID == profileId) {
+          console.log("subscription to createEvent");
+          await updateEvents(profileId);
+        } else {
+          console.log("subscription to createEvent failed");
         }
-      },
-      error: (error) => console.log(error, " here"),
-    });
-  };
+      } catch (e) {
+        console.warn(e);
+      }
+    },
+    error: (error) => console.log(error, " here"),
+  });
+};
 
-  const updateEvents = async (userId) => {
-    let response = await getUprofileDoc(userId);
-    newEvents = response.eventsCreated.items;
-  };
-
+const updateEvents = async (userId) => {
+  let response = await getUprofileDoc(userId);
+  newEvents = response.eventsCreated.items;
+};
 
 export default ProfileScreen;

@@ -6,16 +6,18 @@ import {
   TouchableOpacity,
   StatusBar,
 } from "react-native";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import Entypo from "react-native-vector-icons/Entypo";
+import { MaterialIcons, Ionicons, Entypo } from "@expo/vector-icons";
 import styles from "./styles";
 import { hsize, wsize } from "../../utils/Dimensions";
+import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import ButtonContainer from "./ButtonContainer";
 import ComingContainer from "./ComingContainer";
 import ProfileTopContainer from "./ProfileTopContainer";
 import ProfileBottomContainer from "./ProfileBottomContainer";
 
 const DescriptionScreen = ({ props, navigation, route }) => {
+  const { user } = useAuth();
+
   function pad2(string) {
     return `0${string}`.slice(-2);
   }
@@ -62,18 +64,36 @@ const DescriptionScreen = ({ props, navigation, route }) => {
           </TouchableOpacity>
         </View>
       ),
-      headerRight: () => (
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => {
-            bsProf.current.snapTo(0);
-          }}
-        >
-          <View style={styles.iconContainer}>
-            <Ionicons name="settings-outline" size={23} color="black" />
+      headerRight: () =>
+        event.creatorID == user ? (
+          <View style={{ flexDirection: "row", marginHorizontal: 5 }}>
+            <TouchableOpacity
+              activeOpacity={0.7}
+              /*onPress={() =>
+                edit
+              }*/
+            >
+              <View style={styles.iconContainer}>
+                <Ionicons name="pencil-outline" size={23} color="#743cff" />
+              </View>
+            </TouchableOpacity>
+
+            <View style={styles.iconContainer}>
+              <TouchableOpacity
+                activeOpacity={0.7}
+                /*onPress={() =>
+                  delete
+                }*/
+              >
+                <MaterialIcons
+                  name="delete-outline"
+                  size={23}
+                  color="#743cff"
+                />
+              </TouchableOpacity>
+            </View>
           </View>
-        </TouchableOpacity>
-      ),
+        ) : null,
     });
   }, [navigation]);
 
