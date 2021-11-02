@@ -5,7 +5,7 @@ import React, {
   useContext,
   useRef,
 } from "react";
-import { Alert, View, Text, FlatList, ScrollView } from "react-native";
+import { Alert, View, Text, FlatList, ScrollView, LogBox } from "react-native";
 import { useHeaderHeight } from "@react-navigation/stack";
 //import * as firebase from "firebase";
 //import firestore from "@react-native-firebase/firestore";
@@ -25,6 +25,7 @@ import { hsize, wsize } from "../../utils/Dimensions";
 
 export default function ChatScrollView(props) {
   const scrollView = useRef();
+  LogBox.ignoreAllLogs();
   return (
     <FlatList
       ref={scrollView}

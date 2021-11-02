@@ -30,12 +30,12 @@ export default function NotifRow(props) {
     <TouchableOpacity
       activeOpacity={0.7}
       style={styles.postHeaderFirst}
-      onPress={() =>
+      /*onPress={() =>
         navigation.navigate("Profile", {
           screen: "Description",
           params: { event: event },
         })
-      }
+      }*/
     >
       <View style={styles.postHeaderContainer}>
         <View

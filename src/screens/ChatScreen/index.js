@@ -18,6 +18,7 @@ import {
   Keyboard,
   TextInput,
   Platform,
+  LogBox,
 } from "react-native";
 import { useHeaderHeight } from "@react-navigation/stack";
 //import * as firebase from "firebase";
@@ -159,6 +160,8 @@ const ChatScreen = ({ data, size, navigation, route }) => {
       );
     return unsubscribe;*/
   }, [route]);
+
+  LogBox.ignoreAllLogs();
 
   return (
     <>

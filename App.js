@@ -9,7 +9,7 @@
 import "react-native-gesture-handler";
 
 import React, { useState } from "react";
-
+import { LogBox } from "react-native";
 import Providers from "./src/components/navigation/index";
 import Amplify from "aws-amplify";
 import config from "./src/aws-exports";
@@ -21,6 +21,7 @@ import {
 } from "react-native-appearance";
 
 Amplify.configure({ ...config, Analytics: { disabled: true } });
+LogBox.ignoreAllLogs();
 
 const App = () => {
   const [themeColor, setThemeColor] = useState(Appearance.getColorScheme());

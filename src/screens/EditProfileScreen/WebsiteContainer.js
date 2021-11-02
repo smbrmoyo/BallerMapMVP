@@ -12,7 +12,7 @@ export default function WebsiteContainer(props) {
 
       <TextInput
         style={styles.textInput}
-        placeholder="www.idiot.com"
+        placeholder="www."
         placeholderTextColor="#1d599d"
         onEndEditing={(event) =>
           props.setUserProfile({
