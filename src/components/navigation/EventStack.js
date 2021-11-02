@@ -2,6 +2,7 @@ import "react-native-gesture-handler";
 
 import React from "react";
 import EventScreen from "../../screens/EventScreen";
+import DescriptionScreen from "../../screens/DescriptionScreen";
 
 import { createStackNavigator } from "@react-navigation/stack";
 import UserSearchScreen from "../../screens/UserSearchScreen";
@@ -17,6 +18,7 @@ const ProfileStack = ({ navigation }) => {
     <ProfileProvider>
       <Stack.Navigator initialRouteName={"Event"}>
         <Stack.Screen name="Event" component={EventScreen} />
+        <Stack.Screen name="Description" component={DescriptionScreen} />
       </Stack.Navigator>
     </ProfileProvider>
   );

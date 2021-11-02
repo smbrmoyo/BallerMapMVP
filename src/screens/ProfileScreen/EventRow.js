@@ -8,7 +8,7 @@ import styles from "./styles";
 
 // An Event row in the FlatList
 
-export default function EventRow({ event }) {
+export default function EventRow(props) {
   const navigation = useNavigation();
   function pad2(string) {
     return `0${string}`.slice(-2);
@@ -23,7 +23,7 @@ export default function EventRow({ event }) {
     return `${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
   };
 
-  let date = new Date(event.beginningTime);
+  let date = new Date(props.event.beginningTime);
 
   return (
     <TouchableOpacity
@@ -34,7 +34,7 @@ export default function EventRow({ event }) {
           screen: "Description",
           params: { event: event },
         })*/
-        navigation.navigate("Description", { event: event })
+        props.navigation.navigate("Description", { event: props.event })
       }
     >
       <View style={styles.postHeaderContainer}>
@@ -63,7 +63,7 @@ export default function EventRow({ event }) {
               }}
               ellipsizeMode="tail"
             >
-              {event.name}
+              {props.event.name}
             </Text>
             <Text
               style={{
@@ -74,7 +74,7 @@ export default function EventRow({ event }) {
               numberOfLines={1}
               ellipsizeMode="tail"
             >
-              {event.description}
+              {props.event.description}
             </Text>
           </View>
         </View>

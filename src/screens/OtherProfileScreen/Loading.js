@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import ProfilePicture from "../../components/ProfilePictureUser";
 import { wsize, hsize } from "../../utils/Dimensions";
-import { EvilIcons, SimpleLineIcons, Feather } from "@expo/vector-icons";
+import { EvilIcons, Ionicons, Feather } from "@expo/vector-icons";
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
 import styles from "./styles";
@@ -104,9 +104,9 @@ export default function Loading(props) {
             }}
             style={{ alignItems: "center", flex: 2 }}
           >
-            <Feather
-              name="user"
-              size={24}
+            <Ionicons
+              name="at-outline"
+              size={26}
               color={props.currentTab === props.attending ? "black" : "grey"}
             />
           </TouchableOpacity>

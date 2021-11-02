@@ -54,7 +54,9 @@ const CurrentContainer = (props) => {
             backgroundColor: "white",
             width: width,
           }}
-          renderItem={(item) => <EventRow event={item.item} />}
+          renderItem={(item) => (
+            <EventRow navigation={props.navigation} event={item.item} />
+          )}
         />
       </View>
     </>

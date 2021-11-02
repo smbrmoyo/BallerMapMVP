@@ -21,9 +21,9 @@ const MessageRow = ({
     <View style={styles.row}>
       <TouchableOpacity
         activeOpacity={0.7}
-        onPress={() => {
+        /*onPress={() => {
           navigation.navigate("Story");
-        }}
+        }}*/
       >
         <ProfilePicture size={50} />
       </TouchableOpacity>

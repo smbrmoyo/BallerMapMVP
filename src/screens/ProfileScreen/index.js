@@ -283,15 +283,10 @@ const ProfileScreen = ({ navigation, route }) => {
             <ScrollView
               ref={_scrollView}
               horizontal
-              pagingEnabled
+              scrollEnabled={false}
               style={{
                 flex: 1,
                 backgroundColor: "white",
-              }}
-              ContentContainerStyle={{
-                flex: 1,
-                backgroundColor: "white",
-                alignItems: "center",
               }}
               scrollEventThrottle={1}
               showsHorizontalScrollIndicator={false}
@@ -299,8 +294,14 @@ const ProfileScreen = ({ navigation, route }) => {
               snapToAlignment="center"
               decelerationRate={"fast"}
             >
-              <MyEventsTab events={profileDoc?.eventsCreated.items} />
-              <AttendingTab events={[]} />
+              <MyEventsTab
+                navigation={navigation}
+                events={profileDoc?.eventsCreated.items}
+              />
+              <AttendingTab
+                navigation={navigation}
+                events={profileDoc?.myEvents.items}
+              />
             </ScrollView>
           </Animated.View>
         )}

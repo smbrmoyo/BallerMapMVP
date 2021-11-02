@@ -129,8 +129,8 @@ const OtherProfileScreen = ({ navigation }) => {
   }, [otherUser]);
 
   const isFollowing = () => {
-    for (let i = 0; i < otherUser?.following.items.length; i++) {
-      if (otherUser?.following.items[i].followedID == otherUser?.id) {
+    for (let i = 0; i < profileDoc?.following.items.length; i++) {
+      if (profileDoc?.following.items[i].followedID == otherUser?.id) {
         return true;
       } else {
         return false;
@@ -146,9 +146,9 @@ const OtherProfileScreen = ({ navigation }) => {
       follower: profileDoc.id,
       followed: otherUser.id,
     };
-    followUser(input)
+    /*followUser(input)
       .then((response) => console.log(response))
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error));*/
   };
 
   const goToFollowing = () => {
@@ -204,14 +204,10 @@ const OtherProfileScreen = ({ navigation }) => {
             <ScrollView
               ref={_scrollView}
               horizontal
-              pagingEnabled
-              //scrollEnabled={false}
+              scrollEnabled={false}
               style={{
                 flex: 1,
                 backgroundColor: "white",
-              }}
-              ContentContainerStyle={{
-                flex: 1,
               }}
               scrollEventThrottle={1}
               showsHorizontalScrollIndicator={false}
@@ -223,12 +219,14 @@ const OtherProfileScreen = ({ navigation }) => {
                 events={otherUser?.eventsCreated.items}
                 attending={attending}
                 setCurrentTab={setCurrentTab}
+                navigation={navigation}
               />
 
               <AttendingTab
-                events={[]}
+                events={otherUser?.myEvents.items}
                 attending={attending}
                 setCurrentTab={setCurrentTab}
+                navigation={navigation}
               />
             </ScrollView>
           </Animated.View>

@@ -152,8 +152,8 @@ const EventScreen = ({ data, size, navigation, route }) => {
           <Loading />
         ) : (
           <>
-            <CurrentContainer myEvents={myEvents} />
-            <UpcomingContainer myEvents={myEvents} />
+            <CurrentContainer navigation={navigation} myEvents={myEvents} />
+            <UpcomingContainer navigation={navigation} myEvents={myEvents} />
           </>
         )}
       </SafeAreaView>

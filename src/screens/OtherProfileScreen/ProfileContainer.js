@@ -33,9 +33,6 @@ import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 
-import people from "../../assets/data/people";
-import UserModal from "../ProfileScreen/UserModal";
-import MyEventsTab from "./MyEventsTab";
 import styles from "./styles";
 import {
   createUserConnection,
@@ -88,11 +85,9 @@ export default function ProfileContainer(props) {
           >
             {followers.length >= 1 ? followers[0].follower.username : null}
             {followers.length >= 2
-              ? ", " + followers[0].follower.username
+              ? ", " + followers[1].follower.username
               : null}
-            {followers.length > 2
-              ? " and " + followers.length - 2 + " others"
-              : null}
+            {followers.length > 2 ? " and  others" : null}
           </Text>
         </View>
         <View style={styles.userInfoWrapper}>
@@ -134,7 +129,7 @@ export default function ProfileContainer(props) {
           <TouchableOpacity activeOpacity={0.7} onPress={props.onFollowPress}>
             <View
               style={{
-                backgroundColor: props.isFollowing ? "white" : "#743cff",
+                backgroundColor: props.isFollowing() ? "white" : "#743cff",
                 borderWidth: 1,
                 borderColor: "#E9E8E8",
                 borderRadius: 5,
@@ -147,10 +142,10 @@ export default function ProfileContainer(props) {
               <Text
                 style={{
                   fontSize: 20,
-                  color: props.isFollowing ? "black" : "white",
+                  color: props.isFollowing() ? "black" : "white",
                 }}
               >
-                {props.isFollowing ? "Following" : "Follow"}
+                {props.isFollowing() ? "Following" : "Follow"}
               </Text>
             </View>
           </TouchableOpacity>
@@ -179,9 +174,9 @@ export default function ProfileContainer(props) {
           }}
           style={{ alignItems: "center", flex: 2 }}
         >
-          <Feather
-            name="user"
-            size={24}
+          <Ionicons
+            name="at-outline"
+            size={26}
             color={props.currentTab === props.attending ? "black" : "grey"}
           />
         </TouchableOpacity>

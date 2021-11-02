@@ -34,7 +34,7 @@ import AnimatedTextInput from "./AnimatedTextInput";
 import AnimatedCard from "./AnimatedCard";
 import { getPlace } from "../../graphql/queries";
 
-const HomeMap = ({ props }) => {
+const HomeMap = (props) => {
   const { height, width } = useWindowDimensions();
   const screenHeight = Dimensions.get("screen").height;
   const CARD_HEIGHT = 100;
@@ -45,7 +45,6 @@ const HomeMap = ({ props }) => {
   fallMap = useRef(new Animated.Value(1)).current;
   const { places, status } = useMap();
   const route = useRoute();
-  const navigation = useNavigation();
   const { colors, dark } = useTheme();
   const [searchState, setSearchState] = useState(false);
   const [placeIndex, setPlaceIndex] = useState(0);
@@ -347,7 +346,7 @@ const HomeMap = ({ props }) => {
   }
 
   const goToAdd = () => {
-    navigation.navigate("Add");
+    props.navigation.navigate("Add");
   };
 
   const goToStory = () => {
@@ -356,7 +355,11 @@ const HomeMap = ({ props }) => {
 
   return (
     <>
-      <BottomSheetMap places={places} index={placeIndex} />
+      <BottomSheetMap
+        navigation={props.navigation}
+        places={places}
+        index={placeIndex}
+      />
       <TouchableWithoutFeedback onPress={() => bsMap.current.snapTo(2)}>
         <Animated.View
           style={{
@@ -428,12 +431,10 @@ const HomeMap = ({ props }) => {
             {places.map((place, index) => {
               // console.log(places.indexOf(place));
 
-
               const scaleStyle = {
                 transform: [
                   {
                     scale: interpolations[index].scale,
-
                   },
                 ],
               };
@@ -472,6 +473,7 @@ const HomeMap = ({ props }) => {
             dark={dark}
             heightAnim={heightAnim}
             undoAnimate={undoAnimate}
+            navigation={props.navigation}
           />
           <AnimatedSearchButton lowAnim={lowAnim} animate={animate} />
           <Animated.ScrollView
@@ -521,7 +523,7 @@ const HomeMap = ({ props }) => {
               <AnimatedCard
                 placeIndex={placeIndex}
                 setPlaceIndex={setPlaceIndex}
-                navigation={navigation}
+                navigation={props.navigation}
                 key={index}
                 index={index}
                 goToStory={goToStory}
@@ -529,7 +531,11 @@ const HomeMap = ({ props }) => {
               />
             ))}
           </Animated.ScrollView>
-          <AnimatedAddButton heightAnim={heightAnim} goToAdd={goToAdd} />
+          <AnimatedAddButton
+            navigation={props.navigation}
+            heightAnim={heightAnim}
+            goToAdd={goToAdd}
+          />
         </Animated.View>
       </TouchableWithoutFeedback>
     </>

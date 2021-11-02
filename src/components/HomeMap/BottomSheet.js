@@ -40,7 +40,6 @@ const readableDate = (d) => {
 };
 
 const BottomSheetMap = (props) => {
-  navigation = useNavigation();
   const [visibleStart, setVisibleStart] = useState(false);
   const [date, setDate] = useState(new Date());
   const { width, height } = Dimensions.get("window");
@@ -187,7 +186,9 @@ const BottomSheetMap = (props) => {
           keyExtractor={(item) => item.id}
           //scrollEnabled={false}
           // numColumns={6}
-          renderItem={(item) => <EventRow event={item} />}
+          renderItem={(item) => (
+            <EventRow navigation={props.navigation} event={item} />
+          )}
         />
       </View>
     </View>

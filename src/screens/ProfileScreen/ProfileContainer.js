@@ -2,12 +2,7 @@ import React from "react";
 import { Text, View, TouchableOpacity, Dimensions } from "react-native";
 import ProfilePicture from "../../components/ProfilePictureUser";
 import { hsize } from "../../utils/Dimensions";
-import {
-  EvilIcons,
-  SimpleLineIcons,
-  Feather,
-  Entypo,
-} from "@expo/vector-icons";
+import { EvilIcons, Ionicons, Feather, Entypo } from "@expo/vector-icons";
 
 import styles from "./styles";
 
@@ -125,9 +120,9 @@ export default function ProfileContainer(props) {
           }}
           style={{ alignItems: "center", flex: 2 }}
         >
-          <Feather
-            name="user"
-            size={24}
+          <Ionicons
+            name="at-outline"
+            size={26}
             color={props.currentTab === props.attending ? "black" : "grey"}
           />
         </TouchableOpacity>

@@ -65,6 +65,7 @@ const MapStack = (props) => {
         <Stack.Screen name="Attendance" component={AttendanceScreen} />
         <Stack.Screen name="Description" component={DescriptionScreen} />
         <Stack.Screen name="SetProfile" component={SetProfileScreen} />
+        <Stack.Screen name="OtherProfile" component={OtherProfileScreen} />
       </Stack.Navigator>
     </MapProvider>
   );

@@ -40,7 +40,6 @@ const ProfileStack = ({ navigation }) => {
         <Stack.Screen name="Description" component={DescriptionScreen} />
         <Stack.Screen name="UpdateEvent" component={UpdateEventScreen} />
         <Stack.Screen name="Followers" component={FollowersScreen} />
-        <Stack.Screen name="UserSearch" component={UserSearchScreen} />
         <Stack.Screen name="OtherProfile" component={OtherProfileScreen} />
         <Stack.Screen
           name="Story"

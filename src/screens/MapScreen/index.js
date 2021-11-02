@@ -33,7 +33,7 @@ const MapScreen = ({ navigation }) => {
         <Loading CARD_HEIGHT={CARD_HEIGHT} CARD_WIDTH={CARD_WIDTH} />
       ) : (
         <View style={styles.screen}>
-          <HomeMap />
+          <HomeMap navigation={navigation} />
         </View>
       )}
     </>

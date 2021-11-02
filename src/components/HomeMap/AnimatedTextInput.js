@@ -62,7 +62,7 @@ export default function AnimatedTextInput(props) {
             flex: 1,
             justifyContent: "center",
           }}
-          onPress={() => navigation.navigate("MapSearch")}
+          onPress={() => props.navigation.navigate("MapSearch")}
         >
           <Text //autoFocus
             //autoFocus

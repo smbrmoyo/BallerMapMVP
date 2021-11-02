@@ -55,7 +55,9 @@ const UpcomingContainer = (props) => {
             width: width,
             borderRadius: 10,
           }}
-          renderItem={(item) => <EventRow event={item.item} />}
+          renderItem={(item) => (
+            <EventRow navigation={props.navigation} event={item.item} />
+          )}
         />
       </View>
     </>
