@@ -13,20 +13,18 @@ const EventPrivacy = {
   "PUBLIC": "public"
 };
 
-const { Uprofile, Notification, UserEventConnection, Event, Place, UserPlaceConnection, EventChatMessage, UserConnection, UserDoc, Task, PrivateNote, Coords } = initSchema(schema);
+const { Uprofile, Notification, UserEventConnection, Event, EventChatMessage, UserConnection, Place, UserPlaceConnection, UserDoc, Coords } = initSchema(schema);
 
 export {
   Uprofile,
   Notification,
   UserEventConnection,
   Event,
-  Place,
-  UserPlaceConnection,
   EventChatMessage,
   UserConnection,
+  Place,
+  UserPlaceConnection,
   UserDoc,
-  Task,
-  PrivateNote,
   NotifType,
   EventPrivacy,
   Coords

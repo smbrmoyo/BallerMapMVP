@@ -33,14 +33,6 @@ type EventMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type PlaceMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
-
-type UserPlaceConnectionMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
-
 type EventChatMessageMetaData = {
   readOnlyFields: 'updatedAt';
 }
@@ -49,15 +41,15 @@ type UserConnectionMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
+type PlaceMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type UserPlaceConnectionMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 type UserDocMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
-
-type TaskMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
-
-type PrivateNoteMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -106,7 +98,6 @@ export declare class Event {
   readonly id: string;
   readonly name: string;
   readonly placeID: string;
-  readonly place?: Place;
   readonly beginningTime: string;
   readonly endingTime: string;
   readonly tags?: (string | null)[];
@@ -122,6 +113,27 @@ export declare class Event {
   readonly updatedAt?: string;
   constructor(init: ModelInit<Event, EventMetaData>);
   static copyOf(source: Event, mutator: (draft: MutableModel<Event, EventMetaData>) => MutableModel<Event, EventMetaData> | void): Event;
+}
+
+export declare class EventChatMessage {
+  readonly id: string;
+  readonly body: string;
+  readonly createdAt?: string;
+  readonly event?: Event;
+  readonly userProfile?: Uprofile;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<EventChatMessage, EventChatMessageMetaData>);
+  static copyOf(source: EventChatMessage, mutator: (draft: MutableModel<EventChatMessage, EventChatMessageMetaData>) => MutableModel<EventChatMessage, EventChatMessageMetaData> | void): EventChatMessage;
+}
+
+export declare class UserConnection {
+  readonly id: string;
+  readonly follower?: Uprofile;
+  readonly followed?: Uprofile;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<UserConnection, UserConnectionMetaData>);
+  static copyOf(source: UserConnection, mutator: (draft: MutableModel<UserConnection, UserConnectionMetaData>) => MutableModel<UserConnection, UserConnectionMetaData> | void): UserConnection;
 }
 
 export declare class Place {
@@ -150,27 +162,6 @@ export declare class UserPlaceConnection {
   static copyOf(source: UserPlaceConnection, mutator: (draft: MutableModel<UserPlaceConnection, UserPlaceConnectionMetaData>) => MutableModel<UserPlaceConnection, UserPlaceConnectionMetaData> | void): UserPlaceConnection;
 }
 
-export declare class EventChatMessage {
-  readonly id: string;
-  readonly body: string;
-  readonly createdAt?: string;
-  readonly event?: Event;
-  readonly userProfile?: Uprofile;
-  readonly updatedAt?: string;
-  constructor(init: ModelInit<EventChatMessage, EventChatMessageMetaData>);
-  static copyOf(source: EventChatMessage, mutator: (draft: MutableModel<EventChatMessage, EventChatMessageMetaData>) => MutableModel<EventChatMessage, EventChatMessageMetaData> | void): EventChatMessage;
-}
-
-export declare class UserConnection {
-  readonly id: string;
-  readonly follower?: Uprofile;
-  readonly followed?: Uprofile;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  constructor(init: ModelInit<UserConnection, UserConnectionMetaData>);
-  static copyOf(source: UserConnection, mutator: (draft: MutableModel<UserConnection, UserConnectionMetaData>) => MutableModel<UserConnection, UserConnectionMetaData> | void): UserConnection;
-}
-
 export declare class UserDoc {
   readonly id: string;
   readonly email: string;
@@ -181,24 +172,4 @@ export declare class UserDoc {
   readonly updatedAt?: string;
   constructor(init: ModelInit<UserDoc, UserDocMetaData>);
   static copyOf(source: UserDoc, mutator: (draft: MutableModel<UserDoc, UserDocMetaData>) => MutableModel<UserDoc, UserDocMetaData> | void): UserDoc;
-}
-
-export declare class Task {
-  readonly id: string;
-  readonly title: string;
-  readonly description?: string;
-  readonly status?: string;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  constructor(init: ModelInit<Task, TaskMetaData>);
-  static copyOf(source: Task, mutator: (draft: MutableModel<Task, TaskMetaData>) => MutableModel<Task, TaskMetaData> | void): Task;
-}
-
-export declare class PrivateNote {
-  readonly id: string;
-  readonly content: string;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  constructor(init: ModelInit<PrivateNote, PrivateNoteMetaData>);
-  static copyOf(source: PrivateNote, mutator: (draft: MutableModel<PrivateNote, PrivateNoteMetaData>) => MutableModel<PrivateNote, PrivateNoteMetaData> | void): PrivateNote;
 }

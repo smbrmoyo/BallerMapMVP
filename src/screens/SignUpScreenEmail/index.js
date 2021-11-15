@@ -44,13 +44,15 @@ const SignUpScreenEmail = ({ navigation }) => {
   const route = useRoute();
   const { colors } = useTheme();
 
-  
   useEffect(() => {
     //isUserSignedUp();
-    console.log('\n', '\n', "<------------- SignUpScreenEmail ---------------->")
+    console.log(
+      "\n",
+      "\n",
+      "<------------- SignUpScreenEmail ---------------->"
+    );
   }, []);
 
-  
   const [dataSignUp, setdataSignUp] = useState({
     email: "",
     username: "",
@@ -274,24 +276,32 @@ const SignUpScreenEmail = ({ navigation }) => {
                         dataSignUp.username &&
                         dataSignUp.email
                       ) {
-                        console.log("   Signing Up User")
+                        console.log("   Signing Up User");
                         signUp(dataSignUp.email, dataSignUp.password)
                           .then((res) => {
-                            console.log("   SUCCESS: NEW USER SIGNED UP: " + res);
+                            console.log(
+                              "   SUCCESS: NEW USER SIGNED UP: " + res
+                            );
                             if (res === dataSignUp.email) {
-                              console.log("  ----> Heading to ConfirmSignUpSreen")
+                              console.log(
+                                "  ----> Heading to ConfirmSignUpSreen"
+                              );
                               navigation.navigate("ConfirmSignUp", {
                                 username: dataSignUp.username,
                                 email: dataSignUp.email,
                               });
                             } else {
-                              Alert.alert("!!! ERREUR DE LOGIQUE: L'email du Signup est différent du Text Input")
+                              Alert.alert(
+                                "!!! ERREUR DE LOGIQUE: L'email du Signup est différent du Text Input"
+                              );
                             }
                           })
                           .catch((error) => {
-                            if(error == "UsernameExistsException") {
-                              Alert.alert("Impossible de sign Up", "Un compte " +
-                                  "avec cet email existe déjà");
+                            if (error == "UsernameExistsException") {
+                              Alert.alert(
+                                "Impossible de sign Up",
+                                "Un compte " + "avec cet email existe déjà"
+                              );
                             }
                           });
                       }
@@ -334,7 +344,17 @@ const SignUpScreenEmail = ({ navigation }) => {
                 </View>
               </TouchableOpacity>
             </View>
-            /*<PasswordContainer
+          </ScrollView>
+        </Animatable.View>
+      </KeyboardAwareScrollView>
+    </LinearGradient>
+  );
+};
+
+export default SignUpScreenEmail;
+
+{
+  /*<PasswordContainer
               dataSignUp={dataSignUp}
               handlePasswordChange={handlePasswordChange}
               updateSecureTextEntry={updateSecureTextEntry}
@@ -352,12 +372,5 @@ const SignUpScreenEmail = ({ navigation }) => {
               signUp={signUp}
               dataSignUp={dataSignUp}
               navigation={navigation}
-            />*/
-          </ScrollView>
-        </Animatable.View>
-      </KeyboardAwareScrollView>
-    </LinearGradient>
-  );
-};
-
-export default SignUpScreenEmail;
+/>*/
+}

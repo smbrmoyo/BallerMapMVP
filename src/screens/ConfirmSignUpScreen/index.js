@@ -43,8 +43,12 @@ const ConfirmSignUpScreen = ({ navigation }) => {
   const email = route.params.email;
 
   useEffect(() => {
-      console.log('\n', '\n', "<------------- ConfirmSignUpScreen ---------------->")
-  })
+    console.log(
+      "\n",
+      "\n",
+      "<------------- ConfirmSignUpScreen ---------------->"
+    );
+  });
 
   return (
     <LinearGradient colors={["#743cff", "#bb006e"]} style={styles.container}>
@@ -97,8 +101,13 @@ const ConfirmSignUpScreen = ({ navigation }) => {
                         navigation.navigate("SignInEmail");
                       })
                       .catch((error) => {
-                        console.log("      Erreur dans la confirmation du User" + error);
-                        Alert.alert("Impossible de confirmer l'identité", error);
+                        console.log(
+                          "      Erreur dans la confirmation du User" + error
+                        );
+                        Alert.alert(
+                          "Impossible de confirmer l'identité",
+                          error
+                        );
                       });
                   }
                 );
@@ -123,14 +132,19 @@ const ConfirmSignUpScreen = ({ navigation }) => {
 
             <TouchableOpacity
               activeOpacity={0.7}
-              onPress={async() => {
-                console.log("   Resending confirmation to user")
-                await resendConfirmationCode(email).then(res => {
-                    Alert.alert("New Confirmation code", `New confirmation sent to ${email}. Check your spams` )
-                }).catch(error => {
-                   Alert.alert("ERROR resending confirmation code", error);
-                   console.log("   ERREUR resending confirmation code")
-                })
+              onPress={async () => {
+                console.log("   Resending confirmation to user");
+                await resendConfirmationCode(email)
+                  .then((res) => {
+                    Alert.alert(
+                      "New Confirmation code",
+                      `New confirmation sent to ${email}. Check your spams`
+                    );
+                  })
+                  .catch((error) => {
+                    Alert.alert("ERROR resending confirmation code", error);
+                    console.log("   ERREUR resending confirmation code");
+                  });
               }}
               style={[styles.signIn]}
             >
@@ -147,7 +161,7 @@ const ConfirmSignUpScreen = ({ navigation }) => {
               </View>
             </TouchableOpacity>
           </View>
-          /*<CodeContainer setCode={setCode} text={colors.text} />
+          {/*<CodeContainer setCode={setCode} text={colors.text} />
 
           <ButtonContainer
             confirmSignUp={confirmSignUp}
@@ -156,7 +170,7 @@ const ConfirmSignUpScreen = ({ navigation }) => {
             code={code}
             username={username}
             navigate={navigation.navigate}
-          />*/
+            />*/}
         </Animatable.View>
       </KeyboardAwareScrollView>
     </LinearGradient>

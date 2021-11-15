@@ -20,7 +20,6 @@ import {
   KeyboardAvoidingView,
   Keyboard,
 } from "react-native";
-import {AppContext} from "../../components/navigation/Providers/AppProvider"
 import { useHeaderHeight } from "@react-navigation/stack";
 import * as Haptics from "expo-haptics";
 import BottomSheet from "reanimated-bottom-sheet";
@@ -28,6 +27,8 @@ import Animated from "react-native-reanimated";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useAppContext } from "../../components/navigation/Providers/AppProvider";
+
 import {
   createUserDoc,
   createUserProfile,
@@ -40,7 +41,7 @@ import userConf from "../../aws-functions/userConf";
 import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
 
 export default function ButtonContainer(props) {
-    const {setIsPDoc} = useContext(AppContext);
+  const { setIsPdoc } = useAppContext();
   return (
     <View
       style={{
@@ -94,14 +95,22 @@ export default function ButtonContainer(props) {
             userDocId: props.user,
           };
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-          createUserProfile(input).then((res) => {
-            //navigation.navigate("Map");
-              console.log("--- Successfully created user profile")
-              setIsPDoc(true);
-          }).catch(error => {
-              console.log("   !!!ERREUR dans la creation du profile utilisateur, ButtonContainer du Set profile screen:", error);
-              Alert.alert("Erreur dans la création du profile", "Le profile utilisateur n'a pas pu être créé")
-          });
+          createUserProfile(input)
+            .then((res) => {
+              //navigation.navigate("Map");
+              console.log("--- Successfully created user profile");
+              setIsPdoc(true);
+            })
+            .catch((error) => {
+              console.log(
+                "   !!!ERREUR dans la creation du profile utilisateur, ButtonContainer du Set profile screen:",
+                error
+              );
+              Alert.alert(
+                "Erreur dans la création du profile",
+                "Le profile utilisateur n'a pas pu être créé"
+              );
+            });
         }}
       >
         <View

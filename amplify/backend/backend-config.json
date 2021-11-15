@@ -1,49 +1,32 @@
 {
-  "function": {
-    "ballermapmvp60e3b21c60e3b21cPostConfirmation": {
-      "build": true,
+  "api": {
+    "ballermapmvp": {
+      "service": "AppSync",
       "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "ListUProfiles": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda"
-    },
-    "ListFunc": {
-      "build": true,
-      "providerPlugin": "awscloudformation",
-      "service": "Lambda",
-      "dependsOn": [
-        {
-          "category": "api",
-          "resourceName": "ballermapmvp",
-          "attributes": [
-            "GraphQLAPIIdOutput",
-            "GraphQLAPIEndpointOutput"
-          ]
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authballermapmvp52e1ffed"
+            }
+          },
+          "additionalAuthenticationProviders": []
         }
-      ]
+      }
     }
   },
   "auth": {
-    "ballermapmvp60e3b21c60e3b21c": {
+    "ballermapmvp52e1ffed": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "function",
-          "resourceName": "ballermapmvp60e3b21c60e3b21cPostConfirmation",
-          "triggerProvider": "Cognito",
-          "attributes": [
-            "Arn",
-            "Name"
-          ]
-        }
-      ],
+      "dependsOn": [],
       "customAuth": false,
       "frontendAuthConfig": {
-        "loginMechanisms": [],
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
         "signupAttributes": [
           "EMAIL"
         ],
@@ -59,23 +42,21 @@
           "EMAIL"
         ]
       }
-    }
-  },
-  "api": {
-    "ballermapmvp": {
-      "service": "AppSync",
+    },
+    "userPoolGroups": {
+      "service": "Cognito-UserPool-Groups",
       "providerPlugin": "awscloudformation",
-      "output": {
-        "authConfig": {
-          "defaultAuthentication": {
-            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-            "userPoolConfig": {
-              "userPoolId": "authballermapmvp60e3b21c60e3b21c"
-            }
-          },
-          "additionalAuthenticationProviders": []
+      "dependsOn": [
+        {
+          "category": "auth",
+          "resourceName": "ballermapmvp52e1ffed",
+          "attributes": [
+            "UserPoolId",
+            "AppClientIDWeb",
+            "AppClientID"
+          ]
         }
-      }
+      ]
     }
   }
 }
