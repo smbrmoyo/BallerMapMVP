@@ -1,5 +1,4 @@
-
-import React, {useContext} from "react";;
+import React, { useContext } from "react";
 import ActivityStack from "./ActivityStack";
 import MessageStack from "./MessageStack";
 import MapStack from "./MapStack";
@@ -26,10 +25,9 @@ import { AWSAppSyncClient } from "aws-appsync";
 import awsconfig from "../../aws-exports";
 import { Auth } from "aws-amplify";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {useAppContext} from "./Providers/AppProvider";
+import { useAppContext } from "./Providers/AppProvider";
 
 const Tab = createBottomTabNavigator();
-
 
 /*useEffect(() => {
     const registerForPushNotificationsAsync = async () => {
@@ -68,7 +66,7 @@ const Tab = createBottomTabNavigator();
 
 const AppStack = (route, props) => {
   const [notifPermission, setNotifPermission] = useState();
-  const {isPdoc, loadingProfileDoc } = useAppContext()
+  const { isPdoc, loadingProfileDoc } = useAppContext();
 
   useEffect(() => {
     console.log("<------------- APPSTACK ---------------->");
@@ -80,7 +78,7 @@ const AppStack = (route, props) => {
     return () => {};
   }, []);
 
-  console.log("      isPDoc est:", isPdoc)
+  console.log("      isPDoc est:", isPdoc);
 
   const getTabBarVisibility = (route) => {
     const routeName = getFocusedRouteNameFromRoute(route);
@@ -115,89 +113,92 @@ const AppStack = (route, props) => {
     if (routeName === "UserSearch") {
       return false;
     }
-    if(routeName === "")
-    return true;
+    if (routeName === "") return true;
   };
 
-  return (
-      loadingProfileDoc?  <LoadingScreen/>:(
-         isPdoc? ( <Tab.Navigator
-                initialRouteName={"Map"}
-                shifting={false}
-              tabBarOptions={{
-                activeTintColor: "black",
-                inactiveTintColor: "#7B7B7B",
-                showLabel: false,
-                style: {
-                 backgroundColor: "white",
-                 borderTopWidth: 0.3,
-                 borderTopColor: "#C4C4C4",
-              //height: 50,
-                },
-              }}>
-                
-               
-                
-           <Tab.Screen
-              name="MessageStack"
-              component={MessageStack}
-              options={({ route }) => ({
-                tabBarLabel: "Message",
-                tabBarVisible: getTabBarVisibility(route),
-                tabBarIcon: ({ color, size }) => (
-                  <Feather name="message-square" size={26} color={color} />
-                ),
-                  //tabBarBadge: 3,
-            })}/>
-                
-            <Tab.Screen
-               name="Event"
-               component={EventStack}
-               options={({ route }) => ({
-                 tabBarLabel: "Profile",
-                 tabBarVisible: getTabBarVisibility(route),
-                 tabBarIcon: ({ color, size }) => (
-                   <AntDesign name="calendar" size={26} color={color} />
-                 ),
-            })}/>
+  return loadingProfileDoc ? (
+    <LoadingScreen />
+  ) : isPdoc ? (
+    <Tab.Navigator
+      initialRouteName={"Map"}
+      shifting={false}
+      tabBarOptions={{
+        activeTintColor: "black",
+        inactiveTintColor: "#7B7B7B",
+        showLabel: false,
+        style: {
+          backgroundColor: "white",
+          borderTopWidth: 0.3,
+          borderTopColor: "#C4C4C4",
+          //height: 50,
+        },
+      }}
+    >
+      <Tab.Screen
+        name="MessageStack"
+        component={MessageStack}
+        options={({ route }) => ({
+          tabBarLabel: "Message",
+          tabBarVisible: getTabBarVisibility(route),
+          tabBarIcon: ({ color, size }) => (
+            <Feather name="message-square" size={26} color={color} />
+          ),
+          //tabBarBadge: 3,
+        })}
+      />
 
-            <Tab.Screen
-              name="Map"
-              component={MapStack}
-              options={({ route }) => ({
-                tabBarLabel: "Map",
-                tabBarVisible: getTabBarVisibility(route),
-                tabBarIcon: ({ color, size }) => (
-                  <Feather name="map" size={24} color={color} />
-                ),
-              })}/>
-             
-           <Tab.Screen
-              name="Activity"
-              component={ActivityStack}
-              options={({ route }) => ({
-                tabBarLabel: "Places",
-                tabBarVisible: getTabBarVisibility(route),
-                tabBarIcon: ({ color, size }) => (
-                   <FontAwesome name="bell-o" size={24} color={color} />
-                ),
-              })}
-            />
+      <Tab.Screen
+        name="Event"
+        component={EventStack}
+        options={({ route }) => ({
+          tabBarLabel: "Profile",
+          tabBarVisible: getTabBarVisibility(route),
+          tabBarIcon: ({ color, size }) => (
+            <AntDesign name="calendar" size={26} color={color} />
+          ),
+        })}
+      />
 
-            <Tab.Screen
-              name="Profile"
-              component={ProfileStack}
-              options={({ route }) => ({
-                tabBarLabel: "Profile",
-                tabBarVisible: getTabBarVisibility(route),
-                tabBarIcon: ({ color, size }) => (
-                  <Ionicons name="person-circle-outline" size={32} color={color} />
-                ),
-              })}/>
-              </Tab.Navigator>):<SetProfileScreen/> )
+      <Tab.Screen
+        name="Map"
+        component={MapStack}
+        options={({ route }) => ({
+          tabBarLabel: "Map",
+          tabBarVisible: getTabBarVisibility(route),
+          tabBarIcon: ({ color, size }) => (
+            <Feather name="map" size={24} color={color} />
+          ),
+        })}
+      />
+
+      <Tab.Screen
+        name="Activity"
+        component={ActivityStack}
+        options={({ route }) => ({
+          tabBarLabel: "Places",
+          tabBarVisible: getTabBarVisibility(route),
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="bell-o" size={24} color={color} />
+          ),
+        })}
+      />
+
+      <Tab.Screen
+        name="Profile"
+        component={ProfileStack}
+        options={({ route }) => ({
+          tabBarLabel: "Profile",
+          tabBarVisible: getTabBarVisibility(route),
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="person-circle-outline" size={32} color={color} />
+          ),
+        })}
+      />
+    </Tab.Navigator>
+  ) : (
+    <SetProfileScreen />
   );
 };
-
 
 export default AppStack;
 
