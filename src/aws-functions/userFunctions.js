@@ -154,7 +154,6 @@ export const deleteUserConnection = async (userConnectionData) => {
     graphqlOperation(mutations.deleteUserConnection, {
       input: {
         id: userConnectionData.follower + userConnectionData.followed,
-        _version: userConnectionData._version,
       },
     })
   );

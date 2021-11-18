@@ -151,7 +151,6 @@ const OtherProfileScreen = ({ navigation }) => {
     let input = {
       follower: profileDoc.id,
       followed: otherUser.id,
-      _version: 1,
     };
     !isFollowing
       ? createUserConnection(input)

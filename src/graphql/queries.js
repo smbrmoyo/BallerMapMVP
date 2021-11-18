@@ -118,9 +118,6 @@ export const getPlace = /* GraphQL */ `
         nextToken
       }
       events {
-        name
-        address
-        beginningTime
         nextToken
       }
       id
@@ -198,13 +195,6 @@ export const getUprofile = /* GraphQL */ `
           eventVideos
           createdAt
           updatedAt
-          place {
-            address
-            createdAt
-            id
-            name
-            updatedAt
-          }
         }
         nextToken
       }
@@ -232,12 +222,6 @@ export const getUprofile = /* GraphQL */ `
             id
             name
             username
-            followers {
-              items {
-                id
-                _version
-              }
-            }
           }
           createdAt
           updatedAt

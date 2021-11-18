@@ -6,6 +6,7 @@ import {
   createUserProfile,
   getUprofileDoc,
   getUserDoc,
+  getAllUserProfiles,
 } from "../../../aws-functions/userFunctions";
 import { useQuery } from "react-query";
 
@@ -15,7 +16,7 @@ const ProfileProvider = ({ children }) => {
   const { user } = useAuth();
   const [username, setUsername] = useState("");
   const [followers, setFollowers] = useState([]);
-  const [following, setFollowing] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
   const [profileDoc, setProfileDoc] = useState(null);
   const [status, setStatus] = useState("loading");
 
@@ -33,6 +34,10 @@ const ProfileProvider = ({ children }) => {
     getUprofileDoc(user).then((response) => {
       setProfileDoc(response);
     });
+
+    getAllUserProfiles().then((response) => {
+      setAllUsers(response);
+    });
   }, []);
 
   return (
@@ -43,6 +48,7 @@ const ProfileProvider = ({ children }) => {
         setUsername,
         profileDoc,
         setProfileDoc,
+        allUsers,
         status,
       }}
     >

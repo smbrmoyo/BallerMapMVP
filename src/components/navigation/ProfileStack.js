@@ -2,7 +2,7 @@ import "react-native-gesture-handler";
 
 import React from "react";
 import ProfileScreen from "../../screens/ProfileScreen";
-import SetProfileScreen from "../../screens/SetProfileScreen";
+import AllUsersScreen from "../../screens/AllUsersScreen";
 import UpdateEventScreen from "../../screens/UpdateEventScreen";
 import FollowingScreen from "../../screens/FollowingScreen";
 import FollowersScreen from "../../screens/FollowersScreen";
@@ -40,6 +40,7 @@ const ProfileStack = ({ navigation }) => {
         <Stack.Screen name="Description" component={DescriptionScreen} />
         <Stack.Screen name="UpdateEvent" component={UpdateEventScreen} />
         <Stack.Screen name="Followers" component={FollowersScreen} />
+        <Stack.Screen name="AllUsers" component={AllUsersScreen} />
         <Stack.Screen name="OtherProfile" component={OtherProfileScreen} />
         <Stack.Screen
           name="Story"

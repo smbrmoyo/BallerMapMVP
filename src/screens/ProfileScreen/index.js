@@ -195,7 +195,7 @@ const ProfileScreen = ({ navigation, route }) => {
       headerLeft: () => (
         <TouchableOpacity
           activeOpacity={0.7}
-          onPress={() => navigation.navigate("UserSearch")}
+          onPress={() => navigation.navigate("AllUsers")}
         >
           <View style={styles.iconContainer}>
             <Ionicons name="people-outline" size={23} color="black" />
