@@ -73,6 +73,7 @@ type Event
   beginningTime: AWSDateTime!
   endingTime: AWSDateTime!
   tags: [String]
+  place: Place @connection(fields: ["placeID"])
   creator: Uprofile! @connection(fields: ["creatorID"])
   participants: [UserEventConnection]
     @connection(keyName: "byEvent", fields: ["id"])

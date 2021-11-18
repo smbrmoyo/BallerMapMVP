@@ -58,5 +58,12 @@
         }
       ]
     }
+  },
+  "function": {
+    "syncConflictHandlerba57b5b7": {
+      "service": "Lambda",
+      "providerPlugin": "awscloudformation",
+      "build": true
+    }
   }
 }

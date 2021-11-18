@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StatusBar,
   Alert,
+  ScrollView,
 } from "react-native";
 import { MaterialIcons, Ionicons, Entypo } from "@expo/vector-icons";
 import styles from "./styles";
@@ -13,6 +14,7 @@ import { hsize, wsize } from "../../utils/Dimensions";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import ButtonContainer from "./ButtonContainer";
 import ComingContainer from "./ComingContainer";
+import DescriptionContainer from "./DescriptionContainer";
 import ProfileTopContainer from "./ProfileTopContainer";
 import ProfileBottomContainer from "./ProfileBottomContainer";
 import DeleteAlert from "./DeleteAlert";
@@ -108,14 +110,18 @@ const DescriptionScreen = ({ props, navigation, route }) => {
       />
 
       <SafeAreaView style={{ flex: 1, padding: 10, backgroundColor: "white" }}>
-        <ProfileTopContainer event={event} navigate={navigation.navigate} />
-        <ProfileBottomContainer
-          readableDate={readableDate}
-          readableTime={readableTime}
-          beginningTime={beginningTime}
-        />
-        <ButtonContainer />
-        <ComingContainer />
+        <ScrollView>
+          <ProfileTopContainer event={event} navigate={navigation.navigate} />
+          <ProfileBottomContainer
+            readableDate={readableDate}
+            readableTime={readableTime}
+            beginningTime={beginningTime}
+            event={event}
+          />
+          <ButtonContainer />
+          <ComingContainer />
+          <DescriptionContainer description={event.description} />
+        </ScrollView>
       </SafeAreaView>
     </>
   );

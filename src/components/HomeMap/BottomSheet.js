@@ -24,7 +24,7 @@ import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import people from "../../assets/data/people";
-import EventRow from "../../screens/ProfileScreen/EventRow";
+import EventRow from "./EventRow";
 
 function pad2(string) {
   return `0${string}`.slice(-2);
@@ -182,7 +182,7 @@ const BottomSheetMap = (props) => {
         </View>
 
         <FlatList
-          data={people}
+          data={props.places[props.index]?.events.items}
           keyExtractor={(item) => item.id}
           //scrollEnabled={false}
           // numColumns={6}

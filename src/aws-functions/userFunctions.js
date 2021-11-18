@@ -1,8 +1,9 @@
-import { Auth, API, graphqlOperation } from "aws-amplify";
+import { Auth, API, graphqlOperation, DataStore } from "aws-amplify";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import userConf from "./userConf";
 import placesJSON from "../assets/data/placesJSON";
+import { UserConnection } from "../models";
 import * as mutations from "../graphql/mutations";
 import * as queries from "../graphql/queries";
 
@@ -39,7 +40,7 @@ export const getUprofileDoc = async (email) => {
     );
     return uProfileDoc.data.getUprofile;
   } catch (error) {
-    console.log("Error getting on getUprofileDoc" + error);
+    console.log("Error getting on getUprofileDoc" + JSON.stringify(error));
   }
 };
 
@@ -132,12 +133,28 @@ export const updateUserProfile = async (updatedUprofile) => {
  * @description create user connection
  * @param {JSON} userConnectionData
  */
-const createUserConnection = async (userConnectionData) => {
+export const createUserConnection = async (userConnectionData) => {
   return API.graphql(
     graphqlOperation(mutations.createUserConnection, {
       input: {
+        id: userConnectionData.follower + userConnectionData.followed,
         followerID: userConnectionData.follower,
         followedID: userConnectionData.followed,
+      },
+    })
+  );
+};
+
+/**
+ * @description delete user connection
+ * @param {JSON} userConnectionData
+ */
+export const deleteUserConnection = async (userConnectionData) => {
+  return API.graphql(
+    graphqlOperation(mutations.deleteUserConnection, {
+      input: {
+        id: userConnectionData.follower + userConnectionData.followed,
+        _version: userConnectionData._version,
       },
     })
   );

@@ -111,20 +111,23 @@ export const createEvent_c = /* GraphQL */ `
     $input: CreateEventInput_c!
   ) {
     createEvent_c(condition: $condition, input: $input) {
-      statusCode  
       data {
+        beginningTime
+        createdAt
+        creatorID
+        description
+        endingTime
+        eventPictures
+        eventVideos
         id
         name
-        description
-        creator {
-            username
-            id
-        } 
-        place{
-            id
-            name
-        }
+        placeID
+        privacy
+        profilePic
+        tags
+        updatedAt
       }
+      statusCode
     }
   }
 `;

@@ -84,21 +84,8 @@ export const onCreateNotification = /* GraphQL */ `
   subscription OnCreateNotification($profileID: ID!) {
     onCreateNotification(profileID: $profileID) {
       body
-      createdAt
-      id
-      photo
       profileID
-      type
-      uProfile {
-        createdAt
-        currentPlaceID
-        id
-        name
-        updatedAt
-        userDocId
-        username
-      }
-      updatedAt
+      id
     }
   }
 `;
@@ -250,35 +237,19 @@ export const onCreateUserDoc = /* GraphQL */ `
 export const onCreateUserEventConnection = /* GraphQL */ `
   subscription OnCreateUserEventConnection($profileID: ID!) {
     onCreateUserEventConnection(profileID: $profileID) {
-      Event {
-        beginningTime
-        createdAt
-        creatorID
-        description
-        endingTime
-        eventPictures
-        eventVideos
-        id
-        name
-        placeID
-        privacy
-        profilePic
-        tags
-        updatedAt
-      }
-      createdAt
-      eventID
-      id
-      profileID
-      updatedAt
       userProfile {
-        createdAt
-        currentPlaceID
-        id
-        name
-        updatedAt
-        userDocId
-        username
+        myEvents {
+          items {
+            Event {
+              id
+              name
+              place {
+                id
+                name
+              }
+            }
+          }
+        }
       }
     }
   }

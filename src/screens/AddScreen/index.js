@@ -66,9 +66,6 @@ const AddScreen = ({ navigation, route }) => {
     beginningTime: new Date(),
     endingTime: new Date(),
     privacy: "private",
-    _version: 0,
-    _deleted: false,
-    _lastChangedAt: new Date(),
   });
 
   useEffect(() => {
@@ -134,9 +131,7 @@ const AddScreen = ({ navigation, route }) => {
     if (!d) return undefined;
     return `${pad2(d.getDate())}/${pad2(
       d.getMonth() + 1
-    )}/${d.getFullYear()}  at  ${pad2(d.getHours())}:${pad2(
-      d.getMinutes()
-    )}:${pad2(d.getSeconds())}`;
+    )}/${d.getFullYear()}  at  ${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
   };
 
   return (

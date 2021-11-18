@@ -13,8 +13,15 @@
     },
     "categories": {
       "auth": {
+        "ballermapmvp6a5f0852": {},
         "ballermapmvp52e1ffed": {},
         "userPoolGroups": {}
+      },
+      "function": {
+        "syncConflictHandlerba57b5b7": {
+          "deploymentBucketName": "amplify-ballermapmvp-dev-151750-deployment",
+          "s3Key": "amplify-builds/syncConflictHandlerba57b5b7-6b4a334d514572785179-build.zip"
+        }
       }
     }
   }

@@ -94,6 +94,9 @@ export const getNotification = /* GraphQL */ `
         currentPlaceID
         id
         name
+        userDocId
+        currentPlaceID
+        createdAt
         updatedAt
         userDocId
         username
@@ -118,9 +121,6 @@ export const getPlace = /* GraphQL */ `
         nextToken
       }
       events {
-        name
-        address
-        beginningTime
         nextToken
       }
       id
@@ -198,13 +198,6 @@ export const getUprofile = /* GraphQL */ `
           eventVideos
           createdAt
           updatedAt
-          place {
-            address
-            createdAt
-            id
-            name
-            updatedAt
-          }
         }
         nextToken
       }
@@ -232,12 +225,6 @@ export const getUprofile = /* GraphQL */ `
             id
             name
             username
-            followers {
-              items {
-                id
-                _version
-              }
-            }
           }
           createdAt
           updatedAt
@@ -380,12 +367,9 @@ export const listNotifications = /* GraphQL */ `
     listNotifications(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         body
-        createdAt
         id
-        photo
         profileID
         type
-        updatedAt
       }
       nextToken
     }
@@ -404,17 +388,9 @@ export const listPlaces = /* GraphQL */ `
         id
         name
         updatedAt
-        events {
-          items {
-            name
-            id
-            description
-            beginningTime
-          }
-        }
         coords {
-          lat
           long
+          lat
         }
       }
       nextToken

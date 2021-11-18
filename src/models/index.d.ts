@@ -33,19 +33,19 @@ type EventMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-type EventChatMessageMetaData = {
-  readOnlyFields: 'updatedAt';
-}
-
-type UserConnectionMetaData = {
-  readOnlyFields: 'createdAt' | 'updatedAt';
-}
-
 type PlaceMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
 type UserPlaceConnectionMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
+type EventChatMessageMetaData = {
+  readOnlyFields: 'updatedAt';
+}
+
+type UserConnectionMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
@@ -97,10 +97,10 @@ export declare class UserEventConnection {
 export declare class Event {
   readonly id: string;
   readonly name: string;
-  readonly placeID: string;
   readonly beginningTime: string;
   readonly endingTime: string;
   readonly tags?: (string | null)[];
+  readonly place?: Place;
   readonly creator: Uprofile;
   readonly participants?: (UserEventConnection | null)[];
   readonly chat?: (EventChatMessage | null)[];
@@ -113,27 +113,6 @@ export declare class Event {
   readonly updatedAt?: string;
   constructor(init: ModelInit<Event, EventMetaData>);
   static copyOf(source: Event, mutator: (draft: MutableModel<Event, EventMetaData>) => MutableModel<Event, EventMetaData> | void): Event;
-}
-
-export declare class EventChatMessage {
-  readonly id: string;
-  readonly body: string;
-  readonly createdAt?: string;
-  readonly event?: Event;
-  readonly userProfile?: Uprofile;
-  readonly updatedAt?: string;
-  constructor(init: ModelInit<EventChatMessage, EventChatMessageMetaData>);
-  static copyOf(source: EventChatMessage, mutator: (draft: MutableModel<EventChatMessage, EventChatMessageMetaData>) => MutableModel<EventChatMessage, EventChatMessageMetaData> | void): EventChatMessage;
-}
-
-export declare class UserConnection {
-  readonly id: string;
-  readonly follower?: Uprofile;
-  readonly followed?: Uprofile;
-  readonly createdAt?: string;
-  readonly updatedAt?: string;
-  constructor(init: ModelInit<UserConnection, UserConnectionMetaData>);
-  static copyOf(source: UserConnection, mutator: (draft: MutableModel<UserConnection, UserConnectionMetaData>) => MutableModel<UserConnection, UserConnectionMetaData> | void): UserConnection;
 }
 
 export declare class Place {
@@ -160,6 +139,27 @@ export declare class UserPlaceConnection {
   readonly updatedAt?: string;
   constructor(init: ModelInit<UserPlaceConnection, UserPlaceConnectionMetaData>);
   static copyOf(source: UserPlaceConnection, mutator: (draft: MutableModel<UserPlaceConnection, UserPlaceConnectionMetaData>) => MutableModel<UserPlaceConnection, UserPlaceConnectionMetaData> | void): UserPlaceConnection;
+}
+
+export declare class EventChatMessage {
+  readonly id: string;
+  readonly body: string;
+  readonly createdAt?: string;
+  readonly event?: Event;
+  readonly userProfile?: Uprofile;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<EventChatMessage, EventChatMessageMetaData>);
+  static copyOf(source: EventChatMessage, mutator: (draft: MutableModel<EventChatMessage, EventChatMessageMetaData>) => MutableModel<EventChatMessage, EventChatMessageMetaData> | void): EventChatMessage;
+}
+
+export declare class UserConnection {
+  readonly id: string;
+  readonly follower?: Uprofile;
+  readonly followed?: Uprofile;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<UserConnection, UserConnectionMetaData>);
+  static copyOf(source: UserConnection, mutator: (draft: MutableModel<UserConnection, UserConnectionMetaData>) => MutableModel<UserConnection, UserConnectionMetaData> | void): UserConnection;
 }
 
 export declare class UserDoc {

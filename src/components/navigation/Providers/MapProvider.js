@@ -22,7 +22,7 @@ const MapProvider = ({ children }) => {
   const [status, setStatus] = useState("loading");
   const [camera, setCamera] = useState(null);
   const [users, setUsers] = useState([]);
-  // Geocoder.init("AIzaSyCAWRoRAT1jDaCuwACpmYsseOgW1-_XrNg");
+  Geocoder.init("AIzaSyCAWRoRAT1jDaCuwACpmYsseOgW1-_XrNg");
 
   const getCamera = async () => {
     let location = await Location.getLastKnownPositionAsync().catch((err) =>
@@ -33,6 +33,24 @@ const MapProvider = ({ children }) => {
   const resultPlaces = useQuery("getPlaces", getPlacesList);
   const resultCamera = useQuery("getCamera", getCamera);
   const resultUsers = useQuery("getUsers", getAllUserProfiles);
+
+  /*useEffect(() => {
+    Geocoder.from("Rue du colisé 54, 75008 Paris")
+      .then((json) => {
+        var location = json.results[0].geometry.location;
+        console.log(location);
+        let input = {
+          name: "Coliseum",
+          address: "Rue du colisé 54, 75008 Paris",
+          coords: {
+            lat: json.results[0].geometry.location.lat,
+            long: json.results[0].geometry.location.lng,
+          },
+        };
+        createPlace(input).then((res) => console.log(res));
+      })
+      .catch((error) => console.warn(error));
+  }, []);*/
 
   useEffect(() => {
     if (

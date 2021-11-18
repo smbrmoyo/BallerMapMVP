@@ -1,9 +1,31 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateEvent = /* GraphQL */ `
-  subscription OnCreateEvent {
-    onCreateEvent {
+export const createAttendance = /* GraphQL */ `
+  mutation CreateAttendance(
+    $condition: ModelUserPlaceConnectionConditionInput
+    $input: CreateUserPlaceConnectionInput!
+  ) {
+    createAttendance(condition: $condition, input: $input) {
+      data {
+        arrivingTime
+        createdAt
+        departureTime
+        id
+        placeID
+        profileID
+        updatedAt
+      }
+      statusCode
+    }
+  }
+`;
+export const createEvent = /* GraphQL */ `
+  mutation CreateEvent(
+    $condition: ModelEventConditionInput
+    $input: CreateEventInput!
+  ) {
+    createEvent(condition: $condition, input: $input) {
       beginningTime
       chat {
         nextToken
@@ -43,9 +65,12 @@ export const onCreateEvent = /* GraphQL */ `
     }
   }
 `;
-export const onCreateEventChatMessage = /* GraphQL */ `
-  subscription OnCreateEventChatMessage {
-    onCreateEventChatMessage {
+export const createEventChatMessage = /* GraphQL */ `
+  mutation CreateEventChatMessage(
+    $condition: ModelEventChatMessageConditionInput
+    $input: CreateEventChatMessageInput!
+  ) {
+    createEventChatMessage(condition: $condition, input: $input) {
       body
       createdAt
       event {
@@ -80,9 +105,35 @@ export const onCreateEventChatMessage = /* GraphQL */ `
     }
   }
 `;
-export const onCreateNotification = /* GraphQL */ `
-  subscription OnCreateNotification($profileID: ID!) {
-    onCreateNotification(profileID: $profileID) {
+export const createEvent_c = /* GraphQL */ `
+  mutation CreateEvent_c(
+    $condition: ModelEventConditionInput
+    $input: CreateEventInput_c!
+  ) {
+    createEvent_c(condition: $condition, input: $input) {
+      statusCode
+      data {
+        id
+        name
+        description
+        creator {
+          username
+          id
+        }
+        place {
+          id
+          name
+        }
+      }
+    }
+  }
+`;
+export const createNotification = /* GraphQL */ `
+  mutation CreateNotification(
+    $condition: ModelNotificationConditionInput
+    $input: CreateNotificationInput!
+  ) {
+    createNotification(condition: $condition, input: $input) {
       body
       createdAt
       id
@@ -102,9 +153,12 @@ export const onCreateNotification = /* GraphQL */ `
     }
   }
 `;
-export const onCreatePlace = /* GraphQL */ `
-  subscription OnCreatePlace {
-    onCreatePlace {
+export const createPlace = /* GraphQL */ `
+  mutation CreatePlace(
+    $condition: ModelPlaceConditionInput
+    $input: CreatePlaceInput!
+  ) {
+    createPlace(condition: $condition, input: $input) {
       address
       attendings {
         nextToken
@@ -126,9 +180,12 @@ export const onCreatePlace = /* GraphQL */ `
     }
   }
 `;
-export const onCreatePrivateNote = /* GraphQL */ `
-  subscription OnCreatePrivateNote($owner: String!) {
-    onCreatePrivateNote(owner: $owner) {
+export const createPrivateNote = /* GraphQL */ `
+  mutation CreatePrivateNote(
+    $condition: ModelPrivateNoteConditionInput
+    $input: CreatePrivateNoteInput!
+  ) {
+    createPrivateNote(condition: $condition, input: $input) {
       content
       createdAt
       id
@@ -137,9 +194,12 @@ export const onCreatePrivateNote = /* GraphQL */ `
     }
   }
 `;
-export const onCreateTask = /* GraphQL */ `
-  subscription OnCreateTask {
-    onCreateTask {
+export const createTask = /* GraphQL */ `
+  mutation CreateTask(
+    $condition: ModelTaskConditionInput
+    $input: CreateTaskInput!
+  ) {
+    createTask(condition: $condition, input: $input) {
       createdAt
       description
       id
@@ -149,9 +209,12 @@ export const onCreateTask = /* GraphQL */ `
     }
   }
 `;
-export const onCreateUprofile = /* GraphQL */ `
-  subscription OnCreateUprofile {
-    onCreateUprofile {
+export const createUprofile = /* GraphQL */ `
+  mutation CreateUprofile(
+    $condition: ModelUprofileConditionInput
+    $input: CreateUprofileInput!
+  ) {
+    createUprofile(condition: $condition, input: $input) {
       attendings {
         nextToken
       }
@@ -196,9 +259,12 @@ export const onCreateUprofile = /* GraphQL */ `
     }
   }
 `;
-export const onCreateUserConnection = /* GraphQL */ `
-  subscription OnCreateUserConnection {
-    onCreateUserConnection {
+export const createUserConnection = /* GraphQL */ `
+  mutation CreateUserConnection(
+    $condition: ModelUserConnectionConditionInput
+    $input: CreateUserConnectionInput!
+  ) {
+    createUserConnection(condition: $condition, input: $input) {
       createdAt
       followed {
         createdAt
@@ -225,9 +291,12 @@ export const onCreateUserConnection = /* GraphQL */ `
     }
   }
 `;
-export const onCreateUserDoc = /* GraphQL */ `
-  subscription OnCreateUserDoc {
-    onCreateUserDoc {
+export const createUserDoc = /* GraphQL */ `
+  mutation CreateUserDoc(
+    $condition: ModelUserDocConditionInput
+    $input: CreateUserDocInput!
+  ) {
+    createUserDoc(condition: $condition, input: $input) {
       createdAt
       deviceToken
       email
@@ -247,9 +316,12 @@ export const onCreateUserDoc = /* GraphQL */ `
     }
   }
 `;
-export const onCreateUserEventConnection = /* GraphQL */ `
-  subscription OnCreateUserEventConnection($profileID: ID!) {
-    onCreateUserEventConnection(profileID: $profileID) {
+export const createUserEventConnection = /* GraphQL */ `
+  mutation CreateUserEventConnection(
+    $condition: ModelUserEventConnectionConditionInput
+    $input: CreateUserEventConnectionInput!
+  ) {
+    createUserEventConnection(condition: $condition, input: $input) {
       Event {
         beginningTime
         createdAt
@@ -283,9 +355,12 @@ export const onCreateUserEventConnection = /* GraphQL */ `
     }
   }
 `;
-export const onCreateUserPlaceConnection = /* GraphQL */ `
-  subscription OnCreateUserPlaceConnection {
-    onCreateUserPlaceConnection {
+export const createUserPlaceConnection = /* GraphQL */ `
+  mutation CreateUserPlaceConnection(
+    $condition: ModelUserPlaceConnectionConditionInput
+    $input: CreateUserPlaceConnectionInput!
+  ) {
+    createUserPlaceConnection(condition: $condition, input: $input) {
       arrivingTime
       createdAt
       departureTime
@@ -312,9 +387,12 @@ export const onCreateUserPlaceConnection = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteEvent = /* GraphQL */ `
-  subscription OnDeleteEvent {
-    onDeleteEvent {
+export const deleteEvent = /* GraphQL */ `
+  mutation DeleteEvent(
+    $condition: ModelEventConditionInput
+    $input: DeleteEventInput!
+  ) {
+    deleteEvent(condition: $condition, input: $input) {
       beginningTime
       chat {
         nextToken
@@ -354,9 +432,12 @@ export const onDeleteEvent = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteEventChatMessage = /* GraphQL */ `
-  subscription OnDeleteEventChatMessage {
-    onDeleteEventChatMessage {
+export const deleteEventChatMessage = /* GraphQL */ `
+  mutation DeleteEventChatMessage(
+    $condition: ModelEventChatMessageConditionInput
+    $input: DeleteEventChatMessageInput!
+  ) {
+    deleteEventChatMessage(condition: $condition, input: $input) {
       body
       createdAt
       event {
@@ -391,9 +472,12 @@ export const onDeleteEventChatMessage = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteNotification = /* GraphQL */ `
-  subscription OnDeleteNotification {
-    onDeleteNotification {
+export const deleteNotification = /* GraphQL */ `
+  mutation DeleteNotification(
+    $condition: ModelNotificationConditionInput
+    $input: DeleteNotificationInput!
+  ) {
+    deleteNotification(condition: $condition, input: $input) {
       body
       createdAt
       id
@@ -413,9 +497,12 @@ export const onDeleteNotification = /* GraphQL */ `
     }
   }
 `;
-export const onDeletePlace = /* GraphQL */ `
-  subscription OnDeletePlace {
-    onDeletePlace {
+export const deletePlace = /* GraphQL */ `
+  mutation DeletePlace(
+    $condition: ModelPlaceConditionInput
+    $input: DeletePlaceInput!
+  ) {
+    deletePlace(condition: $condition, input: $input) {
       address
       attendings {
         nextToken
@@ -437,9 +524,12 @@ export const onDeletePlace = /* GraphQL */ `
     }
   }
 `;
-export const onDeletePrivateNote = /* GraphQL */ `
-  subscription OnDeletePrivateNote($owner: String!) {
-    onDeletePrivateNote(owner: $owner) {
+export const deletePrivateNote = /* GraphQL */ `
+  mutation DeletePrivateNote(
+    $condition: ModelPrivateNoteConditionInput
+    $input: DeletePrivateNoteInput!
+  ) {
+    deletePrivateNote(condition: $condition, input: $input) {
       content
       createdAt
       id
@@ -448,9 +538,12 @@ export const onDeletePrivateNote = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteTask = /* GraphQL */ `
-  subscription OnDeleteTask {
-    onDeleteTask {
+export const deleteTask = /* GraphQL */ `
+  mutation DeleteTask(
+    $condition: ModelTaskConditionInput
+    $input: DeleteTaskInput!
+  ) {
+    deleteTask(condition: $condition, input: $input) {
       createdAt
       description
       id
@@ -460,9 +553,12 @@ export const onDeleteTask = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteUprofile = /* GraphQL */ `
-  subscription OnDeleteUprofile {
-    onDeleteUprofile {
+export const deleteUprofile = /* GraphQL */ `
+  mutation DeleteUprofile(
+    $condition: ModelUprofileConditionInput
+    $input: DeleteUprofileInput!
+  ) {
+    deleteUprofile(condition: $condition, input: $input) {
       attendings {
         nextToken
       }
@@ -507,9 +603,12 @@ export const onDeleteUprofile = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteUserConnection = /* GraphQL */ `
-  subscription OnDeleteUserConnection {
-    onDeleteUserConnection {
+export const deleteUserConnection = /* GraphQL */ `
+  mutation DeleteUserConnection(
+    $condition: ModelUserConnectionConditionInput
+    $input: DeleteUserConnectionInput!
+  ) {
+    deleteUserConnection(condition: $condition, input: $input) {
       createdAt
       followed {
         createdAt
@@ -536,9 +635,12 @@ export const onDeleteUserConnection = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteUserDoc = /* GraphQL */ `
-  subscription OnDeleteUserDoc {
-    onDeleteUserDoc {
+export const deleteUserDoc = /* GraphQL */ `
+  mutation DeleteUserDoc(
+    $condition: ModelUserDocConditionInput
+    $input: DeleteUserDocInput!
+  ) {
+    deleteUserDoc(condition: $condition, input: $input) {
       createdAt
       deviceToken
       email
@@ -558,9 +660,12 @@ export const onDeleteUserDoc = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteUserEventConnection = /* GraphQL */ `
-  subscription OnDeleteUserEventConnection {
-    onDeleteUserEventConnection {
+export const deleteUserEventConnection = /* GraphQL */ `
+  mutation DeleteUserEventConnection(
+    $condition: ModelUserEventConnectionConditionInput
+    $input: DeleteUserEventConnectionInput!
+  ) {
+    deleteUserEventConnection(condition: $condition, input: $input) {
       Event {
         beginningTime
         createdAt
@@ -594,9 +699,12 @@ export const onDeleteUserEventConnection = /* GraphQL */ `
     }
   }
 `;
-export const onDeleteUserPlaceConnection = /* GraphQL */ `
-  subscription OnDeleteUserPlaceConnection {
-    onDeleteUserPlaceConnection {
+export const deleteUserPlaceConnection = /* GraphQL */ `
+  mutation DeleteUserPlaceConnection(
+    $condition: ModelUserPlaceConnectionConditionInput
+    $input: DeleteUserPlaceConnectionInput!
+  ) {
+    deleteUserPlaceConnection(condition: $condition, input: $input) {
       arrivingTime
       createdAt
       departureTime
@@ -623,9 +731,48 @@ export const onDeleteUserPlaceConnection = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateEvent = /* GraphQL */ `
-  subscription OnUpdateEvent {
-    onUpdateEvent {
+export const followUser = /* GraphQL */ `
+  mutation FollowUser(
+    $condition: ModelUserConnectionConditionInput
+    $input: CreateUserConnectionInput!
+  ) {
+    followUser(condition: $condition, input: $input) {
+      data {
+        createdAt
+        followedID
+        followerID
+        id
+        updatedAt
+      }
+      statusCode
+    }
+  }
+`;
+export const updateCurrentPlace = /* GraphQL */ `
+  mutation UpdateCurrentPlace(
+    $condition: ModelUprofileConditionInput
+    $input: UpdateUprofileInput!
+  ) {
+    updateCurrentPlace(condition: $condition, input: $input) {
+      data {
+        createdAt
+        currentPlaceID
+        id
+        name
+        updatedAt
+        userDocId
+        username
+      }
+      statusCode
+    }
+  }
+`;
+export const updateEvent = /* GraphQL */ `
+  mutation UpdateEvent(
+    $condition: ModelEventConditionInput
+    $input: UpdateEventInput!
+  ) {
+    updateEvent(condition: $condition, input: $input) {
       beginningTime
       chat {
         nextToken
@@ -665,9 +812,12 @@ export const onUpdateEvent = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateEventChatMessage = /* GraphQL */ `
-  subscription OnUpdateEventChatMessage {
-    onUpdateEventChatMessage {
+export const updateEventChatMessage = /* GraphQL */ `
+  mutation UpdateEventChatMessage(
+    $condition: ModelEventChatMessageConditionInput
+    $input: UpdateEventChatMessageInput!
+  ) {
+    updateEventChatMessage(condition: $condition, input: $input) {
       body
       createdAt
       event {
@@ -702,9 +852,12 @@ export const onUpdateEventChatMessage = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateNotification = /* GraphQL */ `
-  subscription OnUpdateNotification {
-    onUpdateNotification {
+export const updateNotification = /* GraphQL */ `
+  mutation UpdateNotification(
+    $condition: ModelNotificationConditionInput
+    $input: UpdateNotificationInput!
+  ) {
+    updateNotification(condition: $condition, input: $input) {
       body
       createdAt
       id
@@ -724,9 +877,12 @@ export const onUpdateNotification = /* GraphQL */ `
     }
   }
 `;
-export const onUpdatePlace = /* GraphQL */ `
-  subscription OnUpdatePlace {
-    onUpdatePlace {
+export const updatePlace = /* GraphQL */ `
+  mutation UpdatePlace(
+    $condition: ModelPlaceConditionInput
+    $input: UpdatePlaceInput!
+  ) {
+    updatePlace(condition: $condition, input: $input) {
       address
       attendings {
         nextToken
@@ -748,9 +904,12 @@ export const onUpdatePlace = /* GraphQL */ `
     }
   }
 `;
-export const onUpdatePrivateNote = /* GraphQL */ `
-  subscription OnUpdatePrivateNote($owner: String!) {
-    onUpdatePrivateNote(owner: $owner) {
+export const updatePrivateNote = /* GraphQL */ `
+  mutation UpdatePrivateNote(
+    $condition: ModelPrivateNoteConditionInput
+    $input: UpdatePrivateNoteInput!
+  ) {
+    updatePrivateNote(condition: $condition, input: $input) {
       content
       createdAt
       id
@@ -759,9 +918,12 @@ export const onUpdatePrivateNote = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateTask = /* GraphQL */ `
-  subscription OnUpdateTask {
-    onUpdateTask {
+export const updateTask = /* GraphQL */ `
+  mutation UpdateTask(
+    $condition: ModelTaskConditionInput
+    $input: UpdateTaskInput!
+  ) {
+    updateTask(condition: $condition, input: $input) {
       createdAt
       description
       id
@@ -771,9 +933,12 @@ export const onUpdateTask = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateUprofile = /* GraphQL */ `
-  subscription OnUpdateUprofile($id: ID) {
-    onUpdateUprofile(id: $id) {
+export const updateUprofile = /* GraphQL */ `
+  mutation UpdateUprofile(
+    $condition: ModelUprofileConditionInput
+    $input: UpdateUprofileInput!
+  ) {
+    updateUprofile(condition: $condition, input: $input) {
       attendings {
         nextToken
       }
@@ -818,9 +983,12 @@ export const onUpdateUprofile = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateUserConnection = /* GraphQL */ `
-  subscription OnUpdateUserConnection {
-    onUpdateUserConnection {
+export const updateUserConnection = /* GraphQL */ `
+  mutation UpdateUserConnection(
+    $condition: ModelUserConnectionConditionInput
+    $input: UpdateUserConnectionInput!
+  ) {
+    updateUserConnection(condition: $condition, input: $input) {
       createdAt
       followed {
         createdAt
@@ -847,9 +1015,12 @@ export const onUpdateUserConnection = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateUserDoc = /* GraphQL */ `
-  subscription OnUpdateUserDoc {
-    onUpdateUserDoc {
+export const updateUserDoc = /* GraphQL */ `
+  mutation UpdateUserDoc(
+    $condition: ModelUserDocConditionInput
+    $input: UpdateUserDocInput!
+  ) {
+    updateUserDoc(condition: $condition, input: $input) {
       createdAt
       deviceToken
       email
@@ -869,9 +1040,12 @@ export const onUpdateUserDoc = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateUserEventConnection = /* GraphQL */ `
-  subscription OnUpdateUserEventConnection {
-    onUpdateUserEventConnection {
+export const updateUserEventConnection = /* GraphQL */ `
+  mutation UpdateUserEventConnection(
+    $condition: ModelUserEventConnectionConditionInput
+    $input: UpdateUserEventConnectionInput!
+  ) {
+    updateUserEventConnection(condition: $condition, input: $input) {
       Event {
         beginningTime
         createdAt
@@ -905,9 +1079,12 @@ export const onUpdateUserEventConnection = /* GraphQL */ `
     }
   }
 `;
-export const onUpdateUserPlaceConnection = /* GraphQL */ `
-  subscription OnUpdateUserPlaceConnection {
-    onUpdateUserPlaceConnection {
+export const updateUserPlaceConnection = /* GraphQL */ `
+  mutation UpdateUserPlaceConnection(
+    $condition: ModelUserPlaceConnectionConditionInput
+    $input: UpdateUserPlaceConnectionInput!
+  ) {
+    updateUserPlaceConnection(condition: $condition, input: $input) {
       arrivingTime
       createdAt
       departureTime

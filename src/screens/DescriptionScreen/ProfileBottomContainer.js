@@ -9,7 +9,7 @@ export default function ProfileBottomContainer(props) {
     <View style={styles.profileInfoContainer}>
       <View style={styles.profileInfo}>
         <SimpleLineIcons name="location-pin" size={20} color="#743cff" />
-        <Text style={styles.textInfo}>placeLocation</Text>
+        <Text style={styles.textInfo}>{props.event.place.address}</Text>
       </View>
       <TouchableOpacity activeOpacity={0.7} style={styles.profileInfo}>
         <EvilIcons name="link" size={22} color="black" />

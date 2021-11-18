@@ -35,6 +35,7 @@ import {
   createUserConnection,
   followUser,
   getUprofileDoc,
+  deleteUserConnection,
 } from "../../aws-functions/userFunctions";
 import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
 
@@ -57,7 +58,7 @@ const OtherProfileScreen = ({ navigation }) => {
   };
   const { events, attending } = tabs;
   const [currentTab, setCurrentTab] = useState(events);
-  const [myEvents, setMyEvents] = useState([]);
+  const [isFollowing, setIsFollowing] = useState(false);
   const isFocused = useIsFocused();
 
   useEffect(() => {
@@ -72,6 +73,14 @@ const OtherProfileScreen = ({ navigation }) => {
         setLoading(false);
       }
     });
+
+    for (let i = 0; i < profileDoc?.following.items.length; i++) {
+      if (profileDoc?.following.items[i].followedID == otherUser?.id) {
+        setIsFollowing(true);
+      } else {
+        setIsFollowing(false);
+      }
+    }
 
     return () => {
       setLoading(true);
@@ -128,27 +137,35 @@ const OtherProfileScreen = ({ navigation }) => {
     });
   }, [otherUser]);
 
-  const isFollowing = () => {
+  const followCheck = () => {
     for (let i = 0; i < profileDoc?.following.items.length; i++) {
       if (profileDoc?.following.items[i].followedID == otherUser?.id) {
-        return true;
+        setIsFollowing(true);
       } else {
-        return false;
+        setIsFollowing(false);
       }
     }
   };
 
-  isFollowing();
-
   const onFollowPress = () => {
-    setIsFollowing(!isFollowing);
     let input = {
       follower: profileDoc.id,
       followed: otherUser.id,
+      _version: 1,
     };
-    /*followUser(input)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));*/
+    !isFollowing
+      ? createUserConnection(input)
+          .then(
+            (response) => console.log(response),
+            setIsFollowing(!isFollowing)
+          )
+          .catch((error) => console.log(error))
+      : deleteUserConnection(input)
+          .then(
+            (response) => console.log(response),
+            setIsFollowing(!isFollowing)
+          )
+          .catch((error) => console.log(error));
   };
 
   const goToFollowing = () => {

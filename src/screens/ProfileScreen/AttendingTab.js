@@ -6,7 +6,7 @@ import EventRow from "../ProfileScreen/EventRow";
 export default function AttendingTab(props) {
   const { width, height } = Dimensions.get("window");
 
-  return props.events.length == 0 ? (
+  return props.events?.length == 0 ? (
     <View
       style={{
         justifyContent: "center",
@@ -22,21 +22,6 @@ export default function AttendingTab(props) {
     <FlatList
       data={props.events}
       keyExtractor={(item) => item.id}
-      ListEmptyComponent={
-        <View
-          style={{
-            flex: 1,
-            width: width,
-          }}
-          contentContainerStyle={{
-            alignItems: "center",
-            justifyContent: "center",
-            flex: 1,
-          }}
-        >
-          <Text>Nothing to see here yet</Text>
-        </View>
-      }
       style={{
         flex: 1,
         backgroundColor: "white",

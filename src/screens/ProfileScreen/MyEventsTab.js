@@ -7,7 +7,7 @@ import styles from "./styles";
 export default function MyEventsTab(props) {
   const { width, height } = Dimensions.get("window");
 
-  return props.events.length == 0 ? (
+  return props.events?.length == 0 ? (
     <View
       style={{
         justifyContent: "center",

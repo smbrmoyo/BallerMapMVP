@@ -129,7 +129,7 @@ export default function ProfileContainer(props) {
           <TouchableOpacity activeOpacity={0.7} onPress={props.onFollowPress}>
             <View
               style={{
-                backgroundColor: props.isFollowing() ? "white" : "#743cff",
+                backgroundColor: props.isFollowing ? "white" : "#743cff",
                 borderWidth: 1,
                 borderColor: "#E9E8E8",
                 borderRadius: 5,
@@ -142,10 +142,10 @@ export default function ProfileContainer(props) {
               <Text
                 style={{
                   fontSize: 20,
-                  color: props.isFollowing() ? "black" : "white",
+                  color: props.isFollowing ? "black" : "white",
                 }}
               >
-                {props.isFollowing() ? "Following" : "Follow"}
+                {props.isFollowing ? "Following" : "Follow"}
               </Text>
             </View>
           </TouchableOpacity>
