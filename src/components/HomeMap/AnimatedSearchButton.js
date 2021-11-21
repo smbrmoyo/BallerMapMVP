@@ -10,6 +10,7 @@ export default function AnimatedSearchButton(props) {
         styles.buttonContainer,
         {
           right: 15,
+          // opacity: 0.2,
           top: "6.5%",
           transform: [
             {

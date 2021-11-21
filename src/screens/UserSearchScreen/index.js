@@ -26,6 +26,7 @@ const UserSearchScreen = ({ navigation }) => {
   const [text, setText] = useState("");
   const { users } = useMap();
   const [data, setData] = useState(users); // users should come from uProfile
+  const [participants, setParticipants] = useState([]);
 
   useEffect(() => {
     setData(users);
@@ -82,20 +83,30 @@ const UserSearchScreen = ({ navigation }) => {
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => {
-            bsProf.current.snapTo(0);
+            participants.length > 0
+              ? navigation.navigate({
+                  name: "Add",
+                  params: {
+                    participants: participants,
+                  },
+                })
+              : null;
           }}
         >
           <View style={styles.iconContainer}>
-            <MaterialCommunityIcons
-              name="dots-horizontal"
-              size={30}
-              color="black"
-            />
+            <Text
+              style={{
+                color: participants.length > 0 ? "#743cff" : "grey",
+                fontWeight: "bold",
+              }}
+            >
+              Done
+            </Text>
           </View>
         </TouchableOpacity>
       ),
     });
-  }, [navigation]);
+  }, [participants]);
 
   if (loading) {
     return <LoadingScreen />;
@@ -117,7 +128,14 @@ const UserSearchScreen = ({ navigation }) => {
             />
           }
           renderItem={({ item }) => (
-            <FollowRow item={item} isAdded onAddPress navigation={navigation} />
+            <FollowRow
+              item={item}
+              participants={participants}
+              setParticipants={setParticipants}
+              isAdded
+              onAddPress
+              navigation={navigation}
+            />
           )}
         />
       </View>

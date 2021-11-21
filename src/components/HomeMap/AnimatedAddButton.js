@@ -12,6 +12,7 @@ export default function AnimatedAddButton(props) {
         {
           right: 10,
           bottom: hsize(25),
+          zIndex: 2,
           transform: [
             {
               translateY: props.heightAnim,
@@ -28,6 +29,7 @@ export default function AnimatedAddButton(props) {
             width: wsize(50),
             borderRadius: wsize(25),
             marginBottom: hsize(30),
+            // opacity: 0.2,
           },
         ]}
       >

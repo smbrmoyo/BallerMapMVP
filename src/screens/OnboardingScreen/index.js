@@ -48,7 +48,7 @@ const OnboardingScreen = ({ navigation }) => {
           image: (
             <Image
               style={styles.imageOne}
-              source={require("../../assets/images/bitmoji-image.png")}
+              source={require("../../../image0.jpeg")}
             />
           ),
           title: "Onboarding 1",

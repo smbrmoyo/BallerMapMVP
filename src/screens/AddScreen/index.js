@@ -56,8 +56,8 @@ const AddScreen = ({ navigation, route }) => {
 
   const [eventData, setEventData] = useState({
     name: "",
-    placeID: route.params?.searchedPlace.id,
-    placeName: route.params?.searchedPlace.name,
+    placeID: route.params?.searchedPlace?.id,
+    placeName: route.params?.searchedPlace?.name,
     creatorID: user,
     creator: user,
     tags: [],
@@ -66,14 +66,21 @@ const AddScreen = ({ navigation, route }) => {
     beginningTime: new Date(),
     endingTime: new Date(),
     privacy: "private",
+    participants: route.params?.participants,
   });
 
   useEffect(() => {
-    if (route.params !== undefined) {
+    if (route.params?.participants !== undefined) {
+      console.log(route.params?.participants);
       setEventData({
         ...eventData,
-        placeID: route.params?.searchedPlace.id,
-        placeName: route.params?.searchedPlace.name,
+        participants: route.params?.participants,
+      });
+    } else if (route.params?.searchedPlace !== undefined) {
+      setEventData({
+        ...eventData,
+        placeID: route.params?.searchedPlace?.id,
+        placeName: route.params?.searchedPlace?.name,
       });
     }
   }, [route]);

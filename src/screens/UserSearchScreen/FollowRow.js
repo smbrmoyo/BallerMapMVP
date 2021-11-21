@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import ProfilePicture from "../../components/ProfilePictureUser";
 import { wsize, hsize } from "../../utils/Dimensions";
@@ -7,21 +7,22 @@ import { Feather } from "@expo/vector-icons";
 import styles from "./styles";
 import { useMap } from "../../components/navigation/Providers/MapProvider";
 
-export default function FollowRow({ item, navigation }) {
+export default function FollowRow(props) {
   const [isAdded, setIsAdded] = useState(true);
   const onAddPress = () => {
     setIsAdded(!isAdded);
   };
+
   return (
     <TouchableOpacity
       activeOpacity={0.7}
       style={styles.postHeaderFirst}
-      onPress={() => {
+      /*onPress={() => {
         navigation.navigate("Profile", {
           screen: "OtherProfile",
           params: { id: item.id },
         });
-      }}
+      }}*/
     >
       <View style={styles.postHeaderContainer}>
         <View
@@ -47,7 +48,7 @@ export default function FollowRow({ item, navigation }) {
                 color: "black",
               }}
             >
-              {item.name}
+              {props.item.name}
             </Text>
             <Text
               style={{
@@ -55,19 +56,19 @@ export default function FollowRow({ item, navigation }) {
                 color: "grey",
               }}
             >
-              {item.username}
+              {props.item.username}
             </Text>
           </View>
         </View>
         <View
           style={{
-            //backgroundColor: added === true ? "#D8D8D8" : "#743cff",
+            //backgroundColor: "red",
             marginBottom: 10,
             borderWidth: 1,
             borderColor: "#E9E8E8",
-            borderRadius: 50,
-            //height: hsize(30),
-            //width: "25%",
+            borderRadius: hsize(25),
+            height: hsize(50),
+            width: hsize(50),
             alignSelf: "center",
             alignItems: "center",
             justifyContent: "center",
@@ -75,7 +76,16 @@ export default function FollowRow({ item, navigation }) {
         >
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() => setIsAdded(!isAdded)} // Should add to the list of participants
+            onPress={() => {
+              //props.setParticipants([props.item.id, ...props.participants]);
+              const helper = props.participants.filter(
+                (element) => element != props.item.id
+              );
+              isAdded
+                ? (setIsAdded(!isAdded),
+                  props.setParticipants([props.item.id, ...props.participants]))
+                : (props.setParticipants(helper), setIsAdded(!isAdded));
+            }} // Should add to the list of participants
           >
             {isAdded == true ? (
               <Feather name="plus" size={30} color="black" />

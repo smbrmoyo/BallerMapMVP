@@ -365,7 +365,7 @@ const HomeMap = (props) => {
           style={{
             width: "100%",
             height: "100%",
-            //opacity: Animated.add(0.05, Animated.multiply(this.fall, 1.0)),
+            //opacity: 0.2,
           }}
         >
           <MapView

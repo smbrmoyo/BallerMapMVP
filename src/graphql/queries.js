@@ -188,6 +188,9 @@ export const getUprofile = /* GraphQL */ `
           beginningTime
           endingTime
           tags
+          place {
+            address
+          }
           description
           privacy
           profilePic
