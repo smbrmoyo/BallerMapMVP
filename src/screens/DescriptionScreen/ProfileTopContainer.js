@@ -13,8 +13,8 @@ export default function ProfileTopContainer(props) {
         <ProfilePicture size={70} />
       </TouchableOpacity>
       <View style={styles.profileNameContainer}>
-        <Text style={styles.profileName}>{props.event.name}</Text>
-        <Text style={styles.profileType}>{props.event.description}</Text>
+        <Text style={styles.profileName}>{props.event?.name}</Text>
+        <Text style={styles.profileType}>{props.event?.description}</Text>
       </View>
     </View>
   );

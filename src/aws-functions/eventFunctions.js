@@ -23,7 +23,7 @@ export const getEvent = async (eventId) => {
   let event = await API.graphql(
     graphqlOperation(queries.getEvent, { id: eventId })
   );
-  return event;
+  return event.data.getEvent;
 };
 
 /**

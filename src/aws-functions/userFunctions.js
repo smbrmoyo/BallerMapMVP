@@ -134,7 +134,10 @@ export const updateUserProfile = async (updatedUprofile) => {
  * @param {JSON} userConnectionData
  */
 export const createUserConnection = async (userConnectionData) => {
-  return API.graphql(
+  let advance = false;
+  let userConnection;
+
+  await API.graphql(
     graphqlOperation(mutations.createUserConnection, {
       input: {
         id: userConnectionData.follower + userConnectionData.followed,
@@ -142,7 +145,64 @@ export const createUserConnection = async (userConnectionData) => {
         followedID: userConnectionData.followed,
       },
     })
-  );
+  )
+    .then((res) => {
+      advance = true;
+      userConnection = {
+        id: res.data.createUserConnection.id,
+        followerID: res.data.createUserConnection.followerID,
+        followedID: res.data.createUserConnection.followedID,
+        follower: {
+          username: res.data.createUserConnection.follower.username,
+          id: res.data.createUserConnection.follower.id,
+          userDocId: res.data.createUserConnection.follower.userDocId,
+          updatedAt: res.data.createUserConnection.follower.updatedAt,
+          createdAt: res.data.createUserConnection.follower.createdAt,
+        },
+        followed: {
+          username: res.data.createUserConnection.followed.username,
+          id: res.data.createUserConnection.followed.id,
+          userDocId: res.data.createUserConnection.followed.userDocId,
+          updatedAt: res.data.createUserConnection.followed.updatedAt,
+          createdAt: res.data.createUserConnection.followed.createdAt,
+        },
+        updatedAt: res.data.createUserConnection.updatedAt,
+        createdAt: res.data.createUserConnection.createdAt,
+      };
+    })
+    .catch((error) => {
+      console.log(
+        "   !!!ERROR in follow request. Request arguments:",
+        JSON.stringify(ctx.input),
+        "Error",
+        err
+      );
+    });
+
+  if (advance) {
+    await API.graphql(
+      graphqlOperation(mutations.createNotification, {
+        input: {
+          profileID: userConnection.followedID,
+          type: "newFollower",
+          body: `${userConnection.follower.username} just followed you`,
+        },
+      })
+    )
+      .then((result) => {
+        console.log(
+          `   ${res.data.createUserConnection.follower.username} successfully followed ${res.data.createUserConnection.follower.username}`
+        );
+      })
+      .catch((err) => {
+        console.log(
+          "   !!!ERROR in follow request. Request arguments:",
+          JSON.stringify(ctx.input),
+          "Error",
+          err
+        );
+      });
+  }
 };
 
 /**

@@ -39,20 +39,7 @@ export default function DescriptionContainer(props) {
           borderRadius: 10,
         }}
       >
-        <Text style={{ margin: 5 }}>
-          {/*props.description*/}dhfkjsbfkjnslknqfvlbvjkqjsrjgsghkbgsb
-          dhfkjsbfkjnslknqfvlbvjkqjsrjgsghkbgsb
-          dhfkjsbfkjnslknqfvlbvjkqjsrjgsghkbgsb
-          dhfkjsbfkjnslknqfvlbvjkqjsrjgsghkbgsb
-          dhfkjsbfkjnslknqfvlbvjkqjsrjgsghkbgsb
-          dhfkjsbfkjnslknqfvlbvjkqjsrjgsghkbgsb
-          dhfkjsbfkjnslknqfvlbvjkqjsrjgsghkbgsb
-          dhfkjsbfkjnslknqfvlbvjkqjsrjgsghkbgsb
-          dhfkjsbfkjnslknqfvlbvjkqjsrjgsghkbgsb
-          dhfkjsbfkjnslknqfvlbvjkqjsrjgsghkbgsb
-          dhfkjsbfkjnslknqfvlbvjkqjsrjgsghkbgsb
-          dhfkjsbfkjnslknqfvlbvjkqjsrjgsghkbgsbdhfkjsbfkjnslknqfvlbvjkqjsrjgsghkbgsbdhfkjsbfkjnslknqfvlbvjkqjsrjgsghkbgsbdhfkjsbfkjnslknqfvlbvjkqjsrjgsghkbgsbdhfkjsbfkjnslknqfvlbvjkqjsrjgsghkbgsb
-        </Text>
+        <Text style={{ margin: 5 }}>{props.description}</Text>
       </TouchableOpacity>
     </View>
   );

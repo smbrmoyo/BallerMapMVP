@@ -92,7 +92,7 @@ const AddScreen = ({ navigation, route }) => {
       headerTitle: () => (
         <View style={styles.headerTitle}>
           <TouchableOpacity activeOpacity={0.7} style={styles.iconHeaderTitle}>
-            <Text style={styles.textHeader}>Modify A Run</Text>
+            <Text style={styles.textHeader}>Modify Your Run</Text>
           </TouchableOpacity>
         </View>
       ),
@@ -111,7 +111,7 @@ const AddScreen = ({ navigation, route }) => {
         <View style={{ flexDirection: "row", marginHorizontal: wsize(10) }}>
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() => navigation.navigate("UserSearch")} // Should have a userSearchAddScreen
+            onPress={() => navigation.navigate("UserUpdate")} // Should have a userSearchAddScreen
             style={{ justifyContent: "center" }}
           >
             <View style={styles.iconContainer}>

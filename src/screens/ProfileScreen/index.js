@@ -7,6 +7,7 @@ import {
   TouchableWithoutFeedback,
   Dimensions,
   ScrollView,
+  Alert,
 } from "react-native";
 import Animated from "react-native-reanimated";
 import { FlatList } from "react-native-gesture-handler";
@@ -15,6 +16,7 @@ import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
 import { hsize } from "../../utils/Dimensions";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import { SimpleLineIcons } from "@expo/vector-icons";
 
 import BottomSheetProfile from "./BottomSheetProfile";
 import Loading from "./Loading";
@@ -53,7 +55,7 @@ const ProfileScreen = ({ navigation, route }) => {
   const [loading, setLoading] = useState(true); // Should set to true and work on loading screen
   const _scrollView = useRef(null);
   const { signOut, user, yourEvents } = useAuth();
-  const { profileDoc, status } = useProfile();
+  const { profileDoc, setProfileDoc } = useProfile();
   const [myEvents, setMyEvents] = useState([]);
   const { events, attending } = tabs;
   const [currentTab, setCurrentTab] = useState(events);
@@ -70,7 +72,7 @@ const ProfileScreen = ({ navigation, route }) => {
     setMyEvents(profileDoc?.eventsCreated.items);
     //await subscribeToRemoveFollower(profileDoc, loggedUser);
     //await subscribeToAddFollower(profileDoc, loggedUser);
-    //await subscribeToUpdateProfile(profileDoc, loggedUser);
+    await subscribeToUpdateProfile(profileDoc, user);
     //await subscribeToDeleteEvent(profileDoc, loggedUser);
     //await subscribeToAddEvent(profileDoc, loggedUser);
   };
@@ -120,26 +122,25 @@ const ProfileScreen = ({ navigation, route }) => {
     followers = response.followers.items;
   };
 
-  const subscribeToUpdateProfile = async (profileDocument, loggedUser) => {
-    await API.graphql(
-      graphqlOperation(onUpdateUprofile, { id: user })
-    ).subscribe({
-      next: async ({ value }) => {
-        try {
-          const profileId =
-            profileDocument !== null ? profileDocument.id : user;
-          if (value.data.onUpdateUprofile.id == profileId) {
-            console.log("updateProfile");
-            updatedProfile = value.data.onUpdateUprofile;
-          } else {
-            console.log("user not related to this update");
+  const subscribeToUpdateProfile = async (profileDocument) => {
+    await API.graphql(graphqlOperation(onUpdateUprofile))
+      .subscribe({
+        next: async ({ value }) => {
+          try {
+            const profileId =
+              profileDocument !== null ? profileDocument.id : user;
+            if (value.data.onUpdateUprofile.id == profileId) {
+              Alert.alert("updating Profile");
+              //setProfileDoc(value.data.onUpdateUprofile);
+            } else {
+              console.log("user not related to this update");
+            }
+          } catch (e) {
+            console.log(e);
           }
-        } catch (e) {
-          console.warn(e);
-        }
-      },
-      error: (error) => console.log(error, " here"),
-    });
+        },
+      })
+      .then(setProfileDoc(value.data.onUpdateUprofile));
   };
 
   const subscribeToDeleteEvent = async (profileDocument, loggedUser) => {
@@ -198,7 +199,7 @@ const ProfileScreen = ({ navigation, route }) => {
           onPress={() => navigation.navigate("AllUsers")}
         >
           <View style={styles.iconContainer}>
-            <Ionicons name="people-outline" size={23} color="black" />
+            <SimpleLineIcons name="user-follow" size={23} color="black" />
           </View>
         </TouchableOpacity>
       ),

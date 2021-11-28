@@ -135,15 +135,14 @@ const AppStack = (route, props) => {
       }}
     >
       <Tab.Screen
-        name="MessageStack"
-        component={MessageStack}
+        name="Map"
+        component={MapStack}
         options={({ route }) => ({
-          tabBarLabel: "Message",
+          tabBarLabel: "Map",
           tabBarVisible: getTabBarVisibility(route),
           tabBarIcon: ({ color, size }) => (
-            <Feather name="message-square" size={26} color={color} />
+            <Feather name="map" size={24} color={color} />
           ),
-          //tabBarBadge: 3,
         })}
       />
 
@@ -155,18 +154,6 @@ const AppStack = (route, props) => {
           tabBarVisible: getTabBarVisibility(route),
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="calendar" size={26} color={color} />
-          ),
-        })}
-      />
-
-      <Tab.Screen
-        name="Map"
-        component={MapStack}
-        options={({ route }) => ({
-          tabBarLabel: "Map",
-          tabBarVisible: getTabBarVisibility(route),
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="map" size={24} color={color} />
           ),
         })}
       />

@@ -772,8 +772,8 @@ export const onUpdateTask = /* GraphQL */ `
   }
 `;
 export const onUpdateUprofile = /* GraphQL */ `
-  subscription OnUpdateUprofile($id: ID) {
-    onUpdateUprofile(id: $id) {
+  subscription OnUpdateUprofile {
+    onUpdateUprofile {
       attendings {
         nextToken
       }

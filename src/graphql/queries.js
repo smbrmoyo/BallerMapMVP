@@ -26,7 +26,13 @@ export const getEvent = /* GraphQL */ `
       id
       name
       participants {
-        nextToken
+        items {
+          userProfile {
+            id
+            name
+            username
+          }
+        }
       }
       place {
         address

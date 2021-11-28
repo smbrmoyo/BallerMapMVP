@@ -7,6 +7,7 @@ import UpdateEventScreen from "../../screens/UpdateEventScreen";
 import FollowingScreen from "../../screens/FollowingScreen";
 import FollowersScreen from "../../screens/FollowersScreen";
 import EditProfileScreen from "../../screens/EditProfileScreen";
+import UserSearchUpdateScreen from "../../screens/UserSearchUpdateScreen";
 import DescriptionScreen from "../../screens/DescriptionScreen";
 import TryStory from "../../screens/TryStory";
 import OtherProfileScreen from "../../screens/OtherProfileScreen";
@@ -42,6 +43,7 @@ const ProfileStack = ({ navigation }) => {
         <Stack.Screen name="Followers" component={FollowersScreen} />
         <Stack.Screen name="AllUsers" component={AllUsersScreen} />
         <Stack.Screen name="OtherProfile" component={OtherProfileScreen} />
+        <Stack.Screen name="UserUpdate" component={UserSearchUpdateScreen} />
         <Stack.Screen
           name="Story"
           component={StoryScreen4}

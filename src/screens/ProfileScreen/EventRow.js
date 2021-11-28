@@ -34,7 +34,7 @@ export default function EventRow(props) {
           screen: "Description",
           params: { event: event },
         })*/
-        props.navigation.navigate("Description", { event: props.event })
+        props.navigation.navigate("Description", { id: props.event.id })
       }
     >
       <View style={styles.postHeaderContainer}>

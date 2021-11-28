@@ -133,6 +133,7 @@ const SetProfileScreen = ({ props, route }) => {
               <ButtonContainer
                 userProfile={userProfile}
                 user={user}
+                setIsPDoc={setIsPDoc}
                 //navigation={navigation}
               />
             </ScrollView>

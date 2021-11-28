@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from "react";
+import React, { useLayoutEffect, useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -12,18 +12,22 @@ import { MaterialIcons, Ionicons, Entypo } from "@expo/vector-icons";
 import styles from "./styles";
 import { hsize, wsize } from "../../utils/Dimensions";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { getEvent } from "../../aws-functions/eventFunctions";
 import ButtonContainer from "./ButtonContainer";
 import ComingContainer from "./ComingContainer";
 import DescriptionContainer from "./DescriptionContainer";
 import ProfileTopContainer from "./ProfileTopContainer";
 import ProfileBottomContainer from "./ProfileBottomContainer";
 import DeleteAlert from "./DeleteAlert";
+import Loading from "./Loading";
 
 const DescriptionScreen = ({ props, navigation, route }) => {
   const { user } = useAuth();
-  let event = route.params?.event;
-  let beginningTime = new Date(event.beginningTime);
-  let endingTime = new Date(event.endingTime);
+  const [loading, setLoading] = useState(true);
+  const [event, setEvent] = useState(null);
+  let id = route.params?.id;
+  let beginningTime = new Date(event?.beginningTime);
+  let endingTime = new Date(event?.endingTime);
 
   function pad2(string) {
     return `0${string}`.slice(-2);
@@ -68,7 +72,7 @@ const DescriptionScreen = ({ props, navigation, route }) => {
         </View>
       ),
       headerRight: () =>
-        event.creatorID == user ? (
+        event?.creatorID == user ? (
           <View style={{ flexDirection: "row", marginHorizontal: 5 }}>
             <TouchableOpacity
               activeOpacity={0.7}
@@ -101,6 +105,22 @@ const DescriptionScreen = ({ props, navigation, route }) => {
     });
   }, [navigation]);
 
+  useEffect(() => {
+    getEvent(id).then((res) => {
+      if (event == null || event == undefined) {
+        setEvent(res);
+      } else if (event != null || event != undefined) {
+        setLoading(false);
+      }
+    });
+
+    return () => {
+      setLoading(true);
+    };
+  }, [event]);
+
+  if (loading) return <Loading />;
+
   return (
     <>
       <StatusBar
@@ -120,7 +140,7 @@ const DescriptionScreen = ({ props, navigation, route }) => {
           />
           <ButtonContainer />
           <ComingContainer />
-          <DescriptionContainer description={event.description} />
+          <DescriptionContainer description={event?.description} />
         </ScrollView>
       </SafeAreaView>
     </>
