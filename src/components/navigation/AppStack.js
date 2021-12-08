@@ -135,6 +135,7 @@ const AppStack = (route, props) => {
       }}
     >
       <Tab.Screen
+<<<<<<< Updated upstream
         name="Map"
         component={MapStack}
         options={({ route }) => ({
@@ -143,6 +144,17 @@ const AppStack = (route, props) => {
           tabBarIcon: ({ color, size }) => (
             <Feather name="map" size={24} color={color} />
           ),
+=======
+        name="MessageStack"
+        component={MessageStack}
+        options={({ route }) => ({
+          tabBarLabel: "Message",
+          tabBarVisible: getTabBarVisibility(route),
+          tabBarIcon: ({ color, size }) => (
+            <Feather name="message-square" size={26} color={color} />
+          ),
+          //tabBarBadge: 3,
+>>>>>>> Stashed changes
         })}
       />
 
@@ -154,6 +166,34 @@ const AppStack = (route, props) => {
           tabBarVisible: getTabBarVisibility(route),
           tabBarIcon: ({ color, size }) => (
             <AntDesign name="calendar" size={26} color={color} />
+          ),
+        })}
+      />
+<<<<<<< Updated upstream
+
+      <Tab.Screen
+        name="Activity"
+        component={ActivityStack}
+        options={({ route }) => ({
+          tabBarLabel: "Places",
+          tabBarVisible: getTabBarVisibility(route),
+          tabBarIcon: ({ color, size }) => (
+            <FontAwesome name="bell-o" size={24} color={color} />
+          ),
+        })}
+      />
+
+      <Tab.Screen
+=======
+
+      <Tab.Screen
+        name="Map"
+        component={MapStack}
+        options={({ route }) => ({
+          tabBarLabel: "Map",
+          tabBarVisible: getTabBarVisibility(route),
+          tabBarIcon: ({ color, size }) => (
+            <Feather name="map" size={24} color={color} />
           ),
         })}
       />
@@ -171,6 +211,7 @@ const AppStack = (route, props) => {
       />
 
       <Tab.Screen
+>>>>>>> Stashed changes
         name="Profile"
         component={ProfileStack}
         options={({ route }) => ({

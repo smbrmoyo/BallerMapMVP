@@ -13,17 +13,21 @@ const EventPrivacy = {
   "PUBLIC": "public"
 };
 
+<<<<<<< Updated upstream
 const { Uprofile, Notification, UserEventConnection, Event, Place, UserPlaceConnection, EventChatMessage, UserConnection, UserDoc, Coords } = initSchema(schema);
+=======
+const { Uprofile, Notification, UserEventConnection, Event, EventChatMessage, UserConnection, Place, UserPlaceConnection, UserDoc, Coords } = initSchema(schema);
+>>>>>>> Stashed changes
 
 export {
   Uprofile,
   Notification,
   UserEventConnection,
   Event,
-  Place,
-  UserPlaceConnection,
   EventChatMessage,
   UserConnection,
+  Place,
+  UserPlaceConnection,
   UserDoc,
   NotifType,
   EventPrivacy,

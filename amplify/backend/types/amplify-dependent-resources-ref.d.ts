@@ -13,6 +13,7 @@ export type AmplifyDependentResourcesAttributes = {
             "AppClientIDWeb": "string",
             "AppClientID": "string"
         }
+<<<<<<< Updated upstream
     },
     "function": {
         "syncConflictHandlerba57b5b7": {
@@ -21,5 +22,7 @@ export type AmplifyDependentResourcesAttributes = {
             "Region": "string",
             "LambdaExecutionRole": "string"
         }
+=======
+>>>>>>> Stashed changes
     }
 }
