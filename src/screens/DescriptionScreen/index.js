@@ -14,7 +14,7 @@ import { hsize, wsize } from "../../utils/Dimensions";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import { getEvent } from "../../aws-functions/eventFunctions";
 import ButtonContainer from "./ButtonContainer";
-import ComingContainer from "./ComingContainer";
+import ParticipantsContainer from "./ParticipatnsContainer";
 import DescriptionContainer from "./DescriptionContainer";
 import ProfileTopContainer from "./ProfileTopContainer";
 import ProfileBottomContainer from "./ProfileBottomContainer";
@@ -139,7 +139,7 @@ const DescriptionScreen = ({ props, navigation, route }) => {
             event={event}
           />
           <ButtonContainer />
-          <ComingContainer />
+          <ParticipantsContainer />
           <DescriptionContainer description={event?.description} />
         </ScrollView>
       </SafeAreaView>

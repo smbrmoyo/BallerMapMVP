@@ -4,7 +4,7 @@ import ProfilePicture from "../../components/ProfilePictureUser";
 import { hsize, wsize } from "../../utils/Dimensions";
 import people from "../../assets/data/people";
 
-export default function ComingContainer() {
+export default function ParticipantsContainer() {
   return (
     <View
       style={{
@@ -19,7 +19,7 @@ export default function ComingContainer() {
           marginBottom: hsize(20),
         }}
       >
-        Who's coming?
+        Participants
       </Text>
 
       <TouchableOpacity

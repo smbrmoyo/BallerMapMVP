@@ -772,49 +772,139 @@ export const onUpdateTask = /* GraphQL */ `
   }
 `;
 export const onUpdateUprofile = /* GraphQL */ `
-  subscription OnUpdateUprofile {
-    onUpdateUprofile {
-      attendings {
+  subscription OnUpdateUprofile($id: ID!) {
+    onUpdateUprofile(id: $id) {
+      id
+      username
+      name
+      userDocId
+      currentPlaceID
+      notifications {
+        items {
+          id
+          body
+          profileID
+          photo
+          createdAt
+          type
+          updatedAt
+        }
         nextToken
       }
-      createdAt
-      currentPlace {
-        address
-        createdAt
-        id
-        name
-        updatedAt
+      myEvents {
+        items {
+          id
+          eventID
+          profileID
+          createdAt
+          updatedAt
+        }
+        nextToken
       }
-      currentPlaceID
       eventsCreated {
+        items {
+          id
+          name
+          placeID
+          creatorID
+          beginningTime
+          endingTime
+          tags
+          place {
+            address
+          }
+          description
+          privacy
+          profilePic
+          eventPictures
+          eventVideos
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       followers {
+        items {
+          id
+          followerID
+          followedID
+          follower {
+            id
+            name
+            username
+          }
+          createdAt
+          updatedAt
+        }
         nextToken
       }
       following {
+        items {
+          id
+          followerID
+          followedID
+          followed {
+            id
+            name
+            username
+          }
+          createdAt
+          updatedAt
+        }
         nextToken
       }
-      id
-      myEvents {
-        nextToken
-      }
-      name
-      notifications {
-        nextToken
-      }
-      updatedAt
-      userDoc {
-        createdAt
-        deviceToken
-        email
+      currentPlace {
         id
-        phoneNumber
-        profileID
+        name
+        address
+        coords {
+          long
+          lat
+        }
+        events {
+          nextToken
+        }
+        currentPlayers {
+          nextToken
+        }
+        attendings {
+          nextToken
+        }
+        createdAt
         updatedAt
       }
-      userDocId
-      username
+      userDoc {
+        id
+        profileID
+        email
+        deviceToken
+        phoneNumber
+        uProfile {
+          id
+          username
+          name
+          userDocId
+          currentPlaceID
+          createdAt
+          updatedAt
+        }
+        createdAt
+        updatedAt
+      }
+      attendings {
+        items {
+          id
+          profileID
+          placeID
+          arrivingTime
+          departureTime
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
     }
   }
 `;

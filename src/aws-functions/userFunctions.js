@@ -173,9 +173,7 @@ export const createUserConnection = async (userConnectionData) => {
     .catch((error) => {
       console.log(
         "   !!!ERROR in follow request. Request arguments:",
-        JSON.stringify(ctx.input),
-        "Error",
-        err
+        JSON.stringify(error)
       );
     });
 
@@ -189,17 +187,13 @@ export const createUserConnection = async (userConnectionData) => {
         },
       })
     )
-      .then((result) => {
-        console.log(
-          `   ${res.data.createUserConnection.follower.username} successfully followed ${res.data.createUserConnection.follower.username}`
-        );
+      .then((res) => {
+        console.log("Success");
       })
       .catch((err) => {
         console.log(
-          "   !!!ERROR in follow request. Request arguments:",
-          JSON.stringify(ctx.input),
-          "Error",
-          err
+          "   !!!ERROR in notification request. Request arguments:",
+          JSON.stringify(err)
         );
       });
   }

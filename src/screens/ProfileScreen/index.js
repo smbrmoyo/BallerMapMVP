@@ -62,14 +62,26 @@ const ProfileScreen = ({ navigation, route }) => {
   const isFocused = useIsFocused();
 
   useEffect(() => {
-    onPageRendered();
-
-    return () => {};
-  }, [profileDoc]);
-
-  const onPageRendered = async () => {
     profileDoc != undefined ? setLoading(false) : null;
     setMyEvents(profileDoc?.eventsCreated.items);
+  }, [profileDoc]);
+
+  useEffect(() => {
+    const subscribeToUpdateProfile = API.graphql(
+      graphqlOperation(onUpdateUprofile, { id: user })
+    ).subscribe({
+      next: async ({ value }) => {
+        //setProfileDoc(value.data.onUpdateUprofile);
+        console.log(value.data.onUpdateUprofile);
+      },
+      error: (error) =>
+        console.log("Error on onUpdateUprofile : " + JSON.stringify(error)),
+    });
+
+    return () => subscribeToUpdateProfile.unsubscribe();
+  }, []);
+
+  const onPageRendered = async () => {
     //await subscribeToRemoveFollower(profileDoc, loggedUser);
     //await subscribeToAddFollower(profileDoc, loggedUser);
     await subscribeToUpdateProfile(profileDoc, user);
@@ -120,27 +132,6 @@ const ProfileScreen = ({ navigation, route }) => {
   const updateFollowers = async (userId) => {
     let response = await getUprofileDoc(userId);
     followers = response.followers.items;
-  };
-
-  const subscribeToUpdateProfile = async (profileDocument) => {
-    await API.graphql(graphqlOperation(onUpdateUprofile))
-      .subscribe({
-        next: async ({ value }) => {
-          try {
-            const profileId =
-              profileDocument !== null ? profileDocument.id : user;
-            if (value.data.onUpdateUprofile.id == profileId) {
-              Alert.alert("updating Profile");
-              //setProfileDoc(value.data.onUpdateUprofile);
-            } else {
-              console.log("user not related to this update");
-            }
-          } catch (e) {
-            console.log(e);
-          }
-        },
-      })
-      .then(setProfileDoc(value.data.onUpdateUprofile));
   };
 
   const subscribeToDeleteEvent = async (profileDocument, loggedUser) => {
@@ -297,11 +288,11 @@ const ProfileScreen = ({ navigation, route }) => {
             >
               <MyEventsTab
                 navigation={navigation}
-                events={profileDoc?.eventsCreated.items}
+                events={profileDoc?.eventsCreated?.items}
               />
               <AttendingTab
                 navigation={navigation}
-                events={profileDoc?.myEvents.items}
+                events={profileDoc?.myEvents?.items}
               />
             </ScrollView>
           </Animated.View>
