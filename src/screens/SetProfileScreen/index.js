@@ -133,10 +133,7 @@ const SetProfileScreen = ({ props, route }) => {
               <ButtonContainer
                 userProfile={userProfile}
                 user={user}
-<<<<<<< Updated upstream
                 setIsPDoc={setIsPDoc}
-=======
->>>>>>> Stashed changes
                 //navigation={navigation}
               />
             </ScrollView>

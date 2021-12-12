@@ -1,20 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import {
-  Alert,
-  View,
-  Text,
-  Button,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  KeyboardAvoidingView,
-  Keyboard,
-  Dimensions,
-  TextInput,
-  Platform,
-  StyleSheet,
-  ScrollView,
-  StatusBar,
-} from "react-native";
+import { Alert, View, Text, Button, TouchableOpacity } from "react-native";
 import * as Animatable from "react-native-animatable";
 import * as Haptics from "expo-haptics";
 import { useHeaderHeight } from "@react-navigation/stack";
@@ -33,20 +18,24 @@ import styles from "./styles";
 export default function AgreementContainer() {
   return (
     <View style={styles.textPrivate}>
-      <Text style={styles.color_textPrivate}>
-        By signing up you agree to our
-      </Text>
-      <Text
-        style={[
-          styles.color_textPrivate,
-          {
-            fontWeight: "bold",
-          },
-        ]}
-      >
-        {" "}
-        Terms of service
-      </Text>
+      <TouchableOpacity activeOpacity={0.7}>
+        <Text style={styles.color_textPrivate}>
+          By signing up you agree to our
+        </Text>
+      </TouchableOpacity>
+      <TouchableOpacity activeOpacity={0.7}>
+        <Text
+          style={[
+            styles.color_textPrivate,
+            {
+              fontWeight: "bold",
+            },
+          ]}
+        >
+          {" "}
+          Terms of use
+        </Text>
+      </TouchableOpacity>
       <Text style={styles.color_textPrivate}> and</Text>
       <Text
         style={[
