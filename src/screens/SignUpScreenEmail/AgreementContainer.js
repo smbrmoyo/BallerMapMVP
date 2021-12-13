@@ -1,14 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
 import { Alert, View, Text, Button, TouchableOpacity } from "react-native";
-import * as Animatable from "react-native-animatable";
-import * as Haptics from "expo-haptics";
-import { useHeaderHeight } from "@react-navigation/stack";
-import { useRoute } from "@react-navigation/native";
-import { LinearGradient } from "expo-linear-gradient";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Feather from "react-native-vector-icons/Feather";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import * as Linking from "expo-linking";
 
 import { hsize, wsize } from "../../utils/Dimensions";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
@@ -18,12 +10,13 @@ import styles from "./styles";
 export default function AgreementContainer() {
   return (
     <View style={styles.textPrivate}>
-      <TouchableOpacity activeOpacity={0.7}>
-        <Text style={styles.color_textPrivate}>
-          By signing up you agree to our
-        </Text>
-      </TouchableOpacity>
-      <TouchableOpacity activeOpacity={0.7}>
+      <Text style={styles.color_textPrivate}>
+        By signing up you agree to our
+      </Text>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() => Linking.openURL("http://ballermap.com/terms-of-use/")}
+      >
         <Text
           style={[
             styles.color_textPrivate,
@@ -37,17 +30,22 @@ export default function AgreementContainer() {
         </Text>
       </TouchableOpacity>
       <Text style={styles.color_textPrivate}> and</Text>
-      <Text
-        style={[
-          styles.color_textPrivate,
-          {
-            fontWeight: "bold",
-          },
-        ]}
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() => Linking.openURL("http://ballermap.com/privacy-policy/")}
       >
-        {" "}
-        Privacy policy
-      </Text>
+        <Text
+          style={[
+            styles.color_textPrivate,
+            {
+              fontWeight: "bold",
+            },
+          ]}
+        >
+          {" "}
+          Privacy policy
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }

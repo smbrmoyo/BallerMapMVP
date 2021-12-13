@@ -45,36 +45,8 @@ const OnboardingScreen = ({ navigation }) => {
       pages={[
         {
           backgroundColor: "#fff",
-          image: (
-            <Image
-              style={styles.imageOne}
-              source={require("../../../image0.jpeg")}
-            />
-          ),
-          title: "Onboarding 1",
-          subtitle: "FIRST TEXT",
-        },
-        {
-          backgroundColor: "orange",
-          image: (
-            <Image
-              style={styles.imageThree}
-              source={require("../../assets/images/bitmoji-image.png")}
-            />
-          ),
-          title: "Onboarding 2",
-          subtitle: "SECOND TEXT",
-        },
-        {
-          backgroundColor: "grey",
-          image: (
-            <Image
-              style={styles.imageTwo}
-              source={require("../../assets/images/bitmoji-image.png")}
-            />
-          ),
-          title: "Onboarding 3",
-          subtitle: "THIRD TEXT",
+
+          title: "Welcome to BallerMap",
         },
       ]}
     />

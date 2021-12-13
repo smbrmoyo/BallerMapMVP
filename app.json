@@ -2,11 +2,12 @@
   "expo": {
     "name": "BallerMapMVP",
     "slug": "BallerMapMVP",
+    "description": "An app that uses your location to find basketball courts near users",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
-      "image": "./logoballermap.png",
+      "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -16,14 +17,18 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
+      "buildNumber": "1.0.0",
       "supportsTablet": false,
-      "userInterfaceStyle": "light",
-      "usesAppleSignIn": true,
+      "userInterfaceStyle": "automatic",
+      "usesAppleSignIn": false,
+      "config": {
+        "googleMapsApiKey": "AIzaSyCAWRoRAT1jDaCuwACpmYsseOgW1-_XrNg"
+      },
       "infoPlist": {
         "UIBackgroundModes": ["location", "fetch"],
-        "NSLocationAlwaysAndWhenInUseUsageDescription": "App requires geolocation to improve the quality of the service"
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "BallerMap requires geolocation to improve the quality of the service"
       },
-      "bundleIdentifier": "com.smbrmoyo.BallerMapMVP"
+      "bundleIdentifier": "com.smbrmoyo.BallerMap"
     },
     "android": {
       "adaptiveIcon": {

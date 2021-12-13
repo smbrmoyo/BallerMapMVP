@@ -249,20 +249,9 @@ const SignUpScreenEmail = ({ navigation }) => {
                 <Text style={styles.errorMsg}>Not matching password.</Text>
               </Animatable.View>
             )}
-            <View style={styles.textPrivate}>
-              <Text style={styles.color_textPrivate}>
-                By signing up you agree to our
-              </Text>
-              <Text style={[styles.color_textPrivate, { fontWeight: "bold" }]}>
-                {" "}
-                Terms of service
-              </Text>
-              <Text style={styles.color_textPrivate}> and</Text>
-              <Text style={[styles.color_textPrivate, { fontWeight: "bold" }]}>
-                {" "}
-                Privacy policy
-              </Text>
-            </View>
+
+            <AgreementContainer />
+
             <View style={styles.button}>
               <TouchableOpacity
                 activeOpacity={0.7}
