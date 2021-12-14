@@ -1,7 +1,13 @@
 import React from "react";
-import { ActivityIndicator, StyleSheet, View, Alert } from "react-native";
+import {
+  ActivityIndicator,
+  StyleSheet,
+  View,
+  ImageBackground,
+} from "react-native";
 import * as Location from "expo-location";
 import * as TaskManager from "expo-task-manager";
+import { hsize, wsize } from "../../utils/Dimensions";
 
 const LoadingScreen = ({ style, fullscreen, ...props }) => {
   /*const TASK_FETCH_LOCATION = "TASK_FETCH_LOCATION";
@@ -44,8 +50,29 @@ const LoadingScreen = ({ style, fullscreen, ...props }) => {
   });*/
 
   return (
-    <View style={{ flex: 1, justifyContent: "center" }}>
-      <ActivityIndicator size="large" color="#743cff" />
+    <View
+      style={{
+        alignItems: "center",
+        flex: 1,
+        zIndex: 0,
+      }}
+    >
+      <ImageBackground
+        source={require("../../../assets/splash.png")}
+        style={{ height: "100%", width: "100%" }}
+        imageStyle={{ height: "100%", width: "100%" }}
+        resizeMode="contain"
+      >
+        <ActivityIndicator
+          style={{
+            position: "absolute",
+            bottom: hsize(150),
+            alignSelf: "center",
+          }}
+          size="large"
+          color="#743cff"
+        />
+      </ImageBackground>
     </View>
   );
 };
