@@ -45,8 +45,14 @@ const OnboardingScreen = ({ navigation }) => {
       pages={[
         {
           backgroundColor: "#fff",
-
+          subtitle: "Have fun!",
           title: "Welcome to BallerMap",
+          image: (
+            <Image
+              style={{ height: 0, width: 0 }}
+              source={require("../../../image0.jpeg")}
+            />
+          ),
         },
       ]}
     />
