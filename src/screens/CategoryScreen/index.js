@@ -16,7 +16,6 @@ import debounce from "lodash/debounce";
 import { useNavigation, useRoute, useTheme } from "@react-navigation/native";
 import Bitmoji from "../../components/Bitmoji";
 import styles from "./styles";
-import PopularTags from "../../assets/data/PopularTags";
 import HashTags from "../../assets/data/HashTags";
 import CategoryCard from "./CategoryCard";
 import PopularCard from "./PopularCard";

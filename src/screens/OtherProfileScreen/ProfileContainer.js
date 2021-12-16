@@ -1,44 +1,22 @@
-import React, {
-  useContext,
-  useState,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-} from "react";
+import React from "react";
 import {
   StyleSheet,
   Text,
   View,
-  ScrollView,
-  Image,
-  Button,
+  ActivityIndicator,
   Dimensions,
   TouchableOpacity,
-  TouchableWithoutFeedback,
-  StatusBar,
   FlatList,
 } from "react-native";
-import Animated from "react-native-reanimated";
-import BottomSheet from "reanimated-bottom-sheet";
 import ProfilePicture from "../../components/ProfilePictureUser";
-import FollowButton from "../../components/FollowButton";
-import { useIsFocused, useRoute } from "@react-navigation/native";
 import { wsize, hsize } from "../../utils/Dimensions";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Entypo from "react-native-vector-icons/Entypo";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Feather from "react-native-vector-icons/Feather";
-import AntDesign from "react-native-vector-icons/AntDesign";
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 
 import styles from "./styles";
-import {
-  createUserConnection,
-  followUser,
-} from "../../aws-functions/userFunctions";
-import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
 
 export default function ProfileContainer(props) {
   const { width, height } = Dimensions.get("window");
@@ -139,14 +117,26 @@ export default function ProfileContainer(props) {
                 justifyContent: "center",
               }}
             >
-              <Text
-                style={{
-                  fontSize: 20,
-                  color: props.isFollowing ? "black" : "white",
-                }}
-              >
-                {props.isFollowing ? "Following" : "Follow"}
-              </Text>
+              {props.followLoading ? (
+                <ActivityIndicator
+                  /*style={{
+                  position: "absolute",
+                  bottom: hsize(150),
+                  alignSelf: "center",
+                }}*/
+                  size="small"
+                  color="#743cff"
+                />
+              ) : (
+                <Text
+                  style={{
+                    fontSize: 20,
+                    color: props.isFollowing ? "black" : "white",
+                  }}
+                >
+                  {props.isFollowing ? "Following" : "Follow"}
+                </Text>
+              )}
             </View>
           </TouchableOpacity>
         </View>

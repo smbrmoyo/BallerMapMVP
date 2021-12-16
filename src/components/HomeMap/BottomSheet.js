@@ -23,7 +23,6 @@ import Entypo from "react-native-vector-icons/Entypo";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import EvilIcons from "react-native-vector-icons/EvilIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-import people from "../../assets/data/people";
 import EventRow from "./EventRow";
 
 function pad2(string) {

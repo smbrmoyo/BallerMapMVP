@@ -1,4 +1,4 @@
-import React, { useState, useRef, useLayoutEffect } from "react";
+import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
 import {
   View,
   Text,
@@ -17,25 +17,49 @@ import Animated from "react-native-reanimated";
 import styles from "./styles";
 import BottomSheetEdit from "./BottomSheetEdit";
 import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
+import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import { wsize, hsize } from "../../utils/Dimensions";
 import Entypo from "react-native-vector-icons/Entypo";
-import { updateUserProfile } from "../../aws-functions/userFunctions";
 import PictureContainer from "./PictureContainer";
 import BioContainer from "./BioContainer";
 import UsernameContainer from "./UsernameContainer";
 import WebsiteContainer from "./WebsiteContainer";
 import ButtonContainer from "./ButtonContainer";
+import { API, graphqlOperation } from "aws-amplify";
+import { onUpdateUprofile } from "../../graphql/subscriptions";
+import {
+  getUprofileDoc,
+  updateUserProfile,
+} from "../../aws-functions/userFunctions";
 
 const EditProfileScreen = ({ props, navigation, route }) => {
   const username = "";
   const [color, setColor] = useState("#CDCDCD");
   const headerHeight = useHeaderHeight();
   const { colors, dark } = useTheme();
-  const { profileDoc } = useProfile();
+  const { user } = useAuth();
+  const { profileDoc, setProfileDoc } = useProfile();
   const [userProfile, setUserProfile] = useState(profileDoc);
 
   bsEditProf = useRef(null);
   fallEditProf = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    const subscribeToUpdateProfile = API.graphql(
+      graphqlOperation(onUpdateUprofile, { id: user })
+    ).subscribe({
+      next: async ({ value }) => {
+        setProfileDoc({
+          ...profileDoc,
+          username: value.data.onUpdateUprofile.username,
+        });
+      },
+      error: (error) =>
+        console.log("Error on onUpdateUprofile : " + JSON.stringify(error)),
+    });
+
+    return () => subscribeToUpdateProfile.unsubscribe();
+  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -67,7 +91,7 @@ const EditProfileScreen = ({ props, navigation, route }) => {
         </View>
       ),
     });
-  }, []);
+  }, [navigation]);
 
   return (
     <>
@@ -120,7 +144,7 @@ const EditProfileScreen = ({ props, navigation, route }) => {
                   setUserProfile={setUserProfile}
                 />
                 <ButtonContainer
-                  then={updateUserProfile(userProfile).then}
+                  userProfile={userProfile}
                   navigation={navigation}
                 />
               </Animated.View>

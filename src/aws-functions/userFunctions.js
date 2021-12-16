@@ -1,8 +1,6 @@
 import { Auth, API, graphqlOperation, DataStore } from "aws-amplify";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import userConf from "./userConf";
-import placesJSON from "../assets/data/placesJSON";
 import { UserConnection } from "../models";
 import * as mutations from "../graphql/mutations";
 import * as queries from "../graphql/queries";

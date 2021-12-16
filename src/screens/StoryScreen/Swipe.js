@@ -12,28 +12,28 @@ const angle = Math.atan(perspective / (width / 2));
 const storiesData = [
   {
     id: "2",
-    source: require("../../assets/stories/2.jpg"),
+    //source: require("../../assets/stories/2.jpg"),
     user: "derek.russel",
-    avatar: require("../../assets/avatars/derek.russel.png"),
+    //avatar: require("../../assets/avatars/derek.russel.png"),
   },
   {
     id: "4",
-    source: require("../../assets/stories/4.jpg"),
+    //source: require("../../assets/stories/4.jpg"),
     user: "jmitch",
-    avatar: require("../../assets/avatars/jmitch.png"),
+    //avatar: require("../../assets/avatars/jmitch.png"),
   },
   {
     id: "5",
-    source: require("../../assets/stories/5.jpg"),
+    //source: require("../../assets/stories/5.jpg"),
     user: "monicaa",
-    avatar: require("../../assets/avatars/monicaa.png"),
+    //avatar: require("../../assets/avatars/monicaa.png"),
   },
 
   {
     id: "1",
-    source: require("../../assets/stories/1.jpg"),
+    //source: require("../../assets/stories/1.jpg"),
     user: "andrea.schmidt",
-    avatar: require("../../assets/avatars/andrea.schmidt.png"),
+    //avatar: require("../../assets/avatars/andrea.schmidt.png"),
   },
 ];
 

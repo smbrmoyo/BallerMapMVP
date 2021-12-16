@@ -10,8 +10,6 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-//import { getUserFriends, getUserSubs } from "../../services/api/user";
-import users from "../../assets/data/people";
 import ProfilePicture from "../../components/ProfilePictureUser";
 import { wsize, hsize } from "../../utils/Dimensions";
 import debounce from "lodash/debounce";
@@ -224,7 +222,6 @@ const AttendanceScreen = ({ navigation }) => {
       setData(allData);
       setLoading(false);
     });*/
-    setData(users);
     setLoading(false);
   }, []);
   if (loading) {

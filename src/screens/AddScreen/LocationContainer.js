@@ -35,20 +35,7 @@ import PlaceRow from "./PlaceRow";
 import ProfilePicture from "../../components/ProfilePictureUser";
 import Bitmoji from "../../components/Bitmoji";
 import styles from "./styles";
-import {
-  useAuth,
-  getUprofile,
-} from "../../components/navigation/Providers/AuthProvider";
-import { getPlacesList } from "../../aws-functions/placeFunctions";
-import { useMap } from "../../components/navigation/Providers/MapProvider";
 import { wsize, hsize } from "../../utils/Dimensions";
-import places from "../../assets/data/places";
-import Entypo from "react-native-vector-icons/Entypo";
-import MaterialIcons from "react-native-vector-icons/MaterialIcons";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import Fontisto from "react-native-vector-icons/Fontisto";
-import Feather from "react-native-vector-icons/Feather";
-import { createEvent } from "../../aws-functions/eventFunctions";
 
 export default function LocationContainer(props) {
   return (

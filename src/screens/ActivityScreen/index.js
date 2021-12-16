@@ -14,8 +14,6 @@ import styles from "./styles";
 import Loading from "./Loading";
 import ListContainer from "./ListContainer";
 import NewDataContainer from "./NewDataContainer";
-import PopularTags from "../../assets/data/PopularTags";
-import people from "../../assets/data/people";
 import ProfilePicture from "../../components/ProfilePictureUser";
 import { wsize, hsize } from "../../utils/Dimensions";
 import { useActivity } from "../../components/navigation/Providers/ActivityProvider";

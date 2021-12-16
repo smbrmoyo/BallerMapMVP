@@ -1,7 +1,12 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import * as Haptics from "expo-haptics";
+
 import { wsize, hsize } from "../../utils/Dimensions";
+import {
+  getUprofileDoc,
+  updateUserProfile,
+} from "../../aws-functions/userFunctions";
 
 export default function ButtonContainer(props) {
   return (
@@ -51,7 +56,7 @@ export default function ButtonContainer(props) {
         activeOpacity={0.7}
         onPress={() => {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-          props.then(props.navigation.goBack());
+          updateUserProfile(props.userProfile).then(props.navigation.goBack());
         }}
       >
         <View
