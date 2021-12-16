@@ -29,7 +29,7 @@ const Messages = [
     userName: "__letch",
     imageUri:
       "https://preview.bitmoji.com/avatar-builder-v3/preview/body?scale=3&gender=1&style=5&rotation=7&beard=1630&brow=1541&cheek_details=1354&ear=1425&eye=1622&eyelash=2279&eye_details=-1&face_lines=1366&glasses=2441&hair=1719&hat=2555&jaw=1392&mouth=2337&nose=1460&beard_tone=8935738&blush_tone=16299718&brow_tone=13816322&eyeshadow_tone=14725305&hair_tone=4788241&hair_treatment_tone=666890&lipstick_tone=8929692&pupil_tone=11188685&skin_tone=6240025&body=1&face_proportion=4&eye_spacing=1&eye_size=0&outfit=978521",
-    userImg: require("../../assets/images/bitmoji-image.png"),
+    // userImg: require(""),
     messageTime: "4 mins ago",
     messageText:
       "Hey there, this is my test for a post of my social app in React Native.",
@@ -39,7 +39,7 @@ const Messages = [
     userName: "AdrTnk",
     imageUri:
       "https://preview.bitmoji.com/avatar-builder-v3/preview/body?scale=3&gender=1&style=5&rotation=7&beard=1630&brow=1541&cheek_details=1354&ear=1425&eye=1622&eyelash=2279&eye_details=-1&face_lines=1366&glasses=2441&hair=1719&hat=2555&jaw=1392&mouth=2337&nose=1460&beard_tone=8935738&blush_tone=16299718&brow_tone=13816322&eyeshadow_tone=14725305&hair_tone=4788241&hair_treatment_tone=666890&lipstick_tone=8929692&pupil_tone=11188685&skin_tone=6240025&body=1&face_proportion=4&eye_spacing=1&eye_size=0&outfit=978521",
-    userImg: require("../../assets/images/bitmoji-image.png"),
+    // userImg: require(""),
     messageTime: "2 hours ago",
     messageText:
       "Hey there, this is my test for a post of my social app in React Native.",
@@ -49,7 +49,7 @@ const Messages = [
     userName: "Alicia",
     imageUri:
       "https://preview.bitmoji.com/avatar-builder-v3/preview/body?scale=3&gender=1&style=5&rotation=7&beard=1630&brow=1541&cheek_details=1354&ear=1425&eye=1622&eyelash=2279&eye_details=-1&face_lines=1366&glasses=2441&hair=1719&hat=2555&jaw=1392&mouth=2337&nose=1460&beard_tone=8935738&blush_tone=16299718&brow_tone=13816322&eyeshadow_tone=14725305&hair_tone=4788241&hair_treatment_tone=666890&lipstick_tone=8929692&pupil_tone=11188685&skin_tone=6240025&body=1&face_proportion=4&eye_spacing=1&eye_size=0&outfit=978521",
-    userImg: require("../../assets/images/bitmoji-image.png"),
+    // userImg: require(""),
     messageTime: "1 hours ago",
     messageText:
       "Hey there, this is my test for a post of my social app in React Native.",
@@ -59,7 +59,7 @@ const Messages = [
     userName: "__letch",
     imageUri:
       "https://preview.bitmoji.com/avatar-builder-v3/preview/body?scale=3&gender=1&style=5&rotation=7&beard=1630&brow=1541&cheek_details=1354&ear=1425&eye=1622&eyelash=2279&eye_details=-1&face_lines=1366&glasses=2441&hair=1719&hat=2555&jaw=1392&mouth=2337&nose=1460&beard_tone=8935738&blush_tone=16299718&brow_tone=13816322&eyeshadow_tone=14725305&hair_tone=4788241&hair_treatment_tone=666890&lipstick_tone=8929692&pupil_tone=11188685&skin_tone=6240025&body=1&face_proportion=4&eye_spacing=1&eye_size=0&outfit=978521",
-    userImg: require("../../assets/images/bitmoji-image.png"),
+    // userImg: require(""),
     messageTime: "4 mins ago",
     messageText:
       "Hey there, this is my test for a post of my social app in React Native.",
@@ -69,7 +69,7 @@ const Messages = [
     userName: "AdrTnk",
     imageUri:
       "https://preview.bitmoji.com/avatar-builder-v3/preview/body?scale=3&gender=1&style=5&rotation=7&beard=1630&brow=1541&cheek_details=1354&ear=1425&eye=1622&eyelash=2279&eye_details=-1&face_lines=1366&glasses=2441&hair=1719&hat=2555&jaw=1392&mouth=2337&nose=1460&beard_tone=8935738&blush_tone=16299718&brow_tone=13816322&eyeshadow_tone=14725305&hair_tone=4788241&hair_treatment_tone=666890&lipstick_tone=8929692&pupil_tone=11188685&skin_tone=6240025&body=1&face_proportion=4&eye_spacing=1&eye_size=0&outfit=978521",
-    userImg: require("../../assets/images/bitmoji-image.png"),
+    // userImg: require(""),
     messageTime: "2 hours ago",
     messageText:
       "Hey there, this is my test for a post of my social app in React Native.",
@@ -79,7 +79,7 @@ const Messages = [
     userName: "Alicia",
     imageUri:
       "https://preview.bitmoji.com/avatar-builder-v3/preview/body?scale=3&gender=1&style=5&rotation=7&beard=1630&brow=1541&cheek_details=1354&ear=1425&eye=1622&eyelash=2279&eye_details=-1&face_lines=1366&glasses=2441&hair=1719&hat=2555&jaw=1392&mouth=2337&nose=1460&beard_tone=8935738&blush_tone=16299718&brow_tone=13816322&eyeshadow_tone=14725305&hair_tone=4788241&hair_treatment_tone=666890&lipstick_tone=8929692&pupil_tone=11188685&skin_tone=6240025&body=1&face_proportion=4&eye_spacing=1&eye_size=0&outfit=978521",
-    userImg: require("../../assets/images/bitmoji-image.png"),
+    // userImg: require(""),
     messageTime: "1 hours ago",
     messageText:
       "Hey there, this is my test for a post of my social app in React Native.",
@@ -89,7 +89,7 @@ const Messages = [
     userName: "JonaKetch",
     imageUri:
       "https://preview.bitmoji.com/avatar-builder-v3/preview/body?scale=3&gender=1&style=5&rotation=7&beard=1630&brow=1541&cheek_details=1354&ear=1425&eye=1622&eyelash=2279&eye_details=-1&face_lines=1366&glasses=2441&hair=1719&hat=2555&jaw=1392&mouth=2337&nose=1460&beard_tone=8935738&blush_tone=16299718&brow_tone=13816322&eyeshadow_tone=14725305&hair_tone=4788241&hair_treatment_tone=666890&lipstick_tone=8929692&pupil_tone=11188685&skin_tone=6240025&body=1&face_proportion=4&eye_spacing=1&eye_size=0&outfit=978521",
-    userImg: require("../../assets/images/bitmoji-image.png"),
+    // userImg: require(""),
     messageTime: "1 day ago",
     messageText:
       "Hey there, this is my test for a post of my social app in React Native.",
@@ -99,7 +99,7 @@ const Messages = [
     userName: "TinaNjall",
     imageUri:
       "https://preview.bitmoji.com/avatar-builder-v3/preview/body?scale=3&gender=1&style=5&rotation=7&beard=1630&brow=1541&cheek_details=1354&ear=1425&eye=1622&eyelash=2279&eye_details=-1&face_lines=1366&glasses=2441&hair=1719&hat=2555&jaw=1392&mouth=2337&nose=1460&beard_tone=8935738&blush_tone=16299718&brow_tone=13816322&eyeshadow_tone=14725305&hair_tone=4788241&hair_treatment_tone=666890&lipstick_tone=8929692&pupil_tone=11188685&skin_tone=6240025&body=1&face_proportion=4&eye_spacing=1&eye_size=0&outfit=978521",
-    userImg: require("../../assets/images/bitmoji-image.png"),
+    // userImg: require(""),
     messageTime: "2 days ago",
     messageText:
       "Hey there, this is my test for a post of my social app in React Native.",
@@ -107,7 +107,7 @@ const Messages = [
   {
     id: "9",
     userName: "__letch",
-    userImg: require("../../assets/images/bitmoji-image.png"),
+    // userImg: require(""),
     messageTime: "4 mins ago",
     messageText:
       "Hey there, this is my test for a post of my social app in React Native.",
@@ -115,7 +115,7 @@ const Messages = [
   {
     id: "10",
     userName: "AdrTnk",
-    userImg: require("../../assets/images/bitmoji-image.png"),
+    // userImg: require(""),
     messageTime: "2 hours ago",
     messageText:
       "Hey there, this is my test for a post of my social app in React Native.",
@@ -126,7 +126,7 @@ const Messages = [
     imageUri:
       "https://preview.bitmoji.com/avatar-builder-v3/preview/body?scale=3&gender=1&style=5&rotation=7&beard=1630&brow=1541&cheek_details=1354&ear=1425&eye=1622&eyelash=2279&eye_details=-1&face_lines=1366&glasses=2441&hair=1719&hat=2555&jaw=1392&mouth=2337&nose=1460&beard_tone=8935738&blush_tone=16299718&brow_tone=13816322&eyeshadow_tone=14725305&hair_tone=4788241&hair_treatment_tone=666890&lipstick_tone=8929692&pupil_tone=11188685&skin_tone=6240025&body=1&face_proportion=4&eye_spacing=1&eye_size=0&outfit=978521",
 
-    userImg: require("../../assets/images/bitmoji-image.png"),
+    // userImg: require(""),
     messageTime: "1 hours ago",
     messageText:
       "Hey there, this is my test for a post of my social app in React Native.",

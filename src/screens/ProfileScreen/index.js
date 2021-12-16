@@ -66,25 +66,10 @@ const ProfileScreen = ({ navigation, route }) => {
     setMyEvents(profileDoc?.eventsCreated.items);
   }, [profileDoc]);
 
-  useEffect(() => {
-    const subscribeToUpdateProfile = API.graphql(
-      graphqlOperation(onUpdateUprofile, { id: user })
-    ).subscribe({
-      next: async ({ value }) => {
-        //setProfileDoc(value.data.onUpdateUprofile);
-        console.log(value.data.onUpdateUprofile);
-      },
-      error: (error) =>
-        console.log("Error on onUpdateUprofile : " + JSON.stringify(error)),
-    });
-
-    return () => subscribeToUpdateProfile.unsubscribe();
-  }, []);
-
   const onPageRendered = async () => {
     //await subscribeToRemoveFollower(profileDoc, loggedUser);
     //await subscribeToAddFollower(profileDoc, loggedUser);
-    await subscribeToUpdateProfile(profileDoc, user);
+    //await subscribeToUpdateProfile(profileDoc, user);
     //await subscribeToDeleteEvent(profileDoc, loggedUser);
     //await subscribeToAddEvent(profileDoc, loggedUser);
   };
@@ -110,14 +95,16 @@ const ProfileScreen = ({ navigation, route }) => {
   };
 
   const subscribeToAddFollower = async (profileDocument, loggedUser) => {
-    await API.graphql(graphqlOperation(onCreateUserConnection)).subscribe({
+    await API.graphql(
+      graphqlOperation(onCreateUserConnection, { id: user })
+    ).subscribe({
       next: async ({ value }) => {
         try {
           const profileId =
             profileDocument !== null ? profileDocument.id : user;
           if (value.data.onCreateUserConnection.followedID == profileId) {
             console.log("followed");
-            await updateFollowers(profileId);
+            //await updateFollowers(profileId);
           } else {
             console.log("user not related to this follow");
           }

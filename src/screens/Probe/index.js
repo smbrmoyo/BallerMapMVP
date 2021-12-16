@@ -182,7 +182,7 @@ const SetProfileScreen = ({ props, navigation, route }) => {
                   onPress={() => bsEditProf.current.snapTo(0)}
                 >
                   <ProfilePicture
-                    uri={require("../../assets/images/default_profile_picture.png")}
+                    //uri={require("../../assets/images/default_profile_picture.png")}
                     size={80}
                   />
                 </TouchableOpacity>

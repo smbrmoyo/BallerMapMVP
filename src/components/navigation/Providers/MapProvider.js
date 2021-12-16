@@ -11,7 +11,6 @@ import {
 } from "../../../aws-functions/placeFunctions";
 import { getAllUserProfiles } from "../../../aws-functions/userFunctions";
 import { useAuth, getUprofile } from "./AuthProvider";
-import placesJSON from "../../../assets/data/placesJSON";
 
 export const MapContext = React.createContext();
 

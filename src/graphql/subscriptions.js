@@ -150,8 +150,8 @@ export const onCreateTask = /* GraphQL */ `
   }
 `;
 export const onCreateUprofile = /* GraphQL */ `
-  subscription OnCreateUprofile {
-    onCreateUprofile {
+  subscription OnCreateUprofile($id: ID!) {
+    onCreateUprofile(id: $id) {
       attendings {
         nextToken
       }
@@ -197,8 +197,8 @@ export const onCreateUprofile = /* GraphQL */ `
   }
 `;
 export const onCreateUserConnection = /* GraphQL */ `
-  subscription OnCreateUserConnection {
-    onCreateUserConnection {
+  subscription OnCreateUserConnection($id: ID!) {
+    onCreateUserConnection(id: $id) {
       createdAt
       followed {
         createdAt
@@ -508,8 +508,8 @@ export const onDeleteUprofile = /* GraphQL */ `
   }
 `;
 export const onDeleteUserConnection = /* GraphQL */ `
-  subscription OnDeleteUserConnection {
-    onDeleteUserConnection {
+  subscription OnDeleteUserConnection($id: ID!) {
+    onDeleteUserConnection(id: $id) {
       createdAt
       followed {
         createdAt

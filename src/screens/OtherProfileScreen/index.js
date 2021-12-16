@@ -21,15 +21,16 @@ import {
 import Animated from "react-native-reanimated";
 import { useIsFocused, useRoute } from "@react-navigation/native";
 import { useQuery } from "react-query";
-import { wsize, hsize } from "../../utils/Dimensions";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Entypo from "react-native-vector-icons/Entypo";
+import { API, graphqlOperation } from "aws-amplify";
 
 import MyEventsTab from "./MyEventsTab";
 import AttendingTab from "./AttendingTab";
 import BottomSheetOther from "./BottomSheetOther";
 import ProfileContainer from "./ProfileContainer";
 import Loading from "./Loading";
+import { wsize, hsize } from "../../utils/Dimensions";
 import styles from "./styles";
 import {
   createUserConnection,
@@ -37,7 +38,12 @@ import {
   getUprofileDoc,
   deleteUserConnection,
 } from "../../aws-functions/userFunctions";
+import {
+  onCreateUserConnection,
+  onDeleteUserConnection,
+} from "../../graphql/subscriptions";
 import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
+import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 
 //render function
 
@@ -47,7 +53,8 @@ const OtherProfileScreen = ({ navigation }) => {
   fallOtherProf = useRef(new Animated.Value(1)).current;
   const route = useRoute();
   let otherUserId = route.params?.id;
-  const { profileDoc } = useProfile();
+  const { profileDoc, setProfileDoc } = useProfile();
+  const { user } = useAuth();
   const [status, setStatus] = useState("loading");
   const [otherUser, setOtherUser] = useState(null);
   const _scrollView = useRef(null);
@@ -59,13 +66,21 @@ const OtherProfileScreen = ({ navigation }) => {
   const { events, attending } = tabs;
   const [currentTab, setCurrentTab] = useState(events);
   const [isFollowing, setIsFollowing] = useState(false);
+  const [followLoading, setFollowLoading] = useState(true);
   const isFocused = useIsFocused();
 
-  useEffect(() => {
+  /*useEffect(() => {
     //userAPI.getUserInfo(user.uid).then((doc) => setUserExstraInfo(doc.data()));
-  }, [isFocused]);
+  }, [isFocused]);*/
 
   useEffect(() => {
+    for (let i = 0; i < profileDoc?.following.items.length; i++) {
+      if (profileDoc?.following.items[i].followedID == otherUser?.id) {
+        setIsFollowing(true);
+        break;
+      }
+    }
+
     getUprofileDoc(otherUserId).then((result) => {
       if (otherUser == null || otherUser == undefined) {
         setOtherUser(result);
@@ -74,17 +89,51 @@ const OtherProfileScreen = ({ navigation }) => {
       }
     });
 
-    for (let i = 0; i < profileDoc?.following.items.length; i++) {
-      if (profileDoc?.following.items[i].followedID == otherUser?.id) {
-        setIsFollowing(true);
-      } else {
-        setIsFollowing(false);
-      }
-    }
+    const subscribeToCreateUserConnection = API.graphql(
+      graphqlOperation(onCreateUserConnection, { id: user + otherUserId })
+    ).subscribe({
+      next: ({ value }) => {
+        let temp;
+        temp = [...profileDoc.following.items];
+        temp.push(value.data.onCreateUserConnection);
+
+        setProfileDoc({
+          ...profileDoc,
+          following: { items: temp },
+        });
+      },
+      error: (error) =>
+        console.log(
+          "Error on onCreateUserConnection : " + JSON.stringify(error)
+        ),
+    });
+
+    const subscribeToDeleteUserConnection = API.graphql(
+      graphqlOperation(onDeleteUserConnection, { id: user + otherUserId })
+    ).subscribe({
+      next: ({ value }) => {
+        let temp;
+        temp = [...profileDoc.following.items];
+        temp.splice(temp.indexOf(value.data.onCreateUserConnection), 1);
+
+        setProfileDoc({
+          ...profileDoc,
+          following: { items: temp },
+        });
+      },
+      error: (error) =>
+        console.log(
+          "Error on onDeleteUserConnection : " + JSON.stringify(error)
+        ),
+    });
+
+    setFollowLoading(false);
 
     return () => {
       setLoading(true);
       setStatus("loading");
+      subscribeToCreateUserConnection.unsubscribe();
+      subscribeToDeleteUserConnection.unsubscribe();
       otherUserId = null;
     };
   }, [otherUser]);
@@ -137,16 +186,6 @@ const OtherProfileScreen = ({ navigation }) => {
     });
   }, [otherUser]);
 
-  const followCheck = () => {
-    for (let i = 0; i < profileDoc?.following.items.length; i++) {
-      if (profileDoc?.following.items[i].followedID == otherUser?.id) {
-        setIsFollowing(true);
-      } else {
-        setIsFollowing(false);
-      }
-    }
-  };
-
   const onFollowPress = () => {
     let input = {
       follower: profileDoc.id,
@@ -154,17 +193,15 @@ const OtherProfileScreen = ({ navigation }) => {
     };
     !isFollowing
       ? createUserConnection(input)
-          .then(
-            (response) => console.log(response),
-            setIsFollowing(!isFollowing)
+          .then(() => setIsFollowing(!isFollowing))
+          .catch((error) =>
+            console.log("   Error onPress follow " + JSON.stringify(error))
           )
-          .catch((error) => console.log(error))
       : deleteUserConnection(input)
-          .then(
-            (response) => console.log(response),
-            setIsFollowing(!isFollowing)
-          )
-          .catch((error) => console.log(error));
+          .then(() => setIsFollowing(!isFollowing))
+          .catch((error) =>
+            console.log("   Error onPress unfollow " + JSON.stringify(error))
+          );
   };
 
   const goToFollowing = () => {
@@ -206,6 +243,7 @@ const OtherProfileScreen = ({ navigation }) => {
           >
             <ProfileContainer
               isFollowing={isFollowing}
+              followLoading={followLoading}
               otherUser={otherUser}
               onFollowPress={onFollowPress}
               goToFollowing={goToFollowing}

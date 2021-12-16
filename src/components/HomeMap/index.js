@@ -20,10 +20,6 @@ import * as Location from "expo-location";
 import haversine from "haversine";
 
 import { mapBlueGreyStyle } from "../../styles/MapStyles";
-import ProfilePicture from "../ProfilePictureUser";
-import Bitmoji from "../Bitmoji";
-import people from "../../assets/data/people";
-import Stories from "../Stories";
 import styles from "./styles";
 import BottomSheetMap from "./BottomSheet";
 import { wsize, hsize } from "../../utils/Dimensions";
@@ -462,11 +458,6 @@ const HomeMap = (props) => {
                 </Marker>
               );
             })}
-            {people.map((location, index) => (
-              <Marker key={index} coordinate={location.coordinate}>
-                <Bitmoji avatarId={"99397600010_1-s5"} />
-              </Marker>
-            ))}
           </MapView>
           <AnimatedTextInput
             colors={colors}
