@@ -38,7 +38,7 @@ export const getUprofileDoc = async (email) => {
     );
     return uProfileDoc.data.getUprofile;
   } catch (error) {
-    console.log("Error getting on getUprofileDoc" + JSON.stringify(error));
+    console.log("   Error on getUprofileDoc" + JSON.stringify(error));
   }
 };
 
@@ -190,8 +190,8 @@ export const createUserConnection = async (userConnectionData) => {
       })
       .catch((err) => {
         console.log(
-          "   !!!ERROR in notification request. Request arguments:",
-          JSON.stringify(err)
+          "   !!!ERROR in notification request. Request arguments : " +
+            JSON.stringify(err)
         );
       });
   }

@@ -1,10 +1,17 @@
 import React from "react";
-import { View, Text, TouchableOpacity, FlatList } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  FlatList,
+  Dimensions,
+} from "react-native";
 import ProfilePicture from "../../components/ProfilePictureUser";
 import { hsize, wsize } from "../../utils/Dimensions";
 import people from "../../assets/data/people";
 
-export default function ParticipantsContainer() {
+export default function ParticipantsContainer(props) {
+  const { height, width } = Dimensions.get("window");
   return (
     <View
       style={{
@@ -44,8 +51,9 @@ export default function ParticipantsContainer() {
           contentContainerStyle={{
             alignItems: "center",
             justifyContent: "center",
+            height: hsize(100) + 30,
           }}
-          data={people} // Should be Attendants
+          data={props.event.participants.items} // Should be Attendants
           keyExtractor={(item) => item.id}
           scrollEnabled={false}
           numColumns={6}
