@@ -33,6 +33,7 @@ import NameContainer from "./NameContainer";
 import ButtonContainer from "./ButtonContainer";
 import UsernameContainer from "./UsernameContainer";
 import Header from "./Header";
+import { onCreateUprofile } from "../../graphql/subscriptions";
 import { useAppContext } from "../../components/navigation/Providers/AppProvider";
 
 const SetProfileScreen = ({ props, route }) => {
@@ -53,22 +54,9 @@ const SetProfileScreen = ({ props, route }) => {
   useEffect(() => {
     console.log("<------------- SETPROFILESCREEN ---------------->");
     if (isPDoc) {
-      Alert.alert(
-        "ERREUR DE LOGIQUE!!!!",
-        "isPDoc est true dans le SetProfileScreen"
-      );
-      console.log(
-        "ERREUR de logique: ----> Le isPDoc est true dans le SetProfileScreen"
-      );
       setIsPDoc(true);
     }
-  });
-  /*
-  Logic used to get userDocId is good. Should be done on signin/signUp.
-  Will give some time to AsyncStorage to store value of userDocId and make it available for other operations
-  userProfile should be created well after creation of userDoc
-  on userProfile creation, should insert uProfileId into userDoc to make connection
-  */
+  }, []);
 
   /*useLayoutEffect(() => {
     navigation.setOptions({

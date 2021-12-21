@@ -30,7 +30,7 @@ import UsernameContainer from "./UsernameContainer";
 const SignInScreenEmail = ({ navigation, props }) => {
   const headerHeight = useHeaderHeight();
   const { signIn, setUser, resendConfirmationCode } = useAuth();
-  const [nextScreen, setNextScreen] = useState("Map");
+  const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
     console.log(

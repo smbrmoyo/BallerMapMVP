@@ -89,8 +89,7 @@ const DescriptionScreen = ({ props, navigation, route }) => {
               <TouchableOpacity
                 activeOpacity={0.7}
                 onPress={() => {
-                  DeleteAlert(event);
-                  navigation.navigate("Profile", { screen: "Profile" });
+                  DeleteAlert(event, navigation);
                 }}
               >
                 <MaterialIcons
@@ -111,7 +110,6 @@ const DescriptionScreen = ({ props, navigation, route }) => {
         setEvent(res);
       } else if (event != null || event != undefined) {
         setLoading(false);
-        console.log(event);
       }
     });
 
