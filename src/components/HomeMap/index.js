@@ -32,8 +32,6 @@ import { getPlace } from "../../graphql/queries";
 
 const HomeMap = (props) => {
   const { height, width } = useWindowDimensions();
-  const screenHeight = Dimensions.get("screen").height;
-  const CARD_HEIGHT = 100;
   const CARD_WIDTH = width * 0.8;
   const SPACING_FOR_CARD_INSET = width * 0.1 - 10;
 
@@ -43,6 +41,7 @@ const HomeMap = (props) => {
   const route = useRoute();
   const { colors, dark } = useTheme();
   const [searchState, setSearchState] = useState(false);
+  const [errorMsg, setErrorMsg] = useState(null);
   const [placeIndex, setPlaceIndex] = useState(0);
   const [userLocation, setUserLocation] = useState({
     prevCoords: { latitude: 0, longitude: 0 },

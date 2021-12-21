@@ -37,7 +37,7 @@ export default function ProfileContainer(props) {
           <Entypo name="location-pin" size={25} color={"#743cff"} />
           <Text style={styles.textInfo}>
             {/*userExtraInfo.city*/}
-            Paris, Rue du con
+            Paris, Avenue Montaigne
           </Text>
         </View>
 

@@ -17,7 +17,7 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "buildNumber": "1.0.0",
+      "buildNumber": "2",
       "supportsTablet": false,
       "userInterfaceStyle": "automatic",
       "usesAppleSignIn": false,

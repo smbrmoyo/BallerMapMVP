@@ -12,12 +12,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { getFilteredEvents } from "../../../aws-functions/eventFunctions";
 
-//const Realm = require("realm");
-//import { getRealmApp } from "../../../../realmServer";
-import { useNavigation } from "@react-navigation/native";
-import awsmobile from "../../../aws-exports";
-import { react } from "@babel/types";
-
 // Access the Realm App.
 //const app = getRealmApp();
 

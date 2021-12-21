@@ -58,7 +58,7 @@ const AddScreen = ({ navigation, route }) => {
     id: event.id,
     name: event.name,
     placeID: event.placeID,
-    placeName: event.placeName, // Will come from event
+    placeName: event.place.name, // Will come from event
     creatorID: user,
     creator: user,
     tags: event.tags,

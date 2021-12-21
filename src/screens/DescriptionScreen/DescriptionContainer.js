@@ -6,10 +6,10 @@ import people from "../../assets/data/people";
 
 export default function DescriptionContainer(props) {
   return (
-    <View
+    <ScrollView
       style={{
         paddingHorizontal: wsize(20),
-        marginVertical: hsize(15),
+        marginVertical: hsize(10),
       }}
     >
       <Text
@@ -41,6 +41,6 @@ export default function DescriptionContainer(props) {
       >
         <Text style={{ margin: 5 }}>{props.description}</Text>
       </TouchableOpacity>
-    </View>
+    </ScrollView>
   );
 }

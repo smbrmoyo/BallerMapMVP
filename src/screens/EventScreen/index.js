@@ -29,15 +29,43 @@ const EventScreen = ({ data, size, navigation, route }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    onPageRendered();
+    profileDoc != undefined ? setLoading(false) : null;
+    setMyEvents(profileDoc?.eventsCreated.items);
+
+    /*let subscribeToCreateEvent = API.graphql(
+      graphqlOperation(onCreateNotification, {
+        profileID: user,
+      })
+    ).subscribe({
+      next: ({ value }) => {
+        // setNotifExtraData(!notifExtraData);
+        setData((old) => [value.data.onCreateNotification, ...old]);
+      },
+      error: (error) =>
+        console.log(
+          "   ERROR on onCreateNotification : " + JSON.stringify(error)
+        ),
+    });
+
+    let subscribeToCreateNotification = API.graphql(
+      graphqlOperation(onCreateNotification, {
+        profileID: user,
+      })
+    ).subscribe({
+      next: ({ value }) => {
+        // setNotifExtraData(!notifExtraData);
+        setData((old) => [value.data.onCreateNotification, ...old]);
+      },
+      error: (error) =>
+        console.log(
+          "   ERROR on onCreateNotification : " + JSON.stringify(error)
+        ),
+    });*/
   }, [profileDoc]);
 
   const onPageRendered = async () => {
-    const loggedUser = await AsyncStorage.getItem("currentUserCreds");
-    (await profileDoc) != undefined ? setLoading(false) : null;
-    setMyEvents(profileDoc?.eventsCreated.items);
-    subscribeToCreateEvent(profileDoc, loggedUser);
-    subscribeToDeleteEvent(profileDoc, loggedUser);
+    //subscribeToCreateEvent(profileDoc, loggedUser);
+    //subscribeToDeleteEvent(profileDoc, loggedUser);
   };
 
   const subscribeToCreateEvent = async (profileDocument, loggedUser) => {

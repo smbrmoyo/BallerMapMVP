@@ -6,19 +6,13 @@ import React, {
   useState,
 } from "react";
 import { View, Text, Dimensions, FlatList, RefreshControl } from "react-native";
-import BottomSheet from "reanimated-bottom-sheet";
-import ProfilePicture from "../../components/ProfilePictureUser";
-import Bitmoji from "../../components/Bitmoji";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import AntDesign from "react-native-vector-icons/AntDesign";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import styles from "./styles";
 import NotifRow from "./NotifRow";
 import { hsize, wsize } from "../../utils/Dimensions";
-import * as subscriptions from "../../graphql/subscriptions";
+import { onCreateNotification } from "../../graphql/subscriptions";
 import { API, graphqlOperation } from "aws-amplify";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+
 const ListContainer = (props) => {
   const [refreshing, setRefreshing] = useState(false);
   const { user } = useAuth();
@@ -33,52 +27,26 @@ const ListContainer = (props) => {
     setRefreshing(true);
     wait(1500).then(() => {
       setRefreshing(false);
-      props.setNewData(true);
     });
   }, []);
-
-  console.log("   ListContainer screen has rendered");
 
   useEffect(() => {
-    console.log("<------------- useEffect ListContainer ---------------->");
-    let notifSub = API.graphql(
-      graphqlOperation(subscriptions.onCreateNotification, {
+    let subscribeToCreateNotification = API.graphql(
+      graphqlOperation(onCreateNotification, {
         profileID: user,
       })
     ).subscribe({
-      next: ({ provider, value }) => {
-        console.log("onCreateNotification subscription triggered:", { value });
-        setNotifExtraData(!notifExtraData);
-        setData([value.data.onCreateNotification, ...data]);
+      next: ({ value }) => {
+        // setNotifExtraData(!notifExtraData);
+        setData((old) => [value.data.onCreateNotification, ...old]);
       },
       error: (error) =>
         console.log(
-          "   !!! ERROR dans la soubscription onCreateNotification:",
-          error
+          "   ERROR on onCreateNotification : " + JSON.stringify(error)
         ),
     });
-    return () => notifSub.unsubscribe();
+    return () => subscribeToCreateNotification.unsubscribe();
   }, []);
-
-  const notifSubscription = async (user) => {
-    let notifSub = API.graphql(
-      graphqlOperation(subscriptions.onCreateNotification, {
-        profileID: user,
-      })
-    ).subscribe({
-      next: ({ provider, value }) => {
-        console.log("onCreateNotification subscription triggered:", { value });
-        setTestState(true);
-      },
-      error: (error) =>
-        console.log(
-          "   !!! ERROR dans la soubscription onCreateNotification:",
-          error
-        ),
-    });
-
-    return notifSub;
-  };
 
   return (
     <>
@@ -90,7 +58,7 @@ const ListContainer = (props) => {
               { marginVertical: hsize(5), marginLeft: wsize(10) },
             ]}
           >
-            New
+            Latest
           </Text>
           <View
             style={{

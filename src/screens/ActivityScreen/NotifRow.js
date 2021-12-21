@@ -24,7 +24,7 @@ export default function NotifRow(props) {
     return `${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
   };
 
-  // let date = new Date(event.beginningTime);
+  let date = new Date(props.notif.createdAt);
 
   return (
     <TouchableOpacity
@@ -84,13 +84,17 @@ export default function NotifRow(props) {
               fontSize: 12,
               color: "black",
             }}
-          ></Text>
+          >
+            {readableTime(date)}
+          </Text>
           <Text
             style={{
               fontSize: 12,
               color: "black",
             }}
-          ></Text>
+          >
+            {readableDate(date)}
+          </Text>
         </View>
       </View>
     </TouchableOpacity>

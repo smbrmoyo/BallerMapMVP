@@ -89,8 +89,7 @@ const DescriptionScreen = ({ props, navigation, route }) => {
               <TouchableOpacity
                 activeOpacity={0.7}
                 onPress={() => {
-                  DeleteAlert(event);
-                  navigation.navigate("Profile", { screen: "Profile" });
+                  DeleteAlert(event, navigation);
                 }}
               >
                 <MaterialIcons
@@ -103,7 +102,7 @@ const DescriptionScreen = ({ props, navigation, route }) => {
           </View>
         ) : null,
     });
-  }, [navigation]);
+  }, [event]);
 
   useEffect(() => {
     getEvent(id).then((res) => {
@@ -129,19 +128,19 @@ const DescriptionScreen = ({ props, navigation, route }) => {
         barStyle="dark-content"
       />
 
-      <SafeAreaView style={{ flex: 1, padding: 10, backgroundColor: "white" }}>
-        <ScrollView>
-          <ProfileTopContainer event={event} navigate={navigation.navigate} />
-          <ProfileBottomContainer
-            readableDate={readableDate}
-            readableTime={readableTime}
-            beginningTime={beginningTime}
-            event={event}
-          />
-          <ButtonContainer />
-          <ParticipantsContainer />
-          <DescriptionContainer description={event?.description} />
-        </ScrollView>
+      <SafeAreaView
+        style={{ flex: 1, padding: hsize(10), backgroundColor: "white" }}
+      >
+        <ProfileTopContainer event={event} navigate={navigation.navigate} />
+        <ProfileBottomContainer
+          readableDate={readableDate}
+          readableTime={readableTime}
+          beginningTime={beginningTime}
+          event={event}
+        />
+        <ButtonContainer />
+        <ParticipantsContainer event={event} />
+        <DescriptionContainer description={event?.description} />
       </SafeAreaView>
     </>
   );
