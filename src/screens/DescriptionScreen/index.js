@@ -138,7 +138,7 @@ const DescriptionScreen = ({ props, navigation, route }) => {
           beginningTime={beginningTime}
           event={event}
         />
-        <ButtonContainer />
+        {/*<ButtonContainer />*/}
         <ParticipantsContainer event={event} />
         <DescriptionContainer description={event?.description} />
       </SafeAreaView>

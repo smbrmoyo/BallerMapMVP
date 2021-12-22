@@ -279,7 +279,7 @@ const ProfileScreen = ({ navigation, route }) => {
               />
               <AttendingTab
                 navigation={navigation}
-                events={profileDoc?.myEvents?.items}
+                events={[]} //profileDoc?.myEvents?.items
               />
             </ScrollView>
           </Animated.View>

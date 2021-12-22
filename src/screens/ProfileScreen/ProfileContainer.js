@@ -35,15 +35,12 @@ export default function ProfileContainer(props) {
       <View style={styles.profileInfoContainer}>
         <View style={styles.profileInfo}>
           <Entypo name="location-pin" size={25} color={"#743cff"} />
-          <Text style={styles.textInfo}>
-            {/*userExtraInfo.city*/}
-            Paris, Avenue Montaigne
-          </Text>
+          <Text style={styles.textInfo}>{/*userExtraInfo.city*/}</Text>
         </View>
 
         <TouchableOpacity activeOpacity={0.7} style={styles.profileInfo}>
           <EvilIcons name="link" size={20} color="black" />
-          <Text style={styles.linkInfo}>userExtraInfo.link</Text>
+          <Text style={styles.linkInfo}></Text>
         </TouchableOpacity>
 
         <View style={styles.userInfoWrapper}>

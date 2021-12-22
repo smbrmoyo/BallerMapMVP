@@ -13,7 +13,7 @@ export default function PictureContainer() {
     >
       <TouchableOpacity
         activeOpacity={0.7}
-        onPress={() => bsEditProf.current.snapTo(0)}
+        onPress={() => {}} // bsEditProf.current.snapTo(0)
       >
         <ProfilePicture
           uri={{
