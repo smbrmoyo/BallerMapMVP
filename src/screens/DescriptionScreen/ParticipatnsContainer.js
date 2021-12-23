@@ -61,9 +61,13 @@ export default function ParticipantsContainer(props) {
             <View
               style={{
                 margin: 5,
+                alignItems: "center",
               }}
             >
               <ProfilePicture size={hsize(50)} />
+              <Text style={{ fontSize: 11 }}>
+                {item.item.userProfile.username}
+              </Text>
             </View>
           )}
         />

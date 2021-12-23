@@ -13,14 +13,13 @@ export default function PictureContainer() {
     >
       <TouchableOpacity
         activeOpacity={0.7}
-        onPress={() => bsEditProf.current.snapTo(0)}
+        onPress={() => {}} // bsEditProf.current.snapTo(0)
       >
         <ProfilePicture
-          uri={{
+          /*uri={{
             uri: "https://www.soolide.com/wp-content/uploads/2021/03/dog-puppy-on-garden-royalty-free-image-1586966191.jpg",
-          }}
+          }}*/
           size={80}
-          // opacity={0.8}
         />
       </TouchableOpacity>
     </View>

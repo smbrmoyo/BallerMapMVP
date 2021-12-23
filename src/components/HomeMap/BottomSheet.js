@@ -118,7 +118,7 @@ const BottomSheetMap = (props) => {
             </Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.buttons}>
+        {/*<View style={styles.buttons}>
           <View
             style={{
               flexDirection: "row",
@@ -162,9 +162,9 @@ const BottomSheetMap = (props) => {
               >
                 {"Confirm"}
               </Text>
-            </View>
+              </View>
           </TouchableOpacity>
-        </View>
+        </View>*/}
 
         <View
           style={{ paddingHorizontal: wsize(20), marginVertical: hsize(5) }}
