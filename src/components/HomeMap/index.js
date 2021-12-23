@@ -142,12 +142,12 @@ const HomeMap = (props) => {
           );
         }
       );
-    }, 600000); // Should adjust maybe to 2 or 3 mins
+    }, 60000); // Should adjust maybe to 2 or 3 mins
 
     return () => {
       clearInterval(positionUpdate);
     };
-  });
+  }, []);
 
   let mapIndex = 0;
   const _mapAnimation = useRef(new Animated.Value(0)).current;
@@ -525,6 +525,8 @@ const HomeMap = (props) => {
             navigation={props.navigation}
             heightAnim={heightAnim}
             goToAdd={goToAdd}
+            userLocation={userLocation}
+            _map={_map}
           />
         </Animated.View>
       </TouchableWithoutFeedback>

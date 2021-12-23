@@ -21,20 +21,36 @@ export default function AnimatedAddButton(props) {
         },
       ]}
     >
-      <View
-        style={[
-          styles.buttonAdd,
-          {
-            height: wsize(50),
-            width: wsize(50),
-            borderRadius: wsize(25),
-            marginBottom: hsize(30),
-            // opacity: 0.2,
-          },
-        ]}
+      {/*<TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() =>
+          props._map.current.animateCamera({
+            center: {
+              latitude: props.userLocation?.prevCoords.latitude,
+              longitude: props.userLocation?.prevCoords.longitude,
+            },
+            heading: 90,
+            pitch: 90,
+            zoom: 18,
+            altitude: 18,
+          })
+        }
       >
-        <Entypo name="direction" size={24} color="grey" />
-      </View>
+        <View
+          style={[
+            styles.buttonAdd,
+            {
+              height: wsize(50),
+              width: wsize(50),
+              borderRadius: wsize(25),
+              marginBottom: hsize(30),
+              // opacity: 0.2,
+            },
+          ]}
+        >
+          <Entypo name="direction" size={24} color="grey" />
+        </View>
+        </TouchableOpacity>*/}
       <TouchableOpacity activeOpacity={0.7} onPress={props.goToAdd}>
         <View style={styles.buttonAdd}>
           <Feather name="plus" size={40} color="#743cff" />
