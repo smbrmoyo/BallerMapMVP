@@ -13,11 +13,11 @@
     },
     "userInterfaceStyle": "automatic",
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 2000
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "buildNumber": "5",
+      "buildNumber": "6",
       "supportsTablet": false,
       "userInterfaceStyle": "automatic",
       "usesAppleSignIn": false,

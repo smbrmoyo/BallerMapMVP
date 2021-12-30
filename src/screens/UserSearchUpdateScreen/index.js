@@ -1,35 +1,34 @@
 import React, { useState, useEffect, useLayoutEffect } from "react";
 import {
-  StyleSheet,
   Text,
-  TextInput,
   View,
-  ScrollView,
   FlatList,
-  Image,
   TouchableOpacity,
   SafeAreaView,
-  RefreshControl,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import LoadingScreen from "../LoadingScreen";
-import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 import styles from "./styles";
 import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
 import FollowRow from "./FollowRow";
 import SearchBarFollowers from "./SearchBarFollowers";
-import { hsize, wsize } from "../../utils/Dimensions";
+import { hsize } from "../../utils/Dimensions";
 
-const UserSearchScreen = ({ navigation }) => {
+const UserSearchScreen = ({ navigation, route }) => {
   const [loading, setLoading] = useState(false);
   const { colors, dark } = useTheme();
   const [text, setText] = useState("");
   const { profileDoc } = useProfile();
-  const [data, setData] = useState(profileDoc.following.items); // users should come from uProfile
-  const [participants, setParticipants] = useState([]);
+  const [data, setData] = useState(profileDoc?.following.items); // users should come from uProfile
+  const [participants, setParticipants] = useState(route.params?.participants);
+
+  /**
+   * Should try updating event by adding new participants to the list
+   */
 
   useEffect(() => {
-    setData(profileDoc.following.items);
+    setData(profileDoc?.following.items);
   }, []);
 
   const searchFilter = async (text) => {
@@ -132,8 +131,6 @@ const UserSearchScreen = ({ navigation }) => {
               item={item}
               participants={participants}
               setParticipants={setParticipants}
-              isAdded
-              onAddPress
               navigation={navigation}
             />
           )}
@@ -144,10 +141,3 @@ const UserSearchScreen = ({ navigation }) => {
 };
 
 export default UserSearchScreen;
-
-/* <FollowRow
-              isFollowing={isFollowing}
-              onFollowPress={onFollowPress}
-              item={item}
-              navigate={navigation.navigate}
-            /> */

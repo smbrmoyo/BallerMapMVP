@@ -47,11 +47,11 @@ import styles from "./styles";
 const AddScreen = ({ navigation, route }) => {
   const { user } = useAuth();
   const headerHeight = useHeaderHeight();
-  const event = route.params?.event;
+  const [event, setEvent] = useState(route.params?.event);
   const [visibleStart, setVisibleStart] = useState(false); // Put visible and color in one state object
   const [visibleEnd, setVisibleEnd] = useState(false);
-  const [colorBegin, setColorBegin] = useState("#CDCDCD");
-  const [colorEnd, setColorEnd] = useState("#CDCDCD");
+  const [colorBegin, setColorBegin] = useState("#743cff");
+  const [colorEnd, setColorEnd] = useState("#743cff");
   const { colors } = useTheme();
 
   const [eventData, setEventData] = useState({
@@ -60,16 +60,14 @@ const AddScreen = ({ navigation, route }) => {
     placeID: event.placeID,
     placeName: event.place.name, // Will come from event
     creatorID: user,
-    creator: user,
     tags: event.tags,
     description: event.description,
     beginningTime: event.beginningTime,
     endingTime: event.endingTime,
-    privacy: event.privacy,
   });
 
   useEffect(() => {
-    if (route.params !== undefined) {
+    if (route.params.searchedPlace !== undefined) {
       setEventData({
         ...eventData,
         placeID: route.params?.searchedPlace?.id,
@@ -111,7 +109,11 @@ const AddScreen = ({ navigation, route }) => {
         <View style={{ flexDirection: "row", marginHorizontal: wsize(10) }}>
           <TouchableOpacity
             activeOpacity={0.7}
-            onPress={() => navigation.navigate("UserUpdate")} // Should have a userSearchAddScreen
+            onPress={() =>
+              navigation.navigate("UserUpdate", {
+                participants: event.participants,
+              })
+            } // Should have a userSearchAddScreen
             style={{ justifyContent: "center" }}
           >
             <View style={styles.iconContainer}>
@@ -198,6 +200,7 @@ const AddScreen = ({ navigation, route }) => {
                 <LocationContainer
                   eventData={eventData}
                   navigate={navigation.navigate}
+                  event={event}
                 />
 
                 <DescriptionContainer

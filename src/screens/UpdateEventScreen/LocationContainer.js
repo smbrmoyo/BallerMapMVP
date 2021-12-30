@@ -19,9 +19,9 @@ export default function LocationContainer(props) {
       <View style={styles.adressContainer}>
         <TouchableOpacity
           onPress={() =>
-            props.navigate("PlaceSearch", {
+            props.navigate("PlaceSearchUpdate", {
               from: "Update",
-              event: props.eventData,
+              event: props.event,
             })
           }
         >
@@ -41,13 +41,13 @@ export default function LocationContainer(props) {
               elevation: 2,
             }}
           >
-            {props.eventData.placeName == undefined ? (
+            {props.eventData.placeName == props.event?.place.name ? (
               <Text
                 style={{
-                  color: "#CDCDCD",
+                  color: "black",
                 }}
               >
-                {props.eventData.placeName}
+                {props.event?.place.name}
               </Text>
             ) : (
               <Text

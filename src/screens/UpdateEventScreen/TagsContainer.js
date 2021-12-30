@@ -15,7 +15,7 @@ export default function TagsContainer(props) {
         style={styles.textInput}
         placeholder="#"
         multiline
-        color="blue"
+        color="black"
         defaultValue={props.eventData.description}
         placeholderTextColor="#CDCDCD"
         onEndEditing={(event) => {
