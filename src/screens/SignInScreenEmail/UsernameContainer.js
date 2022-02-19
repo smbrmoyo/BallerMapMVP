@@ -34,12 +34,12 @@ export default function UsernameContainer(props) {
           },
         ]}
       >
-        Username
+        Email
       </Text>
       <View style={styles.action}>
         <FontAwesome name="user-o" color={props.colors.text} size={20} />
         <TextInput
-          placeholder="Your Username"
+          placeholder="Your Email"
           placeholderTextColor="#666666"
           style={[
             styles.textInput,
@@ -48,7 +48,7 @@ export default function UsernameContainer(props) {
             },
           ]}
           autoCapitalize="none"
-          onChangeText={(username) => props.textInputChange(username)}
+          onChangeText={(email) => props.textInputChange(email)}
         />
         {props.check_textInputChange ? (
           <Animatable.View animation="bounceIn">

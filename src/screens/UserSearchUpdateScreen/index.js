@@ -56,9 +56,10 @@ const UserSearchScreen = ({ navigation, route }) => {
     console.log("Ids : " + participantsIDs.length);
     console.log("pants : " + participants.items.length);
 
-    if (participantsIDs.length > 0) console.log("1");
-    else if (oldLength.current != participants.items.length) console.log("2");
-    else console.log("3");
+    if (participantsIDs.length > 0) console.log("true 1");
+    else if (oldLength.current != participants.items.length)
+      console.log("true 2");
+    else console.log("false");
   };
 
   useLayoutEffect(() => {
