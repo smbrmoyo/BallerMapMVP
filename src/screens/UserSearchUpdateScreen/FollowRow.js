@@ -84,11 +84,11 @@ export default function FollowRow(props) {
             activeOpacity={0.7}
             onPress={() => {
               const helper = props.participants.items.filter(
-                (element) => element != props.item.followed.id
+                (element) => element.userProfile.id != props.item.followed.id
               );
               console.log(helper);
               isAdded
-                ? (props.setParticipantsIDs(helper), setIsAdded(!isAdded))
+                ? (props.setParticipants(helper), setIsAdded(!isAdded))
                 : (setIsAdded(!isAdded),
                   props.setParticipantsIDs([
                     props.item.followed.id,

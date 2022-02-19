@@ -20,7 +20,7 @@ import * as Animatable from "react-native-animatable";
 import { useHeaderHeight } from "@react-navigation/stack";
 import { useRoute } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -34,13 +34,11 @@ import Title from "./Title";
 import CodeContainer from "./CodeContainer";
 import ButtonContainer from "./ButtonContainer";
 
-const ConfirmSignUpScreen = ({ navigation }) => {
-  const { confirmSignUp, resendConfirmationCode } = useAuth();
-  const [code, setCode] = useState();
+const ForgotPasswordScreen = ({ navigation }) => {
+  const { forgotPassword } = useAuth();
+  const [email, setEmail] = useState("");
   const route = useRoute();
   const { colors } = useTheme();
-  let username = route.params.username;
-  const email = route.params.email;
 
   useEffect(() => {
     console.log(
@@ -70,12 +68,12 @@ const ConfirmSignUpScreen = ({ navigation }) => {
               },
             ]}
           >
-            Code
+            Email
           </Text>
           <View style={styles.action}>
-            <Ionicons name="keypad-outline" size={20} color="#05375a" />
+            <FontAwesome name="user-o" color="#05375a" size={20} />
             <TextInput
-              placeholder="Verification Code"
+              placeholder="Your Email"
               placeholderTextColor="#666666"
               style={[
                 styles.textInput,
@@ -84,8 +82,8 @@ const ConfirmSignUpScreen = ({ navigation }) => {
                 },
               ]}
               autoCapitalize="none"
-              keyboardType="numeric"
-              onEndEditing={(event) => setCode(event.nativeEvent.text)}
+              keyboardType="email-address"
+              onEndEditing={(event) => setEmail(event.nativeEvent.text)}
             />
           </View>
 
@@ -96,18 +94,13 @@ const ConfirmSignUpScreen = ({ navigation }) => {
               onPress={() => {
                 Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
                   () => {
-                    confirmSignUp(email, code)
-                      .then((res) => {
-                        navigation.navigate("SignInEmail");
+                    forgotPassword(email)
+                      .then(() => {
+                        navigation.navigate("SetNewPassword", { email: email });
                       })
                       .catch((error) => {
-                        console.log(
-                          "      Erreur dans la confirmation du User" + error
-                        );
-                        Alert.alert(
-                          "Impossible de confirmer l'identité",
-                          error
-                        );
+                        JSON.stringify(error);
+                        Alert.alert("This email does not exist");
                       });
                   }
                 );
@@ -125,26 +118,26 @@ const ConfirmSignUpScreen = ({ navigation }) => {
                     },
                   ]}
                 >
-                  Confirm Sign Up
+                  Send Code
                 </Text>
               </LinearGradient>
             </TouchableOpacity>
 
             <TouchableOpacity
               activeOpacity={0.7}
-              onPress={async () => {
-                console.log("   Resending confirmation to user");
-                await resendConfirmationCode(email)
-                  .then((res) => {
-                    Alert.alert(
-                      "New Confirmation code",
-                      `New confirmation sent to ${email}. Check your spams`
-                    );
-                  })
-                  .catch((error) => {
-                    Alert.alert("ERROR resending confirmation code", error);
-                    console.log("   ERREUR resending confirmation code");
-                  });
+              onPress={() => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+                  () => {
+                    forgotPassword(email)
+                      .then(() => {
+                        navigation.navigate("SetNewPassword");
+                      })
+                      .catch((error) => {
+                        JSON.stringify(error);
+                        Alert.alert("This email does not exist");
+                      });
+                  }
+                );
               }}
               style={[styles.signIn]}
             >
@@ -161,20 +154,10 @@ const ConfirmSignUpScreen = ({ navigation }) => {
               </View>
             </TouchableOpacity>
           </View>
-          {/*<CodeContainer setCode={setCode} text={colors.text} />
-
-          <ButtonContainer
-            confirmSignUp={confirmSignUp}
-            resendConfirmationCode={resendConfirmationCode}
-            email={email}
-            code={code}
-            username={username}
-            navigate={navigation.navigate}
-            />*/}
         </Animatable.View>
       </KeyboardAwareScrollView>
     </LinearGradient>
   );
 };
 
-export default ConfirmSignUpScreen;
+export default ForgotPasswordScreen;

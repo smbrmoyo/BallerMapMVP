@@ -29,19 +29,59 @@ export default function ButtonContainer(props) {
       <TouchableOpacity
         activeOpacity={0.7}
         style={styles.signIn}
-        onPress={() => {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(() => {
-            props
-              .signIn(props.dataLogin.username, props.dataLogin.password)
-              .then((res) => {
-                if (res) {
-                  props.setUser(props.dataLogin.username);
-                } else {
-                  Alert.alert("creds error: " + JSON.stringify(error));
-                }
-              })
-              .catch((error) => console.log("error signing in: " + error));
-          });
+        onPress={async () => {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+            async () => {
+              if (!props.dataLogin.email) {
+                Alert.alert("Enter your email address");
+                return false;
+              } else if (!props.dataLogin.password) {
+                Alert.alert("Enter your password");
+                return false;
+              }
+              await props
+                .signIn(props.dataLogin.email, props.dataLogin.password)
+                .then((res) => {
+                  if (res) {
+                    AsyncStorage.setItem(
+                      "currentUserCreds",
+                      JSON.stringify({
+                        email: props.dataLogin.email,
+                        password: props.dataLogin.password,
+                      })
+                    );
+                    console.log(
+                      "   User Logged IN, Credentials stored locally"
+                    );
+                    props.setUser(props.dataLogin.email);
+                  }
+                })
+                .catch((error) => {
+                  console.log(JSON.stringify(error));
+                  if (error == "UserNotFoundException") {
+                    Alert.alert("Error", "User not found");
+                  } else if (error == "UserNotConfirmedException") {
+                    Alert.alert("Error", "User not confirmed", [
+                      {
+                        text: "OK",
+                        onPress: () => {
+                          resendConfirmationCode(props.dataLogin.email).then(
+                            () => {
+                              navigation.navigate("ConfirmSignUp", {
+                                username: props.dataLogin.email,
+                                email: props.dataLogin.email,
+                              });
+                            }
+                          );
+                        },
+                      },
+                    ]);
+                  } else if (error == "Incorrect username or password.") {
+                    Alert.alert("Error", "Email or" + " password incorrect");
+                  }
+                });
+            }
+          );
         }}
       >
         <LinearGradient colors={["#743cff", "#bb006e"]} style={styles.signIn}>
@@ -64,14 +104,7 @@ export default function ButtonContainer(props) {
       >
         <View style={styles.textPrivate}>
           <Text style={styles.color_textPrivate}>New to BallerMap?</Text>
-          <Text
-            style={[
-              styles.color_textPrivate,
-              {
-                fontWeight: "bold",
-              },
-            ]}
-          >
+          <Text style={[styles.color_textPrivate, { fontWeight: "bold" }]}>
             {" "}
             Sign Up
           </Text>
