@@ -265,6 +265,29 @@ const AuthProvider = ({ children }) => {
     }
   };
 
+  // To retrieve old password
+  // Send confirmation code to user's email
+  const forgotPassword = (username) => {
+    return Auth.forgotPassword(username)
+      .then((data) => console.log(data))
+      .catch((err) =>
+        console.log(
+          "Error sending confirmation code to user : " + JSON.stringify(error)
+        )
+      );
+  };
+
+  // Collect confirmation code and new password, then
+  const forgotPasswordSubmit = (username, code, new_password) => {
+    return Auth.forgotPasswordSubmit(username, code, new_password)
+      .then((data) => console.log(data))
+      .catch((err) =>
+        console.log(
+          "Error confirming code and/or new password : " + JSON.stringify(error)
+        )
+      );
+  };
+
   // The signOut function calls the logOut function on the currently
   // logged in user
   const signOut = async () => {
@@ -291,6 +314,8 @@ const AuthProvider = ({ children }) => {
         setLoadingUser,
         confirmSignUp,
         resendConfirmationCode,
+        forgotPassword,
+        forgotPasswordSubmit,
         createProfileDoc,
         auth,
         setAuth,

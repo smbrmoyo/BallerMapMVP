@@ -159,7 +159,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
             updateSecureTextEntry={updateSecureTextEntry}
           />
 
-          <ForgotContainer />
+          <ForgotContainer navigate={navigation.navigate} />
 
           <ButtonContainer
             signIn={signIn}

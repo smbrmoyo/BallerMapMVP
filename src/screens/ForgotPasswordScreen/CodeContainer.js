@@ -1,61 +1,64 @@
 import React, { useContext, useState, useEffect } from "react";
 import {
+  Alert,
   View,
   Text,
+  Button,
   TouchableOpacity,
   TouchableWithoutFeedback,
+  KeyboardAvoidingView,
   Keyboard,
+  Dimensions,
   TextInput,
+  Platform,
+  StyleSheet,
+  ScrollView,
   StatusBar,
-  Alert,
+  KeyboardAvoidingViewBase,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import * as Haptics from "expo-haptics";
-import * as Location from "expo-location";
-import { LinearGradient } from "expo-linear-gradient";
 import { useHeaderHeight } from "@react-navigation/stack";
+import { useRoute } from "@react-navigation/native";
+import { LinearGradient } from "expo-linear-gradient";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Feather from "react-native-vector-icons/Feather";
-import styles from "./styles";
-import { useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import * as Haptics from "expo-haptics";
 
+import { hsize, wsize } from "../../utils/Dimensions";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useTheme } from "react-native-paper";
+import styles from "./styles";
 
-export default function UsernameContainer(props) {
+export default function CodeContainer(props) {
   return (
     <View>
       <Text
         style={[
           styles.text_footer,
           {
-            color: props.colors.text,
+            marginTop: hsize(15),
           },
         ]}
       >
-        Email
+        Code
       </Text>
       <View style={styles.action}>
-        <FontAwesome name="user-o" color={props.colors.text} size={20} />
+        <FontAwesome name="user-o" color="#05375a" size={20} />
         <TextInput
-          placeholder="Your Email"
+          placeholder="Verification Code"
           placeholderTextColor="#666666"
           style={[
             styles.textInput,
             {
-              color: props.colors.text,
+              color: props.text,
             },
           ]}
-          keyboardType="email-address"
           autoCapitalize="none"
-          onChangeText={(email) => props.textInputChange(email)}
+          keyboardType="numeric"
+          onChangeText={(text) => props.setCode(text)}
         />
-        {props.check_textInputChange ? (
-          <Animatable.View animation="bounceIn">
-            <Feather name="check-circle" color="green" size={20} />
-          </Animatable.View>
-        ) : null}
       </View>
     </View>
   );

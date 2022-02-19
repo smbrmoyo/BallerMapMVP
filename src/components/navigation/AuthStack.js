@@ -5,7 +5,9 @@ import SignInScreenSocial from "../../screens/SignInScreenSocial";
 import SignUpScreenEmail from "../../screens/SignUpScreenEmail";
 import SignUpScreenSocial from "../../screens/SignUpScreenSocial";
 import OnboardingScreen from "../../screens/OnboardingScreen";
+import SetNewPasswordScreen from "../../screens/SetNewPasswordScreen";
 import SetProfileScreen from "../../screens/SetProfileScreen";
+import ForgotPasswordScreen from "../../screens/ForgotPasswordScreen";
 import { hsize, wsize } from "../../utils/Dimensions";
 import { useAuth } from "./Providers/AuthProvider";
 
@@ -74,6 +76,16 @@ const AuthStack = ({ navigation, route }) => {
       <Stack.Screen
         name="ConfirmSignUp"
         component={ConfirmSignUpScreen}
+        options={({ navigation, route }) => ({ header: () => null })}
+      />
+      <Stack.Screen
+        name="ForgotPassword"
+        component={ForgotPasswordScreen}
+        options={({ navigation, route }) => ({ header: () => null })}
+      />
+      <Stack.Screen
+        name="SetNewPassword"
+        component={SetNewPasswordScreen}
         options={({ navigation, route }) => ({ header: () => null })}
       />
     </Stack.Navigator>

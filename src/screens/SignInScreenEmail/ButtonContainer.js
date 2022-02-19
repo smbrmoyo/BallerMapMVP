@@ -99,7 +99,7 @@ export default function ButtonContainer(props) {
       </TouchableOpacity>
       <TouchableOpacity
         activeOpacity={0.7}
-        onPress={() => navigation.navigate("SignUpEmail")}
+        onPress={() => props.navigate("SignUpEmail")}
         style={[styles.signIn]}
       >
         <View style={styles.textPrivate}>
