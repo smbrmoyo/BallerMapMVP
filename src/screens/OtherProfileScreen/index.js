@@ -102,10 +102,7 @@ const OtherProfileScreen = ({ navigation }) => {
           following: { items: temp },
         });
       },
-      error: (error) =>
-        console.log(
-          "Error on onCreateUserConnection : " + JSON.stringify(error)
-        ),
+      error: (error) => console.log(error),
     });
 
     const subscribeToDeleteUserConnection = API.graphql(
@@ -121,10 +118,9 @@ const OtherProfileScreen = ({ navigation }) => {
           following: { items: temp },
         });
       },
-      error: (error) =>
-        console.log(
-          "Error on onDeleteUserConnection : " + JSON.stringify(error)
-        ),
+      error: (error) => {
+        console.log(error);
+      },
     });
 
     setFollowLoading(false);

@@ -7,22 +7,22 @@ export type AmplifyDependentResourcesAttributes = {
     },
     "auth": {
         "ballermapmvp52e1ffed": {
+            "IdentityPoolId": "string",
+            "IdentityPoolName": "string",
             "UserPoolId": "string",
             "UserPoolArn": "string",
             "UserPoolName": "string",
             "AppClientIDWeb": "string",
             "AppClientID": "string"
+        },
+        "userPoolGroups": {
+            "bmuserpoolGroupRole": "string"
         }
-<<<<<<< Updated upstream
     },
-    "function": {
-        "syncConflictHandlerba57b5b7": {
-            "Name": "string",
-            "Arn": "string",
-            "Region": "string",
-            "LambdaExecutionRole": "string"
+    "storage": {
+        "s3cd7b2bfc": {
+            "BucketName": "string",
+            "Region": "string"
         }
-=======
->>>>>>> Stashed changes
     }
 }

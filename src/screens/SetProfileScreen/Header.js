@@ -22,6 +22,7 @@ export default function Header(props) {
         alignItems: "center",
         borderBottomColor: "#CDCDCD",
         borderBottomWidth: 0.5,
+        justifyContent: "center",
       }}
     >
       <Text style={styles.textHeader}>Create Your Profile</Text>

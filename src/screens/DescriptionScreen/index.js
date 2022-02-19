@@ -139,7 +139,7 @@ const DescriptionScreen = ({ props, navigation, route }) => {
           event={event}
         />
         {/*<ButtonContainer />*/}
-        <ParticipantsContainer event={event} />
+        <ParticipantsContainer event={event} navigation={navigation} />
         <DescriptionContainer description={event?.description} />
       </SafeAreaView>
     </>

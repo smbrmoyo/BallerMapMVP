@@ -1,14 +1,4 @@
 {
     "Version": 5,
-<<<<<<< Updated upstream
     "ElasticsearchWarning": true
-=======
-    "ElasticsearchWarning": true,
-    "ResolverConfig": {
-        "project": {
-            "ConflictHandler": "AUTOMERGE",
-            "ConflictDetection": "VERSION"
-        }
-    }
->>>>>>> Stashed changes
 }

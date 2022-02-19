@@ -40,6 +40,7 @@ async function getActivity(userId) {
   console.log("   --- Recherche des notifications ---");
   let notif = await API.graphql(
     graphqlOperation(queries.listNotifications, {
+      //sortDirection: "DESC",
       filter: {
         profileID: {
           eq: userId,
@@ -48,7 +49,6 @@ async function getActivity(userId) {
     })
   )
     .then((result) => {
-      //console.log("   Notifications trouvées:", JSON.stringify(result.data.listNotifications.items));
       return result.data.listNotifications.items;
     })
     .catch((error) => {

@@ -87,10 +87,10 @@ export default function FollowRow(props) {
                 : (props.setParticipants(helper), setIsAdded(!isAdded));
             }} // Should add to the list of participants
           >
-            {isAdded == true ? (
-              <Feather name="plus" size={30} color="black" />
-            ) : (
+            {isAdded == false ? (
               <Feather name="check" size={30} color="#743cff" />
+            ) : (
+              <Feather name="plus" size={30} color="black" />
             )}
           </TouchableOpacity>
         </View>

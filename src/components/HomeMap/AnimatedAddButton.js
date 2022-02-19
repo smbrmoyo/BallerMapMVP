@@ -1,5 +1,7 @@
 import React from "react";
 import { View, TouchableOpacity, Animated } from "react-native";
+import Amplify, { Storage } from "aws-amplify";
+
 import { Feather, Entypo } from "@expo/vector-icons";
 import styles from "./styles";
 import { hsize, wsize } from "../../utils/Dimensions";
@@ -51,7 +53,10 @@ export default function AnimatedAddButton(props) {
           <Entypo name="direction" size={24} color="grey" />
         </View>
         </TouchableOpacity>*/}
-      <TouchableOpacity activeOpacity={0.7} onPress={props.goToAdd}>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() => props.navigation.navigate("Add")}
+      >
         <View style={styles.buttonAdd}>
           <Feather name="plus" size={40} color="#743cff" />
         </View>

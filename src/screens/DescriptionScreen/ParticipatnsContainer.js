@@ -31,7 +31,11 @@ export default function ParticipantsContainer(props) {
 
       <TouchableOpacity
         activeOpacity={0.7}
-        onPress={() => {}}
+        onPress={() =>
+          props.navigation.navigate("Attendance", {
+            participants: props.event.participants.items,
+          })
+        }
         style={{
           //flexDirection: "row",
           backgroundColor: "white",
@@ -65,9 +69,6 @@ export default function ParticipantsContainer(props) {
               }}
             >
               <ProfilePicture size={hsize(50)} />
-              <Text style={{ fontSize: 11 }}>
-                {item.item.userProfile.username}
-              </Text>
             </View>
           )}
         />

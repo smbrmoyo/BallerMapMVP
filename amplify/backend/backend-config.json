@@ -45,7 +45,6 @@
     },
     "userPoolGroups": {
       "service": "Cognito-UserPool-Groups",
-<<<<<<< Updated upstream
       "providerPlugin": "awscloudformation",
       "dependsOn": [
         {
@@ -54,31 +53,18 @@
           "attributes": [
             "UserPoolId",
             "AppClientIDWeb",
-            "AppClientID"
+            "AppClientID",
+            "IdentityPoolId"
           ]
         }
       ]
     }
   },
-  "function": {
-    "syncConflictHandlerba57b5b7": {
-      "service": "Lambda",
+  "storage": {
+    "s3cd7b2bfc": {
+      "service": "S3",
       "providerPlugin": "awscloudformation",
-      "build": true
-=======
-      "providerPlugin": "awscloudformation",
-      "dependsOn": [
-        {
-          "category": "auth",
-          "resourceName": "ballermapmvp52e1ffed",
-          "attributes": [
-            "UserPoolId",
-            "AppClientIDWeb",
-            "AppClientID"
-          ]
-        }
-      ]
->>>>>>> Stashed changes
+      "dependsOn": []
     }
   }
 }

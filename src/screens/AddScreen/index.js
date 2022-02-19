@@ -71,7 +71,6 @@ const AddScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     if (route.params?.participants !== undefined) {
-      console.log(route.params?.participants);
       setEventData({
         ...eventData,
         participants: route.params?.participants,

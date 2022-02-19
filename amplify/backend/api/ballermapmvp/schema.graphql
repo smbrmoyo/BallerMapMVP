@@ -16,6 +16,8 @@ type Uprofile
   name: String
   userDocId: ID!
   currentPlaceID: ID
+  cityCountry: String
+  profilePicture: String
   notifications: [Notification] @connection(keyName: "byUser", fields: ["id"])
   myEvents: [UserEventConnection] @connection(keyName: "byUser", fields: ["id"])
   eventsCreated: [Event] @connection(keyName: "byCreator", fields: ["id"])
@@ -115,6 +117,7 @@ type Place @model {
 
 type Notification
   @model
+  @searchable
   @key(name: "byUser", fields: ["profileID", "createdAt"]) {
   id: ID!
   body: String!
