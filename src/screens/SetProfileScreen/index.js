@@ -1,61 +1,58 @@
-import React, {
-  useContext,
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect,
-} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import {
-  View,
-  Text,
-  TextInput,
   SafeAreaView,
   StatusBar,
-  Alert,
   Image,
   ScrollView,
-  Dimensions,
-  TouchableOpacity,
   TouchableWithoutFeedback,
-  KeyboardAvoidingView,
   Keyboard,
+  Alert,
 } from "react-native";
-import { useHeaderHeight } from "@react-navigation/stack";
+// import * as ImagePicker from "expo-image-picker";
+import * as ImagePicker from "expo-image-picker";
 import Animated from "react-native-reanimated";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
-import styles from "./styles";
-import { useNavigation } from "@react-navigation/native";
-import { wsize, hsize } from "../../utils/Dimensions";
 import BioContainer from "./BioContainer";
 import PictureContainer from "./PictureContainer";
 import NameContainer from "./NameContainer";
 import ButtonContainer from "./ButtonContainer";
 import UsernameContainer from "./UsernameContainer";
 import Header from "./Header";
-import { onCreateUprofile } from "../../graphql/subscriptions";
+import BottomSheetSet from "./BottomSheetSet";
 import { useAppContext } from "../../components/navigation/Providers/AppProvider";
 
 const SetProfileScreen = ({ props, route }) => {
   const { user } = useAuth();
   const { isPDoc, setIsPDoc } = useAppContext();
-  const [color, setColor] = useState("#CDCDCD");
-  let udId = "";
+  const [imageLoading, setImageLoading] = useState(false);
+  const [imageUri, setImageUri] = useState(null);
+  bsSetProf = useRef(null);
+  fallSetProf = useRef(new Animated.Value(1)).current;
   const [userProfile, setUserProfile] = useState({
     //email: user,
     name: "",
     username: "",
     bio: "",
-    profilePicture: null,
     userDocId: user,
     id: user,
   });
 
   useEffect(() => {
-    console.log("<------------- SETPROFILESCREEN ---------------->");
     if (isPDoc) {
       setIsPDoc(true);
     }
+    (async () => {
+      const cameraRollStatus =
+        await ImagePicker.requestMediaLibraryPermissionsAsync();
+      const cameraStatus = await ImagePicker.requestCameraPermissionsAsync();
+      if (
+        cameraRollStatus.status !== "granted" ||
+        cameraStatus.status !== "granted"
+      ) {
+        Alert.alert("Sorry, we need these permissions to make this work!");
+      }
+    })();
   }, []);
 
   /*useLayoutEffect(() => {
@@ -88,6 +85,8 @@ const SetProfileScreen = ({ props, route }) => {
         barStyle="dark-content"
       />
 
+      <BottomSheetSet setImageUri={setImageUri} user={user} />
+
       <KeyboardAwareScrollView style={{ backgroundColor: "white" }}>
         <SafeAreaView
           style={{
@@ -96,13 +95,20 @@ const SetProfileScreen = ({ props, route }) => {
         >
           <TouchableWithoutFeedback
             onPress={() => {
+              bsSetProf.current.snapTo(1);
               Keyboard.dismiss;
             }}
           >
-            <ScrollView style={{ flex: 1, padding: 10 }}>
+            <Animated.View
+              style={{
+                flex: 1,
+                justifyContent: "flex-end",
+                opacity: Animated.add(0.5, Animated.multiply(fallSetProf, 1.0)),
+              }}
+            >
               <Header />
 
-              <PictureContainer />
+              <PictureContainer imageUri={imageUri} />
 
               <NameContainer
                 userProfile={userProfile}
@@ -122,9 +128,10 @@ const SetProfileScreen = ({ props, route }) => {
                 userProfile={userProfile}
                 user={user}
                 setIsPDoc={setIsPDoc}
+                imageUri={imageUri}
                 //navigation={navigation}
               />
-            </ScrollView>
+            </Animated.View>
           </TouchableWithoutFeedback>
         </SafeAreaView>
       </KeyboardAwareScrollView>

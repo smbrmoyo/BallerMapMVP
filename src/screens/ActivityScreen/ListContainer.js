@@ -40,10 +40,7 @@ const ListContainer = (props) => {
         // setNotifExtraData(!notifExtraData);
         setData((old) => [value.data.onCreateNotification, ...old]);
       },
-      error: (error) =>
-        console.log(
-          "   ERROR on onCreateNotification : " + JSON.stringify(error)
-        ),
+      error: (error) => console.log(error),
     });
     return () => subscribeToCreateNotification.unsubscribe();
   }, []);

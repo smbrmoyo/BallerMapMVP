@@ -17,10 +17,12 @@ export default function FollowRow(props) {
   useEffect(() => {
     for (let i = 0; i < props.participants.items.length; i++) {
       if (
-        props.participants.items[i].userProfile.id == props.item.followed.id
+        props.participants.items[i].userProfile.id == props.item.followed.id &&
+        !props.participantsIDs.includes(
+          props.participants.items[i].userProfile.id
+        )
       ) {
         setIsAdded(true);
-        break;
       }
     }
     setLoading(false);
@@ -81,13 +83,17 @@ export default function FollowRow(props) {
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => {
-              const helper = props.participants.filter(
-                (element) => element != props.item.id
+              const helper = props.participants.items.filter(
+                (element) => element != props.item.followed.id
               );
+              console.log(helper);
               isAdded
-                ? (setIsAdded(!isAdded),
-                  props.setParticipants([props.item.id, ...props.participants]))
-                : (props.setParticipants(helper), setIsAdded(!isAdded));
+                ? (props.setParticipantsIDs(helper), setIsAdded(!isAdded))
+                : (setIsAdded(!isAdded),
+                  props.setParticipantsIDs([
+                    props.item.followed.id,
+                    ...props.participantsIDs,
+                  ]));
             }} // Should add to the list of participants
           >
             {loading ? (

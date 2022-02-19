@@ -1,6 +1,8 @@
 {
   "version": "1",
   "cognitoConfig": {
+    "identityPoolName": "ballermapmvpf8326a86_identitypool_f8326a86",
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "baller52e1ffed",
     "userPoolName": "ballermapmvp52e1ffed_userpool_52e1ffed",
     "autoVerifiedAttributes": [
@@ -33,13 +35,13 @@
     "userpoolClientSetAttributes": false,
     "sharedId": "52e1ffed",
     "resourceName": "ballermapmvp52e1ffed",
-    "authSelections": "userPoolOnly",
+    "authSelections": "identityPoolAndUserPool",
     "useDefault": "manual",
     "usernameAttributes": [
       "email"
     ],
     "userPoolGroupList": [
-      "ballermapuserpool"
+      "bmuserpool"
     ],
     "serviceName": "Cognito",
     "usernameCaseSensitive": false,
@@ -66,6 +68,7 @@
     "parentStack": {
       "Ref": "AWS::StackId"
     },
-    "permissions": []
+    "permissions": [],
+    "thirdPartyAuth": false
   }
 }

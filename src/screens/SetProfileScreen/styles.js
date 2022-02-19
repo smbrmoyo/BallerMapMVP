@@ -52,6 +52,7 @@ const styles = StyleSheet.create({
   descriptionContainer: {
     justifyContent: "center",
     marginVertical: hsize(20),
+    paddingHorizontal: wsize(10),
   },
   usersContainer: {
     justifyContent: "center",

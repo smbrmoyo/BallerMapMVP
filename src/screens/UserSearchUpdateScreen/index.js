@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
 import {
   Text,
   View,
@@ -22,6 +22,8 @@ const UserSearchScreen = ({ navigation, route }) => {
   const { profileDoc } = useProfile();
   const [data, setData] = useState(profileDoc?.following.items); // users should come from uProfile
   const [participants, setParticipants] = useState(route.params?.participants);
+  const [participantsIDs, setParticipantsIDs] = useState([]);
+  const oldLength = useRef(participants.items.length);
 
   /**
    * Should try updating event by adding new participants to the list
@@ -49,6 +51,15 @@ const UserSearchScreen = ({ navigation, route }) => {
     leading: true,
     trailing: true,
   });*/
+
+  const check = () => {
+    console.log("Ids : " + participantsIDs.length);
+    console.log("pants : " + participants.items.length);
+
+    if (participantsIDs.length > 0) console.log("1");
+    else if (oldLength.current != participants.items.length) console.log("2");
+    else console.log("3");
+  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -82,11 +93,11 @@ const UserSearchScreen = ({ navigation, route }) => {
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => {
-            participants.length > 0
+            check()
               ? navigation.navigate({
-                  name: "UserUpdate",
+                  name: "UpdateEvent",
                   params: {
-                    participants: participants,
+                    participantsIDs: participantsIDs,
                   },
                 })
               : null;
@@ -95,7 +106,7 @@ const UserSearchScreen = ({ navigation, route }) => {
           <View style={styles.iconContainer}>
             <Text
               style={{
-                color: participants.length > 0 ? "#743cff" : "grey",
+                color: check() ? "#743cff" : "grey",
                 fontWeight: "bold",
               }}
             >
@@ -105,7 +116,7 @@ const UserSearchScreen = ({ navigation, route }) => {
         </TouchableOpacity>
       ),
     });
-  }, [participants]);
+  }, [participantsIDs]);
 
   if (loading) {
     return <LoadingScreen />;
@@ -131,6 +142,8 @@ const UserSearchScreen = ({ navigation, route }) => {
               item={item}
               participants={participants}
               setParticipants={setParticipants}
+              participantsIDs={participantsIDs}
+              setParticipantsIDs={setParticipantsIDs}
               navigation={navigation}
             />
           )}

@@ -39,7 +39,7 @@ import Feather from "react-native-vector-icons/Feather";
 import userConf from "../../aws-functions/userConf";
 import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
 
-export default function PictureContainer() {
+export default function PictureContainer(props) {
   return (
     <View
       style={{
@@ -48,12 +48,10 @@ export default function PictureContainer() {
       }}
     >
       <TouchableOpacity
-        activeOpacity={0.7} // onPress={() => bsEditProf.current.snapTo(0)}
+        activeOpacity={0.7}
+        onPress={() => bsSetProf.current.snapTo(0)}
       >
-        <ProfilePicture
-          uri={require("../../assets/images/default_profile_picture.png")}
-          size={80}
-        />
+        <ProfilePicture uri={props.imageUri} size={80} />
       </TouchableOpacity>
     </View>
   );

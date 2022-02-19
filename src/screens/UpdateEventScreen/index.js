@@ -64,10 +64,17 @@ const AddScreen = ({ navigation, route }) => {
     description: event.description,
     beginningTime: event.beginningTime,
     endingTime: event.endingTime,
+    participants: event.participants,
+    //participantsIDs: [],
   });
 
   useEffect(() => {
-    if (route.params.searchedPlace !== undefined) {
+    if (route.params?.participantsIDs !== undefined) {
+      setEventData({
+        ...eventData,
+        participantsIDs: route.params?.participantsIDs,
+      });
+    } else if (route.params?.searchedPlace !== undefined) {
       setEventData({
         ...eventData,
         placeID: route.params?.searchedPlace?.id,

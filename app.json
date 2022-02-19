@@ -25,7 +25,9 @@
         "googleMapsApiKey": "AIzaSyCAWRoRAT1jDaCuwACpmYsseOgW1-_XrNg"
       },
       "infoPlist": {
-        "NSLocationAlwaysAndWhenInUseUsageDescription": "BallerMap requires geolocation to get real-time information on playgrounds in your area"
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "BallerMap requires geolocation to get real-time information on playgrounds in your area",
+        "photosPermission": "BallerMap accesses your photos to let you set your profile picture.",
+        "cameraPermission": "BallerMap accesses your camera to let you set your profile picture."
       },
       "bundleIdentifier": "com.smbrmoyo.BallerMap"
     },

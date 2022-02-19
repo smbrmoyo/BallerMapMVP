@@ -47,6 +47,7 @@ export const createEvent = /* GraphQL */ `
       eventVideos
       id
       name
+      participantsIDs
       participants {
         nextToken
       }
@@ -222,6 +223,7 @@ export const createUprofile = /* GraphQL */ `
         nextToken
       }
       createdAt
+      cityCountry
       currentPlace {
         address
         createdAt
@@ -244,6 +246,7 @@ export const createUprofile = /* GraphQL */ `
         nextToken
       }
       name
+      profilePicture
       notifications {
         nextToken
       }
@@ -797,6 +800,7 @@ export const updateEvent = /* GraphQL */ `
       eventVideos
       id
       name
+      participantsIDs
       participants {
         nextToken
       }
@@ -946,6 +950,7 @@ export const updateUprofile = /* GraphQL */ `
         nextToken
       }
       createdAt
+      cityCountry
       currentPlace {
         address
         createdAt

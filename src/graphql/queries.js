@@ -25,6 +25,7 @@ export const getEvent = /* GraphQL */ `
       eventVideos
       id
       name
+      participantsIDs
       participants {
         items {
           userProfile {
@@ -161,7 +162,9 @@ export const getUprofile = /* GraphQL */ `
       id
       username
       name
+      profilePicture
       userDocId
+      cityCountry
       currentPlaceID
       notifications {
         items {
@@ -369,8 +372,14 @@ export const listNotifications = /* GraphQL */ `
     $filter: ModelNotificationFilterInput
     $limit: Int
     $nextToken: String
+    $sortDirection: ModelSortDirection
   ) {
-    listNotifications(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listNotifications(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+    ) {
       items {
         body
         createdAt

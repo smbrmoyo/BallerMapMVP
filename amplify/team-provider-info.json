@@ -12,18 +12,10 @@
       "AmplifyAppId": "d1lmjxorhezpuj"
     },
     "categories": {
-<<<<<<< Updated upstream
-      "function": {
-        "syncConflictHandlerba57b5b7": {
-          "deploymentBucketName": "amplify-ballermapmvp-dev-151750-deployment",
-          "s3Key": "amplify-builds/syncConflictHandlerba57b5b7-6b4a334d514572785179-build.zip"
-        }
-      },
-=======
->>>>>>> Stashed changes
       "auth": {
         "ballermapmvp52e1ffed": {},
-        "userPoolGroups": {}
+        "userPoolGroups": {},
+        "true": {}
       }
     }
   }

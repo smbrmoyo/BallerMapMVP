@@ -51,6 +51,17 @@ export const getAllUserProfiles = async () => {
   return usersList.data.listUprofiles.items;
 };
 
+/**
+ * @description get all notifications from a user
+ * @returns list of notifications from a user
+ */
+export const getAllNotifications = async () => {
+  let notifsList = await API.graphql(
+    graphqlOperation(queries.listNotifications)
+  );
+  return notifsList.data.listNotifications.items;
+};
+
 /*
  * =============================================================================
  *                                  MUTATIONS
@@ -85,10 +96,6 @@ export const createUserDoc = async (userData) => {
  */
 
 export const createUserProfile = async (userProfile) => {
-  console.log(
-    "   Création du profile utilisateur:",
-    JSON.stringify(userProfile)
-  );
   let uProfile = await API.graphql(
     graphqlOperation(mutations.createUprofile, {
       input: {
@@ -96,6 +103,7 @@ export const createUserProfile = async (userProfile) => {
         username: userProfile.username,
         userDocId: userProfile.userDocId,
         name: userProfile.name,
+        profilePicture: userProfile.profilePicture,
       },
     })
   ).catch((error) => {
@@ -122,6 +130,7 @@ export const updateUserProfile = async (updatedUprofile) => {
         id: updatedUprofile.id,
         username: updatedUprofile.username,
         name: updatedUprofile.name,
+        cityCountry: updatedUprofile.cityCountry,
       },
     })
   );

@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
   textInfo: {
     fontSize: wsize(14),
     marginHorizontal: wsize(2),
+    fontFamily: "ComfortaaBold",
   },
   linkInfo: {
     fontSize: wsize(14),

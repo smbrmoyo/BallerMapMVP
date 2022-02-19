@@ -54,8 +54,7 @@ const EditProfileScreen = ({ props, navigation, route }) => {
           username: value.data.onUpdateUprofile.username,
         });
       },
-      error: (error) =>
-        console.log("Error on onUpdateUprofile : " + JSON.stringify(error)),
+      error: (error) => console.log(error),
     });
 
     return () => subscribeToUpdateProfile.unsubscribe();

@@ -14,7 +14,6 @@ export default function ProfileContainer(props) {
       ? props.followers
       : props.profileDoc.followers.items;
   let following = props.profileDoc.following.items;
-  // console.log(followers)
 
   let date = new Date(props.profileDoc.createdAt);
   let month = date.toLocaleString("default", { month: "long" });
@@ -23,7 +22,10 @@ export default function ProfileContainer(props) {
     <View style={styles.container}>
       <View style={styles.profileInitialContainer}>
         <TouchableOpacity activeOpacity={0.7} onPress={() => {}}>
-          <ProfilePicture size={70} />
+          <ProfilePicture
+            uri={props.profileDoc?.profilePicture?.toString()}
+            size={70}
+          />
         </TouchableOpacity>
         <View style={styles.profileNameContainer}>
           <Text style={styles.profileName}>{props.profileDoc?.username}</Text>
@@ -35,7 +37,7 @@ export default function ProfileContainer(props) {
       <View style={styles.profileInfoContainer}>
         <View style={styles.profileInfo}>
           <Entypo name="location-pin" size={25} color={"#743cff"} />
-          <Text style={styles.textInfo}>{/*userExtraInfo.city*/}</Text>
+          <Text style={styles.textInfo}>{props.profileDoc?.cityCountry}</Text>
         </View>
 
         <TouchableOpacity activeOpacity={0.7} style={styles.profileInfo}>

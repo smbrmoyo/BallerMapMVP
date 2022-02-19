@@ -93,6 +93,7 @@ export default function ButtonContainer(props) {
             name: props.userProfile.name,
             id: props.user,
             userDocId: props.user,
+            profilePicture: props.imageUri,
           };
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
           createUserProfile(input)

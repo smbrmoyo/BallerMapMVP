@@ -9,7 +9,10 @@ import {
   getPlacesList,
   createPlace,
 } from "../../../aws-functions/placeFunctions";
-import { getAllUserProfiles } from "../../../aws-functions/userFunctions";
+import {
+  getAllUserProfiles,
+  updateUserProfile,
+} from "../../../aws-functions/userFunctions";
 import { useAuth, getUprofile } from "./AuthProvider";
 
 export const MapContext = React.createContext();
@@ -21,12 +24,37 @@ const MapProvider = ({ children }) => {
   const [status, setStatus] = useState("loading");
   const [camera, setCamera] = useState(null);
   const [users, setUsers] = useState([]);
-  // Geocoder.init("AIzaSyCAWRoRAT1jDaCuwACpmYsseOgW1-_XrNg");
+  Geocoder.init("AIzaSyCAWRoRAT1jDaCuwACpmYsseOgW1-_XrNg");
 
   const getCamera = async () => {
-    let location = await Location.getLastKnownPositionAsync().catch((err) =>
-      console.log(err)
-    );
+    let location = await Location.getLastKnownPositionAsync()
+      .then((position) => {
+        Geocoder.from({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        }).then((json) => {
+          let result = json.results[0].address_components;
+          let cityCountry;
+
+          for (var i = 0; i < result.length; i++) {
+            if (
+              result[i].types[0] == "administrative_area_level_3" &&
+              result[i].types[1] == "political"
+            ) {
+              cityCountry = result[i].long_name;
+            }
+            if (
+              result[i].types[0] == "country" &&
+              result[i].types[1] == "political"
+            ) {
+              cityCountry = cityCountry + ", " + result[i].long_name;
+              updateUserProfile({ id: user, cityCountry: cityCountry });
+              break;
+            }
+          }
+        });
+      })
+      .catch((err) => console.log(err));
   };
 
   const resultPlaces = useQuery("getPlaces", getPlacesList);
@@ -76,7 +104,7 @@ const MapProvider = ({ children }) => {
             .then((json) => {
               var location = json.results[0].geometry.location;
               if (location == undefined) {
-                Alert.alert("errer");
+                Alert.alert("error from Geocoder");
               }
               let input = {
                 name: place.name,
