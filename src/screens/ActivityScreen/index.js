@@ -20,7 +20,6 @@ import { useActivity } from "../../components/navigation/Providers/ActivityProvi
 import LoadingScreen from "../../screens/LoadingScreen";
 
 const ActivityScreen = ({ navigation }) => {
-  const [loading, setLoading] = useState(false);
   const { loadingNotif, activity } = useActivity();
   const [newData, setNewData] = useState(false);
 

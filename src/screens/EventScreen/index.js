@@ -15,7 +15,7 @@ import CurrentContainer from "./CurrentContainer";
 import UpcomingContainer from "./UpcomingContainer";
 import Loading from "./Loading";
 import { hsize, wsize } from "../../utils/Dimensions";
-import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
+import { useEvents } from "../../components/navigation/Providers/EventsProvider";
 import { API } from "aws-amplify";
 import {
   onCreateUserEventConnection,
@@ -23,15 +23,10 @@ import {
 } from "../../graphql/subscriptions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const EventScreen = ({ data, size, navigation, route }) => {
-  const { profileDoc, status } = useProfile();
-  const [myEvents, setMyEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
+const EventScreen = ({ navigation, route }) => {
+  const { events, loading } = useEvents();
 
   useEffect(() => {
-    profileDoc != undefined ? setLoading(false) : null;
-    setMyEvents(profileDoc?.eventsCreated.items);
-
     /*let subscribeToCreateEvent = API.graphql(
       graphqlOperation(onCreateNotification, {
         profileID: user,
@@ -61,7 +56,7 @@ const EventScreen = ({ data, size, navigation, route }) => {
           "   ERROR on onCreateNotification : " + JSON.stringify(error)
         ),
     });*/
-  }, [profileDoc]);
+  }, []);
 
   const onPageRendered = async () => {
     //subscribeToCreateEvent(profileDoc, loggedUser);
@@ -173,8 +168,8 @@ const EventScreen = ({ data, size, navigation, route }) => {
           <Loading />
         ) : (
           <>
-            <CurrentContainer navigation={navigation} myEvents={myEvents} />
-            <UpcomingContainer navigation={navigation} myEvents={myEvents} />
+            <CurrentContainer navigation={navigation} myEvents={events} />
+            <UpcomingContainer navigation={navigation} myEvents={events} />
           </>
         )}
       </SafeAreaView>
