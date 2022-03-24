@@ -44,6 +44,7 @@ export const getEvent = /* GraphQL */ `
       }
       placeID
       privacy
+      status
       profilePic
       tags
       updatedAt

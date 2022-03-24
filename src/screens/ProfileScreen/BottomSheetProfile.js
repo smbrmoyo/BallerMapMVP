@@ -2,15 +2,16 @@ import React from "react";
 import { Text, View, TouchableOpacity, Alert } from "react-native";
 import BottomSheet from "reanimated-bottom-sheet";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import AntDesign from "react-native-vector-icons/AntDesign";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
 
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { deleteAccount } from "../../aws-functions/userFunctions";
 import styles from "./styles";
 
 const BottomSheetProfile = (props) => {
   navigation = useNavigation();
-  const { signOut } = useAuth();
+  const { signOut, user, setUser } = useAuth();
 
   function LogoutAlert() {
     Alert.alert(
@@ -22,6 +23,27 @@ const BottomSheetProfile = (props) => {
           style: "cancel",
         },
         { text: "Logout", onPress: () => signOut(), style: "destructive" },
+      ]
+    );
+  }
+
+  function DeleteAlert() {
+    Alert.alert(
+      `${props.profileDoc?.username}`,
+      "Are you sure you delete this account?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Delete",
+          onPress: () => {
+            deleteAccount(user);
+            setUser(null);
+          },
+          style: "destructive",
+        },
       ]
     );
   }
@@ -42,12 +64,29 @@ const BottomSheetProfile = (props) => {
           style={styles.panelButton}
           onPress={() => navigation.navigate("EditProfile")}
         >
-          <AntDesign name="edit" size={30} color="black" />
+          <Ionicons name="pencil-outline" size={23} color="black" />
           <Text style={styles.panelButtonTitle}>Edit Profile</Text>
         </TouchableOpacity>
         <TouchableOpacity activeOpacity={0.7} style={styles.panelButton}>
           <Ionicons name="settings-outline" size={23} color="black" />
           <Text style={styles.panelButtonTitle}>Settings</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={LogoutAlert}
+          activeOpacity={0.7}
+          style={styles.panelButton}
+        >
+          <Ionicons name="exit-outline" size={23} color="black" />
+          <Text style={styles.panelButtonTitle}>Logout</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          onPress={DeleteAlert}
+          style={styles.panelButton}
+        >
+          <MaterialIcons name="delete-outline" size={23} color="black" />
+          <Text style={styles.panelButtonTitle}>Delete Account</Text>
         </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={0.7}
@@ -55,16 +94,6 @@ const BottomSheetProfile = (props) => {
           onPress={() => bsProf.current.snapTo(1)}
         >
           <Text style={styles.panelButtonTitle}>Cancel</Text>
-        </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.7} style={styles.panelButton}>
-          <Text style={styles.panelButtonTitle}>COVID-19 Information</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={LogoutAlert}
-          activeOpacity={0.7}
-          style={styles.panelButton}
-        >
-          <Text style={styles.panelButtonTitle}>Logout</Text>
         </TouchableOpacity>
       </View>
     </View>

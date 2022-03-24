@@ -60,6 +60,7 @@ export const createEvent = /* GraphQL */ `
       }
       placeID
       privacy
+      status
       profilePic
       tags
       updatedAt

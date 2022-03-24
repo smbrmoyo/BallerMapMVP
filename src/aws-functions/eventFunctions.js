@@ -32,11 +32,14 @@ export const getEvent = async (eventId) => {
  * @param {Integer} limit maximum number of docs to fetch
  * @returns array of event docs
  */
-export const getFilteredEvents = async (filter, limit) => {
+export const getFilteredEvents = async (user) => {
   let events = await API.graphql(
     graphqlOperation(queries.listEvents, {
-      filter,
-      limit,
+      filter: {
+        creatorID: {
+          eq: user,
+        },
+      },
     })
   );
   return events;
@@ -72,6 +75,7 @@ export const createEvent = async (eventData) => {
         tags: eventData.tags,
         description: eventData.description,
         privacy: eventData.privacy,
+        status: eventData.status,
       },
     })
   )
@@ -97,6 +101,8 @@ export const createEvent = async (eventData) => {
           createdAt: result.data.createEvent.place.createdAt,
         },
         placeID: result.data.createEvent.placeID,
+        status: result.data.createEvent.status,
+        privacy: result.data.createEvent.privacy,
         updatedAt: result.data.createEvent.updatedAt,
         createdAt: result.data.createEvent.createdAt,
       };

@@ -46,6 +46,7 @@ export const getUprofileDoc = async (email) => {
  * @description get all user profiles
  * @returns list of user profiles
  */
+
 export const getAllUserProfiles = async () => {
   let usersList = await API.graphql(graphqlOperation(queries.listUprofiles));
   return usersList.data.listUprofiles.items;
@@ -55,6 +56,7 @@ export const getAllUserProfiles = async () => {
  * @description get all notifications from a user
  * @returns list of notifications from a user
  */
+
 export const getAllNotifications = async () => {
   let notifsList = await API.graphql(
     graphqlOperation(queries.listNotifications)
@@ -140,6 +142,7 @@ export const updateUserProfile = async (updatedUprofile) => {
  * @description create user connection
  * @param {JSON} userConnectionData
  */
+
 export const createUserConnection = async (userConnectionData) => {
   let advance = false;
   let userConnection;
@@ -210,6 +213,7 @@ export const createUserConnection = async (userConnectionData) => {
  * @description delete user connection
  * @param {JSON} userConnectionData
  */
+
 export const deleteUserConnection = async (userConnectionData) => {
   return API.graphql(
     graphqlOperation(mutations.deleteUserConnection, {
@@ -245,9 +249,54 @@ export const addUserToEvent = (userToEventData) => {
   return createUserEventConnection(userToEventData);
 };
 
-/**Next mutation should be deleteAccount
+/*Next mutation should be deleteAccount
  * We would delete userDoc, profileDoc and removeItem AsyncStorage("profileCreated to false")
  */
+
+export const deleteAccount = async (id) => {
+  let advance = false;
+
+  try {
+    await API.graphql(
+      graphqlOperation(mutations.deleteUprofile, {
+        input: {
+          id: id,
+        },
+      })
+    ).then((response) => {
+      advance = true;
+    });
+  } catch (error) {
+    console.log("Error deleting uProfile:", error);
+  }
+
+  if (advance) {
+    try {
+      await API.graphql(
+        graphqlOperation(mutations.deleteUserDoc, {
+          input: {
+            id: id,
+          },
+        })
+      );
+    } catch (error) {
+      console.log("Error deleting userDoc:", error);
+    }
+
+    try {
+      await Auth.currentAuthenticatedUser().then((user) => {
+        user.deleteUser((error, data) => {
+          if (error) {
+            throw error;
+          }
+          Auth.signOut({ global: true });
+        });
+      });
+    } catch (error) {
+      console.log("Error deleting user:", error);
+    }
+  }
+};
 
 /*
  * =============================================================================
@@ -261,6 +310,7 @@ export const addUserToEvent = (userToEventData) => {
  * @param subscription subscription to use; e.g subscriptions.onCreateUserDoc
  * @param {function} functionToExecuteWithData function to execute with userDoc as soon as it is created
  */
+
 export const subscribeOnUserDoc = (subscription, functionToExecuteWithData) => {
   API.graphql(
     //graphqlOperation(subscriptions.onCreateUserDoc)
@@ -281,6 +331,7 @@ export const subscribeOnUserDoc = (subscription, functionToExecuteWithData) => {
  * @param subscription subscription to use; e.g subscriptions.onCreateUserConnection
  * @param {function} functionToExecuteWithData function to execute with userConnection as soon as it is created
  */
+
 export const subscribeOnUserConnection = (
   subscription,
   functionToExecuteWithData

@@ -65,7 +65,8 @@ const AddScreen = ({ navigation, route }) => {
     profileId: "", //should be current authenticated user profile Id
     beginningTime: new Date(),
     endingTime: new Date(),
-    privacy: "private",
+    privacy: "public",
+    status: "upcoming",
     participants: route.params?.participants,
   });
 
