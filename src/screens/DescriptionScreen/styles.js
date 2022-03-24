@@ -57,11 +57,21 @@ const styles = StyleSheet.create({
     margin: wsize(2),
   },
   textInfo: {
-    fontSize: wsize(12),
+    fontSize: wsize(13),
+    marginHorizontal: wsize(2),
+    fontFamily: "ComfortaaBold",
   },
-  linkInfo: {
-    fontSize: wsize(12),
+  created: {
+    fontSize: wsize(14),
+    fontFamily: "ComfortaaBold",
+    marginHorizontal: wsize(2),
     color: "#003569",
+  },
+  time: {
+    fontSize: wsize(14),
+    fontFamily: "ComfortaaBold",
+    marginHorizontal: wsize(2),
+    //color: "#003569",
   },
   userInfoWrapper: {
     flexDirection: "row",

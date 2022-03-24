@@ -72,6 +72,7 @@ export const createEvent = async (eventData) => {
         tags: eventData.tags,
         description: eventData.description,
         privacy: eventData.privacy,
+        status: eventData.status,
       },
     })
   )
@@ -97,6 +98,8 @@ export const createEvent = async (eventData) => {
           createdAt: result.data.createEvent.place.createdAt,
         },
         placeID: result.data.createEvent.placeID,
+        status: result.data.createEvent.status,
+        privacy: result.data.createEvent.privacy,
         updatedAt: result.data.createEvent.updatedAt,
         createdAt: result.data.createEvent.createdAt,
       };

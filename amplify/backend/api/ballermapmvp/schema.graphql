@@ -77,11 +77,13 @@ type Event
   tags: [String]
   place: Place @connection(fields: ["placeID"])
   creator: Uprofile! @connection(fields: ["creatorID"])
+  participantsIDs: [ID]
   participants: [UserEventConnection]
     @connection(keyName: "byEvent", fields: ["id"])
   chat: [EventChatMessage] @connection(keyName: "byEvent", fields: ["id"])
   description: String!
   privacy: EventPrivacy!
+  status: EventStatus!
   profilePic: AWSURL
   eventPictures: [AWSURL]
   eventVideos: [AWSURL]
@@ -90,6 +92,12 @@ type Event
 enum EventPrivacy {
   private
   public
+}
+
+enum EventStatus {
+  upcoming
+  live
+  passed
 }
 
 type EventChatMessage
