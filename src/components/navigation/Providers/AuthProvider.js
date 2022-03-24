@@ -12,9 +12,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { getFilteredEvents } from "../../../aws-functions/eventFunctions";
 
-// Access the Realm App.
-//const app = getRealmApp();
-
 export const AuthContext = React.createContext(null);
 
 const AuthProvider = ({ children }) => {

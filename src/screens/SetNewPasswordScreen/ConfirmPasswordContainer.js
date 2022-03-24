@@ -18,7 +18,7 @@ export default function CodeContainer(props) {
           },
         ]}
       >
-        Confirm Password
+        Confirm New Password
       </Text>
       <View style={styles.action}>
         <FontAwesome name="user-o" color="#05375a" size={20} />
