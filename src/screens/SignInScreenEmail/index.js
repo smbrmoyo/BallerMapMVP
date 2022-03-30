@@ -109,20 +109,6 @@ const SignInScreenEmail = ({ navigation, props }) => {
     });
   };
 
-  const handleValidUser = (val) => {
-    if (val.trim().length >= 4) {
-      setData({
-        ...data,
-        isValidUser: true,
-      });
-    } else {
-      setData({
-        ...data,
-        isValidUser: false,
-      });
-    }
-  };
-
   return (
     <View colors={["#743cff", "#bb006e"]} style={styles.container}>
       <StatusBar

@@ -1,39 +1,6 @@
-import React, {
-  useContext,
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect,
-} from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  SafeAreaView,
-  StatusBar,
-  Alert,
-  Image,
-  ScrollView,
-  Dimensions,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  KeyboardAvoidingView,
-  Keyboard,
-} from "react-native";
-import { Button, Overlay } from "react-native-elements";
-import * as Animatable from "react-native-animatable";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import { useRoute, useNavigation } from "@react-navigation/native";
-import { useHeaderHeight } from "@react-navigation/stack";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import DatePicker from "react-native-date-picker";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import * as Haptics from "expo-haptics";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import React from "react";
+import { View, Text, TextInput } from "react-native";
 
-import PlaceRow from "./PlaceRow";
-import ProfilePicture from "../../components/ProfilePictureUser";
-import Bitmoji from "../../components/Bitmoji";
 import styles from "./styles";
 import { wsize, hsize } from "../../utils/Dimensions";
 
@@ -62,6 +29,7 @@ export default function DescriptionContainer(props) {
         placeholder="In a few words"
         multiline
         placeholderTextColor="#CDCDCD"
+        maxLength={200}
         onEndEditing={(event) =>
           props.setEventData({
             ...props.eventData,

@@ -37,7 +37,6 @@ const ActivityProvider = ({ children }) => {
 };
 
 async function getActivity(userId) {
-  console.log("   --- Recherche des notifications ---");
   let notif = await API.graphql(
     graphqlOperation(queries.listNotifications, {
       //sortDirection: "DESC",

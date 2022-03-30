@@ -1,41 +1,11 @@
-import React, {
-  useContext,
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect,
-} from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  SafeAreaView,
-  StatusBar,
-  Alert,
-  Image,
-  ScrollView,
-  Dimensions,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  KeyboardAvoidingView,
-  Keyboard,
-} from "react-native";
-import { Button, Overlay } from "react-native-elements";
+import React, { useState } from "react";
+import { View, Text, TextInput } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import { useRoute, useNavigation } from "@react-navigation/native";
-import { useHeaderHeight } from "@react-navigation/stack";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import DatePicker from "react-native-date-picker";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import * as Haptics from "expo-haptics";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { Feather } from "@expo/vector-icons";
 
-import PlaceRow from "./PlaceRow";
-import ProfilePicture from "../../components/ProfilePictureUser";
-import Bitmoji from "../../components/Bitmoji";
 import styles from "./styles";
 import { wsize, hsize } from "../../utils/Dimensions";
+import { checkName } from "./helpers";
 
 export default function NameContainer(props) {
   return (
@@ -61,6 +31,7 @@ export default function NameContainer(props) {
         }}
         placeholder="Give your run a name"
         placeholderTextColor="#CDCDCD"
+        maxLength={20}
         onEndEditing={(event) =>
           props.setEventData({
             ...props.eventData,
@@ -68,6 +39,20 @@ export default function NameContainer(props) {
           })
         }
       />
+      {props.check ? (
+        checkName(props.eventData.name) ? (
+          props.validate.name ? null : (
+            props.setValidate({
+              ...props.validate,
+              name: true,
+            })
+          )
+        ) : (
+          <Animatable.View animation="fadeInLeft" duration={500}>
+            <Text style={styles.errorMsg}>Your run must have a name.</Text>
+          </Animatable.View>
+        )
+      ) : null}
     </View>
   );
 }

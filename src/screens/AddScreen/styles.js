@@ -107,6 +107,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: hsize(10),
   },
+  errorMsg: {
+    color: "#FF0000",
+    fontSize: 14,
+  },
 });
 
 export default styles;

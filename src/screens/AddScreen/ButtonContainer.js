@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 import * as Haptics from "expo-haptics";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { DataStore } from "aws-amplify";
 
 import { wsize, hsize } from "../../utils/Dimensions";
 import { createEvent } from "../../aws-functions/eventFunctions";
-import { Event } from "../../models";
 
 export default function ButtonContainer(props) {
   return (
@@ -55,51 +52,20 @@ export default function ButtonContainer(props) {
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={() => {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
-            async () => {
-              createEvent(props.eventData).then((response) => {
-                props.navigation.navigate({
-                  name: "Map",
-                  params: {
-                    createdEvent: props.params.searchedPlace,
-                    index: props.params.index,
-                  },
-                });
-              });
-
-              /*try {
-                const events = await DataStore.query(Event);
-                console.log(
-                  "Posts retrieved successfully!",
-                  JSON.stringify(events, null, 2)
-                );
-              } catch (error) {
-                console.log("Error retrieving posts", error);
-              }*/
-
-              /*try {
-                await DataStore.save(
-                  new Event({
-                    name: props.eventData.name,
-                    placeID: props.eventData.placeID,
-                    creatorID: props.eventData.creatorID,
-                    creator: props.eventData.creatorID,
-                    beginningTime: props.eventData.beginningTime.toISOString(),
-                    endingTime: props.eventData.endingTime.toISOString(),
-                    tags: props.eventData.tags,
-                    description: props.eventData.description,
-                    privacy: props.eventData.privacy,
-                    _version: 0,
-                    _deleted: false,
-                    _lastChangedAt: props.eventData._lastChangedAt,
-                  })
-                );
-                console.log("Event saved successfully!");
-              } catch (error) {
-                console.log("Error saving event", error);
-              }*/
-            }
-          );
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(() => {
+            props.setCheck(true);
+            props.validate.total
+              ? createEvent(props.eventData).then((response) => {
+                  props.navigation.navigate({
+                    name: "Map",
+                    params: {
+                      createdEvent: props.params.searchedPlace,
+                      index: props.params.index,
+                    },
+                  });
+                })
+              : console.log("Not creating! valide: " + props.validate.total); // props.setCheck(false); // props.scroll(),
+          });
         }}
       >
         <View
