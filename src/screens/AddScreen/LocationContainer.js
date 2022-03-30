@@ -52,12 +52,9 @@ export default function LocationContainer(props) {
       </View>
       {props.check ? (
         checkLocation(props.eventData.placeName) ? (
-          props.validate.location ? null : (
-            props.setValidate({
-              ...props.validate,
-              location: true,
-            })
-          )
+          props.validate ? (
+            props.setValidate(false)
+          ) : null
         ) : (
           <Animatable.View animation="fadeInLeft" duration={500}>
             <Text style={styles.errorMsg}>Your run must have an address.</Text>

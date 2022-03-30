@@ -29,12 +29,9 @@ export default function StartDateContainer(props) {
       </TouchableOpacity>
       {props.check ? (
         checkStart(props.beginningTime) ? (
-          props.validate.start ? null : (
-            props.setValidate({
-              ...props.validate,
-              name: true,
-            })
-          )
+          props.validate ? (
+            props.setValidate(false)
+          ) : null
         ) : (
           <Animatable.View animation="fadeInLeft" duration={500}>
             <Text style={styles.errorMsg}>

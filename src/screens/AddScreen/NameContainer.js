@@ -41,12 +41,9 @@ export default function NameContainer(props) {
       />
       {props.check ? (
         checkName(props.eventData.name) ? (
-          props.validate.name ? null : (
-            props.setValidate({
-              ...props.validate,
-              name: true,
-            })
-          )
+          props.validate ? (
+            props.setValidate(false)
+          ) : null
         ) : (
           <Animatable.View animation="fadeInLeft" duration={500}>
             <Text style={styles.errorMsg}>Your run must have a name.</Text>

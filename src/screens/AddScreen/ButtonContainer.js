@@ -54,7 +54,7 @@ export default function ButtonContainer(props) {
         onPress={() => {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(() => {
             props.setCheck(true);
-            props.validate.total
+            props.validate
               ? createEvent(props.eventData).then((response) => {
                   props.navigation.navigate({
                     name: "Map",
@@ -64,7 +64,7 @@ export default function ButtonContainer(props) {
                     },
                   });
                 })
-              : console.log("Not creating! valide: " + props.validate.total); // props.setCheck(false); // props.scroll(),
+              : console.log("Not creating! valide: " + props.validate); // props.setCheck(false); // props.scroll(),
           });
         }}
       >

@@ -29,12 +29,9 @@ export default function EndDateContainer(props) {
       </TouchableOpacity>
       {props.check ? (
         checkEnd(props.beginningTime, props.endingTime) ? (
-          props.validate.start ? null : (
-            props.setValidate({
-              ...props.validate,
-              start: true,
-            })
-          )
+          props.validate ? (
+            props.setValidate(false)
+          ) : null
         ) : (
           <Animatable.View animation="fadeInLeft" duration={500}>
             <Text style={styles.errorMsg}>

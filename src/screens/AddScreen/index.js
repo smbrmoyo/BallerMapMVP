@@ -52,13 +52,7 @@ const AddScreen = ({ navigation, route }) => {
   const [visibleEnd, setVisibleEnd] = useState(false);
   const [check, setCheck] = useState(false);
   const _scrollView = useRef(null);
-  const [validate, setValidate] = useState({
-    name: false,
-    location: false,
-    start: false,
-    end: false,
-    total: false,
-  });
+  const [validate, setValidate] = useState(false);
   const [colorBegin, setColorBegin] = useState("#CDCDCD");
   const [colorEnd, setColorEnd] = useState("#CDCDCD");
   const { colors } = useTheme();
@@ -93,15 +87,6 @@ const AddScreen = ({ navigation, route }) => {
       });
     }
   }, [route]);
-
-  useEffect(() => {
-    if (validate.name && validate.end && validate.location && validate.start) {
-      setValidate({
-        ...validate,
-        total: true,
-      });
-    }
-  }, [validate]);
 
   useLayoutEffect(() => {
     navigation.setOptions({
