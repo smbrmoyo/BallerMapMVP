@@ -39,17 +39,18 @@ export default function NameContainer(props) {
           })
         }
       />
-      {props.check ? (
-        checkName(props.eventData.name) ? (
-          props.validate ? (
-            props.setValidate(false)
-          ) : null
-        ) : (
-          <Animatable.View animation="fadeInLeft" duration={500}>
-            <Text style={styles.errorMsg}>Your run must have a name.</Text>
-          </Animatable.View>
-        )
-      ) : null}
+      {props.check
+        ? checkName(props.eventData.name)
+          ? null
+          : (props.setValidate(false), // Here check if already invalidated in order not to compromise the state
+            (
+              // validate statete will start with true. If a field invalidates, then set to false once
+              //
+              <Animatable.View animation="fadeInLeft" duration={500}>
+                <Text style={styles.errorMsg}>Your run must have a name.</Text>
+              </Animatable.View>
+            ))
+        : null}
     </View>
   );
 }

@@ -27,19 +27,18 @@ export default function StartDateContainer(props) {
           </Text>
         </View>
       </TouchableOpacity>
-      {props.check ? (
-        checkStart(props.beginningTime) ? (
-          props.validate ? (
-            props.setValidate(false)
-          ) : null
-        ) : (
-          <Animatable.View animation="fadeInLeft" duration={500}>
-            <Text style={styles.errorMsg}>
-              The start of the event must be in the future.
-            </Text>
-          </Animatable.View>
-        )
-      ) : null}
+      {props.check
+        ? checkStart(props.beginningTime)
+          ? null
+          : (props.setValidate(false),
+            (
+              <Animatable.View animation="fadeInLeft" duration={500}>
+                <Text style={styles.errorMsg}>
+                  The start of the event must be in the future.
+                </Text>
+              </Animatable.View>
+            ))
+        : null}
     </View>
   );
 }

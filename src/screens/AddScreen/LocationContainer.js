@@ -50,17 +50,18 @@ export default function LocationContainer(props) {
           </View>
         </TouchableOpacity>
       </View>
-      {props.check ? (
-        checkLocation(props.eventData.placeName) ? (
-          props.validate ? (
-            props.setValidate(false)
-          ) : null
-        ) : (
-          <Animatable.View animation="fadeInLeft" duration={500}>
-            <Text style={styles.errorMsg}>Your run must have an address.</Text>
-          </Animatable.View>
-        )
-      ) : null}
+      {props.check
+        ? checkLocation(props.eventData.placeName)
+          ? null
+          : (props.setValidate(false),
+            (
+              <Animatable.View animation="fadeInLeft" duration={500}>
+                <Text style={styles.errorMsg}>
+                  Your run must have an address.
+                </Text>
+              </Animatable.View>
+            ))
+        : null}
     </View>
   );
 }

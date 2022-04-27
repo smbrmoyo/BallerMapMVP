@@ -52,7 +52,7 @@ const AddScreen = ({ navigation, route }) => {
   const [visibleEnd, setVisibleEnd] = useState(false);
   const [check, setCheck] = useState(false);
   const _scrollView = useRef(null);
-  const [validate, setValidate] = useState(false);
+  const [validate, setValidate] = useState(true);
   const [colorBegin, setColorBegin] = useState("#CDCDCD");
   const [colorEnd, setColorEnd] = useState("#CDCDCD");
   const { colors } = useTheme();
