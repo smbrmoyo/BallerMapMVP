@@ -1,39 +1,8 @@
-import React, {
-  useContext,
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect,
-} from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  SafeAreaView,
-  StatusBar,
-  Alert,
-  Image,
-  ScrollView,
-  Dimensions,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  KeyboardAvoidingView,
-  Keyboard,
-} from "react-native";
-import { Button, Overlay } from "react-native-elements";
+import React from "react";
+import { View, Text, TouchableOpacity } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import { useRoute, useNavigation } from "@react-navigation/native";
-import { useHeaderHeight } from "@react-navigation/stack";
-import DateTimePicker from "@react-native-community/datetimepicker";
-import DatePicker from "react-native-date-picker";
-import DateTimePickerModal from "react-native-modal-datetime-picker";
-import * as Haptics from "expo-haptics";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { checkEnd } from "./helpers";
 
-import PlaceRow from "./PlaceRow";
-import ProfilePicture from "../../components/ProfilePictureUser";
-import Bitmoji from "../../components/Bitmoji";
 import styles from "./styles";
 
 export default function EndDateContainer(props) {
@@ -58,6 +27,18 @@ export default function EndDateContainer(props) {
           </Text>
         </View>
       </TouchableOpacity>
+      {props.check
+        ? checkEnd(props.beginningTime, props.endingTime)
+          ? null
+          : (props.setValidate(false),
+            (
+              <Animatable.View animation="fadeInLeft" duration={500}>
+                <Text style={styles.errorMsg}>
+                  The End of the event must be after the start.
+                </Text>
+              </Animatable.View>
+            ))
+        : null}
     </View>
   );
 }

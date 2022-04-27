@@ -50,6 +50,9 @@ const AddScreen = ({ navigation, route }) => {
 
   const [visibleStart, setVisibleStart] = useState(false); // Put visible and color in one state object
   const [visibleEnd, setVisibleEnd] = useState(false);
+  const [check, setCheck] = useState(false);
+  const _scrollView = useRef(null);
+  const [validate, setValidate] = useState(true);
   const [colorBegin, setColorBegin] = useState("#CDCDCD");
   const [colorEnd, setColorEnd] = useState("#CDCDCD");
   const { colors } = useTheme();
@@ -141,6 +144,13 @@ const AddScreen = ({ navigation, route }) => {
     )}/${d.getFullYear()}  at  ${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
   };
 
+  const scroll = () => {
+    _scrollView.current.scrollTo({
+      x: 0,
+      y: 100,
+    });
+  };
+
   return (
     <>
       <StatusBar
@@ -187,7 +197,7 @@ const AddScreen = ({ navigation, route }) => {
             flex: 1,
           }}
         >
-          <ScrollView style={{ flex: 1, padding: 10 }}>
+          <ScrollView ref={_scrollView} style={{ flex: 1, padding: 10 }}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View
                 style={{
@@ -198,11 +208,17 @@ const AddScreen = ({ navigation, route }) => {
                 <NameContainer
                   eventData={eventData}
                   setEventData={setEventData}
+                  check={check}
+                  setValidate={setValidate}
+                  validate={validate}
                 />
 
                 <LocationContainer
                   eventData={eventData}
                   navigate={navigation.navigate}
+                  check={check}
+                  setValidate={setValidate}
+                  validate={validate}
                 />
 
                 <DescriptionContainer
@@ -220,19 +236,29 @@ const AddScreen = ({ navigation, route }) => {
                   colorBegin={colorBegin}
                   beginningTime={eventData.beginningTime}
                   readableDate={readableDate}
+                  check={check}
+                  setValidate={setValidate}
+                  validate={validate}
                 />
 
                 <EndDateContainer
                   setVisibleEnd={setVisibleEnd}
                   colorEnd={colorEnd}
+                  beginningTime={eventData.beginningTime}
                   endingTime={eventData.endingTime}
                   readableDate={readableDate}
+                  check={check}
+                  setValidate={setValidate}
+                  validate={validate}
                 />
 
                 <ButtonContainer
                   eventData={eventData}
+                  setCheck={setCheck}
                   navigation={navigation}
                   params={route.params}
+                  validate={validate}
+                  scroll={scroll}
                 />
               </View>
             </TouchableWithoutFeedback>

@@ -78,6 +78,7 @@ type Event
   place: Place @connection(fields: ["placeID"])
   creator: Uprofile! @connection(fields: ["creatorID"])
   participantsIDs: [ID]
+  newParticipantsIDs: [ID]
   participants: [UserEventConnection]
     @connection(keyName: "byEvent", fields: ["id"])
   chat: [EventChatMessage] @connection(keyName: "byEvent", fields: ["id"])
@@ -125,7 +126,6 @@ type Place @model {
 
 type Notification
   @model
-  @searchable
   @key(name: "byUser", fields: ["profileID", "createdAt"]) {
   id: ID!
   body: String!

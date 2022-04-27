@@ -373,14 +373,8 @@ export const listNotifications = /* GraphQL */ `
     $filter: ModelNotificationFilterInput
     $limit: Int
     $nextToken: String
-    $sortDirection: ModelSortDirection
   ) {
-    listNotifications(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      sortDirection: $sortDirection
-    ) {
+    listNotifications(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         body
         createdAt
