@@ -6,6 +6,12 @@ import {
   createUserDoc,
   createUserProfile,
 } from "./userFunctions.js";
+import {
+  checkName,
+  checkLocation,
+  checkStart,
+  checkEnd,
+} from "../screens/AddScreen/helpers";
 import { getFilteredPlaces } from "./placeFunctions.js";
 
 /*
@@ -64,105 +70,114 @@ export const createEvent = async (eventData) => {
     place: { name: "" },
   };
 
-  await API.graphql(
-    graphqlOperation(mutations.createEvent, {
-      input: {
-        name: eventData.name,
-        placeID: eventData.placeID,
-        creatorID: eventData.creatorID,
-        beginningTime: eventData.beginningTime,
-        endingTime: eventData.endingTime,
-        tags: eventData.tags,
-        description: eventData.description,
-        privacy: eventData.privacy,
-        status: eventData.status,
-      },
-    })
-  )
-    .then((result) => {
-      createdEvent = {
-        id: result.data.createEvent.id,
-        name: result.data.createEvent.name,
-        creatorID: result.data.createEvent.creatorID,
-        description: result.data.createEvent.description,
-        begginingTime: result.data.createEvent.begginingTime,
-        creator: {
-          username: result.data.createEvent.creator.username,
-          id: result.data.createEvent.creator.id,
-          userDocId: result.data.createEvent.creator.userDocId,
-          updatedAt: result.data.createEvent.creator.updatedAt,
-          createdAt: result.data.createEvent.creator.createdAt,
-        },
-        place: {
-          address: result.data.createEvent.place.address,
-          name: result.data.createEvent.place.name,
-          id: result.data.createEvent.place.id,
-          updatedAt: result.data.createEvent.place.updatedAt,
-          createdAt: result.data.createEvent.place.createdAt,
-        },
-        placeID: result.data.createEvent.placeID,
-        status: result.data.createEvent.status,
-        privacy: result.data.createEvent.privacy,
-        updatedAt: result.data.createEvent.updatedAt,
-        createdAt: result.data.createEvent.createdAt,
-      };
-      advance = true;
-    })
-    .catch((error) => {
-      console.log("Error creating an event ---------->", error);
-    });
-
-  if (advance) {
-    let participants = eventData.participants;
-    for (let participantID in participants) {
-      console.log(participants[participantID]);
-
-      await API.graphql(
-        graphqlOperation(mutations.createUserEventConnection, {
-          input: {
-            eventID: createdEvent.id,
-            profileID: participants[participantID],
-          },
-        })
-      )
-        .then((res) => {
-          console.log(
-            `${res.data.createUserEventConnection.userProfile.username} added to ${res.data.createUserEventConnection.Event.name} Event`
-          );
-        })
-        .catch((err) => {
-          console.log(
-            `Error in mutation createUserEventConnection, adding user ${participants[participantID]} to event ${createdEvent.id} -------------> ${err}`
-          );
-        });
-
-      await API.graphql(
-        graphqlOperation(mutations.createNotification, {
-          input: {
-            type: "eventInvitation",
-            profileID: participants[participantID],
-            body: `${createdEvent.creator.username} invited you to a game`,
-          },
-        })
-      )
-        .then((result) => {
-          console.log(
-            `${result.data.createNotification.type} notification sent to user ${participants[participantID]}`
-          );
-        })
-        .catch((err) => {
-          console.log(
-            `Error in mutation createUserEventConnection, adding user ${participants[participantID]} to event ${createdEvent.id} -------------> ${err}`
-          );
-        });
-    }
-  }
-
-  if (advance) {
-    console.log("  Request Successful !!!!!");
-    return createdEvent;
+  if (
+    !checkName(eventData.name) ||
+    !checkLocation(eventData.placeID) ||
+    !checkStart(eventData.begginingTime) ||
+    !checkEnd(eventData.endingTime)
+  ) {
+    return null;
   } else {
-    console.log("Request UnSuccessful !!!!!");
+    await API.graphql(
+      graphqlOperation(mutations.createEvent, {
+        input: {
+          name: eventData.name,
+          placeID: eventData.placeID,
+          creatorID: eventData.creatorID,
+          beginningTime: eventData.beginningTime,
+          endingTime: eventData.endingTime,
+          tags: eventData.tags,
+          description: eventData.description,
+          privacy: eventData.privacy,
+          status: eventData.status,
+        },
+      })
+    )
+      .then((result) => {
+        createdEvent = {
+          id: result.data.createEvent.id,
+          name: result.data.createEvent.name,
+          creatorID: result.data.createEvent.creatorID,
+          description: result.data.createEvent.description,
+          begginingTime: result.data.createEvent.begginingTime,
+          creator: {
+            username: result.data.createEvent.creator.username,
+            id: result.data.createEvent.creator.id,
+            userDocId: result.data.createEvent.creator.userDocId,
+            updatedAt: result.data.createEvent.creator.updatedAt,
+            createdAt: result.data.createEvent.creator.createdAt,
+          },
+          place: {
+            address: result.data.createEvent.place.address,
+            name: result.data.createEvent.place.name,
+            id: result.data.createEvent.place.id,
+            updatedAt: result.data.createEvent.place.updatedAt,
+            createdAt: result.data.createEvent.place.createdAt,
+          },
+          placeID: result.data.createEvent.placeID,
+          status: result.data.createEvent.status,
+          privacy: result.data.createEvent.privacy,
+          updatedAt: result.data.createEvent.updatedAt,
+          createdAt: result.data.createEvent.createdAt,
+        };
+        advance = true;
+      })
+      .catch((error) => {
+        console.log("Error creating an event ---------->", error);
+      });
+
+    if (advance) {
+      let participants = eventData.participants;
+      for (let participantID in participants) {
+        console.log(participants[participantID]);
+
+        await API.graphql(
+          graphqlOperation(mutations.createUserEventConnection, {
+            input: {
+              eventID: createdEvent.id,
+              profileID: participants[participantID],
+            },
+          })
+        )
+          .then((res) => {
+            console.log(
+              `${res.data.createUserEventConnection.userProfile.username} added to ${res.data.createUserEventConnection.Event.name} Event`
+            );
+          })
+          .catch((err) => {
+            console.log(
+              `Error in mutation createUserEventConnection, adding user ${participants[participantID]} to event ${createdEvent.id} -------------> ${err}`
+            );
+          });
+
+        await API.graphql(
+          graphqlOperation(mutations.createNotification, {
+            input: {
+              type: "eventInvitation",
+              profileID: participants[participantID],
+              body: `${createdEvent.creator.username} invited you to a game`,
+            },
+          })
+        )
+          .then((result) => {
+            console.log(
+              `${result.data.createNotification.type} notification sent to user ${participants[participantID]}`
+            );
+          })
+          .catch((err) => {
+            console.log(
+              `Error in mutation createUserEventConnection, adding user ${participants[participantID]} to event ${createdEvent.id} -------------> ${err}`
+            );
+          });
+      }
+    }
+
+    if (advance) {
+      console.log("  Request Successful !!!!!");
+      return createdEvent;
+    } else {
+      console.log("Request UnSuccessful !!!!!");
+    }
   }
 };
 
