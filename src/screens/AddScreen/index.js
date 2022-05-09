@@ -258,6 +258,7 @@ const AddScreen = ({ navigation, route }) => {
                   navigation={navigation}
                   params={route.params}
                   validate={validate}
+                  setValidate={setValidate}
                   scroll={scroll}
                 />
               </View>

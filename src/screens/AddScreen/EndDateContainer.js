@@ -27,18 +27,15 @@ export default function EndDateContainer(props) {
           </Text>
         </View>
       </TouchableOpacity>
-      {props.check
-        ? checkEnd(props.beginningTime, props.endingTime)
-          ? null
-          : (props.setValidate(false),
-            (
-              <Animatable.View animation="fadeInLeft" duration={500}>
-                <Text style={styles.errorMsg}>
-                  The End of the event must be after the start.
-                </Text>
-              </Animatable.View>
-            ))
-        : null}
+      {props.check ? (
+        checkEnd(props.beginningTime, props.endingTime) ? null : (
+          <Animatable.View animation="fadeInLeft" duration={500}>
+            <Text style={styles.errorMsg}>
+              The End of the event must be after the start.
+            </Text>
+          </Animatable.View>
+        )
+      ) : null}
     </View>
   );
 }

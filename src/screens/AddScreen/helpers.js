@@ -16,11 +16,21 @@ export const checkLocation = (location) => {
 };
 
 export const checkStart = (start) => {
-  if (start == null || start == undefined || start <= new Date()) return false;
+  if (
+    new Date(start) == null ||
+    new Date(start) == undefined ||
+    new Date(start) <= new Date()
+  )
+    return false;
   else return true;
 };
 
 export const checkEnd = (start, end) => {
-  if (end == null || end == undefined || end <= start) return false;
+  if (
+    new Date(end) == null ||
+    new Date(end) == undefined ||
+    new Date(end) <= new Date(start)
+  )
+    return false;
   else return true;
 };

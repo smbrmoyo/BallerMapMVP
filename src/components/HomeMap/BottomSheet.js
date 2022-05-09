@@ -9,11 +9,6 @@ import {
   Alert,
   Dimensions,
 } from "react-native";
-import {
-  AppearanceProvider,
-  Appearance,
-  useColorScheme,
-} from "react-native-appearance";
 import { useRoute, useNavigation, useTheme } from "@react-navigation/native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { wsize, hsize } from "../../utils/Dimensions";

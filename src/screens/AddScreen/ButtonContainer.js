@@ -54,17 +54,19 @@ export default function ButtonContainer(props) {
         onPress={() => {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(() => {
             props.setCheck(true);
-            props.validate
-              ? createEvent(props.eventData).then((response) => {
-                  props.navigation.navigate({
-                    name: "Map",
-                    params: {
-                      createdEvent: props.params.searchedPlace,
-                      index: props.params.index,
-                    },
-                  });
-                })
-              : console.log("Not creating! valide: " + props.validate); // props.setCheck(false); // props.scroll(),
+            createEvent(props.eventData).then((response) => {
+              if (response == undefined || response == null) {
+                null;
+              } else {
+                props.navigation.navigate({
+                  name: "Map",
+                  params: {
+                    createdEvent: props.params.searchedPlace,
+                    index: props.params.index,
+                  },
+                });
+              }
+            });
           });
         }}
       >
