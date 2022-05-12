@@ -1,3 +1,5 @@
+import "react-native-gesture-handler";
+
 import React, { useContext } from "react";
 import ActivityStack from "./ActivityStack";
 import MessageStack from "./MessageStack";
