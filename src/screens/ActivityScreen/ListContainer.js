@@ -30,7 +30,7 @@ const ListContainer = (props) => {
     });
   }, []);
 
-  useEffect(() => {
+  /*useEffect(() => {
     let subscribeToCreateNotification = API.graphql(
       graphqlOperation(onCreateNotification, {
         profileID: user,
@@ -43,7 +43,7 @@ const ListContainer = (props) => {
       error: (error) => console.log(error),
     });
     return () => subscribeToCreateNotification.unsubscribe();
-  }, []);
+  }, []);*/
 
   return (
     <>
