@@ -13,45 +13,52 @@ export default function ButtonContainer(props) {
         style={styles.signIn}
         onPress={async () => {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(() => {
-            props
-              .signIn(props.dataLogin.email, props.dataLogin.password)
-              .then((res) => {
-                if (res) {
-                  AsyncStorage.setItem(
-                    "currentUserCreds",
-                    JSON.stringify({
-                      email: props.dataLogin.email,
-                      password: props.dataLogin.password,
-                    })
-                  );
-                  console.log("   User Logged IN, Credentials stored locally");
-                  props.setUser(props.dataLogin.email);
-                }
-              })
-              .catch((error) => {
-                console.log(JSON.stringify(error));
-                if (error == "UserNotFoundException") {
-                  Alert.alert("Error", "User not found");
-                } else if (error == "UserNotConfirmedException") {
-                  Alert.alert("Error", "User not confirmed", [
-                    {
-                      text: "OK",
-                      onPress: () => {
-                        resendConfirmationCode(props.dataLogin.email).then(
-                          () => {
-                            navigation.navigate("ConfirmSignUp", {
-                              username: props.dataLogin.email,
-                              email: props.dataLogin.email,
-                            });
-                          }
-                        );
+            if (
+              props.dataLogin.isValidPassword &&
+              props.dataLogin.isValidUser
+            ) {
+              props
+                .signIn(props.dataLogin.email, props.dataLogin.password)
+                .then((res) => {
+                  if (res) {
+                    AsyncStorage.setItem(
+                      "currentUserCreds",
+                      JSON.stringify({
+                        email: props.dataLogin.email,
+                        password: props.dataLogin.password,
+                      })
+                    );
+                    console.log(
+                      "   User Logged IN, Credentials stored locally"
+                    );
+                    props.setUser(props.dataLogin.email);
+                  }
+                })
+                .catch((error) => {
+                  console.log(JSON.stringify(error));
+                  if (error == "UserNotFoundException") {
+                    Alert.alert("Error", "User not found");
+                  } else if (error == "UserNotConfirmedException") {
+                    Alert.alert("Error", "User not confirmed", [
+                      {
+                        text: "OK",
+                        onPress: () => {
+                          resendConfirmationCode(props.dataLogin.email).then(
+                            () => {
+                              navigation.navigate("ConfirmSignUp", {
+                                username: props.dataLogin.email,
+                                email: props.dataLogin.email,
+                              });
+                            }
+                          );
+                        },
                       },
-                    },
-                  ]);
-                } else if (error == "Incorrect username or password.") {
-                  Alert.alert("Error", "Email or" + " password incorrect");
-                }
-              });
+                    ]);
+                  } else if (error == "Incorrect username or password.") {
+                    Alert.alert("Error", "Email or" + " password incorrect");
+                  }
+                });
+            }
           });
         }}
       >

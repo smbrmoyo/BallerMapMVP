@@ -14,15 +14,14 @@ export default function ButtonContainer(props) {
         onPress={() => {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(() => {
             if (
-              props.dataSignUp.password &&
+              props.dataSignUp.isValidPassword &&
               props.dataSignUp.isValidConfirmPassword &&
-              props.dataSignUp.username &&
-              props.dataSignUp.email
+              props.dataSignUp.isValidEmail
             ) {
               props
                 .signUp(props.dataSignUp.email, props.dataSignUp.password)
                 .then((res) => {
-                  if (res === props.dataSignUp.username) {
+                  if (res) {
                     props.navigation.navigate("ConfirmSignUp", {
                       username: props.dataSignUp.username,
                       email: props.dataSignUp.email,
@@ -34,7 +33,7 @@ export default function ButtonContainer(props) {
                   if (error == "UsernameExistsException") {
                     Alert.alert(
                       "Error",
-                      "An account with this" + "username already exists"
+                      "An account with this \nemail already exists"
                     );
                   }
                 });
