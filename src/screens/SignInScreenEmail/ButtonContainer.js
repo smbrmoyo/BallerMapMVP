@@ -20,11 +20,7 @@ export default function ButtonContainer(props) {
               props
                 .signIn(props.dataLogin.email, props.dataLogin.password)
                 .then((res) => {
-                  if (
-                    res &&
-                    props.dataLogin.isValidPassword &&
-                    props.dataLogin.isValidUser
-                  ) {
+                  if (res) {
                     AsyncStorage.setItem(
                       "currentUserCreds",
                       JSON.stringify({

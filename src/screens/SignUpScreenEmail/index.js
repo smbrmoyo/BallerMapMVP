@@ -1,22 +1,7 @@
-import React, { useContext, useState, useEffect } from "react";
-import {
-  Alert,
-  View,
-  Text,
-  Button,
-  TouchableOpacity,
-  TextInput,
-  ScrollView,
-  StatusBar,
-} from "react-native";
+import React, { useState, useEffect } from "react";
+import { ScrollView, StatusBar } from "react-native";
 import * as Animatable from "react-native-animatable";
-import * as Haptics from "expo-haptics";
-import { useHeaderHeight } from "@react-navigation/stack";
-import { useRoute } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Feather from "react-native-vector-icons/Feather";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { hsize, wsize } from "../../utils/Dimensions";
@@ -30,6 +15,7 @@ import ConfirmContainer from "./ConfirmContainer";
 import EmailContainer from "./EmailContainer";
 import PasswordContainer from "./PasswordContainer";
 import Title from "./Title";
+import { emailValidationString } from "../SignInScreenEmail/helpers";
 
 const SignUpScreenEmail = ({ navigation }) => {
   const { user, signUp, signUpTrigger } = useAuth();
@@ -54,40 +40,31 @@ const SignUpScreenEmail = ({ navigation }) => {
     check_emailInputChange: false,
     secureTextEntry: true,
     confirm_secureTextEntry: true,
+    isValidEmail: true,
     isValidPassword: true,
     isValidConfirmPassword: true,
   });
 
   const emailInputChange = (val) => {
-    if (val.length !== 0) {
+    if (
+      val.trim().length >= 6 &&
+      val.toLowerCase().match(emailValidationString)
+    ) {
       setdataSignUp({
         ...dataSignUp,
         email: val,
         username: val,
         check_emailInputChange: true,
+        isValidEmail: true,
       });
+    } else if (val.trim().length < 6) {
     } else {
       setdataSignUp({
         ...dataSignUp,
         email: val,
         username: val,
         check_emailInputChange: false,
-      });
-    }
-  };
-
-  const usernameInputChange = (val) => {
-    if (val.length !== 0) {
-      setdataSignUp({
-        ...dataSignUp,
-        username: val,
-        check_usernameInputChange: true,
-      });
-    } else {
-      setdataSignUp({
-        ...dataSignUp,
-        username: val,
-        check_usernameInputChange: false,
+        isValidEmail: false,
       });
     }
   };
@@ -99,6 +76,7 @@ const SignUpScreenEmail = ({ navigation }) => {
         password: val,
         isValidPassword: true,
       });
+    } else if (val.trim().length < 6) {
     } else {
       setdataSignUp({
         ...dataSignUp,
@@ -156,6 +134,7 @@ const SignUpScreenEmail = ({ navigation }) => {
               text={colors.text}
               check_emailInputChange={dataSignUp.check_emailInputChange}
               emailInputChange={emailInputChange}
+              isValidEmail={dataSignUp.isValidEmail}
             />
 
             <PasswordContainer
