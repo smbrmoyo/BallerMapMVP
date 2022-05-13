@@ -21,7 +21,13 @@ type CreateEventOutput_c {
 
 type Event @aws_cognito_user_pools @aws_iam {
   beginningTime: AWSDateTime!
-  chat(createdAt: ModelStringKeyConditionInput, filter: ModelEventChatMessageFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelEventChatMessageConnection
+  chat(
+    createdAt: ModelStringKeyConditionInput
+    filter: ModelEventChatMessageFilterInput
+    limit: Int
+    nextToken: String
+    sortDirection: ModelSortDirection
+  ): ModelEventChatMessageConnection
   createdAt: AWSDateTime!
   creator: Uprofile!
   creatorID: ID!
@@ -31,7 +37,12 @@ type Event @aws_cognito_user_pools @aws_iam {
   eventVideos: [AWSURL]
   id: ID!
   name: String!
-  participants(filter: ModelUserEventConnectionFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserEventConnectionConnection
+  participants(
+    filter: ModelUserEventConnectionFilterInput
+    limit: Int
+    nextToken: String
+    sortDirection: ModelSortDirection
+  ): ModelUserEventConnectionConnection
   place: Place
   placeID: ID!
   privacy: EventPrivacy!
@@ -112,43 +123,145 @@ type ModelUserPlaceConnectionConnection {
 }
 
 type Mutation @aws_cognito_user_pools @aws_iam {
-  createAttendance(condition: ModelUserPlaceConnectionConditionInput, input: CreateUserPlaceConnectionInput!): CreateAttendanceOutput
-  createEvent(condition: ModelEventConditionInput, input: CreateEventInput!): Event
-  createEventChatMessage(condition: ModelEventChatMessageConditionInput, input: CreateEventChatMessageInput!): EventChatMessage
-  createEvent_c(condition: ModelEventConditionInput, input: CreateEventInput_c!): CreateEventOutput_c
-  createNotification(condition: ModelNotificationConditionInput, input: CreateNotificationInput!): Notification
-  createPlace(condition: ModelPlaceConditionInput, input: CreatePlaceInput!): Place
-  createPrivateNote(condition: ModelPrivateNoteConditionInput, input: CreatePrivateNoteInput!): PrivateNote
+  createAttendance(
+    condition: ModelUserPlaceConnectionConditionInput
+    input: CreateUserPlaceConnectionInput!
+  ): CreateAttendanceOutput
+  createEvent(
+    condition: ModelEventConditionInput
+    input: CreateEventInput!
+  ): Event
+  createEventChatMessage(
+    condition: ModelEventChatMessageConditionInput
+    input: CreateEventChatMessageInput!
+  ): EventChatMessage
+  createEvent_c(
+    condition: ModelEventConditionInput
+    input: CreateEventInput_c!
+  ): CreateEventOutput_c
+  createNotification(
+    condition: ModelNotificationConditionInput
+    input: CreateNotificationInput!
+  ): Notification
+  createPlace(
+    condition: ModelPlaceConditionInput
+    input: CreatePlaceInput!
+  ): Place
+  createPrivateNote(
+    condition: ModelPrivateNoteConditionInput
+    input: CreatePrivateNoteInput!
+  ): PrivateNote
   createTask(condition: ModelTaskConditionInput, input: CreateTaskInput!): Task
-  createUprofile(condition: ModelUprofileConditionInput, input: CreateUprofileInput!): Uprofile
-  createUserConnection(condition: ModelUserConnectionConditionInput, input: CreateUserConnectionInput!): UserConnection
-  createUserDoc(condition: ModelUserDocConditionInput, input: CreateUserDocInput!): UserDoc
-  createUserEventConnection(condition: ModelUserEventConnectionConditionInput, input: CreateUserEventConnectionInput!): UserEventConnection
-  createUserPlaceConnection(condition: ModelUserPlaceConnectionConditionInput, input: CreateUserPlaceConnectionInput!): UserPlaceConnection
-  deleteEvent(condition: ModelEventConditionInput, input: DeleteEventInput!): Event
-  deleteEventChatMessage(condition: ModelEventChatMessageConditionInput, input: DeleteEventChatMessageInput!): EventChatMessage
-  deleteNotification(condition: ModelNotificationConditionInput, input: DeleteNotificationInput!): Notification
-  deletePlace(condition: ModelPlaceConditionInput, input: DeletePlaceInput!): Place
-  deletePrivateNote(condition: ModelPrivateNoteConditionInput, input: DeletePrivateNoteInput!): PrivateNote
+  createUprofile(
+    condition: ModelUprofileConditionInput
+    input: CreateUprofileInput!
+  ): Uprofile
+  createUserConnection(
+    condition: ModelUserConnectionConditionInput
+    input: CreateUserConnectionInput!
+  ): UserConnection
+  createUserDoc(
+    condition: ModelUserDocConditionInput
+    input: CreateUserDocInput!
+  ): UserDoc
+  createUserEventConnection(
+    condition: ModelUserEventConnectionConditionInput
+    input: CreateUserEventConnectionInput!
+  ): UserEventConnection
+  createUserPlaceConnection(
+    condition: ModelUserPlaceConnectionConditionInput
+    input: CreateUserPlaceConnectionInput!
+  ): UserPlaceConnection
+  deleteEvent(
+    condition: ModelEventConditionInput
+    input: DeleteEventInput!
+  ): Event
+  deleteEventChatMessage(
+    condition: ModelEventChatMessageConditionInput
+    input: DeleteEventChatMessageInput!
+  ): EventChatMessage
+  deleteNotification(
+    condition: ModelNotificationConditionInput
+    input: DeleteNotificationInput!
+  ): Notification
+  deletePlace(
+    condition: ModelPlaceConditionInput
+    input: DeletePlaceInput!
+  ): Place
+  deletePrivateNote(
+    condition: ModelPrivateNoteConditionInput
+    input: DeletePrivateNoteInput!
+  ): PrivateNote
   deleteTask(condition: ModelTaskConditionInput, input: DeleteTaskInput!): Task
-  deleteUprofile(condition: ModelUprofileConditionInput, input: DeleteUprofileInput!): Uprofile
-  deleteUserConnection(condition: ModelUserConnectionConditionInput, input: DeleteUserConnectionInput!): UserConnection
-  deleteUserDoc(condition: ModelUserDocConditionInput, input: DeleteUserDocInput!): UserDoc
-  deleteUserEventConnection(condition: ModelUserEventConnectionConditionInput, input: DeleteUserEventConnectionInput!): UserEventConnection
-  deleteUserPlaceConnection(condition: ModelUserPlaceConnectionConditionInput, input: DeleteUserPlaceConnectionInput!): UserPlaceConnection
-  followUser(condition: ModelUserConnectionConditionInput, input: CreateUserConnectionInput!): FollowUserOutput
-  updateCurrentPlace(condition: ModelUprofileConditionInput, input: UpdateUprofileInput!): UpdateCurrentPlaceOutput
-  updateEvent(condition: ModelEventConditionInput, input: UpdateEventInput!): Event
-  updateEventChatMessage(condition: ModelEventChatMessageConditionInput, input: UpdateEventChatMessageInput!): EventChatMessage
-  updateNotification(condition: ModelNotificationConditionInput, input: UpdateNotificationInput!): Notification
-  updatePlace(condition: ModelPlaceConditionInput, input: UpdatePlaceInput!): Place
-  updatePrivateNote(condition: ModelPrivateNoteConditionInput, input: UpdatePrivateNoteInput!): PrivateNote
+  deleteUprofile(
+    condition: ModelUprofileConditionInput
+    input: DeleteUprofileInput!
+  ): Uprofile
+  deleteUserConnection(
+    condition: ModelUserConnectionConditionInput
+    input: DeleteUserConnectionInput!
+  ): UserConnection
+  deleteUserDoc(
+    condition: ModelUserDocConditionInput
+    input: DeleteUserDocInput!
+  ): UserDoc
+  deleteUserEventConnection(
+    condition: ModelUserEventConnectionConditionInput
+    input: DeleteUserEventConnectionInput!
+  ): UserEventConnection
+  deleteUserPlaceConnection(
+    condition: ModelUserPlaceConnectionConditionInput
+    input: DeleteUserPlaceConnectionInput!
+  ): UserPlaceConnection
+  followUser(
+    condition: ModelUserConnectionConditionInput
+    input: CreateUserConnectionInput!
+  ): FollowUserOutput
+  updateCurrentPlace(
+    condition: ModelUprofileConditionInput
+    input: UpdateUprofileInput!
+  ): UpdateCurrentPlaceOutput
+  updateEvent(
+    condition: ModelEventConditionInput
+    input: UpdateEventInput!
+  ): Event
+  updateEventChatMessage(
+    condition: ModelEventChatMessageConditionInput
+    input: UpdateEventChatMessageInput!
+  ): EventChatMessage
+  updateNotification(
+    condition: ModelNotificationConditionInput
+    input: UpdateNotificationInput!
+  ): Notification
+  updatePlace(
+    condition: ModelPlaceConditionInput
+    input: UpdatePlaceInput!
+  ): Place
+  updatePrivateNote(
+    condition: ModelPrivateNoteConditionInput
+    input: UpdatePrivateNoteInput!
+  ): PrivateNote
   updateTask(condition: ModelTaskConditionInput, input: UpdateTaskInput!): Task
-  updateUprofile(condition: ModelUprofileConditionInput, input: UpdateUprofileInput!): Uprofile
-  updateUserConnection(condition: ModelUserConnectionConditionInput, input: UpdateUserConnectionInput!): UserConnection
-  updateUserDoc(condition: ModelUserDocConditionInput, input: UpdateUserDocInput!): UserDoc
-  updateUserEventConnection(condition: ModelUserEventConnectionConditionInput, input: UpdateUserEventConnectionInput!): UserEventConnection
-  updateUserPlaceConnection(condition: ModelUserPlaceConnectionConditionInput, input: UpdateUserPlaceConnectionInput!): UserPlaceConnection
+  updateUprofile(
+    condition: ModelUprofileConditionInput
+    input: UpdateUprofileInput!
+  ): Uprofile
+  updateUserConnection(
+    condition: ModelUserConnectionConditionInput
+    input: UpdateUserConnectionInput!
+  ): UserConnection
+  updateUserDoc(
+    condition: ModelUserDocConditionInput
+    input: UpdateUserDocInput!
+  ): UserDoc
+  updateUserEventConnection(
+    condition: ModelUserEventConnectionConditionInput
+    input: UpdateUserEventConnectionInput!
+  ): UserEventConnection
+  updateUserPlaceConnection(
+    condition: ModelUserPlaceConnectionConditionInput
+    input: UpdateUserPlaceConnectionInput!
+  ): UserPlaceConnection
 }
 
 type Notification @aws_cognito_user_pools @aws_iam {
@@ -164,11 +277,28 @@ type Notification @aws_cognito_user_pools @aws_iam {
 
 type Place @aws_cognito_user_pools @aws_iam {
   address: String!
-  attendings(arrivingTime: ModelStringKeyConditionInput, filter: ModelUserPlaceConnectionFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserPlaceConnectionConnection
+  attendings(
+    arrivingTime: ModelStringKeyConditionInput
+    filter: ModelUserPlaceConnectionFilterInput
+    limit: Int
+    nextToken: String
+    sortDirection: ModelSortDirection
+  ): ModelUserPlaceConnectionConnection
   coords: Coords!
   createdAt: AWSDateTime!
-  currentPlayers(filter: ModelUprofileFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUprofileConnection
-  events(beginningTime: ModelStringKeyConditionInput, filter: ModelEventFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelEventConnection
+  currentPlayers(
+    filter: ModelUprofileFilterInput
+    limit: Int
+    nextToken: String
+    sortDirection: ModelSortDirection
+  ): ModelUprofileConnection
+  events(
+    beginningTime: ModelStringKeyConditionInput
+    filter: ModelEventFilterInput
+    limit: Int
+    nextToken: String
+    sortDirection: ModelSortDirection
+  ): ModelEventConnection
   id: ID!
   name: String!
   updatedAt: AWSDateTime!
@@ -191,50 +321,101 @@ type Query @aws_api_key @aws_cognito_user_pools {
   getTask(id: ID!): Task
   getUprofile(id: ID!): Uprofile
   getUserDoc(id: ID!): UserDoc
-  listEventChatMessages(filter: ModelEventChatMessageFilterInput, limit: Int, nextToken: String): ModelEventChatMessageConnection
-  listEvents(filter: ModelEventFilterInput, limit: Int, nextToken: String): ModelEventConnection
-  listNotifications(filter: ModelNotificationFilterInput, limit: Int, nextToken: String): ModelNotificationConnection
-  listPlaces(filter: ModelPlaceFilterInput, limit: Int, nextToken: String): ModelPlaceConnection
-  listPrivateNotes(filter: ModelPrivateNoteFilterInput, limit: Int, nextToken: String): ModelPrivateNoteConnection
-  listTasks(filter: ModelTaskFilterInput, limit: Int, nextToken: String): ModelTaskConnection
-  listUprofiles(filter: ModelUprofileFilterInput, limit: Int, nextToken: String): ModelUprofileConnection
-  listUserDocs(filter: ModelUserDocFilterInput, limit: Int, nextToken: String): ModelUserDocConnection
+  listEventChatMessages(
+    filter: ModelEventChatMessageFilterInput
+    limit: Int
+    nextToken: String
+  ): ModelEventChatMessageConnection
+  listEvents(
+    filter: ModelEventFilterInput
+    limit: Int
+    nextToken: String
+  ): ModelEventConnection
+  listNotifications(
+    filter: ModelNotificationFilterInput
+    limit: Int
+    nextToken: String
+  ): ModelNotificationConnection
+  listPlaces(
+    filter: ModelPlaceFilterInput
+    limit: Int
+    nextToken: String
+  ): ModelPlaceConnection
+  listPrivateNotes(
+    filter: ModelPrivateNoteFilterInput
+    limit: Int
+    nextToken: String
+  ): ModelPrivateNoteConnection
+  listTasks(
+    filter: ModelTaskFilterInput
+    limit: Int
+    nextToken: String
+  ): ModelTaskConnection
+  listUprofiles(
+    filter: ModelUprofileFilterInput
+    limit: Int
+    nextToken: String
+  ): ModelUprofileConnection
+  listUserDocs(
+    filter: ModelUserDocFilterInput
+    limit: Int
+    nextToken: String
+  ): ModelUserDocConnection
 }
 
 type Subscription {
-  onCreateEvent: Event @aws_subscribe(mutations : ["createEvent"])
-  onCreateEventChatMessage: EventChatMessage @aws_subscribe(mutations : ["createEventChatMessage"])
-  onCreateNotification(profileID: ID!): Notification @aws_subscribe(mutations : ["createNotification"])
-  onCreatePlace: Place @aws_subscribe(mutations : ["createPlace"])
-  onCreatePrivateNote(owner: String!): PrivateNote @aws_subscribe(mutations : ["createPrivateNote"])
-  onCreateTask: Task @aws_subscribe(mutations : ["createTask"])
-  onCreateUprofile: Uprofile @aws_subscribe(mutations : ["createUprofile"])
-  onCreateUserConnection: UserConnection @aws_subscribe(mutations : ["createUserConnection"])
-  onCreateUserDoc: UserDoc @aws_subscribe(mutations : ["createUserDoc"])
-  onCreateUserEventConnection(profileID: ID!): UserEventConnection @aws_subscribe(mutations : ["createUserEventConnection"])
-  onCreateUserPlaceConnection: UserPlaceConnection @aws_subscribe(mutations : ["createUserPlaceConnection"])
-  onDeleteEvent: Event @aws_subscribe(mutations : ["deleteEvent"])
-  onDeleteEventChatMessage: EventChatMessage @aws_subscribe(mutations : ["deleteEventChatMessage"])
-  onDeleteNotification: Notification @aws_subscribe(mutations : ["deleteNotification"])
-  onDeletePlace: Place @aws_subscribe(mutations : ["deletePlace"])
-  onDeletePrivateNote(owner: String!): PrivateNote @aws_subscribe(mutations : ["deletePrivateNote"])
-  onDeleteTask: Task @aws_subscribe(mutations : ["deleteTask"])
-  onDeleteUprofile: Uprofile @aws_subscribe(mutations : ["deleteUprofile"])
-  onDeleteUserConnection: UserConnection @aws_subscribe(mutations : ["deleteUserConnection"])
-  onDeleteUserDoc: UserDoc @aws_subscribe(mutations : ["deleteUserDoc"])
-  onDeleteUserEventConnection: UserEventConnection @aws_subscribe(mutations : ["deleteUserEventConnection"])
-  onDeleteUserPlaceConnection: UserPlaceConnection @aws_subscribe(mutations : ["deleteUserPlaceConnection"])
-  onUpdateEvent: Event @aws_subscribe(mutations : ["updateEvent"])
-  onUpdateEventChatMessage: EventChatMessage @aws_subscribe(mutations : ["updateEventChatMessage"])
-  onUpdateNotification: Notification @aws_subscribe(mutations : ["updateNotification"])
-  onUpdatePlace: Place @aws_subscribe(mutations : ["updatePlace"])
-  onUpdatePrivateNote(owner: String!): PrivateNote @aws_subscribe(mutations : ["updatePrivateNote"])
-  onUpdateTask: Task @aws_subscribe(mutations : ["updateTask"])
-  onUpdateUprofile(id: ID): Uprofile @aws_subscribe(mutations : ["updateUprofile"])
-  onUpdateUserConnection: UserConnection @aws_subscribe(mutations : ["updateUserConnection"])
-  onUpdateUserDoc: UserDoc @aws_subscribe(mutations : ["updateUserDoc"])
-  onUpdateUserEventConnection: UserEventConnection @aws_subscribe(mutations : ["updateUserEventConnection"])
-  onUpdateUserPlaceConnection: UserPlaceConnection @aws_subscribe(mutations : ["updateUserPlaceConnection"])
+  onCreateEvent: Event @aws_subscribe(mutations: ["createEvent"])
+  onCreateEventChatMessage: EventChatMessage
+    @aws_subscribe(mutations: ["createEventChatMessage"])
+  onCreateNotification(profileID: ID!): Notification
+    @aws_subscribe(mutations: ["createNotification"])
+  onCreatePlace: Place @aws_subscribe(mutations: ["createPlace"])
+  onCreatePrivateNote(owner: String!): PrivateNote
+    @aws_subscribe(mutations: ["createPrivateNote"])
+  onCreateTask: Task @aws_subscribe(mutations: ["createTask"])
+  onCreateUprofile: Uprofile @aws_subscribe(mutations: ["createUprofile"])
+  onCreateUserConnection: UserConnection
+    @aws_subscribe(mutations: ["createUserConnection"])
+  onCreateUserDoc: UserDoc @aws_subscribe(mutations: ["createUserDoc"])
+  onCreateUserEventConnection(profileID: ID!): UserEventConnection
+    @aws_subscribe(mutations: ["createUserEventConnection"])
+  onCreateUserPlaceConnection: UserPlaceConnection
+    @aws_subscribe(mutations: ["createUserPlaceConnection"])
+  onDeleteEvent: Event @aws_subscribe(mutations: ["deleteEvent"])
+  onDeleteEventChatMessage: EventChatMessage
+    @aws_subscribe(mutations: ["deleteEventChatMessage"])
+  onDeleteNotification: Notification
+    @aws_subscribe(mutations: ["deleteNotification"])
+  onDeletePlace: Place @aws_subscribe(mutations: ["deletePlace"])
+  onDeletePrivateNote(owner: String!): PrivateNote
+    @aws_subscribe(mutations: ["deletePrivateNote"])
+  onDeleteTask: Task @aws_subscribe(mutations: ["deleteTask"])
+  onDeleteUprofile: Uprofile @aws_subscribe(mutations: ["deleteUprofile"])
+  onDeleteUserConnection: UserConnection
+    @aws_subscribe(mutations: ["deleteUserConnection"])
+  onDeleteUserDoc: UserDoc @aws_subscribe(mutations: ["deleteUserDoc"])
+  onDeleteUserEventConnection: UserEventConnection
+    @aws_subscribe(mutations: ["deleteUserEventConnection"])
+  onDeleteUserPlaceConnection: UserPlaceConnection
+    @aws_subscribe(mutations: ["deleteUserPlaceConnection"])
+  onUpdateEvent: Event @aws_subscribe(mutations: ["updateEvent"])
+  onUpdateEventChatMessage: EventChatMessage
+    @aws_subscribe(mutations: ["updateEventChatMessage"])
+  onUpdateNotification: Notification
+    @aws_subscribe(mutations: ["updateNotification"])
+  onUpdatePlace: Place @aws_subscribe(mutations: ["updatePlace"])
+  onUpdatePrivateNote(owner: String!): PrivateNote
+    @aws_subscribe(mutations: ["updatePrivateNote"])
+  onUpdateTask: Task @aws_subscribe(mutations: ["updateTask"])
+  onUpdateUprofile(id: ID): Uprofile
+    @aws_subscribe(mutations: ["updateUprofile"])
+  onUpdateUserConnection: UserConnection
+    @aws_subscribe(mutations: ["updateUserConnection"])
+  onUpdateUserDoc: UserDoc @aws_subscribe(mutations: ["updateUserDoc"])
+  onUpdateUserEventConnection: UserEventConnection
+    @aws_subscribe(mutations: ["updateUserEventConnection"])
+  onUpdateUserPlaceConnection: UserPlaceConnection
+    @aws_subscribe(mutations: ["updateUserPlaceConnection"])
 }
 
 type Task {
@@ -257,17 +438,50 @@ type UpdateCurrentPlaceOutput {
 }
 
 type Uprofile @aws_cognito_user_pools @aws_iam {
-  attendings(arrivingTime: ModelStringKeyConditionInput, filter: ModelUserPlaceConnectionFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserPlaceConnectionConnection
+  attendings(
+    arrivingTime: ModelStringKeyConditionInput
+    filter: ModelUserPlaceConnectionFilterInput
+    limit: Int
+    nextToken: String
+    sortDirection: ModelSortDirection
+  ): ModelUserPlaceConnectionConnection
   createdAt: AWSDateTime!
   currentPlace: Place
   currentPlaceID: ID
-  eventsCreated(beginningTime: ModelStringKeyConditionInput, filter: ModelEventFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelEventConnection
-  followers(filter: ModelUserConnectionFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserConnectionConnection
-  following(filter: ModelUserConnectionFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserConnectionConnection
+  eventsCreated(
+    beginningTime: ModelStringKeyConditionInput
+    filter: ModelEventFilterInput
+    limit: Int
+    nextToken: String
+    sortDirection: ModelSortDirection
+  ): ModelEventConnection
+  followers(
+    filter: ModelUserConnectionFilterInput
+    limit: Int
+    nextToken: String
+    sortDirection: ModelSortDirection
+  ): ModelUserConnectionConnection
+  following(
+    filter: ModelUserConnectionFilterInput
+    limit: Int
+    nextToken: String
+    sortDirection: ModelSortDirection
+  ): ModelUserConnectionConnection
   id: ID!
-  myEvents(filter: ModelUserEventConnectionFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelUserEventConnectionConnection
+  myEvents(
+    filter: ModelUserEventConnectionFilterInput
+    limit: Int
+    nextToken: String
+    sortDirection: ModelSortDirection
+  ): ModelUserEventConnectionConnection
   name: String
-  notifications(createdAt: ModelStringKeyConditionInput, filter: ModelNotificationFilterInput, limit: Int, nextToken: String, sortDirection: ModelSortDirection): ModelNotificationConnection
+  notifications(
+    createdAt: ModelStringKeyConditionInput
+    filter: ModelNotificationFilterInput
+    limit: Int
+    nextToken: String
+    sortDirection: ModelSortDirection
+  ): ModelNotificationConnection
   updatedAt: AWSDateTime!
   userDoc: UserDoc
   userDocId: ID!

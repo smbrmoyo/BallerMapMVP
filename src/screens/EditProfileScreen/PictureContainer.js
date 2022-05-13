@@ -3,7 +3,7 @@ import { View, TouchableOpacity } from "react-native";
 
 import ProfilePicture from "../../components/ProfilePictureUser";
 
-export default function PictureContainer() {
+export default function PictureContainer(props) {
   return (
     <View
       style={{
@@ -13,14 +13,11 @@ export default function PictureContainer() {
     >
       <TouchableOpacity
         activeOpacity={0.7}
-        onPress={() => {}} // bsEditProf.current.snapTo(0)
+        onPress={() => {
+          bsEditProf.current.snapTo(0);
+        }}
       >
-        <ProfilePicture
-          /*uri={{
-            uri: "https://www.soolide.com/wp-content/uploads/2021/03/dog-puppy-on-garden-royalty-free-image-1586966191.jpg",
-          }}*/
-          size={80}
-        />
+        <ProfilePicture uri={props.userProfile.profilePicture} size={80} />
       </TouchableOpacity>
     </View>
   );

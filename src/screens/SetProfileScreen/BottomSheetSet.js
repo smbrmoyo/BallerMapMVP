@@ -17,7 +17,6 @@ const BottomSheetSet = (props) => {
       mediaType: "photo",
     })
       .then((image) => {
-        // console.log(image);
         handleImagePicked(image);
       })
       .catch((e) => alert(e));
