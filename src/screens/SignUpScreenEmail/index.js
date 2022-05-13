@@ -34,8 +34,6 @@ import Title from "./Title";
 const SignUpScreenEmail = ({ navigation }) => {
   const { user, signUp, signUpTrigger } = useAuth();
 
-  const headerHeight = useHeaderHeight();
-  const route = useRoute();
   const { colors } = useTheme();
 
   useEffect(() => {

@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  View,
-  StatusBar,
-} from "react-native";
+import { View, StatusBar } from "react-native";
 import * as Animatable from "react-native-animatable";
 import * as Location from "expo-location";
 import { useHeaderHeight } from "@react-navigation/stack";
@@ -16,6 +13,7 @@ import ForgotContainer from "./ForgotContainer";
 import PasswordContainer from "./PasswordContainer";
 import Title from "./Title";
 import UsernameContainer from "./UsernameContainer";
+import { emailValidationString } from "./helpers";
 
 const SignInScreenEmail = ({ navigation, props }) => {
   const headerHeight = useHeaderHeight();
@@ -58,13 +56,17 @@ const SignInScreenEmail = ({ navigation, props }) => {
   const { colors } = useTheme();
 
   const textInputChange = (email) => {
-    if (email.trim().length >= 4) {
+    if (
+      email.trim().length >= 6 &&
+      email.toLowerCase().match(emailValidationString)
+    ) {
       setDataLogin({
         ...dataLogin,
         email: email,
         check_textInputChange: true,
         isValidUser: true,
       });
+    } else if (email.trim().length < 6) {
     } else {
       setDataLogin({
         ...dataLogin,
@@ -82,7 +84,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
         password: val,
         isValidPassword: true,
       });
-    } else if (val.length < 8) {
+    } else if (val.trim().length < 6) {
     } else {
       setDataLogin({
         ...dataLogin,
@@ -126,6 +128,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
             check_textInputChange={dataLogin.check_textInputChange}
             colors={colors}
             textInputChange={textInputChange}
+            isValidUser={dataLogin.isValidUser}
           />
 
           <PasswordContainer
