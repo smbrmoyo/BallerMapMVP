@@ -8,8 +8,7 @@ import {
   Keyboard,
   Alert,
 } from "react-native";
-// import * as ImagePicker from "expo-image-picker";
-import * as ImagePicker from "expo-image-picker";
+import ImagePicker from "react-native-image-crop-picker";
 import Animated from "react-native-reanimated";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
@@ -42,7 +41,7 @@ const SetProfileScreen = ({ props, route }) => {
     if (isPDoc) {
       setIsPDoc(true);
     }
-    (async () => {
+    /*(async () => {
       const cameraRollStatus =
         await ImagePicker.requestMediaLibraryPermissionsAsync();
       const cameraStatus = await ImagePicker.requestCameraPermissionsAsync();
@@ -52,7 +51,7 @@ const SetProfileScreen = ({ props, route }) => {
       ) {
         Alert.alert("Sorry, we need these permissions to make this work!");
       }
-    })();
+    })();*/
   }, []);
 
   /*useLayoutEffect(() => {

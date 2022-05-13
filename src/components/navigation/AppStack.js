@@ -120,7 +120,7 @@ const AppStack = (route, props) => {
 
   return loadingProfileDoc ? (
     <LoadingScreen />
-  ) : isPdoc ? (
+  ) : false ? (
     <Tab.Navigator
       initialRouteName={"Map"}
       shifting={false}
