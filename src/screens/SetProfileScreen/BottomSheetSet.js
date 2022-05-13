@@ -1,29 +1,34 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Alert } from "react-native";
 import { Storage } from "aws-amplify";
-import * as ImagePicker from "expo-image-picker";
+import ImagePicker from "react-native-image-crop-picker";
 import BottomSheet from "reanimated-bottom-sheet";
 
 import styles from "./styles";
 
 const BottomSheetSet = (props) => {
-  const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: "Images",
-      aspect: [4, 3],
-      quality: 1,
-    });
-
-    this.handleImagePicked(result);
+  const pickImage = () => {
+    ImagePicker.openPicker({
+      width: 300,
+      height: 400,
+      cropping: true,
+      cropperCircleOverlay: true,
+      forceJpg: true,
+      mediaType: "photo",
+    })
+      .then((image) => {
+        handleImagePicked(image);
+      })
+      .catch((e) => alert(e));
   };
 
   handleImagePicked = async (pickerResult) => {
     try {
-      if (pickerResult.cancelled) {
+      if (pickerResult == null || pickerResult == undefined) {
         Alert.alert("Upload cancelled");
         return;
       } else {
-        const img = await fetchImageFromUri(pickerResult.uri);
+        const img = await fetchImageFromUri(pickerResult.path);
         const uploadUrl = await uploadImage(props.user, img);
         downloadImage(uploadUrl);
       }
@@ -33,7 +38,7 @@ const BottomSheetSet = (props) => {
     }
   };
 
-  uploadImage = (filename, img) => {
+  uploadImage = async (filename, img) => {
     return Storage.put(filename, img, {
       level: "public",
       contentType: "image/jpeg",
@@ -67,12 +72,7 @@ const BottomSheetSet = (props) => {
         <Text style={styles.panelTitle}>Upload Photo</Text>
         <Text style={styles.panelSubtitle}>Choose Your Profile Picture</Text>
       </View>
-      <TouchableOpacity
-        style={styles.panelButton}
-        onPress={() => console.log("takePhotoFromCamera")}
-      >
-        <Text style={styles.panelButtonTitle}>Take Photo</Text>
-      </TouchableOpacity>
+
       <TouchableOpacity
         style={styles.panelButton}
         onPress={() => {
@@ -84,7 +84,7 @@ const BottomSheetSet = (props) => {
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.panelButton}
-        onPress={() => bsEditProf.current.snapTo(1)}
+        onPress={() => bsSetProf.current.snapTo(1)}
       >
         <Text style={styles.panelButtonTitle}>Cancel</Text>
       </TouchableOpacity>

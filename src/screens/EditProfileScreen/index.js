@@ -100,7 +100,11 @@ const EditProfileScreen = ({ props, navigation, route }) => {
         barStyle="dark-content"
       />
 
-      <BottomSheetEdit />
+      <BottomSheetEdit
+        setUserProfile={setUserProfile}
+        userProfile={userProfile}
+        user={user}
+      />
 
       <KeyboardAwareScrollView style={{ backgroundColor: "white" }}>
         <SafeAreaView
@@ -125,7 +129,7 @@ const EditProfileScreen = ({ props, navigation, route }) => {
                   ),
                 }}
               >
-                <PictureContainer />
+                <PictureContainer userProfile={userProfile} />
 
                 <UsernameContainer
                   profileDoc={profileDoc}

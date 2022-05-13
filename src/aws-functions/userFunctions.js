@@ -86,8 +86,6 @@ export const createUserDoc = async (userData) => {
     })
   );
 
-  //AsyncStorage.setItem("userDocId", userDoc.data.createUserDoc.id);
-
   return userDoc.data.createUserDoc;
 };
 
@@ -114,7 +112,6 @@ export const createUserProfile = async (userProfile) => {
     );
     throw "ERREUR dans la requête createUserProfile: " + JSON.stringify(error);
   });
-  //AsyncStorage.setItem("userProfileId", uProfile.data.createUprofile.id);
   return uProfile.data.createUprofile;
 };
 
@@ -123,9 +120,6 @@ export const createUserProfile = async (userProfile) => {
  * @param {JSON} updatedUprofile
  */
 export const updateUserProfile = async (updatedUprofile) => {
-  //const uProfile = await API.graphql({ query: queries.getUprofile, variables: { id: userConf.uProfileId }});
-  // console.log(updatedUprofile);
-
   return API.graphql(
     graphqlOperation(mutations.updateUprofile, {
       input: {
@@ -133,9 +127,15 @@ export const updateUserProfile = async (updatedUprofile) => {
         username: updatedUprofile.username,
         name: updatedUprofile.name,
         cityCountry: updatedUprofile.cityCountry,
+        profilePicture: updatedUprofile.profilePicture,
       },
     })
-  );
+  ).catch((error) => {
+    console.log(
+      "ERREUR dans la requête updateUserProfile: " + JSON.stringify(error)
+    );
+    throw "ERREUR dans la requête updateUserProfile: " + JSON.stringify(error);
+  });
 };
 
 /**

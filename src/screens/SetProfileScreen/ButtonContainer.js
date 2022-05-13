@@ -1,32 +1,6 @@
-import React, {
-  useContext,
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect,
-} from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  SafeAreaView,
-  StatusBar,
-  Alert,
-  Image,
-  ScrollView,
-  Dimensions,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  KeyboardAvoidingView,
-  Keyboard,
-} from "react-native";
-import { useHeaderHeight } from "@react-navigation/stack";
+import React from "react";
+import { View, Text, Alert, TouchableOpacity } from "react-native";
 import * as Haptics from "expo-haptics";
-import BottomSheet from "reanimated-bottom-sheet";
-import Animated from "react-native-reanimated";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import { useAppContext } from "../../components/navigation/Providers/AppProvider";
 
 import {
@@ -36,9 +10,6 @@ import {
 } from "../../aws-functions/userFunctions";
 import styles from "./styles";
 import { wsize, hsize } from "../../utils/Dimensions";
-import Feather from "react-native-vector-icons/Feather";
-import userConf from "../../aws-functions/userConf";
-import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
 
 export default function ButtonContainer(props) {
   const { setIsPdoc } = useAppContext();
@@ -53,40 +24,6 @@ export default function ButtonContainer(props) {
     >
       <TouchableOpacity
         activeOpacity={0.7}
-        //onPress={() => props.navigation.goBack()}
-      >
-        <View
-          style={{
-            backgroundColor: "white",
-            borderWidth: 1,
-            borderColor: "#E9E8E8",
-            borderRadius: 5,
-            height: hsize(40),
-            width: wsize(100),
-            alignItems: "center",
-            justifyContent: "center",
-            shadowColor: "#000",
-            shadowOffset: {
-              width: 0,
-              height: 1,
-            },
-            shadowOpacity: 0.2,
-            shadowRadius: 1.41,
-            elevation: 2,
-          }}
-        >
-          <Text
-            style={{
-              fontSize: 20,
-              color: "red", // On cancel alert
-            }}
-          >
-            Cancel
-          </Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity
-        activeOpacity={0.7}
         onPress={() => {
           let input = {
             username: props.userProfile.username,
@@ -98,7 +35,6 @@ export default function ButtonContainer(props) {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
           createUserProfile(input)
             .then((res) => {
-              //navigation.navigate("Map");
               console.log("--- Successfully created user profile");
               setIsPdoc(true);
             })

@@ -62,7 +62,10 @@ const BottomSheetProfile = (props) => {
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.panelButton}
-          onPress={() => navigation.navigate("EditProfile")}
+          onPress={() => {
+            navigation.navigate("EditProfile");
+            bsProf.current.snapTo(1);
+          }}
         >
           <Ionicons name="pencil-outline" size={23} color="black" />
           <Text style={styles.panelButtonTitle}>Edit Profile</Text>
