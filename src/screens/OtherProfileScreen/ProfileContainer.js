@@ -34,7 +34,7 @@ export default function ProfileContainer(props) {
           onPress={() => props.navigate("Story")}
         >
           <ProfilePicture
-            uri={props.otherUser?.profilePicture.toString()}
+            uri={props.otherUser?.profilePicture?.toString()}
             size={70}
           />
         </TouchableOpacity>

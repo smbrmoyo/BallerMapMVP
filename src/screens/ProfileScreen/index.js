@@ -10,7 +10,6 @@ import {
   Alert,
 } from "react-native";
 import Animated from "react-native-reanimated";
-import { FlatList } from "react-native-gesture-handler";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
@@ -34,13 +33,10 @@ import {
   onDeleteUserEventConnection,
 } from "../../graphql/subscriptions";
 import { getUprofileDoc } from "../../aws-functions/userFunctions";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 let followers = undefined;
 let updatedProfile = undefined;
 let newEvents = undefined;
-
-//render function
 
 const ProfileScreen = ({ navigation, route }) => {
   const { width, height } = Dimensions.get("window");
@@ -202,9 +198,6 @@ const ProfileScreen = ({ navigation, route }) => {
       ),
     });
   }, [navigation]);
-
-  // console.log(JSON.stringify(profileDoc?.following.items.length));
-  // console.log(JSON.stringify(myEvents[0]));
 
   const onFollowPress = () => {
     setIsFollowing(!isFollowing);

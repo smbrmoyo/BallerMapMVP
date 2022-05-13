@@ -21,11 +21,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
   const [errorMsg, setErrorMsg] = useState(null);
 
   useEffect(() => {
-    console.log(
-      "\n",
-      "\n",
-      "<------------- Sign In Screen Email---------------->"
-    );
+    console.log("\n", "<------------- Sign In Screen Email---------------->");
     AsyncStorage.getItem("firstLaunch").then((value) => {
       /*if (value == "true") {
         setNextScreen("SetProfile");
