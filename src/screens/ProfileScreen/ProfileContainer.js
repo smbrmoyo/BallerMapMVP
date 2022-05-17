@@ -9,13 +9,7 @@ import styles from "./styles";
 export default function ProfileContainer(props) {
   const { width } = Dimensions.get("window");
 
-  let followers =
-    props.followers != undefined
-      ? props.followers
-      : props.profileDoc.followers.items;
-  let following = props.profileDoc.following.items;
-
-  let date = new Date(props.profileDoc.createdAt);
+  let date = new Date(props.profileDoc?.createdAt);
   let month = date.toLocaleString("default", { month: "long" });
 
   return (
@@ -48,14 +42,18 @@ export default function ProfileContainer(props) {
         <View style={styles.userInfoWrapper}>
           <TouchableOpacity activeOpacity={0.7} onPress={props.goToFollowers}>
             <View style={styles.userInfoItem}>
-              <Text style={styles.userInfoTitle}>{followers?.length}</Text>
+              <Text style={styles.userInfoTitle}>
+                {props.profileDoc?.followers?.items?.length}
+              </Text>
               <Text style={styles.userInfoSubTitle}>Followers</Text>
             </View>
           </TouchableOpacity>
 
           <TouchableOpacity activeOpacity={0.7} onPress={props.goToFollowing}>
             <View style={styles.userInfoItem}>
-              <Text style={styles.userInfoTitle}>{following?.length}</Text>
+              <Text style={styles.userInfoTitle}>
+                {props.profileDoc?.following.items?.length}
+              </Text>
               <Text style={styles.userInfoSubTitle}>Following</Text>
             </View>
           </TouchableOpacity>

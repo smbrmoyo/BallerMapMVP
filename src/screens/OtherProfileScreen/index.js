@@ -184,8 +184,8 @@ const OtherProfileScreen = ({ navigation }) => {
 
   const onFollowPress = () => {
     let input = {
-      follower: profileDoc.id,
-      followed: otherUser.id,
+      follower: profileDoc?.id,
+      followed: otherUser?.id,
     };
     !isFollowing
       ? createUserConnection(input)
@@ -202,13 +202,13 @@ const OtherProfileScreen = ({ navigation }) => {
 
   const goToFollowing = () => {
     navigation.navigate("Following", {
-      following: otherUser.following.items,
+      following: otherUser?.following.items,
     });
   };
 
   const goToFollowers = () => {
     navigation.navigate("Followers", {
-      followers: otherUser.followers.items,
+      followers: otherUser?.followers.items,
     });
   };
 

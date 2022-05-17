@@ -17,7 +17,10 @@ export default function PictureContainer(props) {
           bsEditProf.current.snapTo(0);
         }}
       >
-        <ProfilePicture uri={props.userProfile.profilePicture} size={80} />
+        <ProfilePicture
+          uri={props.userProfile.profilePicture.toString()}
+          size={80}
+        />
       </TouchableOpacity>
     </View>
   );
