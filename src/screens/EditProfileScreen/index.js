@@ -49,15 +49,12 @@ const EditProfileScreen = ({ props, navigation, route }) => {
       graphqlOperation(onUpdateUprofile, { id: user })
     ).subscribe({
       next: async ({ value }) => {
-        /*setProfileDoc({
+        setProfileDoc({
           ...profileDoc,
-          id: value.data.onUpdateUprofile.id,
           username: value.data.onUpdateUprofile.username,
-          name: value.data.onUpdateUprofile.name,
           cityCountry: value.data.onUpdateUprofile.cityCountry,
           profilePicture: value.data.onUpdateUprofile.profilePicture,
-        });*/
-        // TODO
+        });
       },
       error: (error) => console.log(error),
     });

@@ -18,7 +18,7 @@ export default function PictureContainer(props) {
         }}
       >
         <ProfilePicture
-          uri={props.userProfile.profilePicture.toString()}
+          uri={props.userProfile?.profilePicture?.toString()}
           size={80}
         />
       </TouchableOpacity>

@@ -43,14 +43,14 @@ export default function ButtonContainer(props) {
                       {
                         text: "OK",
                         onPress: () => {
-                          resendConfirmationCode(props.dataLogin.email).then(
-                            () => {
+                          props
+                            .resendConfirmationCode(props.dataLogin.email)
+                            .then(() => {
                               navigation.navigate("ConfirmSignUp", {
                                 username: props.dataLogin.email,
                                 email: props.dataLogin.email,
                               });
-                            }
-                          );
+                            });
                         },
                       },
                     ]);

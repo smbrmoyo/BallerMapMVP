@@ -29,10 +29,7 @@ export default function ProfileContainer(props) {
   return (
     <View style={styles.container}>
       <View style={styles.profileInitialContainer}>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => props.navigate("Story")}
-        >
+        <TouchableOpacity activeOpacity={0.7} onPress={() => {}}>
           <ProfilePicture
             uri={props.otherUser?.profilePicture?.toString()}
             size={70}
