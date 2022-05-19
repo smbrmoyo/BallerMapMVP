@@ -24,7 +24,7 @@ import { mapBlueGreyStyle } from "../../styles/MapStyles";
 import styles from "./styles";
 import BottomSheetMap from "./BottomSheet";
 import { wsize, hsize } from "../../utils/Dimensions";
-import { useMap } from "../../navigation/Providers/MapProvider";
+import { useMap } from "../navigation/Providers/MapProvider";
 import AnimatedSearchButton from "./AnimatedSearchButton";
 import AnimatedAddButton from "./AnimatedAddButton";
 import AnimatedTextInput from "./AnimatedTextInput";

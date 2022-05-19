@@ -1,14 +1,14 @@
 import "react-native-gesture-handler";
 
 import React from "react";
-import EventScreen from "../screens/EventScreen";
-import DescriptionScreen from "../screens/DescriptionScreen";
-import AttendanceScreen from "../screens/AttendanceScreen";
+import EventScreen from "../../screens/EventScreen";
+import DescriptionScreen from "../../screens/DescriptionScreen";
+import AttendanceScreen from "../../screens/AttendanceScreen";
 
 import { createStackNavigator } from "@react-navigation/stack";
-import UserSearchScreen from "../screens/UserSearchScreen";
+import UserSearchScreen from "../../screens/UserSearchScreen";
 import { EventsProvider } from "./Providers/EventsProvider";
-import { hsize, wsize } from "../utils/Dimensions";
+import { hsize, wsize } from "../../utils/Dimensions";
 
 const Stack = createStackNavigator();
 

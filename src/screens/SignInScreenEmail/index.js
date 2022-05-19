@@ -7,7 +7,7 @@ import styles from "./styles";
 import { useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { useAuth } from "../../navigation/Providers/AuthProvider";
+import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import ButtonContainer from "./ButtonContainer";
 import ForgotContainer from "./ForgotContainer";
 import PasswordContainer from "./PasswordContainer";

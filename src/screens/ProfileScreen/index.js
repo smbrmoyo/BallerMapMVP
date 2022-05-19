@@ -11,8 +11,8 @@ import {
 } from "react-native";
 import Animated from "react-native-reanimated";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
-import { useAuth } from "../../navigation/Providers/AuthProvider";
-import { useProfile } from "../../navigation/Providers/ProfileProvider";
+import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
 import { hsize } from "../../utils/Dimensions";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { SimpleLineIcons } from "@expo/vector-icons";

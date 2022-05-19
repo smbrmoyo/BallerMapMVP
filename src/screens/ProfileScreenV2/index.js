@@ -32,7 +32,7 @@ import ProfilePicture from "../../components/ProfilePictureUser";
 import LoadingScreen from "../../screens/LoadingScreen";
 import FollowButton from "../../components/FollowButton";
 import { useIsFocused } from "@react-navigation/native";
-import { useAuth } from "../../navigation/Providers/AuthProvider";
+import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import { wsize, hsize } from "../../utils/Dimensions";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Entypo from "react-native-vector-icons/Entypo";

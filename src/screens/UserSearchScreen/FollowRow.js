@@ -5,7 +5,7 @@ import { wsize, hsize } from "../../utils/Dimensions";
 import debounce from "lodash/debounce";
 import { Feather } from "@expo/vector-icons";
 import styles from "./styles";
-import { useMap } from "../../navigation/Providers/MapProvider";
+import { useMap } from "../../components/navigation/Providers/MapProvider";
 
 export default function FollowRow(props) {
   const [isAdded, setIsAdded] = useState(true);

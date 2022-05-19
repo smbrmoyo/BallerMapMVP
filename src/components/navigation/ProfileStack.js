@@ -1,26 +1,26 @@
 import "react-native-gesture-handler";
 
 import React from "react";
-import ProfileScreen from "../screens/ProfileScreen";
-import AllUsersScreen from "../screens/AllUsersScreen";
-import UpdateEventScreen from "../screens/UpdateEventScreen";
-import FollowingScreen from "../screens/FollowingScreen";
-import FollowersScreen from "../screens/FollowersScreen";
-import EditProfileScreen from "../screens/EditProfileScreen";
-import UserSearchUpdateScreen from "../screens/UserSearchUpdateScreen";
-import AttendanceScreen from "../screens/AttendanceScreen";
-import PlaceSearchUpdate from "../screens/PlaceSearchUpdate";
-import DescriptionScreen from "../screens/DescriptionScreen";
-import TryStory from "../screens/TryStory";
-import OtherProfileScreen from "../screens/OtherProfileScreen";
-import StoryScreen4 from "../screens/StoryScreen4/App";
+import ProfileScreen from "../../screens/ProfileScreen";
+import AllUsersScreen from "../../screens/AllUsersScreen";
+import UpdateEventScreen from "../../screens/UpdateEventScreen";
+import FollowingScreen from "../../screens/FollowingScreen";
+import FollowersScreen from "../../screens/FollowersScreen";
+import EditProfileScreen from "../../screens/EditProfileScreen";
+import UserSearchUpdateScreen from "../../screens/UserSearchUpdateScreen";
+import AttendanceScreen from "../../screens/AttendanceScreen";
+import PlaceSearchUpdate from "../../screens/PlaceSearchUpdate";
+import DescriptionScreen from "../../screens/DescriptionScreen";
+import TryStory from "../../screens/TryStory";
+import OtherProfileScreen from "../../screens/OtherProfileScreen";
+import StoryScreen4 from "../../screens/StoryScreen4/App";
 
 import { createStackNavigator } from "@react-navigation/stack";
-import UserSearchScreen from "../screens/UserSearchScreen";
+import UserSearchScreen from "../../screens/UserSearchScreen";
 import { ProfileProvider } from "./Providers/ProfileProvider";
 import { MapProvider } from "./Providers/MapProvider";
 import { useAuth } from "./Providers/AuthProvider";
-import { hsize, wsize } from "../utils/Dimensions";
+import { hsize, wsize } from "../../utils/Dimensions";
 
 const Stack = createStackNavigator();
 

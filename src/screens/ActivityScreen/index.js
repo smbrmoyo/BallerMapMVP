@@ -16,7 +16,7 @@ import ListContainer from "./ListContainer";
 import NewDataContainer from "./NewDataContainer";
 import ProfilePicture from "../../components/ProfilePictureUser";
 import { wsize, hsize } from "../../utils/Dimensions";
-import { useActivity } from "../../navigation/Providers/ActivityProvider";
+import { useActivity } from "../../components/navigation/Providers/ActivityProvider";
 import LoadingScreen from "../../screens/LoadingScreen";
 
 const ActivityScreen = ({ navigation }) => {

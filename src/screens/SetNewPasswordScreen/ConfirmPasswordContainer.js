@@ -3,7 +3,7 @@ import { Alert, View, Text, TextInput } from "react-native";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 
 import { hsize, wsize } from "../../utils/Dimensions";
-import { useAuth } from "../../navigation/Providers/AuthProvider";
+import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import { useTheme } from "react-native-paper";
 import styles from "./styles";
 

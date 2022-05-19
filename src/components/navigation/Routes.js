@@ -5,7 +5,7 @@ import {
   DarkTheme,
 } from "@react-navigation/native";
 import { useAuth } from "./Providers/AuthProvider";
-import LoadingScreen from "../screens/LoadingScreen/index.js";
+import LoadingScreen from "../../screens/LoadingScreen/index.js";
 import AppStack from "./AppStack";
 import AuthStack from "./AuthStack";
 import AppProvider from "./Providers/AppProvider";

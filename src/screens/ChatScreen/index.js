@@ -25,7 +25,7 @@ import { useHeaderHeight } from "@react-navigation/stack";
 //import firestore from "@react-native-firebase/firestore";
 //import firebase from "@react-native-firebase/app";
 //import auth from "@react-native-firebase/auth";
-import { useAuth } from "../../navigation/Providers/AuthProvider";
+import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
 import Ionicons from "react-native-vector-icons/Ionicons";

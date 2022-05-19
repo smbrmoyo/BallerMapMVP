@@ -3,7 +3,7 @@ import { Alert, View, Text, Button, TouchableOpacity } from "react-native";
 import * as Linking from "expo-linking";
 
 import { hsize, wsize } from "../../utils/Dimensions";
-import { useAuth } from "../../navigation/Providers/AuthProvider";
+import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import { useTheme } from "react-native-paper";
 import styles from "./styles";
 

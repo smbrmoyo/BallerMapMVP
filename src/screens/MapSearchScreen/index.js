@@ -20,7 +20,7 @@ import people from "../../assets/data/people";
 import places from "../../assets/data/placesJSON";
 import PlaceRow from "./PlaceRow";
 import { hsize, wsize } from "../../utils/Dimensions";
-import { useMap } from "../../navigation/Providers/MapProvider";
+import { useMap } from "../../components/navigation/Providers/MapProvider";
 import { getPlacesList } from "../../aws-functions/placeFunctions";
 
 const MapSearchScreen = ({ navigation, route }) => {

@@ -22,7 +22,7 @@ import styles from "./styles";
 import SocialButton from "../../components/SocialButton";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTheme } from "react-native-paper";
-import { useAuth } from "../../navigation/Providers/AuthProvider";
+import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 
 const SignUpScreenSocial = ({ navigation, props }) => {
   const headerHeight = useHeaderHeight();
