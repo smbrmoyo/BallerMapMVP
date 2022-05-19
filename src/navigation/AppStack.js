@@ -7,10 +7,10 @@ import MapStack from "./MapStack";
 import ProfileStack from "./ProfileStack";
 import EventStack from "./EventStack";
 
-import SetProfileScreen from "../../screens/SetProfileScreen";
+import SetProfileScreen from "../screens/SetProfileScreen";
 import ModalStack from "./ModalStack";
 import { useAuth } from "./Providers/AuthProvider";
-import LoadingScreen from "../../screens/LoadingScreen/index";
+import LoadingScreen from "../screens/LoadingScreen/index";
 //import SnapchatStack from "../../../Snapchat";
 import { useState, useEffect } from "react";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -24,7 +24,7 @@ import {
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Constants from "expo-constants";
 import { AWSAppSyncClient } from "aws-appsync";
-import awsconfig from "../../aws-exports";
+import awsconfig from "../aws-exports";
 import { Auth } from "aws-amplify";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useAppContext } from "./Providers/AppProvider";

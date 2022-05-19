@@ -26,7 +26,7 @@ import BottomSheet from "reanimated-bottom-sheet";
 import Animated from "react-native-reanimated";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useAuth } from "../../navigation/Providers/AuthProvider";
 import {
   createUserDoc,
   createUserProfile,
@@ -36,7 +36,7 @@ import styles from "./styles";
 import { wsize, hsize } from "../../utils/Dimensions";
 import Feather from "react-native-vector-icons/Feather";
 import userConf from "../../aws-functions/userConf";
-import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
+import { useProfile } from "../../navigation/Providers/ProfileProvider";
 
 export default function NameContainer(props) {
   return (
@@ -65,7 +65,7 @@ export default function NameContainer(props) {
         onEndEditing={(event) => {
           props.setUserProfile({
             ...props.userProfile,
-            name: event.nativeEvent.text
+            name: event.nativeEvent.text,
           });
         }}
       />

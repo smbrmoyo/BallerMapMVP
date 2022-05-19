@@ -3,7 +3,7 @@ import { View, StatusBar, Dimensions } from "react-native";
 import SkeletonPlaceholder from "react-native-skeleton-placeholder";
 
 import HomeMap from "../../components/HomeMap";
-import { useMap } from "../../components/navigation/Providers/MapProvider";
+import { useMap } from "../../navigation/Providers/MapProvider";
 import styles from "./styles";
 import { hsize, wsize } from "../../utils/Dimensions";
 import Loading from "./Loading";

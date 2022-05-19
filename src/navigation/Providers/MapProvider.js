@@ -5,11 +5,11 @@ import { Auth, API, graphqlOperation } from "aws-amplify";
 import { useQuery } from "react-query";
 import * as Location from "expo-location";
 
-import { getPlacesList } from "../../../aws-functions/placeFunctions";
+import { getPlacesList } from "../../aws-functions/placeFunctions";
 import {
   getAllUserProfiles,
   updateUserProfile,
-} from "../../../aws-functions/userFunctions";
+} from "../../aws-functions/userFunctions";
 import { useAuth, getUprofile } from "./AuthProvider";
 
 export const MapContext = React.createContext();

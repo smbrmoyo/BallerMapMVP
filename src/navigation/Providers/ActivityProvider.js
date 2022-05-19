@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { useAuth } from "./AuthProvider";
-import * as queries from "../../../graphql/queries";
+import * as queries from "../../graphql/queries";
 import { Auth, API, graphqlOperation } from "aws-amplify";
 export const ActivityContext = React.createContext(null);
 

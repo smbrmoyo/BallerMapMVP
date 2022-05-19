@@ -11,7 +11,7 @@ import NotifRow from "./NotifRow";
 import { hsize, wsize } from "../../utils/Dimensions";
 import { onCreateNotification } from "../../graphql/subscriptions";
 import { API, graphqlOperation } from "aws-amplify";
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useAuth } from "../../navigation/Providers/AuthProvider";
 
 const ListContainer = (props) => {
   const [refreshing, setRefreshing] = useState(false);

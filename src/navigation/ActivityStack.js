@@ -2,15 +2,15 @@ import "react-native-gesture-handler";
 
 import React, { useState, useEffect } from "react";
 import { StatusBar, View } from "react-native";
-import ActivityScreen from "../../screens/ActivityScreen";
-import Pressable from "../../screens/Pressable";
-import OtherProfileScreen from "../../screens/OtherProfileScreen";
+import ActivityScreen from "../screens/ActivityScreen";
+import Pressable from "../screens/Pressable";
+import OtherProfileScreen from "../screens/OtherProfileScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { hsize, wsize } from "../../utils/Dimensions";
-import { ActivityProvider } from "../navigation/Providers/ActivityProvider";
+import { hsize, wsize } from "../utils/Dimensions";
+import { ActivityProvider } from "./Providers/ActivityProvider";
 
 const Stack = createStackNavigator();
 

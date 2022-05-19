@@ -11,7 +11,7 @@ import {
 import ImagePicker from "react-native-image-crop-picker";
 import Animated from "react-native-reanimated";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useAuth } from "../../navigation/Providers/AuthProvider";
 import BioContainer from "./BioContainer";
 import PictureContainer from "./PictureContainer";
 import NameContainer from "./NameContainer";
@@ -19,7 +19,7 @@ import ButtonContainer from "./ButtonContainer";
 import UsernameContainer from "./UsernameContainer";
 import Header from "./Header";
 import BottomSheetSet from "./BottomSheetSet";
-import { useAppContext } from "../../components/navigation/Providers/AppProvider";
+import { useAppContext } from "../../navigation/Providers/AppProvider";
 
 const SetProfileScreen = ({ props, route }) => {
   const { user } = useAuth();

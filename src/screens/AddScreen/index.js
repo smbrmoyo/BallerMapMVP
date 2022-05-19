@@ -35,10 +35,7 @@ import LocationContainer from "./LocationContainer";
 import NameContainer from "./NameContainer";
 import StartDateContainer from "./StartDateContainer";
 import TagsContainer from "./TagsContainer";
-import {
-  useAuth,
-  getUprofile,
-} from "../../components/navigation/Providers/AuthProvider";
+import { useAuth, getUprofile } from "../../navigation/Providers/AuthProvider";
 import { wsize, hsize } from "../../utils/Dimensions";
 import styles from "./styles";
 

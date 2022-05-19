@@ -15,7 +15,7 @@ import CurrentContainer from "./CurrentContainer";
 import UpcomingContainer from "./UpcomingContainer";
 import Loading from "./Loading";
 import { hsize, wsize } from "../../utils/Dimensions";
-import { useEvents } from "../../components/navigation/Providers/EventsProvider";
+import { useEvents } from "../../navigation/Providers/EventsProvider";
 import { API } from "aws-amplify";
 import {
   onCreateUserEventConnection,

@@ -16,8 +16,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import Animated from "react-native-reanimated";
 import styles from "./styles";
 import BottomSheetEdit from "./BottomSheetEdit";
-import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useProfile } from "../../navigation/Providers/ProfileProvider";
+import { useAuth } from "../../navigation/Providers/AuthProvider";
 import { wsize, hsize } from "../../utils/Dimensions";
 import Entypo from "react-native-vector-icons/Entypo";
 import PictureContainer from "./PictureContainer";
@@ -33,10 +33,6 @@ import {
 } from "../../aws-functions/userFunctions";
 
 const EditProfileScreen = ({ props, navigation, route }) => {
-  const username = "";
-  const [color, setColor] = useState("#CDCDCD");
-  const headerHeight = useHeaderHeight();
-  const { colors, dark } = useTheme();
   const { user } = useAuth();
   const { profileDoc, setProfileDoc } = useProfile();
   const [userProfile, setUserProfile] = useState(profileDoc);

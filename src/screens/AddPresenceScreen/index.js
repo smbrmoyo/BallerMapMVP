@@ -31,10 +31,7 @@ import ButtonContainer from "./ButtonContainer";
 import EndDateContainer from "./EndDateContainer";
 import StartDateContainer from "./StartDateContainer";
 import TextInputContainer from "./TextInputContainer";
-import {
-  useAuth,
-  getUprofile,
-} from "../../components/navigation/Providers/AuthProvider";
+import { useAuth, getUprofile } from "../../navigation/Providers/AuthProvider";
 import { wsize, hsize } from "../../utils/Dimensions";
 import styles from "./styles";
 

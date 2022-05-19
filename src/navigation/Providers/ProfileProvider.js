@@ -7,7 +7,7 @@ import {
   getUprofileDoc,
   getUserDoc,
   getAllUserProfiles,
-} from "../../../aws-functions/userFunctions";
+} from "../../aws-functions/userFunctions";
 import { useQuery } from "react-query";
 
 export const ProfileContext = React.createContext();

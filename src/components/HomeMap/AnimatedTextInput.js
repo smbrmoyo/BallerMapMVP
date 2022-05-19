@@ -14,7 +14,7 @@ import { Feather } from "@expo/vector-icons";
 
 import LoadingScreen from "../../screens/LoadingScreen";
 import { hsize, wsize } from "../../utils/Dimensions";
-import { useMap } from "../../components/navigation/Providers/MapProvider";
+import { useMap } from "../../navigation/Providers/MapProvider";
 
 export default function AnimatedTextInput(props) {
   const [text, setText] = useState("");
