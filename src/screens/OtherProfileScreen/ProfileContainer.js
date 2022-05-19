@@ -20,19 +20,16 @@ import styles from "./styles";
 
 export default function ProfileContainer(props) {
   const { width, height } = Dimensions.get("window");
-  let followers = props.otherUser.followers.items;
-  let following = props.otherUser.following.items;
+  let followers = props.otherUser?.followers.items;
+  let following = props.otherUser?.following.items;
 
-  let date = new Date(props.otherUser.createdAt);
+  let date = new Date(props.otherUser?.createdAt);
   let month = date.toLocaleString("default", { month: "long" });
 
   return (
     <View style={styles.container}>
       <View style={styles.profileInitialContainer}>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => props.navigate("Story")}
-        >
+        <TouchableOpacity activeOpacity={0.7} onPress={() => {}}>
           <ProfilePicture
             uri={props.otherUser?.profilePicture?.toString()}
             size={70}
@@ -48,10 +45,7 @@ export default function ProfileContainer(props) {
       <View style={styles.profileInfoContainer}>
         <View style={styles.profileInfo}>
           <Entypo name="location-pin" size={25} color={"#743cff"} />
-          <Text style={styles.textInfo}>
-            {/*userExtraInfo.city*/}
-            Paris, Rue du con
-          </Text>
+          <Text style={styles.textInfo}>{props.otherUser?.cityCountry}</Text>
         </View>
         <TouchableOpacity activeOpacity={0.7} style={styles.profileInfo}>
           <EvilIcons name="link" size={20} color="black" />

@@ -777,7 +777,9 @@ export const onUpdateUprofile = /* GraphQL */ `
       id
       username
       name
+      profilePicture
       userDocId
+      cityCountry
       currentPlaceID
       notifications {
         items {

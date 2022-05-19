@@ -141,6 +141,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
             setUser={setUser}
             dataLogin={dataLogin}
             navigate={navigation.navigate}
+            resendConfirmationCode={resendConfirmationCode}
           />
         </Animatable.View>
       </KeyboardAwareScrollView>

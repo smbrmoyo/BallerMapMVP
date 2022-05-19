@@ -52,6 +52,8 @@ const EditProfileScreen = ({ props, navigation, route }) => {
         setProfileDoc({
           ...profileDoc,
           username: value.data.onUpdateUprofile.username,
+          cityCountry: value.data.onUpdateUprofile.cityCountry,
+          profilePicture: value.data.onUpdateUprofile.profilePicture,
         });
       },
       error: (error) => console.log(error),

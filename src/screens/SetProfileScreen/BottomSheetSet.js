@@ -29,7 +29,12 @@ const BottomSheetSet = (props) => {
         return;
       } else {
         const img = await fetchImageFromUri(pickerResult.path);
-        const uploadUrl = await uploadImage(props.user, img);
+        let uriParts = pickerResult.path.split(".");
+        let fileType = uriParts[uriParts.length - 1];
+        const uploadUrl = await uploadImage(
+          `${props.user}/photo.${fileType}`,
+          img
+        );
         downloadImage(uploadUrl);
       }
     } catch (e) {
