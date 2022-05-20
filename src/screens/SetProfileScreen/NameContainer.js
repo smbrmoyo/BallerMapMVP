@@ -65,7 +65,7 @@ export default function NameContainer(props) {
         onEndEditing={(event) => {
           props.setUserProfile({
             ...props.userProfile,
-            name: event.nativeEvent.text
+            name: event.nativeEvent.text,
           });
         }}
       />

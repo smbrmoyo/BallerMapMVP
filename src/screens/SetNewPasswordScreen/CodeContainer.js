@@ -21,7 +21,7 @@ export default function CodeContainer(props) {
         Code
       </Text>
       <View style={styles.action}>
-        <Ionicons name="keypad-outline" size={24} color="#05375a" size={18} />
+        <Ionicons name="keypad-outline" size={24} color="#05375a" />
         <TextInput
           placeholder="Verification Code"
           placeholderTextColor="#666666"

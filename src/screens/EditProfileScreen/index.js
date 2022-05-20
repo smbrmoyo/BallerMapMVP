@@ -33,10 +33,6 @@ import {
 } from "../../aws-functions/userFunctions";
 
 const EditProfileScreen = ({ props, navigation, route }) => {
-  const username = "";
-  const [color, setColor] = useState("#CDCDCD");
-  const headerHeight = useHeaderHeight();
-  const { colors, dark } = useTheme();
   const { user } = useAuth();
   const { profileDoc, setProfileDoc } = useProfile();
   const [userProfile, setUserProfile] = useState(profileDoc);

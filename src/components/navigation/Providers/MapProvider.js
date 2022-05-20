@@ -5,7 +5,10 @@ import { Auth, API, graphqlOperation } from "aws-amplify";
 import { useQuery } from "react-query";
 import * as Location from "expo-location";
 
-import { getPlacesList } from "../../../aws-functions/placeFunctions";
+import {
+  getPlacesList,
+  createPlace,
+} from "../../../aws-functions/placeFunctions";
 import {
   getAllUserProfiles,
   updateUserProfile,
@@ -59,13 +62,12 @@ const MapProvider = ({ children }) => {
   const resultUsers = useQuery("getUsers", getAllUserProfiles);
 
   /*useEffect(() => {
-    Geocoder.from("Rue du colisé 54, 75008 Paris")
+    Geocoder.from("Gerbermühlstraße 110, Frankfurt am Main")
       .then((json) => {
         var location = json.results[0].geometry.location;
-        console.log(location);
         let input = {
-          name: "Coliseum",
-          address: "Rue du colisé 54, 75008 Paris",
+          name: "Mainufer",
+          address: "Gerbermühlstraße 110, Frankfurt am Main",
           coords: {
             lat: json.results[0].geometry.location.lat,
             long: json.results[0].geometry.location.lng,

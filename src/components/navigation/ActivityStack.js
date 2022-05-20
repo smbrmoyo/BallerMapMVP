@@ -10,7 +10,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { hsize, wsize } from "../../utils/Dimensions";
-import { ActivityProvider } from "../navigation/Providers/ActivityProvider";
+import { ActivityProvider } from "./Providers/ActivityProvider";
 
 const Stack = createStackNavigator();
 

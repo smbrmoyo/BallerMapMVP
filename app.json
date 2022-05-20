@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "BallerMapMVP",
-    "slug": "BallerMapMVP",
+    "name": "BallerMap",
+    "slug": "BallerMap",
     "description": "An app that uses your location to find basketball courts near users",
-    "version": "1.1.2",
+    "version": "1.1.3",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -17,7 +17,7 @@
     },
     "assetBundlePatterns": ["**/*"],
     "ios": {
-      "buildNumber": "11",
+      "buildNumber": "13",
       "supportsTablet": false,
       "userInterfaceStyle": "automatic",
       "usesAppleSignIn": false,
@@ -25,7 +25,7 @@
         "googleMapsApiKey": "AIzaSyCAWRoRAT1jDaCuwACpmYsseOgW1-_XrNg"
       },
       "infoPlist": {
-        "NSLocationAlwaysAndWhenInUseUsageDescription": "BallerMap requires geolocation to get real-time information on playgrounds in your area",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "BallerMap requires geolocation to allow users to see Basketball courts near them with the help of a map",
         "photosPermission": "BallerMap accesses your photos to let you set your profile picture.",
         "cameraPermission": "BallerMap accesses your camera to let you set your profile picture."
       },
