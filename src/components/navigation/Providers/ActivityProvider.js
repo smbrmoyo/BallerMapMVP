@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { useAuth } from "./AuthProvider";
-import * as queries from "../../../graphql/queries";
+import { getAllNotifications } from "../../../aws-functions/userFunctions";
 import { Auth, API, graphqlOperation } from "aws-amplify";
 export const ActivityContext = React.createContext(null);
 
@@ -11,7 +11,7 @@ const ActivityProvider = ({ children }) => {
 
   useEffect(() => {
     console.log("<------------- ACTIVITYPROVIDER ---------------->");
-    getActivity(user)
+    getAllNotifications(user)
       .then((res) => {
         setActivity(res);
         setLoadingNotif(false);
@@ -35,30 +35,6 @@ const ActivityProvider = ({ children }) => {
     </ActivityContext.Provider>
   );
 };
-
-async function getActivity(userId) {
-  let notif = await API.graphql(
-    graphqlOperation(queries.listNotifications, {
-      //sortDirection: "DESC",
-      filter: {
-        profileID: {
-          eq: userId,
-        },
-      },
-    })
-  )
-    .then((result) => {
-      return result.data.listNotifications.items;
-    })
-    .catch((error) => {
-      console.log(
-        "   !!!ERREUR de la requête listNotifications dans la fonction getActivity du ACtivity Provider:",
-        JSON.stringify(error)
-      );
-      throw JSON.stringify(error);
-    });
-  return notif;
-}
 
 const useActivity = () => {
   const result = useContext(ActivityContext);
