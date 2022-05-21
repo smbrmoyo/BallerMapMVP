@@ -78,22 +78,6 @@ const AllUsersScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       ),
-      headerRight: () => (
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => {
-            bsProf.current.snapTo(0);
-          }}
-        >
-          <View style={styles.iconContainer}>
-            <MaterialCommunityIcons
-              name="dots-horizontal"
-              size={30}
-              color="black"
-            />
-          </View>
-        </TouchableOpacity>
-      ),
     });
   }, [navigation]);
 

@@ -81,8 +81,8 @@ export const onCreateEventChatMessage = /* GraphQL */ `
   }
 `;
 export const onCreateNotification = /* GraphQL */ `
-  subscription OnCreateNotification($profileID: ID!) {
-    onCreateNotification(profileID: $profileID) {
+  subscription OnCreateNotification($id: ID!) {
+    onCreateNotification(id: $id) {
       body
       createdAt
       id
@@ -248,8 +248,8 @@ export const onCreateUserDoc = /* GraphQL */ `
   }
 `;
 export const onCreateUserEventConnection = /* GraphQL */ `
-  subscription OnCreateUserEventConnection($profileID: ID!) {
-    onCreateUserEventConnection(profileID: $profileID) {
+  subscription OnCreateUserEventConnection($id: ID!) {
+    onCreateUserEventConnection(id: $id) {
       Event {
         beginningTime
         createdAt
@@ -284,8 +284,8 @@ export const onCreateUserEventConnection = /* GraphQL */ `
   }
 `;
 export const onCreateUserPlaceConnection = /* GraphQL */ `
-  subscription OnCreateUserPlaceConnection {
-    onCreateUserPlaceConnection {
+  subscription OnCreateUserPlaceConnection($id: ID!) {
+    onCreateUserPlaceConnection(id: $id) {
       arrivingTime
       createdAt
       departureTime
@@ -313,8 +313,8 @@ export const onCreateUserPlaceConnection = /* GraphQL */ `
   }
 `;
 export const onDeleteEvent = /* GraphQL */ `
-  subscription OnDeleteEvent {
-    onDeleteEvent {
+  subscription OnDeleteEvent($id: ID!) {
+    onDeleteEvent(id: $id) {
       beginningTime
       chat {
         nextToken
@@ -392,8 +392,8 @@ export const onDeleteEventChatMessage = /* GraphQL */ `
   }
 `;
 export const onDeleteNotification = /* GraphQL */ `
-  subscription OnDeleteNotification {
-    onDeleteNotification {
+  subscription OnDeleteNotification($id: ID!) {
+    onDeleteNotification(id: $id) {
       body
       createdAt
       id
@@ -624,8 +624,8 @@ export const onDeleteUserPlaceConnection = /* GraphQL */ `
   }
 `;
 export const onUpdateEvent = /* GraphQL */ `
-  subscription OnUpdateEvent {
-    onUpdateEvent {
+  subscription OnUpdateEvent($id: ID!) {
+    onUpdateEvent(id: $id) {
       beginningTime
       chat {
         nextToken
