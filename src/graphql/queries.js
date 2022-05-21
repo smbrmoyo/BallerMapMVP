@@ -388,6 +388,34 @@ export const listNotifications = /* GraphQL */ `
     }
   }
 `;
+export const getNotificationsByDate = /* GraphQL */ `
+  query getNotificationsByDate(
+    $filter: ModelNotificationFilterInput
+    $limit: Int
+    $nextToken: String
+    $sortDirection: ModelSortDirection
+    $profileID: ID
+  ) {
+    getNotificationsByDate(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      sortDirection: $sortDirection
+      profileID: $profileID
+    ) {
+      items {
+        body
+        createdAt
+        id
+        photo
+        profileID
+        type
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
 export const listPlaces = /* GraphQL */ `
   query ListPlaces(
     $filter: ModelPlaceFilterInput

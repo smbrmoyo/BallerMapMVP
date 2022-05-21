@@ -66,8 +66,8 @@ type UserEventConnection
 
 type Event
   @model
-  @key(name: "byPlace", fields: ["placeID", "beginningTime"])
-  @key(name: "byCreator", fields: ["creatorID", "beginningTime"]) {
+  @key(name: "byPlace", fields: ["placeID"])
+  @key(name: "byCreator", fields: ["creatorID"]) {
   id: ID!
   name: String!
   placeID: ID!
@@ -101,9 +101,7 @@ enum EventStatus {
   passed
 }
 
-type EventChatMessage
-  @model
-  @key(name: "byEvent", fields: ["eventID", "createdAt"]) {
+type EventChatMessage @model @key(name: "byEvent", fields: ["eventID"]) {
   id: ID!
   body: String!
   profileID: ID!
@@ -126,7 +124,11 @@ type Place @model {
 
 type Notification
   @model
-  @key(name: "byUser", fields: ["profileID", "createdAt"]) {
+  @key(
+    name: "byUser"
+    fields: ["profileID", "createdAt"]
+    queryField: "getNotificationsByDate"
+  ) {
   id: ID!
   body: String!
   profileID: ID!

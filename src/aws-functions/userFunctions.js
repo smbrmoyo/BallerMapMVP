@@ -57,11 +57,20 @@ export const getAllUserProfiles = async () => {
  * @returns list of notifications from a user
  */
 
-export const getAllNotifications = async () => {
-  let notifsList = await API.graphql(
-    graphqlOperation(queries.listNotifications)
-  );
-  return notifsList.data.listNotifications.items;
+export const getAllNotifications = async (user) => {
+  let notifs = await API.graphql(
+    graphqlOperation(queries.getNotificationsByDate, {
+      sortDirection: "DESC",
+      profileID: user,
+    })
+  ).catch((error) => {
+    console.log(
+      "   !!!ERREUR de la requête listNotifications dans la fonction getActivity du ACtivity Provider:",
+      JSON.stringify(error)
+    );
+    throw JSON.stringify(error);
+  });
+  return notifs.data.getNotificationsByDate.items;
 };
 
 /*
