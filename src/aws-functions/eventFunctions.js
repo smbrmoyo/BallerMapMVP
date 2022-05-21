@@ -39,16 +39,20 @@ export const getEvent = async (eventId) => {
  * @returns array of event docs
  */
 export const getFilteredEvents = async (user) => {
-  let events = await API.graphql(
-    graphqlOperation(queries.listEvents, {
-      filter: {
-        creatorID: {
-          eq: user,
+  try {
+    let events = await API.graphql(
+      graphqlOperation(queries.listEvents, {
+        filter: {
+          creatorID: {
+            eq: user,
+          },
         },
-      },
-    })
-  );
-  return events;
+      })
+    );
+    return events;
+  } catch (error) {
+    console.log("   Error on getFilteredEvents" + JSON.stringify(error));
+  }
 };
 
 /*

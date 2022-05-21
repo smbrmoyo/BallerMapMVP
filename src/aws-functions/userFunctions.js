@@ -47,9 +47,19 @@ export const getUprofileDoc = async (email) => {
  * @returns list of user profiles
  */
 
-export const getAllUserProfiles = async () => {
-  let usersList = await API.graphql(graphqlOperation(queries.listUprofiles));
-  return usersList.data.listUprofiles.items;
+export const getAllUserProfiles = async (user) => {
+  try {
+    let usersList = await API.graphql(
+      graphqlOperation(queries.listUprofiles, {
+        filter: {
+          id: { ne: user },
+        },
+      })
+    );
+    return usersList.data.listUprofiles.items;
+  } catch (error) {
+    console.log("    ");
+  }
 };
 
 /**
