@@ -59,7 +59,6 @@ const ProfileScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     profileDoc != undefined ? setLoading(false) : null;
-    setMyEvents(profileDoc?.eventsCreated.items);
   }, [profileDoc]);
 
   const onPageRendered = async () => {
@@ -205,7 +204,7 @@ const ProfileScreen = ({ navigation, route }) => {
 
   const goToFollowing = () => {
     navigation.navigate("Following", {
-      following: profileDoc.following.items,
+      following: profileDoc?.following?.items,
     });
   };
 
@@ -239,15 +238,13 @@ const ProfileScreen = ({ navigation, route }) => {
             }}
           >
             <ProfileContainer
-              profileDoc={
-                updatedProfile != undefined ? updatedProfile : profileDoc
-              }
+              profileDoc={profileDoc}
               followers={followers}
               goToFollowing={goToFollowing}
               goToFollowers={goToFollowers}
               navigate={navigation.navigate}
-              events={newEvents != undefined ? newEvents : events}
-              attending={attending}
+              events={profileDoc?.eventsCreated?.items}
+              attending={profileDoc?.eventsCreated?.items}
               currentTab={currentTab}
               setCurrentTab={setCurrentTab}
               _scrollView={_scrollView}

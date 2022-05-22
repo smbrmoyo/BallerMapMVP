@@ -29,7 +29,7 @@ export default function FollowRow({ item, navigation }) {
             alignItems: "center",
           }}
         >
-          <ProfilePicture size={50} />
+          <ProfilePicture uri={item.profilePicture} size={50} />
           <View
             style={{
               flexDirection: "column",

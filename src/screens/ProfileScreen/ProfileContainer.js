@@ -15,11 +15,8 @@ export default function ProfileContainer(props) {
   return (
     <View style={styles.container}>
       <View style={styles.profileInitialContainer}>
-        <TouchableOpacity activeOpacity={0.7} onPress={() => {}}>
-          <ProfilePicture
-            uri={props.profileDoc?.profilePicture?.toString()}
-            size={70}
-          />
+        <TouchableOpacity activeOpacity={0.7}>
+          <ProfilePicture uri={props.profileDoc?.profilePicture} size={70} />
         </TouchableOpacity>
         <View style={styles.profileNameContainer}>
           <Text style={styles.profileName}>{props.profileDoc?.username}</Text>

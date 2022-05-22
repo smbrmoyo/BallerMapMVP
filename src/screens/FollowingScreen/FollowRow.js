@@ -26,7 +26,10 @@ export default function FollowRow(props) {
             alignItems: "center",
           }}
         >
-          <ProfilePicture size={50} />
+          <ProfilePicture
+            uri={props.item?.followed?.profilePicture}
+            size={50}
+          />
           <View
             style={{
               flexDirection: "column",
