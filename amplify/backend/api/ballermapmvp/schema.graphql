@@ -67,7 +67,8 @@ type UserEventConnection
 type Event
   @model
   @key(name: "byPlace", fields: ["placeID"])
-  @key(name: "byCreator", fields: ["creatorID"]) {
+  @key(name: "byCreator", fields: ["creatorID"])
+  @key(name: "byDate", fields: ["createdAt"], queryField: "getEventsByDate") {
   id: ID!
   name: String!
   placeID: ID!
@@ -88,6 +89,7 @@ type Event
   profilePic: AWSURL
   eventPictures: [AWSURL]
   eventVideos: [AWSURL]
+  createdAt: AWSDateTime
 }
 
 enum EventPrivacy {

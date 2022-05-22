@@ -16,13 +16,13 @@ import LoadingScreen from "../LoadingScreen";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import styles from "./styles";
 
-import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
+import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 import SearchBarFollowers from "./SearchBar";
 import FollowRow from "./FollowRow";
 import { hsize, wsize } from "../../utils/Dimensions";
 
 const FollowingScreen = ({ navigation }) => {
-  const { profileDoc } = useProfile();
+  const { user } = useAuth();
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState();
   const { colors, dark } = useTheme();
@@ -31,17 +31,33 @@ const FollowingScreen = ({ navigation }) => {
   const route = useRoute();
   const following = route.params?.following;
 
+  useEffect(() => {
+    setData(following);
+  }, []);
+
+  const searchFilter = async (text) => {
+    if (text) {
+      var newData = following.filter((item) => {
+        var name = item.followed.username.toLowerCase();
+        const filter = text.toLowerCase();
+        return name.search(filter) !== -1;
+      });
+      setData(newData);
+      setText(text);
+    } else {
+      setData(following);
+      setText("");
+    }
+  };
+
   const onFollowPress = () => {
     setIsFollowing(!isFollowing);
   };
 
-  const onChangeText = async (text) => {
-    setText(text);
-  };
-  const onChangeTextDebounced = debounce(onChangeText, 1000, {
+  /*const onChangeTextDebounced = debounce(onChangeText, 1000, {
     leading: true,
     trailing: true,
-  });
+  });*/
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -73,28 +89,8 @@ const FollowingScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       ),
-      headerRight: () => (
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => {
-            bsProf.current.snapTo(0);
-          }}
-        >
-          <View style={styles.iconContainer}>
-            <MaterialCommunityIcons
-              name="dots-horizontal"
-              size={30}
-              color="black"
-            />
-          </View>
-        </TouchableOpacity>
-      ),
     });
   }, [navigation]);
-
-  useEffect(() => {
-    setData(following);
-  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -108,7 +104,7 @@ const FollowingScreen = ({ navigation }) => {
               colors={colors}
               dark={dark}
               text={text}
-              onChangeTextDebounced={onChangeTextDebounced}
+              onChangeTextDebounced={(text) => searchFilter(text)}
             />
           }
           renderItem={({ item }) => (
@@ -117,6 +113,7 @@ const FollowingScreen = ({ navigation }) => {
               onFollowPress={onFollowPress}
               item={item}
               navigate={navigation.navigate}
+              user={user}
             />
           )}
         />

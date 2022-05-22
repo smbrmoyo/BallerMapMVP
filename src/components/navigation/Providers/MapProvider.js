@@ -79,21 +79,18 @@ const MapProvider = ({ children }) => {
   }, []);*/
 
   useEffect(() => {
-    if (
-      resultPlaces.status == "success" &&
-      resultCamera.status == "success" &&
-      resultUsers.status == "success"
-    ) {
+    getAllUserProfiles(user).then((response) => {
+      setUsers(response);
+    });
+
+    if (resultPlaces.status == "success" && resultCamera.status == "success") {
       setPlaces(resultPlaces.data);
       setCamera(resultCamera.data);
-      setUsers(resultUsers.data);
       setStatus(resultPlaces.status);
     } else {
       setStatus(resultPlaces.status);
     }
-  }, [resultPlaces.status, resultUsers.status]);
-
-  let counter = 1;
+  }, [resultPlaces.status]);
 
   /*useEffect(() => {
     if (counter == 1) {

@@ -15,7 +15,7 @@ import FollowRow from "./FollowRow";
 import SearchBarFollowers from "./SearchBarFollowers";
 import { hsize } from "../../utils/Dimensions";
 
-const UserSearchScreen = ({ navigation, route }) => {
+const UserSearchUpdateScreen = ({ navigation, route }) => {
   const [loading, setLoading] = useState(false);
   const { colors, dark } = useTheme();
   const [text, setText] = useState("");
@@ -154,4 +154,4 @@ const UserSearchScreen = ({ navigation, route }) => {
   );
 };
 
-export default UserSearchScreen;
+export default UserSearchUpdateScreen;

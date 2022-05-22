@@ -23,9 +23,11 @@ import styles from "./styles";
 import SearchBarFollowers from "./SearchBarFollowers";
 import FollowRow from "./FollowRow";
 import { hsize, wsize } from "../../utils/Dimensions";
+import { useAuth } from "../../components/navigation/Providers/AuthProvider";
 
 const FollowersScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(true);
+  const { user } = useAuth();
   const { colors, dark } = useTheme();
   const [text, setText] = useState("");
   const [isFollowing, setIsFollowing] = useState(isFollowing);
@@ -33,15 +35,18 @@ const FollowersScreen = ({ navigation }) => {
   const followers = route.params?.followers;
   const [data, setData] = useState([]);
 
+  useEffect(() => {
+    setData(followers);
+  }, []);
+
   const searchFilter = async (text) => {
     if (text) {
       var newData = followers.filter((item) => {
-        var name = item.username.toLowerCase();
+        var name = item.follower.username.toLowerCase();
         const filter = text.toLowerCase();
         return name.search(filter) !== -1;
       });
       setData(newData);
-      console.log(newData);
       setText(text);
     } else {
       setData(followers);
@@ -83,28 +88,8 @@ const FollowersScreen = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       ),
-      headerRight: () => (
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => {
-            bsProf.current.snapTo(0);
-          }}
-        >
-          <View style={styles.iconContainer}>
-            <MaterialCommunityIcons
-              name="dots-horizontal"
-              size={30}
-              color="black"
-            />
-          </View>
-        </TouchableOpacity>
-      ),
     });
   }, [navigation]);
-
-  useEffect(() => {
-    setData(followers);
-  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -122,7 +107,7 @@ const FollowersScreen = ({ navigation }) => {
             />
           }
           renderItem={({ item }) => (
-            <FollowRow item={item} navigate={navigation.navigate} />
+            <FollowRow item={item} user={user} navigate={navigation.navigate} />
           )}
         />
       </View>

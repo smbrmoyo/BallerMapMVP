@@ -220,6 +220,7 @@ export const getUprofile = /* GraphQL */ `
             id
             name
             username
+            profilePicture
           }
           createdAt
           updatedAt
@@ -235,6 +236,7 @@ export const getUprofile = /* GraphQL */ `
             id
             name
             username
+            profilePicture
           }
           createdAt
           updatedAt
@@ -498,6 +500,7 @@ export const listUprofiles = /* GraphQL */ `
         updatedAt
         userDocId
         username
+        profilePicture
       }
       nextToken
     }

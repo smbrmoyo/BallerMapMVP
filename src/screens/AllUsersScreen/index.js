@@ -25,7 +25,7 @@ const AllUsersScreen = ({ navigation }) => {
   const { colors, dark } = useTheme();
   const [text, setText] = useState("");
   const { allUsers } = useProfile();
-  const [data, setData] = useState(allUsers); // users should come from uProfile
+  const [data, setData] = useState(allUsers);
 
   useEffect(() => {
     setData(allUsers);
@@ -34,7 +34,7 @@ const AllUsersScreen = ({ navigation }) => {
   const searchFilter = async (text) => {
     if (text) {
       var newData = allUsers.filter((item) => {
-        var name = item.name.toLowerCase();
+        var name = item.username.toLowerCase();
         const filter = text.toLowerCase();
         return name.search(filter) !== -1;
       });
@@ -77,22 +77,6 @@ const AllUsersScreen = ({ navigation }) => {
             <Text style={styles.textHeader}>Invite A Friend</Text>
           </TouchableOpacity>
         </View>
-      ),
-      headerRight: () => (
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => {
-            bsProf.current.snapTo(0);
-          }}
-        >
-          <View style={styles.iconContainer}>
-            <MaterialCommunityIcons
-              name="dots-horizontal"
-              size={30}
-              color="black"
-            />
-          </View>
-        </TouchableOpacity>
       ),
     });
   }, [navigation]);

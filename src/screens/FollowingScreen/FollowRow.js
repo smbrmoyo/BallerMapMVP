@@ -11,7 +11,7 @@ export default function FollowRow(props) {
       style={styles.postHeaderFirst}
       onPress={() => {
         props.navigate("OtherProfile", {
-          id: props.item.followedID,
+          id: props.item?.followedID,
         });
       }}
     >
@@ -26,7 +26,10 @@ export default function FollowRow(props) {
             alignItems: "center",
           }}
         >
-          <ProfilePicture size={50} />
+          <ProfilePicture
+            uri={props.item?.followed?.profilePicture}
+            size={50}
+          />
           <View
             style={{
               flexDirection: "column",
@@ -38,7 +41,7 @@ export default function FollowRow(props) {
                 fontSize: 18,
               }}
             >
-              {props.item.followed.username}
+              {props.item?.followed?.username}
             </Text>
             <Text
               style={{
@@ -46,7 +49,7 @@ export default function FollowRow(props) {
                 color: "grey",
               }}
             >
-              {props.item.followed.name}
+              {props.item?.followed?.name}
             </Text>
           </View>
         </View>

@@ -54,7 +54,7 @@ export default function FollowRow(props) {
                 color: "black",
               }}
             >
-              {props.item.followed.name}
+              {props.item?.followed?.name}
             </Text>
             <Text
               style={{
@@ -62,7 +62,7 @@ export default function FollowRow(props) {
                 color: "grey",
               }}
             >
-              {props.item.followed.username}
+              {props.item?.followed?.username}
             </Text>
           </View>
         </View>

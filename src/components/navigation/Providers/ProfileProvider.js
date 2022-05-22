@@ -35,7 +35,7 @@ const ProfileProvider = ({ children }) => {
       setProfileDoc(response);
     });
 
-    getAllUserProfiles().then((response) => {
+    getAllUserProfiles(user).then((response) => {
       setAllUsers(response);
     });
   }, []);
