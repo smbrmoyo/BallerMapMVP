@@ -33,7 +33,13 @@ export default function ProfileContainer(props) {
           <ProfilePicture uri={props.otherUser?.profilePicture} size={70} />
         </TouchableOpacity>
         <View style={styles.profileNameContainer}>
-          <Text style={styles.profileName}>{props.otherUser?.username}</Text>
+          <Text
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={styles.profileName}
+          >
+            {props.otherUser?.username}
+          </Text>
           <Text style={styles.profileJoined}>
             {"Joined " + month + " " + date.getFullYear()}
           </Text>
@@ -49,15 +55,20 @@ export default function ProfileContainer(props) {
           <Text style={styles.linkInfo}>userExtraInfo.link</Text>
         </TouchableOpacity>
 
-        <View style={styles.profileInfo}>
+        <View style={styles.profileFollowedBy}>
           <Text style={styles.textInfo}>Followed by </Text>
           <Text
-            multiline={true}
-            style={{ fontSize: wsize(12), fontWeight: "bold" }}
+            //multiline={true}
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={{ fontSize: wsize(12), fontWeight: "bold", width: "80%" }}
           >
             {followers.length >= 1 ? followers[0].follower.username : null}
-            {followers.length >= 2
-              ? ", " + followers[1].follower.username
+            {followers.length == 2
+              ? " and " + followers[1].follower.username
+              : null}
+            {followers.length > 2
+              ? ", " + followers[2].follower.username
               : null}
             {followers.length > 2 ? " and  others" : null}
           </Text>

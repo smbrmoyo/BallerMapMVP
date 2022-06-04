@@ -57,45 +57,18 @@ export default function ButtonContainer(props) {
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={() => {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
-            async () => {
-              updateEvent(props.eventData).then((response) => {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(() => {
+            props.setCheck(true);
+            updateEvent(props.eventData).then((response) => {
+              if (!response) {
+                console.log(response);
+                null;
+              } else {
+                console.log(response);
                 props.navigation.navigate("Profile", { screen: "Profile" });
-              });
-
-              /*try {
-                const events = await DataStore.query(Event);
-                console.log(
-                  "Posts retrieved successfully!",
-                  JSON.stringify(events, null, 2)
-                );
-              } catch (error) {
-                console.log("Error retrieving posts", error);
-              }*/
-
-              /*try {
-                await DataStore.save(
-                  new Event({
-                    name: props.eventData.name,
-                    placeID: props.eventData.placeID,
-                    creatorID: props.eventData.creatorID,
-                    creator: props.eventData.creatorID,
-                    beginningTime: props.eventData.beginningTime.toISOString(),
-                    endingTime: props.eventData.endingTime.toISOString(),
-                    tags: props.eventData.tags,
-                    description: props.eventData.description,
-                    privacy: props.eventData.privacy,
-                    _version: 0,
-                    _deleted: false,
-                    _lastChangedAt: props.eventData._lastChangedAt,
-                  })
-                );
-                console.log("Event saved successfully!");
-              } catch (error) {
-                console.log("Error saving event", error);
-              }*/
-            }
-          );
+              }
+            });
+          });
         }}
       >
         <View

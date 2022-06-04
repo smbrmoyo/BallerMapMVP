@@ -62,6 +62,7 @@ export default function EventRow(props) {
                 fontSize: 18,
               }}
               ellipsizeMode="tail"
+              numberOfLines={2}
             >
               {props.event.name}
             </Text>
