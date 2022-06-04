@@ -16,6 +16,12 @@
         "ballermapmvp52e1ffed": {},
         "userPoolGroups": {},
         "true": {}
+      },
+      "function": {
+        "updateEventStatus": {
+          "deploymentBucketName": "amplify-ballermapmvp-dev-151750-deployment",
+          "s3Key": "amplify-builds/updateEventStatus-51445661437954617452-build.zip"
+        }
       }
     }
   }

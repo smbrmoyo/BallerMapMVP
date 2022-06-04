@@ -115,12 +115,14 @@ const styles = StyleSheet.create({
   },
   panel: {
     padding: 20,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "white",
     paddingTop: 20,
     width: "100%",
+    height: "100%",
+    justifyContent: "space-evenly",
   },
   header: {
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "white",
     shadowColor: "#333333",
     shadowOffset: { width: -1, height: -3 },
     shadowRadius: 2,

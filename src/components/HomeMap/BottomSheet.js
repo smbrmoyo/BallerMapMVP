@@ -180,6 +180,7 @@ const BottomSheetMap = (props) => {
           keyExtractor={(item) => item.id}
           //scrollEnabled={false}
           // numColumns={6}
+
           renderItem={(item) => (
             <EventRow navigation={props.navigation} event={item} />
           )}
@@ -205,7 +206,7 @@ const BottomSheetMap = (props) => {
 
       <BottomSheet
         ref={bsMap}
-        snapPoints={["37%", "70%", -hsize(5)]}
+        snapPoints={["37%", "70%", "0%"]}
         renderContent={renderInner}
         renderHeader={renderHeader}
         initialSnap={2}
@@ -221,7 +222,6 @@ const styles = StyleSheet.create({
   panel: {
     height: "100%",
     width: "100%",
-    //padding: 20,
     backgroundColor: "white",
     paddingTop: hsize(10),
     shadowColor: "#000000",
@@ -259,11 +259,6 @@ const styles = StyleSheet.create({
     color: "gray",
     height: hsize(30),
     marginBottom: hsize(10),
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "white",
-    //paddingTop: hsize(44),
   },
   iconContainer: {
     height: hsize(40),
