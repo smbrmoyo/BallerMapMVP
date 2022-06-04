@@ -58,54 +58,52 @@ const BottomSheetProfile = (props) => {
 
   renderInner = () => (
     <View style={styles.panel}>
-      <View style={{ backgroundColor: "white", height: "100%", width: "100%" }}>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={styles.panelButton}
-          onPress={() => {
-            navigation.navigate("EditProfile");
-            bsProf.current.snapTo(1);
-          }}
-        >
-          <Ionicons name="pencil-outline" size={23} color="black" />
-          <Text style={styles.panelButtonTitle}>Edit Profile</Text>
-        </TouchableOpacity>
-        <TouchableOpacity activeOpacity={0.7} style={styles.panelButton}>
-          <Ionicons name="settings-outline" size={23} color="black" />
-          <Text style={styles.panelButtonTitle}>Settings</Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        style={styles.panelButton}
+        onPress={() => {
+          navigation.navigate("EditProfile");
+          bsProf.current.snapTo(1);
+        }}
+      >
+        <Ionicons name="pencil-outline" size={23} color="black" />
+        <Text style={styles.panelButtonTitle}>Edit Profile</Text>
+      </TouchableOpacity>
+      <TouchableOpacity activeOpacity={0.7} style={styles.panelButton}>
+        <Ionicons name="settings-outline" size={23} color="black" />
+        <Text style={styles.panelButtonTitle}>Settings</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity
-          onPress={LogoutAlert}
-          activeOpacity={0.7}
-          style={styles.panelButton}
-        >
-          <Ionicons name="exit-outline" size={23} color="black" />
-          <Text style={styles.panelButtonTitle}>Logout</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={DeleteAlert}
-          style={styles.panelButton}
-        >
-          <MaterialIcons name="delete-outline" size={23} color="black" />
-          <Text style={styles.panelButtonTitle}>Delete Account</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={styles.panelButton}
-          onPress={() => bsProf.current.snapTo(1)}
-        >
-          <Text style={styles.panelButtonTitle}>Cancel</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity
+        onPress={LogoutAlert}
+        activeOpacity={0.7}
+        style={styles.panelButton}
+      >
+        <Ionicons name="exit-outline" size={23} color="black" />
+        <Text style={styles.panelButtonTitle}>Logout</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={DeleteAlert}
+        style={styles.panelButton}
+      >
+        <MaterialIcons name="delete-outline" size={23} color="black" />
+        <Text style={styles.panelButtonTitle}>Delete Account</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        style={styles.panelButton}
+        onPress={() => bsProf.current.snapTo(1)}
+      >
+        <Text style={styles.panelButtonTitle}>Cancel</Text>
+      </TouchableOpacity>
     </View>
   );
 
   return (
     <BottomSheet
       ref={bsProf}
-      snapPoints={["60%", -5]}
+      snapPoints={["60%", "-10%"]}
       renderContent={renderInner}
       renderHeader={renderHeader}
       initialSnap={1}

@@ -112,7 +112,7 @@ const BottomSheetEdit = (props) => {
   return (
     <BottomSheet
       ref={bsEditProf}
-      snapPoints={["50%", -5]}
+      snapPoints={["50%", "-10%"]}
       renderContent={renderInner}
       renderHeader={renderHeader}
       initialSnap={1}

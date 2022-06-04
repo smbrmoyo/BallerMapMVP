@@ -154,13 +154,15 @@ const styles = StyleSheet.create({
   },
   panel: {
     //padding: 20,
-    backgroundColor: "white",
+    backgroundColor: "red",
     paddingTop: 10,
-
+    height: "100%",
     shadowColor: "#000000",
     shadowOffset: { width: 0, height: 0 },
     shadowRadius: 5,
     shadowOpacity: 0.4,
+    justifyContent: "space-evenly",
+    width: "100%",
   },
   header: {
     backgroundColor: "#FFFFFF",
@@ -208,10 +210,11 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginVertical: 7,
     flexDirection: "row",
-    marginHorizontal: 20,
+    //marginHorizontal: 20,
     justifyContent: "flex-start",
     borderBottomColor: "grey",
     borderBottomWidth: 0.2,
+    height: "15%",
   },
   panelButtonTitle: {
     fontSize: 17,
