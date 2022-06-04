@@ -119,5 +119,5 @@ Project Link: [https://github.com/smbrmoyo/BallerMapMVP](https://github.com/smbr
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[license-shield]: https://img.shields.io/github/license/smbrmoyo/BallerMapMVP.svg?style=flat
-[license-url]: https://github.com/smbrmoyo/BallerMapMVP/blob/master/LICENSE.md
+[license-shield]: https://img.shields.io/github/license/smbrmoyo/BallerMapMVP?label=License
+[license-url]: https://img.shields.io/github/license/smbrmoyo/BallerMapMVP?label=License
