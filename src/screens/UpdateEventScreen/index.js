@@ -42,8 +42,6 @@ import {
 import { wsize, hsize } from "../../utils/Dimensions";
 import styles from "./styles";
 
-//navigator.geolocation = require("@react-native-community/geolocation");
-
 const AddScreen = ({ navigation, route }) => {
   const { user } = useAuth();
   const headerHeight = useHeaderHeight();

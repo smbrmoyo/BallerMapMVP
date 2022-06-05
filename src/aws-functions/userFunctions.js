@@ -1,4 +1,4 @@
-import { Auth, API, graphqlOperation, DataStore } from "aws-amplify";
+import { Auth, API, graphqlOperation, DataStore, JS } from "aws-amplify";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { UserConnection } from "../models";
@@ -11,40 +11,59 @@ import * as queries from "../graphql/queries";
  * =============================================================================
  */
 
+/**
+ * @description gets the authenticated user
+ * @returns {JSON} Cognito user object
+ */
 export const getAuthenticatedUser = async () => {
-  let user = await Auth.currentAuthenticatedUser().catch((err) => {
-    console.error(err);
-  });
-  return user;
+  try {
+    let user = await Auth.currentAuthenticatedUser().catch((err) => {
+      console.error(err);
+    });
+    return user;
+  } catch (error) {
+    console.log("Error in getAuthenticatedUser: " + JSON.stringify(error));
+  }
 };
 
 /**
- * @description user's username
+ *
+ * @param {ID} user - user's id
+ * @returns {JSON} user Doc
  */
-
-export const getUserDoc = async (email) => {
-  let userDoc = await API.graphql(
-    graphqlOperation(queries.getUserDoc, { id: email })
-  );
-  return userDoc.data.getUserDoc;
+export const getUserDoc = async (user) => {
+  try {
+    let userDoc = await API.graphql(
+      graphqlOperation(queries.getUserDoc, { id: user })
+    );
+    return userDoc.data.getUserDoc;
+  } catch (error) {
+    console.log("Error in getUserDoc: " + JSON.stringify(error));
+  }
 };
 
-export const getUprofileDoc = async (email) => {
+/**
+ *
+ * @param {ID} user user's id
+ * @returns {JSON} user's profile Doc
+ */
+export const getUprofileDoc = async (user) => {
   try {
     let uProfileDoc = await API.graphql(
       graphqlOperation(queries.getUprofile, {
-        id: email,
+        id: user,
       })
     );
     return uProfileDoc.data.getUprofile;
   } catch (error) {
-    console.log("   Error on getUprofileDoc" + JSON.stringify(error));
+    console.log("Error on getUprofileDoc" + JSON.stringify(error));
   }
 };
 
 /**
  * @description get all user profiles
- * @returns list of user profiles
+ * @param {ID} user user's id
+ * @returns {JSON} list of user profiles
  */
 
 export const getAllUserProfiles = async (user) => {
@@ -58,29 +77,28 @@ export const getAllUserProfiles = async (user) => {
     );
     return usersList.data.listUprofiles.items;
   } catch (error) {
-    console.log("    ");
+    console.log(" ");
   }
 };
 
 /**
  * @description get all notifications from a user
- * @returns list of notifications from a user
+ * @param {ID} user user's id
+ * @returns {JSON} list of notifications from a user
  */
 
 export const getAllNotifications = async (user) => {
-  let notifs = await API.graphql(
-    graphqlOperation(queries.getNotificationsByDate, {
-      sortDirection: "DESC",
-      profileID: user,
-    })
-  ).catch((error) => {
-    console.log(
-      "   !!!ERREUR de la requête listNotifications dans la fonction getActivity du ACtivity Provider:",
-      JSON.stringify(error)
+  try {
+    let notifs = await API.graphql(
+      graphqlOperation(queries.getNotificationsByDate, {
+        sortDirection: "DESC",
+        profileID: user,
+      })
     );
-    throw JSON.stringify(error);
-  });
-  return notifs.data.getNotificationsByDate.items;
+    return notifs.data.getNotificationsByDate.items;
+  } catch (error) {
+    console.log("Error in getAllNotifications: " + JSON.stringify(error));
+  }
 };
 
 /*
@@ -95,66 +113,68 @@ export const getAllNotifications = async (user) => {
  */
 
 export const createUserDoc = async (userData) => {
-  let userDoc = await API.graphql(
-    graphqlOperation(mutations.createUserDoc, {
-      input: {
-        email: userData.email,
-        id: userData.email,
-        profileID: userData.email,
-      },
-    })
-  );
+  try {
+    let userDoc = await API.graphql(
+      graphqlOperation(mutations.createUserDoc, {
+        input: {
+          email: userData.email,
+          id: userData.email,
+          profileID: userData.email,
+        },
+      })
+    );
 
-  return userDoc.data.createUserDoc;
+    return userDoc.data.createUserDoc;
+  } catch (error) {
+    console.log("Error in createUserDoc: " + JSON.stringify(error));
+  }
 };
 
 /**
  * @description create user profile
- * @param {JSON} userDataInfo
  * @param {JSON} userProfile
  */
 
 export const createUserProfile = async (userProfile) => {
-  let uProfile = await API.graphql(
-    graphqlOperation(mutations.createUprofile, {
-      input: {
-        id: userProfile.id,
-        username: userProfile.username,
-        userDocId: userProfile.userDocId,
-        name: userProfile.name,
-        profilePicture: userProfile.profilePicture,
-      },
-    })
-  ).catch((error) => {
-    console.log(
-      "ERREUR dans la requête createUserProfile: " + JSON.stringify(error)
+  try {
+    let uProfile = await API.graphql(
+      graphqlOperation(mutations.createUprofile, {
+        input: {
+          id: userProfile.id,
+          username: userProfile.username,
+          userDocId: userProfile.userDocId,
+          name: userProfile.name,
+          profilePicture: userProfile.profilePicture,
+        },
+      })
     );
-    throw "ERREUR dans la requête createUserProfile: " + JSON.stringify(error);
-  });
-  return uProfile.data.createUprofile;
+    return uProfile.data.createUprofile;
+  } catch (error) {
+    console.log("Error in createUserProfile: " + JSON.stringify(error));
+  }
 };
 
 /**
- * @description create user profile
+ * @description update user profile
  * @param {JSON} updatedUprofile
  */
 export const updateUserProfile = async (updatedUprofile) => {
-  return API.graphql(
-    graphqlOperation(mutations.updateUprofile, {
-      input: {
-        id: updatedUprofile.id,
-        username: updatedUprofile.username,
-        name: updatedUprofile.name,
-        cityCountry: updatedUprofile.cityCountry,
-        profilePicture: updatedUprofile.profilePicture,
-      },
-    })
-  ).catch((error) => {
-    console.log(
-      "ERREUR dans la requête updateUserProfile: " + JSON.stringify(error)
+  try {
+    let uProfile = await API.graphql(
+      graphqlOperation(mutations.updateUprofile, {
+        input: {
+          id: updatedUprofile.id,
+          username: updatedUprofile.username,
+          name: updatedUprofile.name,
+          cityCountry: updatedUprofile.cityCountry,
+          profilePicture: updatedUprofile.profilePicture,
+        },
+      })
     );
-    throw "ERREUR dans la requête updateUserProfile: " + JSON.stringify(error);
-  });
+    return uProfile.data.updateUprofile;
+  } catch (error) {
+    console.log("Error in updateUserProfile: " + JSON.stringify(error));
+  }
 };
 
 /**
@@ -234,17 +254,17 @@ export const createUserConnection = async (userConnectionData) => {
  */
 
 export const deleteUserConnection = async (userConnectionData) => {
-  return API.graphql(
-    graphqlOperation(mutations.deleteUserConnection, {
-      input: {
-        id: userConnectionData.follower + userConnectionData.followed,
-      },
-    })
-  );
-};
-
-export const followUser = (userConnection) => {
-  return createUserConnection(userConnection);
+  try {
+    let del = await API.graphql(
+      graphqlOperation(mutations.deleteUserConnection, {
+        input: {
+          id: userConnectionData.follower + userConnectionData.followed,
+        },
+      })
+    );
+  } catch (error) {
+    console.log("Error in deleteUserConnection: " + JSON.stringify(error));
+  }
 };
 
 /**
@@ -253,19 +273,19 @@ export const followUser = (userConnection) => {
  */
 
 const createUserEventConnection = async (eventConnection) => {
-  let userEventConnection = await API.graphql(
-    graphqlOperation(mutations.createUserEventConnection, {
-      input: {
-        eventID: eventConnection.eventID,
-        profileID: eventConnection.userProfileId,
-      },
-    })
-  );
-  return userEventConnection.data.createUserEventConnection;
-};
-
-export const addUserToEvent = (userToEventData) => {
-  return createUserEventConnection(userToEventData);
+  try {
+    let userEventConnection = await API.graphql(
+      graphqlOperation(mutations.createUserEventConnection, {
+        input: {
+          eventID: eventConnection.eventID,
+          profileID: eventConnection.userProfileId,
+        },
+      })
+    );
+    return userEventConnection.data.createUserEventConnection;
+  } catch (error) {
+    console.log("Error in createUserEventConnection: " + JSON.stringify(error));
+  }
 };
 
 /*Next mutation should be deleteAccount
@@ -315,55 +335,4 @@ export const deleteAccount = async (id) => {
       console.log("Error deleting user:", error);
     }
   }
-};
-
-/*
- * =============================================================================
- *                                  SUBSCRIPTIONS
- * =============================================================================
- */
-
-/**
- * First you need to check the directory to the subscriptions.js file
- * then add import * as subscriptions from '../graphql/subscriptions.js';
- * @param subscription subscription to use; e.g subscriptions.onCreateUserDoc
- * @param {function} functionToExecuteWithData function to execute with userDoc as soon as it is created
- */
-
-export const subscribeOnUserDoc = (subscription, functionToExecuteWithData) => {
-  API.graphql(
-    //graphqlOperation(subscriptions.onCreateUserDoc)
-    graphqlOperation(subscription)
-  ).subscribe({
-    next: ({ provider, value }) => {
-      // Here should be your function to execute with the received data;
-      console.log({ provider, value });
-      functionToExecuteWithData({ provider, value });
-    },
-    error: (error) => console.error(error),
-  });
-};
-
-/**
- * First you need to check the directory to the subscriptions.js file
- * then add import * as subscriptions from '../graphql/subscriptions.js';
- * @param subscription subscription to use; e.g subscriptions.onCreateUserConnection
- * @param {function} functionToExecuteWithData function to execute with userConnection as soon as it is created
- */
-
-export const subscribeOnUserConnection = (
-  subscription,
-  functionToExecuteWithData
-) => {
-  API.graphql(
-    //graphqlOperation(subscriptions.onCreateUserConnection)
-    graphqlOperation(subscription)
-  ).subscribe({
-    next: ({ provider, value }) => {
-      // Here should be your function to execute with the received data;
-      console.log({ provider, value });
-      functionToExecuteWithData({ provider, value });
-    },
-    error: (error) => console.error(error),
-  });
 };

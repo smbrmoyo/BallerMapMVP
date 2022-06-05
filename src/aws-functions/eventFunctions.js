@@ -1,11 +1,7 @@
 import { Auth, API, graphqlOperation } from "aws-amplify";
 import * as mutations from "../graphql/mutations.js";
 import * as queries from "../graphql/queries.js";
-import {
-  addUserToEvent,
-  createUserDoc,
-  createUserProfile,
-} from "./userFunctions.js";
+import { createUserDoc, createUserProfile } from "./userFunctions.js";
 import {
   checkName,
   checkLocation,
@@ -21,15 +17,19 @@ import { getFilteredPlaces } from "./placeFunctions.js";
  */
 
 /**
- * @description get event document
+ * @description get Event
  * @param {String} eventId
- * @returns event doc
+ * @returns event Doc
  */
 export const getEvent = async (eventId) => {
-  let event = await API.graphql(
-    graphqlOperation(queries.getEvent, { id: eventId })
-  );
-  return event.data.getEvent;
+  try {
+    let event = await API.graphql(
+      graphqlOperation(queries.getEvent, { id: eventId })
+    );
+    return event.data.getEvent;
+  } catch (error) {
+    console.log("Error on getEvent: " + JSON.stringify(error));
+  }
 };
 
 /**
@@ -49,9 +49,9 @@ export const getFilteredEvents = async (user) => {
         },
       })
     );
-    return events;
+    return events.data.listEvents;
   } catch (error) {
-    console.log("   Error on getFilteredEvents" + JSON.stringify(error));
+    console.log("Error on getFilteredEvents: " + JSON.stringify(error));
   }
 };
 
@@ -98,43 +98,16 @@ export const createEvent = async (eventData) => {
       })
     )
       .then((result) => {
-        createdEvent = {
-          id: result.data.createEvent.id,
-          name: result.data.createEvent.name,
-          creatorID: result.data.createEvent.creatorID,
-          description: result.data.createEvent.description,
-          begginingTime: result.data.createEvent.begginingTime,
-          creator: {
-            username: result.data.createEvent.creator.username,
-            id: result.data.createEvent.creator.id,
-            userDocId: result.data.createEvent.creator.userDocId,
-            updatedAt: result.data.createEvent.creator.updatedAt,
-            createdAt: result.data.createEvent.creator.createdAt,
-          },
-          place: {
-            address: result.data.createEvent.place.address,
-            name: result.data.createEvent.place.name,
-            id: result.data.createEvent.place.id,
-            updatedAt: result.data.createEvent.place.updatedAt,
-            createdAt: result.data.createEvent.place.createdAt,
-          },
-          placeID: result.data.createEvent.placeID,
-          status: result.data.createEvent.status,
-          privacy: result.data.createEvent.privacy,
-          updatedAt: result.data.createEvent.updatedAt,
-          createdAt: result.data.createEvent.createdAt,
-        };
+        createdEvent = { ...result };
         advance = true;
       })
       .catch((error) => {
-        console.log("Error creating an event ---------->", error);
+        console.log("Error creating an event: ", JSON.stringify(error));
       });
 
     if (advance) {
       let participants = eventData.participants;
       for (let participantID in participants) {
-        console.log(participants[participantID]);
-
         await API.graphql(
           graphqlOperation(mutations.createUserEventConnection, {
             input: {
@@ -186,8 +159,8 @@ export const createEvent = async (eventData) => {
 };
 
 /**
- * @description update event
- * @param {JSON} updatedEvent object
+ * @description update Event
+ * @param {JSON} eventData object
  */
 
 export const updateEvent = async (eventData) => {
@@ -222,30 +195,8 @@ export const updateEvent = async (eventData) => {
       })
     )
       .then((result) => {
-        updatedEvent = {
-          id: result.data.updateEvent.id,
-          name: result.data.updateEvent.name,
-          creatorID: result.data.updateEvent.creatorID,
-          description: result.data.updateEvent.description,
-          begginingTime: result.data.updateEvent.begginingTime,
-          creator: {
-            username: result.data.updateEvent.creator.username,
-            id: result.data.updateEvent.creator.id,
-            userDocId: result.data.updateEvent.creator.userDocId,
-            updatedAt: result.data.updateEvent.creator.updatedAt,
-            createdAt: result.data.updateEvent.creator.createdAt,
-          },
-          place: {
-            address: result.data.updateEvent.place.address,
-            name: result.data.updateEvent.place.name,
-            id: result.data.updateEvent.place.id,
-            updatedAt: result.data.updateEvent.place.updatedAt,
-            createdAt: result.data.updateEvent.place.createdAt,
-          },
-          placeID: result.data.updateEvent.placeID,
-          updatedAt: result.data.updateEvent.updatedAt,
-          createdAt: result.data.updateEvent.createdAt,
-        };
+        updatedEvent = { ...result };
+        console.log(updatedEvent);
         advance = true;
       })
       .catch((error) => {
@@ -314,70 +265,16 @@ export const updateEvent = async (eventData) => {
  * @param {JSON} eventId object
  */
 export const deleteEvent = async (eventId) => {
-  let result = await API.graphql(
-    graphqlOperation(mutations.deleteEvent, {
-      input: {
-        id: eventId,
-      },
-    })
-  );
-  return result;
-};
-
-/**
- * @description add participant to event
- * @param {JSON} userToEventData with fields (eventId, userProfileId)
- * @returns
- */
-export const addParticipant = (userToEventData) => {
-  return addUserToEvent(userToEventData);
-};
-
-/*
- * =============================================================================
- *                                  SUBSCRIPTIONS
- * =============================================================================
- */
-
-/**
- * First you need to check the directory to the subscriptions.js file
- * then add import * as subscriptions from '../graphql/subscriptions.js';
- * @param subscription subscription to use; e.g subscriptions.onCreateEvent
- * @param {function} functionToExecuteWithData function to execute with userDoc as soon as it is created
- */
-export const subscribeOnEvent = (subscription, functionToExecuteWithData) => {
-  API.graphql(
-    //e.g graphqlOperation(subscriptions.onCreateEvent)
-    graphqlOperation(subscription)
-  ).subscribe({
-    next: ({ provider, value }) => {
-      // Here should be your function to execute with the received data;
-      console.log({ provider, value });
-      functionToExecuteWithData({ provider, value });
-    },
-    error: (error) => console.error(error),
-  });
-};
-
-/**
- * First you need to check the directory to the subscriptions.js file
- * then add import * as subscriptions from '../graphql/subscriptions.js';
- * @param subscription subscription to use; e.g subscriptions.onCreateUserEventConnection
- * @param {function} functionToExecuteWithData function to execute with userDoc as soon as it is created
- */
-export const subscribeOnUserEvent = (
-  subscription,
-  functionToExecuteWithData
-) => {
-  API.graphql(
-    //e.g graphqlOperation(subscriptions.onCreateUserEventConnection)
-    graphqlOperation(subscription)
-  ).subscribe({
-    next: ({ provider, value }) => {
-      // Here should be your function to execute with the received data;
-      console.log({ provider, value });
-      functionToExecuteWithData({ provider, value });
-    },
-    error: (error) => console.error(error),
-  });
+  try {
+    let result = await API.graphql(
+      graphqlOperation(mutations.deleteEvent, {
+        input: {
+          id: eventId,
+        },
+      })
+    );
+    return result.data.deleteEvent;
+  } catch (error) {
+    console.log("Error deleting Event: " + JSON.stringify(error));
+  }
 };

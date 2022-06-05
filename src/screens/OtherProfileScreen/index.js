@@ -34,7 +34,6 @@ import { wsize, hsize } from "../../utils/Dimensions";
 import styles from "./styles";
 import {
   createUserConnection,
-  followUser,
   getUprofileDoc,
   deleteUserConnection,
 } from "../../aws-functions/userFunctions";
