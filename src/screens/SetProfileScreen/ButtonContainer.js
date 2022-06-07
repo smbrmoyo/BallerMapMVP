@@ -33,20 +33,17 @@ export default function ButtonContainer(props) {
             profilePicture: props.imageUri,
           };
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+          props.setCheck(true);
           createUserProfile(input)
-            .then((res) => {
-              console.log("--- Successfully created user profile");
-              setIsPdoc(true);
+            .then((response) => {
+              if (response == undefined || response == null) {
+                null;
+              } else {
+                setIsPdoc(true);
+              }
             })
             .catch((error) => {
-              console.log(
-                "   !!!ERREUR dans la creation du profile utilisateur, ButtonContainer du Set profile screen:",
-                error
-              );
-              Alert.alert(
-                "Erreur dans la création du profile",
-                "Le profile utilisateur n'a pas pu être créé"
-              );
+              Alert.alert("Error creating the profile");
             });
         }}
       >

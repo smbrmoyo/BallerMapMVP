@@ -62,7 +62,6 @@ const AddScreen = ({ navigation, route }) => {
     placeID: route.params?.searchedPlace?.id,
     placeName: route.params?.searchedPlace?.name,
     creatorID: user,
-    creator: user,
     tags: [],
     description: "",
     profileId: "", //should be current authenticated user profile Id
@@ -163,6 +162,7 @@ const AddScreen = ({ navigation, route }) => {
         isVisible={visibleStart} /*Should have second component for end date */
         mode="datetime"
         display="spinner"
+        testID="startCreate"
         isDarkModeEnabled={colors.background == "rgb(1, 1, 1)" ? true : false}
         onConfirm={(datum) => (
           setEventData({
@@ -179,6 +179,7 @@ const AddScreen = ({ navigation, route }) => {
         isVisible={visibleEnd} /*Should have second component for end date */
         mode="datetime"
         display="spinner"
+        testID="endCreate"
         isDarkModeEnabled={colors.background == "rgb(1, 1, 1)" ? true : false}
         onConfirm={(datum) => (
           setEventData({
@@ -197,7 +198,7 @@ const AddScreen = ({ navigation, route }) => {
             flex: 1,
           }}
         >
-          <ScrollView ref={_scrollView} style={{ flex: 1, padding: 10 }}>
+          <ScrollView style={{ flex: 1, padding: 10 }}>
             <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
               <View
                 style={{
@@ -259,7 +260,6 @@ const AddScreen = ({ navigation, route }) => {
                   params={route.params}
                   validate={validate}
                   setValidate={setValidate}
-                  scroll={scroll}
                 />
               </View>
             </TouchableWithoutFeedback>

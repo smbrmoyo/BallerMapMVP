@@ -1,7 +1,9 @@
 import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import * as Animatable from "react-native-animatable";
 
 import styles from "./styles";
+import { checkStart } from "../AddScreen/helpers";
 
 export default function StartDateContainer(props) {
   return (
@@ -25,6 +27,15 @@ export default function StartDateContainer(props) {
           </Text>
         </View>
       </TouchableOpacity>
+      {props.check ? (
+        checkStart(props.beginningTime) ? null : (
+          <Animatable.View animation="fadeInLeft" duration={500}>
+            <Text style={styles.errorMsg}>
+              The start of the event must be in the future.
+            </Text>
+          </Animatable.View>
+        )
+      ) : null}
     </View>
   );
 }

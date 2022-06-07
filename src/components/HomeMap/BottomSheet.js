@@ -206,7 +206,7 @@ const BottomSheetMap = (props) => {
 
       <BottomSheet
         ref={bsMap}
-        snapPoints={["37%", "70%", "0%"]}
+        snapPoints={["37%", "70%", "-10%"]}
         renderContent={renderInner}
         renderHeader={renderHeader}
         initialSnap={2}

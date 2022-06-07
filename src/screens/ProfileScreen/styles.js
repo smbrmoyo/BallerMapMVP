@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
     marginLeft: wsize(22),
     justifyContent: "center",
     alignContent: "center",
+    flex: 1,
   },
   profileName: {
     fontSize: wsize(24),
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
   },
   panel: {
     //padding: 20,
-    backgroundColor: "red",
+    backgroundColor: "white",
     paddingTop: 10,
     height: "100%",
     shadowColor: "#000000",

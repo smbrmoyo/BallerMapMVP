@@ -1,5 +1,4 @@
 import { Auth, API, graphqlOperation } from "aws-amplify";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import * as mutations from "../graphql/mutations";
 import * as queries from "../graphql/queries";
@@ -10,38 +9,62 @@ import * as queries from "../graphql/queries";
  * =============================================================================
  */
 
-export const getPlaces = async (id) => {
-  let place = await API.graphql(
-    graphqlOperation(queries.getPlace, {
-      input: { id: id },
-    })
-  );
+/**
+ * @description gets a place
+ * @param {ID} id id of the place
+ * @returns {JSON} Object Place
+ */
+export const getPlace = async (id) => {
+  try {
+    let place = await API.graphql(
+      graphqlOperation(queries.getPlace, {
+        input: { id: id },
+      })
+    );
 
-  return place.data.getPlace;
-};
-
-export const getPlacesList = async (filterInput, limit, nextToken) => {
-  let placesList = await API.graphql(
-    graphqlOperation(queries.listPlaces, { filterInput, limit, nextToken })
-  );
-
-  return placesList.data.listPlaces.items;
+    return place.data.getPlace;
+  } catch (error) {
+    console.log("Error in getPlace: " + JSON.stringify(error));
+  }
 };
 
 /**
  * @description get all places documents
+ * @param {Object} filterInput
+ * @param {Int} limit
+ * @param {String} nextToken
+ * @returns {JSON} list of places
+ */
+export const getPlacesList = async (filterInput, limit, nextToken) => {
+  try {
+    let placesList = await API.graphql(
+      graphqlOperation(queries.listPlaces, { filterInput, limit, nextToken })
+    );
+
+    return placesList.data.listPlaces.items;
+  } catch (error) {
+    console.log("Error in getPlacesList: " + JSON.stringify(error));
+  }
+};
+
+/**
+ * @description get filtered places
  * @param {JSON} filter ({ field1: value1, ... })
  * @param {Integer} limit maximum number of docs to fetch
- * @returns array of places docs
+ * @returns {JSON} list of filtered places
  */
 export const getFilteredPlaces = async (filter, limit) => {
-  let placesList = await API.graphql(
-    graphqlOperation(queries.listPlaces, {
-      filter,
-      limit,
-    })
-  );
-  return placesList.data.listPlaces.items;
+  try {
+    let placesList = await API.graphql(
+      graphqlOperation(queries.listPlaces, {
+        filter,
+        limit,
+      })
+    );
+    return placesList.data.listPlaces.items;
+  } catch (error) {
+    console.log("Error in getFilteredPlaces: " + JSON.stringify(error));
+  }
 };
 
 /*
@@ -55,19 +78,23 @@ export const getFilteredPlaces = async (filter, limit) => {
  * @param {JSON} place object with place fields (address, name, coordinate)
  */
 export const createPlace = async (place) => {
-  let placeDoc = await API.graphql(
-    graphqlOperation(mutations.createPlace, {
-      input: {
-        address: place.address,
-        name: place.name,
-        coords: {
-          lat: place.coords.lat,
-          long: place.coords.long,
+  try {
+    let placeDoc = await API.graphql(
+      graphqlOperation(mutations.createPlace, {
+        input: {
+          address: place.address,
+          name: place.name,
+          coords: {
+            lat: place.coords.lat,
+            long: place.coords.long,
+          },
         },
-      },
-    })
-  );
-  return placeDoc;
+      })
+    );
+    return placeDoc;
+  } catch (error) {
+    console.log("Error in createPlace: " + JSON.stringify(error));
+  }
 };
 
 /**
@@ -75,24 +102,22 @@ export const createPlace = async (place) => {
  * @param {JSON} place object with place fields (address, name, coordinate)
  */
 export const updatePlace = async (place) => {
-  let placeDoc = await API.graphql(
-    graphqlOperation(mutations.updateEvent, {
-      input: {
-        id: place.id,
-        address: place.address,
-        name: place.name,
-        coordinate: {
-          latitude: place.coordinates.lat,
-          longitude: place.coordinates.long,
+  try {
+    let placeDoc = await API.graphql(
+      graphqlOperation(mutations.updateEvent, {
+        input: {
+          id: place.id,
+          address: place.address,
+          name: place.name,
+          coordinate: {
+            latitude: place.coordinates.lat,
+            longitude: place.coordinates.long,
+          },
         },
-      },
-    })
-  );
-  return placeDoc;
+      })
+    );
+    return placeDoc;
+  } catch (error) {
+    console.log("Error in updatePlace: " + JSON.stringify(error));
+  }
 };
-
-/*
- * =============================================================================
- *                                  SUBSCRIPTIONS
- * =============================================================================
- */

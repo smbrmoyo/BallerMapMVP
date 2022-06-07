@@ -163,6 +163,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "white",
   },
+  errorMsg: {
+    color: "#FF0000",
+    fontSize: 14,
+  },
 });
 
 export default styles;

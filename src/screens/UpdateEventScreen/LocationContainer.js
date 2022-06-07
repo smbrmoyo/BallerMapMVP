@@ -1,14 +1,10 @@
-import React, {
-  useContext,
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect,
-} from "react";
+import React from "react";
 import { View, Text, TouchableOpacity } from "react-native";
+import * as Animatable from "react-native-animatable";
 
 import styles from "./styles";
 import { wsize, hsize } from "../../utils/Dimensions";
+import { checkLocation } from "../AddScreen/helpers";
 
 export default function LocationContainer(props) {
   return (
@@ -61,6 +57,13 @@ export default function LocationContainer(props) {
           </View>
         </TouchableOpacity>
       </View>
+      {props.check ? (
+        checkLocation(props.eventData.placeName) ? null : (
+          <Animatable.View animation="fadeInLeft" duration={500}>
+            <Text style={styles.errorMsg}>Your run must have an address.</Text>
+          </Animatable.View>
+        )
+      ) : null}
     </View>
   );
 }

@@ -35,6 +35,7 @@ const styles = StyleSheet.create({
     marginLeft: wsize(22),
     justifyContent: "center",
     alignContent: "center",
+    flex: 1,
   },
   profileName: {
     fontSize: wsize(24),
@@ -53,6 +54,11 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   profileInfo: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginHorizontal: 5,
+  },
+  profileFollowedBy: {
     flexDirection: "row",
     alignItems: "center",
     marginHorizontal: 5,

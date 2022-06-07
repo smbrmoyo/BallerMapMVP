@@ -42,14 +42,15 @@ import {
 import { wsize, hsize } from "../../utils/Dimensions";
 import styles from "./styles";
 
-//navigator.geolocation = require("@react-native-community/geolocation");
-
 const AddScreen = ({ navigation, route }) => {
   const { user } = useAuth();
   const headerHeight = useHeaderHeight();
   const [event, setEvent] = useState(route.params?.event);
   const [visibleStart, setVisibleStart] = useState(false); // Put visible and color in one state object
   const [visibleEnd, setVisibleEnd] = useState(false);
+  const [check, setCheck] = useState(false);
+  const _scrollView = useRef(null);
+  const [validate, setValidate] = useState(true);
   const [colorBegin, setColorBegin] = useState("#743cff");
   const [colorEnd, setColorEnd] = useState("#743cff");
   const { colors } = useTheme();
@@ -157,6 +158,8 @@ const AddScreen = ({ navigation, route }) => {
         isVisible={visibleStart} /*Should have second component for end date */
         mode="datetime"
         display="spinner"
+        testID="startUpdate"
+        date={new Date(eventData.beginningTime)}
         isDarkModeEnabled={colors.background == "rgb(1, 1, 1)" ? true : false}
         onConfirm={(datum) => (
           setEventData({
@@ -173,6 +176,8 @@ const AddScreen = ({ navigation, route }) => {
         isVisible={visibleEnd} /*Should have second component for end date */
         mode="datetime"
         display="spinner"
+        testID="endUpdate"
+        date={new Date(eventData.endingTime)}
         isDarkModeEnabled={colors.background == "rgb(1, 1, 1)" ? true : false}
         onConfirm={(datum) => (
           setEventData({
@@ -202,12 +207,18 @@ const AddScreen = ({ navigation, route }) => {
                 <NameContainer
                   eventData={eventData}
                   setEventData={setEventData}
+                  check={check}
+                  setValidate={setValidate}
+                  validate={validate}
                 />
 
                 <LocationContainer
                   eventData={eventData}
                   navigate={navigation.navigate}
                   event={event}
+                  check={check}
+                  setValidate={setValidate}
+                  validate={validate}
                 />
 
                 <DescriptionContainer
@@ -225,6 +236,9 @@ const AddScreen = ({ navigation, route }) => {
                   colorBegin={colorBegin}
                   beginningTime={new Date(eventData.beginningTime)}
                   readableDate={readableDate}
+                  check={check}
+                  setValidate={setValidate}
+                  validate={validate}
                 />
 
                 <EndDateContainer
@@ -232,12 +246,18 @@ const AddScreen = ({ navigation, route }) => {
                   colorEnd={colorEnd}
                   endingTime={new Date(eventData.endingTime)}
                   readableDate={readableDate}
+                  check={check}
+                  setValidate={setValidate}
+                  validate={validate}
                 />
 
                 <ButtonContainer
                   eventData={eventData}
+                  setCheck={setCheck}
                   navigation={navigation}
                   params={route.params}
+                  validate={validate}
+                  setValidate={setValidate}
                 />
               </View>
             </TouchableWithoutFeedback>

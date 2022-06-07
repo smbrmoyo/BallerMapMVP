@@ -19,7 +19,13 @@ export default function ProfileContainer(props) {
           <ProfilePicture uri={props.profileDoc?.profilePicture} size={70} />
         </TouchableOpacity>
         <View style={styles.profileNameContainer}>
-          <Text style={styles.profileName}>{props.profileDoc?.username}</Text>
+          <Text
+            ellipsizeMode="tail"
+            numberOfLines={1}
+            style={styles.profileName}
+          >
+            {props.profileDoc?.username}
+          </Text>
           <Text style={styles.profileJoined}>
             {"Joined " + month + " " + date.getFullYear()}
           </Text>

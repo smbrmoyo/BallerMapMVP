@@ -1,42 +1,10 @@
-import React, {
-  useContext,
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect,
-} from "react";
-import {
-  View,
-  Text,
-  TextInput,
-  SafeAreaView,
-  StatusBar,
-  Alert,
-  Image,
-  ScrollView,
-  Dimensions,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  KeyboardAvoidingView,
-  Keyboard,
-} from "react-native";
-import { useHeaderHeight } from "@react-navigation/stack";
-import * as Haptics from "expo-haptics";
-import BottomSheet from "reanimated-bottom-sheet";
-import Animated from "react-native-reanimated";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
-import {
-  createUserDoc,
-  createUserProfile,
-  getAuthenticatedUser,
-} from "../../aws-functions/userFunctions";
-import styles from "./styles";
+import React from "react";
+import { View, Text, TextInput } from "react-native";
+import * as Animatable from "react-native-animatable";
+
 import { wsize, hsize } from "../../utils/Dimensions";
-import Feather from "react-native-vector-icons/Feather";
-import userConf from "../../aws-functions/userConf";
-import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
+import styles from "./styles";
+import { checkName } from "./helpers";
 
 export default function NameContainer(props) {
   return (
@@ -62,6 +30,7 @@ export default function NameContainer(props) {
         }}
         placeholder="Name and Surname"
         placeholderTextColor="#CDCDCD"
+        maxLength={25}
         onEndEditing={(event) => {
           props.setUserProfile({
             ...props.userProfile,
@@ -69,6 +38,13 @@ export default function NameContainer(props) {
           });
         }}
       />
+      {props.check ? (
+        checkName(props.userProfile.name) ? null : (
+          <Animatable.View animation="fadeInLeft" duration={500}>
+            <Text style={styles.errorMsg}>Please type in your full name.</Text>
+          </Animatable.View>
+        )
+      ) : null}
     </View>
   );
 }
