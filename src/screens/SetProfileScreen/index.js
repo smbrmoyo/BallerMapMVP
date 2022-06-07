@@ -24,7 +24,8 @@ import { useAppContext } from "../../components/navigation/Providers/AppProvider
 const SetProfileScreen = ({ props, route }) => {
   const { user } = useAuth();
   const { isPDoc, setIsPDoc } = useAppContext();
-  const [imageLoading, setImageLoading] = useState(false);
+  const [check, setCheck] = useState(false);
+  const [validate, setValidate] = useState(true);
   const [imageUri, setImageUri] = useState(null);
   bsSetProf = useRef(null);
   fallSetProf = useRef(new Animated.Value(1)).current;
@@ -112,11 +113,17 @@ const SetProfileScreen = ({ props, route }) => {
               <NameContainer
                 userProfile={userProfile}
                 setUserProfile={setUserProfile}
+                check={check}
+                setValidate={setValidate}
+                validate={validate}
               />
 
               <UsernameContainer
                 userProfile={userProfile}
                 setUserProfile={setUserProfile}
+                check={check}
+                setValidate={setValidate}
+                validate={validate}
               />
 
               <BioContainer
@@ -128,6 +135,10 @@ const SetProfileScreen = ({ props, route }) => {
                 user={user}
                 setIsPDoc={setIsPDoc}
                 imageUri={imageUri}
+                check={check}
+                setValidate={setValidate}
+                setCheck={setCheck}
+                validate={validate}
                 //navigation={navigation}
               />
             </Animated.View>

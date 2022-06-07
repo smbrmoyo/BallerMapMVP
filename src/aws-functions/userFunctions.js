@@ -1,7 +1,11 @@
 import { Auth, API, graphqlOperation, DataStore, JS } from "aws-amplify";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { UserConnection } from "../models";
+import {
+  checkName,
+  checkUsername,
+  checkBio,
+} from "../screens/SetProfileScreen/helpers";
 import * as mutations from "../graphql/mutations";
 import * as queries from "../graphql/queries";
 
@@ -137,18 +141,22 @@ export const createUserDoc = async (userData) => {
 
 export const createUserProfile = async (userProfile) => {
   try {
-    let uProfile = await API.graphql(
-      graphqlOperation(mutations.createUprofile, {
-        input: {
-          id: userProfile.id,
-          username: userProfile.username,
-          userDocId: userProfile.userDocId,
-          name: userProfile.name,
-          profilePicture: userProfile.profilePicture,
-        },
-      })
-    );
-    return uProfile.data.createUprofile;
+    if (!checkName(userProfile.name) || !checkUsername(userProfile.username)) {
+      return null;
+    } else {
+      let uProfile = await API.graphql(
+        graphqlOperation(mutations.createUprofile, {
+          input: {
+            id: userProfile.id,
+            username: userProfile.username,
+            userDocId: userProfile.userDocId,
+            name: userProfile.name,
+            profilePicture: userProfile.profilePicture,
+          },
+        })
+      );
+      return uProfile.data.createUprofile;
+    }
   } catch (error) {
     console.log("Error in createUserProfile: " + JSON.stringify(error));
   }
@@ -160,20 +168,27 @@ export const createUserProfile = async (userProfile) => {
  */
 export const updateUserProfile = async (updatedUprofile) => {
   try {
-    let uProfile = await API.graphql(
-      graphqlOperation(mutations.updateUprofile, {
-        input: {
-          id: updatedUprofile.id,
-          username: updatedUprofile.username,
-          name: updatedUprofile.name,
-          cityCountry: updatedUprofile.cityCountry,
-          profilePicture: updatedUprofile.profilePicture,
-        },
-      })
-    );
-    return uProfile.data.updateUprofile;
+    if (
+      !checkName(updatedUprofile.name) ||
+      !checkUsername(updatedUprofile.username)
+    ) {
+      return null;
+    } else {
+      let uProfile = await API.graphql(
+        graphqlOperation(mutations.updateUprofile, {
+          input: {
+            id: updatedUprofile.id,
+            username: updatedUprofile.username,
+            name: updatedUprofile.name,
+            cityCountry: updatedUprofile.cityCountry,
+            profilePicture: updatedUprofile.profilePicture,
+          },
+        })
+      );
+      return uProfile.data.updateUprofile;
+    }
   } catch (error) {
-    console.log("Error in updateUserProfile: " + JSON.stringify(error));
+    console.log(error);
   }
 };
 

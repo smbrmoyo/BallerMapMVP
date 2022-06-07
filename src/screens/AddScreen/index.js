@@ -62,7 +62,6 @@ const AddScreen = ({ navigation, route }) => {
     placeID: route.params?.searchedPlace?.id,
     placeName: route.params?.searchedPlace?.name,
     creatorID: user,
-    creator: user,
     tags: [],
     description: "",
     profileId: "", //should be current authenticated user profile Id

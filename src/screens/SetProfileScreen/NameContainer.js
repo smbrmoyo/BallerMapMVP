@@ -1,7 +1,10 @@
 import React from "react";
 import { View, Text, TextInput } from "react-native";
-import styles from "./styles";
+import * as Animatable from "react-native-animatable";
+
 import { wsize, hsize } from "../../utils/Dimensions";
+import styles from "./styles";
+import { checkName } from "./helpers";
 
 export default function NameContainer(props) {
   return (
@@ -27,6 +30,7 @@ export default function NameContainer(props) {
         }}
         placeholder="Name and Surname"
         placeholderTextColor="#CDCDCD"
+        maxLength={25}
         onEndEditing={(event) => {
           props.setUserProfile({
             ...props.userProfile,
@@ -34,6 +38,13 @@ export default function NameContainer(props) {
           });
         }}
       />
+      {props.check ? (
+        checkName(props.userProfile.name) ? null : (
+          <Animatable.View animation="fadeInLeft" duration={500}>
+            <Text style={styles.errorMsg}>Please type in your full name.</Text>
+          </Animatable.View>
+        )
+      ) : null}
     </View>
   );
 }

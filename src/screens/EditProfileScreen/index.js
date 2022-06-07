@@ -36,6 +36,8 @@ const EditProfileScreen = ({ props, navigation, route }) => {
   const { user } = useAuth();
   const { profileDoc, setProfileDoc } = useProfile();
   const [userProfile, setUserProfile] = useState(profileDoc);
+  const [check, setCheck] = useState(false);
+  const [validate, setValidate] = useState(true);
 
   bsEditProf = useRef(null);
   fallEditProf = useRef(new Animated.Value(1)).current;
@@ -133,6 +135,9 @@ const EditProfileScreen = ({ props, navigation, route }) => {
                   profileDoc={profileDoc}
                   userProfile={userProfile}
                   setUserProfile={setUserProfile}
+                  check={check}
+                  setValidate={setValidate}
+                  validate={validate}
                 />
 
                 <BioContainer
@@ -147,6 +152,8 @@ const EditProfileScreen = ({ props, navigation, route }) => {
                 <ButtonContainer
                   userProfile={userProfile}
                   navigation={navigation}
+                  check={check}
+                  setCheck={setCheck}
                 />
               </Animated.View>
             </TouchableWithoutFeedback>

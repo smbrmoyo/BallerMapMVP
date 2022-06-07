@@ -56,7 +56,14 @@ export default function ButtonContainer(props) {
         activeOpacity={0.7}
         onPress={() => {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-          updateUserProfile(props.userProfile).then(props.navigation.goBack());
+          props.setCheck(true);
+          updateUserProfile(props.userProfile).then((response) => {
+            if (response == undefined || response == null) {
+              null;
+            } else {
+              props.navigation.goBack();
+            }
+          });
         }}
       >
         <View

@@ -48,7 +48,7 @@ const MapProvider = ({ children }) => {
               result[i].types[1] == "political"
             ) {
               cityCountry = cityCountry + ", " + result[i].long_name;
-              updateUserProfile({ id: user, cityCountry: cityCountry });
+              //updateUserProfile({ id: user, cityCountry: cityCountry });
               break;
             }
           }
