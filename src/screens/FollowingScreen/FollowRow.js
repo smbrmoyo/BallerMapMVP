@@ -10,9 +10,11 @@ export default function FollowRow(props) {
       activeOpacity={0.7}
       style={styles.postHeaderFirst}
       onPress={() => {
-        props.navigate("OtherProfile", {
-          id: props.item?.followedID,
-        });
+        props.user == props.item?.followedID
+          ? props.navigate("Profile")
+          : props.navigate("OtherProfile", {
+              id: props.item?.followedID,
+            });
       }}
     >
       <View style={styles.postHeaderContainer}>

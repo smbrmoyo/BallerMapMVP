@@ -19,6 +19,7 @@ import { useProfile } from "../../navigation/Providers/ProfileProvider";
 import FollowRow from "./FollowRow";
 import SearchBarFollowers from "./SearchBarFollowers";
 import { hsize, wsize } from "../../utils/Dimensions";
+import { useAuth } from "../../navigation/Providers/AuthProvider";
 
 const AllUsersScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
@@ -26,6 +27,7 @@ const AllUsersScreen = ({ navigation }) => {
   const [text, setText] = useState("");
   const { allUsers } = useProfile();
   const [data, setData] = useState(allUsers);
+  const { user } = useAuth();
 
   useEffect(() => {
     setData(allUsers);
@@ -101,7 +103,13 @@ const AllUsersScreen = ({ navigation }) => {
             />
           }
           renderItem={({ item }) => (
-            <FollowRow item={item} isAdded onAddPress navigation={navigation} />
+            <FollowRow
+              item={item}
+              user
+              isAdded
+              onAddPress
+              navigation={navigation}
+            />
           )}
         />
       </View>

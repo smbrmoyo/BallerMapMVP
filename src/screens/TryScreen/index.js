@@ -20,30 +20,33 @@ const TryScreen = () => {
   const { width } = Dimensions.get("window");
 
   return (
-    <ScrollView
-      horizontal
-      pagingEnabled
-      style={{
-        flex: 1,
-        backgroundColor: "white",
-      }}
-      ContentContainerStyle={{
-        flex: 1,
-        alignItems: "center",
-      }}
-      scrollEventThrottle={1}
-      showsHorizontalScrollIndicator={false}
-      snapToInterval={width}
-      snapToAlignment="center"
-      decelerationRate={"fast"}
-    >
-      <View style={{ flex: 2, backgroundColor: "red", width: width }}>
-        <Text>FIRST</Text>
-      </View>
-      <View style={{ flex: 2, backgroundColor: "blue", width: width }}>
-        <Text>FIRST</Text>
-      </View>
-    </ScrollView>
+    <>
+      <ScrollView></ScrollView>
+      <ScrollView
+        horizontal
+        pagingEnabled
+        style={{
+          flex: 1,
+          backgroundColor: "white",
+        }}
+        ContentContainerStyle={{
+          flex: 1,
+          alignItems: "center",
+        }}
+        scrollEventThrottle={1}
+        showsHorizontalScrollIndicator={false}
+        snapToInterval={width}
+        snapToAlignment="center"
+        decelerationRate={"fast"}
+      >
+        <View style={{ flex: 2, backgroundColor: "red", width: width }}>
+          <Text>FIRST</Text>
+        </View>
+        <View style={{ flex: 2, backgroundColor: "blue", width: width }}>
+          <Text>FIRST</Text>
+        </View>
+      </ScrollView>
+    </>
   );
 };
 
