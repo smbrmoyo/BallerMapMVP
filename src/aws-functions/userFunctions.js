@@ -193,6 +193,26 @@ export const updateUserProfile = async (updatedUprofile) => {
 };
 
 /**
+ * @description updates cityCountry in profileDoc
+ * @param {JSON} userData Object with id and cityCountry
+ */
+export const updateCityCountry = async (userData) => {
+  try {
+    let uProfile = await API.graphql(
+      graphqlOperation(mutations.updateUprofile, {
+        input: {
+          id: userData.id,
+          cityCountry: userData.cityCountry,
+        },
+      })
+    );
+    return uProfile.data.updateUprofile;
+  } catch (error) {
+    console.log("Error in updateCityCountry: " + JSON.stringify(error));
+  }
+};
+
+/**
  * @description create user connection
  * @param {JSON} userConnectionData
  */
