@@ -75,15 +75,10 @@ export default function ProfileContainer(props) {
               borderColor: "#E9E8E8",
               borderRadius: 5,
               height: 30,
-              width: "50%",
+              width: "100%",
               alignSelf: "center",
               alignItems: "center",
               justifyContent: "center",
-              /*shadowColor: "grey",
-        shadowOffset: { width: 0, height: 3 },
-        shadowOpacity: 0.5,
-        shadowRadius: 5,
-        elevation: 10,*/
             }}
           >
             <Text
@@ -101,7 +96,7 @@ export default function ProfileContainer(props) {
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => {
-            props.setCurrentTab(props.events);
+            props.setCurrentTab("myEvents");
             props._scrollView.current.scrollTo({ x: -width });
           }}
           style={{ alignItems: "center", flex: 2 }}
@@ -109,21 +104,21 @@ export default function ProfileContainer(props) {
           <Feather
             name="list"
             size={23}
-            color={props.currentTab === props.events ? "black" : "grey"}
+            color={props.currentTab === "myEvents" ? "black" : "grey"}
           />
         </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => {
             props._scrollView.current.scrollTo({ x: width });
-            props.setCurrentTab(props.attending);
+            props.setCurrentTab("attending");
           }}
           style={{ alignItems: "center", flex: 2 }}
         >
           <Ionicons
             name="at-outline"
             size={26}
-            color={props.currentTab === props.attending ? "black" : "grey"}
+            color={props.currentTab === "attending" ? "black" : "grey"}
           />
         </TouchableOpacity>
       </View>

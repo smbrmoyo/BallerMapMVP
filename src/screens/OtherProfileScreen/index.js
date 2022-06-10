@@ -58,12 +58,7 @@ const OtherProfileScreen = ({ navigation }) => {
   const [otherUser, setOtherUser] = useState(null);
   const _scrollView = useRef(null);
   const [loading, setLoading] = useState(true); // Should be coming from provider
-  const tabs = {
-    events: "myEvents",
-    attending: "attending",
-  };
-  const { events, attending } = tabs;
-  const [currentTab, setCurrentTab] = useState(events);
+  const [currentTab, setCurrentTab] = useState("myEvents");
   const [isFollowing, setIsFollowing] = useState(false);
   const [followLoading, setFollowLoading] = useState(true);
   const isFocused = useIsFocused();
@@ -92,13 +87,20 @@ const OtherProfileScreen = ({ navigation }) => {
       graphqlOperation(onCreateUserConnection, { id: user + otherUserId })
     ).subscribe({
       next: ({ value }) => {
-        let temp;
-        temp = [...profileDoc.following.items];
-        temp.push(value.data.onCreateUserConnection);
+        let tempProfileDoc = [...profileDoc.following.items];
+        tempProfileDoc.push(value.data.onCreateUserConnection);
+
+        let tempOtherUser = [...otherUser.followers.items];
+        tempOtherUser.push(value.data.onCreateUserConnection);
 
         setProfileDoc({
           ...profileDoc,
-          following: { items: temp },
+          following: { items: tempProfileDoc },
+        });
+
+        setOtherUser({
+          ...otherUser,
+          followers: { items: tempOtherUser },
         });
       },
       error: (error) => console.log(error),
@@ -108,13 +110,26 @@ const OtherProfileScreen = ({ navigation }) => {
       graphqlOperation(onDeleteUserConnection, { id: user + otherUserId })
     ).subscribe({
       next: ({ value }) => {
-        let temp;
-        temp = [...profileDoc.following.items];
-        temp.splice(temp.indexOf(value.data.onCreateUserConnection), 1);
+        let tempProfileDoc = [...profileDoc.following.items];
+        tempProfileDoc.splice(
+          tempProfileDoc.indexOf(value.data.onCreateUserConnection),
+          1
+        );
+
+        let tempOtherUser = [...profileDoc.following.items];
+        tempOtherUser.splice(
+          tempOtherUser.indexOf(value.data.onCreateUserConnection),
+          1
+        );
 
         setProfileDoc({
           ...profileDoc,
-          following: { items: temp },
+          following: { items: tempProfileDoc },
+        });
+
+        setOtherUser({
+          ...otherUser,
+          followers: { items: tempOtherUser },
         });
       },
       error: (error) => {
@@ -228,8 +243,6 @@ const OtherProfileScreen = ({ navigation }) => {
               goToFollowing={goToFollowing}
               goToFollowers={goToFollowers}
               navigate={navigation.navigate}
-              events={events}
-              attending={attending}
               currentTab={currentTab}
               setCurrentTab={setCurrentTab}
               _scrollView={_scrollView}
@@ -250,14 +263,12 @@ const OtherProfileScreen = ({ navigation }) => {
             >
               <MyEventsTab
                 events={otherUser?.eventsCreated.items}
-                attending={attending}
                 setCurrentTab={setCurrentTab}
                 navigation={navigation}
               />
 
               <AttendingTab
                 events={otherUser?.myEvents.items}
-                attending={attending}
                 setCurrentTab={setCurrentTab}
                 navigation={navigation}
               />

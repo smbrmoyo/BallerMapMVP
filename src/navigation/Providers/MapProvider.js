@@ -5,13 +5,11 @@ import { Auth, API, graphqlOperation } from "aws-amplify";
 import { useQuery } from "react-query";
 import * as Location from "expo-location";
 
-import {
-  getPlacesList,
-  createPlace,
-} from "../../aws-functions/placeFunctions";
+import { getPlacesList, createPlace } from "../../aws-functions/placeFunctions";
 import {
   getAllUserProfiles,
   updateUserProfile,
+  updateCityCountry,
 } from "../../aws-functions/userFunctions";
 import { useAuth, getUprofile } from "./AuthProvider";
 
@@ -48,7 +46,7 @@ const MapProvider = ({ children }) => {
               result[i].types[1] == "political"
             ) {
               cityCountry = cityCountry + ", " + result[i].long_name;
-              //updateUserProfile({ id: user, cityCountry: cityCountry });
+              updateCityCountry({ id: user, cityCountry: cityCountry });
               break;
             }
           }
