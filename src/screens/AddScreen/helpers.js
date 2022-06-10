@@ -1,4 +1,3 @@
-
 export const checkName = (name) => {
   if (name == "") return false;
   else return true;
@@ -20,11 +19,7 @@ export const checkStart = (start) => {
 };
 
 export const checkEnd = (start, end) => {
-  if (
-    new Date(end) == null ||
-    new Date(end) == undefined ||
-    new Date(end) <= new Date(start)
-  )
+  if (new Date(end) == null || new Date(end) == undefined || end <= start)
     return false;
   else return true;
 };

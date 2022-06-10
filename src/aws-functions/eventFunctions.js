@@ -77,8 +77,8 @@ export const createEvent = async (eventData) => {
   if (
     !checkName(eventData.name) ||
     !checkLocation(eventData.placeID) ||
-    !checkStart(eventData.begginingTime) ||
-    !checkEnd(eventData.endingTime)
+    !checkStart(eventData.beginningTime) ||
+    !checkEnd(eventData.beginningTime, eventData.endingTime)
   ) {
     return null;
   } else {
@@ -99,6 +99,8 @@ export const createEvent = async (eventData) => {
     )
       .then((result) => {
         createdEvent = { ...result };
+        console.log("Logging createdEvent from createEvent: ");
+        console.log(createdEvent);
         advance = true;
       })
       .catch((error) => {
