@@ -38,7 +38,7 @@ import TagsContainer from "./TagsContainer";
 import {
   useAuth,
   getUprofile,
-} from "../../components/navigation/Providers/AuthProvider";
+} from "../../navigation/Providers/AuthProvider";
 import { wsize, hsize } from "../../utils/Dimensions";
 import styles from "./styles";
 

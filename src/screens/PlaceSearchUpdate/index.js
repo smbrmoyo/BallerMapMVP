@@ -21,7 +21,7 @@ import places from "../../assets/data/placesJSON";
 import PlaceRow from "./PlaceRow";
 import SearchBarPlaces from "./SearchBarPlaces";
 import { hsize, wsize } from "../../utils/Dimensions";
-import { useMap } from "../../components/navigation/Providers/MapProvider";
+import { useMap } from "../../navigation/Providers/MapProvider";
 import { getPlacesList } from "../../aws-functions/placeFunctions";
 
 const PlaceSearchScreen = ({ navigation, route }) => {

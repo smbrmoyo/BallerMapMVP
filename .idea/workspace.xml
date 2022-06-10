@@ -4,7 +4,82 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Notification subscription implemented &#10;Check subscribtion return value (when trigerred by createNotification mutation, or on follow user mutation) in the logs" />
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Notification subscription implemented &#10;Check subscribtion return value (when trigerred by createNotification mutation, or on follow user mutation) in the logs">
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HomeMap/AnimatedTextInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomeMap/AnimatedTextInput.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HomeMap/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomeMap/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/ActivityStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/ActivityStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/AppStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/AppStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/AuthStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/AuthStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/EventStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/EventStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/HomeStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/HomeStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/MapStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/MapStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/MessageStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/MessageStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/ModalStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/ModalStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/ProfileStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/ProfileStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/Providers/ActivityProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Providers/ActivityProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/Providers/AppProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Providers/AppProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/Providers/AuthProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Providers/AuthProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/Providers/EventsProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Providers/EventsProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/Providers/MapProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Providers/MapProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/Providers/ProfileProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Providers/ProfileProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/navigation/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ActivityScreen/ListContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ActivityScreen/ListContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ActivityScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ActivityScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/AddPresenceScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddPresenceScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/AddScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/AllUsersScreen/FollowRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AllUsersScreen/FollowRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/AllUsersScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AllUsersScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ChatScreen/ChatScrollView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ChatScreen/ChatScrollView.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ChatScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ChatScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/ButtonContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/ButtonContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/CodeContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/CodeContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/Title.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/Title.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/DescriptionScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/DescriptionScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/EditProfileScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/EditProfileScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/EventScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/EventScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/FollowersScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/FollowersScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/FollowingScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/FollowingScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ForgotPasswordScreen/ButtonContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ForgotPasswordScreen/ButtonContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ForgotPasswordScreen/CodeContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ForgotPasswordScreen/CodeContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ForgotPasswordScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ForgotPasswordScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/MapScreen/Loading.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/MapScreen/Loading.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/MapScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/MapScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/MapSearchScreen/SearchBarPlaces.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/MapSearchScreen/SearchBarPlaces.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/MapSearchScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/MapSearchScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/OldEditProfileScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OldEditProfileScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/OtherProfileScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OtherProfileScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/PlaceSearchScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PlaceSearchScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/PlaceSearchUpdate/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/PlaceSearchUpdate/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ProfileScreen/BottomSheetProfile.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ProfileScreen/BottomSheetProfile.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ProfileScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ProfileScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ProfileScreenV2/index 2.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ProfileScreenV2/index 2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ProfileScreenV2/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ProfileScreenV2/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/QuickAddScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/QuickAddScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SetNewPasswordScreen/ButtonContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SetNewPasswordScreen/ButtonContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SetNewPasswordScreen/CodeContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SetNewPasswordScreen/CodeContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SetNewPasswordScreen/ConfirmPasswordContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SetNewPasswordScreen/ConfirmPasswordContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SetNewPasswordScreen/PasswordContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SetNewPasswordScreen/PasswordContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SetNewPasswordScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SetNewPasswordScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SetProfileScreen/ButtonContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SetProfileScreen/ButtonContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SetProfileScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SetProfileScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SignInScreenEmail/Title.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignInScreenEmail/Title.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SignInScreenEmail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignInScreenEmail/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SignInScreenSocial/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignInScreenSocial/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/AgreementContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/AgreementContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/ConfirmContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/ConfirmContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/Title.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/Title.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SignUpScreenSocial/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignUpScreenSocial/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/UpdateEventScreen/DescriptionContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UpdateEventScreen/DescriptionContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/UpdateEventScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UpdateEventScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/UserSearchScreen/FollowRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UserSearchScreen/FollowRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/UserSearchScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UserSearchScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/FollowRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/FollowRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/index.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -30,6 +105,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
     <option name="ROOT_SYNC" value="DONT_SYNC" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="1yTBIwjAMaNbwXw0VnTNMYiwfvg" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -37,26 +115,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
-    <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/brianmoyou/Documents/Expo/BallerMapMVP",
+    "nodejs_package_manager_path": "yarn",
+    "ts.external.directory.path": "/Users/brianmoyou/Documents/Expo/BallerMapMVP/node_modules/typescript/lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/amplify/backend/function" />
       <recent name="$PROJECT_DIR$/src/grahql" />
       <recent name="$PROJECT_DIR$/src/graphql" />
-      <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$" />
     </key>
   </component>
@@ -74,6 +147,7 @@
       <workItem from="1634157120118" duration="70235000" />
       <workItem from="1634948198886" duration="52152000" />
       <workItem from="1635622783015" duration="7338000" />
+      <workItem from="1654865740548" duration="145000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -224,7 +298,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen" />
@@ -247,14 +320,8 @@
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/App.js</url>
-          <line>8</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/graphql/mutations.js</url>
           <line>179</line>
-          <properties lambdaOrdinal="-1" />
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

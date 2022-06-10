@@ -21,7 +21,7 @@ import { useTheme } from "react-native-paper";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useAuth } from "../../navigation/Providers/AuthProvider";
 
 export default function Title() {
   return (

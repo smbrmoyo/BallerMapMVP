@@ -10,7 +10,7 @@ import "react-native-gesture-handler";
 
 import React, { useState } from "react";
 import { LogBox, Appearance } from "react-native";
-import Providers from "./src/components/navigation/index";
+import Providers from "./src/navigation/index";
 import Amplify from "aws-amplify";
 import config from "./src/aws-exports";
 import useCachedResources from "./src/Hooks/useCachedResources";

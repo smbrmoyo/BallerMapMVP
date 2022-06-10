@@ -5,7 +5,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
 
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useAuth } from "../../navigation/Providers/AuthProvider";
 import { deleteAccount } from "../../aws-functions/userFunctions";
 import styles from "./styles";
 

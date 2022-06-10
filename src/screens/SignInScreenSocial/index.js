@@ -24,7 +24,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTheme } from "react-native-paper";
 import * as AppleAuthentication from "expo-apple-authentication";
 
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useAuth } from "../../navigation/Providers/AuthProvider";
 import { windowHeight, windowWidth } from "../../utils/Dimensions";
 
 const SignInScreenSocial = ({ navigation, props }) => {

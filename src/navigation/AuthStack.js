@@ -1,16 +1,16 @@
 import "react-native-gesture-handler";
 
 import React, { useState, useEffect } from "react";
-import ConfirmSignUpScreen from "../../screens/ConfirmSignUpScreen";
-import SignInScreenEmail from "../../screens/SignInScreenEmail";
-import SignInScreenSocial from "../../screens/SignInScreenSocial";
-import SignUpScreenEmail from "../../screens/SignUpScreenEmail";
-import SignUpScreenSocial from "../../screens/SignUpScreenSocial";
-import OnboardingScreen from "../../screens/OnboardingScreen";
-import SetNewPasswordScreen from "../../screens/SetNewPasswordScreen";
-import SetProfileScreen from "../../screens/SetProfileScreen";
-import ForgotPasswordScreen from "../../screens/ForgotPasswordScreen";
-import { hsize, wsize } from "../../utils/Dimensions";
+import ConfirmSignUpScreen from "../screens/ConfirmSignUpScreen";
+import SignInScreenEmail from "../screens/SignInScreenEmail";
+import SignInScreenSocial from "../screens/SignInScreenSocial";
+import SignUpScreenEmail from "../screens/SignUpScreenEmail";
+import SignUpScreenSocial from "../screens/SignUpScreenSocial";
+import OnboardingScreen from "../screens/OnboardingScreen";
+import SetNewPasswordScreen from "../screens/SetNewPasswordScreen";
+import SetProfileScreen from "../screens/SetProfileScreen";
+import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
+import { hsize, wsize } from "../utils/Dimensions";
 import { useAuth } from "./Providers/AuthProvider";
 
 import { createStackNavigator } from "@react-navigation/stack";

@@ -11,7 +11,7 @@ import {
 import { MaterialIcons, Ionicons, Entypo } from "@expo/vector-icons";
 import styles from "./styles";
 import { hsize, wsize } from "../../utils/Dimensions";
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useAuth } from "../../navigation/Providers/AuthProvider";
 import { getEvent } from "../../aws-functions/eventFunctions";
 import ButtonContainer from "./ButtonContainer";
 import ParticipantsContainer from "./ParticipatnsContainer";

@@ -23,7 +23,7 @@ import styles from "./styles";
 import SearchBarFollowers from "./SearchBarFollowers";
 import FollowRow from "./FollowRow";
 import { hsize, wsize } from "../../utils/Dimensions";
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useAuth } from "../../navigation/Providers/AuthProvider";
 
 const FollowersScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(true);

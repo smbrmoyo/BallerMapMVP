@@ -41,8 +41,8 @@ import {
   onCreateUserConnection,
   onDeleteUserConnection,
 } from "../../graphql/subscriptions";
-import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useProfile } from "../../navigation/Providers/ProfileProvider";
+import { useAuth } from "../../navigation/Providers/AuthProvider";
 
 //render function
 

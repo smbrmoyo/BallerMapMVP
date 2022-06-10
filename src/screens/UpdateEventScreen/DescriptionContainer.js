@@ -38,9 +38,9 @@ import styles from "./styles";
 import {
   useAuth,
   getUprofile,
-} from "../../components/navigation/Providers/AuthProvider";
+} from "../../navigation/Providers/AuthProvider";
 import { getPlacesList } from "../../aws-functions/placeFunctions";
-import { useMap } from "../../components/navigation/Providers/MapProvider";
+import { useMap } from "../../navigation/Providers/MapProvider";
 import { wsize, hsize } from "../../utils/Dimensions";
 import places from "../../assets/data/places";
 import Entypo from "react-native-vector-icons/Entypo";
