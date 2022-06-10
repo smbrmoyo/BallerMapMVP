@@ -56,14 +56,18 @@ export default function ProfileContainer(props) {
         </TouchableOpacity>
 
         <View style={styles.profileFollowedBy}>
-          <Text style={styles.textInfo}>Followed by </Text>
+          <Text style={styles.textInfo}>
+            {followers.length >= 1 ? "Followed by" : null}
+          </Text>
           <Text
             //multiline={true}
             ellipsizeMode="tail"
             numberOfLines={1}
             style={{ fontSize: wsize(12), fontWeight: "bold", width: "80%" }}
           >
-            {followers.length >= 1 ? followers[0].follower.username : null}
+            {followers.length >= 1
+              ? "Followed by " + followers[0].follower.username
+              : null}
             {followers.length == 2
               ? " and " + followers[1].follower.username
               : null}
@@ -90,59 +94,40 @@ export default function ProfileContainer(props) {
         </View>
 
         <View style={styles.userInfoWrapper}>
-          <View
+          <TouchableOpacity
             style={{
+              backgroundColor: props.isFollowing ? "white" : "#743cff",
               borderWidth: 1,
               borderColor: "#E9E8E8",
               borderRadius: 5,
               height: 30,
-              width: 100,
+              width: "100%",
               alignItems: "center",
               justifyContent: "center",
             }}
+            activeOpacity={0.7}
+            onPress={props.onFollowPress}
           >
-            <Text
-              style={{
-                fontSize: 20,
-              }}
-            >
-              Message
-            </Text>
-          </View>
-          <TouchableOpacity activeOpacity={0.7} onPress={props.onFollowPress}>
-            <View
-              style={{
-                backgroundColor: props.isFollowing ? "white" : "#743cff",
-                borderWidth: 1,
-                borderColor: "#E9E8E8",
-                borderRadius: 5,
-                height: 30,
-                width: 100,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              {props.followLoading ? (
-                <ActivityIndicator
-                  /*style={{
+            {props.followLoading ? (
+              <ActivityIndicator
+                /*style={{
                   position: "absolute",
                   bottom: hsize(150),
                   alignSelf: "center",
                 }}*/
-                  size="small"
-                  color="#743cff"
-                />
-              ) : (
-                <Text
-                  style={{
-                    fontSize: 20,
-                    color: props.isFollowing ? "black" : "white",
-                  }}
-                >
-                  {props.isFollowing ? "Following" : "Follow"}
-                </Text>
-              )}
-            </View>
+                size="small"
+                color="#743cff"
+              />
+            ) : (
+              <Text
+                style={{
+                  fontSize: 20,
+                  color: props.isFollowing ? "black" : "white",
+                }}
+              >
+                {props.isFollowing ? "Following" : "Follow"}
+              </Text>
+            )}
           </TouchableOpacity>
         </View>
       </View>
@@ -150,7 +135,7 @@ export default function ProfileContainer(props) {
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => {
-            props.setCurrentTab(props.events);
+            props.setCurrentTab("myEvents");
             props._scrollView.current.scrollTo({ x: -width });
           }}
           style={{ alignItems: "center", flex: 2 }}
@@ -158,21 +143,21 @@ export default function ProfileContainer(props) {
           <Feather
             name="list"
             size={23}
-            color={props.currentTab === props.events ? "black" : "grey"}
+            color={props.currentTab === "myEvents" ? "black" : "grey"}
           />
         </TouchableOpacity>
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => {
             props._scrollView.current.scrollTo({ x: width });
-            props.setCurrentTab(props.attending);
+            props.setCurrentTab("attending");
           }}
           style={{ alignItems: "center", flex: 2 }}
         >
           <Ionicons
             name="at-outline"
             size={26}
-            color={props.currentTab === props.attending ? "black" : "grey"}
+            color={props.currentTab === "attending" ? "black" : "grey"}
           />
         </TouchableOpacity>
       </View>

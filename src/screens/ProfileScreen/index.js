@@ -24,27 +24,12 @@ import MyEventsTab from "./MyEventsTab";
 import AttendingTab from "./AttendingTab";
 import styles from "./styles";
 
-import { API, graphqlOperation } from "aws-amplify";
-import {
-  onCreateUserConnection,
-  onDeleteUserConnection,
-  onUpdateUprofile,
-  onCreateUserEventConnection,
-  onDeleteUserEventConnection,
-} from "../../graphql/subscriptions";
-import { getUprofileDoc } from "../../aws-functions/userFunctions";
-
-let followers = undefined;
-let updatedProfile = undefined;
-let newEvents = undefined;
-
 const ProfileScreen = ({ navigation, route }) => {
   const { width, height } = Dimensions.get("window");
   const tabs = {
     events: "myEvents",
     attending: "attending",
   };
-  const list = [{ id: "1" }, { id: "2" }];
   bsProf = useRef(null);
   fall = useRef(new Animated.Value(1)).current;
   const [isFollowing, setIsFollowing] = useState(false);
@@ -52,109 +37,12 @@ const ProfileScreen = ({ navigation, route }) => {
   const _scrollView = useRef(null);
   const { signOut, user, yourEvents } = useAuth();
   const { profileDoc, setProfileDoc } = useProfile();
-  const [myEvents, setMyEvents] = useState([]);
-  const { events, attending } = tabs;
-  const [currentTab, setCurrentTab] = useState(events);
+  const [currentTab, setCurrentTab] = useState("myEvents");
   const isFocused = useIsFocused();
 
   useEffect(() => {
     profileDoc != undefined ? setLoading(false) : null;
   }, [profileDoc]);
-
-  const onPageRendered = async () => {
-    //await subscribeToRemoveFollower(profileDoc, loggedUser);
-    //await subscribeToAddFollower(profileDoc, loggedUser);
-    //await subscribeToUpdateProfile(profileDoc, user);
-    //await subscribeToDeleteEvent(profileDoc, loggedUser);
-    //await subscribeToAddEvent(profileDoc, loggedUser);
-  };
-
-  const subscribeToRemoveFollower = async (profileDocument, loggedUser) => {
-    await API.graphql(graphqlOperation(onDeleteUserConnection)).subscribe({
-      next: async ({ value }) => {
-        try {
-          const profileId =
-            profileDocument !== null ? profileDocument.id : user;
-          if (value.data.onDeleteUserConnection.followedID == profileId) {
-            console.log("unfollowed");
-            await updateFollowers(profileId);
-          } else {
-            console.log("user not related to this follow");
-          }
-        } catch (e) {
-          console.warn(e);
-        }
-      },
-      error: (error) => console.log(error),
-    });
-  };
-
-  const subscribeToAddFollower = async (profileDocument, loggedUser) => {
-    await API.graphql(
-      graphqlOperation(onCreateUserConnection, { id: user })
-    ).subscribe({
-      next: async ({ value }) => {
-        try {
-          const profileId =
-            profileDocument !== null ? profileDocument.id : user;
-          if (value.data.onCreateUserConnection.followedID == profileId) {
-            console.log("followed");
-            //await updateFollowers(profileId);
-          } else {
-            console.log("user not related to this follow");
-          }
-        } catch (e) {
-          console.warn(e);
-        }
-      },
-      error: (error) => console.log(error, " here"),
-    });
-  };
-
-  const updateFollowers = async (userId) => {
-    let response = await getUprofileDoc(userId);
-    followers = response.followers.items;
-  };
-
-  const subscribeToDeleteEvent = async (profileDocument, loggedUser) => {
-    await API.graphql(graphqlOperation(onDeleteUserEventConnection)).subscribe({
-      next: async ({ value }) => {
-        try {
-          const profileId =
-            profileDocument !== null ? profileDocument.id : user;
-          if (value.data.onDeleteUserEventConnection.profileID == profileId) {
-            console.log("removeEvent");
-            await updateEvents(profileId);
-          } else {
-            console.log("event not related to this user");
-          }
-        } catch (e) {
-          console.warn(e);
-        }
-      },
-      error: (error) => console.log(error, " here"),
-    });
-  };
-
-  const subscribeToAddEvent = async (profileDocument, loggedUser) => {
-    await API.graphql(graphqlOperation(onCreateUserEventConnection)).subscribe({
-      next: async ({ value }) => {
-        try {
-          const profileId =
-            profileDocument !== null ? profileDocument.id : user;
-          if (value.data.onCreateUserEventConnection.profileID == profileId) {
-            console.log("subscription to createEvent");
-            await updateEvents(profileId);
-          } else {
-            console.log("subscription to createEvent failed");
-          }
-        } catch (e) {
-          console.warn(e);
-        }
-      },
-      error: (error) => console.log(error, " here"),
-    });
-  };
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -198,10 +86,6 @@ const ProfileScreen = ({ navigation, route }) => {
     });
   }, [navigation]);
 
-  const onFollowPress = () => {
-    setIsFollowing(!isFollowing);
-  };
-
   const goToFollowing = () => {
     navigation.navigate("Following", {
       following: profileDoc?.following?.items,
@@ -210,8 +94,7 @@ const ProfileScreen = ({ navigation, route }) => {
 
   const goToFollowers = () => {
     navigation.navigate("Followers", {
-      followers:
-        followers != undefined ? followers : profileDoc.followers.items,
+      followers: profileDoc?.followers?.items,
     });
   };
 
@@ -239,12 +122,9 @@ const ProfileScreen = ({ navigation, route }) => {
           >
             <ProfileContainer
               profileDoc={profileDoc}
-              followers={followers}
               goToFollowing={goToFollowing}
               goToFollowers={goToFollowers}
               navigate={navigation.navigate}
-              events={profileDoc?.eventsCreated?.items}
-              attending={profileDoc?.eventsCreated?.items}
               currentTab={currentTab}
               setCurrentTab={setCurrentTab}
               _scrollView={_scrollView}
@@ -277,128 +157,6 @@ const ProfileScreen = ({ navigation, route }) => {
       </TouchableWithoutFeedback>
     </>
   );
-};
-
-const subscribeToRemoveFollower = async (profileDocument, loggedUser) => {
-  await API.graphql(graphqlOperation(onDeleteUserConnection)).subscribe({
-    next: async ({ value }) => {
-      try {
-        const profileId =
-          profileDocument !== null
-            ? profileDocument.id
-            : JSON.parse(loggedUser).email;
-        if (value.data.onDeleteUserConnection.followedID == profileId) {
-          console.log("unfollowed");
-          await updateFollowers(profileId);
-        } else {
-          console.log("user not related to this follow");
-        }
-      } catch (e) {
-        console.warn(e);
-      }
-    },
-    error: (error) => console.log(error),
-  });
-};
-
-const subscribeToAddFollower = async (profileDocument, loggedUser) => {
-  await API.graphql(graphqlOperation(onCreateUserConnection)).subscribe({
-    next: async ({ value }) => {
-      try {
-        const profileId =
-          profileDocument !== null
-            ? profileDocument.id
-            : JSON.parse(loggedUser).email;
-        if (value.data.onCreateUserConnection.followedID == profileId) {
-          console.log("followed");
-          await updateFollowers(profileId);
-        } else {
-          console.log("user not related to this follow");
-        }
-      } catch (e) {
-        console.warn(e);
-      }
-    },
-    error: (error) => console.log(error, " here"),
-  });
-};
-
-const updateFollowers = async (userId) => {
-  let response = await getUprofileDoc(userId);
-  followers = response.followers.items;
-};
-
-const subscribeToUpdateProfile = async (profileDocument, loggedUser) => {
-  await API.graphql(graphqlOperation(onUpdateUprofile, { id: user })).subscribe(
-    {
-      next: async ({ value }) => {
-        try {
-          const profileId =
-            profileDocument !== null
-              ? profileDocument.id
-              : JSON.parse(loggedUser).email;
-          if (value.data.onUpdateUprofile.id == profileId) {
-            console.log("updateProfile");
-            updatedProfile = value.data.onUpdateUprofile;
-          } else {
-            console.log("user not related to this update");
-          }
-        } catch (e) {
-          console.warn(e);
-        }
-      },
-      error: (error) => console.log(error, " here"),
-    }
-  );
-};
-
-const subscribeToDeleteEvent = async (profileDocument, loggedUser) => {
-  await API.graphql(graphqlOperation(onDeleteUserEventConnection)).subscribe({
-    next: async ({ value }) => {
-      try {
-        const profileId =
-          profileDocument !== null
-            ? profileDocument.id
-            : JSON.parse(loggedUser).email;
-        if (value.data.onDeleteUserEventConnection.profileID == profileId) {
-          console.log("removeEvent");
-          await updateEvents(profileId);
-        } else {
-          console.log("event not related to this user");
-        }
-      } catch (e) {
-        console.warn(e);
-      }
-    },
-    error: (error) => console.log(error, " here"),
-  });
-};
-
-const subscribeToAddEvent = async (profileDocument, loggedUser) => {
-  await API.graphql(graphqlOperation(onCreateUserEventConnection)).subscribe({
-    next: async ({ value }) => {
-      try {
-        const profileId =
-          profileDocument !== null
-            ? profileDocument.id
-            : JSON.parse(loggedUser).email;
-        if (value.data.onCreateUserEventConnection.profileID == profileId) {
-          console.log("subscription to createEvent");
-          await updateEvents(profileId);
-        } else {
-          console.log("subscription to createEvent failed");
-        }
-      } catch (e) {
-        console.warn(e);
-      }
-    },
-    error: (error) => console.log(error, " here"),
-  });
-};
-
-const updateEvents = async (userId) => {
-  let response = await getUprofileDoc(userId);
-  newEvents = response.eventsCreated.items;
 };
 
 export default ProfileScreen;
