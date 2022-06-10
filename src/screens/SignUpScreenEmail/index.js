@@ -5,7 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import { hsize, wsize } from "../../utils/Dimensions";
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useAuth } from "../../navigation/Providers/AuthProvider";
 import { useTheme } from "react-native-paper";
 
 import styles from "./styles";

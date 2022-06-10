@@ -15,7 +15,7 @@ import { useTheme } from "@react-navigation/native";
 import LoadingScreen from "../LoadingScreen";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import styles from "./styles";
-import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
+import { useProfile } from "../../navigation/Providers/ProfileProvider";
 import FollowRow from "./FollowRow";
 import SearchBarFollowers from "./SearchBarFollowers";
 import { hsize, wsize } from "../../utils/Dimensions";

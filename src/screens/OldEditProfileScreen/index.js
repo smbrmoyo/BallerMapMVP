@@ -22,9 +22,9 @@ import styles from "./styles";
 import Animated from "react-native-reanimated";
 import BottomSheet from "reanimated-bottom-sheet";
 import { useHeaderHeight } from "@react-navigation/stack";
-import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
+import { useProfile } from "../../navigation/Providers/ProfileProvider";
 //import ImagePicker from "react-native-image-crop-picker";
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useAuth } from "../../navigation/Providers/AuthProvider";
 //import firestore from "@react-native-firebase/firestore";
 //import storage from "@react-native-firebase/storage";
 

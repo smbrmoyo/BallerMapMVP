@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 //import Realm from "realm";
 import { useAuth } from "./AuthProvider";
-import { getFilteredEvents } from "../../../aws-functions/eventFunctions";
+import { getFilteredEvents } from "../../aws-functions/eventFunctions";
 import { useQuery } from "react-query";
 
 export const EventsContext = React.createContext();

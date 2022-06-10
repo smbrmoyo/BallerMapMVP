@@ -1,6 +1,6 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
 import { useAuth } from "./AuthProvider";
-import { getAllNotifications } from "../../../aws-functions/userFunctions";
+import { getAllNotifications } from "../../aws-functions/userFunctions";
 import { Auth, API, graphqlOperation } from "aws-amplify";
 export const ActivityContext = React.createContext(null);
 

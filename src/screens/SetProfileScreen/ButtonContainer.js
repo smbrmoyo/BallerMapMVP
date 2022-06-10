@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text, Alert, TouchableOpacity } from "react-native";
 import * as Haptics from "expo-haptics";
-import { useAppContext } from "../../components/navigation/Providers/AppProvider";
+import { useAppContext } from "../../navigation/Providers/AppProvider";
 
 import {
   createUserDoc,

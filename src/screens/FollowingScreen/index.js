@@ -16,7 +16,7 @@ import LoadingScreen from "../LoadingScreen";
 import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
 import styles from "./styles";
 
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useAuth } from "../../navigation/Providers/AuthProvider";
 import SearchBarFollowers from "./SearchBar";
 import FollowRow from "./FollowRow";
 import { hsize, wsize } from "../../utils/Dimensions";

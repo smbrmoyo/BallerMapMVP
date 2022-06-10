@@ -16,8 +16,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import Animated from "react-native-reanimated";
 import styles from "./styles";
 import BottomSheetEdit from "./BottomSheetEdit";
-import { useProfile } from "../../components/navigation/Providers/ProfileProvider";
-import { useAuth } from "../../components/navigation/Providers/AuthProvider";
+import { useProfile } from "../../navigation/Providers/ProfileProvider";
+import { useAuth } from "../../navigation/Providers/AuthProvider";
 import { wsize, hsize } from "../../utils/Dimensions";
 import Entypo from "react-native-vector-icons/Entypo";
 import PictureContainer from "./PictureContainer";
@@ -140,15 +140,6 @@ const EditProfileScreen = ({ props, navigation, route }) => {
                   validate={validate}
                 />
 
-                <BioContainer
-                  userProfile={userProfile}
-                  setUserProfile={setUserProfile}
-                />
-
-                <WebsiteContainer
-                  userProfile={userProfile}
-                  setUserProfile={setUserProfile}
-                />
                 <ButtonContainer
                   userProfile={userProfile}
                   navigation={navigation}

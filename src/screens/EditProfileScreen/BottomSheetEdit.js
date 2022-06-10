@@ -47,7 +47,7 @@ const BottomSheetEdit = (props) => {
     return Storage.put(filename, img, {
       level: "public",
       // acl: "public-read",
-      expires: new Date("December 31, 2022 22:00:00"),
+      expires: new Date("December 31, 2025 22:00:00"),
       contentType: "image/jpeg",
     })
       .then((response) => {

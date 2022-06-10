@@ -8,11 +8,11 @@ import * as Location from "expo-location";
 import {
   getPlacesList,
   createPlace,
-} from "../../../aws-functions/placeFunctions";
+} from "../../aws-functions/placeFunctions";
 import {
   getAllUserProfiles,
   updateUserProfile,
-} from "../../../aws-functions/userFunctions";
+} from "../../aws-functions/userFunctions";
 import { useAuth, getUprofile } from "./AuthProvider";
 
 export const MapContext = React.createContext();

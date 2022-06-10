@@ -6,11 +6,11 @@ import {
   createUserProfile,
   getUprofileDoc,
   getUserDoc,
-} from "../../../aws-functions/userFunctions";
+} from "../../aws-functions/userFunctions";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { getFilteredEvents } from "../../../aws-functions/eventFunctions";
+import { getFilteredEvents } from "../../aws-functions/eventFunctions";
 
 export const AuthContext = React.createContext(null);
 
