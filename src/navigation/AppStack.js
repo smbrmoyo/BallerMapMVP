@@ -11,7 +11,6 @@ import SetProfileScreen from "../../screens/SetProfileScreen";
 import ModalStack from "./ModalStack";
 import { useAuth } from "./Providers/AuthProvider";
 import LoadingScreen from "../../screens/LoadingScreen/index";
-//import SnapchatStack from "../../../Snapchat";
 import { useState, useEffect } from "react";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import AntDesign from "react-native-vector-icons/AntDesign";
