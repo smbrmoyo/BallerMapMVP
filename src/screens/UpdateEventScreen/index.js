@@ -35,10 +35,7 @@ import LocationContainer from "./LocationContainer";
 import NameContainer from "./NameContainer";
 import StartDateContainer from "./StartDateContainer";
 import TagsContainer from "./TagsContainer";
-import {
-  useAuth,
-  getUprofile,
-} from "../../navigation/Providers/AuthProvider";
+import { useAuth, getUprofile } from "../../navigation/Providers/AuthProvider";
 import { wsize, hsize } from "../../utils/Dimensions";
 import styles from "./styles";
 
@@ -66,16 +63,11 @@ const AddScreen = ({ navigation, route }) => {
     beginningTime: event.beginningTime,
     endingTime: event.endingTime,
     participants: event.participants,
-    //participantsIDs: [],
+    participantsIDs: event.participantsIDs,
   });
 
   useEffect(() => {
-    if (route.params?.participantsIDs !== undefined) {
-      setEventData({
-        ...eventData,
-        participantsIDs: route.params?.participantsIDs,
-      });
-    } else if (route.params?.searchedPlace !== undefined) {
+    if (route.params?.searchedPlace !== undefined) {
       setEventData({
         ...eventData,
         placeID: route.params?.searchedPlace?.id,
@@ -120,6 +112,7 @@ const AddScreen = ({ navigation, route }) => {
             onPress={() =>
               navigation.navigate("UserUpdate", {
                 participants: event.participants,
+                participantsIDs: event.participantsIDs,
               })
             } // Should have a userSearchAddScreen
             style={{ justifyContent: "center" }}
