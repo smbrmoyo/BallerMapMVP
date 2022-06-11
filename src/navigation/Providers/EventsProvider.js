@@ -23,7 +23,7 @@ const EventsProvider = ({ children }) => {
   }, [result.status]);*/
   useEffect(() => {
     getFilteredEvents(user).then((response) => {
-      setEvents(response.data.listEvents.items);
+      setEvents(response);
       setLoading(false);
     });
   }, []);

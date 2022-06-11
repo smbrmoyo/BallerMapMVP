@@ -11,7 +11,7 @@ import UserSearchUpdateScreen from "../screens/UserSearchUpdateScreen";
 import AttendanceScreen from "../screens/AttendanceScreen";
 import PlaceSearchUpdate from "../screens/PlaceSearchUpdate";
 import DescriptionScreen from "../screens/DescriptionScreen";
-import TryStory from "../screens/TryStory";
+import TryScreen from "../screens/TryScreen";
 import OtherProfileScreen from "../screens/OtherProfileScreen";
 import StoryScreen4 from "../screens/StoryScreen4/App";
 
@@ -56,15 +56,6 @@ const ProfileStack = ({ navigation }) => {
           <Stack.Screen
             name="Story"
             component={StoryScreen4}
-            options={({ navigation }) => ({
-              title: "",
-
-              header: () => null,
-            })}
-          />
-          <Stack.Screen
-            name="TryStory"
-            component={TryStory}
             options={({ navigation }) => ({
               title: "",
 

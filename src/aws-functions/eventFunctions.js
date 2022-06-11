@@ -64,6 +64,7 @@ export const getFilteredEvents = async (user) => {
 /**
  * @description create event
  * @param {JSON} eventData object with event fields (name, placeId, beginingTime)
+ * @returns createdEvent
  */
 export const createEvent = async (eventData) => {
   let advance = false;
@@ -77,8 +78,8 @@ export const createEvent = async (eventData) => {
   if (
     !checkName(eventData.name) ||
     !checkLocation(eventData.placeID) ||
-    !checkStart(eventData.begginingTime) ||
-    !checkEnd(eventData.endingTime)
+    !checkStart(eventData.beginningTime) ||
+    !checkEnd(eventData.beginningTime, eventData.endingTime)
   ) {
     return null;
   } else {
@@ -94,11 +95,38 @@ export const createEvent = async (eventData) => {
           description: eventData.description,
           privacy: eventData.privacy,
           status: eventData.status,
+          participantsIDs: eventData.participants,
         },
       })
     )
       .then((result) => {
-        createdEvent = { ...result };
+        createdEvent = {
+          id: result.data.createEvent.id,
+          name: result.data.createEvent.name,
+          creatorID: result.data.createEvent.creatorID,
+          description: result.data.createEvent.description,
+          begginingTime: result.data.createEvent.begginingTime,
+          participantsIDs: result.data.createEvent.participantsIDs,
+          creator: {
+            username: result.data.createEvent.creator.username,
+            id: result.data.createEvent.creator.id,
+            userDocId: result.data.createEvent.creator.userDocId,
+            updatedAt: result.data.createEvent.creator.updatedAt,
+            createdAt: result.data.createEvent.creator.createdAt,
+          },
+          place: {
+            address: result.data.createEvent.place.address,
+            name: result.data.createEvent.place.name,
+            id: result.data.createEvent.place.id,
+            updatedAt: result.data.createEvent.place.updatedAt,
+            createdAt: result.data.createEvent.place.createdAt,
+          },
+          placeID: result.data.createEvent.placeID,
+          status: result.data.createEvent.status,
+          privacy: result.data.createEvent.privacy,
+          updatedAt: result.data.createEvent.updatedAt,
+          createdAt: result.data.createEvent.createdAt,
+        };
         advance = true;
       })
       .catch((error) => {
@@ -123,7 +151,11 @@ export const createEvent = async (eventData) => {
           })
           .catch((err) => {
             console.log(
-              `Error in mutation createUserEventConnection, adding user ${participants[participantID]} to event ${createdEvent.id} -------------> ${err}`
+              `Error in mutation createUserEventConnection, adding user ${
+                participants[participantID]
+              } to event ${createdEvent.id} -------------> ${JSON.stringify(
+                err
+              )}`
             );
           });
 
@@ -176,7 +208,7 @@ export const updateEvent = async (eventData) => {
     !checkName(eventData.name) ||
     !checkLocation(eventData.placeID) ||
     !checkStart(eventData.begginingTime) ||
-    !checkEnd(eventData.endingTime)
+    !checkEnd(eventData.beginningTime, eventData.endingTime)
   ) {
     return null;
   } else {
@@ -195,7 +227,30 @@ export const updateEvent = async (eventData) => {
       })
     )
       .then((result) => {
-        updatedEvent = { ...result };
+        updatedEvent = {
+          id: result.data.updateEvent.id,
+          name: result.data.updateEvent.name,
+          creatorID: result.data.updateEvent.creatorID,
+          description: result.data.updateEvent.description,
+          begginingTime: result.data.updateEvent.begginingTime,
+          creator: {
+            username: result.data.updateEvent.creator.username,
+            id: result.data.updateEvent.creator.id,
+            userDocId: result.data.updateEvent.creator.userDocId,
+            updatedAt: result.data.updateEvent.creator.updatedAt,
+            createdAt: result.data.updateEvent.creator.createdAt,
+          },
+          place: {
+            address: result.data.updateEvent.place.address,
+            name: result.data.updateEvent.place.name,
+            id: result.data.updateEvent.place.id,
+            updatedAt: result.data.updateEvent.place.updatedAt,
+            createdAt: result.data.updateEvent.place.createdAt,
+          },
+          placeID: result.data.updateEvent.placeID,
+          updatedAt: result.data.updateEvent.updatedAt,
+          createdAt: result.data.updateEvent.createdAt,
+        };
         console.log(updatedEvent);
         advance = true;
       })

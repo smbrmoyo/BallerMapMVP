@@ -1,20 +1,10 @@
-// const { createUserDoc } = require("./src/aws-functions/userFunctions");
-
-const { API, graphqlOperation } = require("aws-amplify");
-const mutations = require("./src/graphql/mutations.js");
-
-const createUserDoc = (userData) => {
-  API.graphql(
-    graphqlOperation(mutations.createUserDoc, {
-      input: {
-        email: userData.email,
-      },
-    })
-  );
+let myObject = {
+  name: "Brian",
+  lastName: "Moyou",
+  age: 23,
+  weight: 90,
 };
 
-const userOne = {
-  email: "idiot@gmail.com",
-};
+let newObj = { ...myObject };
 
-createUserDoc(userOne);
+console.log(newObj);
