@@ -1,5 +1,3 @@
-import "react-native-gesture-handler";
-
 import React, { useContext } from "react";
 import ActivityStack from "./ActivityStack";
 import MessageStack from "./MessageStack";
@@ -68,16 +66,6 @@ const Tab = createBottomTabNavigator();
 const AppStack = (route, props) => {
   const [notifPermission, setNotifPermission] = useState();
   const { isPdoc, loadingProfileDoc } = useAppContext();
-
-  useEffect(() => {
-    console.log("<------------- APPSTACK ---------------->");
-    /*if(isPDoc) {
-        initialRouteName = "Map";
-    }else {
-        initialRouteName = "SetProfile"
-    }*/
-    return () => {};
-  }, []);
 
   console.log("      isPDoc est:", isPdoc);
 

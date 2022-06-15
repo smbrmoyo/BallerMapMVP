@@ -1,5 +1,3 @@
-import "react-native-gesture-handler";
-
 import React, { useState, useEffect } from "react";
 import ConfirmSignUpScreen from "../screens/ConfirmSignUpScreen";
 import SignInScreenEmail from "../screens/SignInScreenEmail";

@@ -1,10 +1,7 @@
-import "react-native-gesture-handler";
-
 import React, { useState, useEffect } from "react";
 import { PermissionsAndroid, StatusBar, View } from "react-native";
 import HomeScreen from "../screens/HomeScreen";
 import AddScreen from "../screens/AddScreen";
-import FindScreen from "../screens/FindScreen";
 import StoryScreen from "../screens/StoryScreen";
 import Push from "../../Notifications";
 import OtherProfileScreen from "../screens/OtherProfileScreen";

@@ -19,7 +19,6 @@ import {
   connectSearchBox,
   connectRange,
 } from "react-instantsearch-native";
-import Stats from "./Stats";
 import Highlight from "./Highlight";
 import Spinner from "./Spinner";
 import places from "../../assets/data/places";
@@ -91,10 +90,7 @@ class Filters extends Component {
           searchState={this.state.searchState}
         >
           <ConnectedMenu attribute="name" />
-          <Stats
-            searchState={this.state.searchState}
-            onSearchStateChange={this.onSearchStateChange}
-          />
+
           <VirtualSearchBox />
           <VirtualRefinementList attribute="name" />
         </InstantSearch>

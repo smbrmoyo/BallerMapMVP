@@ -1,5 +1,3 @@
-import "react-native-gesture-handler";
-
 import React from "react";
 import ProfileScreen from "../screens/ProfileScreen";
 import AllUsersScreen from "../screens/AllUsersScreen";

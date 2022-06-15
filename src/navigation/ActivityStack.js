@@ -1,5 +1,3 @@
-import "react-native-gesture-handler";
-
 import React, { useState, useEffect } from "react";
 import { StatusBar, View } from "react-native";
 import ActivityScreen from "../screens/ActivityScreen";

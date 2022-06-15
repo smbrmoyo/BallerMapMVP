@@ -1,12 +1,9 @@
-import "react-native-gesture-handler";
-
 import React, { useState, useEffect } from "react";
 import { StatusBar, View } from "react-native";
 import MessageScreen from "../screens/MessageScreen";
 import ChatScreen from "../screens/ChatScreen";
 import StoryScreen from "../screens/StoryScreen";
 import AddChatScreen from "../screens/AddChatScreen";
-import FindScreen from "../screens/FindScreen";
 import OtherProfileScreen from "../screens/OtherProfileScreen";
 import MessageSearchScreen from "../screens/MessageSearchScreen";
 import Ionicons from "react-native-vector-icons/Ionicons";

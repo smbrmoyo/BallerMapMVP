@@ -26,7 +26,6 @@ import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplet
 import { useRoute, useNavigation } from "@react-navigation/native";
 import { useHeaderHeight } from "@react-navigation/stack";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import DatePicker from "react-native-date-picker";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import * as Haptics from "expo-haptics";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -35,10 +34,7 @@ import PlaceRow from "./PlaceRow";
 import ProfilePicture from "../../components/ProfilePictureUser";
 import Bitmoji from "../../components/Bitmoji";
 import styles from "./styles";
-import {
-  useAuth,
-  getUprofile,
-} from "../../navigation/Providers/AuthProvider";
+import { useAuth, getUprofile } from "../../navigation/Providers/AuthProvider";
 import { getPlacesList } from "../../aws-functions/placeFunctions";
 import { useMap } from "../../navigation/Providers/MapProvider";
 import { wsize, hsize } from "../../utils/Dimensions";
