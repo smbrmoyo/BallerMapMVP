@@ -1,15 +1,10 @@
-import { Auth, API, graphqlOperation, DataStore, JS } from "aws-amplify";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {API, Auth, graphqlOperation} from "aws-amplify";
 
-import {
-  checkName,
-  checkUsername,
-  checkBio,
-} from "../screens/SetProfileScreen/helpers";
+import {checkName, checkUsername} from "../screens/SetProfileScreen/helpers";
 import * as mutations from "../graphql/mutations";
 import * as queries from "../graphql/queries";
 
-/*
+/**
  * =============================================================================
  *                                  QUERIES
  * =============================================================================
@@ -303,7 +298,8 @@ const createUserEventConnection = async (eventConnection) => {
   }
 };
 
-/*Next mutation should be deleteAccount
+/**
+ * Next mutation should be deleteAccount
  * We would delete userDoc, profileDoc and removeItem AsyncStorage("profileCreated to false")
  */
 
