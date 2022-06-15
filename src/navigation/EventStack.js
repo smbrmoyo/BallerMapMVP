@@ -1,5 +1,3 @@
-import "react-native-gesture-handler";
-
 import React from "react";
 import EventScreen from "../screens/EventScreen";
 import DescriptionScreen from "../screens/DescriptionScreen";
@@ -12,7 +10,7 @@ import { hsize, wsize } from "../utils/Dimensions";
 
 const Stack = createStackNavigator();
 
-const ProfileStack = ({ navigation }) => {
+const EventStack = ({ navigation }) => {
   let routeName;
 
   return (
@@ -26,4 +24,4 @@ const ProfileStack = ({ navigation }) => {
   );
 };
 
-export default ProfileStack;
+export default EventStack;

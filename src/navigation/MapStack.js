@@ -1,9 +1,6 @@
-import "react-native-gesture-handler";
-
 import React, { useState, useEffect } from "react";
 import { PermissionsAndroid, StatusBar, View } from "react-native";
 import MapScreen from "../screens/MapScreen";
-import FindScreen from "../screens/FindScreen";
 import StoryScreen from "../screens/StoryScreen";
 import SetProfileScreen from "../screens/SetProfileScreen";
 import PlaceSearchScreen from "../screens/PlaceSearchScreen";
@@ -32,9 +29,6 @@ const Stack = createStackNavigator();
 const MapStack = (props) => {
   const [profileCreated, setProfileCreated] = useState(null);
   let routeName = "Map";
-  useEffect(() => {
-    console.log("<------------- MAPSTACK ---------------->");
-  }, []);
 
   return (
     <MapProvider>

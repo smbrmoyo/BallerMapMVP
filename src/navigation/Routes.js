@@ -13,10 +13,6 @@ import AppProvider from "./Providers/AppProvider";
 const Routes = (props) => {
   const { user, loadingUser } = useAuth();
 
-  useEffect(() => {
-    console.log("<------------- Routes ---------------->");
-  });
-
   return (
     <NavigationContainer
       theme={props.themeColor == "dark" ? DarkTheme : DefaultTheme}
