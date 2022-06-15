@@ -9,29 +9,25 @@ import UserSearchUpdateScreen from "../screens/UserSearchUpdateScreen";
 import AttendanceScreen from "../screens/AttendanceScreen";
 import PlaceSearchUpdate from "../screens/PlaceSearchUpdate";
 import DescriptionScreen from "../screens/DescriptionScreen";
-import TryScreen from "../screens/TryScreen";
 import OtherProfileScreen from "../screens/OtherProfileScreen";
 import StoryScreen4 from "../screens/StoryScreen4/App";
 
-import { createStackNavigator } from "@react-navigation/stack";
-import UserSearchScreen from "../screens/UserSearchScreen";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { ProfileProvider } from "./Providers/ProfileProvider";
 import { MapProvider } from "./Providers/MapProvider";
-import { useAuth } from "./Providers/AuthProvider";
-import { hsize, wsize } from "../utils/Dimensions";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const ProfileStack = ({ navigation }) => {
   let routeName;
 
   /*if (createdDocs == null) {
-    return null;
-  } else if (createdDocs == false) {
-    routeName = "SetProfile";
-  } else {
-    routeName = "Profile";
-  }*/
+      return null;
+    } else if (createdDocs == false) {
+      routeName = "SetProfile";
+    } else {
+      routeName = "Profile";
+    }*/
 
   return (
     <MapProvider>

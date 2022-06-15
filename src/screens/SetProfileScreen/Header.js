@@ -1,15 +1,7 @@
-import React, {
-  useContext,
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect,
-} from "react";
-import { View, Text, Dimensions } from "react-native";
-import { useHeaderHeight } from "@react-navigation/stack";
-import * as Haptics from "expo-haptics";
+import React from "react";
+import { Dimensions, Text, View } from "react-native";
 import styles from "./styles";
-import { wsize, hsize } from "../../utils/Dimensions";
+import { hsize } from "../../utils/Dimensions";
 
 export default function Header(props) {
   const { width, height } = Dimensions.get("window");

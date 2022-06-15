@@ -1,31 +1,26 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
-  View,
+  Alert,
+  Keyboard,
+  KeyboardAvoidingView,
+  Platform,
+  StatusBar,
   Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  KeyboardAvoidingView,
-  Keyboard,
-  TextInput,
-  Platform,
-  StyleSheet,
-  StatusBar,
-  Alert,
+  View,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
 import { LinearGradient } from "expo-linear-gradient";
-import { useHeaderHeight } from "@react-navigation/stack";
+import { useHeaderHeight } from "@react-navigation/elements";
 import { useRoute } from "@react-navigation/native";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Feather from "react-native-vector-icons/Feather";
 import styles from "./styles";
 import SocialButton from "../../components/SocialButton";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTheme } from "react-native-paper";
 import * as AppleAuthentication from "expo-apple-authentication";
 
 import { useAuth } from "../../navigation/Providers/AuthProvider";
-import { windowHeight, windowWidth } from "../../utils/Dimensions";
+import { windowHeight } from "../../utils/Dimensions";
 
 const SignInScreenSocial = ({ navigation, props }) => {
   const { signIn } = useAuth();
@@ -35,21 +30,21 @@ const SignInScreenSocial = ({ navigation, props }) => {
   const route = useRoute();
 
   /* useEffect(() => {
-    if (error) {
-      Alert.alert("Invalid credentials, try again");
-      console.log(error);
-    }
-  }, [error]);
-
-  if (data) {
-    // save token
-    AsyncStorage.setItem("token", data.signIn.token).then(() => {
-      // redirect home
-      //navigation.navigate("Home");
-      setUser(data.signIn.user);
-      //console.log(data.signIn.token);
-    });
-  }*/
+      if (error) {
+        Alert.alert("Invalid credentials, try again");
+        console.log(error);
+      }
+    }, [error]);
+  
+    if (data) {
+      // save token
+      AsyncStorage.setItem("token", data.signIn.token).then(() => {
+        // redirect home
+        //navigation.navigate("Home");
+        setUser(data.signIn.user);
+        //console.log(data.signIn.token);
+      });
+    }*/
 
   const onSubmit = () => {
     signIn({ variables: { email, password } });

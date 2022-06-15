@@ -1,16 +1,14 @@
-import React, { useState, useRef, useLayoutEffect, useEffect } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
-  View,
-  Text,
+  Keyboard,
   SafeAreaView,
-  StatusBar,
   ScrollView,
+  StatusBar,
+  Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  Keyboard,
+  View,
 } from "react-native";
-import { useHeaderHeight } from "@react-navigation/stack";
-import { useTheme } from "@react-navigation/native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 import Animated from "react-native-reanimated";
@@ -18,19 +16,13 @@ import styles from "./styles";
 import BottomSheetEdit from "./BottomSheetEdit";
 import { useProfile } from "../../navigation/Providers/ProfileProvider";
 import { useAuth } from "../../navigation/Providers/AuthProvider";
-import { wsize, hsize } from "../../utils/Dimensions";
+import { hsize } from "../../utils/Dimensions";
 import Entypo from "react-native-vector-icons/Entypo";
 import PictureContainer from "./PictureContainer";
-import BioContainer from "./BioContainer";
 import UsernameContainer from "./UsernameContainer";
-import WebsiteContainer from "./WebsiteContainer";
 import ButtonContainer from "./ButtonContainer";
 import { API, graphqlOperation } from "aws-amplify";
 import { onUpdateUprofile } from "../../graphql/subscriptions";
-import {
-  getUprofileDoc,
-  updateUserProfile,
-} from "../../aws-functions/userFunctions";
 
 const EditProfileScreen = ({ props, navigation, route }) => {
   const { user } = useAuth();

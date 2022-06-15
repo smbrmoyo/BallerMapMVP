@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { PermissionsAndroid, StatusBar, View } from "react-native";
+import React, {useState} from "react";
 import MapScreen from "../screens/MapScreen";
-import StoryScreen from "../screens/StoryScreen";
 import SetProfileScreen from "../screens/SetProfileScreen";
 import PlaceSearchScreen from "../screens/PlaceSearchScreen";
 import MapSearchScreen from "../screens/MapSearchScreen";
@@ -13,22 +11,17 @@ import UserSearchScreen from "../screens/UserSearchScreen";
 import DescriptionScreen from "../screens/DescriptionScreen";
 import OtherProfileScreen from "../screens/OtherProfileScreen";
 import AddPresenceScreen from "../screens/AddPresenceScreen";
-import Probe from "../screens/Probe";
-import { MapProvider } from "./Providers/MapProvider";
-import { useAuth } from "./Providers/AuthProvider";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import Entypo from "react-native-vector-icons/Entypo";
-import { hsize, wsize } from "../utils/Dimensions";
-import { createStackNavigator } from "@react-navigation/stack";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {MapProvider} from "./Providers/MapProvider";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
 //import Geolocation from '@react-native-community/geolocation';
 //navigator.geolocation = require('@react-native-community/geolocation');
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const MapStack = (props) => {
   const [profileCreated, setProfileCreated] = useState(null);
   let routeName = "Map";
+  console.log("In the MapStack");
 
   return (
     <MapProvider>
@@ -50,7 +43,14 @@ const MapStack = (props) => {
             header: () => null,
           })}
         />
-        <Stack.Screen name="Add" component={AddScreen} />
+        <Stack.Screen
+          name="Add"
+          component={AddScreen}
+          options={({ navigation }) => ({
+            title: "",
+            tabBarStyle: { display: "none" },
+          })}
+        />
         <Stack.Screen name="UpdateEvent" component={UpdateEventScreen} />
         <Stack.Screen name="AddPresence" component={AddPresenceScreen} />
         <Stack.Screen name="UserSearch" component={UserSearchScreen} />

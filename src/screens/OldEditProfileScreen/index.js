@@ -1,17 +1,14 @@
-import React, { useEffect, useContext, useState, useRef } from "react";
+import React, {useEffect, useRef, useState} from "react";
 //import Realm from "realm";
 import {
-  View,
-  Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  ImageBackground,
-  Keyboard,
-  KeyboardAvoidingView,
-  TextInput,
-  ScrollView,
-  StyleSheet,
-  Alert,
+    ImageBackground,
+    Keyboard,
+    KeyboardAvoidingView,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    TouchableWithoutFeedback,
+    View,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
@@ -21,10 +18,8 @@ import FormButton from "../../components/FormButton";
 import styles from "./styles";
 import Animated from "react-native-reanimated";
 import BottomSheet from "reanimated-bottom-sheet";
-import { useHeaderHeight } from "@react-navigation/stack";
-import { useProfile } from "../../navigation/Providers/ProfileProvider";
+import {useHeaderHeight} from "@react-navigation/elements";
 //import ImagePicker from "react-native-image-crop-picker";
-import { useAuth } from "../../navigation/Providers/AuthProvider";
 //import firestore from "@react-native-firebase/firestore";
 //import storage from "@react-native-firebase/storage";
 
@@ -42,15 +37,15 @@ const EditProfileScreen = () => {
 
   const getUser = async () => {
     /*const currentUser = await firestore()
-      .collection("users")
-      .doc(user.uid)
-      .get()
-      .then((documentSnapshot) => {
-        if (documentSnapshot.exists) {
-          console.log("User Data", documentSnapshot.data());
-          setUserData(documentSnapshot.data());
-        }
-      });*/
+          .collection("users")
+          .doc(user.uid)
+          .get()
+          .then((documentSnapshot) => {
+            if (documentSnapshot.exists) {
+              console.log("User Data", documentSnapshot.data());
+              setUserData(documentSnapshot.data());
+            }
+          });*/
   };
 
   const handleUpdate = async () => {
@@ -85,81 +80,81 @@ const EditProfileScreen = () => {
   };
 
   /*const uploadImage = async () => {
-    if (image == null) {
-      return null;
-    }
-    const uploadUri = image;
-    let filename = uploadUri.substring(uploadUri.lastIndexOf("/") + 1);
-
-    // Add timestamp to File Name
-    const extension = filename.split(".").pop();
-    const name = filename.split(".").slice(0, -1).join(".");
-    filename = name + Date.now() + "." + extension;
-
-    setUploading(true);
-    setTransferred(0);
-
-    const storageRef = storage().ref(`photos/${filename}`);
-    const task = storageRef.putFile(uploadUri);
-
-    // Set transferred state
-    task.on("state_changed", (taskSnapshot) => {
-      console.log(
-        `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`
-      );
-
-      setTransferred(
-        Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) *
-          100
-      );
-    });
-
-    try {
-      await task;
-
-      const url = await storageRef.getDownloadURL();
-
-      setUploading(false);
-      setImage(null);
-
-      // Alert.alert(
-      //   'Image uploaded!',
-      //   'Your image has been uploaded to the Firebase Cloud Storage Successfully!',
-      // );
-      return url;
-    } catch (e) {
-      console.log(e);
-      return null;
-    }
-  };*/
+      if (image == null) {
+        return null;
+      }
+      const uploadUri = image;
+      let filename = uploadUri.substring(uploadUri.lastIndexOf("/") + 1);
+  
+      // Add timestamp to File Name
+      const extension = filename.split(".").pop();
+      const name = filename.split(".").slice(0, -1).join(".");
+      filename = name + Date.now() + "." + extension;
+  
+      setUploading(true);
+      setTransferred(0);
+  
+      const storageRef = storage().ref(`photos/${filename}`);
+      const task = storageRef.putFile(uploadUri);
+  
+      // Set transferred state
+      task.on("state_changed", (taskSnapshot) => {
+        console.log(
+          `${taskSnapshot.bytesTransferred} transferred out of ${taskSnapshot.totalBytes}`
+        );
+  
+        setTransferred(
+          Math.round(taskSnapshot.bytesTransferred / taskSnapshot.totalBytes) *
+            100
+        );
+      });
+  
+      try {
+        await task;
+  
+        const url = await storageRef.getDownloadURL();
+  
+        setUploading(false);
+        setImage(null);
+  
+        // Alert.alert(
+        //   'Image uploaded!',
+        //   'Your image has been uploaded to the Firebase Cloud Storage Successfully!',
+        // );
+        return url;
+      } catch (e) {
+        console.log(e);
+        return null;
+      }
+    };*/
 
   /*const takePhotoFromCamera = () => {
-    ImagePicker.openCamera({
-      compressImageMaxWidth: 300,
-      compressImageMaxHeight: 300,
-      cropping: true,
-      compressImageQuality: 0.7,
-    }).then((image) => {
-      console.log(image);
-      const imageUri = Platform.OS === "ios" ? image.sourceURL : image.path;
-      setImage(imageUri);
-      this.bs.current.snapTo(1);
-    });
-  };
-
-  const choosePhotoFromLibrary = () => {
-    ImagePicker.openPicker({
-      width: 300,
-      height: 300,
-      cropping: true,
-      compressImageQuality: 0.7,
-    }).then((image) => {
-      console.log(image);
-      const imageUri = Platform.OS === "ios" ? image.sourceURL : image.path;
-      setImage(imageUri);
-      this.bs.current.snapTo(1);
-    });
-  };*/
+      ImagePicker.openCamera({
+        compressImageMaxWidth: 300,
+        compressImageMaxHeight: 300,
+        cropping: true,
+        compressImageQuality: 0.7,
+      }).then((image) => {
+        console.log(image);
+        const imageUri = Platform.OS === "ios" ? image.sourceURL : image.path;
+        setImage(imageUri);
+        this.bs.current.snapTo(1);
+      });
+    };
+  
+    const choosePhotoFromLibrary = () => {
+      ImagePicker.openPicker({
+        width: 300,
+        height: 300,
+        cropping: true,
+        compressImageQuality: 0.7,
+      }).then((image) => {
+        console.log(image);
+        const imageUri = Platform.OS === "ios" ? image.sourceURL : image.path;
+        setImage(imageUri);
+        this.bs.current.snapTo(1);
+      });
+    };*/
 
   useEffect(() => {
     getUser();
@@ -287,10 +282,10 @@ const EditProfileScreen = () => {
                 autoCorrect={false}
                 autoCapitalize="none"
                 /*value={usernameRef.current ? usernameRef.current : "Puto"}
-                onChangeText={(txt) => {
-                  usernameRef.current = txt;
-                  //this.value = txt;
-                }}*/
+                                onChangeText={(txt) => {
+                                  usernameRef.current = txt;
+                                  //this.value = txt;
+                                }}*/
                 value={modifUsername}
                 onChangeText={(txt) => setModifUsername(txt)}
                 style={styles.textInput}

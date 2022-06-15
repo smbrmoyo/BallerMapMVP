@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Auth } from "aws-amplify";
 import { Alert } from "react-native";
 import {
@@ -9,8 +9,6 @@ import {
 } from "../../aws-functions/userFunctions";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-import { getFilteredEvents } from "../../aws-functions/eventFunctions";
 
 export const AuthContext = React.createContext(null);
 
@@ -62,6 +60,7 @@ const AuthProvider = ({ children }) => {
    *        Sets current user creds in Local storage to signed in user creds on sucess
    */
   const signIn = async (email, password) => {
+    console.log("signing in");
     let res = await Auth.signIn(email, password)
       .then((res) => {
         console.log("      signIn function Success");
@@ -183,14 +182,12 @@ const AuthProvider = ({ children }) => {
       );
       throw "ERREUR de la requête getUserDoc: " + JSON.stringify(error);
     });
-    if (isUserDoc !== null) {
-      // userDoc présent
+    if (isUserDoc != null || isUserDoc != undefined) {
       console.log("   ---User doc trouvé");
       let isProfileDoc = await getUprofileDoc(email).catch((err) => {
         console.log(
           "   ---!!! ERREUR de la requête getUprofileDoc " + JSON.stringify(err)
         );
-        throw "ERREUR de la requête getUprofileDoc " + JSON.stringify(err);
       });
       if (isProfileDoc != null) {
         console.log("   --- Profile utilisateur trouvé");

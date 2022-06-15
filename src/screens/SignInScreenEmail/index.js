@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { View, StatusBar } from "react-native";
+import React, { useEffect, useState } from "react";
+import { StatusBar, View } from "react-native";
 import * as Animatable from "react-native-animatable";
 import * as Location from "expo-location";
-import { useHeaderHeight } from "@react-navigation/stack";
+import { useHeaderHeight } from "@react-navigation/elements";
 import styles from "./styles";
 import { useTheme } from "react-native-paper";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useAuth } from "../../navigation/Providers/AuthProvider";
 import ButtonContainer from "./ButtonContainer";
@@ -22,14 +21,7 @@ const SignInScreenEmail = ({ navigation, props }) => {
 
   useEffect(() => {
     console.log("\n", "<------------- Sign In Screen Email---------------->");
-    AsyncStorage.getItem("firstLaunch").then((value) => {
-      /*if (value == "true") {
-        setNextScreen("SetProfile");
-      }*/
-    }); // Add  error handling
-  }, []);
 
-  useEffect(() => {
     (async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== "granted") {

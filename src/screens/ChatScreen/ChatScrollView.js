@@ -1,27 +1,10 @@
-import React, {
-  useLayoutEffect,
-  useState,
-  useEffect,
-  useContext,
-  useRef,
-} from "react";
-import { Alert, View, Text, FlatList, ScrollView, LogBox } from "react-native";
-import { useHeaderHeight } from "@react-navigation/stack";
+import React, { useRef } from "react";
+import { FlatList, LogBox, Text, View } from "react-native";
 //import * as firebase from "firebase";
 //import firestore from "@react-native-firebase/firestore";
 //import firebase from "@react-native-firebase/app";
 //import auth from "@react-native-firebase/auth";
-import { useAuth } from "../../navigation/Providers/AuthProvider";
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import Entypo from "react-native-vector-icons/Entypo";
-import AntDesign from "react-native-vector-icons/AntDesign";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import ProfilePicture from "../../components/ProfilePictureUser";
-import Bitmoji from "../../components/Bitmoji";
 import styles from "./styles";
-import Footer from "./Footer";
-import { hsize, wsize } from "../../utils/Dimensions";
 
 export default function ChatScrollView(props) {
   const scrollView = useRef();
@@ -34,10 +17,10 @@ export default function ChatScrollView(props) {
         paddingTop: 10,
       }}
       /*={() =>
-        scrollView.current.scrollToEnd({
-          animated: true,
-        })
-      }*/
+              scrollView.current.scrollToEnd({
+                animated: true,
+              })
+            }*/
       style={{
         height: "100%",
         backgroundColor: "white",

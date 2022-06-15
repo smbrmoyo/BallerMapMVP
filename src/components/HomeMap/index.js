@@ -1,35 +1,24 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
-  Dimensions,
+  Alert,
+  Animated,
   Keyboard,
   TouchableWithoutFeedback,
-  Animated,
-  Alert,
-  SafeAreaView,
-  StatusBar,
-  Appearance,
   useWindowDimensions,
-  useColorScheme,
 } from "react-native";
-import * as TaskManager from "expo-task-manager";
-import MapView, { PROVIDER_GOOGLE, Marker, Circle } from "react-native-maps";
-import Geocoder from "react-native-geocoding";
-import { Feather, Ionicons } from "@expo/vector-icons";
-import { useRoute, useNavigation, useTheme } from "@react-navigation/native";
-import { useHeaderHeight } from "@react-navigation/stack";
+import MapView, { Marker, PROVIDER_GOOGLE } from "react-native-maps";
+import { useRoute, useTheme } from "@react-navigation/native";
 import * as Location from "expo-location";
 import haversine from "haversine";
 
 import { mapBlueGreyStyle } from "../../styles/MapStyles";
 import styles from "./styles";
 import BottomSheetMap from "./BottomSheet";
-import { wsize, hsize } from "../../utils/Dimensions";
 import { useMap } from "../../navigation/Providers/MapProvider";
 import AnimatedSearchButton from "./AnimatedSearchButton";
 import AnimatedAddButton from "./AnimatedAddButton";
 import AnimatedTextInput from "./AnimatedTextInput";
 import AnimatedCard from "./AnimatedCard";
-import { getPlace } from "../../graphql/queries";
 
 const HomeMap = (props) => {
   const { height, width } = useWindowDimensions();
@@ -410,17 +399,17 @@ const HomeMap = (props) => {
                 });
               }
               /*route.params
-                ? (createdEvent(), searchedPlace())
-                : _map.current.setCamera({
-                    center: {
-                      latitude: camera?.latitude,
-                      longitude: camera?.longitude,
-                    },
-                    heading: 90,
-                    pitch: 90,
-                    zoom: 18,
-                    altitude: 18,
-                  });*/
+                              ? (createdEvent(), searchedPlace())
+                              : _map.current.setCamera({
+                                  center: {
+                                    latitude: camera?.latitude,
+                                    longitude: camera?.longitude,
+                                  },
+                                  heading: 90,
+                                  pitch: 90,
+                                  zoom: 18,
+                                  altitude: 18,
+                                });*/
             }}
             initialCamera={camera}
           >

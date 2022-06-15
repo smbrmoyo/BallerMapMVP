@@ -1,25 +1,10 @@
-import React, { useContext, useState, useEffect } from "react";
-import {
-  Alert,
-  View,
-  Text,
-  Button,
-  TouchableOpacity,
-  TextInput,
-  StatusBar,
-  KeyboardAvoidingViewBase,
-} from "react-native";
+import React, { useState } from "react";
+import { Alert, StatusBar, Text, TouchableOpacity, View } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { useHeaderHeight } from "@react-navigation/stack";
 import { useRoute } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Feather from "react-native-vector-icons/Feather";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as Haptics from "expo-haptics";
-
-import { hsize, wsize } from "../../utils/Dimensions";
 import { useAuth } from "../../navigation/Providers/AuthProvider";
 import { useTheme } from "react-native-paper";
 import styles from "./styles";
@@ -27,7 +12,6 @@ import Title from "./Title";
 import CodeContainer from "./CodeContainer";
 import ConfirmPasswordContainer from "./ConfirmPasswordContainer";
 import PasswordContainer from "./PasswordContainer";
-import ButtonContainer from "./ButtonContainer";
 
 const SetNewPasswordScreen = ({ navigation }) => {
   const { forgotPasswordSubmit } = useAuth();

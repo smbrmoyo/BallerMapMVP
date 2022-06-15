@@ -1,17 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { PermissionsAndroid, StatusBar, View } from "react-native";
+import React from "react";
 import HomeScreen from "../screens/HomeScreen";
-import AddScreen from "../screens/AddScreen";
-import StoryScreen from "../screens/StoryScreen";
 import Push from "../../Notifications";
 import OtherProfileScreen from "../screens/OtherProfileScreen";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import { createStackNavigator } from "@react-navigation/stack";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
 //import Geolocation from '@react-native-community/geolocation';
 //navigator.geolocation = require('@react-native-community/geolocation');
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const HomeStack = () => {
   let routeName;
