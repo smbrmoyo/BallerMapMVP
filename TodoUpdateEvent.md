@@ -1,0 +1,3 @@
+- ParticipantsIDs done
+- Check if followersIDs == participantID (use func check in searchScreen)
+- if not, do not send new invitation. (aws-eventFuncs)

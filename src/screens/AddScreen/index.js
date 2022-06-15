@@ -61,7 +61,6 @@ const AddScreen = ({ navigation, route }) => {
     creatorID: user,
     tags: [],
     description: "",
-    profileId: "", //should be current authenticated user profile Id
     beginningTime: new Date(),
     endingTime: new Date(),
     privacy: "public",

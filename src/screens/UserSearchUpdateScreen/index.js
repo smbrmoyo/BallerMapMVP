@@ -22,7 +22,9 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
   const { profileDoc } = useProfile();
   const [data, setData] = useState(profileDoc?.following.items); // users should come from uProfile
   const [participants, setParticipants] = useState(route.params?.participants);
-  const [participantsIDs, setParticipantsIDs] = useState([]);
+  const [participantsIDs, setParticipantsIDs] = useState(
+    route.params?.participantsIDs
+  );
   const oldLength = useRef(participants.items.length);
 
   /**

@@ -54,7 +54,7 @@ export default function FollowRow(props) {
                 color: "black",
               }}
             >
-              {props.item?.followed?.name}
+              {props.item?.userProfile?.name}
             </Text>
             <Text
               style={{
@@ -62,7 +62,7 @@ export default function FollowRow(props) {
                 color: "grey",
               }}
             >
-              {props.item?.followed?.username}
+              {props.item?.userProfile?.username}
             </Text>
           </View>
         </View>
@@ -91,7 +91,7 @@ export default function FollowRow(props) {
                 ? (props.setParticipants(helper), setIsAdded(!isAdded))
                 : (setIsAdded(!isAdded),
                   props.setParticipantsIDs([
-                    props.item.followed.id,
+                    props.item.userProfile.id,
                     ...props.participantsIDs,
                   ]));
             }} // Should add to the list of participants
