@@ -1,9 +1,9 @@
-import { Auth, API, graphqlOperation } from "aws-amplify";
+import {API, graphqlOperation} from "aws-amplify";
 
 import * as mutations from "../graphql/mutations";
 import * as queries from "../graphql/queries";
 
-/*
+/**
  * =============================================================================
  *                                  QUERIES
  * =============================================================================
@@ -67,7 +67,7 @@ export const getFilteredPlaces = async (filter, limit) => {
   }
 };
 
-/*
+/**
  * =============================================================================
  *                                  MUTATIONS
  * =============================================================================
