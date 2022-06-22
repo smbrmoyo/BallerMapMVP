@@ -1,16 +1,13 @@
 import React from "react";
 import {
-  StyleSheet,
-  Text,
-  View,
   ActivityIndicator,
   Dimensions,
+  Text,
   TouchableOpacity,
-  FlatList,
+  View,
 } from "react-native";
 import ProfilePicture from "../../components/ProfilePictureUser";
-import { wsize, hsize } from "../../utils/Dimensions";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { wsize } from "../../utils/Dimensions";
 import Entypo from "react-native-vector-icons/Entypo";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import Feather from "react-native-vector-icons/Feather";
@@ -20,8 +17,8 @@ import styles from "./styles";
 
 export default function ProfileContainer(props) {
   const { width, height } = Dimensions.get("window");
-  let followers = props.otherUser?.followers.items;
-  let following = props.otherUser?.following.items;
+  let followers = props.otherUser?.followers?.items;
+  let following = props.otherUser?.following?.items;
 
   let date = new Date(props.otherUser?.createdAt);
   let month = date.toLocaleString("default", { month: "long" });
@@ -65,16 +62,16 @@ export default function ProfileContainer(props) {
             numberOfLines={1}
             style={{ fontSize: wsize(12), fontWeight: "bold", width: "80%" }}
           >
-            {followers.length >= 1
-              ? "Followed by " + followers[0].follower.username
+            {followers?.length >= 1
+              ? "Followed by " + followers[0].follower?.username
               : null}
             {followers.length == 2
-              ? " and " + followers[1].follower.username
+              ? " and " + followers[1].follower?.username
               : null}
-            {followers.length > 2
-              ? ", " + followers[2].follower.username
+            {followers?.length > 2
+              ? ", " + followers[2].follower?.username
               : null}
-            {followers.length > 2 ? " and  others" : null}
+            {followers?.length > 2 ? " and  others" : null}
           </Text>
         </View>
         <View style={styles.userInfoWrapper}>
@@ -111,10 +108,10 @@ export default function ProfileContainer(props) {
             {props.followLoading ? (
               <ActivityIndicator
                 /*style={{
-                  position: "absolute",
-                  bottom: hsize(150),
-                  alignSelf: "center",
-                }}*/
+                                  position: "absolute",
+                                  bottom: hsize(150),
+                                  alignSelf: "center",
+                                }}*/
                 size="small"
                 color="#743cff"
               />

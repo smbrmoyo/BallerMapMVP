@@ -21,7 +21,6 @@ const Stack = createNativeStackNavigator();
 const MapStack = (props) => {
   const [profileCreated, setProfileCreated] = useState(null);
   let routeName = "Map";
-  console.log("In the MapStack");
 
   return (
     <MapProvider>

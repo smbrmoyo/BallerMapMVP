@@ -1,18 +1,7 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  FlatList,
-  TouchableOpacity,
-  TextInput,
-  Animated,
-} from "react-native";
+import React, { useState } from "react";
+import { Animated, Text, TouchableOpacity } from "react-native";
 import { useTheme } from "@react-navigation/native";
-import debounce from "lodash/debounce";
 import { Feather } from "@expo/vector-icons";
-
-import LoadingScreen from "../../screens/LoadingScreen";
 import { hsize, wsize } from "../../utils/Dimensions";
 import { useMap } from "../../navigation/Providers/MapProvider";
 
@@ -88,7 +77,7 @@ export default function AnimatedTextInput(props) {
           activeOpacity={0.7}
           onPress={props.undoAnimate}
         >
-          <Feather name="x" size={20} color="grey" />
+          <Feather name="x" size={24} color="grey" />
         </TouchableOpacity>
       </Animated.View>
     </>

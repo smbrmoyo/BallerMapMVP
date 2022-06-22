@@ -1,10 +1,9 @@
-import React, { useState } from "react";
-import { View, Text, TextInput } from "react-native";
+import React from "react";
+import { Text, TextInput, View } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { Feather } from "@expo/vector-icons";
 
 import styles from "./styles";
-import { wsize, hsize } from "../../utils/Dimensions";
+import { hsize } from "../../utils/Dimensions";
 import { checkName } from "./helpers";
 
 export default function NameContainer(props) {
@@ -31,7 +30,7 @@ export default function NameContainer(props) {
         }}
         placeholder="Give your run a name"
         placeholderTextColor="#CDCDCD"
-        maxLength={20}
+        maxLength={25}
         onEndEditing={(event) =>
           props.setEventData({
             ...props.eventData,

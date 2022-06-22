@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { wsize, hsize } from "../../utils/Dimensions";
+import { hsize, wsize } from "../../utils/Dimensions";
 
 const styles = StyleSheet.create({
   container: {
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     //backgroundColor: 'rgba(0,0,0,0.05)',
     //marginBottom: 15,
-    marginHorizontal: 10,
+    margin: hsize(5),
   },
   postHeaderContainer: {
     flex: 1,

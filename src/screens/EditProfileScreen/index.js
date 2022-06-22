@@ -39,6 +39,7 @@ const EditProfileScreen = ({ props, navigation, route }) => {
       graphqlOperation(onUpdateUprofile, { id: user })
     ).subscribe({
       next: async ({ value }) => {
+        console.log(value.data.onUpdateUprofile);
         setProfileDoc({
           ...profileDoc,
           username: value.data.onUpdateUprofile.username,

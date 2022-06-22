@@ -4,87 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Switched to WebStorm: Patch">
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Migrated to react-navigation v6">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomeMap/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomeMap/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/models/index.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/index.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serviceTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/serviceTest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/HomeMap/AnimatedTextInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomeMap/AnimatedTextInput.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/navigation/AppStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/AppStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/AuthStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/AuthStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/EventStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/EventStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/HomeStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/HomeStack.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/navigation/MapStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/MapStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/MessageStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/MessageStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/ModalStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/ModalStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/ProfileStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/ProfileStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/Providers/AuthProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Providers/AuthProvider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/AddPresenceScreen/EndDateContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddPresenceScreen/EndDateContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/AddPresenceScreen/StartDateContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddPresenceScreen/StartDateContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/AddPresenceScreen/TextInputContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddPresenceScreen/TextInputContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/AddPresenceScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddPresenceScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/AddScreen/NameContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddScreen/NameContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/AddScreen/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddScreen/helpers.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/AddScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ChatScreen/ChatScrollView.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ChatScreen/ChatScrollView.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ChatScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ChatScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/ButtonContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/ButtonContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/CodeContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/CodeContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/Title.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/Title.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ConfirmSignUpScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/CreatePost/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/CreatePost/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/AllUsersScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AllUsersScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/AllUsersScreen/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AllUsersScreen/styles.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/EditProfileScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/EditProfileScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ForgotPasswordScreen/ButtonContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ForgotPasswordScreen/ButtonContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ForgotPasswordScreen/CodeContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ForgotPasswordScreen/CodeContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ForgotPasswordScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ForgotPasswordScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/OldEditProfileScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OldEditProfileScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SetNewPasswordScreen/ButtonContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SetNewPasswordScreen/ButtonContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SetNewPasswordScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SetNewPasswordScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SetProfileScreen/Header.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SetProfileScreen/Header.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SignInScreenEmail/Title.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignInScreenEmail/Title.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SignInScreenEmail/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignInScreenEmail/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SignInScreenSocial/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignInScreenSocial/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/ConfirmContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/ConfirmContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/Title.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/Title.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/SignUpScreenSocial/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignUpScreenSocial/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/StoryScreen2/data.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/StoryScreen2/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/StoryScreen2/indicator.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/StoryScreen2/store.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/StoryScreen2/stories.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/StoryScreen2/story.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/UpdateEventScreen/DescriptionContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UpdateEventScreen/DescriptionContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/OtherProfileScreen/ProfileContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OtherProfileScreen/ProfileContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/OtherProfileScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OtherProfileScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/UpdateEventScreen/LocationContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UpdateEventScreen/LocationContainer.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/UpdateEventScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UpdateEventScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/SnapClone.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/components/CameraButton.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/components/ContactListItem.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/components/DoubleTapHandler.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/components/SendButton.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/components/containers/ContactsList.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/mocks/contacts.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/mocks/example_qr.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/mocks/snaps.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/navigation/CameraStack.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/navigation/ContactsStack.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/navigation/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/redux/actions/contactActions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/redux/actions/mediaActions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/redux/actions/snapsActions.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/redux/reducers/contactsReducer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/redux/reducers/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/redux/reducers/mediaReducer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/redux/reducers/snapsReducer.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/redux/store.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/redux/types/contactTypes.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/redux/types/index.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/redux/types/mediaTypes.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/redux/types/snapTypes.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/views/AddContact.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/views/Camera.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/views/Contacts.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/views/MediaDescription.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/views/MediaEditor.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/views/MediaView.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/src/views/SelectContact.tsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/FollowRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/FollowRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +81,7 @@
     &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;/Users/brianmoyou/Documents/Expo/BallerMapMVP/node_modules/prettier&quot;,
     &quot;rearrange.code.on.save&quot;: &quot;true&quot;,
     &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;ts.external.directory.path&quot;: &quot;/Users/brianmoyou/Documents/Expo/BallerMapMVP/node_modules/typescript/lib&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
@@ -180,7 +117,10 @@
       <workItem from="1655263359059" duration="2305000" />
       <workItem from="1655295377636" duration="2902000" />
       <workItem from="1655298537926" duration="1090000" />
-      <workItem from="1655299652883" duration="2028000" />
+      <workItem from="1655299652883" duration="13800000" />
+      <workItem from="1655855433625" duration="57000" />
+      <workItem from="1655855498869" duration="1806000" />
+      <workItem from="1655859593915" duration="2309000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -329,7 +269,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655255778621</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Migrated to react-navigation v6">
+      <created>1655301889610</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1655301889610</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -359,7 +306,8 @@
     <MESSAGE value="Notification subscription implemented &#10;Check subscribtion return value (when trigerred by createNotification mutation, or on follow user mutation) in the logs" />
     <MESSAGE value="Switched to WebStorm" />
     <MESSAGE value="Switched to WebStorm: Patch" />
-    <option name="LAST_COMMIT_MESSAGE" value="Switched to WebStorm: Patch" />
+    <MESSAGE value="Migrated to react-navigation v6" />
+    <option name="LAST_COMMIT_MESSAGE" value="Migrated to react-navigation v6" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

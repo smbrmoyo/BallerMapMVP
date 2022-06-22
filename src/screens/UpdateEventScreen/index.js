@@ -24,7 +24,7 @@ import NameContainer from "./NameContainer";
 import StartDateContainer from "./StartDateContainer";
 import TagsContainer from "./TagsContainer";
 import { useAuth } from "../../navigation/Providers/AuthProvider";
-import { hsize, wsize } from "../../utils/Dimensions";
+import { hsize } from "../../utils/Dimensions";
 import styles from "./styles";
 
 const AddScreen = ({ navigation, route }) => {
@@ -39,28 +39,16 @@ const AddScreen = ({ navigation, route }) => {
   const [colorBegin, setColorBegin] = useState("#743cff");
   const [colorEnd, setColorEnd] = useState("#743cff");
   const { colors } = useTheme();
-
-  const [eventData, setEventData] = useState({
-    //ToDo: Give him event
-    id: event.id,
-    name: event.name,
-    placeID: event.placeID,
-    placeName: event.place.name, // Will come from event
-    creatorID: user,
-    tags: event.tags,
-    description: event.description,
-    beginningTime: event.beginningTime,
-    endingTime: event.endingTime,
-    participants: event.participants,
-    participantsIDs: event.participantsIDs,
-  });
+  const [eventData, setEventData] = useState(event);
 
   useEffect(() => {
     if (route.params?.searchedPlace !== undefined) {
       setEventData({
         ...eventData,
         placeID: route.params?.searchedPlace?.id,
-        placeName: route.params?.searchedPlace?.name,
+        place: {
+          name: route.params?.searchedPlace?.name,
+        },
       });
     }
   }, [route]);
@@ -95,7 +83,7 @@ const AddScreen = ({ navigation, route }) => {
         </View>
       ),
       headerRight: () => (
-        <View style={{ flexDirection: "row", marginHorizontal: wsize(10) }}>
+        <View style={{ flexDirection: "row", margin: hsize(5) }}>
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() =>

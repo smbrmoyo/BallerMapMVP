@@ -1,24 +1,19 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  ScrollView,
   FlatList,
-  Image,
-  TouchableOpacity,
   SafeAreaView,
-  RefreshControl,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import LoadingScreen from "../LoadingScreen";
-import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 import styles from "./styles";
 import { useProfile } from "../../navigation/Providers/ProfileProvider";
 import FollowRow from "./FollowRow";
 import SearchBarFollowers from "./SearchBarFollowers";
-import { hsize, wsize } from "../../utils/Dimensions";
+import { hsize } from "../../utils/Dimensions";
 import { useAuth } from "../../navigation/Providers/AuthProvider";
 
 const AllUsersScreen = ({ navigation }) => {
@@ -48,9 +43,9 @@ const AllUsersScreen = ({ navigation }) => {
     }
   };
   /*const onChangeTextDebounced = debounce(updateQuery, 1000, {
-    leading: true,
-    trailing: true,
-  });*/
+      leading: true,
+      trailing: true,
+    });*/
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -64,14 +59,14 @@ const AllUsersScreen = ({ navigation }) => {
       //headerTitleAlign: 'left',
       //headerBackTitleVisible: false,
       headerLeft: () => (
-        <TouchableOpacity
-          activeOpacity={0.7}
-          onPress={() => navigation.goBack()}
-        >
-          <View style={styles.iconContainer}>
-            <Entypo name="chevron-thin-left" size={23} color="black" />
-          </View>
-        </TouchableOpacity>
+        <View style={{ flexDirection: "row", margin: hsize(5) }}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            onPress={() => navigation.goBack()}
+          >
+            <Entypo name="chevron-thin-left" size={23} color="#743cff" />
+          </TouchableOpacity>
+        </View>
       ),
       headerTitle: () => (
         <View style={styles.headerTitle}>

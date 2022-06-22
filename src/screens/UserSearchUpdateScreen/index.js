@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
-  Text,
-  View,
   FlatList,
-  TouchableOpacity,
   SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import LoadingScreen from "../LoadingScreen";
@@ -20,12 +20,12 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
   const { colors, dark } = useTheme();
   const [text, setText] = useState("");
   const { profileDoc } = useProfile();
-  const [data, setData] = useState(profileDoc?.following.items); // users should come from uProfile
+  const [data, setData] = useState(profileDoc?.following.items);
   const [participants, setParticipants] = useState(route.params?.participants);
   const [participantsIDs, setParticipantsIDs] = useState(
     route.params?.participantsIDs
   );
-  const oldLength = useRef(participants.items.length);
+  let IDs = route.params?.participantsIDs;
 
   /**
    * Should try updating event by adding new participants to the list
@@ -35,9 +35,24 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
     setData(profileDoc?.following.items);
   }, []);
 
+  const deleteParticipant = (id) => {
+    if (participantsIDs.includes(id)) {
+      //TODO: Try comparing participantsIDs and IDs before taking action
+      IDs.splice(IDs.indexOf(id));
+    }
+  };
+
+  const addParticipant = (id) => {
+    if (!participantsIDs.includes(id)) {
+      IDs.push(id);
+    }
+    setParticipantsIDs(IDs);
+    console.log(participantsIDs);
+  };
+
   const searchFilter = async (text) => {
     if (text) {
-      var newData = users.filter((item) => {
+      var newData = profileDoc?.following.items?.filter((item) => {
         var name = item.name.toLowerCase();
         const filter = text.toLowerCase();
         return name.search(filter) !== -1;
@@ -45,23 +60,20 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
       setData(newData);
       setText(text);
     } else {
-      setData(users);
+      setData(profileDoc?.following.items);
       setText("");
     }
   };
   /*const onChangeTextDebounced = debounce(updateQuery, 1000, {
-    leading: true,
-    trailing: true,
-  });*/
+                                        leading: true,
+                                        trailing: true,
+                                      });*/
 
   const check = () => {
-    console.log("Ids : " + participantsIDs.length);
-    console.log("pants : " + participants.items.length);
-
-    if (participantsIDs.length > 0) console.log("true 1");
-    else if (oldLength.current != participants.items.length)
-      console.log("true 2");
-    else console.log("false");
+    if (participantsIDs.length == IDs.length) {
+      return false;
+    }
+    return true;
   };
 
   useLayoutEffect(() => {
@@ -146,7 +158,9 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
               participants={participants}
               setParticipants={setParticipants}
               participantsIDs={participantsIDs}
-              setParticipantsIDs={setParticipantsIDs}
+              IDs={IDs}
+              deleteParticipant={deleteParticipant}
+              addParticipant={addParticipant}
               navigation={navigation}
             />
           )}

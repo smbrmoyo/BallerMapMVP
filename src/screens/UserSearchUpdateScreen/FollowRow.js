@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { Text, View, TouchableOpacity, ActivityIndicator } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, Text, TouchableOpacity, View } from "react-native";
 import ProfilePicture from "../../components/ProfilePictureUser";
-import { wsize, hsize } from "../../utils/Dimensions";
-import debounce from "lodash/debounce";
+import { hsize, wsize } from "../../utils/Dimensions";
 import { Feather } from "@expo/vector-icons";
 import styles from "./styles";
-import { useMap } from "../../navigation/Providers/MapProvider";
 
 export default function FollowRow(props) {
   const [isAdded, setIsAdded] = useState(false);
@@ -18,7 +16,7 @@ export default function FollowRow(props) {
     for (let i = 0; i < props.participants.items.length; i++) {
       if (
         props.participants.items[i].userProfile.id == props.item.followed.id &&
-        !props.participantsIDs.includes(
+        props.participantsIDs.includes(
           props.participants.items[i].userProfile.id
         )
       ) {
@@ -41,7 +39,10 @@ export default function FollowRow(props) {
             alignItems: "center",
           }}
         >
-          <ProfilePicture size={50} />
+          <ProfilePicture
+            uri={props.item?.followed?.profilePicture}
+            size={50}
+          />
           <View
             style={{
               flexDirection: "column",
@@ -54,7 +55,7 @@ export default function FollowRow(props) {
                 color: "black",
               }}
             >
-              {props.item?.userProfile?.name}
+              {props.item?.followed?.name}
             </Text>
             <Text
               style={{
@@ -62,7 +63,7 @@ export default function FollowRow(props) {
                 color: "grey",
               }}
             >
-              {props.item?.userProfile?.username}
+              {props.item?.followed?.username}
             </Text>
           </View>
         </View>
@@ -83,22 +84,15 @@ export default function FollowRow(props) {
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => {
-              const helper = props.participants.items.filter(
-                (element) => element.userProfile.id != props.item.followed.id
-              );
-              console.log(helper);
-              isAdded
-                ? (props.setParticipants(helper), setIsAdded(!isAdded))
-                : (setIsAdded(!isAdded),
-                  props.setParticipantsIDs([
-                    props.item.userProfile.id,
-                    ...props.participantsIDs,
-                  ]));
-            }} // Should add to the list of participants
+              !isAdded
+                ? (setIsAdded(!isAdded),
+                  props.addParticipant(props.item?.followed?.id))
+                : null;
+            }}
           >
             {loading ? (
               <ActivityIndicator size="small" color="#743cff" />
-            ) : isAdded == true ? (
+            ) : isAdded ? (
               <Feather name="check" size={30} color="#743cff" />
             ) : (
               <Feather name="plus" size={30} color="black" />
