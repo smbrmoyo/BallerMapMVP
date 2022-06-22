@@ -299,18 +299,51 @@ const createUserEventConnection = async (eventConnection) => {
 };
 
 /**
- * Next mutation should be deleteAccount
- * We would delete userDoc, profileDoc and removeItem AsyncStorage("profileCreated to false")
+ * @description delete user
+ * @param {JSON} profileDoc
  */
 
-export const deleteAccount = async (id) => {
+export const deleteAccount = async (profileDoc) => {
   let advance = false;
+
+  for (let connection of profileDoc?.followers?.items) {
+    try {
+      await API.graphql(
+        graphqlOperation(mutations.deleteUserConnection, {
+          input: {
+            id: connection.id,
+          },
+        })
+      );
+    } catch (error) {
+      console.log(
+        `Error deleting userConnection ${connection.id} while deleting account:`,
+        error
+      );
+    }
+  }
+  for (let connection of profileDoc?.following?.items) {
+    try {
+      await API.graphql(
+        graphqlOperation(mutations.deleteUserConnection, {
+          input: {
+            id: connection.id,
+          },
+        })
+      );
+    } catch (error) {
+      console.log(
+        `Error deleting userConnection ${connection.id} while deleting account:`,
+        error
+      );
+    }
+  }
 
   try {
     await API.graphql(
       graphqlOperation(mutations.deleteUprofile, {
         input: {
-          id: id,
+          id: profileDoc.id,
         },
       })
     ).then((response) => {
@@ -325,7 +358,7 @@ export const deleteAccount = async (id) => {
       await API.graphql(
         graphqlOperation(mutations.deleteUserDoc, {
           input: {
-            id: id,
+            id: profileDoc.id,
           },
         })
       );
@@ -334,16 +367,10 @@ export const deleteAccount = async (id) => {
     }
 
     try {
-      await Auth.currentAuthenticatedUser().then((user) => {
-        user.deleteUser((error, data) => {
-          if (error) {
-            throw error;
-          }
-          Auth.signOut({ global: true });
-        });
-      });
+      const result = await Auth.deleteUser();
+      console.log(result);
     } catch (error) {
-      console.log("Error deleting user:", error);
+      console.log("Error deleting user", error);
     }
   }
 };
