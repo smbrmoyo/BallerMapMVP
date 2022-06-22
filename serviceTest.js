@@ -1,10 +1,3 @@
-let myObject = {
-  name: "Brian",
-  lastName: "Moyou",
-  age: 23,
-  weight: 90,
-};
+let myString = "Hello World";
 
-let newObj = { ...myObject };
-
-console.log(newObj);
+console.log(myString.length);

@@ -1,38 +1,24 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Alert,
-  View,
-  Text,
-  Button,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  KeyboardAvoidingView,
-  Keyboard,
-  Dimensions,
-  TextInput,
-  Platform,
-  StyleSheet,
-  ScrollView,
   StatusBar,
-  KeyboardAvoidingViewBase,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import * as Animatable from "react-native-animatable";
-import { useHeaderHeight } from "@react-navigation/stack";
 import { useRoute } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import Feather from "react-native-vector-icons/Feather";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import * as Haptics from "expo-haptics";
 
-import { hsize, wsize } from "../../utils/Dimensions";
+import { hsize } from "../../utils/Dimensions";
 import { useAuth } from "../../navigation/Providers/AuthProvider";
 import { useTheme } from "react-native-paper";
 import styles from "./styles";
 import Title from "./Title";
-import CodeContainer from "./CodeContainer";
-import ButtonContainer from "./ButtonContainer";
 
 const ConfirmSignUpScreen = ({ navigation }) => {
   const { confirmSignUp, resendConfirmationCode } = useAuth();

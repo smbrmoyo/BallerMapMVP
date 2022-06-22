@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { StatusBar, View } from "react-native";
+import React from "react";
 import AddChatScreen from "../screens/AddChatScreen";
 import MessageStack from "./MessageStack";
 import MessageSearchScreen from "../screens/MessageSearchScreen";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import { createStackNavigator } from "@react-navigation/stack";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const ModalStack = ({ navigation }) => {
   let routeName;

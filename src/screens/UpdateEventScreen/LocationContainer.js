@@ -1,9 +1,9 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import * as Animatable from "react-native-animatable";
 
 import styles from "./styles";
-import { wsize, hsize } from "../../utils/Dimensions";
+import { hsize } from "../../utils/Dimensions";
 import { checkLocation } from "../AddScreen/helpers";
 
 export default function LocationContainer(props) {
@@ -37,28 +37,18 @@ export default function LocationContainer(props) {
               elevation: 2,
             }}
           >
-            {props.eventData.placeName == props.event?.place.name ? (
-              <Text
-                style={{
-                  color: "black",
-                }}
-              >
-                {props.event?.place.name}
-              </Text>
-            ) : (
-              <Text
-                style={{
-                  color: "black",
-                }}
-              >
-                {props.eventData.placeName}
-              </Text>
-            )}
+            <Text
+              style={{
+                color: "black",
+              }}
+            >
+              {props.eventData.place.name}
+            </Text>
           </View>
         </TouchableOpacity>
       </View>
       {props.check ? (
-        checkLocation(props.eventData.placeName) ? null : (
+        checkLocation(props.eventData.place.name) ? null : (
           <Animatable.View animation="fadeInLeft" duration={500}>
             <Text style={styles.errorMsg}>Your run must have an address.</Text>
           </Animatable.View>

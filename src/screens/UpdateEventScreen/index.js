@@ -1,32 +1,20 @@
-import React, {
-  useContext,
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect,
-} from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
-  View,
-  Text,
-  TextInput,
+  Keyboard,
   SafeAreaView,
-  StatusBar,
-  Alert,
-  Image,
   ScrollView,
-  Dimensions,
+  StatusBar,
+  Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  KeyboardAvoidingView,
-  Keyboard,
+  View,
 } from "react-native";
-import { useHeaderHeight } from "@react-navigation/stack";
+import { useHeaderHeight } from "@react-navigation/elements";
 import { useTheme } from "@react-navigation/native";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Entypo from "react-native-vector-icons/Entypo";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { DataStore } from "aws-amplify";
 
 import ButtonContainer from "./ButtonContainer";
 import DescriptionContainer from "./DescriptionContainer";
@@ -35,8 +23,8 @@ import LocationContainer from "./LocationContainer";
 import NameContainer from "./NameContainer";
 import StartDateContainer from "./StartDateContainer";
 import TagsContainer from "./TagsContainer";
-import { useAuth, getUprofile } from "../../navigation/Providers/AuthProvider";
-import { wsize, hsize } from "../../utils/Dimensions";
+import { useAuth } from "../../navigation/Providers/AuthProvider";
+import { hsize } from "../../utils/Dimensions";
 import styles from "./styles";
 
 const AddScreen = ({ navigation, route }) => {
@@ -51,27 +39,16 @@ const AddScreen = ({ navigation, route }) => {
   const [colorBegin, setColorBegin] = useState("#743cff");
   const [colorEnd, setColorEnd] = useState("#743cff");
   const { colors } = useTheme();
-
-  const [eventData, setEventData] = useState({
-    id: event.id,
-    name: event.name,
-    placeID: event.placeID,
-    placeName: event.place.name, // Will come from event
-    creatorID: user,
-    tags: event.tags,
-    description: event.description,
-    beginningTime: event.beginningTime,
-    endingTime: event.endingTime,
-    participants: event.participants,
-    participantsIDs: event.participantsIDs,
-  });
+  const [eventData, setEventData] = useState(event);
 
   useEffect(() => {
     if (route.params?.searchedPlace !== undefined) {
       setEventData({
         ...eventData,
         placeID: route.params?.searchedPlace?.id,
-        placeName: route.params?.searchedPlace?.name,
+        place: {
+          name: route.params?.searchedPlace?.name,
+        },
       });
     }
   }, [route]);
@@ -106,7 +83,7 @@ const AddScreen = ({ navigation, route }) => {
         </View>
       ),
       headerRight: () => (
-        <View style={{ flexDirection: "row", marginHorizontal: wsize(10) }}>
+        <View style={{ flexDirection: "row", margin: hsize(5) }}>
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() =>

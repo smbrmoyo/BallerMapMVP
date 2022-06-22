@@ -45,8 +45,6 @@ type PlaceMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
-<<<<<<< Updated upstream
-=======
 type UserPlaceConnectionMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
@@ -55,7 +53,6 @@ type UserDocMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
->>>>>>> Stashed changes
 export declare class Uprofile {
   readonly id: string;
   readonly username: string;
@@ -100,10 +97,7 @@ export declare class UserEventConnection {
 export declare class Event {
   readonly id: string;
   readonly name: string;
-<<<<<<< Updated upstream
-=======
   readonly placeID: string;
->>>>>>> Stashed changes
   readonly beginningTime: string;
   readonly endingTime: string;
   readonly tags?: (string | null)[];

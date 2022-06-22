@@ -1,41 +1,26 @@
-import React, {
-  useContext,
-  useState,
-  useRef,
-  useEffect,
-  useLayoutEffect,
-} from "react";
+import React, {useEffect, useLayoutEffect, useState,} from "react";
 import {
-  View,
-  Text,
-  TextInput,
+  Keyboard,
   SafeAreaView,
-  StatusBar,
-  Alert,
-  Image,
   ScrollView,
-  Dimensions,
+  StatusBar,
+  Text,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  KeyboardAvoidingView,
-  Keyboard,
+  View,
 } from "react-native";
-import { useHeaderHeight } from "@react-navigation/stack";
+import {useHeaderHeight} from "@react-navigation/elements";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import {KeyboardAwareScrollView} from "react-native-keyboard-aware-scroll-view";
 import Entypo from "react-native-vector-icons/Entypo";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import { DataStore } from "aws-amplify";
 
 import ButtonContainer from "./ButtonContainer";
 import EndDateContainer from "./EndDateContainer";
 import StartDateContainer from "./StartDateContainer";
 import TextInputContainer from "./TextInputContainer";
-import {
-  useAuth,
-  getUprofile,
-} from "../../navigation/Providers/AuthProvider";
-import { wsize, hsize } from "../../utils/Dimensions";
+import {useAuth} from "../../navigation/Providers/AuthProvider";
+import {hsize, wsize} from "../../utils/Dimensions";
 import styles from "./styles";
 
 //navigator.geolocation = require("@react-native-community/geolocation");

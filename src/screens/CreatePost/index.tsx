@@ -1,25 +1,12 @@
-import React, { useState, useLayoutEffect, createRef, useRef } from "react";
-import {
-  Dimensions,
-  Text,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Alert,
-  Button,
-} from "react-native";
+import React, { useLayoutEffect, useRef, useState } from "react";
+import { Dimensions, TouchableOpacity, View } from "react-native";
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 import { Video } from "expo-av";
-import { useRoute, useNavigation } from "@react-navigation/native";
-import {
-  Ionicons,
-  Fontisto,
-  MaterialIcons,
-  MaterialCommunityIcons,
-} from "@expo/vector-icons";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import { Ionicons, MaterialIcons } from "@expo/vector-icons";
 
-import { wsize, hsize } from "../../utils/Dimensions";
+import { hsize, wsize } from "../../utils/Dimensions";
 import Indicator from "./ActivityIndicator";
 import styles from "./styles";
 import DoubleTapHandler from "./DoubleTapHandler";
@@ -51,7 +38,6 @@ const Review = ({ video }) => {
           uri: video.uri,
         }}
         shouldPlay={true}
-        resizeMode="cover"
         isLooping
         style={{
           width: "100%",
@@ -136,7 +122,7 @@ const VideoRecord = () => {
 
   const [hasCameraPermission, setHasCameraPermission] = useState(null);
   const [video, setVideo] = useState(null);
-  const [type, setType] = useState(Camera.Constants.Type.back);
+  const [type, setType] = useState(Camera.Constants.Type.big);
   const [recording, setRecording] = useState(false);
   const [ReviewVideo, setReviewVideo] = useState(false);
   const camera = useRef(null);
@@ -189,14 +175,14 @@ const VideoRecord = () => {
         useDelta={300}
         onDoubleTap={() => {
           setType(
-            type === Camera.Constants.Type.back
-              ? Camera.Constants.Type.front
-              : Camera.Constants.Type.back
+            type === Camera.Constants.Type.big()
+              ? Camera.Constants.Type.big
+              : Camera.Constants.Type.big
           );
         }}
       >
         <View style={{ flex: 1 }}>
-          <Camera style={{ flex: 1 }} type={type} ref={camera}>
+          <Camera style={{ flex: 1 }} ref={camera}>
             <TouchableOpacity
               onPress={() => {
                 navigation.goBack();
@@ -233,9 +219,9 @@ const VideoRecord = () => {
               <TouchableOpacity
                 onPress={() => {
                   setType(
-                    type === Camera.Constants.Type.back
-                      ? Camera.Constants.Type.front
-                      : Camera.Constants.Type.back
+                    type === Camera.Constants.Type.big()
+                      ? Camera.Constants.Type.big()
+                      : Camera.Constants.Type.big()
                   );
                 }}
               >

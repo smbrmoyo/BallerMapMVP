@@ -3,12 +3,10 @@ import EventScreen from "../screens/EventScreen";
 import DescriptionScreen from "../screens/DescriptionScreen";
 import AttendanceScreen from "../screens/AttendanceScreen";
 
-import { createStackNavigator } from "@react-navigation/stack";
-import UserSearchScreen from "../screens/UserSearchScreen";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { EventsProvider } from "./Providers/EventsProvider";
-import { hsize, wsize } from "../utils/Dimensions";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const EventStack = ({ navigation }) => {
   let routeName;

@@ -1,48 +1,21 @@
-import React, {
-  useContext,
-  useState,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-} from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Image,
-  Button,
-  Dimensions,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  StatusBar,
-  FlatList,
-} from "react-native";
+import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
+import {Dimensions, ScrollView, StatusBar, Text, TouchableOpacity, TouchableWithoutFeedback, View,} from "react-native";
 import Animated from "react-native-reanimated";
-import { useIsFocused, useRoute } from "@react-navigation/native";
-import { useQuery } from "react-query";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import {useIsFocused, useRoute} from "@react-navigation/native";
 import Entypo from "react-native-vector-icons/Entypo";
-import { API, graphqlOperation } from "aws-amplify";
+import {API, graphqlOperation} from "aws-amplify";
 
 import MyEventsTab from "./MyEventsTab";
 import AttendingTab from "./AttendingTab";
 import BottomSheetOther from "./BottomSheetOther";
 import ProfileContainer from "./ProfileContainer";
 import Loading from "./Loading";
-import { wsize, hsize } from "../../utils/Dimensions";
+import {hsize} from "../../utils/Dimensions";
 import styles from "./styles";
-import {
-  createUserConnection,
-  getUprofileDoc,
-  deleteUserConnection,
-} from "../../aws-functions/userFunctions";
-import {
-  onCreateUserConnection,
-  onDeleteUserConnection,
-} from "../../graphql/subscriptions";
-import { useProfile } from "../../navigation/Providers/ProfileProvider";
-import { useAuth } from "../../navigation/Providers/AuthProvider";
+import {createUserConnection, deleteUserConnection, getUprofileDoc,} from "../../aws-functions/userFunctions";
+import {onCreateUserConnection, onDeleteUserConnection,} from "../../graphql/subscriptions";
+import {useProfile} from "../../navigation/Providers/ProfileProvider";
+import {useAuth} from "../../navigation/Providers/AuthProvider";
 
 //render function
 
@@ -64,8 +37,8 @@ const OtherProfileScreen = ({ navigation }) => {
   const isFocused = useIsFocused();
 
   /*useEffect(() => {
-    //userAPI.getUserInfo(user.uid).then((doc) => setUserExstraInfo(doc.data()));
-  }, [isFocused]);*/
+                //userAPI.getUserInfo(user.uid).then((doc) => setUserExstraInfo(doc.data()));
+              }, [isFocused]);*/
 
   useEffect(() => {
     for (let i = 0; i < profileDoc?.following.items.length; i++) {
@@ -188,14 +161,10 @@ const OtherProfileScreen = ({ navigation }) => {
     !isFollowing
       ? createUserConnection(input)
           .then(() => setIsFollowing(!isFollowing))
-          .catch((error) =>
-            console.log("   Error onPress follow " + JSON.stringify(error))
-          )
+          .catch((error) => console.log(JSON.stringify(error)))
       : deleteUserConnection(input)
           .then(() => setIsFollowing(!isFollowing))
-          .catch((error) =>
-            console.log("   Error onPress unfollow " + JSON.stringify(error))
-          );
+          .catch((error) => console.log(JSON.stringify(error)));
   };
 
   const goToFollowing = () => {

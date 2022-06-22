@@ -1,41 +1,24 @@
-import React, {
-  useLayoutEffect,
-  useState,
-  useEffect,
-  useContext,
-  useRef,
-} from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
   Alert,
-  View,
-  Text,
-  Button,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  KeyboardAvoidingView,
-  Keyboard,
-  TextInput,
-  Platform,
   LogBox,
+  SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { useHeaderHeight } from "@react-navigation/stack";
+import { useHeaderHeight } from "@react-navigation/elements";
 //import * as firebase from "firebase";
 //import firestore from "@react-native-firebase/firestore";
 //import firebase from "@react-native-firebase/app";
 //import auth from "@react-native-firebase/auth";
 import { useAuth } from "../../navigation/Providers/AuthProvider";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import SimpleLineIcons from "react-native-vector-icons/SimpleLineIcons";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import Entypo from "react-native-vector-icons/Entypo";
-import AntDesign from "react-native-vector-icons/AntDesign";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import ProfilePicture from "../../components/ProfilePictureUser";
-import Bitmoji from "../../components/Bitmoji";
 import styles from "./styles";
-import { hsize, wsize } from "../../utils/Dimensions";
+import { hsize } from "../../utils/Dimensions";
 import ChatScrollView from "./ChatScrollView";
 import Footer from "./Footer";
 
@@ -131,34 +114,34 @@ const ChatScreen = ({ data, size, navigation, route }) => {
   const sendMessage = () => {
     //Keyboard.dismiss();
     /*firebase
-      .firestore()
-      .collection("chats")
-      .doc(route.params.id)
-      .collection("messages")
-      .add({
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        message: input,
-        email: firebase.auth().currentUser.email,
-      });*/
+          .firestore()
+          .collection("chats")
+          .doc(route.params.id)
+          .collection("messages")
+          .add({
+            timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            message: input,
+            email: firebase.auth().currentUser.email,
+          });*/
     setInput("");
   };
 
   useEffect(() => {
     /*const unsubscribe = firebase
-      .firestore()
-      .collection("chats")
-      .doc(route.params.id)
-      .collection("message")
-      .orderBy("timestamp", "desc")
-      .onSnapshot((snapshot) =>
-        setMessages(
-          snapshot.docs.map((doc) => ({
-            id: doc.id,
-            data: doc.data(),
-          }))
-        )
-      );
-    return unsubscribe;*/
+          .firestore()
+          .collection("chats")
+          .doc(route.params.id)
+          .collection("message")
+          .orderBy("timestamp", "desc")
+          .onSnapshot((snapshot) =>
+            setMessages(
+              snapshot.docs.map((doc) => ({
+                id: doc.id,
+                data: doc.data(),
+              }))
+            )
+          );
+        return unsubscribe;*/
   }, [route]);
 
   LogBox.ignoreAllLogs();

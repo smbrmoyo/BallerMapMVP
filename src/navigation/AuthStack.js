@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useEffect, useState} from "react";
 import ConfirmSignUpScreen from "../screens/ConfirmSignUpScreen";
 import SignInScreenEmail from "../screens/SignInScreenEmail";
 import SignInScreenSocial from "../screens/SignInScreenSocial";
@@ -6,17 +6,15 @@ import SignUpScreenEmail from "../screens/SignUpScreenEmail";
 import SignUpScreenSocial from "../screens/SignUpScreenSocial";
 import OnboardingScreen from "../screens/OnboardingScreen";
 import SetNewPasswordScreen from "../screens/SetNewPasswordScreen";
-import SetProfileScreen from "../screens/SetProfileScreen";
 import ForgotPasswordScreen from "../screens/ForgotPasswordScreen";
-import { hsize, wsize } from "../utils/Dimensions";
-import { useAuth } from "./Providers/AuthProvider";
+import {useAuth} from "./Providers/AuthProvider";
 
-import { createStackNavigator } from "@react-navigation/stack";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 //import Geolocation from '@react-native-community/geolocation';
 //navigator.geolocation = require('@react-native-community/geolocation');
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const AuthStack = ({ navigation, route }) => {
   const [isLoading, setIsLoading] = useState(true);

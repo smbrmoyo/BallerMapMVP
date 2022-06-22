@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { StatusBar, View } from "react-native";
+import React from "react";
 import MessageScreen from "../screens/MessageScreen";
 import ChatScreen from "../screens/ChatScreen";
 import StoryScreen from "../screens/StoryScreen";
 import AddChatScreen from "../screens/AddChatScreen";
 import OtherProfileScreen from "../screens/OtherProfileScreen";
 import MessageSearchScreen from "../screens/MessageSearchScreen";
-import Ionicons from "react-native-vector-icons/Ionicons";
-import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { hsize, wsize } from "../utils/Dimensions";
+import { hsize } from "../utils/Dimensions";
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 /*const MessageNonModal = ({ navigation, route }) => {
   let routeName;
@@ -82,11 +78,11 @@ const MessageStack = ({ navigation, route }) => {
           title: "",
           header: () => null,
           /*headerStyle: {
-            backgroundColor: "white",
-            //shadowColor: "black",
-            //elevation: 5,
-            height: hsize(80),
-          },*/
+                      backgroundColor: "white",
+                      //shadowColor: "black",
+                      //elevation: 5,
+                      height: hsize(80),
+                    },*/
         })}
       />
       <Stack.Screen
@@ -97,11 +93,11 @@ const MessageStack = ({ navigation, route }) => {
           title: "",
           header: () => null,
           /*headerStyle: {
-            backgroundColor: "white",
-            //shadowColor: "black",
-            //elevation: 5,
-            height: hsize(80),
-          },*/
+                      backgroundColor: "white",
+                      //shadowColor: "black",
+                      //elevation: 5,
+                      height: hsize(80),
+                    },*/
         })}
       />
       <Stack.Screen
@@ -123,11 +119,11 @@ const MessageStack = ({ navigation, route }) => {
         options={({ navigation, route }) => ({
           title: "",
           /*headerStyle: {
-            backgroundColor: "#f9fafd",
-            shadowColor: "black",
-            elevation: 5,
-            height: 100,
-          },*/
+                      backgroundColor: "#f9fafd",
+                      shadowColor: "black",
+                      elevation: 5,
+                      height: 100,
+                    },*/
           header: () => null,
         })}
       />
