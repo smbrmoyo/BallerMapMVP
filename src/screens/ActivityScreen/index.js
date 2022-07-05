@@ -1,33 +1,21 @@
-import React, { useState, useLayoutEffect, useEffect } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import {
-  View,
-  Text,
   SafeAreaView,
   StatusBar,
+  Text,
   TouchableOpacity,
+  View,
 } from "react-native";
-import { AppLoading } from "expo";
-import debounce from "lodash/debounce";
-import { useNavigation, useRoute, useTheme } from "@react-navigation/native";
-import Bitmoji from "../../components/Bitmoji";
 import styles from "./styles";
 import Loading from "./Loading";
 import ListContainer from "./ListContainer";
 import NewDataContainer from "./NewDataContainer";
-import ProfilePicture from "../../components/ProfilePictureUser";
-import { wsize, hsize } from "../../utils/Dimensions";
+import { hsize } from "../../utils/Dimensions";
 import { useActivity } from "../../navigation/Providers/ActivityProvider";
-import LoadingScreen from "../../screens/LoadingScreen";
 
 const ActivityScreen = ({ navigation }) => {
   const { loadingNotif, activity } = useActivity();
   const [newData, setNewData] = useState(false);
-
-  useEffect(() => {
-    console.log("<------------- ACTIVITYSCREEN ---------------->");
-    // Will check if notifs are loaded and set loading to false
-    // Will compare updated data with old data and set newData to true
-  }, []);
 
   useLayoutEffect(() => {
     navigation.setOptions({

@@ -100,7 +100,7 @@ export const getAllNotifications = async (user) => {
   }
 };
 
-/*
+/**
  * =============================================================================
  *                                  MUTATIONS
  * =============================================================================
@@ -240,7 +240,7 @@ export const createUserConnection = async (userConnectionData) => {
     await API.graphql(
       graphqlOperation(mutations.createNotification, {
         input: {
-          profileID: userConnection.followedID,
+          profileID: userConnection.followerID,
           type: "newFollower",
           body: `${userConnection.follower.username} followed you`,
         },

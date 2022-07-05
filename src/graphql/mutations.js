@@ -145,6 +145,7 @@ export const createNotification = /* GraphQL */ `
       photo
       profileID
       type
+      eventId
       uProfile {
         createdAt
         currentPlaceID

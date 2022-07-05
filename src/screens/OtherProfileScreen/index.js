@@ -1,7 +1,7 @@
 import React, {useEffect, useLayoutEffect, useRef, useState} from "react";
 import {Dimensions, ScrollView, StatusBar, Text, TouchableOpacity, TouchableWithoutFeedback, View,} from "react-native";
 import Animated from "react-native-reanimated";
-import {useIsFocused, useRoute} from "@react-navigation/native";
+import {useRoute} from "@react-navigation/native";
 import Entypo from "react-native-vector-icons/Entypo";
 import {API, graphqlOperation} from "aws-amplify";
 
@@ -34,12 +34,10 @@ const OtherProfileScreen = ({ navigation }) => {
   const [currentTab, setCurrentTab] = useState("myEvents");
   const [isFollowing, setIsFollowing] = useState(false);
   const [followLoading, setFollowLoading] = useState(true);
-  const isFocused = useIsFocused();
-
-  /*useEffect(() => {
-                //userAPI.getUserInfo(user.uid).then((doc) => setUserExstraInfo(doc.data()));
-              }, [isFocused]);*/
-
+  const [count, setCount] = useState({
+    followers: profileDoc?.followers.items.length,
+    following: profileDoc?.following.items.length,
+  });
   useEffect(() => {
     for (let i = 0; i < profileDoc?.following.items.length; i++) {
       if (profileDoc?.following.items[i].followedID == otherUser?.id) {
