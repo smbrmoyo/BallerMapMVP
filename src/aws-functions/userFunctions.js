@@ -227,7 +227,7 @@ export const createUserConnection = async (userConnectionData) => {
   )
     .then((res) => {
       advance = true;
-      userConnection = { ...res };
+      userConnection = { ...res.data.createUserConnection };
     })
     .catch((error) => {
       console.log(
@@ -237,24 +237,19 @@ export const createUserConnection = async (userConnectionData) => {
     });
 
   if (advance) {
-    await API.graphql(
-      graphqlOperation(mutations.createNotification, {
-        input: {
-          profileID: userConnection.followerID,
-          type: "newFollower",
-          body: `${userConnection.follower.username} followed you`,
-        },
-      })
-    )
-      .then((res) => {
-        console.log("Success");
-      })
-      .catch((err) => {
-        console.log(
-          "   !!!ERROR in notification request. Request arguments : " +
-            JSON.stringify(err)
-        );
-      });
+    try {
+      await API.graphql(
+        graphqlOperation(mutations.createNotification, {
+          input: {
+            profileID: userConnection.followedID,
+            type: "newFollower",
+            body: `${userConnection.follower.username} followed you`,
+          },
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
 
@@ -273,7 +268,7 @@ export const deleteUserConnection = async (userConnectionData) => {
       })
     );
   } catch (error) {
-    console.log("Error in deleteUserConnection: " + JSON.stringify(error));
+    console.log("Error in deleteUserConnection: " + JSON.stringify(error)); //ToDo: delete notification
   }
 };
 

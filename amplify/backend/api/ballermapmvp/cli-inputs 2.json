@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "serviceConfiguration": {
+    "serviceName": "AppSync",
+    "defaultAuthType": {
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authballermapmvp52e1ffed"
+    },
+    "conflictResolution": {},
+    "apiName": "ballermapmvp",
+    "gqlSchemaPath": "/Users/brianmoyou/Documents/Expo/BallerMapMVP/amplify/backend/api/ballermapmvp/schema.graphql",
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 365,
+        "apiKeyExpirationDate": "2023-05-21T16:14:21.761Z",
+        "keyDescription": "ballermapapikey"
+      }
+    ]
+  }
+}

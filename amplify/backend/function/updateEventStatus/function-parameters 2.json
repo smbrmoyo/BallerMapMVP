@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "api": {
+      "ballermapmvp": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

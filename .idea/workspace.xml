@@ -4,34 +4,50 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Added account deletion">
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Started fixing notifications screen">
+      <change afterPath="$PROJECT_DIR$/amplify/.config/project-config 2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/analytics/ballermapmvp/parameters 2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/cli-inputs 2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/parameters 2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/resolvers/README 2.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/schema 4.graphql" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/stacks/CustomResources 2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/transform.conf 2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/auth/ballermapmvp52e1ffed/cli-inputs 2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/auth/userPoolGroups/user-pool-group-precedence 2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/backend-config 2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/amplify 2.state" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/amplify 4.state" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/amplify 5.state" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/custom-policies 3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/function-parameters 2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/parameters 3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/parameters 4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/event 3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/event 4.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/index 3.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/index 4.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/package 3.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/yarn 3.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/yarn 4.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/storage/s3cd7b2bfc/cli-inputs 2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/tags 2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/types/amplify-dependent-resources-ref.d 2.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/types/amplify-dependent-resources-ref.d 4.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/cli 2.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/team-provider-info 2.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/amplify-meta 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/cli-inputs 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/parameters 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/resolvers/README 2.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/schema 2.graphql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/stacks/CustomResources 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/transform.conf 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/auth/ballermapmvp52e1ffed/cli-inputs 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/auth/userPoolGroups/user-pool-group-precedence 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/backend-config 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/amplify 2.state" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/function-parameters 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/storage/s3cd7b2bfc/cli-inputs 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/tags 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/types/amplify-dependent-resources-ref.d 2.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/serviceTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/serviceTest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/resolvers/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/resolvers/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/schema.graphql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/stacks/CustomResources.json" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/stacks/CustomResources.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/tags.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/hooks/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/hooks/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/team-provider-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/team-provider-info.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aws-functions/eventFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/eventFunctions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/graphql/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/mutations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/queries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/ActivityStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/ActivityStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ActivityScreen/NotifRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ActivityScreen/NotifRow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ActivityScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ActivityScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/AttendanceScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AttendanceScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/OtherProfileScreen/ProfileContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OtherProfileScreen/ProfileContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/OtherProfileScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OtherProfileScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/Providers/AppProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Providers/AppProvider.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +90,9 @@
     <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="1yTBIwjAMaNbwXw0VnTNMYiwfvg" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -82,6 +100,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
@@ -137,6 +156,9 @@
       <workItem from="1655946056980" duration="4046000" />
       <workItem from="1656266888110" duration="326000" />
       <workItem from="1657055955568" duration="17000" />
+      <workItem from="1657055990340" duration="8777000" />
+      <workItem from="1657152365552" duration="2180000" />
+      <workItem from="1658648111020" duration="909000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -306,7 +328,14 @@
       <option name="project" value="LOCAL" />
       <updated>1655866191595</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Started fixing notifications screen">
+      <created>1657057259233</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1657057259233</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -324,6 +353,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen" />
     <MESSAGE value="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen&#10;&#10;&#10;&#10;Signup implemented!!!&#10;&#10;Confirme signuP to be implemented" />
     <MESSAGE value="false commit" />
@@ -339,7 +369,8 @@
     <MESSAGE value="Migrated to react-navigation v6" />
     <MESSAGE value="Small modifications" />
     <MESSAGE value="Added account deletion" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added account deletion" />
+    <MESSAGE value="Started fixing notifications screen" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started fixing notifications screen" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

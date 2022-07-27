@@ -282,6 +282,7 @@ export const createUserConnection = /* GraphQL */ `
         updatedAt
         userDocId
         username
+        profilePicture
       }
       followedID
       follower {
@@ -292,6 +293,7 @@ export const createUserConnection = /* GraphQL */ `
         updatedAt
         userDocId
         username
+        profilePicture
       }
       followerID
       id

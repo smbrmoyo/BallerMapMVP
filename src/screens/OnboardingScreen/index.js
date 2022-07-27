@@ -1,15 +1,6 @@
 import React from "react";
-import {
-  View,
-  Text,
-  SafeAreaView,
-  Image,
-  TextInput,
-  Button,
-  TouchableOpacity,
-} from "react-native";
+import { Image, Text, TouchableOpacity } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
-import Bitmoji from "../../components/Bitmoji";
 import styles from "./styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -31,7 +22,7 @@ const OnboardingScreen = ({ navigation }) => {
   );
 
   if (AsyncStorage.getItem("alreadyLaunched")) {
-    console.log("going to SetProfi");
+    console.log("going to SetProfile");
   } else {
     console.log("going to Home");
   }
