@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
-  NavigationContainer,
-  DefaultTheme,
   DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
 } from "@react-navigation/native";
 import { useAuth } from "./Providers/AuthProvider";
 import LoadingScreen from "../screens/LoadingScreen";
@@ -19,7 +19,7 @@ const Routes = (props) => {
     >
       {loadingUser ? (
         <LoadingScreen />
-      ) : user ? (
+      ) : false ? (
         <AppProvider>
           <AppStack themeColor={props.themeColor} />
         </AppProvider>

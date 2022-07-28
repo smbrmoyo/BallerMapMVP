@@ -4,50 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Started fixing notifications screen">
-      <change afterPath="$PROJECT_DIR$/amplify/.config/project-config 2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/analytics/ballermapmvp/parameters 2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/cli-inputs 2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/parameters 2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/resolvers/README 2.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/schema 4.graphql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/stacks/CustomResources 2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/transform.conf 2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/auth/ballermapmvp52e1ffed/cli-inputs 2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/auth/userPoolGroups/user-pool-group-precedence 2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/backend-config 2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/amplify 2.state" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/amplify 4.state" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/amplify 5.state" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/custom-policies 3.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/function-parameters 2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/parameters 3.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/parameters 4.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/event 3.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/event 4.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/index 3.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/index 4.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/package 3.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/yarn 3.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/yarn 4.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/storage/s3cd7b2bfc/cli-inputs 2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/tags 2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/types/amplify-dependent-resources-ref.d 2.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/types/amplify-dependent-resources-ref.d 4.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/cli 2.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/team-provider-info 2.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Started fixing notifications screen pt 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/resolvers/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/resolvers/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/schema.graphql" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/schema.graphql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/stacks/CustomResources.json" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/stacks/CustomResources.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/tags.json" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/tags.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/hooks/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/hooks/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/team-provider-info.json" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/team-provider-info.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aws-functions/eventFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/eventFunctions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/mutations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/Providers/AppProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Providers/AppProvider.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/AuthStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/AuthStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/OnboardingScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OnboardingScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/OnboardingScreen/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OnboardingScreen/styles.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,6 +121,7 @@
       <workItem from="1657055990340" duration="8777000" />
       <workItem from="1657152365552" duration="2180000" />
       <workItem from="1658648111020" duration="909000" />
+      <workItem from="1658961144116" duration="6023000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -335,7 +298,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657057259233</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Started fixing notifications screen pt 2">
+      <created>1658961223872</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1658961223872</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -370,7 +340,8 @@
     <MESSAGE value="Small modifications" />
     <MESSAGE value="Added account deletion" />
     <MESSAGE value="Started fixing notifications screen" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started fixing notifications screen" />
+    <MESSAGE value="Started fixing notifications screen pt 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started fixing notifications screen pt 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
