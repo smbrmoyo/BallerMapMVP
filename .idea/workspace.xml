@@ -4,24 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Migrated to react-navigation v6">
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Started fixing notifications screen pt 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serviceTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/serviceTest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/HomeMap/AnimatedTextInput.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/HomeMap/AnimatedTextInput.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/AppStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/AppStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/MapStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/MapStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/AddScreen/NameContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddScreen/NameContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/AddScreen/helpers.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddScreen/helpers.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/AddScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/AllUsersScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AllUsersScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/AllUsersScreen/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AllUsersScreen/styles.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/EditProfileScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/EditProfileScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/OtherProfileScreen/ProfileContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OtherProfileScreen/ProfileContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/OtherProfileScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OtherProfileScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/UpdateEventScreen/LocationContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UpdateEventScreen/LocationContainer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/UpdateEventScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UpdateEventScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/FollowRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/FollowRow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/AuthStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/AuthStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/OnboardingScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OnboardingScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/OnboardingScreen/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OnboardingScreen/styles.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +52,9 @@
     <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectId" id="1yTBIwjAMaNbwXw0VnTNMYiwfvg" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="autoscrollFromSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -72,6 +62,9 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/brianmoyou/Documents/Expo/BallerMapMVP&quot;,
@@ -120,7 +113,15 @@
       <workItem from="1655299652883" duration="13800000" />
       <workItem from="1655855433625" duration="57000" />
       <workItem from="1655855498869" duration="1806000" />
-      <workItem from="1655859593915" duration="2309000" />
+      <workItem from="1655859593915" duration="7058000" />
+      <workItem from="1655929754629" duration="2168000" />
+      <workItem from="1655946056980" duration="4046000" />
+      <workItem from="1656266888110" duration="326000" />
+      <workItem from="1657055955568" duration="17000" />
+      <workItem from="1657055990340" duration="8777000" />
+      <workItem from="1657152365552" duration="2180000" />
+      <workItem from="1658648111020" duration="909000" />
+      <workItem from="1658961144116" duration="6023000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -276,7 +277,35 @@
       <option name="project" value="LOCAL" />
       <updated>1655301889610</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Small modifications">
+      <created>1655863035490</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1655863035490</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Added account deletion">
+      <created>1655866191595</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1655866191595</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Started fixing notifications screen">
+      <created>1657057259233</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1657057259233</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Started fixing notifications screen pt 2">
+      <created>1658961223872</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1658961223872</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -294,6 +323,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen" />
     <MESSAGE value="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen&#10;&#10;&#10;&#10;Signup implemented!!!&#10;&#10;Confirme signuP to be implemented" />
     <MESSAGE value="false commit" />
@@ -307,7 +337,11 @@
     <MESSAGE value="Switched to WebStorm" />
     <MESSAGE value="Switched to WebStorm: Patch" />
     <MESSAGE value="Migrated to react-navigation v6" />
-    <option name="LAST_COMMIT_MESSAGE" value="Migrated to react-navigation v6" />
+    <MESSAGE value="Small modifications" />
+    <MESSAGE value="Added account deletion" />
+    <MESSAGE value="Started fixing notifications screen" />
+    <MESSAGE value="Started fixing notifications screen pt 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started fixing notifications screen pt 2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -318,7 +352,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/graphql/mutations.js</url>
-          <line>179</line>
+          <line>180</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

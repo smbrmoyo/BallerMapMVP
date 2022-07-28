@@ -97,6 +97,7 @@ export const getNotification = /* GraphQL */ `
       photo
       profileID
       type
+      eventId
       uProfile {
         createdAt
         currentPlaceID
@@ -385,6 +386,7 @@ export const listNotifications = /* GraphQL */ `
         profileID
         type
         updatedAt
+        eventId
       }
       nextToken
     }
@@ -413,6 +415,7 @@ export const getNotificationsByDate = /* GraphQL */ `
         profileID
         type
         updatedAt
+        eventId
       }
       nextToken
     }

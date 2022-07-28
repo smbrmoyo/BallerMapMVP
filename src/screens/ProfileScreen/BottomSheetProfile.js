@@ -1,13 +1,13 @@
 import React from "react";
-import { Text, View, TouchableOpacity, Alert } from "react-native";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
 import BottomSheet from "reanimated-bottom-sheet";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
 
 import { useAuth } from "../../navigation/Providers/AuthProvider";
-import { deleteAccount } from "../../aws-functions/userFunctions";
 import styles from "./styles";
+import { deleteAccount } from "../../aws-functions/userFunctions";
 
 const BottomSheetProfile = (props) => {
   navigation = useNavigation();
@@ -39,8 +39,7 @@ const BottomSheetProfile = (props) => {
         {
           text: "Delete",
           onPress: () => {
-            deleteAccount(user);
-            setUser(null);
+            deleteAccount(props.profileDoc).then((response) => setUser(null));
           },
           style: "destructive",
         },

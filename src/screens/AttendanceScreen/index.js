@@ -1,30 +1,16 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  ScrollView,
   FlatList,
-  Image,
-  TouchableOpacity,
   SafeAreaView,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import ProfilePicture from "../../components/ProfilePictureUser";
-import { wsize, hsize } from "../../utils/Dimensions";
+import { hsize } from "../../utils/Dimensions";
 import debounce from "lodash/debounce";
 import { useTheme } from "@react-navigation/native";
 import LoadingScreen from "../LoadingScreen";
-import {
-  MaterialIcons,
-  Entypo,
-  Feather,
-  AntDesign,
-  MaterialCommunityIcons,
-  SimpleLineIcons,
-  EvilIcons,
-  Ionicons,
-} from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 
 import styles from "./styles";
 import SearchBarAttendance from "./SearchBarAttendance";
@@ -95,7 +81,7 @@ const AttendanceScreen = ({ navigation, route }) => {
         <FlatList
           data={data}
           refreshing={loading}
-          keyExtractor={(item) => item.userProfile.id}
+          keyExtractor={(item) => item.userProfile?.id}
           ListHeaderComponent={
             <SearchBarAttendance
               colors={colors}

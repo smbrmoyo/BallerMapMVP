@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from "react";
-import { StatusBar, View } from "react-native";
+import React from "react";
 import ActivityScreen from "../screens/ActivityScreen";
-import Pressable from "../screens/Pressable";
 import OtherProfileScreen from "../screens/OtherProfileScreen";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import { createStackNavigator } from "@react-navigation/stack";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-import { hsize, wsize } from "../utils/Dimensions";
 import { ActivityProvider } from "./Providers/ActivityProvider";
+import DescriptionScreen from "../screens/DescriptionScreen";
+import { ProfileProvider } from "./Providers/ProfileProvider";
 
 const Stack = createStackNavigator();
 
 const ActivityStack = ({ navigation }) => {
   return (
     <ActivityProvider>
-      <Stack.Navigator initialRouteName={"Activity"}>
-        <Stack.Screen name="Activity" component={ActivityScreen} />
-        <Stack.Screen name="OtherProfile" component={OtherProfileScreen} />
-      </Stack.Navigator>
+      <ProfileProvider>
+        <Stack.Navigator initialRouteName={"Activity"}>
+          <Stack.Screen name="Activity" component={ActivityScreen} />
+          <Stack.Screen name="OtherProfile" component={OtherProfileScreen} />
+          <Stack.Screen name="Description" component={DescriptionScreen} />
+        </Stack.Navigator>
+      </ProfileProvider>
     </ActivityProvider>
   );
 };

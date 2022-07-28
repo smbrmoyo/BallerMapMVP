@@ -1,5 +1,8 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
-import { AuthContext, useAuth } from "./AuthProvider";
+import React, { useContext, useEffect, useState } from "react";
+import { useAuth } from "./AuthProvider";
+import { API, graphqlOperation } from "aws-amplify";
+import { onCreateNotification } from "../../graphql/subscriptions";
+
 export const AppContext = React.createContext(null);
 
 const AppProvider = ({ children }) => {
@@ -26,6 +29,17 @@ const AppProvider = ({ children }) => {
         );
         setLoadingProfileDoc(false);
       });
+
+    const subscribeToNewNotification = API.graphql(
+      graphqlOperation(onCreateNotification, { id: user })
+    ).subscribe({
+      next: async ({ value }) => {
+        console.log(value.data.onCreateNotification);
+      },
+      error: (error) => console.log(error),
+    });
+
+    return () => subscribeToNewNotification.unsubscribe();
   }, []);
 
   return (

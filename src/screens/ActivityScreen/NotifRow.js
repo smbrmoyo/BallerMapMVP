@@ -1,8 +1,8 @@
 import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import {Text, TouchableOpacity, View} from "react-native";
+import {useNavigation} from "@react-navigation/native";
 
-import { wsize, hsize } from "../../utils/Dimensions";
+import {hsize, wsize} from "../../utils/Dimensions";
 import ProfilePicture from "../../components/ProfilePictureUser";
 import styles from "./styles";
 
@@ -30,12 +30,11 @@ export default function NotifRow(props) {
     <TouchableOpacity
       activeOpacity={0.7}
       style={styles.postHeaderFirst}
-      /*onPress={() =>
-        navigation.navigate("Profile", {
-          screen: "Description",
-          params: { event: event },
-        })
-      }*/
+      onPress={() =>
+        props.notif.type == "newFollower"
+          ? navigation.navigate("OtherProfile", { id: props.notif.profileID })
+          : navigation.navigate("Description", { id: props.notif.eventId })
+      }
     >
       <View style={styles.postHeaderContainer}>
         <View

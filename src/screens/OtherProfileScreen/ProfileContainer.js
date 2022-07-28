@@ -54,7 +54,7 @@ export default function ProfileContainer(props) {
 
         <View style={styles.profileFollowedBy}>
           <Text style={styles.textInfo}>
-            {followers.length >= 1 ? "Followed by" : null}
+            {followers?.length >= 1 ? "Followed by " : null}
           </Text>
           <Text
             //multiline={true}
@@ -62,9 +62,7 @@ export default function ProfileContainer(props) {
             numberOfLines={1}
             style={{ fontSize: wsize(12), fontWeight: "bold", width: "80%" }}
           >
-            {followers?.length >= 1
-              ? "Followed by " + followers[0].follower?.username
-              : null}
+            {followers?.length >= 1 ? followers[0].follower?.username : null}
             {followers.length == 2
               ? " and " + followers[1].follower?.username
               : null}
@@ -108,10 +106,10 @@ export default function ProfileContainer(props) {
             {props.followLoading ? (
               <ActivityIndicator
                 /*style={{
-                                  position: "absolute",
-                                  bottom: hsize(150),
-                                  alignSelf: "center",
-                                }}*/
+                                                                                                  position: "absolute",
+                                                                                                  bottom: hsize(150),
+                                                                                                  alignSelf: "center",
+                                                                                                }}*/
                 size="small"
                 color="#743cff"
               />
