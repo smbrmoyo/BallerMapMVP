@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   },
   indicatorContainer: {
     position: "absolute",
-    bottom: hsize(50),
+    bottom: hsize(80),
     flexDirection: "row",
   },
   indicator: {
@@ -41,8 +41,7 @@ const styles = StyleSheet.create({
     margin: hsize(10),
   },
   doneContainer: {
-    bottom: hsize(50),
-    right: hsize(20),
+    //bottom: hsize(80),
   },
 });
 
