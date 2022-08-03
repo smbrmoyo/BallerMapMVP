@@ -19,7 +19,7 @@ const Routes = (props) => {
     >
       {loadingUser ? (
         <LoadingScreen />
-      ) : false ? (
+      ) : user ? (
         <AppProvider>
           <AppStack themeColor={props.themeColor} />
         </AppProvider>

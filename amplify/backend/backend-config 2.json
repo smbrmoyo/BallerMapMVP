@@ -102,11 +102,5 @@
         }
       ]
     }
-  },
-  "analytics": {
-    "ballermapmvp": {
-      "service": "Pinpoint",
-      "providerPlugin": "awscloudformation"
-    }
   }
 }

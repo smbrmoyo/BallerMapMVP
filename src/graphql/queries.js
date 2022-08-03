@@ -135,29 +135,6 @@ export const getPlace = /* GraphQL */ `
     }
   }
 `;
-export const getPrivateNote = /* GraphQL */ `
-  query GetPrivateNote($id: ID!) {
-    getPrivateNote(id: $id) {
-      content
-      createdAt
-      id
-      owner
-      updatedAt
-    }
-  }
-`;
-export const getTask = /* GraphQL */ `
-  query GetTask($id: ID!) {
-    getTask(id: $id) {
-      createdAt
-      description
-      id
-      status
-      title
-      updatedAt
-    }
-  }
-`;
 export const getUprofile = /* GraphQL */ `
   query GetUprofile($id: ID!) {
     getUprofile(id: $id) {

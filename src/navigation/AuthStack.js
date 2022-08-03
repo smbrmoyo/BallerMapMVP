@@ -38,7 +38,7 @@ const AuthStack = ({ navigation, route }) => {
 
   if (isFirstLaunch === null) {
     return null; // Use loader
-  } else if (isFirstLaunch == false) {
+  } else if (isFirstLaunch == true) {
     routeName = "Onboarding";
   } else {
     routeName = "SignInEmail";
