@@ -4,10 +4,51 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Started fixing notifications screen pt 2">
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Started new Onboarding&#10;- Will try and find logic for done button&#10;- Will ask Aidora for help with colors and images">
+      <change afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap.xcodeproj/project.pbxproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap.xcodeproj/xcshareddata/xcschemes/BallerMap.xcscheme" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/AppDelegate.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/AppDelegate.mm" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/BallerMap.entitlements" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-20x20@1x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-20x20@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-20x20@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-29x29@1x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-29x29@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-29x29@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-40x40@1x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-40x40@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-40x40@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-60x60@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-60x60@3x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-76x76@1x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-76x76@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-83.5x83.5@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/ItunesArtwork@2x.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/SplashScreen.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/SplashScreen.imageset/image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/SplashScreenBackground.imageset/Contents.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/SplashScreenBackground.imageset/image.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Info.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/SplashScreen.storyboard" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Supporting/Expo.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/main.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/BallerMap/noop-file.swift" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Podfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ios/Podfile.properties.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/metro.config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/screens/OnboardingScreen/data.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/AuthStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/AuthStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/Routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Routes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eas.json" beforeDir="false" afterPath="$PROJECT_DIR$/eas.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/Providers/AppProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Providers/AppProvider.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/OnboardingScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OnboardingScreen/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/screens/OnboardingScreen/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OnboardingScreen/styles.js" afterDir="false" />
     </list>
@@ -121,7 +162,9 @@
       <workItem from="1657055990340" duration="8777000" />
       <workItem from="1657152365552" duration="2180000" />
       <workItem from="1658648111020" duration="909000" />
-      <workItem from="1658961144116" duration="6023000" />
+      <workItem from="1658961144116" duration="6212000" />
+      <workItem from="1659019523083" duration="447000" />
+      <workItem from="1659048537312" duration="9194000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -305,7 +348,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658961223872</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Started new Onboarding&#10;- Will try and find logic for done button&#10;- Will ask Aidora for help with colors and images">
+      <created>1658967363628</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1658967363628</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -341,7 +391,8 @@
     <MESSAGE value="Added account deletion" />
     <MESSAGE value="Started fixing notifications screen" />
     <MESSAGE value="Started fixing notifications screen pt 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started fixing notifications screen pt 2" />
+    <MESSAGE value="Started new Onboarding&#10;- Will try and find logic for done button&#10;- Will ask Aidora for help with colors and images" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started new Onboarding&#10;- Will try and find logic for done button&#10;- Will ask Aidora for help with colors and images" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
