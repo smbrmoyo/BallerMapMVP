@@ -1,12 +1,6 @@
 import React from "react";
-import {
-  useQuery,
-  useMutation,
-  useQueryClient,
-  QueryClient,
-  QueryClientProvider,
-} from "react-query";
-import Amplify, { Auth } from "aws-amplify";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Auth } from "aws-amplify";
 
 import Routes from "./Routes";
 import { AuthProvider } from "./Providers/AuthProvider";
@@ -40,6 +34,6 @@ export default Providers;
 
 {
   /*
-      <Routes />
-*/
+          <Routes />
+    */
 }

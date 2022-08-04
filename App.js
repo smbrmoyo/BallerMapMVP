@@ -9,7 +9,7 @@
 import "react-native-gesture-handler";
 
 import React, { useState } from "react";
-import { LogBox, Appearance } from "react-native";
+import { Appearance, LogBox } from "react-native";
 import Providers from "./src/navigation/index";
 import Amplify from "aws-amplify";
 import config from "./src/aws-exports";
