@@ -19,7 +19,7 @@
       "function": {
         "updateEventStatus": {
           "deploymentBucketName": "amplify-ballermapmvp-dev-151750-deployment",
-          "s3Key": "amplify-builds/updateEventStatus-41724e524d4452413069-build.zip"
+          "s3Key": "amplify-builds/updateEventStatus-51445661437954617452-build.zip"
         }
       }
     }

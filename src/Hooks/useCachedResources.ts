@@ -1,10 +1,9 @@
-import { FontAwesome } from "@expo/vector-icons";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import * as React from "react";
-import { View, Text, Image } from "react-native";
-import AppLoading from "expo-app-loading";
+import { Image } from "react-native";
 import { Asset } from "expo-asset";
+
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
 
@@ -22,7 +21,7 @@ export default function useCachedResources() {
   React.useEffect(() => {
     async function loadResourcesAndDataAsync() {
       try {
-        SplashScreen.preventAutoHideAsync();
+        await SplashScreen.preventAutoHideAsync();
 
         console.log("   Loading Assets...");
 
@@ -36,14 +35,16 @@ export default function useCachedResources() {
         const imageAssets = cacheImages([require("../../assets/splash.png")]);
       } catch (e) {
         // We might want to provide this error information to an error reporting service
-        console.warn(e);
+        console.log(e);
       } finally {
         setLoadingComplete(true);
-        SplashScreen.hideAsync();
+        await SplashScreen.hideAsync();
       }
     }
 
-    loadResourcesAndDataAsync();
+    loadResourcesAndDataAsync().then(() =>
+      console.log(isLoadingComplete ? "Assets loaded" : "Assets not loaded")
+    );
   }, []);
 
   return isLoadingComplete;

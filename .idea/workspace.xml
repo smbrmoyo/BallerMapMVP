@@ -4,53 +4,42 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Started new Onboarding&#10;- Will try and find logic for done button&#10;- Will ask Aidora for help with colors and images">
-      <change afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap.xcodeproj/project.pbxproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap.xcodeproj/xcshareddata/xcschemes/BallerMap.xcscheme" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/AppDelegate.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/AppDelegate.mm" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/BallerMap.entitlements" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-20x20@1x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-20x20@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-20x20@3x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-29x29@1x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-29x29@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-29x29@3x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-40x40@1x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-40x40@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-40x40@3x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-60x60@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-60x60@3x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-76x76@1x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-76x76@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-83.5x83.5@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/ItunesArtwork@2x.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/SplashScreen.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/SplashScreen.imageset/image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/SplashScreenBackground.imageset/Contents.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/SplashScreenBackground.imageset/image.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Info.plist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/SplashScreen.storyboard" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/Supporting/Expo.plist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/main.m" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/BallerMap/noop-file.swift" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Podfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ios/Podfile.properties.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/metro.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/screens/OnboardingScreen/data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Fixed amplify duplication">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eas.json" beforeDir="false" afterPath="$PROJECT_DIR$/eas.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/analytics/ballermapmvp/parameters 2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/cli-inputs 2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/parameters 2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/resolvers/README 2.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/schema 4.graphql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/stacks/CustomResources 2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/transform.conf 2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/auth/ballermapmvp52e1ffed/cli-inputs 2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/auth/userPoolGroups/user-pool-group-precedence 2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/amplify 2.state" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/amplify 4.state" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/amplify 5.state" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/custom-policies 3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/function-parameters 2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/parameters 3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/parameters 4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/event 3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/event 4.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/index 3.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/index 4.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/package 3.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/yarn 3.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/yarn 4.lock" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/storage/s3cd7b2bfc/cli-inputs 2.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/types/amplify-dependent-resources-ref.d 2.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/types/amplify-dependent-resources-ref.d 4.ts" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/Providers/AppProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Providers/AppProvider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/OnboardingScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OnboardingScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/OnboardingScreen/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OnboardingScreen/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Hooks/useCachedResources.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hooks/useCachedResources.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/queries.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/AppStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/AppStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/navigation/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/LoadingScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/LoadingScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +63,7 @@
     <option name="PUSH_AUTO_UPDATE" value="true" />
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="Brian" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -121,6 +110,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/amplify/backend/function" />
@@ -165,6 +157,10 @@
       <workItem from="1658961144116" duration="6212000" />
       <workItem from="1659019523083" duration="447000" />
       <workItem from="1659048537312" duration="9194000" />
+      <workItem from="1659551262205" duration="1373000" />
+      <workItem from="1659570389597" duration="1824000" />
+      <workItem from="1659615073689" duration="2153000" />
+      <workItem from="1659617738011" duration="1881000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -355,7 +351,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658967363628</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Fixed amplify duplication">
+      <created>1659551493120</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1659551493120</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -366,7 +369,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/Brian" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -392,7 +407,8 @@
     <MESSAGE value="Started fixing notifications screen" />
     <MESSAGE value="Started fixing notifications screen pt 2" />
     <MESSAGE value="Started new Onboarding&#10;- Will try and find logic for done button&#10;- Will ask Aidora for help with colors and images" />
-    <option name="LAST_COMMIT_MESSAGE" value="Started new Onboarding&#10;- Will try and find logic for done button&#10;- Will ask Aidora for help with colors and images" />
+    <MESSAGE value="Fixed amplify duplication" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed amplify duplication" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -400,11 +416,6 @@
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/amplify/backend/function/LambdaRes/src/resolvers.js</url>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/graphql/mutations.js</url>
-          <line>180</line>
-          <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
