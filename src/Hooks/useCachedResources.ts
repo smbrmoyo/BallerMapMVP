@@ -42,9 +42,7 @@ export default function useCachedResources() {
       }
     }
 
-    loadResourcesAndDataAsync().then(() =>
-      console.log(isLoadingComplete ? "Assets loaded" : "Assets not loaded")
-    );
+    loadResourcesAndDataAsync();
   }, []);
 
   return isLoadingComplete;

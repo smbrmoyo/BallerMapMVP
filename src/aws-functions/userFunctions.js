@@ -208,6 +208,26 @@ export const updateCityCountry = async (userData) => {
 };
 
 /**
+ * @description updates devicePushToken in profileDoc
+ * @param {JSON} userData Object with id and cityCountry
+ */
+export const updatePushToken = async (userData) => {
+  try {
+    let uProfile = await API.graphql(
+      graphqlOperation(mutations.updateUprofile, {
+        input: {
+          id: userData.id,
+          devicePushToken: userData.devicePushToken,
+        },
+      })
+    );
+    return uProfile.data.updateUprofile;
+  } catch (error) {
+    console.log("Error in updatePushToken: " + JSON.stringify(error));
+  }
+};
+
+/**
  * @description create user connection
  * @param {JSON} userConnectionData
  */

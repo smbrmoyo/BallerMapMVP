@@ -1,115 +1,51 @@
-import Constants from "expo-constants";
-import * as Notifications from "expo-notifications";
-import React, { useState, useEffect, useRef } from "react";
-import { Text, View, Button, Platform } from "react-native";
+const jwt = require("jsonwebtoken");
+const http2 = require("http2");
+const fs = require("fs");
 
-Notifications.setNotificationHandler({
-  handleNotification: async () => ({
-    shouldShowAlert: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
-  }),
-});
+const IS_PRODUCTION = true;
 
-const Push = () => {
-  const [expoPushToken, setExpoPushToken] = useState("");
-  const [notification, setNotification] = useState(false);
-  const notificationListener = useRef();
-  const responseListener = useRef();
-
-  useEffect(() => {
-    registerForPushNotificationsAsync().then((token) =>
-      setExpoPushToken(token)
-    );
-
-    notificationListener.current =
-      Notifications.addNotificationReceivedListener((notification) => {
-        setNotification(notification);
-      });
-
-    responseListener.current =
-      Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log(response);
-      });
-
-    return () => {
-      Notifications.removeNotificationSubscription(
-        notificationListener.current
-      );
-      Notifications.removeNotificationSubscription(responseListener.current);
-    };
-  }, []);
-
-  return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "space-around",
-      }}
-    >
-      <Text>Your expo push token: {expoPushToken}</Text>
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
-        <Text>
-          Title: {notification && notification.request.content.title}{" "}
-        </Text>
-        <Text>Body: {notification && notification.request.content.body}</Text>
-        <Text>
-          Data:{" "}
-          {notification && JSON.stringify(notification.request.content.data)}
-        </Text>
-      </View>
-      <Button
-        title="Press to schedule a notification"
-        onPress={async () => {
-          await schedulePushNotification();
-        }}
-      />
-    </View>
-  );
-};
-
-async function schedulePushNotification() {
-  await Notifications.scheduleNotificationAsync({
-    content: {
-      title: "Follow Request",
-      body: "Aidora requested to follow you",
-      data: { data: "goes here" },
+const authorizationToken = jwt.sign(
+  {
+    iss: "27MXYDTP56",
+    iat: Math.round(new Date().getTime() / 1000),
+  },
+  fs.readFileSync("./AuthKey_UXD37M5K7Q.p8", "utf8"),
+  {
+    header: {
+      alg: "ES256",
+      kid: "UXD37M5K7Q",
     },
-    trigger: { seconds: 2 },
-  });
-}
-
-async function registerForPushNotificationsAsync() {
-  let token;
-  if (Constants.isDevice) {
-    const { status: existingStatus } =
-      await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
-    if (existingStatus !== "granted") {
-      const { status } = await Notifications.requestPermissionsAsync();
-      finalStatus = status;
-    }
-    if (finalStatus !== "granted") {
-      alert("Failed to get push token for push notification!");
-      return;
-    }
-    token = (await Notifications.getExpoPushTokenAsync()).data;
-    console.log(token);
-  } else {
-    alert("Must use physical device for Push Notifications");
   }
+);
 
-  if (Platform.OS === "android") {
-    Notifications.setNotificationChannelAsync("default", {
-      name: "default",
-      importance: Notifications.AndroidImportance.MAX,
-      vibrationPattern: [0, 250, 250, 250],
-      lightColor: "#FF231F7C",
-    });
-  }
+const client = http2.connect(
+  IS_PRODUCTION
+    ? "https://api.push.apple.com"
+    : "https://api.sandbox.push.apple.com"
+);
 
-  return token;
-}
+let nativeDeviceToken =
+  "c47b65f66f1e410eabb5d28e3dad463fe7d7a087f233a085ce83d515fc241063";
 
-export default Push;
+const request = client.request({
+  ":method": "POST",
+  ":scheme": "https",
+  "apns-topic": "com.smbrmoyo.BallerMap",
+  ":path": "/3/device/" + nativeDeviceToken, // This is the native device token you grabbed client-side
+  authorization: `bearer ${authorizationToken}`, // This is the JSON web token we generated in the "Authorization" step above
+});
+request.setEncoding("utf8");
+
+request.write(
+  JSON.stringify({
+    aps: {
+      alert: {
+        title: "📧 You've got mail!",
+        body: "Hello world! 🌐",
+      },
+    },
+    experienceId: "@brianmoyou/BallerMap", // Required when testing in the Expo Go app
+    scopeKey: "@brianmoyou/BallerMap", // Required when testing in the Expo Go app
+  })
+);
+request.end();
