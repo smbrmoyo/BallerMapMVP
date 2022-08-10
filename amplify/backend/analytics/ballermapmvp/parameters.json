@@ -1,0 +1,21 @@
+{
+    "appName": "ballermapmvp",
+    "roleName": "pinpointLambdaRoleb275feab",
+    "cloudformationPolicyName": "cloudformationPolicyb275feab",
+    "cloudWatchPolicyName": "cloudWatchPolicyb275feab",
+    "pinpointPolicyName": "pinpointPolicyb275feab",
+    "authPolicyName": "pinpoint_amplify_b275feab",
+    "unauthPolicyName": "pinpoint_amplify_b275feab",
+    "authRoleName": {
+        "Ref": "AuthRoleName"
+    },
+    "unauthRoleName": {
+        "Ref": "UnauthRoleName"
+    },
+    "authRoleArn": {
+        "Fn::GetAtt": [
+            "AuthRole",
+            "Arn"
+        ]
+    }
+}

@@ -27,13 +27,15 @@ const client = http2.connect(
 let nativeDeviceToken =
   "c47b65f66f1e410eabb5d28e3dad463fe7d7a087f233a085ce83d515fc241063";
 
-const request = client.request({
+headers = {
   ":method": "POST",
   ":scheme": "https",
   "apns-topic": "com.smbrmoyo.BallerMap",
   ":path": "/3/device/" + nativeDeviceToken, // This is the native device token you grabbed client-side
   authorization: `bearer ${authorizationToken}`, // This is the JSON web token we generated in the "Authorization" step above
-});
+};
+
+const request = client.request(headers);
 request.setEncoding("utf8");
 
 request.write(
@@ -48,4 +50,21 @@ request.write(
     scopeKey: "@brianmoyou/BallerMap", // Required when testing in the Expo Go app
   })
 );
+
+request.on("response", (headers, flags) => {
+  for (const name in headers) {
+    console.log(`${name}: ${headers[name]}`);
+  }
+});
+
+let data = "";
+request.on("data", (chunk) => {
+  data += chunk;
+});
+
+request.on("end", () => {
+  console.log(`\n${data}`);
+  client.close();
+});
+
 request.end();

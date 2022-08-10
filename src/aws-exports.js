@@ -31,7 +31,9 @@ const awsmobile = {
         "EMAIL"
     ],
     "aws_user_files_s3_bucket": "ballermapmvp2e5fda8e36694dd8807e03dd4ddf2820151750-dev",
-    "aws_user_files_s3_bucket_region": "eu-central-1"
+    "aws_user_files_s3_bucket_region": "eu-central-1",
+    "aws_mobile_analytics_app_id": "372a14688f344349bd3403b03318022f",
+    "aws_mobile_analytics_app_region": "eu-central-1"
 };
 
 
