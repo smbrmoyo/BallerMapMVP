@@ -4,41 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Fixed amplify duplication">
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Need to create a server for Notifications.js">
+      <change afterPath="$PROJECT_DIR$/amplify/backend/analytics/ballermapmvp/parameters.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/amplify/backend/analytics/ballermapmvp/pinpoint-cloudformation-template.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/analytics/ballermapmvp/parameters 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/cli-inputs 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/parameters 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/resolvers/README 2.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/schema 4.graphql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/stacks/CustomResources 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/api/ballermapmvp/transform.conf 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/auth/ballermapmvp52e1ffed/cli-inputs 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/auth/userPoolGroups/user-pool-group-precedence 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/amplify 2.state" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/amplify 4.state" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/amplify 5.state" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/custom-policies 3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/function-parameters 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/parameters 3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/parameters 4.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/event 3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/event 4.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/index 3.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/index 4.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/package 3.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/yarn 3.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/function/updateEventStatus/src/yarn 4.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/storage/s3cd7b2bfc/cli-inputs 2.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/types/amplify-dependent-resources-ref.d 2.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/types/amplify-dependent-resources-ref.d 4.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/Notifications.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/backend-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/backend-config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/amplify/backend/types/amplify-dependent-resources-ref.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/types/amplify-dependent-resources-ref.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eas.json" beforeDir="false" afterPath="$PROJECT_DIR$/eas.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Hooks/useCachedResources.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/Hooks/useCachedResources.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/queries.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aws-exports.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-exports.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/navigation/AppStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/AppStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/LoadingScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/LoadingScreen/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -79,7 +57,7 @@
     <dismissed value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="1yTBIwjAMaNbwXw0VnTNMYiwfvg" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -161,6 +139,10 @@
       <workItem from="1659570389597" duration="1824000" />
       <workItem from="1659615073689" duration="2153000" />
       <workItem from="1659617738011" duration="1881000" />
+      <workItem from="1659628409095" duration="20859000" />
+      <workItem from="1659661398079" duration="3685000" />
+      <workItem from="1659686274399" duration="5000" />
+      <workItem from="1660136241858" duration="35000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -358,7 +340,21 @@
       <option name="project" value="LOCAL" />
       <updated>1659551493120</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Commit workspace.xml">
+      <created>1659620373834</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1659620373834</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Need to create a server for Notifications.js">
+      <created>1659657575150</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1659657575150</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -408,7 +404,9 @@
     <MESSAGE value="Started fixing notifications screen pt 2" />
     <MESSAGE value="Started new Onboarding&#10;- Will try and find logic for done button&#10;- Will ask Aidora for help with colors and images" />
     <MESSAGE value="Fixed amplify duplication" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed amplify duplication" />
+    <MESSAGE value="Commit workspace.xml" />
+    <MESSAGE value="Need to create a server for Notifications.js" />
+    <option name="LAST_COMMIT_MESSAGE" value="Need to create a server for Notifications.js" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

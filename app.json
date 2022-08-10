@@ -19,7 +19,7 @@
       "**/*"
     ],
     "ios": {
-      "buildNumber": "14",
+      "buildNumber": "15",
       "supportsTablet": false,
       "userInterfaceStyle": "automatic",
       "usesAppleSignIn": false,

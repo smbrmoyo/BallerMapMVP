@@ -145,7 +145,7 @@ export const getUprofile = /* GraphQL */ `
       userDocId
       cityCountry
       currentPlaceID
-      expoPushToken
+      devicePushToken
       notifications {
         items {
           id

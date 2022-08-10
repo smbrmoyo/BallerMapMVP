@@ -1,4 +1,5 @@
 import {API, graphqlOperation} from "aws-amplify";
+
 import * as mutations from "../graphql/mutations.js";
 import * as queries from "../graphql/queries.js";
 import {checkEnd, checkLocation, checkName, checkStart,} from "../screens/AddScreen/helpers";
@@ -53,6 +54,72 @@ export const getFilteredEvents = async (user) => {
  *                                  MUTATIONS
  * =============================================================================
  */
+
+/**
+ * @description send notifications to expo server
+ * @param {[String]} pushTokens List of expo push tokens
+ * @param {String} creator Creator of the event
+ * @param {string} eventId Id of the created event
+ * @returns createdEvent
+ */
+
+/**const sendEventNotifications = (pushTokens, creator, eventId) => {
+  const expoPushMessages = pushTokens.map((pushToken) => ({
+    body: `${creator} invited you to a game`,
+    data: eventId,
+    title: `You've been invited!`,
+    to: pushToken,
+  }));
+
+  //const expo = new Expo();
+
+  let chunks = expo.chunkPushNotifications(expoPushMessages);
+  let tickets = [];
+  (async () => {
+    for (let chunk of chunks) {
+      try {
+        let ticketChunk = await expo.sendPushNotificationsAsync(chunk);
+        console.log(ticketChunk);
+        tickets.push(...ticketChunk);
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  })();
+
+  let receiptIds = [];
+  for (let ticket of tickets) {
+    if (ticket.id) {
+      receiptIds.push(ticket.id);
+    }
+  }
+
+  let receiptIdChunks = expo.chunkPushNotificationReceiptIds(receiptIds);
+  (async () => {
+    for (let chunk of receiptIdChunks) {
+      try {
+        let receipts = await expo.getPushNotificationReceiptsAsync(chunk);
+        console.log(receipts);
+
+        for (let receiptId in receipts) {
+          let { status, message, details } = receipts[receiptId];
+          if (status === "ok") {
+            continue;
+          } else if (status === "error") {
+            console.error(
+              `There was an error sending a notification: ${message}`
+            );
+            if (details && details.error) {
+              console.error(`The error code is ${details.error}`);
+            }
+          }
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  })();
+};*/
 
 /**
  * @description create event
@@ -126,6 +193,8 @@ export const createEvent = async (eventData) => {
             );
           });
 
+        //sendEventNotifications();
+
         await API.graphql(
           graphqlOperation(mutations.createNotification, {
             input: {
@@ -143,7 +212,7 @@ export const createEvent = async (eventData) => {
           })
           .catch((err) => {
             console.log(
-              `Error in mutation createUserEventConnection, adding user ${
+              `Error in mutation createNotification, adding user ${
                 participants[participantID]
               } to event ${createdEvent.id} -------------> ${JSON.stringify(
                 err

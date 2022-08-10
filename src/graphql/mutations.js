@@ -49,6 +49,11 @@ export const createEvent = /* GraphQL */ `
       name
       participantsIDs
       participants {
+        items {
+          userProfile {
+            devicePushToken
+          }
+        }
         nextToken
       }
       place {
@@ -957,6 +962,7 @@ export const updateUprofile = /* GraphQL */ `
       userDocId
       cityCountry
       currentPlaceID
+      devicePushToken
       notifications {
         items {
           id

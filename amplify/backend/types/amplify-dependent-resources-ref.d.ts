@@ -33,5 +33,12 @@ export type AmplifyDependentResourcesAttributes = {
             "LambdaExecutionRole": "string",
             "CloudWatchEventRule": "string"
         }
+    },
+    "analytics": {
+        "ballermapmvp": {
+            "Region": "string",
+            "Id": "string",
+            "appName": "string"
+        }
     }
 }
