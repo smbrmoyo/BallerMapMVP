@@ -24,13 +24,14 @@ import NameContainer from "./NameContainer";
 import StartDateContainer from "./StartDateContainer";
 import TagsContainer from "./TagsContainer";
 import { useAuth } from "../../navigation/Providers/AuthProvider";
-import { hsize } from "../../utils/Dimensions";
+import { hsize, wsize } from "../../utils/Dimensions";
 import styles from "./styles";
 
 const AddScreen = ({ navigation, route }) => {
   const { user } = useAuth();
   const headerHeight = useHeaderHeight();
   const [event, setEvent] = useState(route.params?.event);
+  const [_event, _setEvent] = useState(route.params?.event);
   const [visibleStart, setVisibleStart] = useState(false); // Put visible and color in one state object
   const [visibleEnd, setVisibleEnd] = useState(false);
   const [check, setCheck] = useState(false);
@@ -83,7 +84,7 @@ const AddScreen = ({ navigation, route }) => {
         </View>
       ),
       headerRight: () => (
-        <View style={{ flexDirection: "row", margin: hsize(5) }}>
+        <View style={{ flexDirection: "row", margin: wsize(5) }}>
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() =>

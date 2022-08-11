@@ -4,19 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Need to create a server for Notifications.js">
-      <change afterPath="$PROJECT_DIR$/amplify/backend/analytics/ballermapmvp/parameters.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/amplify/backend/analytics/ballermapmvp/pinpoint-cloudformation-template.json" afterDir="false" />
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Will work on notifications later">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/Notifications.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/backend-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/backend-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/amplify/backend/types/amplify-dependent-resources-ref.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/amplify/backend/types/amplify-dependent-resources-ref.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eas.json" beforeDir="false" afterPath="$PROJECT_DIR$/eas.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aws-exports.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-exports.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/AppStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/AppStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/DescriptionScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/DescriptionScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/DescriptionScreen/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/DescriptionScreen/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/EventScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/EventScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/UpdateEventScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UpdateEventScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/FollowRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/FollowRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -143,6 +140,8 @@
       <workItem from="1659661398079" duration="3685000" />
       <workItem from="1659686274399" duration="5000" />
       <workItem from="1660136241858" duration="35000" />
+      <workItem from="1660136293753" duration="6732000" />
+      <workItem from="1660163979897" duration="5760000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -354,7 +353,14 @@
       <option name="project" value="LOCAL" />
       <updated>1659657575150</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Will work on notifications later">
+      <created>1660136454478</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1660136454478</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -406,7 +412,8 @@
     <MESSAGE value="Fixed amplify duplication" />
     <MESSAGE value="Commit workspace.xml" />
     <MESSAGE value="Need to create a server for Notifications.js" />
-    <option name="LAST_COMMIT_MESSAGE" value="Need to create a server for Notifications.js" />
+    <MESSAGE value="Will work on notifications later" />
+    <option name="LAST_COMMIT_MESSAGE" value="Will work on notifications later" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

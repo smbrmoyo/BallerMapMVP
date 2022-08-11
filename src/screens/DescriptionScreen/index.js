@@ -1,19 +1,16 @@
-import React, { useLayoutEffect, useState, useEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
-  View,
-  Text,
   SafeAreaView,
-  TouchableOpacity,
   StatusBar,
-  Alert,
-  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
-import { MaterialIcons, Ionicons, Entypo } from "@expo/vector-icons";
+import { Entypo, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import styles from "./styles";
-import { hsize, wsize } from "../../utils/Dimensions";
+import { hsize } from "../../utils/Dimensions";
 import { useAuth } from "../../navigation/Providers/AuthProvider";
 import { getEvent } from "../../aws-functions/eventFunctions";
-import ButtonContainer from "./ButtonContainer";
 import ParticipantsContainer from "./ParticipatnsContainer";
 import DescriptionContainer from "./DescriptionContainer";
 import ProfileTopContainer from "./ProfileTopContainer";
@@ -73,7 +70,7 @@ const DescriptionScreen = ({ props, navigation, route }) => {
       ),
       headerRight: () =>
         event?.creatorID == user ? (
-          <View style={{ flexDirection: "row", marginHorizontal: 5 }}>
+          <View style={{ flexDirection: "row" }}>
             <TouchableOpacity
               activeOpacity={0.7}
               onPress={() =>

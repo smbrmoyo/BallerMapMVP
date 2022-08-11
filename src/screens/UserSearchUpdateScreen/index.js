@@ -25,6 +25,9 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
   const [participantsIDs, setParticipantsIDs] = useState(
     route.params?.participantsIDs
   );
+  const [_participantsIDs, _setParticipantsIDs] = useState(
+    route.params?.participantsIDs
+  );
   let IDs = route.params?.participantsIDs;
 
   /**
@@ -37,23 +40,29 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
 
   const deleteParticipant = (id) => {
     if (participantsIDs.includes(id)) {
-      //TODO: Try comparing participantsIDs and IDs before taking action
       IDs.splice(IDs.indexOf(id));
+      setParticipantsIDs(IDs);
+      console.log("public: ", participantsIDs);
+      console.log("private: ", _participantsIDs);
     }
   };
 
   const addParticipant = (id) => {
     if (!participantsIDs.includes(id)) {
       IDs.push(id);
+      setParticipantsIDs(IDs);
     }
-    setParticipantsIDs(IDs);
-    console.log(participantsIDs);
+    console.log("public: ", participantsIDs);
+    console.log("private: ", _participantsIDs);
   };
+
+  //console.log("public: ", participantsIDs);
+  //console.log("private: ", _participantsIDs);
 
   const searchFilter = async (text) => {
     if (text) {
-      var newData = profileDoc?.following.items?.filter((item) => {
-        var name = item.name.toLowerCase();
+      let newData = profileDoc?.following.items?.filter((item) => {
+        let name = item.name.toLowerCase();
         const filter = text.toLowerCase();
         return name.search(filter) !== -1;
       });
@@ -65,16 +74,9 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
     }
   };
   /*const onChangeTextDebounced = debounce(updateQuery, 1000, {
-                                        leading: true,
-                                        trailing: true,
-                                      });*/
-
-  const check = () => {
-    if (participantsIDs.length == IDs.length) {
-      return false;
-    }
-    return true;
-  };
+                                                                                                          leading: true,
+                                                                                                          trailing: true,
+                                                                                                        });*/
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -108,7 +110,7 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => {
-            check()
+            participantsIDs !== _participantsIDs
               ? navigation.navigate({
                   name: "UpdateEvent",
                   params: {
@@ -121,7 +123,8 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
           <View style={styles.iconContainer}>
             <Text
               style={{
-                color: check() ? "#743cff" : "grey",
+                color:
+                  participantsIDs !== _participantsIDs ? "#743cff" : "grey",
                 fontWeight: "bold",
               }}
             >
@@ -156,7 +159,6 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
             <FollowRow
               item={item}
               participants={participants}
-              setParticipants={setParticipants}
               participantsIDs={participantsIDs}
               IDs={IDs}
               deleteParticipant={deleteParticipant}

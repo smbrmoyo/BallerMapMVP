@@ -1,61 +1,56 @@
-import React, { useLayoutEffect, useRef, useState, useEffect } from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import {
-  View,
-  Text,
   SafeAreaView,
-  ScrollView,
   StatusBar,
-  Image,
-  Dimensions,
+  Text,
   TouchableOpacity,
-  TouchableWithoutFeedback,
+  View,
 } from "react-native";
 import styles from "./styles";
 import CurrentContainer from "./CurrentContainer";
 import UpcomingContainer from "./UpcomingContainer";
 import Loading from "./Loading";
-import { hsize, wsize } from "../../utils/Dimensions";
+import { hsize } from "../../utils/Dimensions";
 import { useEvents } from "../../navigation/Providers/EventsProvider";
 import { API } from "aws-amplify";
 import {
   onCreateUserEventConnection,
   onDeleteUserEventConnection,
 } from "../../graphql/subscriptions";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const EventScreen = ({ navigation, route }) => {
   const { events, loading } = useEvents();
 
   useEffect(() => {
     /*let subscribeToCreateEvent = API.graphql(
-      graphqlOperation(onCreateNotification, {
-        profileID: user,
-      })
-    ).subscribe({
-      next: ({ value }) => {
-        // setNotifExtraData(!notifExtraData);
-        setData((old) => [value.data.onCreateNotification, ...old]);
-      },
-      error: (error) =>
-        console.log(
-          "   ERROR on onCreateNotification : " + JSON.stringify(error)
-        ),
-    });
-
-    let subscribeToCreateNotification = API.graphql(
-      graphqlOperation(onCreateNotification, {
-        profileID: user,
-      })
-    ).subscribe({
-      next: ({ value }) => {
-        // setNotifExtraData(!notifExtraData);
-        setData((old) => [value.data.onCreateNotification, ...old]);
-      },
-      error: (error) =>
-        console.log(
-          "   ERROR on onCreateNotification : " + JSON.stringify(error)
-        ),
-    });*/
+          graphqlOperation(onCreateNotification, {
+            profileID: user,
+          })
+        ).subscribe({
+          next: ({ value }) => {
+            // setNotifExtraData(!notifExtraData);
+            setData((old) => [value.data.onCreateNotification, ...old]);
+          },
+          error: (error) =>
+            console.log(
+              "   ERROR on onCreateNotification : " + JSON.stringify(error)
+            ),
+        });
+    
+        let subscribeToCreateNotification = API.graphql(
+          graphqlOperation(onCreateNotification, {
+            profileID: user,
+          })
+        ).subscribe({
+          next: ({ value }) => {
+            // setNotifExtraData(!notifExtraData);
+            setData((old) => [value.data.onCreateNotification, ...old]);
+          },
+          error: (error) =>
+            console.log(
+              "   ERROR on onCreateNotification : " + JSON.stringify(error)
+            ),
+        });*/
   }, []);
 
   const onPageRendered = async () => {
@@ -66,7 +61,7 @@ const EventScreen = ({ navigation, route }) => {
   const subscribeToCreateEvent = async (profileDocument, loggedUser) => {
     console.log("subscription to create event here");
     // Subscribe to removal of userConnection
-    await API.graphql({
+    API.graphql({
       query: onCreateUserEventConnection,
     }).subscribe({
       next: (subOnDeleteConnection) => {

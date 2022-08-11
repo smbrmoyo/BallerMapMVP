@@ -15,7 +15,7 @@ export default function FollowRow(props) {
   useEffect(() => {
     for (let i = 0; i < props.participants.items.length; i++) {
       if (
-        props.participants.items[i].userProfile.id == props.item.followed.id &&
+        props.participants.items[i].userProfile.id === props.item.followed.id &&
         props.participantsIDs.includes(
           props.participants.items[i].userProfile.id
         )
@@ -87,7 +87,8 @@ export default function FollowRow(props) {
               !isAdded
                 ? (setIsAdded(!isAdded),
                   props.addParticipant(props.item?.followed?.id))
-                : null;
+                : (setIsAdded(!isAdded),
+                  props.deleteParticipant(props.item?.followed?.id));
             }}
           >
             {loading ? (
