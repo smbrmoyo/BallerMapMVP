@@ -15,20 +15,22 @@ import FollowRow from "./FollowRow";
 import SearchBarFollowers from "./SearchBarFollowers";
 import { hsize } from "../../utils/Dimensions";
 
+let idsToAdd = [];
+let idsToRemove = [];
+
 const UserSearchUpdateScreen = ({ navigation, route }) => {
   const [loading, setLoading] = useState(false);
   const { colors, dark } = useTheme();
   const [text, setText] = useState("");
   const { profileDoc } = useProfile();
+  const [done, setDone] = useState(false);
   const [data, setData] = useState(profileDoc?.following.items);
   const [participants, setParticipants] = useState(route.params?.participants);
   const [participantsIDs, setParticipantsIDs] = useState(
     route.params?.participantsIDs
   );
-  const [_participantsIDs, _setParticipantsIDs] = useState(
-    route.params?.participantsIDs
-  );
-  let IDs = route.params?.participantsIDs;
+  const [_participantsIDs, _setParticipantsIDs] = useState([]);
+  let currentIds = route.params?.participantsIDs;
 
   /**
    * Should try updating event by adding new participants to the list
@@ -39,25 +41,33 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
   }, []);
 
   const deleteParticipant = (id) => {
-    if (participantsIDs.includes(id)) {
-      IDs.splice(IDs.indexOf(id));
-      setParticipantsIDs(IDs);
-      console.log("public: ", participantsIDs);
-      console.log("private: ", _participantsIDs);
+    if (currentIds.includes(id) && !idsToRemove.includes(id)) {
+      setDone(true);
+      idsToRemove.push(id);
+    } else if (idsToAdd.includes(id)) {
+      idsToAdd.splice(idsToAdd.indexOf(id), 1);
     }
   };
 
   const addParticipant = (id) => {
-    if (!participantsIDs.includes(id)) {
-      IDs.push(id);
-      setParticipantsIDs(IDs);
+    if (!currentIds.includes(id) && !idsToAdd.includes(id)) {
+      setDone(true);
+      idsToAdd.push(id);
+      _setParticipantsIDs(idsToAdd);
+    } else if (idsToRemove.includes(id)) {
+      idsToRemove.splice(idsToRemove.indexOf(id), 1);
     }
-    console.log("public: ", participantsIDs);
-    console.log("private: ", _participantsIDs);
   };
 
-  //console.log("public: ", participantsIDs);
-  //console.log("private: ", _participantsIDs);
+  const navigate = () => {
+    navigation.navigate({
+      name: "UpdateEvent",
+      params: {
+        idsToRemove: idsToRemove,
+        idsToAdd: idsToAdd,
+      },
+    });
+  };
 
   const searchFilter = async (text) => {
     if (text) {
@@ -74,9 +84,9 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
     }
   };
   /*const onChangeTextDebounced = debounce(updateQuery, 1000, {
-                                                                                                          leading: true,
-                                                                                                          trailing: true,
-                                                                                                        });*/
+                                                                                                                                                                            leading: true,
+                                                                                                                                                                            trailing: true,
+                                                                                                                                                                          });*/
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -110,21 +120,13 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => {
-            participantsIDs !== _participantsIDs
-              ? navigation.navigate({
-                  name: "UpdateEvent",
-                  params: {
-                    participantsIDs: participantsIDs,
-                  },
-                })
-              : null;
+            done ? navigate() : null;
           }}
         >
           <View style={styles.iconContainer}>
             <Text
               style={{
-                color:
-                  participantsIDs !== _participantsIDs ? "#743cff" : "grey",
+                color: done ? "#743cff" : "grey",
                 fontWeight: "bold",
               }}
             >
@@ -134,7 +136,7 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
         </TouchableOpacity>
       ),
     });
-  }, [participantsIDs]);
+  }, [done]);
 
   if (loading) {
     return <LoadingScreen />;
@@ -160,7 +162,7 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
               item={item}
               participants={participants}
               participantsIDs={participantsIDs}
-              IDs={IDs}
+              IDs={idsToAdd}
               deleteParticipant={deleteParticipant}
               addParticipant={addParticipant}
               navigation={navigation}

@@ -169,12 +169,13 @@ export const createEvent = async (eventData) => {
 
     if (advance) {
       let participants = eventData.participants;
-      for (let participantID in participants) {
+      for (let participantID of participants) {
         await API.graphql(
           graphqlOperation(mutations.createUserEventConnection, {
             input: {
+              id: createdEvent.id + participantID,
               eventID: createdEvent.id,
-              profileID: participants[participantID],
+              profileID: participantID,
             },
           })
         )
@@ -185,11 +186,9 @@ export const createEvent = async (eventData) => {
           })
           .catch((err) => {
             console.log(
-              `Error in mutation createUserEventConnection, adding user ${
-                participants[participantID]
-              } to event ${createdEvent.id} -------------> ${JSON.stringify(
-                err
-              )}`
+              `Error in mutation createUserEventConnection, adding user ${participantID} to event ${
+                createdEvent.id
+              } -------------> ${JSON.stringify(err)}`
             );
           });
 
@@ -199,7 +198,7 @@ export const createEvent = async (eventData) => {
           graphqlOperation(mutations.createNotification, {
             input: {
               type: "eventInvitation",
-              profileID: participants[participantID],
+              profileID: participantID,
               body: `${createdEvent.creator.username} invited you to a game`,
               eventId: createdEvent.id,
             },
@@ -207,16 +206,14 @@ export const createEvent = async (eventData) => {
         )
           .then((result) => {
             console.log(
-              `${result.data.createNotification.type} notification sent to user ${participants[participantID]}`
+              `${result.data.createNotification.type} notification sent to user ${participantID}`
             );
           })
           .catch((err) => {
             console.log(
-              `Error in mutation createNotification, adding user ${
-                participants[participantID]
-              } to event ${createdEvent.id} -------------> ${JSON.stringify(
-                err
-              )}`
+              `Error in mutation createNotification, adding user ${participantID} to event ${
+                createdEvent.id
+              } -------------> ${JSON.stringify(err)}`
             );
           });
       }
@@ -233,10 +230,12 @@ export const createEvent = async (eventData) => {
 
 /**
  * @description update Event
- * @param {JSON} eventData object
+ * @param {Object} eventData object
+ * @param {[String]} idsToAdd List of ids to add to the event
+ * @param {[String]} idsToRemove List of ids to remove from the event
  */
 
-export const updateEvent = async (eventData) => {
+export const updateEvent = async (eventData, idsToAdd, idsToRemove) => {
   let advance = false;
   let updatedEvent = {
     id: eventData.id,
@@ -276,13 +275,33 @@ export const updateEvent = async (eventData) => {
       });
 
     if (advance) {
-      let participants = eventData.participantsIDs;
-      for (let participantID in participants) {
+      for (let participantID of idsToRemove) {
+        await API.graphql(
+          graphqlOperation(mutations.deleteUserEventConnection, {
+            input: {
+              id: updatedEvent.id + participantID,
+            },
+          })
+        )
+          .then((res) => {
+            console.log(
+              `${res.data.deleteUserEventConnection.userProfile.username} removed from ${res.data.deleteUserEventConnection.Event.name} Event`
+            );
+          })
+          .catch((err) => {
+            console.log(
+              `Error in mutation deleteUserEventConnection, removing user ${participantID} from event ${updatedEvent.id} ------------->`,
+              err
+            );
+          });
+      }
+
+      for (let participantID of idsToAdd) {
         await API.graphql(
           graphqlOperation(mutations.createUserEventConnection, {
             input: {
               eventID: updatedEvent.id,
-              profileID: participants[participantID],
+              profileID: participantID,
             },
           })
         )
@@ -293,7 +312,7 @@ export const updateEvent = async (eventData) => {
           })
           .catch((err) => {
             console.log(
-              `Error in mutation createUserEventConnection, adding user ${participants[participantID]} to event ${updatedEvent.id} -------------> ${err}`
+              `Error in mutation createUserEventConnection, adding user ${participantID} to event ${updatedEvent.id} -------------> ${err}`
             );
           });
 
@@ -301,23 +320,21 @@ export const updateEvent = async (eventData) => {
           graphqlOperation(mutations.createNotification, {
             input: {
               type: "eventInvitation",
-              profileID: participants[participantID],
+              profileID: participantID,
               body: `${updatedEvent.creator.username} invited you to a game`,
             },
           })
         )
           .then((result) => {
             console.log(
-              `${result.data.createNotification.type} notification sent to user ${participants[participantID]}`
+              `${result.data.createNotification.type} notification sent to user ${participantID}`
             );
           })
           .catch((err) => {
             console.log(
-              `Error in mutation createUserEventConnection, adding user ${
-                participants[participantID]
-              } to event ${updatedEvent.id} -------------> ${JSON.stringify(
-                err
-              )}`
+              `Error in mutation createUserEventConnection, adding user ${participantID} to event ${
+                updatedEvent.id
+              } -------------> ${JSON.stringify(err)}`
             );
           });
       }

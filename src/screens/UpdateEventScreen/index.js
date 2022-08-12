@@ -31,7 +31,6 @@ const AddScreen = ({ navigation, route }) => {
   const { user } = useAuth();
   const headerHeight = useHeaderHeight();
   const [event, setEvent] = useState(route.params?.event);
-  const [_event, _setEvent] = useState(route.params?.event);
   const [visibleStart, setVisibleStart] = useState(false); // Put visible and color in one state object
   const [visibleEnd, setVisibleEnd] = useState(false);
   const [check, setCheck] = useState(false);
