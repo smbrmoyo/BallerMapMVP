@@ -85,10 +85,9 @@ export default function FollowRow(props) {
             activeOpacity={0.7}
             onPress={() => {
               !isAdded
-                ? (setIsAdded(!isAdded),
-                  props.addParticipant(props.item?.followed?.id))
-                : (setIsAdded(!isAdded),
-                  props.deleteParticipant(props.item?.followed?.id));
+                ? props.addParticipant(props.item?.followed?.id)
+                : props.deleteParticipant(props.item?.followed?.id);
+              onAddPress();
             }}
           >
             {loading ? (

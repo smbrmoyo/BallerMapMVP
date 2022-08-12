@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import React from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 import * as Haptics from "expo-haptics";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { DataStore } from "aws-amplify";
 
-import { wsize, hsize } from "../../utils/Dimensions";
+import { hsize, wsize } from "../../utils/Dimensions";
 import { updateEvent } from "../../aws-functions/eventFunctions";
-import { Event } from "../../models";
 
 export default function ButtonContainer(props) {
   return (
@@ -59,12 +56,14 @@ export default function ButtonContainer(props) {
         onPress={() => {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(() => {
             props.setCheck(true);
-            updateEvent(props.eventData).then((response) => {
-              if (!response) {
-                console.log(response);
+            updateEvent(
+              props.eventData,
+              props.params.idsToAdd,
+              props.params.idsToRemove
+            ).then((response) => {
+              if (response == undefined || response == null) {
                 null;
               } else {
-                console.log(response);
                 props.navigation.navigate("Profile", { screen: "Profile" });
               }
             });

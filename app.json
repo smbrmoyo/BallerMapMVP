@@ -3,7 +3,7 @@
     "name": "BallerMap",
     "slug": "BallerMap",
     "description": "An app that uses your location to find basketball courts near users",
-    "version": "1.1.5",
+    "version": "1.2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -13,13 +13,14 @@
     },
     "userInterfaceStyle": "automatic",
     "updates": {
-      "fallbackToCacheTimeout": 2000
+      "fallbackToCacheTimeout": 2000,
+      "url": "https://u.expo.dev/6ae2ed74-7399-433f-9dca-d5514a39a5e7"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "buildNumber": "15",
+      "buildNumber": "16",
       "supportsTablet": false,
       "userInterfaceStyle": "automatic",
       "usesAppleSignIn": false,
@@ -31,12 +32,16 @@
         "photosPermission": "BallerMap accesses your photos to let you set your profile picture.",
         "cameraPermission": "BallerMap accesses your camera to let you set your profile picture."
       },
-      "bundleIdentifier": "com.smbrmoyo.BallerMap"
+      "bundleIdentifier": "com.smbrmoyo.BallerMap",
+      "runtimeVersion": "1.0.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
+      },
+      "runtimeVersion": {
+        "policy": "sdkVersion"
       }
     },
     "web": {
