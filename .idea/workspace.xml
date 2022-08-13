@@ -4,22 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Event update done and tested&#10;- will refactor in next commit (export all functions)">
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Push Notifications implemented.&#10;- Will find a logic to ensure updatePushToken">
+      <change afterPath="$PROJECT_DIR$/src/utils/Notifications/registerForNotifications.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/Notifications.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serviceTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/serviceTest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aws-functions/eventFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/eventFunctions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/mutations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/queries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/subscriptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/subscriptions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/navigation/AppStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/AppStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/AddScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/UpdateEventScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UpdateEventScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/UserSearchScreen/FollowRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UserSearchScreen/FollowRow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/UserSearchScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UserSearchScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UserSearchUpdateScreen/index.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,7 +139,7 @@
       <workItem from="1660163979897" duration="6833000" />
       <workItem from="1660242082076" duration="13919000" />
       <workItem from="1660302396257" duration="5921000" />
-      <workItem from="1660393225414" duration="8529000" />
+      <workItem from="1660393225414" duration="12110000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -384,7 +372,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660264389161</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Push Notifications implemented.&#10;- Will find a logic to ensure updatePushToken">
+      <created>1660401830159</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1660401830159</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -439,7 +434,8 @@
     <MESSAGE value="Will work on notifications later" />
     <MESSAGE value="Finding a way to differentiate public and private" />
     <MESSAGE value="Event update done and tested&#10;- will refactor in next commit (export all functions)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Event update done and tested&#10;- will refactor in next commit (export all functions)" />
+    <MESSAGE value="Push Notifications implemented.&#10;- Will find a logic to ensure updatePushToken" />
+    <option name="LAST_COMMIT_MESSAGE" value="Push Notifications implemented.&#10;- Will find a logic to ensure updatePushToken" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
