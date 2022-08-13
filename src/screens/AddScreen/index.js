@@ -53,7 +53,7 @@ const AddScreen = ({ navigation, route }) => {
     endingTime: new Date(),
     privacy: "public",
     status: "upcoming",
-    participants: route.params?.participants,
+    participants: [],
   });
 
   useEffect(() => {

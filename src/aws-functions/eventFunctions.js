@@ -57,69 +57,50 @@ export const getFilteredEvents = async (user) => {
 
 /**
  * @description send notifications to expo server
- * @param {[String]} pushTokens List of expo push tokens
- * @param {String} creator Creator of the event
  * @param {string} eventId Id of the created event
  * @returns createdEvent
  */
 
-/**const sendEventNotifications = (pushTokens, creator, eventId) => {
-  const expoPushMessages = pushTokens.map((pushToken) => ({
-    body: `${creator} invited you to a game`,
-    data: eventId,
-    title: `You've been invited!`,
-    to: pushToken,
-  }));
-
-  //const expo = new Expo();
-
-  let chunks = expo.chunkPushNotifications(expoPushMessages);
-  let tickets = [];
-  (async () => {
-    for (let chunk of chunks) {
-      try {
-        let ticketChunk = await expo.sendPushNotificationsAsync(chunk);
-        console.log(ticketChunk);
-        tickets.push(...ticketChunk);
-      } catch (error) {
-        console.error(error);
+const sendEventNotifications = (eventId) => {
+  getEvent(eventId).then((event) => {
+    let notifications = event?.participants?.items.map((token) => {
+      if (
+        token.userProfile.expoPushToken !== null ||
+        token.userProfile.expoPushToken !== undefined
+      ) {
+        return {
+          to: token.userProfile.expoPushToken,
+          sound: "default",
+          title: "New Event",
+          badge: 1,
+          body: `${event.creator.username} has invited you to a new event`,
+          data: {
+            eventId: eventId,
+          },
+        };
       }
-    }
-  })();
+    });
 
-  let receiptIds = [];
-  for (let ticket of tickets) {
-    if (ticket.id) {
-      receiptIds.push(ticket.id);
-    }
-  }
+    console.log("notifications: " + JSON.stringify(notifications));
 
-  let receiptIdChunks = expo.chunkPushNotificationReceiptIds(receiptIds);
-  (async () => {
-    for (let chunk of receiptIdChunks) {
-      try {
-        let receipts = await expo.getPushNotificationReceiptsAsync(chunk);
-        console.log(receipts);
-
-        for (let receiptId in receipts) {
-          let { status, message, details } = receipts[receiptId];
-          if (status === "ok") {
-            continue;
-          } else if (status === "error") {
-            console.error(
-              `There was an error sending a notification: ${message}`
-            );
-            if (details && details.error) {
-              console.error(`The error code is ${details.error}`);
-            }
-          }
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  })();
-};*/
+    fetch("https://exp.host/--/api/v2/push/send", {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(notifications),
+    })
+      .then((response) => {
+        //console.log("Push notifications successful: ", JSON.stringify(response));
+        console.log("Push notifications successful");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
+};
 
 /**
  * @description create event
@@ -173,7 +154,6 @@ export const createEvent = async (eventData) => {
         await API.graphql(
           graphqlOperation(mutations.createUserEventConnection, {
             input: {
-              id: createdEvent.id + participantID,
               eventID: createdEvent.id,
               profileID: participantID,
             },
@@ -191,8 +171,6 @@ export const createEvent = async (eventData) => {
               } -------------> ${JSON.stringify(err)}`
             );
           });
-
-        //sendEventNotifications();
 
         await API.graphql(
           graphqlOperation(mutations.createNotification, {
@@ -217,10 +195,12 @@ export const createEvent = async (eventData) => {
             );
           });
       }
+      sendEventNotifications(createdEvent.id);
     }
 
     if (advance) {
       console.log("  Request Successful !!!!!");
+
       return createdEvent;
     } else {
       console.log("Request UnSuccessful !!!!!");

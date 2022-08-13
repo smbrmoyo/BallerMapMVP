@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Text, View, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 import ProfilePicture from "../../components/ProfilePictureUser";
-import { wsize, hsize } from "../../utils/Dimensions";
-import debounce from "lodash/debounce";
+import { hsize, wsize } from "../../utils/Dimensions";
 import { Feather } from "@expo/vector-icons";
 import styles from "./styles";
-import { useMap } from "../../navigation/Providers/MapProvider";
 
 export default function FollowRow(props) {
-  const [isAdded, setIsAdded] = useState(true);
+  const [isAdded, setIsAdded] = useState(false);
   const onAddPress = () => {
     setIsAdded(!isAdded);
   };
@@ -18,11 +16,11 @@ export default function FollowRow(props) {
       activeOpacity={0.7}
       style={styles.postHeaderFirst}
       /*onPress={() => {
-        navigation.navigate("Profile", {
-          screen: "OtherProfile",
-          params: { id: item.id },
-        });
-      }}*/
+                                navigation.navigate("Profile", {
+                                  screen: "OtherProfile",
+                                  params: { id: item.id },
+                                });
+                              }}*/
     >
       <View style={styles.postHeaderContainer}>
         <View
@@ -77,17 +75,13 @@ export default function FollowRow(props) {
           <TouchableOpacity
             activeOpacity={0.7}
             onPress={() => {
-              //props.setParticipants([props.item.id, ...props.participants]);
-              const helper = props.participants.filter(
-                (element) => element != props.item.id
-              );
-              isAdded
-                ? (setIsAdded(!isAdded),
-                  props.setParticipants([props.item.id, ...props.participants]))
-                : (props.setParticipants(helper), setIsAdded(!isAdded));
-            }} // Should add to the list of participants
+              !isAdded
+                ? props.addParticipant(props.item?.id)
+                : props.deleteParticipant(props.item?.id);
+              onAddPress();
+            }}
           >
-            {isAdded == false ? (
+            {isAdded ? (
               <Feather name="check" size={30} color="#743cff" />
             ) : (
               <Feather name="plus" size={30} color="black" />

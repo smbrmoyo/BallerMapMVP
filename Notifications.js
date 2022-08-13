@@ -2,6 +2,8 @@ const jwt = require("jsonwebtoken");
 const http2 = require("http2");
 const fs = require("fs");
 
+const expo_push_token = "ExponentPushToken[vzVWrGKf78eBc2ACnPYO1x]";
+
 const IS_PRODUCTION = true;
 
 const authorizationToken = jwt.sign(

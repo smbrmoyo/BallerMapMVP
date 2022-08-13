@@ -1,29 +1,27 @@
-import React, { useState, useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import {
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-  ScrollView,
   FlatList,
-  Image,
-  TouchableOpacity,
   SafeAreaView,
-  RefreshControl,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import LoadingScreen from "../LoadingScreen";
-import { Entypo, MaterialCommunityIcons } from "@expo/vector-icons";
+import { Entypo } from "@expo/vector-icons";
 import styles from "./styles";
 import { useMap } from "../../navigation/Providers/MapProvider";
 import FollowRow from "./FollowRow";
 import SearchBarFollowers from "./SearchBarFollowers";
-import { hsize, wsize } from "../../utils/Dimensions";
+import { hsize } from "../../utils/Dimensions";
+
+let idsToAdd = [];
 
 const UserSearchScreen = ({ navigation }) => {
   const [loading, setLoading] = useState(false);
   const { colors, dark } = useTheme();
   const [text, setText] = useState("");
+  const [done, setDone] = useState(false);
   const { users } = useMap();
   const [data, setData] = useState(users); // users should come from uProfile
   const [participants, setParticipants] = useState([]);
@@ -32,10 +30,33 @@ const UserSearchScreen = ({ navigation }) => {
     setData(users);
   }, []);
 
+  const addParticipant = (id) => {
+    if (!idsToAdd.includes(id)) {
+      setDone(true);
+      idsToAdd.push(id);
+    }
+  };
+
+  const deleteParticipant = (id) => {
+    if (idsToAdd.includes(id)) {
+      setDone(true);
+      idsToAdd.splice(idsToAdd.indexOf(id), 1);
+    }
+  };
+
+  const navigate = () => {
+    navigation.navigate({
+      name: "Add",
+      params: {
+        participants: idsToAdd,
+      },
+    });
+  };
+
   const searchFilter = async (text) => {
     if (text) {
-      var newData = users.filter((item) => {
-        var name = item.name.toLowerCase();
+      let newData = users.filter((item) => {
+        let name = item.name.toLowerCase();
         const filter = text.toLowerCase();
         return name.search(filter) !== -1;
       });
@@ -47,9 +68,9 @@ const UserSearchScreen = ({ navigation }) => {
     }
   };
   /*const onChangeTextDebounced = debounce(updateQuery, 1000, {
-    leading: true,
-    trailing: true,
-  });*/
+                                        leading: true,
+                                        trailing: true,
+                                      });*/
 
   useLayoutEffect(() => {
     navigation.setOptions({
@@ -83,20 +104,13 @@ const UserSearchScreen = ({ navigation }) => {
         <TouchableOpacity
           activeOpacity={0.7}
           onPress={() => {
-            participants.length > 0
-              ? navigation.navigate({
-                  name: "Add",
-                  params: {
-                    participants: participants,
-                  },
-                })
-              : null;
+            done ? navigate() : null;
           }}
         >
           <View style={styles.iconContainer}>
             <Text
               style={{
-                color: participants.length > 0 ? "#743cff" : "grey",
+                color: done ? "#743cff" : "grey",
                 fontWeight: "bold",
               }}
             >
@@ -106,7 +120,7 @@ const UserSearchScreen = ({ navigation }) => {
         </TouchableOpacity>
       ),
     });
-  }, [participants]);
+  }, [done]);
 
   if (loading) {
     return <LoadingScreen />;
@@ -132,6 +146,8 @@ const UserSearchScreen = ({ navigation }) => {
               item={item}
               participants={participants}
               setParticipants={setParticipants}
+              addParticipant={addParticipant}
+              deleteParticipant={deleteParticipant}
               isAdded
               onAddPress
               navigation={navigation}

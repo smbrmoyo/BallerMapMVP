@@ -23,7 +23,7 @@ const Tab = createBottomTabNavigator();
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
-    shouldPlaySound: false,
+    shouldPlaySound: true,
     shouldSetBadge: true,
   }),
 });
@@ -52,19 +52,17 @@ const AppStack = (route, props) => {
           return;
         }
         const token = (
-          await Notifications.getDevicePushTokenAsync({
+          await Notifications.getExpoPushTokenAsync({
             experienceId: "@brianmoyou/BallerMap",
           })
         ).data;
         let input = {
           id: user,
-          devicePushToken: token,
+          expoPushToken: token, //ExponentPushToken[vzVWrGKf78eBc2ACnPYO1x]
         };
-        token == null || token == ""
-          ? updatePushToken(input)
-              .then(() => console.log("Device push token updated"))
-              .catch((err) => console.log(err))
-          : null;
+        updatePushToken(input)
+          .then(() => console.log("Expo push token updated"))
+          .catch((err) => console.log(err));
       }
     })();
 
@@ -194,46 +192,46 @@ export default AppStack;
 
 {
   /*
-                                                                                            <Tab.Screen
-                                                                                                  name="MessageStack"
-                                                                                                  component={MessageStack}
-                                                                                                  options={({ route }) => ({
-                                                                                                    tabBarLabel: "Message",
-                                                                                                    tabBarVisible: getTabBarVisibility(route),
-                                                                                                    tabBarIcon: ({ color, size }) => (
-                                                                                                      <Feather name="message-square" size={26} color={color} />
-                                                                                                    ),
-                                                                                                    //tabBarBadge: 3,
-                                                                                                  })}
-                                                                                                />
-                                                                          
-                                                                                            <Tab.Screen
-                                                                                                  name="Home"
-                                                                                                  component={HomeStack}
-                                                                                                  options={({ route }) => ({
-                                                                                                    tabBarLabel: "Feed",
-                                                                                                    tabBarVisible: getTabBarVisibility(route),
-                                                                                                    tabBarIcon: ({ color, size }) => (
-                                                                                                      <MaterialCommunityIcons
-                                                                                                        name="home-circle-outline"
-                                                                                                        size={30}
-                                                                                                        color={color}
-                                                                                                      />
-                                                                                                    ),
-                                                                                                    //tabBarBadge: 5,
-                                                                                                  })}
-                                                                                                />
-                                                                          
-                                                                                                <Tab.Screen
-                                                                                                  name="Category"
-                                                                                                  component={CategoryStack}
-                                                                                                  options={({ route }) => ({
-                                                                                                    tabBarLabel: "Places",
-                                                                                                    tabBarVisible: getTabBarVisibility(route),
-                                                                                                    tabBarIcon: ({ color, size }) => (
-                                                                                                      <AntDesign name="appstore-o" size={23} color={color} />
-                                                                                                    ),
-                                                                                                  })}
-                                                                                                />
-                                                                                                */
+                                                                                                                  <Tab.Screen
+                                                                                                                        name="MessageStack"
+                                                                                                                        component={MessageStack}
+                                                                                                                        options={({ route }) => ({
+                                                                                                                          tabBarLabel: "Message",
+                                                                                                                          tabBarVisible: getTabBarVisibility(route),
+                                                                                                                          tabBarIcon: ({ color, size }) => (
+                                                                                                                            <Feather name="message-square" size={26} color={color} />
+                                                                                                                          ),
+                                                                                                                          //tabBarBadge: 3,
+                                                                                                                        })}
+                                                                                                                      />
+    
+                                                                                                                  <Tab.Screen
+                                                                                                                        name="Home"
+                                                                                                                        component={HomeStack}
+                                                                                                                        options={({ route }) => ({
+                                                                                                                          tabBarLabel: "Feed",
+                                                                                                                          tabBarVisible: getTabBarVisibility(route),
+                                                                                                                          tabBarIcon: ({ color, size }) => (
+                                                                                                                            <MaterialCommunityIcons
+                                                                                                                              name="home-circle-outline"
+                                                                                                                              size={30}
+                                                                                                                              color={color}
+                                                                                                                            />
+                                                                                                                          ),
+                                                                                                                          //tabBarBadge: 5,
+                                                                                                                        })}
+                                                                                                                      />
+    
+                                                                                                                      <Tab.Screen
+                                                                                                                        name="Category"
+                                                                                                                        component={CategoryStack}
+                                                                                                                        options={({ route }) => ({
+                                                                                                                          tabBarLabel: "Places",
+                                                                                                                          tabBarVisible: getTabBarVisibility(route),
+                                                                                                                          tabBarIcon: ({ color, size }) => (
+                                                                                                                            <AntDesign name="appstore-o" size={23} color={color} />
+                                                                                                                          ),
+                                                                                                                        })}
+                                                                                                                      />
+                                                                                                                      */
 }

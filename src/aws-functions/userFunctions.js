@@ -208,8 +208,8 @@ export const updateCityCountry = async (userData) => {
 };
 
 /**
- * @description updates devicePushToken in profileDoc
- * @param {JSON} userData Object with id and cityCountry
+ * @description updates expoPushToken in profileDoc
+ * @param {Object} userData Object with id and cityCountry
  */
 export const updatePushToken = async (userData) => {
   try {
@@ -217,7 +217,7 @@ export const updatePushToken = async (userData) => {
       graphqlOperation(mutations.updateUprofile, {
         input: {
           id: userData.id,
-          devicePushToken: userData.devicePushToken,
+          expoPushToken: userData.expoPushToken,
         },
       })
     );
