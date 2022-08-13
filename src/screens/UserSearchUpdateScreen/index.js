@@ -29,12 +29,7 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
   const [participantsIDs, setParticipantsIDs] = useState(
     route.params?.participantsIDs
   );
-  const [_participantsIDs, _setParticipantsIDs] = useState([]);
   let currentIds = route.params?.participantsIDs;
-
-  /**
-   * Should try updating event by adding new participants to the list
-   */
 
   useEffect(() => {
     setData(profileDoc?.following.items);
@@ -53,7 +48,6 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
     if (!currentIds.includes(id) && !idsToAdd.includes(id)) {
       setDone(true);
       idsToAdd.push(id);
-      _setParticipantsIDs(idsToAdd);
     } else if (idsToRemove.includes(id)) {
       idsToRemove.splice(idsToRemove.indexOf(id), 1);
     }
@@ -84,9 +78,9 @@ const UserSearchUpdateScreen = ({ navigation, route }) => {
     }
   };
   /*const onChangeTextDebounced = debounce(updateQuery, 1000, {
-                                                                                                                                                                            leading: true,
-                                                                                                                                                                            trailing: true,
-                                                                                                                                                                          });*/
+                                                                                                                                                                              leading: true,
+                                                                                                                                                                              trailing: true,
+                                                                                                                                                                            });*/
 
   useLayoutEffect(() => {
     navigation.setOptions({

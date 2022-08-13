@@ -32,6 +32,7 @@ export const getEvent = /* GraphQL */ `
             id
             name
             username
+            expoPushToken
           }
         }
       }
@@ -145,7 +146,7 @@ export const getUprofile = /* GraphQL */ `
       userDocId
       cityCountry
       currentPlaceID
-      devicePushToken
+      expoPushToken
       notifications {
         items {
           id
@@ -246,7 +247,7 @@ export const getUprofile = /* GraphQL */ `
         id
         profileID
         email
-        deviceToken
+        expoPushToken
         phoneNumber
         uProfile {
           id
@@ -281,7 +282,7 @@ export const getUserDoc = /* GraphQL */ `
   query GetUserDoc($id: ID!) {
     getUserDoc(id: $id) {
       createdAt
-      deviceToken
+      expoPushToken
       email
       id
       phoneNumber
@@ -496,7 +497,7 @@ export const listUserDocs = /* GraphQL */ `
     listUserDocs(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         createdAt
-        deviceToken
+        expoPushToken
         email
         id
         phoneNumber

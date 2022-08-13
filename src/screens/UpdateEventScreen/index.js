@@ -27,7 +27,7 @@ import { useAuth } from "../../navigation/Providers/AuthProvider";
 import { hsize, wsize } from "../../utils/Dimensions";
 import styles from "./styles";
 
-const AddScreen = ({ navigation, route }) => {
+const UpdateEventScreen = ({ navigation, route }) => {
   const { user } = useAuth();
   const headerHeight = useHeaderHeight();
   const [event, setEvent] = useState(route.params?.event);
@@ -238,4 +238,4 @@ const AddScreen = ({ navigation, route }) => {
   );
 };
 
-export default AddScreen;
+export default UpdateEventScreen;

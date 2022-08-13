@@ -51,7 +51,7 @@ export const createEvent = /* GraphQL */ `
       participants {
         items {
           userProfile {
-            devicePushToken
+            expoPushToken
           }
         }
         nextToken
@@ -260,7 +260,7 @@ export const createUprofile = /* GraphQL */ `
       updatedAt
       userDoc {
         createdAt
-        deviceToken
+        expoPushToken
         email
         id
         phoneNumber
@@ -313,7 +313,7 @@ export const createUserDoc = /* GraphQL */ `
   ) {
     createUserDoc(condition: $condition, input: $input) {
       createdAt
-      deviceToken
+      expoPushToken
       email
       id
       phoneNumber
@@ -606,7 +606,7 @@ export const deleteUprofile = /* GraphQL */ `
       updatedAt
       userDoc {
         createdAt
-        deviceToken
+        expoPushToken
         email
         id
         phoneNumber
@@ -657,7 +657,7 @@ export const deleteUserDoc = /* GraphQL */ `
   ) {
     deleteUserDoc(condition: $condition, input: $input) {
       createdAt
-      deviceToken
+      expoPushToken
       email
       id
       phoneNumber
@@ -962,7 +962,7 @@ export const updateUprofile = /* GraphQL */ `
       userDocId
       cityCountry
       currentPlaceID
-      devicePushToken
+      expoPushToken
       notifications {
         items {
           id
@@ -1061,7 +1061,7 @@ export const updateUprofile = /* GraphQL */ `
         id
         profileID
         email
-        deviceToken
+        expoPushToken
         phoneNumber
         uProfile {
           id
@@ -1131,7 +1131,7 @@ export const updateUserDoc = /* GraphQL */ `
   ) {
     updateUserDoc(condition: $condition, input: $input) {
       createdAt
-      deviceToken
+      expoPushToken
       email
       id
       phoneNumber
