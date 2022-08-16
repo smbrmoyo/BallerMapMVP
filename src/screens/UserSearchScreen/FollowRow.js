@@ -16,11 +16,11 @@ export default function FollowRow(props) {
       activeOpacity={0.7}
       style={styles.postHeaderFirst}
       /*onPress={() => {
-                                navigation.navigate("Profile", {
-                                  screen: "OtherProfile",
-                                  params: { id: item.id },
-                                });
-                              }}*/
+                                      navigation.navigate("Profile", {
+                                        screen: "OtherProfile",
+                                        params: { id: item.id },
+                                      });
+                                    }}*/
     >
       <View style={styles.postHeaderContainer}>
         <View
@@ -46,7 +46,7 @@ export default function FollowRow(props) {
                 color: "black",
               }}
             >
-              {props.item.name}
+              {props.item.followed?.name}
             </Text>
             <Text
               style={{
@@ -54,7 +54,7 @@ export default function FollowRow(props) {
                 color: "grey",
               }}
             >
-              {props.item.username}
+              {props.item.followed?.username}
             </Text>
           </View>
         </View>
@@ -76,8 +76,8 @@ export default function FollowRow(props) {
             activeOpacity={0.7}
             onPress={() => {
               !isAdded
-                ? props.addParticipant(props.item?.id)
-                : props.deleteParticipant(props.item?.id);
+                ? props.addParticipant(props.item?.followed?.id)
+                : props.deleteParticipant(props.item?.followed?.id);
               onAddPress();
             }}
           >

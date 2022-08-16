@@ -68,9 +68,9 @@ const UserSearchScreen = ({ navigation }) => {
     }
   };
   /*const onChangeTextDebounced = debounce(updateQuery, 1000, {
-                                        leading: true,
-                                        trailing: true,
-                                      });*/
+                                            leading: true,
+                                            trailing: true,
+                                          });*/
 
   useLayoutEffect(() => {
     navigation.setOptions({
