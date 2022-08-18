@@ -23,14 +23,13 @@ export async function registerForPushNotificationsAsync(user) {
           experienceId: "@brianmoyou/BallerMap",
         })
       ).data;
-      console.log(token);
     } catch (error) {
       console.log("error on getting expoPushToken: ", error);
     }
   }
   let input = {
     id: user,
-    expoPushToken: "ExponentPushToken[vzVWrGKf78eBc2ACnPYO1x]", //ExponentPushToken[vzVWrGKf78eBc2ACnPYO1x]
+    expoPushToken: token, //ExponentPushToken[vzVWrGKf78eBc2ACnPYO1x]
   };
   if (
     user != "brianmoyou@gmail" ||

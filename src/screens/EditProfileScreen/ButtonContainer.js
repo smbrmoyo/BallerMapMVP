@@ -1,14 +1,13 @@
 import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import * as Haptics from "expo-haptics";
 
-import { wsize, hsize } from "../../utils/Dimensions";
-import {
-  getUprofileDoc,
-  updateUserProfile,
-} from "../../aws-functions/userFunctions";
+import { hsize, wsize } from "../../utils/Dimensions";
+import { updateUserProfile } from "../../aws-functions/userFunctions";
 
 export default function ButtonContainer(props) {
+  const [disabled, setDisabled] = React.useState(false);
+
   return (
     <View
       style={{
@@ -55,15 +54,21 @@ export default function ButtonContainer(props) {
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={() => {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-          props.setCheck(true);
-          updateUserProfile(props.userProfile).then((response) => {
-            if (response == undefined || response == null) {
-              null;
-            } else {
-              props.navigation.goBack();
-            }
-          });
+          !disabled
+            ? Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+                () => {
+                  setDisabled(true);
+                  props.setCheck(true);
+                  updateUserProfile(props.userProfile).then((response) => {
+                    if (response == undefined || response == null) {
+                      null;
+                    } else {
+                      props.navigation.goBack();
+                    }
+                  });
+                }
+              )
+            : null;
         }}
       >
         <View

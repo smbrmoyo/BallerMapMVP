@@ -1,18 +1,15 @@
 import React from "react";
-import { View, Text, Alert, TouchableOpacity } from "react-native";
+import { Alert, Text, TouchableOpacity, View } from "react-native";
 import * as Haptics from "expo-haptics";
 import { useAppContext } from "../../navigation/Providers/AppProvider";
 
-import {
-  createUserDoc,
-  createUserProfile,
-  getAuthenticatedUser,
-} from "../../aws-functions/userFunctions";
-import styles from "./styles";
-import { wsize, hsize } from "../../utils/Dimensions";
+import { createUserProfile } from "../../aws-functions/userFunctions";
+import { hsize, wsize } from "../../utils/Dimensions";
 
 export default function ButtonContainer(props) {
   const { setIsPdoc } = useAppContext();
+  const [disabled, setDisabled] = React.useState(false);
+
   return (
     <View
       style={{
@@ -32,19 +29,25 @@ export default function ButtonContainer(props) {
             userDocId: props.user,
             profilePicture: props.imageUri,
           };
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
-          props.setCheck(true);
-          createUserProfile(input)
-            .then((response) => {
-              if (response == undefined || response == null) {
-                null;
-              } else {
-                setIsPdoc(true);
-              }
-            })
-            .catch((error) => {
-              Alert.alert("Error creating the profile");
-            });
+          !disabled
+            ? Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+                () => {
+                  setDisabled(true);
+                  props.setCheck(true);
+                  createUserProfile(input)
+                    .then((response) => {
+                      if (response == undefined || response == null) {
+                        null;
+                      } else {
+                        setIsPdoc(true);
+                      }
+                    })
+                    .catch((error) => {
+                      Alert.alert("Error creating the profile");
+                    });
+                }
+              )
+            : null;
         }}
       >
         <View

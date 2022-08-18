@@ -6,6 +6,8 @@ import { hsize, wsize } from "../../utils/Dimensions";
 import { updateEvent } from "../../aws-functions/eventFunctions";
 
 export default function ButtonContainer(props) {
+  const [disabled, setDisabled] = React.useState(false);
+
   return (
     <View
       style={{
@@ -54,20 +56,28 @@ export default function ButtonContainer(props) {
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={() => {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(() => {
-            props.setCheck(true);
-            updateEvent(
-              props.eventData,
-              props.params.idsToAdd,
-              props.params.idsToRemove
-            ).then((response) => {
-              if (response == undefined || response == null) {
-                null;
-              } else {
-                props.navigation.navigate("Profile", { screen: "Profile" });
-              }
-            });
-          });
+          !disabled
+            ? Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+                () => {
+                  setDisabled(true);
+
+                  props.setCheck(true);
+                  updateEvent(
+                    props.eventData,
+                    props.params.idsToAdd,
+                    props.params.idsToRemove
+                  ).then((response) => {
+                    if (response == undefined || response == null) {
+                      null;
+                    } else {
+                      props.navigation.navigate("Profile", {
+                        screen: "Profile",
+                      });
+                    }
+                  });
+                }
+              )
+            : null;
         }}
       >
         <View

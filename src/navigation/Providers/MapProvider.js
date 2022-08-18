@@ -1,17 +1,15 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
-import { Alert } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
 import Geocoder from "react-native-geocoding";
-import { Auth, API, graphqlOperation } from "aws-amplify";
 import { useQuery } from "react-query";
 import * as Location from "expo-location";
 
-import { getPlacesList, createPlace } from "../../aws-functions/placeFunctions";
+import { getPlacesList } from "../../aws-functions/placeFunctions";
 import {
   getAllUserProfiles,
-  updateUserProfile,
+  getUprofileDoc,
   updateCityCountry,
 } from "../../aws-functions/userFunctions";
-import { useAuth, getUprofile } from "./AuthProvider";
+import { useAuth } from "./AuthProvider";
 
 export const MapContext = React.createContext();
 
@@ -60,25 +58,25 @@ const MapProvider = ({ children }) => {
   const resultUsers = useQuery("getUsers", getAllUserProfiles);
 
   /*useEffect(() => {
-    Geocoder.from("Gerbermühlstraße 110, Frankfurt am Main")
-      .then((json) => {
-        var location = json.results[0].geometry.location;
-        let input = {
-          name: "Mainufer",
-          address: "Gerbermühlstraße 110, Frankfurt am Main",
-          coords: {
-            lat: json.results[0].geometry.location.lat,
-            long: json.results[0].geometry.location.lng,
-          },
-        };
-        createPlace(input).then((res) => console.log(res));
-      })
-      .catch((error) => console.warn(error));
-  }, []);*/
+      Geocoder.from("Gerbermühlstraße 110, Frankfurt am Main")
+        .then((json) => {
+          var location = json.results[0].geometry.location;
+          let input = {
+            name: "Mainufer",
+            address: "Gerbermühlstraße 110, Frankfurt am Main",
+            coords: {
+              lat: json.results[0].geometry.location.lat,
+              long: json.results[0].geometry.location.lng,
+            },
+          };
+          createPlace(input).then((res) => console.log(res));
+        })
+        .catch((error) => console.warn(error));
+    }, []);*/
 
   useEffect(() => {
-    getAllUserProfiles(user).then((response) => {
-      setUsers(response);
+    getUprofileDoc(user).then((response) => {
+      setUsers(response.following.items);
     });
 
     if (resultPlaces.status == "success" && resultCamera.status == "success") {
@@ -91,31 +89,31 @@ const MapProvider = ({ children }) => {
   }, [resultPlaces.status]);
 
   /*useEffect(() => {
-    if (counter == 1) {
-      placesJSON.map((place, i) => {
-        if (i > 16 && i < 22) {
-          Geocoder.from(place.address)
-            .then((json) => {
-              var location = json.results[0].geometry.location;
-              if (location == undefined) {
-                Alert.alert("error from Geocoder");
-              }
-              let input = {
-                name: place.name,
-                address: place.address,
-                coords: {
-                  lat: json.results[0].geometry.location.lat,
-                  long: json.results[0].geometry.location.lng,
-                },
-              };
-              createPlace(input).then((res) => console.log(res));
-            })
-            .catch((error) => console.warn(error));
-        }
-      });
-    }
-    counter = 2;
-  }, []);*/
+      if (counter == 1) {
+        placesJSON.map((place, i) => {
+          if (i > 16 && i < 22) {
+            Geocoder.from(place.address)
+              .then((json) => {
+                var location = json.results[0].geometry.location;
+                if (location == undefined) {
+                  Alert.alert("error from Geocoder");
+                }
+                let input = {
+                  name: place.name,
+                  address: place.address,
+                  coords: {
+                    lat: json.results[0].geometry.location.lat,
+                    long: json.results[0].geometry.location.lng,
+                  },
+                };
+                createPlace(input).then((res) => console.log(res));
+              })
+              .catch((error) => console.warn(error));
+          }
+        });
+      }
+      counter = 2;
+    }, []);*/
 
   return (
     <MapContext.Provider
