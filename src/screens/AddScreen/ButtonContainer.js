@@ -1,11 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, Alert } from "react-native";
+import React from "react";
+import { Text, TouchableOpacity, View } from "react-native";
 import * as Haptics from "expo-haptics";
 
-import { wsize, hsize } from "../../utils/Dimensions";
+import { hsize, wsize } from "../../utils/Dimensions";
 import { createEvent } from "../../aws-functions/eventFunctions";
 
 export default function ButtonContainer(props) {
+  const [disabled, setDisabled] = React.useState(false);
+
+  const navigate = () => {
+    props.navigation.navigate({
+      name: "Map",
+      params: {
+        createdEvent: props.params.searchedPlace,
+        index: props.params.index,
+      },
+    });
+  };
+
   return (
     <View
       style={{
@@ -52,22 +64,21 @@ export default function ButtonContainer(props) {
       <TouchableOpacity
         activeOpacity={0.7}
         onPress={() => {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(() => {
-            props.setCheck(true);
-            createEvent(props.eventData).then((response) => {
-              if (response == undefined || response == null) {
-                null;
-              } else {
-                props.navigation.navigate({
-                  name: "Map",
-                  params: {
-                    createdEvent: props.params.searchedPlace,
-                    index: props.params.index,
-                  },
-                });
-              }
-            });
-          });
+          !disabled
+            ? Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).then(
+                () => {
+                  setDisabled(true);
+                  props.setCheck(true);
+                  createEvent(props.eventData).then((response) => {
+                    if (response == undefined || response == null) {
+                      null;
+                    } else {
+                      navigate();
+                    }
+                  });
+                }
+              )
+            : null;
         }}
       >
         <View

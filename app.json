@@ -3,7 +3,7 @@
     "name": "BallerMap",
     "slug": "BallerMap",
     "description": "An app that uses your location to find basketball courts near users",
-    "version": "1.3.1",
+    "version": "1.3.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "plugins": [
@@ -28,7 +28,7 @@
       "**/*"
     ],
     "ios": {
-      "buildNumber": "19",
+      "buildNumber": "15",
       "supportsTablet": false,
       "userInterfaceStyle": "automatic",
       "usesAppleSignIn": false,

@@ -4,19 +4,49 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Patched updatePushToken">
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Fixed users in useMap">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eas.json" beforeDir="false" afterPath="$PROJECT_DIR$/eas.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Supporting/Expo.plist" beforeDir="false" afterPath="$PROJECT_DIR$/ios/BallerMap/Supporting/Expo.plist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/serviceTest.js" beforeDir="false" afterPath="$PROJECT_DIR$/serviceTest.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/Providers/MapProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Providers/MapProvider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/OnboardingScreen/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OnboardingScreen/data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/UserSearchScreen/FollowRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UserSearchScreen/FollowRow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/UserSearchScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UserSearchScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Notifications/registerForNotifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Notifications/registerForNotifications.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap.xcodeproj/project.pbxproj" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap.xcodeproj/xcshareddata/xcschemes/BallerMap.xcscheme" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/AppDelegate.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/AppDelegate.mm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/BallerMap.entitlements" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-20x20@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-20x20@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-20x20@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-29x29@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-29x29@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-29x29@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-40x40@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-40x40@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-40x40@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-60x60@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-60x60@3x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-76x76@1x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-76x76@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/App-Icon-83.5x83.5@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/AppIcon.appiconset/ItunesArtwork@2x.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/SplashScreen.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/SplashScreen.imageset/image.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/SplashScreenBackground.imageset/Contents.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Images.xcassets/SplashScreenBackground.imageset/image.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Info.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/SplashScreen.storyboard" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/Supporting/Expo.plist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/main.m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/BallerMap/noop-file.swift" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Podfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ios/Podfile.properties.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/AddScreen/ButtonContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/AddScreen/ButtonContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/EditProfileScreen/ButtonContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/EditProfileScreen/ButtonContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SetProfileScreen/ButtonContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SetProfileScreen/ButtonContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SignInScreenEmail/ButtonContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignInScreenEmail/ButtonContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/ButtonContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/SignUpScreenEmail/ButtonContainer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/UpdateEventScreen/ButtonContainer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/UpdateEventScreen/ButtonContainer.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +180,8 @@
       <workItem from="1660302396257" duration="5921000" />
       <workItem from="1660393225414" duration="17041000" />
       <workItem from="1660435225686" duration="406000" />
-      <workItem from="1660683496153" duration="2505000" />
+      <workItem from="1660683496153" duration="3984000" />
+      <workItem from="1660743740925" duration="3165000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -397,7 +428,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660411576382</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Fixed users in useMap">
+      <created>1660686268048</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1660686268048</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,7 +466,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen&#10;&#10;&#10;&#10;Signup implemented!!!&#10;&#10;Confirme signuP to be implemented" />
     <MESSAGE value="false commit" />
     <MESSAGE value="Cleanup des aws functions pour l'auth a terminer&#10;FOnction pour verifier l'existence des user et profile docs implémentées (a vérifier une derniere fois)&#10;&#10;Reste a&#10; modiufier les bons champs au" />
     <MESSAGE value="Cleanup des aws functions pour l'auth a terminer&#10;FOnction pour verifier l'existence des user et profile docs implémentées&#10;&#10;Reste a modifier les bons champs au signup screen" />
@@ -453,7 +490,8 @@
     <MESSAGE value="Event update done and tested&#10;- will refactor in next commit (export all functions)" />
     <MESSAGE value="Push Notifications implemented.&#10;- Will find a logic to ensure updatePushToken" />
     <MESSAGE value="Patched updatePushToken" />
-    <option name="LAST_COMMIT_MESSAGE" value="Patched updatePushToken" />
+    <MESSAGE value="Fixed users in useMap" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed users in useMap" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
