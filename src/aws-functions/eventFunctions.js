@@ -57,7 +57,7 @@ export const getFilteredEvents = async (user) => {
 
 /**
  * @description send notifications to expo server
- * @param {string} eventId Id of the created event
+ * @param {ID} eventId Id of the created event
  * @returns createdEvent
  */
 
@@ -81,24 +81,23 @@ const sendEventNotifications = (eventId) => {
       }
     });
 
-    console.log("notifications: " + JSON.stringify(notifications));
-
-    fetch("https://exp.host/--/api/v2/push/send", {
-      method: "POST",
-      headers: {
-        accept: "application/json",
-        "accept-encoding": "gzip, deflate",
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(notifications),
-    })
-      .then((response) => {
-        //console.log("Push notifications successful: ", JSON.stringify(response));
-        console.log("Push notifications successful");
+    if (notifications.length > 0) {
+      fetch("https://exp.host/--/api/v2/push/send", {
+        method: "POST",
+        headers: {
+          accept: "application/json",
+          "accept-encoding": "gzip, deflate",
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(notifications),
       })
-      .catch((error) => {
-        console.log(error);
-      });
+        .then((response) => {
+          console.log("Push notifications successful");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   });
 };
 
