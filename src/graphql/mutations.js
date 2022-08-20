@@ -288,6 +288,7 @@ export const createUserConnection = /* GraphQL */ `
         userDocId
         username
         profilePicture
+        expoPushToken
       }
       followedID
       follower {
@@ -299,6 +300,7 @@ export const createUserConnection = /* GraphQL */ `
         userDocId
         username
         profilePicture
+        expoPushToken
       }
       followerID
       id

@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Disabled all major button containers after on press">
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Not send notifications when list of participants is empty">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aws-functions/eventFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/eventFunctions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/graphql/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/mutations.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +144,7 @@
       <workItem from="1660683496153" duration="3984000" />
       <workItem from="1660743740925" duration="6133000" />
       <workItem from="1661001287601" duration="2253000" />
-      <workItem from="1661007384752" duration="1011000" />
+      <workItem from="1661007384752" duration="6157000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -404,7 +405,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660855674634</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Not send notifications when list of participants is empty">
+      <created>1661013489027</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1661013489027</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -435,7 +443,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Cleanup des aws functions pour l'auth a terminer&#10;FOnction pour verifier l'existence des user et profile docs implémentées (a vérifier une derniere fois)&#10;&#10;Reste a&#10; modiufier les bons champs au" />
     <MESSAGE value="Cleanup des aws functions pour l'auth a terminer&#10;FOnction pour verifier l'existence des user et profile docs implémentées&#10;&#10;Reste a modifier les bons champs au signup screen" />
     <MESSAGE value="false" />
     <MESSAGE value="New project INITIALISED with LambdaResolver" />
@@ -460,7 +467,8 @@
     <MESSAGE value="Patched updatePushToken" />
     <MESSAGE value="Fixed users in useMap" />
     <MESSAGE value="Disabled all major button containers after on press" />
-    <option name="LAST_COMMIT_MESSAGE" value="Disabled all major button containers after on press" />
+    <MESSAGE value="Not send notifications when list of participants is empty" />
+    <option name="LAST_COMMIT_MESSAGE" value="Not send notifications when list of participants is empty" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

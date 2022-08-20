@@ -107,6 +107,46 @@ export const getAllNotifications = async (user) => {
  */
 
 /**
+ * @description send notifications to expo server
+ * @param {ID} profileID Id of the followed user
+ * @param {String} expoPushToken Token of the followed user
+ * @param {String} username Username of the user
+ */
+
+const sendFollowInvitation = (profileID, expoPushToken, username) => {
+  getUprofileDoc(profileID).then((res) => {
+    let notification = {
+      to: res.expoPushToken,
+      sound: "default",
+      title: "New Follower", // Watch what TT and IG write
+      badge: 1,
+      body: `${username} has started to follow you`,
+      data: {
+        profileID: profileID,
+      },
+    };
+
+    console.log(JSON.stringify(notification));
+
+    fetch("https://exp.host/--/api/v2/push/send", {
+      method: "POST",
+      headers: {
+        accept: "application/json",
+        "accept-encoding": "gzip, deflate",
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(notification),
+    })
+      .then((response) => {
+        console.log("Push notifications successful");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
+};
+
+/**
  * @description create user doc
  * @param {JSON} userData object with userDoc required field email
  */
@@ -270,6 +310,12 @@ export const createUserConnection = async (userConnectionData) => {
     } catch (error) {
       console.log(error);
     }
+
+    sendFollowInvitation(
+      userConnection.followedID,
+      userConnection.follower.expoPushToken,
+      userConnection.follower.username
+    );
   }
 };
 
