@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Implemented notif on follow">
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Corrected padding on Event and Notif rows">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aws-functions/eventFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/eventFunctions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/AppStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/AppStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/Providers/EventsProvider.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/Providers/EventsProvider.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ActivityScreen/NotifRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ActivityScreen/NotifRow.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/ProfileScreen/EventRow.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ProfileScreen/EventRow.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ActivityScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ActivityScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/ActivityScreen/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/ActivityScreen/styles.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/EventScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/EventScreen/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/screens/EventScreen/styles.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/EventScreen/styles.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +149,7 @@
       <workItem from="1661001287601" duration="2253000" />
       <workItem from="1661007384752" duration="6852000" />
       <workItem from="1661021203274" duration="551000" />
-      <workItem from="1661085038094" duration="1509000" />
+      <workItem from="1661085038094" duration="3227000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -425,7 +424,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661018810170</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Corrected padding on Event and Notif rows">
+      <created>1661086588094</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1661086588094</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,7 +462,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="false" />
     <MESSAGE value="New project INITIALISED with LambdaResolver" />
     <MESSAGE value="fake" />
     <MESSAGE value="Get Notification Query implemented" />
@@ -481,7 +486,8 @@
     <MESSAGE value="Disabled all major button containers after on press" />
     <MESSAGE value="Not send notifications when list of participants is empty" />
     <MESSAGE value="Implemented notif on follow" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented notif on follow" />
+    <MESSAGE value="Corrected padding on Event and Notif rows" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected padding on Event and Notif rows" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -120,7 +120,7 @@ const sendFollowInvitation = (profileID, expoPushToken, username) => {
       sound: "default",
       title: "New Follower", // Watch what TT and IG write
       badge: 1,
-      body: `${username} has started to follow you`,
+      body: `${username} followed you!`,
       data: {
         profileID: profileID,
       },
