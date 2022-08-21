@@ -1,8 +1,8 @@
 import React from "react";
-import { Text, View, TouchableOpacity } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import {Text, TouchableOpacity, View} from "react-native";
+import {useNavigation} from "@react-navigation/native";
 
-import { wsize, hsize } from "../../utils/Dimensions";
+import {hsize, wsize} from "../../utils/Dimensions";
 import ProfilePicture from "../../components/ProfilePicturePlace";
 import styles from "./styles";
 
@@ -10,6 +10,7 @@ import styles from "./styles";
 
 export default function EventRow(props) {
   const navigation = useNavigation();
+
   function pad2(string) {
     return `0${string}`.slice(-2);
   }
@@ -30,10 +31,6 @@ export default function EventRow(props) {
       activeOpacity={0.7}
       style={styles.postHeaderFirst}
       onPress={() =>
-        /*navigation.navigate("Profile", {
-          screen: "Description",
-          params: { event: event },
-        })*/
         props.navigation.navigate("Description", { id: props.event.id })
       }
     >
@@ -52,8 +49,9 @@ export default function EventRow(props) {
           <View
             style={{
               flexDirection: "column",
-              marginLeft: wsize(15),
+              marginLeft: wsize(5),
               width: "60%",
+              //backgroundColor: "black",
               //flex: 1,
             }}
           >
@@ -81,7 +79,7 @@ export default function EventRow(props) {
         </View>
         <View
           style={{
-            backgroundColor: "#eee",
+            backgroundColor: "#eee", //#eee
             borderWidth: 1,
             borderColor: "#E9E8E8",
             borderRadius: 5,
@@ -89,7 +87,7 @@ export default function EventRow(props) {
             width: "25%",
             alignSelf: "center",
             alignItems: "center",
-            //justifyContent: "center",
+            //justifyContent: "flex-end",
           }}
         >
           <Text

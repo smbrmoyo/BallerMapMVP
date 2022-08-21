@@ -43,7 +43,7 @@ export const getFilteredEvents = async (user) => {
         },
       })
     );
-    return events.data.listEvents;
+    return events.data.listEvents.items;
   } catch (error) {
     console.log("Error on getFilteredEvents: " + JSON.stringify(error));
   }

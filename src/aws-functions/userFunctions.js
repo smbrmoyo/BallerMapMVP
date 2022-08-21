@@ -126,8 +126,6 @@ const sendFollowInvitation = (profileID, expoPushToken, username) => {
       },
     };
 
-    console.log(JSON.stringify(notification));
-
     fetch("https://exp.host/--/api/v2/push/send", {
       method: "POST",
       headers: {
