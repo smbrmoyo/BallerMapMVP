@@ -33,6 +33,7 @@ export const getEvent = /* GraphQL */ `
             name
             username
             expoPushToken
+            devicePushToken
           }
         }
       }
@@ -147,6 +148,7 @@ export const getUprofile = /* GraphQL */ `
       cityCountry
       currentPlaceID
       expoPushToken
+      devicePushToken
       notifications {
         items {
           id
@@ -248,6 +250,7 @@ export const getUprofile = /* GraphQL */ `
         profileID
         email
         expoPushToken
+        devicePushToken
         phoneNumber
         uProfile {
           id
@@ -283,6 +286,7 @@ export const getUserDoc = /* GraphQL */ `
     getUserDoc(id: $id) {
       createdAt
       expoPushToken
+      devicePushToken
       email
       id
       phoneNumber
@@ -498,6 +502,7 @@ export const listUserDocs = /* GraphQL */ `
       items {
         createdAt
         expoPushToken
+        devicePushToken
         email
         id
         phoneNumber

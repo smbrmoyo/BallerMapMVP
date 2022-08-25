@@ -48,7 +48,7 @@ export default function NotifRow(props) {
           <View
             style={{
               flexDirection: "column",
-              marginLeft: wsize(15),
+              marginLeft: wsize(5),
               width: "60%",
             }}
           >

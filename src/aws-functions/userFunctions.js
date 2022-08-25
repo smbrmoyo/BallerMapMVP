@@ -120,13 +120,12 @@ const sendFollowInvitation = (profileID, expoPushToken, username) => {
       sound: "default",
       title: "New Follower", // Watch what TT and IG write
       badge: 1,
-      body: `${username} has started to follow you`,
+      "content-available": 1,
+      body: `${username} followed you!`,
       data: {
         profileID: profileID,
       },
     };
-
-    console.log(JSON.stringify(notification));
 
     fetch("https://exp.host/--/api/v2/push/send", {
       method: "POST",
@@ -258,6 +257,7 @@ export const updatePushToken = async (userData) => {
         input: {
           id: userData.id,
           expoPushToken: userData.expoPushToken,
+          devicePushToken: userData.devicePushToken,
         },
       })
     );

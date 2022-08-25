@@ -9,7 +9,6 @@ import {
 import styles from "./styles";
 import Loading from "./Loading";
 import ListContainer from "./ListContainer";
-import NewDataContainer from "./NewDataContainer";
 import { hsize } from "../../utils/Dimensions";
 import { useActivity } from "../../navigation/Providers/ActivityProvider";
 
@@ -52,8 +51,6 @@ const ActivityScreen = ({ navigation }) => {
           <Loading />
         ) : (
           <>
-            <NewDataContainer newData={newData} setNewData={setNewData} />
-
             <ListContainer myNotifs={activity} setNewData={setNewData} />
           </>
         )}

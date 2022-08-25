@@ -27,7 +27,7 @@ const client = http2.connect(
 );
 
 let nativeDeviceToken =
-  "c47b65f66f1e410eabb5d28e3dad463fe7d7a087f233a085ce83d515fc241063";
+  "c27fc0552248236bef00394fa324583686cd053eaa007ec59782231206d04824";
 
 headers = {
   ":method": "POST",
@@ -44,8 +44,9 @@ request.write(
   JSON.stringify({
     aps: {
       alert: {
-        title: "📧 You've got mail!",
-        body: "Hello world! 🌐",
+        title: "Hello",
+        body: "This is coming from Ballermap",
+        badge: 1,
       },
     },
     experienceId: "@brianmoyou/BallerMap", // Required when testing in the Expo Go app

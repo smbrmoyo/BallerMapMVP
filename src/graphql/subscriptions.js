@@ -185,6 +185,7 @@ export const onCreateUprofile = /* GraphQL */ `
       userDoc {
         createdAt
         expoPushToken
+        devicePushToken
         email
         id
         phoneNumber
@@ -230,6 +231,7 @@ export const onCreateUserDoc = /* GraphQL */ `
     onCreateUserDoc {
       createdAt
       expoPushToken
+      devicePushToken
       email
       id
       phoneNumber
@@ -496,6 +498,7 @@ export const onDeleteUprofile = /* GraphQL */ `
       userDoc {
         createdAt
         expoPushToken
+        devicePushToken
         email
         id
         phoneNumber
@@ -541,6 +544,7 @@ export const onDeleteUserDoc = /* GraphQL */ `
     onDeleteUserDoc {
       createdAt
       expoPushToken
+      devicePushToken
       email
       id
       phoneNumber
@@ -880,6 +884,7 @@ export const onUpdateUprofile = /* GraphQL */ `
         profileID
         email
         expoPushToken
+        devicePushToken
         phoneNumber
         uProfile {
           id
@@ -944,6 +949,7 @@ export const onUpdateUserDoc = /* GraphQL */ `
     onUpdateUserDoc {
       createdAt
       expoPushToken
+      devicePushToken
       email
       id
       phoneNumber

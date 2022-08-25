@@ -4,7 +4,9 @@ import React from "react";
 import { updatePushToken } from "../../aws-functions/userFunctions";
 
 export async function registerForPushNotificationsAsync(user) {
-  let token;
+  let expoPushToken;
+  let devicePushToken;
+
   if (Device.isDevice) {
     const { status: existingStatus } =
       await Notifications.getPermissionsAsync();
@@ -18,7 +20,7 @@ export async function registerForPushNotificationsAsync(user) {
       return;
     }
     try {
-      token = (
+      expoPushToken = (
         await Notifications.getExpoPushTokenAsync({
           experienceId: "@brianmoyou/BallerMap",
         })
@@ -26,10 +28,17 @@ export async function registerForPushNotificationsAsync(user) {
     } catch (error) {
       console.log("error on getting expoPushToken: ", error);
     }
+
+    try {
+      devicePushToken = (await Notifications.getDevicePushTokenAsync()).data;
+    } catch (error) {
+      console.log("error on getting devicePushToken: ", error);
+    }
   }
   let input = {
     id: user,
-    expoPushToken: token, //ExponentPushToken[vzVWrGKf78eBc2ACnPYO1x]
+    expoPushToken: expoPushToken, //ExponentPushToken[vzVWrGKf78eBc2ACnPYO1x]
+    devicePushToken: devicePushToken,
   };
   if (
     user != "brianmoyou@gmail" ||
@@ -38,5 +47,4 @@ export async function registerForPushNotificationsAsync(user) {
   ) {
     await updatePushToken(input);
   }
-  return token;
 }

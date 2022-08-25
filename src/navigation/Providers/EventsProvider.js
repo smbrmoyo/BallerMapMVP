@@ -1,8 +1,7 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useEffect, useState } from "react";
 //import Realm from "realm";
 import { useAuth } from "./AuthProvider";
 import { getFilteredEvents } from "../../aws-functions/eventFunctions";
-import { useQuery } from "react-query";
 
 export const EventsContext = React.createContext();
 
@@ -14,13 +13,13 @@ const EventsProvider = ({ children }) => {
   //const result = useQuery("getProfile", getUprofileDoc(user));
 
   /*useEffect(() => {
-    if (result.status != status) {
-      setProfileDoc(result.data);
-      setStatus(result.status);
-    } else {
-      setStatus(result.status);
-    }
-  }, [result.status]);*/
+        if (result.status != status) {
+          setProfileDoc(result.data);
+          setStatus(result.status);
+        } else {
+          setStatus(result.status);
+        }
+      }, [result.status]);*/
   useEffect(() => {
     getFilteredEvents(user).then((response) => {
       setEvents(response);

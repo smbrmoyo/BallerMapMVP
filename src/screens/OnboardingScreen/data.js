@@ -1,7 +1,7 @@
 export const Data = [
   {
     key: "3571572",
-    title: "Welcome to BallerMap",
+    title: "Welcome to BallerMap!!!",
     //description: "I need to work on the spacing",
     image: "https://cdn-icons-png.flaticon.com/512/7280/7280037.png",
   },
