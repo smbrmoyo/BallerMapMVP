@@ -52,6 +52,7 @@ export const createEvent = /* GraphQL */ `
         items {
           userProfile {
             expoPushToken
+            devicePushToken
           }
         }
         nextToken
@@ -261,6 +262,7 @@ export const createUprofile = /* GraphQL */ `
       userDoc {
         createdAt
         expoPushToken
+        devicePushToken
         email
         id
         phoneNumber
@@ -289,6 +291,7 @@ export const createUserConnection = /* GraphQL */ `
         username
         profilePicture
         expoPushToken
+        devicePushToken
       }
       followedID
       follower {
@@ -301,6 +304,7 @@ export const createUserConnection = /* GraphQL */ `
         username
         profilePicture
         expoPushToken
+        devicePushToken
       }
       followerID
       id
@@ -316,6 +320,7 @@ export const createUserDoc = /* GraphQL */ `
     createUserDoc(condition: $condition, input: $input) {
       createdAt
       expoPushToken
+      devicePushToken
       email
       id
       phoneNumber
@@ -609,6 +614,7 @@ export const deleteUprofile = /* GraphQL */ `
       userDoc {
         createdAt
         expoPushToken
+        devicePushToken
         email
         id
         phoneNumber
@@ -660,6 +666,7 @@ export const deleteUserDoc = /* GraphQL */ `
     deleteUserDoc(condition: $condition, input: $input) {
       createdAt
       expoPushToken
+      devicePushToken
       email
       id
       phoneNumber
@@ -965,6 +972,7 @@ export const updateUprofile = /* GraphQL */ `
       cityCountry
       currentPlaceID
       expoPushToken
+      devicePushToken
       notifications {
         items {
           id
@@ -1064,6 +1072,7 @@ export const updateUprofile = /* GraphQL */ `
         profileID
         email
         expoPushToken
+        devicePushToken
         phoneNumber
         uProfile {
           id
@@ -1134,6 +1143,7 @@ export const updateUserDoc = /* GraphQL */ `
     updateUserDoc(condition: $condition, input: $input) {
       createdAt
       expoPushToken
+      devicePushToken
       email
       id
       phoneNumber

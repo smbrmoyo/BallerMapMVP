@@ -120,6 +120,7 @@ const sendFollowInvitation = (profileID, expoPushToken, username) => {
       sound: "default",
       title: "New Follower", // Watch what TT and IG write
       badge: 1,
+      "content-available": 1,
       body: `${username} followed you!`,
       data: {
         profileID: profileID,
@@ -256,6 +257,7 @@ export const updatePushToken = async (userData) => {
         input: {
           id: userData.id,
           expoPushToken: userData.expoPushToken,
+          devicePushToken: userData.devicePushToken,
         },
       })
     );

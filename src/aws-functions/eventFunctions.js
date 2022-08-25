@@ -73,6 +73,7 @@ const sendEventNotifications = (eventId) => {
           sound: "default",
           title: "New Event",
           badge: 1,
+          "content-available": 1,
           body: `${event.creator.username} has invited you to a new event`,
           data: {
             eventId: eventId,
