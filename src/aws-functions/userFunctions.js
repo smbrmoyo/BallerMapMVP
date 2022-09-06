@@ -1,5 +1,4 @@
 import {API, Auth, graphqlOperation} from "aws-amplify";
-
 import {checkName, checkUsername} from "../screens/SetProfileScreen/helpers";
 import * as mutations from "../graphql/mutations";
 import * as queries from "../graphql/queries";
@@ -108,13 +107,13 @@ export const getAllNotifications = async (user) => {
 
 /**
  * @description send notifications to expo server
- * @param {ID} profileID Id of the followed user
+ * @param {ID} profileId Id of the followed user
  * @param {String} expoPushToken Token of the followed user
  * @param {String} username Username of the user
  */
 
-const sendFollowInvitation = (profileID, expoPushToken, username) => {
-  getUprofileDoc(profileID).then((res) => {
+export const sendFollowInvitation = (profileId, expoPushToken, username) => {
+  getUprofileDoc(profileId).then((res) => {
     let notification = {
       to: res.expoPushToken,
       sound: "default",
@@ -123,21 +122,24 @@ const sendFollowInvitation = (profileID, expoPushToken, username) => {
       "content-available": 1,
       body: `${username} followed you!`,
       data: {
-        profileID: profileID,
+        profileID: profileId,
       },
     };
 
-    fetch("https://exp.host/--/api/v2/push/send", {
-      method: "POST",
-      headers: {
-        accept: "application/json",
-        "accept-encoding": "gzip, deflate",
-        "content-type": "application/json",
+    const BASE_URL = "http://192.168.1.37:8000/followNotification";
+    let devicePushToken = res.devicePushToken;
+    let user = username;
+
+    fetch(`${BASE_URL}/${user}&${devicePushToken}&${profileId}`, {
+      method: "GET",
+      params: {
+        devicePushToken: devicePushToken,
+        user: user,
+        profileId: profileId,
       },
-      body: JSON.stringify(notification),
     })
       .then((response) => {
-        console.log("Push notifications successful");
+        console.log(response);
       })
       .catch((error) => {
         console.log(error);

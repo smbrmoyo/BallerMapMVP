@@ -46,6 +46,7 @@
         "NSPhotoLibraryAddUsageDescription": "BallerMap accesses your photos to let you set your profile picture.",
         "NSPhotoLibraryUsageDescription": "BallerMap accesses your photos to let you set your profile picture.",
         "NSCameraUsageDescription": "BallerMap accesses your camera to let you set your profile picture.",
+        "NSAppTransportSecurity": "Allow BallerMap to make http requests to its servers",
         "UIBackgroundModes": [
           "location",
           "fetch",
