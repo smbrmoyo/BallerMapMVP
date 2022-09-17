@@ -71,7 +71,6 @@ const sendEventNotifications = (eventId) => {
     for (let participant of participants) {
       let devicePushToken = participant.userProfile.devicePushToken;
       setTimeout(() => {
-        console.log(devicePushToken, user);
         fetch(`${BASE_URL}/${user}&${devicePushToken}&${eventId}`, {
           method: "GET",
           params: {
@@ -79,6 +78,7 @@ const sendEventNotifications = (eventId) => {
             devicePushToken: devicePushToken,
             eventId: eventId,
           },
+          //TODO: Body should contain all params. In the best case an object, with user attributes, a list of device  tokens und eventId
         })
           .then((response) => {
             console.log(response);
@@ -86,7 +86,7 @@ const sendEventNotifications = (eventId) => {
           .catch((error) => {
             console.log(error);
           });
-      }, 5000);
+      }, 500);
     }
   });
 };

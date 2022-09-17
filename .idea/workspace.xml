@@ -4,21 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Implemented follow notification with node server">
-      <change afterPath="$PROJECT_DIR$/NotificationsExpo.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NotificationsWrapper.js" afterDir="false" />
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Implemented event notification with node server">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/Notifications.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NotificationsApn.js" beforeDir="false" afterPath="$PROJECT_DIR$/NotificationsApn.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/metro.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/metro.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aws-functions/eventFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/eventFunctions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/navigation/AppStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/AppStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/OtherProfileScreen/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OtherProfileScreen/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +162,9 @@
       <workItem from="1662374222986" duration="61000" />
       <workItem from="1662374306207" duration="3000" />
       <workItem from="1662374329548" duration="5182000" />
-      <workItem from="1662493555338" duration="3464000" />
+      <workItem from="1662493555338" duration="3775000" />
+      <workItem from="1662726402062" duration="6212000" />
+      <workItem from="1663391485848" duration="212000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -469,7 +460,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661457590209</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Implemented event notification with node server">
+      <created>1662499429960</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1662499429960</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -500,7 +498,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Notification subscription implemented &#10;Check subscribtion return value (when trigerred by createNotification mutation, or on follow user mutation) in the logs" />
     <MESSAGE value="Switched to WebStorm" />
     <MESSAGE value="Switched to WebStorm: Patch" />
     <MESSAGE value="Migrated to react-navigation v6" />
@@ -525,7 +522,8 @@
     <MESSAGE value="Corrected padding on Event and Notif headers" />
     <MESSAGE value="Added devicePushToken to the schema" />
     <MESSAGE value="Implemented follow notification with node server" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented follow notification with node server" />
+    <MESSAGE value="Implemented event notification with node server" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented event notification with node server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
