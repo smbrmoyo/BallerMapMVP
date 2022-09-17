@@ -4,19 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Corrected padding on Event and Notif headers">
-      <change afterPath="$PROJECT_DIR$/assets/notifications_icon.png" afterDir="false" />
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Implemented event notification with node server">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/Notifications.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aws-functions/eventFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/eventFunctions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/mutations.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/mutations.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/queries.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/queries.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/graphql/subscriptions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/graphql/subscriptions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/navigation/AppStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/AppStack.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/screens/OnboardingScreen/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/screens/OnboardingScreen/data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils/Notifications/registerForNotifications.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/Notifications/registerForNotifications.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +65,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/brianmoyou/Documents/Expo/BallerMapMVP/assets&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/brianmoyou/Documents/Expo/BallerMapMVP&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -162,7 +153,18 @@
       <workItem from="1661360358708" duration="18676000" />
       <workItem from="1661445417442" duration="1319000" />
       <workItem from="1661447401762" duration="1822000" />
-      <workItem from="1661454738658" duration="2264000" />
+      <workItem from="1661454738658" duration="14066000" />
+      <workItem from="1661767475437" duration="2900000" />
+      <workItem from="1661772548697" duration="3727000" />
+      <workItem from="1661784302847" duration="13000" />
+      <workItem from="1661784387863" duration="7018000" />
+      <workItem from="1662020441114" duration="4020000" />
+      <workItem from="1662374222986" duration="61000" />
+      <workItem from="1662374306207" duration="3000" />
+      <workItem from="1662374329548" duration="5182000" />
+      <workItem from="1662493555338" duration="3775000" />
+      <workItem from="1662726402062" duration="6212000" />
+      <workItem from="1663391485848" duration="212000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -451,7 +453,21 @@
       <option name="project" value="LOCAL" />
       <updated>1661088341059</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Added devicePushToken to the schema">
+      <created>1661457590209</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1661457590209</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Implemented event notification with node server">
+      <created>1662499429960</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1662499429960</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -482,9 +498,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="fake" />
-    <MESSAGE value="Get Notification Query implemented" />
-    <MESSAGE value="Notification subscription implemented &#10;Check subscribtion return value (when trigerred by createNotification mutation, or on follow user mutation) in the logs" />
     <MESSAGE value="Switched to WebStorm" />
     <MESSAGE value="Switched to WebStorm: Patch" />
     <MESSAGE value="Migrated to react-navigation v6" />
@@ -507,7 +520,10 @@
     <MESSAGE value="Implemented notif on follow" />
     <MESSAGE value="Corrected padding on Event and Notif rows" />
     <MESSAGE value="Corrected padding on Event and Notif headers" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected padding on Event and Notif headers" />
+    <MESSAGE value="Added devicePushToken to the schema" />
+    <MESSAGE value="Implemented follow notification with node server" />
+    <MESSAGE value="Implemented event notification with node server" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented event notification with node server" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

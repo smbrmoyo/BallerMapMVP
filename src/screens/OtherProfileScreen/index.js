@@ -3,7 +3,6 @@ import {Dimensions, ScrollView, StatusBar, Text, TouchableOpacity, TouchableWith
 import Animated from "react-native-reanimated";
 import {useRoute} from "@react-navigation/native";
 import Entypo from "react-native-vector-icons/Entypo";
-import {API, graphqlOperation} from "aws-amplify";
 
 import MyEventsTab from "./MyEventsTab";
 import AttendingTab from "./AttendingTab";
@@ -13,7 +12,6 @@ import Loading from "./Loading";
 import {hsize} from "../../utils/Dimensions";
 import styles from "./styles";
 import {createUserConnection, deleteUserConnection, getUprofileDoc,} from "../../aws-functions/userFunctions";
-import {onCreateUserConnection, onDeleteUserConnection,} from "../../graphql/subscriptions";
 import {useProfile} from "../../navigation/Providers/ProfileProvider";
 import {useAuth} from "../../navigation/Providers/AuthProvider";
 
@@ -54,9 +52,9 @@ const OtherProfileScreen = ({ navigation }) => {
       }
     });
 
-    const subscribeToCreateUserConnection = API.graphql(
-      graphqlOperation(onCreateUserConnection, { id: user + otherUserId })
-    ).subscribe({
+    /**const subscribeToCreateUserConnection = API.graphql(
+         graphqlOperation(onCreateUserConnection, { id: user + otherUserId })
+         ).subscribe({
       next: ({ value }) => {
         let tempProfileDoc = [...profileDoc.following.items];
         tempProfileDoc.push(value.data.onCreateUserConnection);
@@ -77,9 +75,9 @@ const OtherProfileScreen = ({ navigation }) => {
       error: (error) => console.log(error),
     });
 
-    const subscribeToDeleteUserConnection = API.graphql(
-      graphqlOperation(onDeleteUserConnection, { id: user + otherUserId })
-    ).subscribe({
+         const subscribeToDeleteUserConnection = API.graphql(
+         graphqlOperation(onDeleteUserConnection, { id: user + otherUserId })
+         ).subscribe({
       next: ({ value }) => {
         let tempProfileDoc = [...profileDoc.following.items];
         tempProfileDoc.splice(
@@ -106,15 +104,15 @@ const OtherProfileScreen = ({ navigation }) => {
       error: (error) => {
         console.log(error);
       },
-    });
+    });*/
 
     setFollowLoading(false);
 
     return () => {
       setLoading(true);
       setStatus("loading");
-      subscribeToCreateUserConnection.unsubscribe();
-      subscribeToDeleteUserConnection.unsubscribe();
+      // subscribeToCreateUserConnection.unsubscribe();
+      // subscribeToDeleteUserConnection.unsubscribe();
       otherUserId = null;
     };
   }, [otherUser]);

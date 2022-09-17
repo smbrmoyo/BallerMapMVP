@@ -62,42 +62,31 @@ export const getFilteredEvents = async (user) => {
  */
 
 const sendEventNotifications = (eventId) => {
-  getEvent(eventId).then((event) => {
-    let notifications = event?.participants?.items.map((token) => {
-      if (
-        token.userProfile.expoPushToken !== null ||
-        token.userProfile.expoPushToken !== undefined
-      ) {
-        return {
-          to: token.userProfile.expoPushToken,
-          sound: "default",
-          title: "New Event",
-          badge: 1,
-          "content-available": 1,
-          body: `${event.creator.username} has invited you to a new event`,
-          data: {
+  getEvent(eventId).then((res) => {
+    const BASE_URL = "http://192.168.1.37:8000/eventNotification";
+
+    let user = res?.creator.username;
+    let participants = res?.participants?.items;
+
+    for (let participant of participants) {
+      let devicePushToken = participant.userProfile.devicePushToken;
+      setTimeout(() => {
+        fetch(`${BASE_URL}/${user}&${devicePushToken}&${eventId}`, {
+          method: "GET",
+          params: {
+            user: user,
+            devicePushToken: devicePushToken,
             eventId: eventId,
           },
-        };
-      }
-    });
-
-    if (notifications.length > 0) {
-      fetch("https://exp.host/--/api/v2/push/send", {
-        method: "POST",
-        headers: {
-          accept: "application/json",
-          "accept-encoding": "gzip, deflate",
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(notifications),
-      })
-        .then((response) => {
-          console.log("Push notifications successful");
+          //TODO: Body should contain all params. In the best case an object, with user attributes, a list of device  tokens und eventId
         })
-        .catch((error) => {
-          console.log(error);
-        });
+          .then((response) => {
+            console.log(response);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      }, 500);
     }
   });
 };
