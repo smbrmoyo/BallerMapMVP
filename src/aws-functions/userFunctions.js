@@ -126,7 +126,8 @@ export const sendFollowInvitation = (profileId, expoPushToken, username) => {
       },
     };
 
-    const BASE_URL = "http://192.168.1.37:8000/followNotification";
+    const BASE_URL =
+      "https://ballermapserver-cqxwqtgz2q-lm.a.run.app/followNotification";
     let devicePushToken = res.devicePushToken;
     let user = username;
 

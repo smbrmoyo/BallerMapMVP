@@ -63,7 +63,8 @@ export const getFilteredEvents = async (user) => {
 
 const sendEventNotifications = (eventId) => {
   getEvent(eventId).then((res) => {
-    const BASE_URL = "http://192.168.1.37:8000/eventNotification";
+    const BASE_URL =
+      "https://ballermapserver-cqxwqtgz2q-lm.a.run.app/eventNotification";
 
     let user = res?.creator.username;
     let participants = res?.participants?.items;
@@ -78,7 +79,7 @@ const sendEventNotifications = (eventId) => {
             devicePushToken: devicePushToken,
             eventId: eventId,
           },
-          //TODO: Body should contain all params. In the best case an object, with user attributes, a list of device  tokens und eventId
+          //TODO: Body should contain a list of device  tokens
         })
           .then((response) => {
             console.log(response);

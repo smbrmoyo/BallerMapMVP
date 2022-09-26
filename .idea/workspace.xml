@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Implemented event notification with node server">
+    <list default="true" id="3fc0e29a-13cb-4664-9779-4f47f9aeb158" name="Default Changelist" comment="Will try and pass all parameters through the body and not through params">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NotificationsApn.js" beforeDir="false" afterPath="$PROJECT_DIR$/NotificationsApn.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/aws-functions/eventFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/eventFunctions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/navigation/AppStack.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/navigation/AppStack.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/aws-functions/userFunctions.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,6 +166,10 @@
       <workItem from="1662493555338" duration="3775000" />
       <workItem from="1662726402062" duration="6212000" />
       <workItem from="1663391485848" duration="212000" />
+      <workItem from="1663392340379" duration="16000" />
+      <workItem from="1663404578116" duration="935000" />
+      <workItem from="1663716529649" duration="599000" />
+      <workItem from="1663758573188" duration="5040000" />
     </task>
     <task id="LOCAL-00001" summary="SignIn and  Signup and SignOut functions implemented in the AuthProvider&#10;### setProfileScreen on first launch disabled&#10;&#10;Authentication flow implemented in SignUp screen">
       <created>1632380083868</created>
@@ -467,7 +472,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662499429960</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Will try and pass all parameters through the body and not through params">
+      <created>1663392350727</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1663392350727</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -498,7 +510,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="Switched to WebStorm" />
     <MESSAGE value="Switched to WebStorm: Patch" />
     <MESSAGE value="Migrated to react-navigation v6" />
     <MESSAGE value="Small modifications" />
@@ -523,7 +534,8 @@
     <MESSAGE value="Added devicePushToken to the schema" />
     <MESSAGE value="Implemented follow notification with node server" />
     <MESSAGE value="Implemented event notification with node server" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented event notification with node server" />
+    <MESSAGE value="Will try and pass all parameters through the body and not through params" />
+    <option name="LAST_COMMIT_MESSAGE" value="Will try and pass all parameters through the body and not through params" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
